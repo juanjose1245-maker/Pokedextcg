@@ -1,0 +1,1381 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="manifest" href="manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Pokédex">
+    <title>Pokédex TCG</title>
+    <link rel="icon" type="image/png" href="https://img.icons8.com/color/96/pokeball.png">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/color/180/pokeball.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://img.icons8.com/color/120/pokeball.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://img.icons8.com/color/152/pokeball.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://img.icons8.com/color/180/pokeball.png">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <style>
+        :root {
+            --bg:#f8fafc;--surface:#fff;--surface2:#f1f5f9;--border:#e2e8f0;
+            --accent:#d97706;--accent2:#4f46e5;--found:#10b981;--danger:#ef4444;
+            --text:#0f172a;--muted:#64748b;--radius:16px;
+            --header-bg:rgba(248,250,252,0.92);--shadow:rgba(15,23,42,0.06);
+            --grad1:rgba(79,70,229,0.04);--grad2:rgba(217,119,6,0.05);
+            --nav-bg:rgba(255,255,255,0.94);--nav-border:rgba(226,232,240,0.8);
+            --input-bg:#fff;--sug-bg:#fff;--overlay-bg:#fff;
+            --found-bg:linear-gradient(145deg,#f0fdf4,#fff);--found-glow:rgba(16,114,81,0.05);
+            --sidebar-bg:#fff;--sidebar-width:260px;
+        }
+        @media(prefers-color-scheme:dark){:root{
+            --bg:#0a0a0a;--surface:#121212;--surface2:#1a1a1a;--border:#262626;
+            --accent:#f59e0b;--accent2:#ffffff;--found:#22c55e;--danger:#ef4444;
+            --text:#f5f5f5;--muted:#737373;--header-bg:rgba(10,10,10,0.85);
+            --shadow:rgba(0,0,0,0.6);--grad1:transparent;--grad2:transparent;
+            --nav-bg:rgba(18,18,18,0.85);--nav-border:rgba(38,38,38,0.8);
+            --input-bg:#121212;--sug-bg:#121212;--overlay-bg:#121212;
+            --found-bg:linear-gradient(145deg,#142217,#121212);--found-glow:rgba(34,245,94,0.03);
+            --sidebar-bg:#111111;
+        }}
+
+        *{box-sizing:border-box;margin:0;padding:0;}
+        html,body{height:100%;overflow:hidden;}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);position:fixed;width:100%;top:0;left:0;
+            background-image:radial-gradient(ellipse at 80% 0%,var(--grad1) 0%,transparent 60%),radial-gradient(ellipse at 20% 100%,var(--grad2) 0%,transparent 50%);}
+
+        /* ── MOBILE LAYOUT ── */
+        #scroll-root{height:100%;overflow-y:auto;overscroll-behavior-y:none;-webkit-overflow-scrolling:touch;padding-bottom:80px;}
+        .phone-container{width:100%;max-width:480px;margin:0 auto;}
+
+        /* ── STICKY HEADER (mobile only) ── */
+        .sticky-header{position:sticky;top:0;z-index:200;background:var(--header-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 14px 10px;}
+        .brand-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer;}
+        .pokeball-icon{width:22px;height:22px;background:conic-gradient(#e74c3c 0deg 180deg,var(--surface2) 180deg 360deg);border-radius:50%;border:2px solid var(--surface2);position:relative;flex-shrink:0;}
+        .pokeball-icon::after{content:'';position:absolute;width:7px;height:7px;background:var(--surface2);border-radius:50%;border:1.5px solid var(--border);top:50%;left:50%;transform:translate(-50%,-50%);}
+        .brand-title{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);}
+        .header-actions{display:flex;align-items:center;gap:6px;margin-left:auto;}
+        .brand-count{font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:var(--muted);letter-spacing:0.05em;}
+        .header-icon-btn{width:34px;height:34px;border-radius:10px;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:background .15s,transform .15s;flex-shrink:0;}
+        .header-icon-btn:active{transform:scale(0.9);}
+        .header-icon-btn.cam-active{background:var(--danger);border-color:var(--danger);}
+
+        /* ── SEARCH ── */
+        .search-wrap{position:relative;}
+        .search-bar{width:100%;background:var(--input-bg);border:1px solid var(--border);border-radius:12px;padding:11px 16px;font-size:13px;color:var(--text);font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;}
+        .search-bar::placeholder{color:var(--muted);}
+        .search-bar:focus{border-color:var(--accent2);}
+        .sugerencias{position:fixed;top:0;left:0;right:0;background:var(--sug-bg);border:1px solid var(--border);border-radius:14px;z-index:9999;box-shadow:0 12px 30px var(--shadow);display:none;max-height:260px;overflow-y:auto;}
+        .sugerencia-item{padding:12px 16px;cursor:pointer;font-size:13px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+        .sugerencia-item:last-child{border-bottom:none;}
+        .sugerencia-item.found{opacity:0.55;}
+        .sugerencia-check-left{font-size:12px;color:var(--found);font-weight:700;width:14px;flex-shrink:0;}
+        .sugerencia-name{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;text-transform:capitalize;color:var(--text);flex:1;}
+        .sugerencia-name.found-name{color:var(--muted);}
+        .sugerencia-meta{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;font-family:'Rajdhani',sans-serif;letter-spacing:.05em;flex-shrink:0;}
+
+        /* ── MAIN CONTENT ── */
+        .main-content{padding:12px 14px 0;}
+
+        /* ── PROGRESS CARD ── */
+        .progress-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:16px;position:relative;overflow:hidden;cursor:pointer;transition:transform 0.15s;}
+        .progress-card:active{transform:scale(0.99);}
+        .progress-top-row{display:flex;align-items:center;justify-content:space-between;}
+        .progress-label{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+        .progress-count{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;color:var(--text);line-height:1;}
+        .progress-count span{color:var(--accent2);}
+        .progress-sub{font-size:12px;color:var(--muted);margin-top:3px;}
+        .circle-wrap{width:72px;height:72px;flex-shrink:0;}
+        .jalon-box{display:none;margin-top:10px;padding:8px 12px;border-radius:10px;background:rgba(79,70,229,0.08);border:1px solid rgba(79,70,229,0.2);font-size:12px;color:var(--accent2);font-weight:600;}
+        .jalon-box.visible{display:block;}
+        .binder-bar-wrap{margin-top:14px;padding-top:12px;border-top:1px solid var(--border);}
+        .binder-bar{display:flex;gap:3px;height:10px;border-radius:6px;overflow:hidden;margin-bottom:10px;}
+        .binder-bar-segment{border:none;padding:0;cursor:pointer;transition:filter .15s;}
+        .binder-bar-segment:hover{filter:brightness(1.15);}
+        .binder-legend{display:flex;flex-wrap:wrap;gap:12px;}
+        .binder-legend-item{display:flex;align-items:center;gap:6px;cursor:pointer;background:none;border:none;padding:0;font-family:'Inter',sans-serif;}
+        .binder-legend-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+        .binder-legend-name{font-size:12px;font-weight:600;color:var(--text);}
+        .binder-legend-range{font-size:12px;color:var(--muted);}
+
+        /* ── SECTION TITLE ── */
+        .section-title{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:10px;}
+
+        /* ── GALLERY FILTER ── */
+        .gallery-filter{display:flex;gap:6px;margin-bottom:12px;}
+        .filter-btn{flex:1;padding:7px 4px;border-radius:10px;border:1px solid var(--border);background:var(--surface);font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--muted);cursor:pointer;transition:all .15s;}
+        .filter-btn.active{background:var(--accent2);border-color:var(--accent2);color:#fff;}
+        @media(prefers-color-scheme:dark){.filter-btn.active{color:var(--bg);}}
+        .gallery-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+        .gallery-title{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;color:var(--text);}
+        .gallery-subtitle{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;}
+        .btn-acomodar{padding:6px 12px;border-radius:10px;border:1px solid var(--border);background:var(--surface);font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--muted);cursor:pointer;transition:all .15s;white-space:nowrap;}
+        .btn-acomodar.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+        /* ── GEN GRID (mobile) ── */
+        .gen-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px;}
+        @media(min-width:380px){.gen-grid{grid-template-columns:repeat(3,1fr);}}
+        .gen-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 8px 10px;text-align:center;cursor:pointer;position:relative;overflow:hidden;transition:transform .15s;}
+        .gen-card:active{transform:scale(0.95);}
+        .gen-card-bar{position:absolute;top:0;left:0;right:0;height:4px;border-radius:3px 3px 0 0;}
+        .gen-num{display:inline-block;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.04em;padding:2px 9px;border-radius:6px;margin-bottom:6px;}
+        .gen-region{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px;}
+        .gen-progress-text{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;margin-bottom:4px;}
+        .gen-missing{font-size:11px;font-weight:600;margin-bottom:7px;}
+        .gen-bar-bg{background:var(--border);height:3px;border-radius:2px;width:80%;margin:0 auto;overflow:hidden;}
+        .gen-bar-fill{height:100%;border-radius:2px;transition:width .4s ease;}
+
+        /* ── CAMERA ── */
+        #camera-fullscreen-view{display:none;margin-bottom:16px;animation:fadeIn .2s ease;}
+        .camera-wrapper{width:100%;height:420px;background:#000;border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:0 8px 24px var(--shadow);}
+        #video{width:100%;height:100%;object-fit:cover;}
+        .scanner-target-box{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:82%;aspect-ratio:2.5/3.5;border:2px solid var(--found);border-radius:12px;background:rgba(34,197,94,0.06);box-shadow:0 0 0 999px rgba(0,0,0,0.65);pointer-events:none;}
+        .scanner-line{position:absolute;top:10%;left:0;right:0;height:2px;background:var(--found);box-shadow:0 0 8px var(--found);animation:scanPulse 2s ease-in-out infinite;}
+        @keyframes scanPulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+        .ocr-status-bar{display:none;background:var(--surface);border:1px solid var(--accent2);border-radius:10px;padding:10px 14px;margin-top:10px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.05em;color:var(--accent2);text-align:center;}
+        .ocr-historial{margin-top:10px;}
+        .ocr-historial-title{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+        .ocr-historial-list{display:flex;flex-direction:column;gap:6px;}
+        .ocr-hist-item{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 12px;cursor:pointer;}
+        .ocr-hist-img{width:32px;height:32px;object-fit:contain;}
+        .ocr-hist-name{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;text-transform:capitalize;color:var(--text);flex:1;}
+        .ocr-hist-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;font-family:'Rajdhani',sans-serif;}
+        .ocr-hist-estado{font-size:11px;color:var(--muted);}
+
+        /* ── GALLERY (mobile) ── */
+        .gallery-section{display:none;animation:fadeIn .25s ease;}
+        .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+        .gallery-grid.modo-acomodar .pk-card{aspect-ratio:auto;padding:8px 6px;min-height:48px;flex-direction:row;gap:6px;text-align:left;justify-content:flex-start;}
+        .gallery-grid.modo-acomodar .pk-img{width:32px;height:32px;}
+        .gallery-grid.modo-acomodar .pk-name{font-size:11px;margin-top:0;text-align:left;}
+        .gallery-grid.modo-acomodar .pk-status-tag{display:none;}
+        .gallery-grid.modo-acomodar{grid-template-columns:repeat(2,1fr);}
+
+        /* ── PK CARD (mobile) ── */
+        .pk-card{background:var(--surface);border:1.5px solid var(--border);border-top:4px solid var(--border);border-radius:var(--radius);padding:10px 4px 8px;text-align:center;cursor:pointer;position:relative;aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;transition:transform .15s;}
+        .pk-card:active{transform:scale(0.95);}
+        .pk-card.found{border-color:var(--found);background:var(--found-bg);}
+        .pk-card.found::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,var(--found-glow),transparent 70%);pointer-events:none;}
+        .pk-card.missing{opacity:0.75;}
+        .pk-rid{position:absolute;top:5px;left:6px;font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;letter-spacing:.03em;padding:1px 5px;border-radius:5px;}
+        .pk-nid{position:absolute;top:5px;right:6px;font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;color:var(--muted);}
+        .pk-img{width:56px;height:56px;object-fit:contain;filter:drop-shadow(0 2px 4px var(--shadow));position:relative;z-index:1;}
+        .pk-card.missing .pk-img{filter:grayscale(0.7) opacity(0.5);}
+        .pk-name{font-family:'Rajdhani',sans-serif;font-size:10px;font-weight:700;letter-spacing:.03em;text-transform:capitalize;color:var(--text);margin-top:4px;position:relative;z-index:1;width:90%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        .pk-card.missing .pk-name{color:var(--muted);}
+        .pk-status-tag{display:flex;align-items:center;gap:3px;font-size:9px;font-weight:700;color:var(--muted);margin-top:2px;position:relative;z-index:1;}
+        .pk-status-tag::before{content:'○';font-size:9px;}
+        .pk-card.found .pk-status-tag::before{content:'✓';color:var(--found);}
+
+        /* Elementos desktop ocultos por defecto */
+        .pk-dt-header{display:none;}
+        .pk-dt-footer{display:none;}
+        .pk-dt-img{display:none;}
+
+        /* ── FAB ── */
+        .fab-home{display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--nav-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--nav-border);border-radius:22px;padding:10px 20px;gap:8px;align-items:center;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.05em;color:var(--accent2);cursor:pointer;box-shadow:0 8px 24px var(--shadow);z-index:500;white-space:nowrap;animation:fadeIn .2s ease;}
+        .fab-home.visible{display:flex;}
+        .fab-home:active{opacity:.85;transform:translateX(-50%) scale(0.96);}
+
+        /* ── DETAIL OVERLAY (mobile default) ── */
+        .detail-overlay{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--overlay-bg);border-radius:28px 28px 0 0;padding:24px 20px 44px;box-shadow:0 -12px 40px var(--shadow);z-index:600;text-align:center;border-top:1px solid var(--border);animation:slideUp .3s ease;}
+        @keyframes slideUp{from{transform:translateY(30px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+        .detail-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px;}
+        .detail-close{position:absolute;top:20px;right:18px;font-size:20px;color:var(--muted);cursor:pointer;padding:4px;}
+        .detail-region{display:inline-block;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.03em;padding:4px 12px;border-radius:7px;margin-bottom:8px;}
+        .detail-name{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;color:var(--text);text-transform:capitalize;letter-spacing:-.02em;margin-bottom:4px;}
+        .detail-ids{font-size:12px;color:var(--muted);margin-bottom:14px;}
+        .art-box{width:130px;height:130px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;}
+        .art-box img{max-width:100%;max-height:100%;object-fit:contain;}
+        .binder-box{border-radius:12px;padding:12px 16px;margin-bottom:14px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.04em;}
+        .btn-status{width:100%;border:none;border-radius:14px;padding:14px;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;cursor:pointer;transition:opacity .2s;}
+        .btn-status:active{opacity:.85;}
+        .detail-fecha{font-size:11px;color:var(--muted);margin-top:8px;}
+
+        /* ── METRICS ── */
+        .metrics-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:700;align-items:center;justify-content:center;}
+        .metrics-modal.open{display:flex;}
+        .metrics-box{background:var(--overlay-bg);border:1px solid var(--border);border-radius:24px;padding:24px 20px;width:calc(100% - 40px);max-width:380px;animation:fadeIn .2s ease;max-height:80vh;overflow-y:auto;}
+        .metrics-title{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:var(--accent);margin-bottom:4px;letter-spacing:.06em;text-transform:uppercase;}
+        .metrics-subtitle{font-size:12px;color:var(--muted);margin-bottom:16px;}
+        .metrics-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;}
+        .metrics-row:last-of-type{border-bottom:none;}
+        .metrics-row-label{color:var(--muted);font-size:12px;}
+        .metrics-row-val{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;color:var(--text);}
+        .metrics-row-sub{font-size:11px;color:var(--muted);text-align:right;}
+        .metrics-section-title{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px;}
+        .metrics-jalon{background:rgba(79,70,229,0.08);border:1px solid rgba(79,70,229,0.2);border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:12px;color:var(--accent2);font-weight:600;}
+        .metrics-close{width:100%;margin-top:16px;border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:12px;padding:12px;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;letter-spacing:.06em;cursor:pointer;}
+
+        @media(prefers-color-scheme:dark){
+            .progress-card:active{transform:scale(0.99);background:#161616;}
+            .sb-progress-box.active{background:#221b47 !important; border-color:var(--accent2);}
+        }
+        @keyframes skeleton{from{opacity:0.4;}to{opacity:0.9;}}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+        /* ═══════════════════════════════════════════════════════
+           TABLET 768px
+        ═══════════════════════════════════════════════════════ */
+        @media(min-width:768px){
+            .phone-container{max-width:720px;}
+            .gen-grid{grid-template-columns:repeat(4,1fr);gap:12px;}
+            .gallery-grid{grid-template-columns:repeat(5,1fr);gap:10px;}
+            .gallery-grid.modo-acomodar{grid-template-columns:repeat(3,1fr);}
+            .detail-overlay{max-width:500px;margin:0 auto;border-radius:28px;bottom:90px;}
+            .metrics-box{max-width:420px;}
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           DESKTOP 1024px — layout de dos paneles
+        ═══════════════════════════════════════════════════════ */
+        @media(min-width:1024px){
+            body{display:flex;flex-direction:row;overflow:hidden;}
+
+            /* ── SIDEBAR ── */
+            #desktop-sidebar{
+                display:flex !important;
+                flex-direction:column;
+                width:var(--sidebar-width);
+                flex-shrink:0;
+                background:var(--sidebar-bg);
+                border-right:1px solid var(--border);
+                height:100vh;
+                overflow:hidden;
+            }
+            .sb-brand{display:flex;align-items:center;gap:8px;padding:18px 16px 14px;border-bottom:1px solid var(--border);cursor:pointer;flex-shrink:0;}
+            .sb-brand.active{background:rgba(79,70,229,0.06);}
+            .sb-pokeball{width:26px;height:26px;background:conic-gradient(#e74c3c 0deg 180deg,var(--surface2) 180deg 360deg);border-radius:50%;border:2px solid var(--surface2);position:relative;flex-shrink:0;}
+            .sb-pokeball::after{content:'';position:absolute;width:8px;height:8px;background:var(--surface2);border-radius:50%;border:1.5px solid var(--border);top:50%;left:50%;transform:translate(-50%,-50%);}
+            .sb-title{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
+            .sb-search{padding:12px 12px 8px;flex-shrink:0;}
+            .sb-search-bar{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-size:13px;color:var(--text);font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;}
+            .sb-search-bar::placeholder{color:var(--muted);}
+            .sb-search-bar:focus{border-color:var(--accent2);}
+            .sb-progress{padding:4px 12px 12px;flex-shrink:0;}
+            .sb-progress-box{background:var(--surface2);border:0.5px solid var(--border);border-radius:12px;padding:12px;cursor:pointer;transition:background 0.15s;}
+            .sb-progress-box:hover{background:var(--border);}
+            .sb-progress-box.active{background:rgba(79,70,229,0.08);border-color:var(--accent2);}
+            .sb-progress-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+            .sb-progress-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+            .sb-progress-pct{font-size:13px;font-weight:700;color:var(--accent2);}
+            .sb-progress-bar-bg{background:var(--border);border-radius:4px;height:6px;margin-bottom:6px;overflow:hidden;}
+            .sb-progress-bar-fill{height:100%;background:linear-gradient(90deg,#4f46e5,#7c3aed);border-radius:4px;transition:width .4s ease;}
+            .sb-progress-count{font-size:12px;color:var(--muted);}
+            .sb-section-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:4px 4px 6px;margin:0 12px;}
+            .sb-scroll{flex:1;overflow-y:auto;padding-bottom:8px;}
+            .sb-carpeta{margin:0 12px 4px;}
+            .sb-carpeta-header{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:10px;cursor:pointer;transition:background .15s;}
+            .sb-carpeta-header:hover{background:var(--surface2);}
+            .sb-carpeta-header.active{background:rgba(79,70,229,0.08);border:0.5px solid rgba(79,70,229,0.15);}
+            .sb-carpeta-left{display:flex;align-items:center;gap:7px;}
+            .sb-carpeta-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+            .sb-carpeta-name{font-size:13px;font-weight:600;color:var(--text);}
+            .sb-carpeta-range{font-size:11px;color:var(--muted);}
+            .sb-carpeta-count{font-size:11px;font-weight:700;}
+            .sb-carpeta-bar{height:3px;border-radius:2px;margin:4px 10px 0;overflow:hidden;background:var(--border);}
+            .sb-carpeta-bar-fill{height:100%;border-radius:2px;transition:width .4s ease;}
+            .sb-gens{margin:2px 12px 6px 24px;}
+            .sb-gen-item{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-radius:8px;cursor:pointer;transition:background .15s;border-left:2px solid transparent;}
+            .sb-gen-item:hover{background:var(--surface2);}
+            .sb-gen-item.active{background:rgba(79,70,229,0.08);border-left-color:var(--accent2);}
+            .sb-gen-name{font-size:13px;color:var(--text);}
+            .sb-gen-item.active .sb-gen-name{font-weight:600;color:var(--accent2);}
+            .sb-gen-count{font-size:11px;font-weight:600;color:var(--muted);}
+            .sb-bottom{padding:12px;border-top:1px solid var(--border);display:flex;gap:8px;flex-shrink:0;}
+            .sb-btn{flex:1;padding:8px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;font-family:'Inter',sans-serif;transition:background .15s;}
+            .sb-btn:hover{background:var(--border);}
+
+            /* ── MAIN AREA ── */
+            #scroll-root{flex:1;height:100vh;padding-bottom:0;}
+            .phone-container{max-width:100%;padding:0;}
+            .sticky-header{display:none !important;}
+            .progress-card{display:none !important;}
+            #generaciones-section-title{display:none !important;}
+            .gen-grid{display:none !important;}
+            #camera-fullscreen-view{display:none !important;}
+            .main-content{padding:0;}
+
+            /* Gallery siempre visible en desktop */
+            .gallery-section{display:flex !important;flex-direction:column;height:100vh;overflow:hidden;}
+
+            /* ── TOP BAR DEL MAIN ── */
+            .desktop-topbar{display:flex !important;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0;}
+            .desktop-topbar-left .gallery-title{font-size:20px;font-weight:600;color:var(--text);}
+            .desktop-topbar-left .gallery-subtitle{font-size:13px;color:var(--muted);margin-top:2px;}
+            .desktop-topbar-right{display:flex;gap:8px;align-items:center;}
+            .gallery-filter{margin-bottom:0;flex-wrap:nowrap;}
+            .filter-btn{flex:none;padding:7px 16px;white-space:nowrap;}
+            .btn-acomodar{padding:7px 16px;}
+
+            /* ── GRID SCROLL AREA ── */
+            .desktop-grid-scroll{
+                display:block !important;
+                flex:1;
+                overflow-y:auto !important;
+                height: calc(100vh - 73px);
+                padding: 20px 24px 40px 24px;
+            }
+
+            .gallery-grid{
+                display:grid !important;
+                grid-template-columns:repeat(5,1fr);
+                gap:16px;
+                width:100%;
+                align-items: start;
+            }
+            .gallery-grid.modo-acomodar{grid-template-columns:repeat(4,1fr);}
+            
+            #gallery-header-mobile{display:none !important;}
+            #gallery-filter-mobile{display:none !important;}
+            #gallery-grid-mobile-wrap{display:none !important;}
+
+            /* ── PK CARD DESKTOP ── */
+            .pk-card{
+                aspect-ratio:auto;
+                min-height: 180px;
+                display:flex !important;
+                flex-direction:column;
+                justify-content:space-between;
+                align-items:stretch;
+                padding:0;
+                border-radius:14px;
+                overflow:hidden;
+            }
+            .pk-card > .pk-rid,
+            .pk-card > .pk-nid,
+            .pk-card > .pk-img,
+            .pk-card > .pk-name,
+            .pk-card > .pk-status-tag { display:none !important; }
+            
+            .pk-dt-header{
+                display:flex !important;
+                justify-content:space-between;
+                align-items:center;
+                padding:10px 12px 4px;
+            }
+            .pk-dt-header .pk-rid{position:static;font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;}
+            .pk-dt-header .pk-nid{position:static;font-size:10px;font-weight:600;color:var(--muted);}
+            
+            .pk-dt-img{display:block !important;width:90px;height:90px;object-fit:contain;margin:6px auto;filter:drop-shadow(0 2px 6px var(--shadow));}
+            .pk-card.missing .pk-dt-img{filter:grayscale(0.8) opacity(0.45);}
+            
+            .pk-dt-footer{
+                display:block !important;
+                border-top:0.5px solid var(--border);
+                padding:8px 12px 12px;
+                text-align:left;
+                background:var(--surface);
+            }
+            .pk-dt-footer .pk-name{font-size:14px;font-weight:700;text-transform:capitalize;margin-top:0;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;position:static;}
+            .pk-dt-footer .pk-status-tag{font-size:11px;margin-top:3px;position:static;}
+            .pk-dt-footer .pk-card.found .pk-status-tag::before{content:'✓ ';color:var(--found);}
+            .pk-card.found .pk-dt-header{background:linear-gradient(145deg,#f0fdf4,#fff);}
+            .pk-card.missing .pk-dt-header{background:var(--surface2);}
+            @media(prefers-color-scheme:dark){
+                .pk-card.found .pk-dt-header{background:linear-gradient(145deg,#142217,#121212);}
+            }
+
+            /* ── FAB oculto en desktop ── */
+            .fab-home{display:none !important;}
+
+            /* ── DETAIL OVERLAY ── */
+            .detail-overlay{
+                position:fixed;
+                bottom:auto;
+                top:90px;
+                right:32px;
+                width:340px;
+                height:auto;
+                max-height:calc(100vh - 120px);
+                border-radius:20px;
+                border:1px solid var(--border);
+                border-top:none;
+                padding:28px 20px 32px;
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0,0,0,0.2);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                overflow-y:auto;
+                z-index:600;
+            }
+        }
+
+        /* ocultar sidebar en mobile */
+        #desktop-sidebar{display:none;}
+        .desktop-topbar{display:none;}
+        .desktop-grid-scroll{display:none;}
+    </style>
+</head>
+<body>
+
+<!-- ══ SIDEBAR DESKTOP ══════════════════════════════════════════ -->
+<div id="desktop-sidebar">
+    <div class="sb-brand" onclick="cambiarTab('home')">
+        <div class="sb-pokeball"></div>
+        <span class="sb-title">Pokédex TCG</span>
+    </div>
+    <div class="sb-search">
+        <input type="text" id="search-input-desktop" class="sb-search-bar" placeholder="🔍 Buscar Pokémon..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+    </div>
+    <div class="sb-progress">
+        <div class="sb-progress-box" id="sb-progress-trigger" onclick="verTodosLosPokemon()">
+            <div class="sb-progress-row">
+                <span class="sb-progress-label">Colección</span>
+                <span class="sb-progress-pct" id="sb-pct">0%</span>
+            </div>
+            <div class="sb-progress-bar-bg">
+                <div class="sb-progress-bar-fill" id="sb-bar" style="width:0%"></div>
+            </div>
+            <div class="sb-progress-count"><span id="sb-count">0</span> <span style="color:var(--muted)">de</span> 1025</div>
+        </div>
+    </div>
+    <div class="sb-scroll">
+        <div class="sb-section-label">Carpetas</div>
+        <div id="sb-carpetas"></div>
+    </div>
+    <div class="sb-bottom">
+        <button class="sb-btn" onclick="mostrarMetricas()">📊 Métricas</button>
+        <button class="sb-btn" id="sb-btn-cam" onclick="toggleCamaraOCR()">📷 Cámara</button>
+    </div>
+</div>
+
+<!-- ══ MOBILE HEADER + SCROLL ROOT ════════════════════════════== -->
+<div id="scroll-root">
+<div class="phone-container">
+
+    <!-- STICKY HEADER (mobile) -->
+    <div class="sticky-header">
+        <div class="brand-row" onclick="cambiarTab('home')">
+            <div class="pokeball-icon"></div>
+            <span class="brand-title">Pokédex TCG</span>
+            <div class="header-actions">
+                <span class="brand-count" id="brand-count">— / 1025</span>
+                <button class="header-icon-btn" onclick="mostrarMetricas()" title="Métricas">📊</button>
+                <button class="header-icon-btn" id="btn-camara-header" onclick="toggleCamaraOCR()" title="Cámara">📷</button>
+            </div>
+        </div>
+        <div class="search-wrap">
+            <input type="text" id="search-input" class="search-bar" placeholder="🔍 Buscar Pokémon..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content" id="main-view-content">
+
+        <!-- PROGRESS CARD -->
+        <div class="progress-card" style="margin-top:12px;" onclick="verTodosLosPokemon()">
+            <div class="progress-top-row">
+                <div class="progress-left">
+                    <div class="progress-label" id="stat-card-title">Progreso de la colección</div>
+                    <div class="progress-count"><span id="global-count-num">0</span> <span style="color:var(--muted);font-size:16px;">de</span> <span id="global-count-total">1025</span></div>
+                    <div class="progress-sub" id="stat-card-subtitle">Total registrado</div>
+                </div>
+                <div class="circle-wrap">
+                    <svg width="100%" height="100%" viewBox="0 0 36 36">
+                        <path stroke="var(--border)" stroke-width="3.2" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path id="global-circle" stroke="var(--accent2)" stroke-width="3.2" stroke-dasharray="0,100" stroke-linecap="round" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <text id="global-percentage" x="18" y="20.5" fill="var(--accent2)" font-size="6.5" font-weight="800" text-anchor="middle">0%</text>
+                    </svg>
+                </div>
+            </div>
+            <div class="jalon-box" id="jalon-global"></div>
+            <div class="binder-bar-wrap">
+                <div class="binder-bar" id="binder-bar"></div>
+                <div class="binder-legend" id="binder-legend"></div>
+            </div>
+        </div>
+
+        <!-- CAMERA VIEW -->
+        <div id="camera-fullscreen-view">
+            <div class="section-title" style="margin-bottom:8px;">Escáner de cartas</div>
+            <div class="camera-wrapper">
+                <video id="video" autoplay playsinline></video>
+                <div class="scanner-target-box"><div class="scanner-line"></div></div>
+            </div>
+            <div id="ocr-status" class="ocr-status-bar">Iniciando escáner... ⏳</div>
+            <div id="ocr-historial-wrap" class="ocr-historial" style="display:none;">
+                <div class="ocr-historial-title">Escaneadas esta sesión</div>
+                <div class="ocr-historial-list" id="ocr-historial-list"></div>
+            </div>
+        </div>
+
+        <!-- GEN GRID -->
+        <div id="generaciones-section-title" class="section-title">Progreso por generación</div>
+        <div class="gen-grid" id="grid-generaciones"></div>
+
+        <!-- GALLERY -->
+        <div class="gallery-section" id="gallery-section">
+            <!-- TOP BAR (desktop) -->
+            <div class="desktop-topbar">
+                <div class="desktop-topbar-left">
+                    <div class="gallery-title" id="gallery-title-text-desktop"></div>
+                    <div class="gallery-subtitle" id="gallery-subtitle-text-desktop"></div>
+                </div>
+                <div class="desktop-topbar-right">
+                    <div class="gallery-filter" id="gallery-filter-desktop">
+                        <button class="filter-btn active" id="filter-todos-d" onclick="setFiltro('todos')">Todos</button>
+                        <button class="filter-btn" id="filter-tenemos-d" onclick="setFiltro('tenemos')">✓ Tenemos</button>
+                        <button class="filter-btn" id="filter-faltan-d" onclick="setFiltro('faltan')">○ Faltan</button>
+                    </div>
+                    <button class="btn-acomodar" id="btn-acomodar-d" onclick="toggleModoAcomodar()">📂 Acomodar</button>
+                </div>
+            </div>
+            <!-- Header mobile -->
+            <div id="gallery-header-mobile" class="gallery-header">
+                <div>
+                    <div class="gallery-title" id="gallery-title-text"></div>
+                    <div class="gallery-subtitle" id="gallery-subtitle-text"></div>
+                </div>
+                <button class="btn-acomodar" id="btn-acomodar" onclick="toggleModoAcomodar()">📂 Acomodar</button>
+            </div>
+            <div class="gallery-filter" id="gallery-filter-mobile">
+                <button class="filter-btn active" id="filter-todos" onclick="setFiltro('todos')">Todos</button>
+                <button class="filter-btn" id="filter-tenemos" onclick="setFiltro('tenemos')">✓ Tenemos</button>
+                <button class="filter-btn" id="filter-faltan" onclick="setFiltro('faltan')">○ Faltan</button>
+            </div>
+            <!-- Scroll area desktop -->
+            <div class="desktop-grid-scroll" id="desktop-scroll-area">
+                <div class="gallery-grid" id="gallery-grid"></div>
+            </div>
+            <!-- Mobile grid -->
+            <div id="gallery-grid-mobile-wrap">
+                <div class="gallery-grid" id="gallery-grid-mobile" style="display:none;"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+<!-- SUGERENCIAS -->
+<div id="sugerencias" class="sugerencias"></div>
+
+<!-- FAB VOLVER -->
+<div class="fab-home" id="fab-home" onclick="cambiarTab('home')">← Volver</div>
+
+<!-- DETAIL OVERLAY -->
+<div class="detail-overlay" id="detail-overlay">
+    <div class="detail-handle"></div>
+    <span class="detail-close" id="detail-close">×</span>
+    <div id="pk-region" class="detail-region"></div>
+    <div id="pk-name" class="detail-name">Pokémon</div>
+    <div id="pk-id" class="detail-ids"></div>
+    <div class="art-box"><img id="pk-img" src="" alt=""></div>
+    <div id="binder-guide" class="binder-box"></div>
+    <button id="btn-toggle-status" class="btn-status"></button>
+    <div class="detail-fecha" id="detail-fecha"></div>
+</div>
+
+<!-- METRICS MODAL -->
+<div class="metrics-modal" id="metrics-modal">
+    <div class="metrics-box">
+        <div class="metrics-title">📊 Resumen</div>
+        <div class="metrics-subtitle" id="metrics-subtitle"></div>
+        <div id="metrics-content"></div>
+        <button class="metrics-close" onclick="cerrarMetricas()">Cerrar</button>
+    </div>
+</div>
+
+<script>
+const regiones   = ["Kanto","Johto","Hoenn","Sinnoh","Unova","Kalos","Alola","Galar","Paldea"];
+const coloresGen = ["#3b5bdb","#3b5bdb","#7c3aed","#7c3aed","#db2777","#db2777","#db2777","#dc2626","#dc2626"];
+const coloresBg  = ["rgba(59,91,219,0.16)","rgba(59,91,219,0.16)","rgba(124,58,237,0.16)","rgba(124,58,237,0.16)",
+                    "rgba(219,39,119,0.16)","rgba(219,39,119,0.16)","rgba(219,39,119,0.16)",
+                    "rgba(220,38,38,0.16)","rgba(220,38,38,0.16)"];
+const carpetas = [
+    { nombre:'Azul',   color:'#3b5bdb', bg:'rgba(59,91,219,0.16)',   gens:[1,2],   rango:'Gens 1-2', emoji:'🔵' },
+    { nombre:'Morada', color:'#7c3aed', bg:'rgba(124,58,237,0.16)', gens:[3,4],   rango:'Gens 3-4', emoji:'🟣' },
+    { nombre:'Rosa',   color:'#db2777', bg:'rgba(219,39,119,0.16)', gens:[5,6,7], rango:'Gens 5-7', emoji:'💗' },
+    { nombre:'Roja',   color:'#dc2626', bg:'rgba(220,38,38,0.16)',  gens:[8,9],   rango:'Gens 8-9', emoji:'🔴' }
+];
+
+let pkSeleccionado   = null;
+let streamCamara     = null;
+let workerOCR        = null;
+let genActualAbierta = null;
+let scanActivo       = false;
+let dataGlobalCache  = null;
+let filtroActual     = 'todos';
+let modoAcomodar     = false;
+let pkmsActuales     = [];
+let historialOCR     = [];
+
+const cortesGen    = [0,0,151,251,386,493,649,721,809,905];
+const cachePokemon = {};
+
+const esDesktop = () => window.innerWidth >= 1024;
+
+// ── HELPERS ──────────────────────────────────────────────────────
+function gridActivo() {
+    return esDesktop()
+        ? document.getElementById('gallery-grid')
+        : document.getElementById('gallery-grid-mobile');
+}
+
+function guardarFechaRegistro(id) {
+    if (!localStorage.getItem(`pk_fecha_${id}`))
+        localStorage.setItem(`pk_fecha_${id}`, new Date().toISOString());
+}
+function getFechaRegistro(id) {
+    const iso = localStorage.getItem(`pk_fecha_${id}`);
+    if (!iso) return null;
+    return new Date(iso).toLocaleDateString('es', { day:'numeric', month:'short', year:'numeric' });
+}
+
+function calcularJalon(conseguidos, total) {
+    if (total <= 0) return null;
+    const faltan = total - conseguidos;
+    if (faltan === 0) return '🎉 ¡Completado!';
+    if (faltan <= 5)  return `🔥 Solo te faltan ${faltan} para completar esta generación`;
+    if (faltan <= 10) return `⚡ ¡Casi! Faltan ${faltan} Pokémon`;
+    const pct = Math.round((conseguidos / total) * 100);
+    if (pct >= 90)    return `💪 Al ${pct}% — ¡casi lo logras!`;
+    return null;
+}
+
+// ── SIDEBAR ──────────────────────────────────────────────────────
+function renderSidebar() {
+    if (!dataGlobalCache) return;
+    const d = dataGlobalCache;
+
+    const cons  = d.global.conseguidos || 0;
+    const total = d.global.total || 1025;
+    const pct   = Math.round((cons / total) * 100);
+    const sbBar = document.getElementById('sb-bar');
+    const sbPct = document.getElementById('sb-pct');
+    const sbCnt = document.getElementById('sb-count');
+    if (sbBar) sbBar.style.width = pct + '%';
+    if (sbPct) sbPct.textContent = pct + '%';
+    if (sbCnt) sbCnt.textContent = cons;
+
+    const sbBox = document.getElementById('sb-progress-trigger');
+    const isMasterSetView = genActualAbierta?.esTodo;
+    if (sbBox) sbBox.classList.toggle('active', !!isMasterSetView);
+
+    const wrap = document.getElementById('sb-carpetas');
+    if (!wrap) return;
+    wrap.innerHTML = '';
+
+    carpetas.forEach(c => {
+        const cCons  = c.gens.reduce((a,g) => a + (d.generaciones[g]?.conseguidos || 0), 0);
+        const cTotal = c.gens.reduce((a,g) => a + (d.generaciones[g]?.total || 0), 0);
+        const cPct   = cTotal > 0 ? Math.round((cCons / cTotal) * 100) : 0;
+
+        const div = document.createElement('div');
+        div.className = 'sb-carpeta';
+
+        const isActiveCarpeta = genActualAbierta?.esCarpeta && genActualAbierta?.carpeta?.nombre === c.nombre;
+
+        div.innerHTML = `
+            <div class="sb-carpeta-header${isActiveCarpeta ? ' active' : ''}" onclick="verCarpetaDesktop(${JSON.stringify(c).replace(/"/g,'&quot;')})">
+                <div class="sb-carpeta-left">
+                    <div class="sb-carpeta-dot" style="background:${c.color}"></div>
+                    <span class="sb-carpeta-name">${c.nombre}</span>
+                    <span class="sb-carpeta-range">${c.rango}</span>
+                </div>
+                <span class="sb-carpeta-count" style="color:${c.color}">${cCons}/${cTotal}</span>
+            </div>
+            <div class="sb-carpeta-bar">
+                <div class="sb-carpeta-bar-fill" style="width:${cPct}%;background:${c.color}"></div>
+            </div>`;
+
+        const gensDiv = document.createElement('div');
+        gensDiv.className = 'sb-gens';
+        c.gens.forEach(g => {
+            const gd       = d.generaciones[g];
+            const isActive = !genActualAbierta?.esCarpeta && !genActualAbierta?.esTodo && genActualAbierta?.gen === g;
+            const item     = document.createElement('div');
+            item.className = `sb-gen-item${isActive ? ' active' : ''}`;
+            item.onclick   = () => verListadoGeneracion(g, regiones[g-1]);
+            item.innerHTML = `<span class="sb-gen-name">${regiones[g-1]}</span><span class="sb-gen-count" style="color:${coloresGen[g-1]}">${gd.conseguidos}/${gd.total}</span>`;
+            gensDiv.appendChild(item);
+        });
+        div.appendChild(gensDiv);
+        wrap.appendChild(div);
+    });
+}
+
+function verCarpetaDesktop(c) {
+    const carpeta = carpetas.find(x => x.nombre === c.nombre);
+    if (carpeta) verCarpeta(carpeta);
+}
+
+// ── BARRA CARPETAS ───────────────────────────────────────────────
+function renderBinderBar() {
+    const bar    = document.getElementById('binder-bar');
+    const legend = document.getElementById('binder-legend');
+    if (!bar || !legend || !dataGlobalCache) return;
+    bar.innerHTML = ''; legend.innerHTML = '';
+    carpetas.forEach(c => {
+        const t = c.gens.reduce((a,g) => a + (dataGlobalCache.generaciones[g]?.total || 0), 0);
+        const seg = document.createElement('button');
+        seg.className = 'binder-bar-segment';
+        seg.style.flex = t || 1;
+        seg.style.background = c.color;
+        seg.title = `Carpeta ${c.nombre} — ${c.rango}`;
+        seg.onclick = (e) => { e.stopPropagation(); verCarpeta(c); };
+        bar.appendChild(seg);
+        const item = document.createElement('button');
+        item.className = 'binder-legend-item';
+        item.onclick = (e) => { e.stopPropagation(); verCarpeta(c); };
+        item.innerHTML = `<span class="binder-legend-dot" style="background:${c.color}"></span><span class="binder-legend-name">${c.nombre}</span><span class="binder-legend-range">${c.rango}</span>`;
+        legend.appendChild(item);
+    });
+}
+
+// ── VER TODOS LOS POKÉMON (PROGRESO GLOBAL) ────────────────────────
+async function verTodosLosPokemon() {
+    genActualAbierta = { region: "Colección Completa", esTodo: true };
+    actualizarTarjetaProgreso();
+    renderSidebar();
+    if (!esDesktop()) {
+        document.getElementById('generaciones-section-title').style.display = 'none';
+        document.getElementById('grid-generaciones').style.display = 'none';
+        document.getElementById('gallery-section').style.display = 'block';
+        mostrarFAB();
+        document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
+    }
+    mostrarGalleryShell("Colección Completa");
+    
+    const todos = [];
+    for (let g = 1; g <= 9; g++) {
+        if (!cachePokemon[g]) {
+            const res = await fetch(`/api/buscar?gen=${g}`);
+            cachePokemon[g] = await res.json();
+        }
+        todos.push(...cachePokemon[g]);
+    }
+    pkmsActuales = todos;
+    renderGaleria(todos, false);
+}
+
+// ── ESTADÍSTICAS ─────────────────────────────────────────────────
+async function cargarEstadisticas() {
+    const res  = await fetch(`/api/estadisticas?nocache=${Date.now()}`);
+    const data = await res.json();
+    dataGlobalCache = data;
+    actualizarTarjetaProgreso();
+    renderBinderBar();
+    renderSidebar();
+    const total = Object.keys(data.listaIds || {}).length;
+    document.getElementById('brand-count').textContent = `${total} / 1025`;
+
+    const grid = document.getElementById('grid-generaciones');
+    grid.innerHTML = '';
+    for (let g = 1; g <= 9; g++) {
+        const gd     = data.generaciones[g];
+        const pct    = gd.total > 0 ? ((gd.conseguidos / gd.total) * 100).toFixed(0) : 0;
+        const faltan = gd.total - gd.conseguidos;
+        const ok     = faltan === 0 && gd.total > 0;
+        const card   = document.createElement('div');
+        card.className = 'gen-card';
+        card.onclick = () => verListadoGeneracion(g, regiones[g-1]);
+        card.innerHTML = `
+            <div class="gen-card-bar" style="background:${coloresGen[g-1]};"></div>
+            <div class="gen-num" style="color:${coloresGen[g-1]};background:${coloresBg[g-1]};">Gen ${g}</div>
+            <div class="gen-region">${regiones[g-1]}</div>
+            <div class="gen-progress-text">${gd.conseguidos}/${gd.total}</div>
+            <div class="gen-missing" style="color:${ok ? 'var(--found)' : coloresGen[g-1]};">${ok ? '✓ completo' : `faltan ${faltan}`}</div>
+            <div class="gen-bar-bg"><div class="gen-bar-fill" style="width:${pct}%;background:${coloresGen[g-1]};"></div></div>`;
+        grid.appendChild(card);
+    }
+    if (genActualAbierta) {
+        if (genActualAbierta.esTodo) verTodosLosPokemon();
+        else RefrescarGaleria(false);
+    }
+}
+
+async function cargarEstadisticasSinMoverScroll() {
+    const res  = await fetch(`/api/estadisticas?nocache=${Date.now()}`);
+    const data = await res.json();
+    dataGlobalCache = data;
+    actualizarTarjetaProgreso();
+    renderBinderBar();
+    renderSidebar();
+    const total = Object.keys(data.listaIds || {}).length;
+    document.getElementById('brand-count').textContent = `${total} / 1025`;
+    if (genActualAbierta) {
+        if (genActualAbierta.esTodo) {
+            const filtrados = pkmsActuales.filter(p => {
+                const tiene = localStorage.getItem(`pk_${p.id}`) === 'true';
+                if (filtroActual === 'tenemos') return tiene;
+                if (filtroActual === 'faltan')  return !tiene;
+                return true;
+            });
+            renderGaleria(filtrados, true);
+        } else {
+            RefrescarGaleria(true);
+        }
+    }
+}
+
+function actualizarTarjetaProgreso() {
+    if (!dataGlobalCache) return;
+    let conseguidos, total;
+    if (genActualAbierta && !genActualAbierta.esCarpeta && !genActualAbierta.esTodo) {
+        const gd = dataGlobalCache.generaciones[genActualAbierta.gen];
+        conseguidos = gd.conseguidos; total = gd.total;
+    } else if (genActualAbierta?.esCarpeta) {
+        const c = genActualAbierta.carpeta;
+        conseguidos = c.gens.reduce((a,g) => a + dataGlobalCache.generaciones[g].conseguidos, 0);
+        total       = c.gens.reduce((a,g) => a + dataGlobalCache.generaciones[g].total, 0);
+    } else {
+        conseguidos = dataGlobalCache.global.conseguidos || 0;
+        total       = dataGlobalCache.global.total || 1025;
+    }
+    const pct = Math.round((conseguidos / total) * 100);
+    document.getElementById('global-count-num').textContent   = conseguidos;
+    document.getElementById('global-count-total').textContent = total;
+    document.getElementById('global-percentage').textContent  = pct + '%';
+    document.getElementById('global-circle').setAttribute('stroke-dasharray', `${pct},100`);
+    const label = genActualAbierta ? `${genActualAbierta.region} · Progreso` : 'Progreso de la colección';
+    document.getElementById('stat-card-title').textContent = label;
+    const jEl = document.getElementById('jalon-global');
+    const j   = calcularJalon(conseguidos, total);
+    if (j) { jEl.textContent = j; jEl.classList.add('visible'); }
+    else    { jEl.classList.remove('visible'); }
+}
+
+// ── VER CARPETA ──────────────────────────────────────────────────
+async function verCarpeta(carpeta) {
+    genActualAbierta = { gen: carpeta.gens[0], region: `Carpeta ${carpeta.nombre}`, esCarpeta: true, carpeta };
+    actualizarTarjetaProgreso();
+    renderSidebar();
+    if (!esDesktop()) {
+        document.getElementById('generaciones-section-title').style.display = 'none';
+        document.getElementById('grid-generaciones').style.display = 'none';
+        document.getElementById('gallery-section').style.display = 'block';
+        mostrarFAB();
+        document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
+    }
+    mostrarGalleryShell(`Carpeta ${carpeta.nombre}`);
+    const todos = [];
+    for (const g of carpeta.gens) {
+        if (!cachePokemon[g]) {
+            const res = await fetch(`/api/buscar?gen=${g}`);
+            cachePokemon[g] = await res.json();
+        }
+        todos.push(...cachePokemon[g]);
+    }
+    pkmsActuales = todos;
+    renderGaleria(todos, false);
+}
+
+// ── GALERÍA ──────────────────────────────────────────────────────
+async function verListadoGeneracion(gen, region) {
+    genActualAbierta = { gen, region, esCarpeta: false };
+    actualizarTarjetaProgreso();
+    renderSidebar();
+    if (!esDesktop()) {
+        document.getElementById('generaciones-section-title').style.display = 'none';
+        document.getElementById('grid-generaciones').style.display = 'none';
+        document.getElementById('gallery-section').style.display = 'block';
+        document.getElementById('sugerencias').style.display = 'none';
+        mostrarFAB();
+        document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
+    }
+    mostrarGalleryShell(region);
+    await RefrescarGaleria();
+}
+
+// Control superior de títulos
+function mostrarGalleryShell(titulo) {
+    const tEl  = document.getElementById('gallery-title-text');
+    const tElD = document.getElementById('gallery-title-text-desktop');
+    if (tEl)  tEl.textContent  = titulo;
+    if (tElD) tElD.textContent = titulo;
+}
+
+function actualizarGalleryHeader() {
+    if (!genActualAbierta) return;
+    const tenemos = pkmsActuales.filter(p => localStorage.getItem(`pk_${p.id}`) === 'true').length;
+    const faltan  = pkmsActuales.length - tenemos;
+    const sub     = `${tenemos} de ${pkmsActuales.length} · faltan ${faltan}`;
+    const sEl  = document.getElementById('gallery-subtitle-text');
+    const sElD = document.getElementById('gallery-subtitle-text-desktop');
+    if (sEl)  sEl.textContent  = sub;
+    if (sElD) sElD.textContent = sub;
+}
+
+function setFiltro(f) {
+    filtroActual = f;
+    ['todos','tenemos','faltan'].forEach(x => {
+        const a = document.getElementById(`filter-${x}`);
+        const b = document.getElementById(`filter-${x}-d`);
+        if (a) a.classList.toggle('active', x === f);
+        if (b) b.classList.toggle('active', x === f);
+    });
+    const filtrados = pkmsActuales.filter(p => {
+        const tiene = localStorage.getItem(`pk_${p.id}`) === 'true';
+        if (f === 'tenemos') return tiene;
+        if (f === 'faltan')  return !tiene;
+        return true;
+    });
+    renderGaleria(filtrados, true);
+}
+
+function toggleModoAcomodar() {
+    modoAcomodar = !modoAcomodar;
+    const grids = [document.getElementById('gallery-grid'), document.getElementById('gallery-grid-mobile')];
+    const btns  = [document.getElementById('btn-acomodar'), document.getElementById('btn-acomodar-d')];
+    grids.forEach(g => g && g.classList.toggle('modo-acomodar', modoAcomodar));
+    btns.forEach(b  => b && (b.classList.toggle('active', modoAcomodar), b.textContent = modoAcomodar ? '📂 Normal' : '📂 Acomodar'));
+}
+
+function renderGaleria(pkms, mantenerScroll) {
+    const grid       = gridActivo();
+    const scrollEl   = esDesktop() ? document.querySelector('.desktop-grid-scroll') : document.getElementById('scroll-root');
+    const scrollPos  = mantenerScroll && scrollEl ? scrollEl.scrollTop : 0;
+
+    const frag = document.createDocumentFragment();
+    pkms.forEach(p => {
+        const tiene   = localStorage.getItem(`pk_${p.id}`) === 'true';
+        let numR      = p.id - cortesGen[p.gen];
+        if (p.id >= 899 && p.id <= 905) numR = p.id - 809;
+        const prefijo = (p.id >= 899 && p.id <= 905) ? 'H' : 'R';
+        const ridTxt  = `${prefijo}#${numR.toString().padStart(3,'0')}`;
+        const nidTxt  = `N#${p.id.toString().padStart(4,'0')}`;
+
+        const card = document.createElement('div');
+        card.className = `pk-card ${tiene ? 'found' : 'missing'}`;
+        card.style.borderTopColor = coloresGen[p.gen-1];
+        card.onclick = () => mostrarFicha(p);
+
+        // ── MOBILE elements ──
+        const ridM = document.createElement('div'); ridM.className = 'pk-rid';
+        ridM.style.color = coloresGen[p.gen-1]; ridM.style.background = coloresBg[p.gen-1];
+        ridM.textContent = ridTxt;
+        const nidM = document.createElement('div'); nidM.className = 'pk-nid';
+        nidM.textContent = `N#${p.id.toString().padStart(3,'0')}`;
+        const imgM = document.createElement('img'); imgM.className = 'pk-img';
+        imgM.src = p.image; imgM.alt = p.name; imgM.loading = 'lazy';
+        const nameM = document.createElement('div'); nameM.className = 'pk-name';
+        nameM.textContent = p.name.toLowerCase();
+        const statusM = document.createElement('div'); statusM.className = 'pk-status-tag';
+        statusM.textContent = tiene ? 'tenemos' : 'falta';
+
+        // ── DESKTOP elements ──
+        const header = document.createElement('div'); header.className = 'pk-dt-header';
+        const ridD = document.createElement('span'); ridD.className = 'pk-rid';
+        ridD.style.color = coloresGen[p.gen-1]; ridD.style.background = coloresBg[p.gen-1];
+        ridD.textContent = ridTxt;
+        const nidD = document.createElement('span'); nidD.className = 'pk-nid';
+        nidD.textContent = nidTxt;
+        header.appendChild(ridD); header.appendChild(nidD);
+
+        const imgD = document.createElement('img'); imgD.className = 'pk-dt-img';
+        imgD.src = p.image; imgD.alt = p.name; imgD.loading = 'lazy';
+
+        const footer = document.createElement('div'); footer.className = 'pk-dt-footer';
+        const nameD = document.createElement('div'); nameD.className = 'pk-name';
+        nameD.textContent = p.name.toLowerCase();
+        const statusD = document.createElement('div'); statusD.className = 'pk-status-tag';
+        statusD.textContent = tiene ? 'tenemos' : 'falta';
+        if (tiene) statusD.style.color = 'var(--found)';
+        footer.appendChild(nameD); footer.appendChild(statusD);
+
+        card.appendChild(ridM); card.appendChild(nidM); card.appendChild(imgM);
+        card.appendChild(nameM); card.appendChild(statusM);
+        card.appendChild(header); card.appendChild(imgD); card.appendChild(footer);
+
+        frag.appendChild(card);
+    });
+
+    grid.replaceChildren(frag);
+    actualizarGalleryHeader();
+    if (mantenerScroll && scrollEl) requestAnimationFrame(() => { scrollEl.scrollTop = scrollPos; });
+}
+
+async function RefrescarGaleria(mantenerScroll = false) {
+    if (!genActualAbierta || genActualAbierta.esCarpeta || genActualAbierta.esTodo) return;
+    const { gen } = genActualAbierta;
+    const grid    = gridActivo();
+    if (!cachePokemon[gen]) {
+        if (!mantenerScroll) {
+            grid.innerHTML = Array(9).fill(0).map(() =>
+                `<div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;aspect-ratio:1;animation:skeleton 1.2s ease infinite alternate;"></div>`
+            ).join('');
+        }
+        const res = await fetch(`/api/buscar?gen=${gen}`);
+        cachePokemon[gen] = await res.json();
+    }
+    pkmsActuales = cachePokemon[gen];
+    const filtrados = pkmsActuales.filter(p => {
+        const tiene = localStorage.getItem(`pk_${p.id}`) === 'true';
+        if (filtroActual === 'tenemos') return tiene;
+        if (filtroActual === 'faltan')  return !tiene;
+        return true;
+    });
+    renderGaleria(filtrados, mantenerScroll);
+}
+
+function cerrarGaleriaYVolver() {
+    genActualAbierta = null; pkmsActuales = []; filtroActual = 'todos'; modoAcomodar = false;
+    ['todos','tenemos','faltan'].forEach(x => {
+        const a = document.getElementById(`filter-${x}`);
+        const b = document.getElementById(`filter-${x}-d`);
+        if (a) a.classList.toggle('active', x === 'todos');
+        if (b) b.classList.toggle('active', x === 'todos');
+    });
+    [document.getElementById('gallery-grid'), document.getElementById('gallery-grid-mobile')].forEach(g => g && g.classList.remove('modo-acomodar'));
+    ['btn-acomodar','btn-acomodar-d'].forEach(id => {
+        const b = document.getElementById(id);
+        if (b) { b.classList.remove('active'); b.textContent = '📂 Acomodar'; }
+    });
+    if (!esDesktop()) {
+        document.getElementById('gallery-section').style.display = 'none';
+        document.getElementById('generaciones-section-title').style.display = 'block';
+        document.getElementById('grid-generaciones').style.display = 'grid';
+        ocultarFAB();
+        document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
+    }
+    actualizarTarjetaProgreso();
+    renderSidebar();
+}
+
+function sincronizarGrids() {
+    const gDesktop = document.getElementById('gallery-grid');
+    const gMobile  = document.getElementById('gallery-grid-mobile');
+    const wrapMob  = document.getElementById('gallery-grid-mobile-wrap');
+    if (esDesktop()) {
+        gDesktop.style.display = '';
+        if (gMobile)  gMobile.style.display  = 'none';
+        if (wrapMob)  wrapMob.style.display  = 'none';
+    } else {
+        gDesktop.style.display = 'none';
+        if (gMobile)  gMobile.style.display  = '';
+        if (wrapMob)  wrapMob.style.display  = '';
+    }
+}
+
+// ── FICHA (FIJA Y FLOTANTE) ──
+function mostrarFicha(p) {
+    pkSeleccionado = p;
+    let numR = p.id - cortesGen[p.gen];
+    let regionName = regiones[p.gen - 1];
+    if (p.id >= 899 && p.id <= 905) { numR = p.id - 809; regionName = 'Hisui'; }
+    const regionEl = document.getElementById('pk-region');
+    regionEl.textContent = regionName.toUpperCase() + ' · GEN ' + p.gen;
+    regionEl.style.color = coloresGen[p.gen-1];
+    regionEl.style.background = coloresBg[p.gen-1];
+    document.getElementById('pk-name').textContent = p.name.toLowerCase();
+    document.getElementById('pk-id').textContent   = `Regional #${numR.toString().padStart(3,'0')} · Nacional #${p.id.toString().padStart(4,'0')}`;
+    document.getElementById('pk-img').src = p.image;
+    const bd = p.gen <= 2 ? { bg:'rgba(59,91,219,0.16)', color:'#3b5bdb', border:'#3b5bdb', text:'🔵 Carpeta Azul — Gens 1 y 2' }
+             : p.gen <= 4 ? { bg:'rgba(124,58,237,0.16)', color:'#7c3aed', border:'#7c3aed', text:'🟣 Carpeta Morada — Gens 3 y 4' }
+             : p.gen <= 7 ? { bg:'rgba(219,39,119,0.16)', color:'#db2777', border:'#db2777', text:'💗 Carpeta Rosa — Gens 5, 6 y 7' }
+                          : { bg:'rgba(220,38,38,0.16)',  color:'#dc2626', border:'#dc2626', text:'🔴 Carpeta Roja — Gens 8 y 9' };
+    const guide = document.getElementById('binder-guide');
+    guide.style.background = bd.bg; guide.style.color = bd.color;
+    guide.style.border = `1px solid ${bd.border}`; guide.textContent = bd.text;
+    const tiene = localStorage.getItem(`pk_${p.id}`) === 'true';
+    actualizarBotonEstado(tiene);
+    const fecha = getFechaRegistro(p.id);
+    document.getElementById('detail-fecha').textContent = tiene && fecha ? `Registrado el ${fecha}` : '';
+    
+    document.getElementById('detail-overlay').style.display = 'block';
+}
+
+function actualizarBotonEstado(tiene) {
+    const btn = document.getElementById('btn-toggle-status');
+    btn.style.background = tiene ? 'var(--found)' : 'var(--danger)';
+    btn.textContent = tiene ? '✅ Ya lo tenemos' : '❌ No lo tenemos — tocar para guardar';
+}
+
+document.getElementById('btn-toggle-status').onclick = async () => {
+    if (!pkSeleccionado) return;
+    const actual = localStorage.getItem(`pk_${pkSeleccionado.id}`) === 'true';
+    const nuevoEstado = !actual;
+    await fetch('/api/inventario', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ id: pkSeleccionado.id, estado: nuevoEstado })
+    });
+    localStorage.setItem(`pk_${pkSeleccionado.id}`, nuevoEstado ? 'true' : 'false');
+    if (nuevoEstado) guardarFechaRegistro(pkSeleccionado.id);
+    actualizarBotonEstado(nuevoEstado);
+    
+    document.getElementById('detail-overlay').style.display = 'none';
+    pkSeleccionado = null;
+    await cargarEstadisticasSinMoverScroll();
+};
+
+document.getElementById('detail-close').onclick = () => {
+    document.getElementById('detail-overlay').style.display = 'none';
+    pkSeleccionado = null;
+};
+
+// Cerrar sugerencias al tocar fuera
+document.addEventListener('pointerdown', (e) => {
+    const sug = document.getElementById('sugerencias');
+    const inp = document.getElementById('search-input');
+    const inpD = document.getElementById('search-input-desktop');
+    if (!sug.contains(e.target) && e.target !== inp && e.target !== inpD)
+        sug.style.display = 'none';
+});
+
+// ── BUSCADOR ─────────────────────────────────────────────────────
+let searchTimer = null;
+const searchInput  = document.getElementById('search-input');
+const searchInputD = document.getElementById('search-input-desktop');
+const sugBox       = document.getElementById('sugerencias');
+
+let cursorEsperado = 0;
+let guardandoCursor = false;
+
+document.addEventListener('selectionchange', () => {
+    if (!guardandoCursor) return;
+    if (document.activeElement !== searchInput && document.activeElement !== searchInputD) return;
+    const inp    = document.activeElement;
+    const actual = inp.selectionStart;
+    if (actual !== cursorEsperado) inp.setSelectionRange(cursorEsperado, cursorEsperado);
+});
+
+function posicionarSugerencias(inputEl) {
+    const rect = inputEl.getBoundingClientRect();
+    sugBox.style.top   = (rect.bottom + 6) + 'px';
+    sugBox.style.left  = rect.left + 'px';
+    sugBox.style.width = rect.width + 'px';
+}
+
+function handleSearchInput(e, inputEl) {
+    const val = e.target.value;
+    cursorEsperado  = inputEl.selectionStart;
+    guardandoCursor = false;
+    if (val.length < 2) { sugBox.style.display = 'none'; clearTimeout(searchTimer); return; }
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(async () => {
+        let data;
+        try {
+            const res = await fetch(`/api/buscar?q=${encodeURIComponent(val)}`);
+            data = await res.json();
+        } catch(err) { return; }
+        if (!data.length) { sugBox.style.display = 'none'; return; }
+        const frag = document.createDocumentFragment();
+        data.forEach(p => {
+            let numR = p.id - cortesGen[p.gen];
+            let rName = regiones[p.gen - 1];
+            if (p.id >= 899 && p.id <= 905) { numR = p.id - 809; rName = 'Hisui'; }
+            const tiene = localStorage.getItem(`pk_${p.id}`) === 'true';
+            const item  = document.createElement('div');
+            item.className = `sugerencia-item${tiene ? ' found' : ''}`;
+            const check = document.createElement('span'); check.className = 'sugerencia-check-left'; check.textContent = tiene ? '✓' : '';
+            const name  = document.createElement('span'); name.className = `sugerencia-name${tiene ? ' found-name' : ''}`; name.textContent = p.name.toLowerCase();
+            const meta  = document.createElement('span'); meta.className = 'sugerencia-meta';
+            meta.style.background = coloresBg[p.gen-1]; meta.style.color = coloresGen[p.gen-1];
+            meta.textContent = `${rName} #${numR.toString().padStart(3,'0')}`;
+            item.appendChild(check); item.appendChild(name); item.appendChild(meta);
+            item.addEventListener('touchstart', ev => { ev.preventDefault(); }, { passive:false });
+            item.addEventListener('touchend', () => {
+                inputEl.readOnly = true; inputEl.blur();
+                setTimeout(() => { inputEl.readOnly = false; }, 100);
+                inputEl.value = ''; sugBox.style.display = 'none';
+                mostrarFicha(p);
+            });
+            item.addEventListener('click', () => {
+                inputEl.value = ''; sugBox.style.display = 'none';
+                document.activeElement.blur();
+                setTimeout(() => mostrarFicha(p), 150);
+            });
+            frag.appendChild(item);
+        });
+        posicionarSugerencias(inputEl);
+        sugBox.replaceChildren(frag);
+        sugBox.style.display = 'block';
+        guardandoCursor = true;
+        setTimeout(() => { guardandoCursor = false; }, 500);
+    }, 300);
+}
+
+searchInput.addEventListener('input',  e => handleSearchInput(e, searchInput));
+searchInputD.addEventListener('input', e => handleSearchInput(e, searchInputD));
+
+// ── FAB / TABS ───────────────────────────────────────────────────
+function cambiarTab(tipo) {
+    if (tipo === 'home') {
+        cerrarGaleriaYVolver();
+        if (streamCamara) toggleCamaraOCR();
+        if (esDesktop()) verTodosLosPokemon(); // Cambiado para que por defecto muestre la colección completa en inicio
+    }
+}
+function mostrarFAB() { document.getElementById('fab-home').classList.add('visible'); }
+function ocultarFAB() { document.getElementById('fab-home').classList.remove('visible'); }
+
+// ── MÉTRICAS ─────────────────────────────────────────────────────
+function mostrarMetricas() {
+    if (!dataGlobalCache) return;
+    const d = dataGlobalCache;
+    document.getElementById('metrics-subtitle').textContent = `${d.global.conseguidos || 0} de ${d.global.total || 1025} Pokémon registrados`;
+    const jalones = [];
+    regiones.forEach((r, i) => {
+        const g = d.generaciones[i+1];
+        const j = calcularJalon(g.conseguidos, g.total);
+        if (j) jalones.push(`<span style="color:${coloresGen[i]};font-weight:700;">${r}:</span> ${j}`);
+    });
+    let html = '';
+    if (jalones.length) {
+        html += `<div class="metrics-section-title">Jalones</div>`;
+        jalones.forEach(j => { html += `<div class="metrics-jalon">${j}</div>`; });
+    }
+    html += `<div class="metrics-section-title">Por generación</div>`;
+    html += regiones.map((r, i) => {
+        const g   = d.generaciones[i+1];
+        const pct = g.total > 0 ? Math.round((g.conseguidos/g.total)*100) : 0;
+        const f   = g.total - g.conseguidos;
+        return `<div class="metrics-row">
+            <span class="metrics-row-label" style="color:${coloresGen[i]}">${r}</span>
+            <div style="text-align:right;">
+                <div class="metrics-row-val">${g.conseguidos}/${g.total} · ${pct}%</div>
+                <div class="metrics-row-sub">${f > 0 ? `faltan ${f}` : '✓ completa'}</div>
+            </div>
+        </div>`;
+    }).join('');
+    document.getElementById('metrics-content').innerHTML = html;
+    document.getElementById('metrics-modal').classList.add('open');
+}
+function cerrarMetricas() { document.getElementById('metrics-modal').classList.remove('open'); }
+
+// ── CÁMARA OCR ───────────────────────────────────────────────────
+const cameraBoxView = document.getElementById('camera-fullscreen-view');
+const video         = document.getElementById('video');
+const ocrStatus     = document.getElementById('ocr-status');
+
+function agregarAlHistorial(p) {
+    historialOCR.unshift(p);
+    if (historialOCR.length > 8) historialOCR.pop();
+    renderHistorial();
+}
+function renderHistorial() {
+    if (!historialOCR.length) return;
+    const wrap = document.getElementById('ocr-historial-wrap');
+    const list = document.getElementById('ocr-historial-list');
+    wrap.style.display = 'block';
+    list.innerHTML = '';
+    historialOCR.forEach(p => {
+        const tiene = localStorage.getItem(`pk_${p.id}`) === 'true';
+        let numR = p.id - cortesGen[p.gen];
+        if (p.id >= 899 && p.id <= 905) numR = p.id - 809;
+        const item = document.createElement('div');
+        item.className = 'ocr-hist-item';
+        item.onclick = () => mostrarFicha(p);
+        item.innerHTML = `<img class="ocr-hist-img" src="${p.image}" alt="${p.name}"><span class="ocr-hist-name">${p.name.toLowerCase()}</span><span class="ocr-hist-badge" style="background:${coloresBg[p.gen-1]};color:${coloresGen[p.gen-1]}">R#${numR.toString().padStart(3,'0')}</span><span class="ocr-hist-estado">${tiene ? '✓' : '○'}</span>`;
+        list.appendChild(item);
+    });
+}
+async function toggleCamaraOCR() {
+    const btnCam  = document.getElementById('btn-camara-header');
+    if (streamCamara) { detenerCamara(); return; }
+    try {
+        btnCam  && btnCam.classList.add('cam-active');
+        if (!esDesktop()) {
+            ocrStatus.style.display = 'block';
+            ocrStatus.textContent   = 'Abriendo cámara... ⏳';
+            cameraBoxView.style.display = 'block';
+            cameraBoxView.scrollIntoView({ behavior:'smooth', block:'center' });
+        }
+        streamCamara = await navigator.mediaDevices.getUserMedia({ video:{ facingMode:'environment' }, audio:false });
+        video.srcObject = streamCamara;
+        scanActivo = true;
+        iniciarBucleOCR();
+    } catch(err) { alert('Error al abrir la cámara.'); detenerCamara(); }
+}
+function detenerCamara() {
+    scanActivo = false;
+    if (streamCamara) { streamCamara.getTracks().forEach(t => t.stop()); streamCamara = null; }
+    cameraBoxView.style.display = 'none';
+    ocrStatus.style.display = 'none';
+    const b = document.getElementById('btn-camara-header');
+    b && b.classList.remove('cam-active');
+}
+async function iniciarBucleOCR() {
+    const canvas = document.createElement('canvas');
+    const ctx    = canvas.getContext('2d');
+    if (!workerOCR) workerOCR = await Tesseract.createWorker('eng');
+    ocrStatus.style.display = 'block';
+    ocrStatus.textContent   = '🔍 Escaneando nombre...';
+    while (streamCamara && scanActivo) {
+        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+            canvas.width = 600; canvas.height = 150;
+            ctx.filter = 'grayscale(100%) contrast(250%) brightness(120%)';
+            ctx.drawImage(video, video.videoWidth*0.2, video.videoHeight*0.35, video.videoWidth*0.6, video.videoHeight*0.15, 0, 0, 600, 150);
+            const { data: { text } } = await workerOCR.recognize(canvas);
+            const nombre = text.trim().toUpperCase();
+            if (nombre.length > 2) {
+                const res  = await fetch(`/api/buscar?q=${encodeURIComponent(nombre)}`);
+                const data = await res.json();
+                if (data.length > 0) {
+                    if (navigator.vibrate) navigator.vibrate([80,40,80]);
+                    ocrStatus.textContent = `✅ Encontrado: ${data[0].name.toLowerCase()}`;
+                    agregarAlHistorial(data[0]);
+                    mostrarFicha(data[0]);
+                    detenerCamara();
+                    break;
+                }
+            }
+        }
+        await new Promise(r => setTimeout(r, 1500));
+    }
+}
+
+// ── SSE ──────────────────────────────────────────────────────────
+function iniciarSSE() {
+    const es = new EventSource('/api/eventos');
+    es.onmessage = (e) => {
+        const msg = JSON.parse(e.data);
+        if (msg.tipo !== 'cambio') return;
+        if (msg.estado) localStorage.setItem(`pk_${msg.id}`, 'true');
+        else            localStorage.removeItem(`pk_${msg.id}`);
+        cargarEstadisticasSinMoverScroll();
+        mostrarToastSync(msg.id, msg.estado);
+    };
+    es.onerror = () => { es.close(); setTimeout(iniciarSSE, 3000); };
+}
+let toastTimer = null;
+function mostrarToastSync(id, estado) {
+    let toast = document.getElementById('sync-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'sync-toast';
+        toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 16px;font-size:12px;font-weight:600;color:var(--text);box-shadow:0 4px 16px var(--shadow);z-index:800;white-space:nowrap;opacity:0;transition:opacity .2s ease;';
+        document.body.appendChild(toast);
+    }
+    toast.textContent = `🔄 Sincronizado — #${id} ${estado ? '✓ añadido' : '○ quitado'} en otro dispositivo`;
+    toast.style.opacity = '1';
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { toast.style.opacity = '0'; }, 2500);
+}
+
+// ── INIT ─────────────────────────────────────────────────────────
+window.onload = async () => {
+    sincronizarGrids();
+    const res  = await fetch('/api/estadisticas');
+    const data = await res.json();
+    if (data.listaIds) {
+        localStorage.clear();
+        Object.keys(data.listaIds).forEach(id => localStorage.setItem(`pk_${id}`, 'true'));
+    }
+    await cargarEstadisticas();
+    if (esDesktop()) verTodosLosPokemon(); // Forzamos carga inicial de todos los Pokémon en desktop
+    precargarTodasLasGens();
+    iniciarSSE();
+};
+
+window.addEventListener('resize', () => {
+    sincronizarGrids();
+    // Corregido: Si está la vista de "Colección Completa", se mantiene al redimensionar
+    if (esDesktop() && !genActualAbierta) verTodosLosPokemon();
+});
+
+async function precargarTodasLasGens() {
+    await new Promise(r => setTimeout(r, 1500));
+    for (let g = 1; g <= 9; g++) {
+        if (!cachePokemon[g]) {
+            try {
+                const res  = await fetch(`/api/buscar?gen=${g}`);
+                cachePokemon[g] = await res.json();
+            } catch(e) { console.warn(`Gen ${g} no se pudo precargar`, e); }
+        }
+    }
+}
+</script>
+</body>
+</html>

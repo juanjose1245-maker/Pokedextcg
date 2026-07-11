@@ -164,7 +164,7 @@
         .pk-status-tag{display:flex;align-items:center;gap:3px;font-size:9px;font-weight:700;color:var(--muted);margin-top:2px;position:relative;z-index:1;}
         .pk-status-tag::before{content:'○';font-size:9px;}
         .pk-card.found .pk-status-tag::before{content:'✓';color:var(--found);}
-        /* Elementos desktop ocultos por defecto (mobile-first) */
+        /* Elementos desktop ocultos en mobile */
         .pk-dt-header{display:none;}
         .pk-dt-footer{display:none;}
 
@@ -286,7 +286,7 @@
             .main-content{padding:0;}
 
             /* Gallery siempre visible en desktop */
-            .gallery-section{display:flex !important;flex-direction:column;height:100vh;}
+            .gallery-section{display:flex !important;flex-direction:column;height:100vh;overflow:hidden;}
 
             /* ── TOP BAR DEL MAIN ── */
             .desktop-topbar{display:flex !important;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0;}
@@ -298,8 +298,8 @@
             .btn-acomodar{padding:7px 16px;}
 
             /* ── GRID SCROLL AREA ── */
-            .desktop-grid-scroll{display:flex !important;flex:1;overflow-y:auto;padding:20px 24px;}
-            .gallery-grid{grid-template-columns:repeat(5,1fr);gap:16px;width:100%;}
+            .desktop-grid-scroll{display:block !important;flex:1;overflow-y:auto;padding:20px 24px;min-height:0;}
+            .gallery-grid{grid-template-columns:repeat(5,1fr);gap:16px;width:100%;display:grid;}
             .gallery-grid.modo-acomodar{grid-template-columns:repeat(4,1fr);}
             /* Ocultar elementos mobile dentro de gallery-section en desktop */
             #gallery-header-mobile{display:none !important;}
@@ -308,81 +308,40 @@
 
             /* ── PK CARD DESKTOP ── */
             .pk-card{
-                aspect-ratio:auto !important;
-                flex-direction:column !important;
-                padding:0 !important;
+                aspect-ratio:auto;
+                flex-direction:column;
+                padding:0;
                 border-radius:14px;
-                justify-content:flex-start !important;
-                align-items:stretch !important;
+                justify-content:flex-start;
+                align-items:stretch;
                 overflow:hidden;
             }
-            /* Ocultar todos los elementos mobile */
             .pk-card > .pk-rid,
             .pk-card > .pk-nid,
             .pk-card > .pk-img,
             .pk-card > .pk-name,
             .pk-card > .pk-status-tag { display:none !important; }
-
-            /* Área imagen: fondo + números + sprite */
-            .pk-dt-imgarea {
+            .pk-dt-header{
                 display:flex !important;
-                flex-direction:column;
-                align-items:center;
-                justify-content:center;
-                position:relative;
-                height:150px;
-                padding:10px;
-            }
-            .pk-card.found  .pk-dt-imgarea { background:linear-gradient(145deg,#f0fdf4,#fff); }
-            .pk-card.missing .pk-dt-imgarea { background:var(--surface2); }
-            .pk-dt-numbers {
-                position:absolute;
-                top:8px; left:8px; right:8px;
-                display:flex;
                 justify-content:space-between;
                 align-items:center;
+                padding:10px 12px 4px;
             }
-            .pk-dt-numbers .pk-rid {
-                position:static !important;
-                font-size:10px;font-weight:700;
-                padding:2px 7px;border-radius:5px;
-            }
-            .pk-dt-numbers .pk-nid {
-                position:static !important;
-                font-size:10px;font-weight:600;color:var(--muted);
-            }
-            .pk-dt-img {
-                display:block !important;
-                width:90px !important;height:90px !important;
-                object-fit:contain;
-                filter:drop-shadow(0 2px 6px var(--shadow));
-                position:static !important;
-                margin-top:14px;
-            }
-            .pk-card.missing .pk-dt-img { filter:grayscale(0.8) opacity(0.45); }
-
-            /* Footer: nombre y estado */
-            .pk-dt-footer {
+            .pk-dt-header .pk-rid{position:static;font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;}
+            .pk-dt-header .pk-nid{position:static;font-size:10px;font-weight:600;color:var(--muted);}
+            .pk-dt-img{display:block !important;width:90px;height:90px;object-fit:contain;margin:6px auto;filter:drop-shadow(0 2px 6px var(--shadow));}
+            .pk-card.missing .pk-dt-img{filter:grayscale(0.8) opacity(0.45);}
+            .pk-dt-footer{
                 display:block !important;
                 border-top:0.5px solid var(--border);
                 padding:8px 12px 12px;
+                text-align:left;
                 background:var(--surface);
             }
-            .pk-dt-footer .pk-name {
-                position:static !important;
-                display:block !important;
-                font-size:14px;font-weight:700;
-                text-transform:capitalize;
-                width:100%;white-space:nowrap;
-                overflow:hidden;text-overflow:ellipsis;
-                color:var(--text);margin-top:0;
-            }
-            .pk-card.missing .pk-dt-footer .pk-name { color:var(--muted); }
-            .pk-dt-footer .pk-status-tag {
-                position:static !important;
-                display:flex !important;
-                font-size:11px;margin-top:3px;
-            }
+            .pk-dt-footer .pk-name{font-size:14px;font-weight:700;text-transform:capitalize;margin-top:0;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;position:static;}
+            .pk-dt-footer .pk-status-tag{font-size:11px;margin-top:3px;position:static;}
+            .pk-card.found .pk-dt-header{background:linear-gradient(145deg,#f0fdf4,#fff);}
+            .pk-card.missing .pk-dt-header{background:var(--surface2);}
 
             /* ── FAB oculto en desktop ── */
             .fab-home{display:none !important;}
@@ -918,21 +877,17 @@ function renderGaleria(pkms, mantenerScroll) {
         const statusM = document.createElement('div'); statusM.className = 'pk-status-tag';
         statusM.textContent = tiene ? 'tenemos' : 'falta';
 
-        // ── DESKTOP elements (pk-dt-imgarea, pk-dt-footer) ──
-        const imgArea = document.createElement('div'); imgArea.className = 'pk-dt-imgarea';
-
-        const numRow = document.createElement('div'); numRow.className = 'pk-dt-numbers';
+        // ── DESKTOP elements ──
+        const header = document.createElement('div'); header.className = 'pk-dt-header';
         const ridD = document.createElement('span'); ridD.className = 'pk-rid';
         ridD.style.color = coloresGen[p.gen-1]; ridD.style.background = coloresBg[p.gen-1];
         ridD.textContent = ridTxt;
         const nidD = document.createElement('span'); nidD.className = 'pk-nid';
         nidD.textContent = nidTxt;
-        numRow.appendChild(ridD); numRow.appendChild(nidD);
+        header.appendChild(ridD); header.appendChild(nidD);
 
         const imgD = document.createElement('img'); imgD.className = 'pk-dt-img';
         imgD.src = p.image; imgD.alt = p.name; imgD.loading = 'lazy';
-
-        imgArea.appendChild(numRow); imgArea.appendChild(imgD);
 
         const footer = document.createElement('div'); footer.className = 'pk-dt-footer';
         const nameD = document.createElement('div'); nameD.className = 'pk-name';
@@ -945,7 +900,7 @@ function renderGaleria(pkms, mantenerScroll) {
         // Siempre incluir ambos sets — CSS decide cuál mostrar
         card.appendChild(ridM); card.appendChild(nidM); card.appendChild(imgM);
         card.appendChild(nameM); card.appendChild(statusM);
-        card.appendChild(imgArea); card.appendChild(footer);
+        card.appendChild(header); card.appendChild(imgD); card.appendChild(footer);
 
         frag.appendChild(card);
     });

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -78,8 +77,7 @@
         .main-content{padding:12px 14px 0;}
 
         /* ── PROGRESS CARD ── */
-        .progress-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:16px;position:relative;overflow:hidden;cursor:pointer;transition:transform 0.15s;}
-        .progress-card:active{transform:scale(0.99);}
+        .progress-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:16px;position:relative;overflow:hidden;}
         .progress-top-row{display:flex;align-items:center;justify-content:space-between;}
         .progress-label{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
         .progress-count{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;color:var(--text);line-height:1;}
@@ -166,18 +164,16 @@
         .pk-status-tag{display:flex;align-items:center;gap:3px;font-size:9px;font-weight:700;color:var(--muted);margin-top:2px;position:relative;z-index:1;}
         .pk-status-tag::before{content:'○';font-size:9px;}
         .pk-card.found .pk-status-tag::before{content:'✓';color:var(--found);}
-
-        /* Elementos desktop ocultos por defecto */
+        /* Elementos desktop ocultos por defecto (mobile-first) */
         .pk-dt-header{display:none;}
         .pk-dt-footer{display:none;}
-        .pk-dt-img{display:none;}
 
         /* ── FAB ── */
         .fab-home{display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--nav-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--nav-border);border-radius:22px;padding:10px 20px;gap:8px;align-items:center;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.05em;color:var(--accent2);cursor:pointer;box-shadow:0 8px 24px var(--shadow);z-index:500;white-space:nowrap;animation:fadeIn .2s ease;}
         .fab-home.visible{display:flex;}
         .fab-home:active{opacity:.85;transform:translateX(-50%) scale(0.96);}
 
-        /* ── DETAIL OVERLAY (mobile default) ── */
+        /* ── DETAIL OVERLAY ── */
         .detail-overlay{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--overlay-bg);border-radius:28px 28px 0 0;padding:24px 20px 44px;box-shadow:0 -12px 40px var(--shadow);z-index:600;text-align:center;border-top:1px solid var(--border);animation:slideUp .3s ease;}
         @keyframes slideUp{from{transform:translateY(30px);opacity:0;}to{transform:translateY(0);opacity:1;}}
         .detail-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px;}
@@ -207,10 +203,6 @@
         .metrics-jalon{background:rgba(79,70,229,0.08);border:1px solid rgba(79,70,229,0.2);border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:12px;color:var(--accent2);font-weight:600;}
         .metrics-close{width:100%;margin-top:16px;border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:12px;padding:12px;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;letter-spacing:.06em;cursor:pointer;}
 
-        @media(prefers-color-scheme:dark){
-            .progress-card:active{transform:scale(0.99);background:#161616;}
-            .sb-progress-box.active{background:#221b47 !important; border-color:var(--accent2);}
-        }
         @keyframes skeleton{from{opacity:0.4;}to{opacity:0.9;}}
         @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 
@@ -229,7 +221,7 @@
         /* ═══════════════════════════════════════════════════════
            DESKTOP 1024px — layout de dos paneles
         ═══════════════════════════════════════════════════════ */
-        @media(min-width:1024px){
+        @media(min-width:800px){
             body{display:flex;flex-direction:row;overflow:hidden;}
 
             /* ── SIDEBAR ── */
@@ -244,7 +236,6 @@
                 overflow:hidden;
             }
             .sb-brand{display:flex;align-items:center;gap:8px;padding:18px 16px 14px;border-bottom:1px solid var(--border);cursor:pointer;flex-shrink:0;}
-            .sb-brand.active{background:rgba(79,70,229,0.06);}
             .sb-pokeball{width:26px;height:26px;background:conic-gradient(#e74c3c 0deg 180deg,var(--surface2) 180deg 360deg);border-radius:50%;border:2px solid var(--surface2);position:relative;flex-shrink:0;}
             .sb-pokeball::after{content:'';position:absolute;width:8px;height:8px;background:var(--surface2);border-radius:50%;border:1.5px solid var(--border);top:50%;left:50%;transform:translate(-50%,-50%);}
             .sb-title{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
@@ -253,9 +244,7 @@
             .sb-search-bar::placeholder{color:var(--muted);}
             .sb-search-bar:focus{border-color:var(--accent2);}
             .sb-progress{padding:4px 12px 12px;flex-shrink:0;}
-            .sb-progress-box{background:var(--surface2);border:0.5px solid var(--border);border-radius:12px;padding:12px;cursor:pointer;transition:background 0.15s;}
-            .sb-progress-box:hover{background:var(--border);}
-            .sb-progress-box.active{background:rgba(79,70,229,0.08);border-color:var(--accent2);}
+            .sb-progress-box{background:var(--surface2);border:0.5px solid var(--border);border-radius:12px;padding:12px;}
             .sb-progress-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
             .sb-progress-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
             .sb-progress-pct{font-size:13px;font-weight:700;color:var(--accent2);}
@@ -297,7 +286,7 @@
             .main-content{padding:0;}
 
             /* Gallery siempre visible en desktop */
-            .gallery-section{display:flex !important;flex-direction:column;height:100vh;overflow:hidden;}
+            .gallery-section{display:flex !important;flex-direction:column;height:100vh;}
 
             /* ── TOP BAR DEL MAIN ── */
             .desktop-topbar{display:flex !important;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0;}
@@ -309,95 +298,111 @@
             .btn-acomodar{padding:7px 16px;}
 
             /* ── GRID SCROLL AREA ── */
-            .desktop-grid-scroll{
-                display:block !important;
-                flex:1;
-                overflow-y:auto !important;
-                height: calc(100vh - 73px);
-                padding: 20px 24px 40px 24px;
-            }
-
-            .gallery-grid{
-                display:grid !important;
-                grid-template-columns:repeat(5,1fr);
-                gap:16px;
-                width:100%;
-                align-items: start;
-            }
+            .desktop-grid-scroll{display:flex !important;flex:1;overflow-y:auto;padding:20px 24px;}
+            .gallery-grid{grid-template-columns:repeat(5,1fr);gap:16px;width:100%;}
             .gallery-grid.modo-acomodar{grid-template-columns:repeat(4,1fr);}
-            
+            /* Ocultar elementos mobile dentro de gallery-section en desktop */
             #gallery-header-mobile{display:none !important;}
             #gallery-filter-mobile{display:none !important;}
             #gallery-grid-mobile-wrap{display:none !important;}
 
             /* ── PK CARD DESKTOP ── */
             .pk-card{
-                aspect-ratio:auto;
-                min-height: 180px;
-                display:flex !important;
-                flex-direction:column;
-                justify-content:space-between;
-                align-items:stretch;
-                padding:0;
+                aspect-ratio:auto !important;
+                flex-direction:column !important;
+                padding:0 !important;
                 border-radius:14px;
+                justify-content:flex-start !important;
+                align-items:stretch !important;
                 overflow:hidden;
             }
+            /* Ocultar todos los elementos mobile */
             .pk-card > .pk-rid,
             .pk-card > .pk-nid,
             .pk-card > .pk-img,
             .pk-card > .pk-name,
             .pk-card > .pk-status-tag { display:none !important; }
-            
-            .pk-dt-header{
+
+            /* Área imagen: fondo + números + sprite */
+            .pk-dt-imgarea {
                 display:flex !important;
+                flex-direction:column;
+                align-items:center;
+                justify-content:center;
+                position:relative;
+                height:150px;
+                padding:10px;
+            }
+            .pk-card.found  .pk-dt-imgarea { background:linear-gradient(145deg,#f0fdf4,#fff); }
+            .pk-card.missing .pk-dt-imgarea { background:var(--surface2); }
+            .pk-dt-numbers {
+                position:absolute;
+                top:8px; left:8px; right:8px;
+                display:flex;
                 justify-content:space-between;
                 align-items:center;
-                padding:10px 12px 4px;
             }
-            .pk-dt-header .pk-rid{position:static;font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;}
-            .pk-dt-header .pk-nid{position:static;font-size:10px;font-weight:600;color:var(--muted);}
-            
-            .pk-dt-img{display:block !important;width:90px;height:90px;object-fit:contain;margin:6px auto;filter:drop-shadow(0 2px 6px var(--shadow));}
-            .pk-card.missing .pk-dt-img{filter:grayscale(0.8) opacity(0.45);}
-            
-            .pk-dt-footer{
+            .pk-dt-numbers .pk-rid {
+                position:static !important;
+                font-size:10px;font-weight:700;
+                padding:2px 7px;border-radius:5px;
+            }
+            .pk-dt-numbers .pk-nid {
+                position:static !important;
+                font-size:10px;font-weight:600;color:var(--muted);
+            }
+            .pk-dt-img {
+                display:block !important;
+                width:90px !important;height:90px !important;
+                object-fit:contain;
+                filter:drop-shadow(0 2px 6px var(--shadow));
+                position:static !important;
+                margin-top:14px;
+            }
+            .pk-card.missing .pk-dt-img { filter:grayscale(0.8) opacity(0.45); }
+
+            /* Footer: nombre y estado */
+            .pk-dt-footer {
                 display:block !important;
                 border-top:0.5px solid var(--border);
                 padding:8px 12px 12px;
-                text-align:left;
                 background:var(--surface);
             }
-            .pk-dt-footer .pk-name{font-size:14px;font-weight:700;text-transform:capitalize;margin-top:0;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;position:static;}
-            .pk-dt-footer .pk-status-tag{font-size:11px;margin-top:3px;position:static;}
-            .pk-dt-footer .pk-card.found .pk-status-tag::before{content:'✓ ';color:var(--found);}
-            .pk-card.found .pk-dt-header{background:linear-gradient(145deg,#f0fdf4,#fff);}
-            .pk-card.missing .pk-dt-header{background:var(--surface2);}
-            @media(prefers-color-scheme:dark){
-                .pk-card.found .pk-dt-header{background:linear-gradient(145deg,#142217,#121212);}
+            .pk-dt-footer .pk-name {
+                position:static !important;
+                display:block !important;
+                font-size:14px;font-weight:700;
+                text-transform:capitalize;
+                width:100%;white-space:nowrap;
+                overflow:hidden;text-overflow:ellipsis;
+                color:var(--text);margin-top:0;
+            }
+            .pk-card.missing .pk-dt-footer .pk-name { color:var(--muted); }
+            .pk-dt-footer .pk-status-tag {
+                position:static !important;
+                display:flex !important;
+                font-size:11px;margin-top:3px;
             }
 
             /* ── FAB oculto en desktop ── */
             .fab-home{display:none !important;}
 
-            /* ── DETAIL OVERLAY ── */
+            /* ── DETAIL como modal centrado en desktop ── */
             .detail-overlay{
                 position:fixed;
                 bottom:auto;
-                top:90px;
-                right:32px;
-                width:340px;
+                top:50%;left:50%;
+                transform:translate(-50%,-50%);
+                width:380px;
                 height:auto;
-                max-height:calc(100vh - 120px);
-                border-radius:20px;
+                max-height:85vh;
+                border-radius:24px;
                 border:1px solid var(--border);
-                border-top:none;
-                padding:28px 20px 32px;
-                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0,0,0,0.2);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
+                padding:24px 24px 32px;
                 overflow-y:auto;
-                z-index:600;
+                box-shadow:0 20px 60px rgba(0,0,0,0.2);
             }
+            .detail-handle{display:none;}
         }
 
         /* ocultar sidebar en mobile */
@@ -418,7 +423,7 @@
         <input type="text" id="search-input-desktop" class="sb-search-bar" placeholder="🔍 Buscar Pokémon..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     </div>
     <div class="sb-progress">
-        <div class="sb-progress-box" id="sb-progress-trigger" onclick="verTodosLosPokemon()">
+        <div class="sb-progress-box">
             <div class="sb-progress-row">
                 <span class="sb-progress-label">Colección</span>
                 <span class="sb-progress-pct" id="sb-pct">0%</span>
@@ -463,7 +468,7 @@
     <div class="main-content" id="main-view-content">
 
         <!-- PROGRESS CARD -->
-        <div class="progress-card" style="margin-top:12px;" onclick="verTodosLosPokemon()">
+        <div class="progress-card" style="margin-top:12px;">
             <div class="progress-top-row">
                 <div class="progress-left">
                     <div class="progress-label" id="stat-card-title">Progreso de la colección</div>
@@ -505,7 +510,7 @@
 
         <!-- GALLERY -->
         <div class="gallery-section" id="gallery-section">
-            <!-- TOP BAR (desktop) -->
+            <!-- TOP BAR (desktop usa este pero con clase desktop-topbar) -->
             <div class="desktop-topbar">
                 <div class="desktop-topbar-left">
                     <div class="gallery-title" id="gallery-title-text-desktop"></div>
@@ -534,10 +539,10 @@
                 <button class="filter-btn" id="filter-faltan" onclick="setFiltro('faltan')">○ Faltan</button>
             </div>
             <!-- Scroll area desktop -->
-            <div class="desktop-grid-scroll" id="desktop-scroll-area">
+            <div class="desktop-grid-scroll">
                 <div class="gallery-grid" id="gallery-grid"></div>
             </div>
-            <!-- Mobile grid -->
+            <!-- Mobile grid (sin scroll extra) -->
             <div id="gallery-grid-mobile-wrap">
                 <div class="gallery-grid" id="gallery-grid-mobile" style="display:none;"></div>
             </div>
@@ -583,7 +588,7 @@ const coloresBg  = ["rgba(59,91,219,0.16)","rgba(59,91,219,0.16)","rgba(124,58,2
                     "rgba(219,39,119,0.16)","rgba(219,39,119,0.16)","rgba(219,39,119,0.16)",
                     "rgba(220,38,38,0.16)","rgba(220,38,38,0.16)"];
 const carpetas = [
-    { nombre:'Azul',   color:'#3b5bdb', bg:'rgba(59,91,219,0.16)',   gens:[1,2],   rango:'Gens 1-2', emoji:'🔵' },
+    { nombre:'Azul',   color:'#3b5bdb', bg:'rgba(59,91,219,0.16)',  gens:[1,2],   rango:'Gens 1-2', emoji:'🔵' },
     { nombre:'Morada', color:'#7c3aed', bg:'rgba(124,58,237,0.16)', gens:[3,4],   rango:'Gens 3-4', emoji:'🟣' },
     { nombre:'Rosa',   color:'#db2777', bg:'rgba(219,39,119,0.16)', gens:[5,6,7], rango:'Gens 5-7', emoji:'💗' },
     { nombre:'Roja',   color:'#dc2626', bg:'rgba(220,38,38,0.16)',  gens:[8,9],   rango:'Gens 8-9', emoji:'🔴' }
@@ -603,7 +608,7 @@ let historialOCR     = [];
 const cortesGen    = [0,0,151,251,386,493,649,721,809,905];
 const cachePokemon = {};
 
-const esDesktop = () => window.innerWidth >= 1024;
+const esDesktop = () => window.innerWidth >= 800;
 
 // ── HELPERS ──────────────────────────────────────────────────────
 function gridActivo() {
@@ -638,6 +643,7 @@ function renderSidebar() {
     if (!dataGlobalCache) return;
     const d = dataGlobalCache;
 
+    // Progreso global
     const cons  = d.global.conseguidos || 0;
     const total = d.global.total || 1025;
     const pct   = Math.round((cons / total) * 100);
@@ -648,10 +654,7 @@ function renderSidebar() {
     if (sbPct) sbPct.textContent = pct + '%';
     if (sbCnt) sbCnt.textContent = cons;
 
-    const sbBox = document.getElementById('sb-progress-trigger');
-    const isMasterSetView = genActualAbierta?.esTodo;
-    if (sbBox) sbBox.classList.toggle('active', !!isMasterSetView);
-
+    // Carpetas + generaciones
     const wrap = document.getElementById('sb-carpetas');
     if (!wrap) return;
     wrap.innerHTML = '';
@@ -679,11 +682,12 @@ function renderSidebar() {
                 <div class="sb-carpeta-bar-fill" style="width:${cPct}%;background:${c.color}"></div>
             </div>`;
 
+        // Generaciones de esta carpeta
         const gensDiv = document.createElement('div');
         gensDiv.className = 'sb-gens';
         c.gens.forEach(g => {
             const gd       = d.generaciones[g];
-            const isActive = !genActualAbierta?.esCarpeta && !genActualAbierta?.esTodo && genActualAbierta?.gen === g;
+            const isActive = !genActualAbierta?.esCarpeta && genActualAbierta?.gen === g;
             const item     = document.createElement('div');
             item.className = `sb-gen-item${isActive ? ' active' : ''}`;
             item.onclick   = () => verListadoGeneracion(g, regiones[g-1]);
@@ -696,11 +700,12 @@ function renderSidebar() {
 }
 
 function verCarpetaDesktop(c) {
+    // reconstruir objeto carpeta desde el atributo serializado
     const carpeta = carpetas.find(x => x.nombre === c.nombre);
     if (carpeta) verCarpeta(carpeta);
 }
 
-// ── BARRA CARPETAS ───────────────────────────────────────────────
+// ── BARRA CARPETAS (mobile progress card) ────────────────────────
 function renderBinderBar() {
     const bar    = document.getElementById('binder-bar');
     const legend = document.getElementById('binder-legend');
@@ -713,40 +718,14 @@ function renderBinderBar() {
         seg.style.flex = t || 1;
         seg.style.background = c.color;
         seg.title = `Carpeta ${c.nombre} — ${c.rango}`;
-        seg.onclick = (e) => { e.stopPropagation(); verCarpeta(c); };
+        seg.onclick = () => verCarpeta(c);
         bar.appendChild(seg);
         const item = document.createElement('button');
         item.className = 'binder-legend-item';
-        item.onclick = (e) => { e.stopPropagation(); verCarpeta(c); };
+        item.onclick = () => verCarpeta(c);
         item.innerHTML = `<span class="binder-legend-dot" style="background:${c.color}"></span><span class="binder-legend-name">${c.nombre}</span><span class="binder-legend-range">${c.rango}</span>`;
         legend.appendChild(item);
     });
-}
-
-// ── VER TODOS LOS POKÉMON (PROGRESO GLOBAL) ────────────────────────
-async function verTodosLosPokemon() {
-    genActualAbierta = { region: "Colección Completa", esTodo: true };
-    actualizarTarjetaProgreso();
-    renderSidebar();
-    if (!esDesktop()) {
-        document.getElementById('generaciones-section-title').style.display = 'none';
-        document.getElementById('grid-generaciones').style.display = 'none';
-        document.getElementById('gallery-section').style.display = 'block';
-        mostrarFAB();
-        document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
-    }
-    mostrarGalleryShell("Colección Completa");
-    
-    const todos = [];
-    for (let g = 1; g <= 9; g++) {
-        if (!cachePokemon[g]) {
-            const res = await fetch(`/api/buscar?gen=${g}`);
-            cachePokemon[g] = await res.json();
-        }
-        todos.push(...cachePokemon[g]);
-    }
-    pkmsActuales = todos;
-    renderGaleria(todos, false);
 }
 
 // ── ESTADÍSTICAS ─────────────────────────────────────────────────
@@ -779,10 +758,7 @@ async function cargarEstadisticas() {
             <div class="gen-bar-bg"><div class="gen-bar-fill" style="width:${pct}%;background:${coloresGen[g-1]};"></div></div>`;
         grid.appendChild(card);
     }
-    if (genActualAbierta) {
-        if (genActualAbierta.esTodo) verTodosLosPokemon();
-        else RefrescarGaleria(false);
-    }
+    if (genActualAbierta) RefrescarGaleria(false);
 }
 
 async function cargarEstadisticasSinMoverScroll() {
@@ -794,25 +770,13 @@ async function cargarEstadisticasSinMoverScroll() {
     renderSidebar();
     const total = Object.keys(data.listaIds || {}).length;
     document.getElementById('brand-count').textContent = `${total} / 1025`;
-    if (genActualAbierta) {
-        if (genActualAbierta.esTodo) {
-            const filtrados = pkmsActuales.filter(p => {
-                const tiene = localStorage.getItem(`pk_${p.id}`) === 'true';
-                if (filtroActual === 'tenemos') return tiene;
-                if (filtroActual === 'faltan')  return !tiene;
-                return true;
-            });
-            renderGaleria(filtrados, true);
-        } else {
-            RefrescarGaleria(true);
-        }
-    }
+    if (genActualAbierta) RefrescarGaleria(true);
 }
 
 function actualizarTarjetaProgreso() {
     if (!dataGlobalCache) return;
     let conseguidos, total;
-    if (genActualAbierta && !genActualAbierta.esCarpeta && !genActualAbierta.esTodo) {
+    if (genActualAbierta && !genActualAbierta.esCarpeta) {
         const gd = dataGlobalCache.generaciones[genActualAbierta.gen];
         conseguidos = gd.conseguidos; total = gd.total;
     } else if (genActualAbierta?.esCarpeta) {
@@ -878,8 +842,8 @@ async function verListadoGeneracion(gen, region) {
     await RefrescarGaleria();
 }
 
-// Control superior de títulos
 function mostrarGalleryShell(titulo) {
+    // Desktop usa los elementos -desktop, mobile usa los normales
     const tEl  = document.getElementById('gallery-title-text');
     const tElD = document.getElementById('gallery-title-text-desktop');
     if (tEl)  tEl.textContent  = titulo;
@@ -941,7 +905,7 @@ function renderGaleria(pkms, mantenerScroll) {
         card.style.borderTopColor = coloresGen[p.gen-1];
         card.onclick = () => mostrarFicha(p);
 
-        // ── MOBILE elements ──
+        // ── MOBILE elements (posición absoluta, visible por defecto en mobile) ──
         const ridM = document.createElement('div'); ridM.className = 'pk-rid';
         ridM.style.color = coloresGen[p.gen-1]; ridM.style.background = coloresBg[p.gen-1];
         ridM.textContent = ridTxt;
@@ -954,17 +918,21 @@ function renderGaleria(pkms, mantenerScroll) {
         const statusM = document.createElement('div'); statusM.className = 'pk-status-tag';
         statusM.textContent = tiene ? 'tenemos' : 'falta';
 
-        // ── DESKTOP elements ──
-        const header = document.createElement('div'); header.className = 'pk-dt-header';
+        // ── DESKTOP elements (pk-dt-imgarea, pk-dt-footer) ──
+        const imgArea = document.createElement('div'); imgArea.className = 'pk-dt-imgarea';
+
+        const numRow = document.createElement('div'); numRow.className = 'pk-dt-numbers';
         const ridD = document.createElement('span'); ridD.className = 'pk-rid';
         ridD.style.color = coloresGen[p.gen-1]; ridD.style.background = coloresBg[p.gen-1];
         ridD.textContent = ridTxt;
         const nidD = document.createElement('span'); nidD.className = 'pk-nid';
         nidD.textContent = nidTxt;
-        header.appendChild(ridD); header.appendChild(nidD);
+        numRow.appendChild(ridD); numRow.appendChild(nidD);
 
         const imgD = document.createElement('img'); imgD.className = 'pk-dt-img';
         imgD.src = p.image; imgD.alt = p.name; imgD.loading = 'lazy';
+
+        imgArea.appendChild(numRow); imgArea.appendChild(imgD);
 
         const footer = document.createElement('div'); footer.className = 'pk-dt-footer';
         const nameD = document.createElement('div'); nameD.className = 'pk-name';
@@ -974,9 +942,10 @@ function renderGaleria(pkms, mantenerScroll) {
         if (tiene) statusD.style.color = 'var(--found)';
         footer.appendChild(nameD); footer.appendChild(statusD);
 
+        // Siempre incluir ambos sets — CSS decide cuál mostrar
         card.appendChild(ridM); card.appendChild(nidM); card.appendChild(imgM);
         card.appendChild(nameM); card.appendChild(statusM);
-        card.appendChild(header); card.appendChild(imgD); card.appendChild(footer);
+        card.appendChild(imgArea); card.appendChild(footer);
 
         frag.appendChild(card);
     });
@@ -987,7 +956,7 @@ function renderGaleria(pkms, mantenerScroll) {
 }
 
 async function RefrescarGaleria(mantenerScroll = false) {
-    if (!genActualAbierta || genActualAbierta.esCarpeta || genActualAbierta.esTodo) return;
+    if (!genActualAbierta || genActualAbierta.esCarpeta) return;
     const { gen } = genActualAbierta;
     const grid    = gridActivo();
     if (!cachePokemon[gen]) {
@@ -1033,6 +1002,7 @@ function cerrarGaleriaYVolver() {
     renderSidebar();
 }
 
+// ── GRID MOBILE/DESKTOP switch ────────────────────────────────────
 function sincronizarGrids() {
     const gDesktop = document.getElementById('gallery-grid');
     const gMobile  = document.getElementById('gallery-grid-mobile');
@@ -1040,15 +1010,15 @@ function sincronizarGrids() {
     if (esDesktop()) {
         gDesktop.style.display = '';
         if (gMobile)  gMobile.style.display  = 'none';
-        if (wrapMob)  wrapMob.style.display  = 'none';
+        if (wrapMob)  wrapMob.style.display   = 'none';
     } else {
         gDesktop.style.display = 'none';
         if (gMobile)  gMobile.style.display  = '';
-        if (wrapMob)  wrapMob.style.display  = '';
+        if (wrapMob)  wrapMob.style.display   = '';
     }
 }
 
-// ── FICHA (FIJA Y FLOTANTE) ──
+// ── FICHA ────────────────────────────────────────────────────────
 function mostrarFicha(p) {
     pkSeleccionado = p;
     let numR = p.id - cortesGen[p.gen];
@@ -1064,7 +1034,7 @@ function mostrarFicha(p) {
     const bd = p.gen <= 2 ? { bg:'rgba(59,91,219,0.16)', color:'#3b5bdb', border:'#3b5bdb', text:'🔵 Carpeta Azul — Gens 1 y 2' }
              : p.gen <= 4 ? { bg:'rgba(124,58,237,0.16)', color:'#7c3aed', border:'#7c3aed', text:'🟣 Carpeta Morada — Gens 3 y 4' }
              : p.gen <= 7 ? { bg:'rgba(219,39,119,0.16)', color:'#db2777', border:'#db2777', text:'💗 Carpeta Rosa — Gens 5, 6 y 7' }
-                          : { bg:'rgba(220,38,38,0.16)',  color:'#dc2626', border:'#dc2626', text:'🔴 Carpeta Roja — Gens 8 y 9' };
+             :               { bg:'rgba(220,38,38,0.16)',  color:'#dc2626', border:'#dc2626', text:'🔴 Carpeta Roja — Gens 8 y 9' };
     const guide = document.getElementById('binder-guide');
     guide.style.background = bd.bg; guide.style.color = bd.color;
     guide.style.border = `1px solid ${bd.border}`; guide.textContent = bd.text;
@@ -1072,7 +1042,6 @@ function mostrarFicha(p) {
     actualizarBotonEstado(tiene);
     const fecha = getFechaRegistro(p.id);
     document.getElementById('detail-fecha').textContent = tiene && fecha ? `Registrado el ${fecha}` : '';
-    
     document.getElementById('detail-overlay').style.display = 'block';
 }
 
@@ -1093,7 +1062,6 @@ document.getElementById('btn-toggle-status').onclick = async () => {
     localStorage.setItem(`pk_${pkSeleccionado.id}`, nuevoEstado ? 'true' : 'false');
     if (nuevoEstado) guardarFechaRegistro(pkSeleccionado.id);
     actualizarBotonEstado(nuevoEstado);
-    
     document.getElementById('detail-overlay').style.display = 'none';
     pkSeleccionado = null;
     await cargarEstadisticasSinMoverScroll();
@@ -1194,7 +1162,8 @@ function cambiarTab(tipo) {
     if (tipo === 'home') {
         cerrarGaleriaYVolver();
         if (streamCamara) toggleCamaraOCR();
-        if (esDesktop()) verTodosLosPokemon(); // Cambiado para que por defecto muestre la colección completa en inicio
+        // En desktop mostrar gen 1 por defecto si no hay nada seleccionado
+        if (esDesktop() && !genActualAbierta) verListadoGeneracion(1, regiones[0]);
     }
 }
 function mostrarFAB() { document.getElementById('fab-home').classList.add('visible'); }
@@ -1263,6 +1232,7 @@ function renderHistorial() {
 }
 async function toggleCamaraOCR() {
     const btnCam  = document.getElementById('btn-camara-header');
+    const btnCamD = document.getElementById('sb-btn-cam');
     if (streamCamara) { detenerCamara(); return; }
     try {
         btnCam  && btnCam.classList.add('cam-active');
@@ -1354,15 +1324,15 @@ window.onload = async () => {
         Object.keys(data.listaIds).forEach(id => localStorage.setItem(`pk_${id}`, 'true'));
     }
     await cargarEstadisticas();
-    if (esDesktop()) verTodosLosPokemon(); // Forzamos carga inicial de todos los Pokémon en desktop
+    // En desktop abrir Gen 1 por defecto
+    if (esDesktop()) verListadoGeneracion(1, regiones[0]);
     precargarTodasLasGens();
     iniciarSSE();
 };
 
 window.addEventListener('resize', () => {
     sincronizarGrids();
-    // Corregido: Si está la vista de "Colección Completa", se mantiene al redimensionar
-    if (esDesktop() && !genActualAbierta) verTodosLosPokemon();
+    if (esDesktop() && !genActualAbierta) verListadoGeneracion(1, regiones[0]);
 });
 
 async function precargarTodasLasGens() {

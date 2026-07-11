@@ -445,7 +445,6 @@
         <input type="text" id="search-input-desktop" class="sb-search-bar" placeholder="🔍 Buscar Pokémon..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     </div>
     <div class="sb-progress">
-        <!-- CORRECCIÓN REALIZADA: Evento clic agregado para cargar toda la pokédex en Escritorio -->
         <div class="sb-progress-box" onclick="verPokedexCompleta()">
             <div class="sb-progress-row">
                 <span class="sb-progress-label">Colección</span>
@@ -491,7 +490,6 @@
     <div class="main-content" id="main-view-content">
 
         <!-- PROGRESS CARD -->
-        <!-- CORRECCIÓN REALIZADA: Evento clic agregado para cargar toda la pokédex en Celular -->
         <div class="progress-card" style="margin-top:12px;" onclick="verPokedexCompleta()">
             <div class="progress-top-row">
                 <div class="progress-left">
@@ -711,7 +709,7 @@ function renderSidebar() {
         gensDiv.className = 'sb-gens';
         c.gens.forEach(g => {
             const gd       = d.generaciones[g];
-            const isActive = !genActualAbierta?.esCarpeta && genActualAbierta?.gen === g;
+            const isActive = !genActualAbierta?.esCarpeta && !genActualAbierta?.esCompleta && genActualAbierta?.gen === g;
             const item     = document.createElement('div');
             item.className = `sb-gen-item${isActive ? ' active' : ''}`;
             item.onclick   = () => verListadoGeneracion(g, regiones[g-1]);
@@ -1000,7 +998,6 @@ function renderGaleria(pkms, mantenerScroll) {
 
 async function RefrescarGaleria(mantenerScroll = false) {
     if (!genActualAbierta) return;
-    // CORRECCIÓN REALIZADA: Soporte agregado en el recarga-viva para carpetas y visualización completa
     if (genActualAbierta.esCarpeta || genActualAbierta.esCompleta) {
         const filtrados = pkmsActuales.filter(p => {
             const tiene = localStorage.getItem(`pk_${p.id}`) === 'true';
@@ -1208,6 +1205,7 @@ function handleSearchInput(e, inputEl) {
     }, 300);
 }
 
+// ── FAB / TABS ───────────────────────────────────────────────────
 function clearSearchTimer() {
     if (searchTimer) { clearTimeout(searchTimer); searchTimer = null; }
 }
@@ -1215,12 +1213,12 @@ function clearSearchTimer() {
 searchInput.addEventListener('input',  e => handleSearchInput(e, searchInput));
 searchInputD.addEventListener('input', e => handleSearchInput(e, searchInputD));
 
-// ── FAB / TABS ───────────────────────────────────────────────────
 function cambiarTab(tipo) {
     if (tipo === 'home') {
         cerrarGaleriaYVolver();
         if (streamCamara) toggleCamaraOCR();
-        if (esDesktop() && !genActualAbierta) verListadoGeneracion(1, regiones[0]);
+        // CORRECCIÓN REALIZADA: Al presionar Home en PC, abre la Pokédex completa por defecto
+        if (esDesktop() && !genActualAbierta) verPokedexCompleta();
     }
 }
 function mostrarFAB() { document.getElementById('fab-home').classList.add('visible'); }
@@ -1384,14 +1382,18 @@ window.onload = async () => {
         Object.keys(data.listaIds).forEach(id => localStorage.setItem(`pk_${id}`, 'true'));
     }
     await cargarEstadisticas();
-    if (esDesktop()) verListadoGeneracion(1, regiones[0]);
+    
+    // CORRECCIÓN REALIZADA: Al cargar la aplicación en PC, inicializa la Pokédex completa de manera default
+    if (esDesktop()) verPokedexCompleta();
+    
     precargarTodasLasGens();
     iniciarSSE();
 };
 
 window.addEventListener('resize', () => {
     sincronizarGrids();
-    if (esDesktop() && !genActualAbierta) verListadoGeneracion(1, regiones[0]);
+    // CORRECCIÓN REALIZADA: Mantiene la Pokédex completa en reajustes si no hay otra sección abierta
+    if (esDesktop() && !genActualAbierta) verPokedexCompleta();
 });
 
 async function precargarTodasLasGens() {

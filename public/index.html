@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -739,11 +740,11 @@ function renderBinderBar() {
         seg.style.flex = t || 1;
         seg.style.background = c.color;
         seg.title = `Carpeta ${c.nombre} — ${c.rango}`;
-        seg.onclick = () => verCarpeta(c);
+        seg.onclick = (e) => { e.stopPropagation(); verCarpeta(c); };
         bar.appendChild(seg);
         const item = document.createElement('button');
         item.className = 'binder-legend-item';
-        item.onclick = () => verCarpeta(c);
+        item.onclick = (e) => { e.stopPropagation(); verCarpeta(c); };
         item.innerHTML = `<span class="binder-legend-dot" style="background:${c.color}"></span><span class="binder-legend-name">${c.nombre}</span><span class="binder-legend-range">${c.rango}</span>`;
         legend.appendChild(item);
     });
@@ -1410,3 +1411,4 @@ async function precargarTodasLasGens() {
 </script>
 </body>
 </html>
+

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -202,6 +201,13 @@
         }
         .pk-card.missing .pk-name{color:var(--muted);}
         .pk-status-tag{display:none !important;}
+        .pk-status-dot{
+            position:absolute;bottom:3px;right:4px;font-size:10px;line-height:1;
+            z-index:1;font-weight:700;
+        }
+        .pk-card.found .pk-status-dot{color:var(--found);}
+        .pk-card.missing .pk-status-dot{color:var(--muted);opacity:.7;}
+        .gallery-grid.modo-acomodar .pk-status-dot{display:none;}
 
         /* Elementos desktop ocultos por completo en mobile */
         .pk-dt-header{display:none;}
@@ -383,7 +389,8 @@
             .pk-card > .pk-nid,
             .pk-card > .pk-img,
             .pk-card > .pk-name,
-            .pk-card > .pk-status-tag { display:none !important; }
+            .pk-card > .pk-status-tag,
+            .pk-card > .pk-status-dot { display:none !important; }
             .pk-dt-header{
                 display:flex !important;
                 justify-content:space-between;
@@ -631,6 +638,19 @@ let historialOCR     = [];
 const cortesGen    = [0,0,151,251,386,493,649,721,809,905];
 const cachePokemon = {};
 
+// Fetch con manejo de error: devuelve [] y avisa al usuario si algo falla,
+// en vez de dejar la promesa colgada o tronar el resto del flujo.
+async function fetchGenSegura(g) {
+    try {
+        const res = await fetch(`/api/buscar?gen=${g}`);
+        if (!res.ok) throw new Error('respuesta no válida');
+        return await res.json();
+    } catch (err) {
+        mostrarToastError(`No se pudo cargar la generación ${g}. Reintenta.`);
+        return null;
+    }
+}
+
 const esDesktop = () => window.innerWidth >= 800;
 
 // ── HELPERS ──────────────────────────────────────────────────────
@@ -640,9 +660,12 @@ function gridActivo() {
         : document.getElementById('gallery-grid-mobile');
 }
 
-function guardarFechaRegistro(id) {
-    if (!localStorage.getItem(`pk_fecha_${id}`))
-        localStorage.setItem(`pk_fecha_${id}`, new Date().toISOString());
+function guardarFechaRegistro(id, isoDelServidor) {
+    // Si el backend ya nos devolvió una fecha (porque la registró él), usamos esa.
+    // Si no, usamos "ahora" como respaldo local — pero solo en este dispositivo.
+    if (!localStorage.getItem(`pk_fecha_${id}`) || isoDelServidor) {
+        localStorage.setItem(`pk_fecha_${id}`, isoDelServidor || new Date().toISOString());
+    }
 }
 function getFechaRegistro(id) {
     const iso = localStorage.getItem(`pk_fecha_${id}`);
@@ -752,8 +775,15 @@ function renderBinderBar() {
 
 // ── ESTADÍSTICAS ─────────────────────────────────────────────────
 async function cargarEstadisticas() {
-    const res  = await fetch(`/api/estadisticas?nocache=${Date.now()}`);
-    const data = await res.json();
+    let data;
+    try {
+        const res = await fetch(`/api/estadisticas?nocache=${Date.now()}`);
+        if (!res.ok) throw new Error('respuesta no válida');
+        data = await res.json();
+    } catch (err) {
+        mostrarToastError('No se pudo cargar la colección. Revisa tu conexión.');
+        return;
+    }
     dataGlobalCache = data;
     actualizarTarjetaProgreso();
     renderBinderBar();
@@ -784,8 +814,15 @@ async function cargarEstadisticas() {
 }
 
 async function cargarEstadisticasSinMoverScroll() {
-    const res  = await fetch(`/api/estadisticas?nocache=${Date.now()}`);
-    const data = await res.json();
+    let data;
+    try {
+        const res = await fetch(`/api/estadisticas?nocache=${Date.now()}`);
+        if (!res.ok) throw new Error('respuesta no válida');
+        data = await res.json();
+    } catch (err) {
+        mostrarToastError('No se pudo sincronizar. Revisa tu conexión.');
+        return;
+    }
     dataGlobalCache = data;
     actualizarTarjetaProgreso();
     renderBinderBar();
@@ -838,8 +875,9 @@ async function verCarpeta(carpeta) {
     const todos = [];
     for (const g of carpeta.gens) {
         if (!cachePokemon[g]) {
-            const res = await fetch(`/api/buscar?gen=${g}`);
-            cachePokemon[g] = await res.json();
+            const datos = await fetchGenSegura(g);
+            if (!datos) continue; // sigue con las demás gens aunque una falle
+            cachePokemon[g] = datos;
         }
         todos.push(...cachePokemon[g]);
     }
@@ -864,8 +902,9 @@ async function verPokedexCompleta() {
     const todos = [];
     for (let g = 1; g <= 9; g++) {
         if (!cachePokemon[g]) {
-            const res = await fetch(`/api/buscar?gen=${g}`);
-            cachePokemon[g] = await res.json();
+            const datos = await fetchGenSegura(g);
+            if (!datos) continue;
+            cachePokemon[g] = datos;
         }
         todos.push(...cachePokemon[g]);
     }
@@ -964,6 +1003,8 @@ function renderGaleria(pkms, mantenerScroll) {
         nameM.textContent = p.name.toLowerCase();
         const statusM = document.createElement('div'); statusM.className = 'pk-status-tag';
         statusM.textContent = tiene ? 'tenemos' : 'falta';
+        const dotM = document.createElement('div'); dotM.className = 'pk-status-dot';
+        dotM.textContent = tiene ? '✓' : '○';
 
         // ── DESKTOP elements ──
         const header = document.createElement('div'); header.className = 'pk-dt-header';
@@ -986,7 +1027,7 @@ function renderGaleria(pkms, mantenerScroll) {
         footer.appendChild(nameD); footer.appendChild(statusD);
 
         card.appendChild(ridM); card.appendChild(nidM); card.appendChild(imgM);
-        card.appendChild(nameM); card.appendChild(statusM);
+        card.appendChild(nameM); card.appendChild(statusM); card.appendChild(dotM);
         card.appendChild(header); card.appendChild(imgD); card.appendChild(footer);
 
         frag.appendChild(card);
@@ -1017,8 +1058,9 @@ async function RefrescarGaleria(mantenerScroll = false) {
                 `<div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;aspect-ratio:1;animation:skeleton 1.2s ease infinite alternate;"></div>`
             ).join('');
         }
-        const res = await fetch(`/api/buscar?gen=${gen}`);
-        cachePokemon[gen] = await res.json();
+        const datos = await fetchGenSegura(gen);
+        if (!datos) { grid.innerHTML = ''; return; } // deja el grid vacío en vez de colgado
+        cachePokemon[gen] = datos;
     }
     pkmsActuales = cachePokemon[gen];
     const filtrados = pkmsActuales.filter(p => {
@@ -1105,18 +1147,33 @@ function actualizarBotonEstado(tiene) {
 
 document.getElementById('btn-toggle-status').onclick = async () => {
     if (!pkSeleccionado) return;
-    const actual = localStorage.getItem(`pk_${pkSeleccionado.id}`) === 'true';
+    const idPk = pkSeleccionado.id;
+    const actual = localStorage.getItem(`pk_${idPk}`) === 'true';
     const nuevoEstado = !actual;
-    await fetch('/api/inventario', {
-        method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ id: pkSeleccionado.id, estado: nuevoEstado })
-    });
-    localStorage.setItem(`pk_${pkSeleccionado.id}`, nuevoEstado ? 'true' : 'false');
-    if (nuevoEstado) guardarFechaRegistro(pkSeleccionado.id);
-    actualizarBotonEstado(nuevoEstado);
-    document.getElementById('detail-overlay').style.display = 'none';
-    pkSeleccionado = null;
-    await cargarEstadisticasSinMoverScroll();
+    const fechaIso = new Date().toISOString();
+    try {
+        const res = await fetch('/api/inventario', {
+            method:'POST', headers:{'Content-Type':'application/json'},
+            // Mandamos la fecha por si el backend la quiere guardar y así
+            // sincronizarla entre dispositivos (si el backend la ignora, no pasa nada).
+            body: JSON.stringify({ id: idPk, estado: nuevoEstado, fecha: fechaIso })
+        });
+        if (!res.ok) throw new Error('respuesta no válida');
+        // Si el backend responde con la fecha que realmente guardó, la preferimos.
+        let fechaServidor = null;
+        try {
+            const body = await res.json();
+            fechaServidor = body && body.fecha ? body.fecha : null;
+        } catch (e) { /* el backend puede no devolver JSON; no es grave */ }
+        localStorage.setItem(`pk_${idPk}`, nuevoEstado ? 'true' : 'false');
+        if (nuevoEstado) guardarFechaRegistro(idPk, fechaServidor || fechaIso);
+        actualizarBotonEstado(nuevoEstado);
+        document.getElementById('detail-overlay').style.display = 'none';
+        pkSeleccionado = null;
+        await cargarEstadisticasSinMoverScroll();
+    } catch (err) {
+        mostrarToastError('No se pudo guardar el cambio. Intenta de nuevo.');
+    }
 };
 
 document.getElementById('detail-close').onclick = () => {
@@ -1135,6 +1192,7 @@ document.addEventListener('pointerdown', (e) => {
 
 // ── BUSCADOR ─────────────────────────────────────────────────────
 let searchTimer = null;
+let searchAbortController = null;
 const searchInput  = document.getElementById('search-input');
 const searchInputD = document.getElementById('search-input-desktop');
 const sugBox       = document.getElementById('sugerencias');
@@ -1164,11 +1222,19 @@ function handleSearchInput(e, inputEl) {
     if (val.length < 2) { sugBox.style.display = 'none'; clearTimeout(searchTimer); return; }
     clearSearchTimer();
     searchTimer = setTimeout(async () => {
+        if (searchAbortController) searchAbortController.abort();
+        searchAbortController = new AbortController();
+        const miController = searchAbortController;
         let data;
         try {
-            const res = await fetch(`/api/buscar?q=${encodeURIComponent(val)}`);
+            const res = await fetch(`/api/buscar?q=${encodeURIComponent(val)}`, { signal: miController.signal });
             data = await res.json();
-        } catch(err) { return; }
+        } catch(err) {
+            if (err.name === 'AbortError') return; // otra búsqueda más nueva ya está en curso
+            sugBox.style.display = 'none';
+            return;
+        }
+        if (miController !== searchAbortController) return; // resultado obsoleto, ya llegó uno más nuevo
         if (!data.length) { sugBox.style.display = 'none'; return; }
         const frag = document.createDocumentFragment();
         data.forEach(p => {
@@ -1314,7 +1380,7 @@ function detenerCamara() {
 async function iniciarBucleOCR() {
     const canvas = document.createElement('canvas');
     const ctx    = canvas.getContext('2d');
-    if (!workerOCR) workerOCR = await Tesseract.createWorker('eng');
+    if (!workerOCR) workerOCR = await Tesseract.createWorker('eng+spa');
     ocrStatus.style.display = 'block';
     ocrStatus.textContent   = '🔍 Escaneando nombre...';
     while (streamCamara && scanActivo) {
@@ -1325,8 +1391,13 @@ async function iniciarBucleOCR() {
             const { data: { text } } = await workerOCR.recognize(canvas);
             const nombre = text.trim().toUpperCase();
             if (nombre.length > 2) {
-                const res  = await fetch(`/api/buscar?q=${encodeURIComponent(nombre)}`);
-                const data = await res.json();
+                let data = [];
+                try {
+                    const res = await fetch(`/api/buscar?q=${encodeURIComponent(nombre)}`);
+                    if (res.ok) data = await res.json();
+                } catch (err) {
+                    // fallo de red puntual: seguimos escaneando en el siguiente ciclo
+                }
                 if (data.length > 0) {
                     if (navigator.vibrate) navigator.vibrate([80,40,80]);
                     ocrStatus.textContent = `✅ Encontrado: ${data[0].name.toLowerCase()}`;
@@ -1347,13 +1418,32 @@ function iniciarSSE() {
     es.onmessage = (e) => {
         const msg = JSON.parse(e.data);
         if (msg.tipo !== 'cambio') return;
-        if (msg.estado) localStorage.setItem(`pk_${msg.id}`, 'true');
-        else            localStorage.removeItem(`pk_${msg.id}`);
+        if (msg.estado) {
+            localStorage.setItem(`pk_${msg.id}`, 'true');
+            if (msg.fecha) guardarFechaRegistro(msg.id, msg.fecha);
+        } else {
+            localStorage.removeItem(`pk_${msg.id}`);
+        }
         cargarEstadisticasSinMoverScroll();
         mostrarToastSync(msg.id, msg.estado);
     };
     es.onerror = () => { es.close(); setTimeout(iniciarSSE, 3000); };
 }
+let errorToastTimer = null;
+function mostrarToastError(msg) {
+    let toast = document.getElementById('error-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'error-toast';
+        toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--danger);border-radius:12px;padding:8px 16px;font-size:12px;font-weight:600;color:#fff;box-shadow:0 4px 16px var(--shadow);z-index:800;white-space:nowrap;opacity:0;transition:opacity .2s ease;';
+        document.body.appendChild(toast);
+    }
+    toast.textContent = `⚠️ ${msg}`;
+    toast.style.opacity = '1';
+    clearTimeout(errorToastTimer);
+    errorToastTimer = setTimeout(() => { toast.style.opacity = '0'; }, 3000);
+}
+
 let toastTimer = null;
 function mostrarToastSync(id, estado) {
     let toast = document.getElementById('sync-toast');
@@ -1372,9 +1462,14 @@ function mostrarToastSync(id, estado) {
 // ── INIT ─────────────────────────────────────────────────────────
 window.onload = async () => {
     sincronizarGrids();
-    const res  = await fetch('/api/estadisticas');
-    const data = await res.json();
-    if (data.listaIds) {
+    let data = null;
+    try {
+        const res = await fetch('/api/estadisticas');
+        if (res.ok) data = await res.json();
+    } catch (err) {
+        mostrarToastError('No se pudo conectar al iniciar. Revisa tu conexión.');
+    }
+    if (data && data.listaIds) {
         Object.keys(localStorage).forEach(key => {
             if (key.startsWith('pk_') && !key.startsWith('pk_fecha_')) {
                 localStorage.removeItem(key);
@@ -1382,11 +1477,43 @@ window.onload = async () => {
         });
         Object.keys(data.listaIds).forEach(id => localStorage.setItem(`pk_${id}`, 'true'));
     }
-    await cargarEstadisticas();
-    
+
+    // Reutilizamos esta misma respuesta para pintar todo, en vez de pedirla otra vez.
+    if (data) {
+        dataGlobalCache = data;
+        actualizarTarjetaProgreso();
+        renderBinderBar();
+        renderSidebar();
+        const total = Object.keys(data.listaIds || {}).length;
+        document.getElementById('brand-count').textContent = `${total} / 1025`;
+
+        const grid = document.getElementById('grid-generaciones');
+        grid.innerHTML = '';
+        for (let g = 1; g <= 9; g++) {
+            const gd     = data.generaciones[g];
+            const pct    = gd.total > 0 ? ((gd.conseguidos / gd.total) * 100).toFixed(0) : 0;
+            const faltan = gd.total - gd.conseguidos;
+            const ok     = faltan === 0 && gd.total > 0;
+            const card   = document.createElement('div');
+            card.className = 'gen-card';
+            card.onclick = () => verListadoGeneracion(g, regiones[g-1]);
+            card.innerHTML = `
+                <div class="gen-card-bar" style="background:${coloresGen[g-1]};"></div>
+                <div class="gen-num" style="color:${coloresGen[g-1]};background:${coloresBg[g-1]};">Gen ${g}</div>
+                <div class="gen-region">${regiones[g-1]}</div>
+                <div class="gen-progress-text">${gd.conseguidos}/${gd.total}</div>
+                <div class="gen-missing" style="color:${ok ? 'var(--found)' : coloresGen[g-1]};">${ok ? '✓ completo' : `faltan ${faltan}`}</div>
+                <div class="gen-bar-bg"><div class="gen-bar-fill" style="width:${pct}%;background:${coloresGen[g-1]};"></div></div>`;
+            grid.appendChild(card);
+        }
+    } else {
+        // No hubo respuesta inicial: intentamos la carga normal como respaldo.
+        await cargarEstadisticas();
+    }
+
     // CORRECCIÓN REALIZADA: Al cargar la aplicación en PC, inicializa la Pokédex completa de manera default
     if (esDesktop()) verPokedexCompleta();
-    
+
     precargarTodasLasGens();
     iniciarSSE();
 };
@@ -1402,13 +1529,16 @@ async function precargarTodasLasGens() {
     for (let g = 1; g <= 9; g++) {
         if (!cachePokemon[g]) {
             try {
-                const res  = await fetch(`/api/buscar?gen=${g}`);
+                const res = await fetch(`/api/buscar?gen=${g}`);
+                if (!res.ok) throw new Error('respuesta no válida');
                 cachePokemon[g] = await res.json();
-            } catch(e) { console.warn(`Gen ${g} no se pudo precargar`, e); }
+            } catch(e) {
+                console.warn(`Gen ${g} no se pudo precargar`, e);
+                // Precarga en segundo plano: no interrumpimos al usuario con un toast por esto.
+            }
         }
     }
 }
 </script>
 </body>
 </html>
-

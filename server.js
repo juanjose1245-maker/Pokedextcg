@@ -37,6 +37,38 @@ function modoValido(modo) {
     return modo === 'bulk' || modo === 'carpetas';
 }
 
+// ── RATE LIMITING BÁSICO ────────────────────────────────────────────
+// Protección simple sin dependencias nuevas: máximo N escrituras por IP
+// por minuto en el endpoint que modifica datos. No es un sistema robusto de
+// nivel producción, pero evita que un bug del cliente (o alguien con la URL)
+// te sature el servidor o te llene el inventario de cambios accidentales.
+const RATE_LIMIT_VENTANA_MS = 60 * 1000;
+const RATE_LIMIT_MAX        = 60; // 60 escrituras por minuto por IP
+const rateLimitMapa = new Map();
+
+function rateLimiter(req, res, next) {
+    const ip    = req.ip || req.socket.remoteAddress || 'desconocida';
+    const ahora = Date.now();
+    const entrada = rateLimitMapa.get(ip) || { count: 0, inicio: ahora };
+    if (ahora - entrada.inicio > RATE_LIMIT_VENTANA_MS) {
+        entrada.count = 0;
+        entrada.inicio = ahora;
+    }
+    entrada.count++;
+    rateLimitMapa.set(ip, entrada);
+    if (entrada.count > RATE_LIMIT_MAX) {
+        return res.status(429).json({ success:false, error: 'Demasiadas solicitudes seguidas, espera un momento.' });
+    }
+    next();
+}
+// Limpieza periódica para no acumular IPs viejas en memoria indefinidamente.
+setInterval(() => {
+    const ahora = Date.now();
+    for (const [ip, entrada] of rateLimitMapa.entries()) {
+        if (ahora - entrada.inicio > RATE_LIMIT_VENTANA_MS) rateLimitMapa.delete(ip);
+    }
+}, 5 * 60 * 1000);
+
 // ── SSE: registro de clientes conectados ──────────────────────────
 const clientes = new Set();
 
@@ -87,7 +119,7 @@ app.get('/api/estadisticas', (req, res) => {
 });
 
 // ── INVENTARIO: guarda, guarda fecha, y notifica a todos los dispositivos ──
-app.post('/api/inventario', (req, res) => {
+app.post('/api/inventario', rateLimiter, (req, res) => {
     const { id, estado, fecha, modo } = req.body;
     if (!modoValido(modo)) {
         return res.status(400).json({ success:false, error: 'modo debe ser "bulk" o "carpetas"' });
@@ -105,6 +137,25 @@ app.post('/api/inventario', (req, res) => {
     broadcast({ tipo: 'cambio', modo, id: String(id), estado: !!estado, fecha: fechaGuardada });
 
     res.json({ success: true, fecha: fechaGuardada });
+});
+
+// ── EXPORTAR: respaldo completo de ambos inventarios, legible ─────
+app.get('/api/exportar', (req, res) => {
+    const idToName = new Map(pokemonDB.map(p => [p.id, p.name]));
+    function formatear(inv) {
+        return Object.entries(inv)
+            .map(([id, datos]) => ({
+                id: Number(id),
+                nombre: idToName.get(Number(id)) || null,
+                fecha: datos && datos.fecha ? datos.fecha : null
+            }))
+            .sort((a, b) => a.id - b.id);
+    }
+    res.json({
+        exportadoEl: new Date().toISOString(),
+        bulk: formatear(inventario.bulk),
+        carpetas: formatear(inventario.carpetas)
+    });
 });
 
 // ── SSE: endpoint de eventos en tiempo real ───────────────────────

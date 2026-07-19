@@ -39,6 +39,36 @@
             --sidebar-bg:#111111;
         }}
 
+        /* Tema forzado manualmente (independiente del sistema operativo).
+           El atributo [data-theme] tiene más especificidad que la media query
+           de arriba, así que gana sin importar lo que diga el sistema. */
+        :root[data-theme="light"]{
+            --bg:#f8fafc;--surface:#fff;--surface2:#f1f5f9;--border:#e2e8f0;
+            --accent:#d97706;--accent2:#4f46e5;--found:#10b981;--danger:#ef4444;
+            --text:#0f172a;--muted:#64748b;--header-bg:rgba(248,250,252,0.92);
+            --shadow:rgba(15,23,42,0.06);--grad1:rgba(79,70,229,0.04);--grad2:rgba(217,119,6,0.05);
+            --nav-bg:rgba(255,255,255,0.94);--nav-border:rgba(226,232,240,0.8);
+            --input-bg:#fff;--sug-bg:#fff;--overlay-bg:#fff;
+            --found-bg:linear-gradient(145deg,#f0fdf4,#fff);--found-glow:rgba(16,114,81,0.05);
+            --sidebar-bg:#fff;
+        }
+        :root[data-theme="dark"]{
+            --bg:#0a0a0a;--surface:#121212;--surface2:#1a1a1a;--border:#262626;
+            --accent:#f59e0b;--accent2:#ffffff;--found:#22c55e;--danger:#ef4444;
+            --text:#f5f5f5;--muted:#737373;--header-bg:rgba(10,10,10,0.85);
+            --shadow:rgba(0,0,0,0.6);--grad1:transparent;--grad2:transparent;
+            --nav-bg:rgba(18,18,18,0.85);--nav-border:rgba(38,38,38,0.8);
+            --input-bg:#121212;--sug-bg:#121212;--overlay-bg:#121212;
+            --found-bg:linear-gradient(145deg,#142217,#121212);--found-glow:rgba(34,245,94,0.03);
+            --sidebar-bg:#111111;
+        }
+        /* Estos dos detalles puntuales también dependían de la media query;
+           los replicamos con el atributo para que el tema forzado se vea bien. */
+        :root[data-theme="light"] .filter-btn.active,
+        :root[data-theme="light"] .mode-switch-btn.active{color:#fff;}
+        :root[data-theme="dark"] .filter-btn.active,
+        :root[data-theme="dark"] .mode-switch-btn.active{color:var(--bg);}
+
         *{box-sizing:border-box;margin:0;padding:0;}
         html,body{height:100%;overflow:hidden;}
         body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);position:fixed;width:100%;top:0;left:0;
@@ -108,6 +138,16 @@
             transition:color .3s ease, background .3s ease, border-color .3s ease;
             white-space:nowrap;
         }
+        .btn-badge{
+            display:none;
+            position:absolute;top:-5px;right:-5px;
+            background:var(--danger);color:#fff;
+            font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;
+            border-radius:10px;min-width:16px;height:16px;padding:0 3px;
+            align-items:center;justify-content:center;
+            box-shadow:0 0 0 2px var(--surface);
+        }
+        .btn-badge.visible{display:flex;}
 
         /* ── MOBILE LAYOUT ── */
         #scroll-root{height:100%;overflow-y:auto;overscroll-behavior-y:none;-webkit-overflow-scrolling:touch;padding-bottom:80px;}
@@ -121,7 +161,7 @@
         .brand-title{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);}
         .header-actions{display:flex;align-items:center;gap:6px;margin-left:auto;}
         .brand-count{font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:var(--muted);letter-spacing:0.05em;}
-        .header-icon-btn{width:34px;height:34px;border-radius:10px;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:background .15s,transform .15s;flex-shrink:0;}
+        .header-icon-btn{width:34px;height:34px;border-radius:10px;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:background .15s,transform .15s;flex-shrink:0;position:relative;}
         .header-icon-btn:active{transform:scale(0.9);}
         .header-icon-btn.cam-active{background:var(--danger);border-color:var(--danger);}
 
@@ -329,6 +369,10 @@
         .metrics-section-title{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px;}
         .metrics-jalon{background:rgba(79,70,229,0.08);border:1px solid rgba(79,70,229,0.2);border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:12px;color:var(--accent2);font-weight:600;}
         .metrics-close{width:100%;margin-top:16px;border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:12px;padding:12px;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;letter-spacing:.06em;cursor:pointer;}
+        .metrics-quick-actions{display:flex;flex-direction:column;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
+        .metrics-quick-btn{width:100%;border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:12px;padding:11px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;text-align:left;transition:background .15s;}
+        .metrics-quick-btn:active{background:var(--border);}
+        @media(min-width:800px){.metrics-quick-actions{display:none;}}
 
         @keyframes skeleton{from{opacity:0.4;}to{opacity:0.9;}}
         @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
@@ -407,8 +451,8 @@
             .sb-gen-name{font-size:13px;color:var(--text);}
             .sb-gen-item.active .sb-gen-name{font-weight:600;color:var(--accent2);}
             .sb-gen-count{font-size:11px;font-weight:600;color:var(--muted);}
-            .sb-bottom{padding:12px;border-top:1px solid var(--border);display:flex;gap:8px;flex-shrink:0;}
-            .sb-btn{flex:1;padding:8px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;font-family:'Inter',sans-serif;transition:background .15s;}
+            .sb-bottom{padding:12px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:8px;flex-shrink:0;}
+            .sb-btn{padding:8px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;font-family:'Inter',sans-serif;transition:background .15s;position:relative;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
             .sb-btn:hover{background:var(--border);}
 
             /* ── MAIN AREA ── */
@@ -546,7 +590,9 @@
     <div class="sb-bottom">
         <button class="sb-btn" onclick="mostrarMetricas()">📊 Métricas</button>
         <button class="sb-btn" id="sb-btn-cam" onclick="toggleCamaraOCR()">📷 Cámara</button>
-        <button class="sb-btn" onclick="verPendientesAcomodar()">🔄 Por acomodar</button>
+        <button class="sb-btn" onclick="verPendientesAcomodar()">🔄 Por acomodar<span class="btn-badge" id="badge-pendientes-desktop"></span></button>
+        <button class="sb-btn" onclick="exportarColeccion()">⬇️ Exportar</button>
+        <button class="sb-btn" onclick="toggleTema()" id="btn-tema" title="Cambiar tema">🌓 Auto</button>
     </div>
 </div>
 
@@ -564,7 +610,7 @@
                 <span class="brand-count" id="brand-count">— / 1025</span>
                 <button class="header-icon-btn" onclick="mostrarMetricas()" title="Métricas">📊</button>
                 <button class="header-icon-btn" id="btn-camara-header" onclick="toggleCamaraOCR()" title="Cámara">📷</button>
-                <button class="header-icon-btn" onclick="verPendientesAcomodar()" title="Por acomodar en Carpetas">🔄</button>
+                <button class="header-icon-btn" onclick="verPendientesAcomodar()" title="Por acomodar en Carpetas">🔄<span class="btn-badge" id="badge-pendientes-mobile"></span></button>
             </div>
         </div>
         <div class="mode-switch" style="margin:0 0 10px;">
@@ -690,6 +736,10 @@
         <div class="metrics-title">📊 Resumen</div>
         <div class="metrics-subtitle" id="metrics-subtitle"></div>
         <div id="metrics-content"></div>
+        <div class="metrics-quick-actions" id="metrics-quick-actions">
+            <button class="metrics-quick-btn" onclick="exportarColeccion()">⬇️ Exportar mi colección</button>
+            <button class="metrics-quick-btn" onclick="toggleTema()" id="btn-tema-mobile">🌓 Tema: Auto</button>
+        </div>
         <button class="metrics-close" onclick="cerrarMetricas()">Cerrar</button>
     </div>
 </div>
@@ -712,6 +762,31 @@ const carpetas = [
 // Devuelve la carpeta fija a la que pertenece un Pokémon, según su generación.
 function carpetaDe(p) {
     return carpetas.find(c => c.gens.includes(p.gen)) || null;
+}
+
+// ── TEMA: claro / oscuro / auto (según el sistema) ─────────────────
+// 'auto' no guarda atributo (respeta prefers-color-scheme); 'light'/'dark'
+// fuerzan el tema sin importar lo que diga el sistema operativo.
+let temaActual = localStorage.getItem('temaPreferido') || 'auto';
+
+function aplicarTema() {
+    if (temaActual === 'auto') {
+        document.documentElement.removeAttribute('data-theme');
+    } else {
+        document.documentElement.setAttribute('data-theme', temaActual);
+    }
+    const etiquetas = { auto: '🌓 Tema: Auto', light: '☀️ Tema: Claro', dark: '🌙 Tema: Oscuro' };
+    const texto = etiquetas[temaActual];
+    const btnDesktop = document.getElementById('btn-tema');
+    const btnMobile  = document.getElementById('btn-tema-mobile');
+    if (btnDesktop) btnDesktop.textContent = texto;
+    if (btnMobile)  btnMobile.textContent  = texto;
+}
+
+function toggleTema() {
+    temaActual = temaActual === 'auto' ? 'light' : temaActual === 'light' ? 'dark' : 'auto';
+    localStorage.setItem('temaPreferido', temaActual);
+    aplicarTema();
 }
 
 // ── MODO: bulk vs carpetas — dos inventarios 100% independientes ──────
@@ -808,6 +883,44 @@ function mostrarToastInfo(msg) {
     infoToastTimer = setTimeout(() => { toast.style.opacity = '0'; }, 3000);
 }
 
+// Toast con botón de acción: aparece al desmarcar una carta, para revertir
+// el cambio sin tener que buscarla de nuevo. Conserva la fecha original
+// (la que ya tenía guardada) en vez de ponerle la fecha de "ahora".
+let deshacerToastTimer = null;
+function mostrarToastDeshacer(idPk, fechaPreservada, nombrePk) {
+    let toast = document.getElementById('deshacer-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'deshacer-toast';
+        toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 8px 8px 16px;font-size:12px;font-weight:600;color:var(--text);box-shadow:0 4px 16px var(--shadow);z-index:800;white-space:nowrap;opacity:0;transition:opacity .2s ease;display:flex;align-items:center;gap:10px;';
+        document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<span>Quitaste a ${(nombrePk || '').toLowerCase()}</span>
+        <button id="btn-deshacer-toast" style="background:var(--accent2);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:11px;cursor:pointer;font-family:'Rajdhani',sans-serif;letter-spacing:.04em;">DESHACER</button>`;
+    toast.style.opacity = '1';
+
+    document.getElementById('btn-deshacer-toast').onclick = async () => {
+        clearTimeout(deshacerToastTimer);
+        toast.style.opacity = '0';
+        try {
+            const res = await fetch('/api/inventario', {
+                method:'POST', headers:{'Content-Type':'application/json'},
+                body: JSON.stringify({ id: idPk, estado: true, fecha: fechaPreservada || new Date().toISOString(), modo: modoActual })
+            });
+            if (!res.ok) throw new Error('respuesta no válida');
+            localStorage.setItem(claveLS(idPk), 'true');
+            if (fechaPreservada) guardarFechaRegistro(idPk, fechaPreservada);
+            await cargarEstadisticasSinMoverScroll();
+            actualizarBadgePendientes();
+        } catch (err) {
+            mostrarToastError('No se pudo deshacer. Márcalo manualmente de nuevo.');
+        }
+    };
+
+    clearTimeout(deshacerToastTimer);
+    deshacerToastTimer = setTimeout(() => { toast.style.opacity = '0'; }, 6000);
+}
+
 // Fetch con manejo de error: devuelve null y avisa al usuario si algo falla.
 async function fetchGenSegura(g) {
     try {
@@ -829,6 +942,9 @@ function getFechaRegistro(id) {
     const iso = localStorage.getItem(claveFechaLS(id));
     if (!iso) return null;
     return new Date(iso).toLocaleDateString('es', { day:'numeric', month:'short', year:'numeric' });
+}
+function getFechaISO(id) {
+    return localStorage.getItem(claveFechaLS(id)) || null;
 }
 
 function calcularJalon(conseguidos, total) {
@@ -1153,6 +1269,64 @@ async function verPendientesAcomodar() {
     mostrarGalleryShell(`Por acomodar (${pkms.length})`);
     actualizarTarjetaProgresoPendientes(pkms.length);
     renderGaleria(pkms, false, false, true);
+    actualizarBadgePendientes(pkms.length); // ya lo calculamos, aprovechamos para refrescar el badge
+}
+
+// Actualiza el numerito del botón "Por acomodar". Si no se le pasa una cantidad
+// ya calculada, la calcula (dos fetches ligeros). Falla en silencio: el badge
+// es informativo, no vale la pena molestar al usuario si por algo no cargó.
+async function actualizarBadgePendientes(cantidadConocida) {
+    let cantidad = cantidadConocida;
+    if (cantidad === undefined) {
+        const ids = await calcularIdsPendientesSilencioso();
+        if (ids === null) return;
+        cantidad = ids.length;
+    }
+    document.querySelectorAll('.btn-badge').forEach(b => {
+        b.textContent = cantidad > 99 ? '99+' : String(cantidad);
+        b.classList.toggle('visible', cantidad > 0);
+    });
+}
+// Igual que calcularIdsPendientes pero sin mostrar toast de error (se usa en
+// segundo plano para el badge, no queremos interrumpir al usuario por eso).
+async function calcularIdsPendientesSilencioso() {
+    try {
+        const [rBulk, rCarp] = await Promise.all([
+            fetch(`/api/estadisticas?modo=bulk&nocache=${Date.now()}`),
+            fetch(`/api/estadisticas?modo=carpetas&nocache=${Date.now()}`)
+        ]);
+        if (!rBulk.ok || !rCarp.ok) throw new Error('respuesta no válida');
+        const bulkData = await rBulk.json();
+        const carpetasData = await rCarp.json();
+        const idsEnCarpetas = new Set(Object.keys(carpetasData.listaIds || {}).map(Number));
+        return Object.keys(bulkData.listaIds || {}).map(Number).filter(id => !idsEnCarpetas.has(id));
+    } catch (err) {
+        return null;
+    }
+}
+
+// ── EXPORTAR / RESPALDAR COLECCIÓN ──────────────────────────────────
+async function exportarColeccion() {
+    let data;
+    try {
+        const res = await fetch('/api/exportar');
+        if (!res.ok) throw new Error('respuesta no válida');
+        data = await res.json();
+    } catch (err) {
+        mostrarToastError('No se pudo generar el respaldo. Revisa tu conexión.');
+        return;
+    }
+    const fechaArchivo = new Date().toISOString().slice(0, 10);
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url;
+    a.download = `pokedex-tcg-respaldo-${fechaArchivo}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    mostrarToastInfo('Respaldo descargado.');
 }
 
 // ── GALLERY ──
@@ -1457,6 +1631,7 @@ document.getElementById('btn-toggle-status').onclick = async () => {
 
     const actual = tieneEnLS(idPk);
     const nuevoEstado = !actual;
+    const nombrePk = pkSeleccionado.name;
     const fechaIso = new Date().toISOString();
     try {
         const res = await fetch('/api/inventario', {
@@ -1469,12 +1644,15 @@ document.getElementById('btn-toggle-status').onclick = async () => {
             const body = await res.json();
             fechaServidor = body && body.fecha ? body.fecha : null;
         } catch (e) { /* el backend puede no devolver JSON; no es grave */ }
+        const fechaPreservada = getFechaISO(idPk); // por si la desmarcas: para poder deshacer con la misma fecha
         localStorage.setItem(claveLS(idPk), nuevoEstado ? 'true' : 'false');
         if (nuevoEstado) guardarFechaRegistro(idPk, fechaServidor || fechaIso);
         actualizarBotonEstado(nuevoEstado);
         document.getElementById('detail-overlay').style.display = 'none';
         pkSeleccionado = null;
         await cargarEstadisticasSinMoverScroll();
+        actualizarBadgePendientes();
+        if (!nuevoEstado) mostrarToastDeshacer(idPk, fechaPreservada, nombrePk);
     } catch (err) {
         mostrarToastError('No se pudo guardar el cambio. Intenta de nuevo.');
     }
@@ -1601,13 +1779,24 @@ function mostrarMetricas() {
     if (!dataGlobalCache) return;
     const d = dataGlobalCache;
     document.getElementById('metrics-subtitle').textContent = `${d.global.conseguidos || 0} de ${d.global.total || 1025} Pokémon registrados`;
+
+    const { ultimos7, ultimos30 } = calcularProgresoReciente();
+    let html = `<div class="metrics-section-title">Progreso reciente (${modoActual === 'bulk' ? 'Bulk' : 'Carpetas'})</div>
+        <div class="metrics-row">
+            <span class="metrics-row-label">Últimos 7 días</span>
+            <span class="metrics-row-val">${ultimos7 > 0 ? `+${ultimos7}` : '0'}</span>
+        </div>
+        <div class="metrics-row">
+            <span class="metrics-row-label">Últimos 30 días</span>
+            <span class="metrics-row-val">${ultimos30 > 0 ? `+${ultimos30}` : '0'}</span>
+        </div>`;
+
     const jalones = [];
     regiones.forEach((r, i) => {
         const g = d.generaciones[i+1];
         const j = calcularJalon(g.conseguidos, g.total);
         if (j) jalones.push(`<span style="color:${coloresGen[i]};font-weight:700;">${r}:</span> ${j}`);
     });
-    let html = '';
     if (jalones.length) {
         html += `<div class="metrics-section-title">Jalones</div>`;
         jalones.forEach(j => { html += `<div class="metrics-jalon">${j}</div>`; });
@@ -1627,6 +1816,29 @@ function mostrarMetricas() {
     }).join('');
     document.getElementById('metrics-content').innerHTML = html;
     document.getElementById('metrics-modal').classList.add('open');
+}
+
+// Cuenta cuántos registros (del modo activo) tienen fecha dentro de los
+// últimos 7 y 30 días, usando las fechas que ya viven en localStorage.
+function calcularProgresoReciente() {
+    const ahora  = Date.now();
+    const semana = 7  * 24 * 60 * 60 * 1000;
+    const mes    = 30 * 24 * 60 * 60 * 1000;
+    const prefijo = `pk_fecha_${modoActual}_`;
+    let ultimos7 = 0, ultimos30 = 0;
+    Object.keys(localStorage).forEach(key => {
+        if (!key.startsWith(prefijo)) return;
+        // Solo cuenta si el Pokémon sigue marcado como "tenemos" ahora mismo
+        // (si lo desmarcaste, ya no debería sumar a tu progreso reciente).
+        const id = key.slice(prefijo.length);
+        if (!tieneEnLS(id)) return;
+        const t = new Date(localStorage.getItem(key)).getTime();
+        if (isNaN(t)) return;
+        const diff = ahora - t;
+        if (diff <= semana) ultimos7++;
+        if (diff <= mes) ultimos30++;
+    });
+    return { ultimos7, ultimos30 };
 }
 function cerrarMetricas() { document.getElementById('metrics-modal').classList.remove('open'); }
 
@@ -1726,7 +1938,8 @@ function iniciarSSE() {
     es.onmessage = (e) => {
         const msg = JSON.parse(e.data);
         if (msg.tipo !== 'cambio') return;
-        if (msg.modo !== modoActual) return; // cambio en el otro inventario: no aplica a lo que estás viendo
+        actualizarBadgePendientes(); // el sincronizador compara bulk y carpetas, así que cualquier cambio en cualquiera de los dos puede afectarlo
+        if (msg.modo !== modoActual) return; // el resto de esta vista no aplica al otro inventario
         if (msg.estado) {
             localStorage.setItem(claveLS(msg.id), 'true');
             if (msg.fecha) guardarFechaRegistro(msg.id, msg.fecha);
@@ -1756,6 +1969,7 @@ function mostrarToastSync(id, estado) {
 // ── INIT ─────────────────────────────────────────────────────────
 window.onload = async () => {
     sincronizarGrids();
+    aplicarTema();
     actualizarBotonesModo();
     await cargarEstadisticas();
 
@@ -1763,6 +1977,7 @@ window.onload = async () => {
 
     precargarTodasLasGens();
     iniciarSSE();
+    actualizarBadgePendientes();
 };
 
 window.addEventListener('resize', () => {

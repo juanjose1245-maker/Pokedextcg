@@ -26,6 +26,7 @@
             --input-bg:#fff;--sug-bg:#fff;--overlay-bg:#fff;
             --found-bg:linear-gradient(145deg,#f0fdf4,#fff);--found-glow:rgba(16,114,81,0.05);
             --sidebar-bg:#fff;--sidebar-width:260px;
+            --modo-color:var(--accent);--modo-bg:rgba(217,119,6,0.08);
         }
         @media(prefers-color-scheme:dark){:root{
             --bg:#0a0a0a;--surface:#121212;--surface2:#1a1a1a;--border:#262626;
@@ -43,12 +44,77 @@
         body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);position:fixed;width:100%;top:0;left:0;
             background-image:radial-gradient(ellipse at 80% 0%,var(--grad1) 0%,transparent 60%),radial-gradient(ellipse at 20% 100%,var(--grad2) 0%,transparent 50%);}
 
+        /* ── MODE SWITCH (bulk / carpetas) ── */
+        .mode-switch{
+            position:relative;
+            display:flex;
+            background:var(--surface2);
+            border:1px solid var(--border);
+            border-radius:14px;
+            padding:4px;
+            margin:10px 14px;
+            gap:2px;
+        }
+        .mode-switch-thumb{
+            position:absolute;
+            top:4px; bottom:4px; left:4px;
+            width:calc(50% - 4px);
+            border-radius:10px;
+            background:var(--accent);
+            box-shadow:0 3px 10px rgba(0,0,0,0.15);
+            transition:transform .28s cubic-bezier(.4,0,.2,1), background .28s ease;
+            z-index:0;
+            pointer-events:none;
+        }
+        .mode-switch-btn{
+            position:relative;
+            z-index:1;
+            flex:1;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:5px;
+            padding:9px 6px;
+            border:none;
+            background:transparent;
+            border-radius:10px;
+            font-family:'Rajdhani',sans-serif;
+            font-size:12px;
+            font-weight:700;
+            letter-spacing:.04em;
+            color:var(--muted);
+            cursor:pointer;
+            transition:color .2s ease, transform .15s ease;
+            text-align:center;
+        }
+        .mode-switch-btn:active{transform:scale(0.96);}
+        .mode-switch-btn .mode-switch-icon{font-size:14px;line-height:1;filter:grayscale(1) opacity(0.55);transition:filter .2s ease;}
+        .mode-switch-btn.active{color:#fff;}
+        .mode-switch-btn.active .mode-switch-icon{filter:none;}
+        @media(prefers-color-scheme:dark){.mode-switch-btn.active{color:var(--bg);}}
+        .sb-mode-switch{padding:12px 12px 0;}
+        .sb-mode-switch .mode-switch{margin:0;}
+        .modo-badge{
+            font-family:'Rajdhani',sans-serif;
+            font-size:10px;
+            font-weight:700;
+            letter-spacing:.06em;
+            padding:2px 8px;
+            border-radius:20px;
+            color:var(--modo-color);
+            background:var(--modo-bg);
+            border:1px solid var(--modo-color);
+            text-transform:uppercase;
+            transition:color .3s ease, background .3s ease, border-color .3s ease;
+            white-space:nowrap;
+        }
+
         /* ── MOBILE LAYOUT ── */
         #scroll-root{height:100%;overflow-y:auto;overscroll-behavior-y:none;-webkit-overflow-scrolling:touch;padding-bottom:80px;}
         .phone-container{width:100%;max-width:480px;margin:0 auto;}
 
         /* ── STICKY HEADER (mobile only) ── */
-        .sticky-header{position:sticky;top:0;z-index:200;background:var(--header-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 14px 10px;}
+        .sticky-header{position:sticky;top:0;z-index:200;background:var(--header-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:3px solid var(--modo-color);padding:12px 14px 10px;transition:border-color .3s ease;}
         .brand-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer;}
         .pokeball-icon{width:22px;height:22px;background:conic-gradient(#e74c3c 0deg 180deg,var(--surface2) 180deg 360deg);border-radius:50%;border:2px solid var(--surface2);position:relative;flex-shrink:0;}
         .pokeball-icon::after{content:'';position:absolute;width:7px;height:7px;background:var(--surface2);border-radius:50%;border:1.5px solid var(--border);top:50%;left:50%;transform:translate(-50%,-50%);}
@@ -77,7 +143,7 @@
         .main-content{padding:12px 14px 0;}
 
         /* ── PROGRESS CARD ── */
-        .progress-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:16px;position:relative;overflow:hidden;cursor:pointer;transition:transform .15s;}
+        .progress-card{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--modo-color);border-radius:var(--radius);padding:16px;margin-bottom:16px;position:relative;overflow:hidden;cursor:pointer;transition:transform .15s,border-color .3s ease;}
         .progress-card:active{transform:scale(0.98);}
         .progress-top-row{display:flex;align-items:center;justify-content:space-between;}
         .progress-label{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
@@ -227,7 +293,7 @@
         .detail-region{display:inline-block;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.03em;padding:4px 12px;border-radius:7px;margin-bottom:8px;}
         .detail-name{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;color:var(--text);text-transform:capitalize;letter-spacing:-.02em;margin-bottom:4px;}
         .detail-ids{font-size:12px;color:var(--muted);margin-bottom:14px;}
-        
+
         .art-box{
             width:130px;
             height:130px;
@@ -243,7 +309,7 @@
             object-fit:contain;
             margin:0 auto;
         }
-        
+
         .binder-box{border-radius:12px;padding:12px 16px;margin-bottom:14px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.04em;}
         .btn-status{width:100%;border:none;border-radius:14px;padding:14px;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;cursor:pointer;transition:opacity .2s;}
         .btn-status:active{opacity:.85;}
@@ -299,9 +365,10 @@
                 width:var(--sidebar-width);
                 flex-shrink:0;
                 background:var(--sidebar-bg);
-                border-right:1px solid var(--border);
+                border-right:3px solid var(--modo-color);
                 height:100vh;
                 overflow:hidden;
+                transition:border-color .3s ease;
             }
             .sb-brand{display:flex;align-items:center;gap:8px;padding:18px 16px 14px;border-bottom:1px solid var(--border);cursor:pointer;flex-shrink:0;}
             .sb-pokeball{width:26px;height:26px;background:conic-gradient(#e74c3c 0deg 180deg,var(--surface2) 180deg 360deg);border-radius:50%;border:2px solid var(--surface2);position:relative;flex-shrink:0;}
@@ -448,6 +515,14 @@
     <div class="sb-brand" onclick="cambiarTab('home')">
         <div class="sb-pokeball"></div>
         <span class="sb-title">Pokédex TCG</span>
+        <span class="modo-badge" id="modo-badge-desktop"></span>
+    </div>
+    <div class="sb-mode-switch">
+        <div class="mode-switch">
+            <div class="mode-switch-thumb" id="mode-switch-thumb-desktop"></div>
+            <button class="mode-switch-btn" data-modo-btn="bulk" onclick="cambiarModo('bulk')"><span class="mode-switch-icon">📦</span> Bulk</button>
+            <button class="mode-switch-btn" data-modo-btn="carpetas" onclick="cambiarModo('carpetas')"><span class="mode-switch-icon">📁</span> Carpetas</button>
+        </div>
     </div>
     <div class="sb-search">
         <input type="text" id="search-input-desktop" class="sb-search-bar" placeholder="🔍 Buscar Pokémon..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
@@ -471,6 +546,7 @@
     <div class="sb-bottom">
         <button class="sb-btn" onclick="mostrarMetricas()">📊 Métricas</button>
         <button class="sb-btn" id="sb-btn-cam" onclick="toggleCamaraOCR()">📷 Cámara</button>
+        <button class="sb-btn" onclick="verPendientesAcomodar()">🔄 Por acomodar</button>
     </div>
 </div>
 
@@ -483,11 +559,18 @@
         <div class="brand-row" onclick="cambiarTab('home')">
             <div class="pokeball-icon"></div>
             <span class="brand-title">Pokédex TCG</span>
+            <span class="modo-badge" id="modo-badge-mobile"></span>
             <div class="header-actions">
                 <span class="brand-count" id="brand-count">— / 1025</span>
                 <button class="header-icon-btn" onclick="mostrarMetricas()" title="Métricas">📊</button>
                 <button class="header-icon-btn" id="btn-camara-header" onclick="toggleCamaraOCR()" title="Cámara">📷</button>
+                <button class="header-icon-btn" onclick="verPendientesAcomodar()" title="Por acomodar en Carpetas">🔄</button>
             </div>
+        </div>
+        <div class="mode-switch" style="margin:0 0 10px;">
+            <div class="mode-switch-thumb" id="mode-switch-thumb-mobile"></div>
+            <button class="mode-switch-btn" data-modo-btn="bulk" onclick="cambiarModo('bulk')"><span class="mode-switch-icon">📦</span> Bulk</button>
+            <button class="mode-switch-btn" data-modo-btn="carpetas" onclick="cambiarModo('carpetas')"><span class="mode-switch-icon">📁</span> Carpetas</button>
         </div>
         <div class="search-wrap">
             <input type="text" id="search-input" class="search-bar" placeholder="🔍 Buscar Pokémon..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
@@ -617,12 +700,65 @@ const coloresGen = ["#3b5bdb","#3b5bdb","#7c3aed","#7c3aed","#db2777","#db2777",
 const coloresBg  = ["rgba(59,91,219,0.16)","rgba(59,91,219,0.16)","rgba(124,58,237,0.16)","rgba(124,58,237,0.16)",
                     "rgba(219,39,119,0.16)","rgba(219,39,119,0.16)","rgba(219,39,119,0.16)",
                     "rgba(220,38,38,0.16)","rgba(220,38,38,0.16)"];
+// 4 carpetas fijas (sin wizard). Aplican por igual a los dos inventarios (bulk y carpetas);
+// lo único que cambia entre modos es qué Pokémon están marcados como "tenemos".
 const carpetas = [
     { nombre:'Azul',   color:'#3b5bdb', bg:'rgba(59,91,219,0.16)',   gens:[1,2],   rango:'Gens 1-2', emoji:'🔵' },
     { nombre:'Morada', color:'#7c3aed', bg:'rgba(124,58,237,0.16)', gens:[3,4],   rango:'Gens 3-4', emoji:'🟣' },
     { nombre:'Rosa',   color:'#db2777', bg:'rgba(219,39,119,0.16)', gens:[5,6,7], rango:'Gens 5-7', emoji:'💗' },
     { nombre:'Roja',   color:'#dc2626', bg:'rgba(220,38,38,0.16)',  gens:[8,9],   rango:'Gens 8-9', emoji:'🔴' }
 ];
+
+// Devuelve la carpeta fija a la que pertenece un Pokémon, según su generación.
+function carpetaDe(p) {
+    return carpetas.find(c => c.gens.includes(p.gen)) || null;
+}
+
+// ── MODO: bulk vs carpetas — dos inventarios 100% independientes ──────
+// La elección de modo es una preferencia local del dispositivo (como una pestaña
+// abierta), no algo que se sincroniza; lo que sí sincroniza es el contenido de
+// cada inventario por separado a través del backend.
+let modoActual = localStorage.getItem('modoActivo') === 'bulk' ? 'bulk' : 'carpetas';
+
+// Namespacing de localStorage por modo, para que "bulk" y "carpetas" nunca se pisen
+// entre sí en el mismo dispositivo.
+function claveLS(id)      { return `pk_${modoActual}_${id}`; }
+function claveFechaLS(id) { return `pk_fecha_${modoActual}_${id}`; }
+function tieneEnLS(id)    { return localStorage.getItem(claveLS(id)) === 'true'; }
+
+function actualizarBotonesModo() {
+    document.querySelectorAll('[data-modo-btn]').forEach(b => {
+        b.classList.toggle('active', b.dataset.modoBtn === modoActual);
+    });
+    // Ámbar para Bulk (cartas sueltas), índigo para Carpetas (organizadas) —
+    // este color se propaga a header/sidebar/tarjeta de progreso/badge, para
+    // que siempre sea obvio en qué modo estás sin tener que leer nada.
+    const color = modoActual === 'carpetas' ? 'var(--accent2)' : 'var(--accent)';
+    const bg    = modoActual === 'carpetas' ? 'rgba(79,70,229,0.08)' : 'rgba(217,119,6,0.08)';
+    document.documentElement.style.setProperty('--modo-color', color);
+    document.documentElement.style.setProperty('--modo-bg', bg);
+
+    const desplazado = modoActual === 'carpetas' ? 'translateX(100%)' : 'translateX(0)';
+    document.querySelectorAll('.mode-switch-thumb').forEach(thumb => {
+        thumb.style.background  = color;
+        thumb.style.transform   = desplazado;
+    });
+
+    const textoBadge = modoActual === 'carpetas' ? '📁 Carpetas' : '📦 Bulk';
+    document.querySelectorAll('.modo-badge').forEach(b => { b.textContent = textoBadge; });
+}
+
+async function cambiarModo(nuevo) {
+    if (nuevo === modoActual) return;
+    modoActual = nuevo;
+    localStorage.setItem('modoActivo', nuevo);
+    actualizarBotonesModo();
+    cerrarGaleriaYVolver();
+    if (streamCamara) toggleCamaraOCR();
+    Object.keys(cachePokemon).forEach(k => delete cachePokemon[k]); // el estado tenemos/falta cambia con el modo
+    await cargarEstadisticas();
+    if (esDesktop()) verPokedexCompleta();
+}
 
 let pkSeleccionado   = null;
 let streamCamara     = null;
@@ -634,12 +770,45 @@ let filtroActual     = 'todos';
 let modoAcomodar     = false;
 let pkmsActuales     = [];
 let historialOCR     = [];
+let pendientesActuales    = []; // Pokémon en Bulk que aún no están en Carpetas
+let fichaOrigenPendientes = false; // ¿la ficha abierta viene de la vista "Por acomodar"?
 
 const cortesGen    = [0,0,151,251,386,493,649,721,809,905];
 const cachePokemon = {};
 
-// Fetch con manejo de error: devuelve [] y avisa al usuario si algo falla,
-// en vez de dejar la promesa colgada o tronar el resto del flujo.
+const esDesktop = () => window.innerWidth >= 800;
+
+// ── TOASTS (error / info) ──────────────────────────────────────────
+let errorToastTimer = null;
+function mostrarToastError(msg) {
+    let toast = document.getElementById('error-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'error-toast';
+        toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--danger);border-radius:12px;padding:8px 16px;font-size:12px;font-weight:600;color:#fff;box-shadow:0 4px 16px var(--shadow);z-index:800;white-space:nowrap;opacity:0;transition:opacity .2s ease;';
+        document.body.appendChild(toast);
+    }
+    toast.textContent = `⚠️ ${msg}`;
+    toast.style.opacity = '1';
+    clearTimeout(errorToastTimer);
+    errorToastTimer = setTimeout(() => { toast.style.opacity = '0'; }, 3000);
+}
+let infoToastTimer = null;
+function mostrarToastInfo(msg) {
+    let toast = document.getElementById('info-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'info-toast';
+        toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--accent2);border-radius:12px;padding:8px 16px;font-size:12px;font-weight:600;color:#fff;box-shadow:0 4px 16px var(--shadow);z-index:800;white-space:nowrap;opacity:0;transition:opacity .2s ease;';
+        document.body.appendChild(toast);
+    }
+    toast.textContent = `ℹ️ ${msg}`;
+    toast.style.opacity = '1';
+    clearTimeout(infoToastTimer);
+    infoToastTimer = setTimeout(() => { toast.style.opacity = '0'; }, 3000);
+}
+
+// Fetch con manejo de error: devuelve null y avisa al usuario si algo falla.
 async function fetchGenSegura(g) {
     try {
         const res = await fetch(`/api/buscar?gen=${g}`);
@@ -651,24 +820,13 @@ async function fetchGenSegura(g) {
     }
 }
 
-const esDesktop = () => window.innerWidth >= 800;
-
-// ── HELPERS ──────────────────────────────────────────────────────
-function gridActivo() {
-    return esDesktop()
-        ? document.getElementById('gallery-grid')
-        : document.getElementById('gallery-grid-mobile');
-}
-
 function guardarFechaRegistro(id, isoDelServidor) {
-    // Si el backend ya nos devolvió una fecha (porque la registró él), usamos esa.
-    // Si no, usamos "ahora" como respaldo local — pero solo en este dispositivo.
-    if (!localStorage.getItem(`pk_fecha_${id}`) || isoDelServidor) {
-        localStorage.setItem(`pk_fecha_${id}`, isoDelServidor || new Date().toISOString());
+    if (!localStorage.getItem(claveFechaLS(id)) || isoDelServidor) {
+        localStorage.setItem(claveFechaLS(id), isoDelServidor || new Date().toISOString());
     }
 }
 function getFechaRegistro(id) {
-    const iso = localStorage.getItem(`pk_fecha_${id}`);
+    const iso = localStorage.getItem(claveFechaLS(id));
     if (!iso) return null;
     return new Date(iso).toLocaleDateString('es', { day:'numeric', month:'short', year:'numeric' });
 }
@@ -689,7 +847,6 @@ function renderSidebar() {
     if (!dataGlobalCache) return;
     const d = dataGlobalCache;
 
-    // Progreso global
     const cons  = d.global.conseguidos || 0;
     const total = d.global.total || 1025;
     const pct   = Math.round((cons / total) * 100);
@@ -700,7 +857,6 @@ function renderSidebar() {
     if (sbPct) sbPct.textContent = pct + '%';
     if (sbCnt) sbCnt.textContent = cons;
 
-    // Carpetas + generaciones
     const wrap = document.getElementById('sb-carpetas');
     if (!wrap) return;
     wrap.innerHTML = '';
@@ -712,11 +868,10 @@ function renderSidebar() {
 
         const div = document.createElement('div');
         div.className = 'sb-carpeta';
-
         const isActiveCarpeta = genActualAbierta?.esCarpeta && genActualAbierta?.carpeta?.nombre === c.nombre;
 
         div.innerHTML = `
-            <div class="sb-carpeta-header${isActiveCarpeta ? ' active' : ''}" onclick="verCarpetaDesktop(${JSON.stringify(c).replace(/"/g,'&quot;')})">
+            <div class="sb-carpeta-header${isActiveCarpeta ? ' active' : ''}">
                 <div class="sb-carpeta-left">
                     <div class="sb-carpeta-dot" style="background:${c.color}"></div>
                     <span class="sb-carpeta-name">${c.nombre}</span>
@@ -727,8 +882,8 @@ function renderSidebar() {
             <div class="sb-carpeta-bar">
                 <div class="sb-carpeta-bar-fill" style="width:${cPct}%;background:${c.color}"></div>
             </div>`;
+        div.querySelector('.sb-carpeta-header').onclick = () => verCarpeta(c);
 
-        // Generaciones de esta carpeta
         const gensDiv = document.createElement('div');
         gensDiv.className = 'sb-gens';
         c.gens.forEach(g => {
@@ -737,17 +892,12 @@ function renderSidebar() {
             const item     = document.createElement('div');
             item.className = `sb-gen-item${isActive ? ' active' : ''}`;
             item.onclick   = () => verListadoGeneracion(g, regiones[g-1]);
-            item.innerHTML = `<span class="sb-gen-name">${regiones[g-1]}</span><span class="sb-gen-count" style="color:${coloresGen[g-1]}">${gd.conseguidos}/${gd.total}</span>`;
+            item.innerHTML = `<span class="sb-gen-name">${regiones[g-1]}</span><span class="sb-gen-count" style="color:${c.color}">${gd.conseguidos}/${gd.total}</span>`;
             gensDiv.appendChild(item);
         });
         div.appendChild(gensDiv);
         wrap.appendChild(div);
     });
-}
-
-function verCarpetaDesktop(c) {
-    const carpeta = carpetas.find(x => x.nombre === c.nombre);
-    if (carpeta) verCarpeta(carpeta);
 }
 
 // ── BARRA CARPETAS (mobile progress card) ────────────────────────
@@ -773,11 +923,11 @@ function renderBinderBar() {
     });
 }
 
-// ── ESTADÍSTICAS ─────────────────────────────────────────────────
+// ── ESTADÍSTICAS (siempre contra el modo activo) ─────────────────
 async function cargarEstadisticas() {
     let data;
     try {
-        const res = await fetch(`/api/estadisticas?nocache=${Date.now()}`);
+        const res = await fetch(`/api/estadisticas?modo=${modoActual}&nocache=${Date.now()}`);
         if (!res.ok) throw new Error('respuesta no válida');
         data = await res.json();
     } catch (err) {
@@ -785,6 +935,7 @@ async function cargarEstadisticas() {
         return;
     }
     dataGlobalCache = data;
+    sincronizarLocalStorageDesde(data);
     actualizarTarjetaProgreso();
     renderBinderBar();
     renderSidebar();
@@ -816,7 +967,7 @@ async function cargarEstadisticas() {
 async function cargarEstadisticasSinMoverScroll() {
     let data;
     try {
-        const res = await fetch(`/api/estadisticas?nocache=${Date.now()}`);
+        const res = await fetch(`/api/estadisticas?modo=${modoActual}&nocache=${Date.now()}`);
         if (!res.ok) throw new Error('respuesta no válida');
         data = await res.json();
     } catch (err) {
@@ -824,6 +975,7 @@ async function cargarEstadisticasSinMoverScroll() {
         return;
     }
     dataGlobalCache = data;
+    sincronizarLocalStorageDesde(data);
     actualizarTarjetaProgreso();
     renderBinderBar();
     renderSidebar();
@@ -832,8 +984,26 @@ async function cargarEstadisticasSinMoverScroll() {
     if (genActualAbierta) RefrescarGaleria(true);
 }
 
+// Reconstruye el espejo local (localStorage) del inventario del modo activo,
+// a partir de lo que diga el servidor. Nunca toca las claves del OTRO modo.
+function sincronizarLocalStorageDesde(data) {
+    const prefijo = `pk_${modoActual}_`;
+    Object.keys(localStorage).forEach(key => {
+        if (key.startsWith(prefijo) && !key.startsWith(`pk_fecha_${modoActual}_`)) {
+            localStorage.removeItem(key);
+        }
+    });
+    if (data.listaIds) {
+        Object.keys(data.listaIds).forEach(id => localStorage.setItem(claveLS(id), 'true'));
+    }
+    if (data.fechas) {
+        Object.entries(data.fechas).forEach(([id, fecha]) => guardarFechaRegistro(id, fecha));
+    }
+}
+
 function actualizarTarjetaProgreso() {
     if (!dataGlobalCache) return;
+    if (genActualAbierta?.esPendientes) return; // esta vista actualiza su propia tarjeta (ver actualizarTarjetaProgresoPendientes)
     let conseguidos, total;
     if (genActualAbierta && !genActualAbierta.esCarpeta && !genActualAbierta.esCompleta) {
         const gd = dataGlobalCache.generaciones[genActualAbierta.gen];
@@ -876,7 +1046,7 @@ async function verCarpeta(carpeta) {
     for (const g of carpeta.gens) {
         if (!cachePokemon[g]) {
             const datos = await fetchGenSegura(g);
-            if (!datos) continue; // sigue con las demás gens aunque una falle
+            if (!datos) continue;
             cachePokemon[g] = datos;
         }
         todos.push(...cachePokemon[g]);
@@ -898,7 +1068,7 @@ async function verPokedexCompleta() {
         document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
     }
     mostrarGalleryShell('Pokédex Completa');
-    
+
     const todos = [];
     for (let g = 1; g <= 9; g++) {
         if (!cachePokemon[g]) {
@@ -910,6 +1080,79 @@ async function verPokedexCompleta() {
     }
     pkmsActuales = todos;
     setFiltro(filtroActual);
+}
+
+// ── SINCRONIZADOR: qué hay en Bulk que aún no está en Carpetas ────
+// Trae y cachea las 9 generaciones completas (para poder filtrar por id sin
+// importar en qué generación cayó cada Pokémon).
+async function obtenerTodosPokemon() {
+    const todos = [];
+    for (let g = 1; g <= 9; g++) {
+        if (!cachePokemon[g]) {
+            const datos = await fetchGenSegura(g);
+            if (!datos) continue;
+            cachePokemon[g] = datos;
+        }
+        todos.push(...cachePokemon[g]);
+    }
+    return todos;
+}
+
+// Compara los dos inventarios en el servidor y devuelve los ids que están en
+// Bulk pero no en Carpetas. null si algo falló de red.
+async function calcularIdsPendientes() {
+    let bulkData, carpetasData;
+    try {
+        const [rBulk, rCarp] = await Promise.all([
+            fetch(`/api/estadisticas?modo=bulk&nocache=${Date.now()}`),
+            fetch(`/api/estadisticas?modo=carpetas&nocache=${Date.now()}`)
+        ]);
+        if (!rBulk.ok || !rCarp.ok) throw new Error('respuesta no válida');
+        bulkData = await rBulk.json();
+        carpetasData = await rCarp.json();
+    } catch (err) {
+        mostrarToastError('No se pudo comparar Bulk y Carpetas. Revisa tu conexión.');
+        return null;
+    }
+    const idsEnCarpetas = new Set(Object.keys(carpetasData.listaIds || {}).map(Number));
+    return Object.keys(bulkData.listaIds || {}).map(Number).filter(id => !idsEnCarpetas.has(id));
+}
+
+function actualizarTarjetaProgresoPendientes(cantidad) {
+    document.getElementById('global-count-num').textContent   = cantidad;
+    document.getElementById('global-count-total').textContent = '';
+    document.getElementById('global-percentage').textContent  = cantidad > 0 ? '' : '✓';
+    document.getElementById('global-circle').setAttribute('stroke-dasharray', cantidad > 0 ? '0,100' : '100,100');
+    document.getElementById('stat-card-title').textContent = 'Por acomodar en Carpetas';
+    document.getElementById('stat-card-subtitle').textContent = cantidad > 0
+        ? 'Tienes estas cartas en Bulk, todavía no están en tus carpetas'
+        : '¡Todo lo que tienes en Bulk ya está acomodado!';
+    document.getElementById('jalon-global').classList.remove('visible');
+}
+
+async function verPendientesAcomodar() {
+    const ids = await calcularIdsPendientes();
+    if (ids === null) return;
+    const todosPokemon = await obtenerTodosPokemon();
+    const idsSet = new Set(ids);
+    const pkms = todosPokemon.filter(p => idsSet.has(p.id)).sort((a,b) => a.id - b.id);
+
+    genActualAbierta = { gen: null, region: 'Por acomodar', esPendientes: true };
+    pendientesActuales = pkms;
+    pkmsActuales = pkms;
+
+    if (!esDesktop()) {
+        document.getElementById('generaciones-section-title').style.display = 'none';
+        document.getElementById('grid-generaciones').style.display = 'none';
+        document.getElementById('gallery-section').style.display = 'block';
+        mostrarFAB();
+        document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
+    }
+    // Aquí no aplica "Todos/Tenemos/Faltan": todo lo que se muestra ya es "pendiente" por definición.
+    document.querySelectorAll('.gallery-filter').forEach(f => f.style.display = 'none');
+    mostrarGalleryShell(`Por acomodar (${pkms.length})`);
+    actualizarTarjetaProgresoPendientes(pkms.length);
+    renderGaleria(pkms, false, false, true);
 }
 
 // ── GALLERY ──
@@ -938,7 +1181,8 @@ function mostrarGalleryShell(titulo) {
 
 function actualizarGalleryHeader() {
     if (!genActualAbierta) return;
-    const tenemos = pkmsActuales.filter(p => localStorage.getItem(`pk_${p.id}`) === 'true').length;
+    if (genActualAbierta.esPendientes) return; // el título ya trae el conteo (ver mostrarGalleryShell)
+    const tenemos = pkmsActuales.filter(p => tieneEnLS(p.id)).length;
     const faltan  = pkmsActuales.length - tenemos;
     const sub     = `${tenemos} de ${pkmsActuales.length} · faltan ${faltan}`;
     const sEl  = document.getElementById('gallery-subtitle-text');
@@ -956,7 +1200,7 @@ function setFiltro(f) {
         if (b) b.classList.toggle('active', x === f);
     });
     const filtrados = pkmsActuales.filter(p => {
-        const tiene = localStorage.getItem(`pk_${p.id}`) === 'true';
+        const tiene = tieneEnLS(p.id);
         if (f === 'tenemos') return tiene;
         if (f === 'faltan')  return !tiene;
         return true;
@@ -972,28 +1216,40 @@ function toggleModoAcomodar() {
     btns.forEach(b  => b && (b.classList.toggle('active', modoAcomodar), b.textContent = modoAcomodar ? '📂 Normal' : '📂 Acomodar'));
 }
 
-function renderGaleria(pkms, mantenerScroll) {
+function gridActivo() {
+    return esDesktop()
+        ? document.getElementById('gallery-grid')
+        : document.getElementById('gallery-grid-mobile');
+}
+
+function renderGaleria(pkms, mantenerScroll, forzarEstado, esVistaPendientes) {
     const grid       = gridActivo();
     const scrollEl   = esDesktop() ? document.querySelector('.desktop-grid-scroll') : document.getElementById('scroll-root');
     const scrollPos  = mantenerScroll && scrollEl ? scrollEl.scrollTop : 0;
 
     const frag = document.createDocumentFragment();
     pkms.forEach(p => {
-        const tiene   = localStorage.getItem(`pk_${p.id}`) === 'true';
+        // En la vista "Por acomodar" el estado no depende del modo que estés viendo:
+        // ahí siempre se muestran como pendientes (forzarEstado=false), sin consultar localStorage.
+        const tiene   = (forzarEstado !== undefined) ? forzarEstado : tieneEnLS(p.id);
         let numR      = p.id - cortesGen[p.gen];
         if (p.id >= 899 && p.id <= 905) numR = p.id - 809;
         const prefijo = (p.id >= 899 && p.id <= 905) ? 'H' : 'R';
         const ridTxt  = `${prefijo}#${numR.toString().padStart(3,'0')}`;
         const nidTxt  = `N#${p.id.toString().padStart(4,'0')}`;
 
+        const carpetaPk = carpetaDe(p);
+        const colorPk   = carpetaPk ? carpetaPk.color : (coloresGen[p.gen-1] || '#999');
+        const bgPk      = carpetaPk ? carpetaPk.bg    : (coloresBg[p.gen-1] || 'rgba(153,153,153,0.16)');
+
         const card = document.createElement('div');
         card.className = `pk-card ${tiene ? 'found' : 'missing'}`;
-        card.style.borderTopColor = coloresGen[p.gen-1];
-        card.onclick = () => mostrarFicha(p);
+        card.style.borderTopColor = colorPk;
+        card.onclick = () => mostrarFicha(p, esVistaPendientes);
 
         // ── MOBILE elements ──
         const ridM = document.createElement('div'); ridM.className = 'pk-rid';
-        ridM.style.color = coloresGen[p.gen-1]; ridM.style.background = coloresBg[p.gen-1];
+        ridM.style.color = colorPk; ridM.style.background = bgPk;
         ridM.textContent = ridTxt;
         const nidM = document.createElement('div'); nidM.className = 'pk-nid';
         nidM.textContent = `N#${p.id.toString().padStart(3,'0')}`;
@@ -1009,7 +1265,7 @@ function renderGaleria(pkms, mantenerScroll) {
         // ── DESKTOP elements ──
         const header = document.createElement('div'); header.className = 'pk-dt-header';
         const ridD = document.createElement('span'); ridD.className = 'pk-rid';
-        ridD.style.color = coloresGen[p.gen-1]; ridD.style.background = coloresBg[p.gen-1];
+        ridD.style.color = colorPk; ridD.style.background = bgPk;
         ridD.textContent = ridTxt;
         const nidD = document.createElement('span'); nidD.className = 'pk-nid';
         nidD.textContent = nidTxt;
@@ -1040,9 +1296,15 @@ function renderGaleria(pkms, mantenerScroll) {
 
 async function RefrescarGaleria(mantenerScroll = false) {
     if (!genActualAbierta) return;
+    if (genActualAbierta.esPendientes) {
+        // No volvemos a comparar bulk vs carpetas en cada refresco automático (sería
+        // una llamada extra cada vez); la lista se re-calcula al abrir la vista de nuevo.
+        renderGaleria(pendientesActuales, mantenerScroll, false, true);
+        return;
+    }
     if (genActualAbierta.esCarpeta || genActualAbierta.esCompleta) {
         const filtrados = pkmsActuales.filter(p => {
-            const tiene = localStorage.getItem(`pk_${p.id}`) === 'true';
+            const tiene = tieneEnLS(p.id);
             if (filtroActual === 'tenemos') return tiene;
             if (filtroActual === 'faltan')  return !tiene;
             return true;
@@ -1059,12 +1321,12 @@ async function RefrescarGaleria(mantenerScroll = false) {
             ).join('');
         }
         const datos = await fetchGenSegura(gen);
-        if (!datos) { grid.innerHTML = ''; return; } // deja el grid vacío en vez de colgado
+        if (!datos) { grid.innerHTML = ''; return; }
         cachePokemon[gen] = datos;
     }
     pkmsActuales = cachePokemon[gen];
     const filtrados = pkmsActuales.filter(p => {
-        const tiene = localStorage.getItem(`pk_${p.id}`) === 'true';
+        const tiene = tieneEnLS(p.id);
         if (filtroActual === 'tenemos') return tiene;
         if (filtroActual === 'faltan')  return !tiene;
         return true;
@@ -1074,6 +1336,8 @@ async function RefrescarGaleria(mantenerScroll = false) {
 
 function cerrarGaleriaYVolver() {
     genActualAbierta = null; pkmsActuales = []; filtroActual = 'todos'; modoAcomodar = false;
+    pendientesActuales = []; fichaOrigenPendientes = false;
+    document.querySelectorAll('.gallery-filter').forEach(f => f.style.display = '');
     ['todos','tenemos','faltan'].forEach(x => {
         const a = document.getElementById(`filter-${x}`);
         const b = document.getElementById(`filter-${x}-d`);
@@ -1113,7 +1377,8 @@ function sincronizarGrids() {
 }
 
 // ── FICHA ────────────────────────────────────────────────────────
-function mostrarFicha(p) {
+function mostrarFicha(p, esPendientes) {
+    fichaOrigenPendientes = !!esPendientes;
     pkSeleccionado = p;
     let numR = p.id - cortesGen[p.gen];
     let regionName = regiones[p.gen - 1];
@@ -1125,17 +1390,28 @@ function mostrarFicha(p) {
     document.getElementById('pk-name').textContent = p.name.toLowerCase();
     document.getElementById('pk-id').textContent   = `Regional #${numR.toString().padStart(3,'0')} · Nacional #${p.id.toString().padStart(4,'0')}`;
     document.getElementById('pk-img').src = p.image;
-    const bd = p.gen <= 2 ? { bg:'rgba(59,91,219,0.16)', color:'#3b5bdb', border:'#3b5bdb', text:'🔵 Carpeta Azul — Gens 1 y 2' }
-             : p.gen <= 4 ? { bg:'rgba(124,58,237,0.16)', color:'#7c3aed', border:'#7c3aed', text:'🟣 Carpeta Morada — Gens 3 y 4' }
-             : p.gen <= 7 ? { bg:'rgba(219,39,119,0.16)', color:'#db2777', border:'#db2777', text:'💗 Carpeta Rosa — Gens 5, 6 y 7' }
-             :               { bg:'rgba(220,38,38,0.16)',  color:'#dc2626', border:'#dc2626', text:'🔴 Carpeta Roja — Gens 8 y 9' };
+
+    const carpetaPk = carpetaDe(p);
+    const bd = carpetaPk
+        ? { bg: carpetaPk.bg, color: carpetaPk.color, border: carpetaPk.color, text: `${carpetaPk.emoji} Carpeta ${carpetaPk.nombre} — ${carpetaPk.rango}` }
+        : { bg: coloresBg[p.gen-1] || 'rgba(153,153,153,0.16)', color: coloresGen[p.gen-1] || '#999', border: coloresGen[p.gen-1] || '#999', text: '' };
     const guide = document.getElementById('binder-guide');
     guide.style.background = bd.bg; guide.style.color = bd.color;
     guide.style.border = `1px solid ${bd.border}`; guide.textContent = bd.text;
-    const tiene = localStorage.getItem(`pk_${p.id}`) === 'true';
-    actualizarBotonEstado(tiene);
-    const fecha = getFechaRegistro(p.id);
-    document.getElementById('detail-fecha').textContent = tiene && fecha ? `Registrado el ${fecha}` : '';
+
+    if (fichaOrigenPendientes) {
+        // Por definición, si está aquí es porque está en Bulk pero no en Carpetas:
+        // la única acción con sentido es marcarlo como acomodado en Carpetas.
+        const btn = document.getElementById('btn-toggle-status');
+        btn.style.background = 'var(--accent2)';
+        btn.textContent = '📥 Marcar como acomodado en Carpetas';
+        document.getElementById('detail-fecha').textContent = 'Está en tu Bulk — aún no está en Carpetas';
+    } else {
+        const tiene = tieneEnLS(p.id);
+        actualizarBotonEstado(tiene);
+        const fecha = getFechaRegistro(p.id);
+        document.getElementById('detail-fecha').textContent = tiene && fecha ? `Registrado el ${fecha}` : '';
+    }
     document.getElementById('detail-overlay').style.display = 'block';
 }
 
@@ -1148,24 +1424,52 @@ function actualizarBotonEstado(tiene) {
 document.getElementById('btn-toggle-status').onclick = async () => {
     if (!pkSeleccionado) return;
     const idPk = pkSeleccionado.id;
-    const actual = localStorage.getItem(`pk_${idPk}`) === 'true';
+
+    if (fichaOrigenPendientes) {
+        // Siempre escribe en "carpetas", sin importar qué modo estés viendo ahora mismo.
+        const fechaIso = new Date().toISOString();
+        try {
+            const res = await fetch('/api/inventario', {
+                method:'POST', headers:{'Content-Type':'application/json'},
+                body: JSON.stringify({ id: idPk, estado: true, fecha: fechaIso, modo: 'carpetas' })
+            });
+            if (!res.ok) throw new Error('respuesta no válida');
+        } catch (err) {
+            mostrarToastError('No se pudo guardar el cambio. Intenta de nuevo.');
+            return;
+        }
+        if (modoActual === 'carpetas') {
+            localStorage.setItem(claveLS(idPk), 'true');
+            guardarFechaRegistro(idPk, fechaIso);
+        }
+        document.getElementById('detail-overlay').style.display = 'none';
+        pkSeleccionado = null;
+        fichaOrigenPendientes = false;
+        // Lo sacamos de la lista de pendientes en pantalla, sin volver a comparar todo el inventario.
+        pendientesActuales = pendientesActuales.filter(x => x.id !== idPk);
+        pkmsActuales = pendientesActuales;
+        mostrarGalleryShell(`Por acomodar (${pendientesActuales.length})`);
+        actualizarTarjetaProgresoPendientes(pendientesActuales.length);
+        renderGaleria(pendientesActuales, true, false, true);
+        if (modoActual === 'carpetas') await cargarEstadisticasSinMoverScroll();
+        return;
+    }
+
+    const actual = tieneEnLS(idPk);
     const nuevoEstado = !actual;
     const fechaIso = new Date().toISOString();
     try {
         const res = await fetch('/api/inventario', {
             method:'POST', headers:{'Content-Type':'application/json'},
-            // Mandamos la fecha por si el backend la quiere guardar y así
-            // sincronizarla entre dispositivos (si el backend la ignora, no pasa nada).
-            body: JSON.stringify({ id: idPk, estado: nuevoEstado, fecha: fechaIso })
+            body: JSON.stringify({ id: idPk, estado: nuevoEstado, fecha: fechaIso, modo: modoActual })
         });
         if (!res.ok) throw new Error('respuesta no válida');
-        // Si el backend responde con la fecha que realmente guardó, la preferimos.
         let fechaServidor = null;
         try {
             const body = await res.json();
             fechaServidor = body && body.fecha ? body.fecha : null;
         } catch (e) { /* el backend puede no devolver JSON; no es grave */ }
-        localStorage.setItem(`pk_${idPk}`, nuevoEstado ? 'true' : 'false');
+        localStorage.setItem(claveLS(idPk), nuevoEstado ? 'true' : 'false');
         if (nuevoEstado) guardarFechaRegistro(idPk, fechaServidor || fechaIso);
         actualizarBotonEstado(nuevoEstado);
         document.getElementById('detail-overlay').style.display = 'none';
@@ -1230,24 +1534,27 @@ function handleSearchInput(e, inputEl) {
             const res = await fetch(`/api/buscar?q=${encodeURIComponent(val)}`, { signal: miController.signal });
             data = await res.json();
         } catch(err) {
-            if (err.name === 'AbortError') return; // otra búsqueda más nueva ya está en curso
+            if (err.name === 'AbortError') return;
             sugBox.style.display = 'none';
             return;
         }
-        if (miController !== searchAbortController) return; // resultado obsoleto, ya llegó uno más nuevo
+        if (miController !== searchAbortController) return;
         if (!data.length) { sugBox.style.display = 'none'; return; }
         const frag = document.createDocumentFragment();
         data.forEach(p => {
             let numR = p.id - cortesGen[p.gen];
             let rName = regiones[p.gen - 1];
             if (p.id >= 899 && p.id <= 905) { numR = p.id - 809; rName = 'Hisui'; }
-            const tiene = localStorage.getItem(`pk_${p.id}`) === 'true';
+            const tiene = tieneEnLS(p.id);
+            const carpetaPk = carpetaDe(p);
+            const colorPk = carpetaPk ? carpetaPk.color : coloresGen[p.gen-1];
+            const bgPk    = carpetaPk ? carpetaPk.bg    : coloresBg[p.gen-1];
             const item  = document.createElement('div');
             item.className = `sugerencia-item${tiene ? ' found' : ''}`;
             const check = document.createElement('span'); check.className = 'sugerencia-check-left'; check.textContent = tiene ? '✓' : '';
             const name  = document.createElement('span'); name.className = `sugerencia-name${tiene ? ' found-name' : ''}`; name.textContent = p.name.toLowerCase();
             const meta  = document.createElement('span'); meta.className = 'sugerencia-meta';
-            meta.style.background = coloresBg[p.gen-1]; meta.style.color = coloresGen[p.gen-1];
+            meta.style.background = bgPk; meta.style.color = colorPk;
             meta.textContent = `${rName} · Gen ${p.gen} #${numR.toString().padStart(3,'0')}`;
             item.appendChild(check); item.appendChild(name); item.appendChild(meta);
             item.addEventListener('touchstart', ev => { ev.preventDefault(); }, { passive:false });
@@ -1272,7 +1579,6 @@ function handleSearchInput(e, inputEl) {
     }, 300);
 }
 
-// ── FAB / TABS ───────────────────────────────────────────────────
 function clearSearchTimer() {
     if (searchTimer) { clearTimeout(searchTimer); searchTimer = null; }
 }
@@ -1284,7 +1590,6 @@ function cambiarTab(tipo) {
     if (tipo === 'home') {
         cerrarGaleriaYVolver();
         if (streamCamara) toggleCamaraOCR();
-        // CORRECCIÓN REALIZADA: Al presionar Home en PC, abre la Pokédex completa por defecto
         if (esDesktop() && !genActualAbierta) verPokedexCompleta();
     }
 }
@@ -1342,13 +1647,16 @@ function renderHistorial() {
     wrap.style.display = 'block';
     list.innerHTML = '';
     historialOCR.forEach(p => {
-        const tiene = localStorage.getItem(`pk_${p.id}`) === 'true';
+        const tiene = tieneEnLS(p.id);
         let numR = p.id - cortesGen[p.gen];
         if (p.id >= 899 && p.id <= 905) numR = p.id - 809;
+        const carpetaPk = carpetaDe(p);
+        const colorPk = carpetaPk ? carpetaPk.color : coloresGen[p.gen-1];
+        const bgPk    = carpetaPk ? carpetaPk.bg    : coloresBg[p.gen-1];
         const item = document.createElement('div');
         item.className = 'ocr-hist-item';
         item.onclick = () => mostrarFicha(p);
-        item.innerHTML = `<img class="ocr-hist-img" src="${p.image}" alt="${p.name}"><span class="ocr-hist-name">${p.name.toLowerCase()}</span><span class="ocr-hist-badge" style="background:${coloresBg[p.gen-1]};color:${coloresGen[p.gen-1]}">R#${numR.toString().padStart(3,'0')}</span><span class="ocr-hist-estado">${tiene ? '✓' : '○'}</span>`;
+        item.innerHTML = `<img class="ocr-hist-img" src="${p.image}" alt="${p.name}"><span class="ocr-hist-name">${p.name.toLowerCase()}</span><span class="ocr-hist-badge" style="background:${bgPk};color:${colorPk}">R#${numR.toString().padStart(3,'0')}</span><span class="ocr-hist-estado">${tiene ? '✓' : '○'}</span>`;
         list.appendChild(item);
     });
 }
@@ -1418,32 +1726,18 @@ function iniciarSSE() {
     es.onmessage = (e) => {
         const msg = JSON.parse(e.data);
         if (msg.tipo !== 'cambio') return;
+        if (msg.modo !== modoActual) return; // cambio en el otro inventario: no aplica a lo que estás viendo
         if (msg.estado) {
-            localStorage.setItem(`pk_${msg.id}`, 'true');
+            localStorage.setItem(claveLS(msg.id), 'true');
             if (msg.fecha) guardarFechaRegistro(msg.id, msg.fecha);
         } else {
-            localStorage.removeItem(`pk_${msg.id}`);
+            localStorage.removeItem(claveLS(msg.id));
         }
         cargarEstadisticasSinMoverScroll();
         mostrarToastSync(msg.id, msg.estado);
     };
     es.onerror = () => { es.close(); setTimeout(iniciarSSE, 3000); };
 }
-let errorToastTimer = null;
-function mostrarToastError(msg) {
-    let toast = document.getElementById('error-toast');
-    if (!toast) {
-        toast = document.createElement('div');
-        toast.id = 'error-toast';
-        toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--danger);border-radius:12px;padding:8px 16px;font-size:12px;font-weight:600;color:#fff;box-shadow:0 4px 16px var(--shadow);z-index:800;white-space:nowrap;opacity:0;transition:opacity .2s ease;';
-        document.body.appendChild(toast);
-    }
-    toast.textContent = `⚠️ ${msg}`;
-    toast.style.opacity = '1';
-    clearTimeout(errorToastTimer);
-    errorToastTimer = setTimeout(() => { toast.style.opacity = '0'; }, 3000);
-}
-
 let toastTimer = null;
 function mostrarToastSync(id, estado) {
     let toast = document.getElementById('sync-toast');
@@ -1462,56 +1756,9 @@ function mostrarToastSync(id, estado) {
 // ── INIT ─────────────────────────────────────────────────────────
 window.onload = async () => {
     sincronizarGrids();
-    let data = null;
-    try {
-        const res = await fetch('/api/estadisticas');
-        if (res.ok) data = await res.json();
-    } catch (err) {
-        mostrarToastError('No se pudo conectar al iniciar. Revisa tu conexión.');
-    }
-    if (data && data.listaIds) {
-        Object.keys(localStorage).forEach(key => {
-            if (key.startsWith('pk_') && !key.startsWith('pk_fecha_')) {
-                localStorage.removeItem(key);
-            }
-        });
-        Object.keys(data.listaIds).forEach(id => localStorage.setItem(`pk_${id}`, 'true'));
-    }
+    actualizarBotonesModo();
+    await cargarEstadisticas();
 
-    // Reutilizamos esta misma respuesta para pintar todo, en vez de pedirla otra vez.
-    if (data) {
-        dataGlobalCache = data;
-        actualizarTarjetaProgreso();
-        renderBinderBar();
-        renderSidebar();
-        const total = Object.keys(data.listaIds || {}).length;
-        document.getElementById('brand-count').textContent = `${total} / 1025`;
-
-        const grid = document.getElementById('grid-generaciones');
-        grid.innerHTML = '';
-        for (let g = 1; g <= 9; g++) {
-            const gd     = data.generaciones[g];
-            const pct    = gd.total > 0 ? ((gd.conseguidos / gd.total) * 100).toFixed(0) : 0;
-            const faltan = gd.total - gd.conseguidos;
-            const ok     = faltan === 0 && gd.total > 0;
-            const card   = document.createElement('div');
-            card.className = 'gen-card';
-            card.onclick = () => verListadoGeneracion(g, regiones[g-1]);
-            card.innerHTML = `
-                <div class="gen-card-bar" style="background:${coloresGen[g-1]};"></div>
-                <div class="gen-num" style="color:${coloresGen[g-1]};background:${coloresBg[g-1]};">Gen ${g}</div>
-                <div class="gen-region">${regiones[g-1]}</div>
-                <div class="gen-progress-text">${gd.conseguidos}/${gd.total}</div>
-                <div class="gen-missing" style="color:${ok ? 'var(--found)' : coloresGen[g-1]};">${ok ? '✓ completo' : `faltan ${faltan}`}</div>
-                <div class="gen-bar-bg"><div class="gen-bar-fill" style="width:${pct}%;background:${coloresGen[g-1]};"></div></div>`;
-            grid.appendChild(card);
-        }
-    } else {
-        // No hubo respuesta inicial: intentamos la carga normal como respaldo.
-        await cargarEstadisticas();
-    }
-
-    // CORRECCIÓN REALIZADA: Al cargar la aplicación en PC, inicializa la Pokédex completa de manera default
     if (esDesktop()) verPokedexCompleta();
 
     precargarTodasLasGens();
@@ -1520,7 +1767,6 @@ window.onload = async () => {
 
 window.addEventListener('resize', () => {
     sincronizarGrids();
-    // CORRECCIÓN REALIZADA: Mantiene la Pokédex completa en reajustes si no hay otra sección abierta
     if (esDesktop() && !genActualAbierta) verPokedexCompleta();
 });
 
@@ -1534,7 +1780,6 @@ async function precargarTodasLasGens() {
                 cachePokemon[g] = await res.json();
             } catch(e) {
                 console.warn(`Gen ${g} no se pudo precargar`, e);
-                // Precarga en segundo plano: no interrumpimos al usuario con un toast por esto.
             }
         }
     }

@@ -374,6 +374,28 @@
         .metrics-quick-btn:active{background:var(--border);}
         @media(min-width:800px){.metrics-quick-actions{display:none;}}
 
+        /* ── LOGIN MODAL ── */
+        .login-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:900;align-items:center;justify-content:center;padding:16px;}
+        .login-modal.open{display:flex;}
+        .login-box{background:var(--overlay-bg);border:1px solid var(--border);border-radius:20px;padding:24px;width:100%;max-width:340px;animation:fadeIn .2s ease;}
+        .login-title{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:4px;}
+        .login-sub{font-size:12px;color:var(--muted);margin-bottom:16px;}
+        .login-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:11px 14px;font-size:14px;color:var(--text);font-family:'Inter',sans-serif;outline:none;margin-bottom:10px;}
+        .login-input:focus{border-color:var(--accent2);}
+        .login-error{font-size:12px;color:var(--danger);margin-bottom:10px;display:none;}
+        .login-error.visible{display:block;}
+        .login-actions{display:flex;gap:8px;}
+        .login-btn{flex:1;padding:11px;border-radius:10px;border:none;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.04em;cursor:pointer;}
+        .login-btn.primary{background:var(--accent2);color:#fff;}
+        .login-btn.secondary{background:var(--surface2);color:var(--text);border:1px solid var(--border);}
+
+        /* ── CONFETI (celebración al completar) ── */
+        @keyframes confeti-caida{
+            0%{transform:translateY(0) rotate(0deg);opacity:1;}
+            100%{transform:translateY(100vh) rotate(360deg);opacity:0;}
+        }
+
+
         @keyframes skeleton{from{opacity:0.4;}to{opacity:0.9;}}
         @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 
@@ -592,9 +614,13 @@
         <button class="sb-btn" id="sb-btn-cam" onclick="toggleCamaraOCR()">📷 Cámara</button>
         <button class="sb-btn" onclick="verPendientesAcomodar()">🔄 Por acomodar<span class="btn-badge" id="badge-pendientes-desktop"></span></button>
         <button class="sb-btn" onclick="exportarColeccion()">⬇️ Exportar</button>
+        <button class="sb-btn" onclick="dispararInputImportar()">⬆️ Importar</button>
+        <button class="sb-btn" onclick="descargarListaFaltantes()">📋 Faltantes</button>
         <button class="sb-btn" onclick="toggleTema()" id="btn-tema" title="Cambiar tema">🌓 Auto</button>
+        <button class="sb-btn" onclick="abrirLoginOLogout()" id="btn-sesion">🔒 Iniciar sesión</button>
     </div>
 </div>
+<input type="file" id="input-importar" accept="application/json" style="display:none;" onchange="manejarArchivoImportar(event)">
 
 <!-- ══ MOBILE HEADER + SCROLL ROOT ════════════════════════════== -->
 <div id="scroll-root">
@@ -738,9 +764,26 @@
         <div id="metrics-content"></div>
         <div class="metrics-quick-actions" id="metrics-quick-actions">
             <button class="metrics-quick-btn" onclick="exportarColeccion()">⬇️ Exportar mi colección</button>
+            <button class="metrics-quick-btn" onclick="dispararInputImportar()">⬆️ Importar respaldo</button>
+            <button class="metrics-quick-btn" onclick="descargarListaFaltantes()">📋 Lista de faltantes</button>
             <button class="metrics-quick-btn" onclick="toggleTema()" id="btn-tema-mobile">🌓 Tema: Auto</button>
+            <button class="metrics-quick-btn" onclick="abrirLoginOLogout()" id="btn-sesion-mobile">🔒 Iniciar sesión</button>
         </div>
         <button class="metrics-close" onclick="cerrarMetricas()">Cerrar</button>
+    </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="login-modal" id="login-modal">
+    <div class="login-box">
+        <div class="login-title">🔒 Iniciar sesión</div>
+        <div class="login-sub">Necesitas iniciar sesión para hacer cambios (marcar cartas, importar, etc). Ver tu colección no requiere sesión.</div>
+        <input type="password" id="login-password" class="login-input" placeholder="Contraseña" autocomplete="current-password">
+        <div class="login-error" id="login-error"></div>
+        <div class="login-actions">
+            <button class="login-btn secondary" onclick="cerrarLoginModal()">Cancelar</button>
+            <button class="login-btn primary" onclick="intentarLogin()">Entrar</button>
+        </div>
     </div>
 </div>
 
@@ -787,6 +830,95 @@ function toggleTema() {
     temaActual = temaActual === 'auto' ? 'light' : temaActual === 'light' ? 'dark' : 'auto';
     localStorage.setItem('temaPreferido', temaActual);
     aplicarTema();
+}
+
+// ── SESIÓN: solo hace falta para MODIFICAR, ver la colección es libre ──
+// El servidor maneja la sesión real vía cookie httpOnly (el JS nunca la lee
+// directamente). `sesionActiva` es solo para pintar la UI correctamente;
+// la autorización real siempre la valida el servidor en cada escritura.
+let sesionActiva = false;
+let accionPendienteTrasLogin = null; // función a reintentar automáticamente si el login tiene éxito
+
+async function revisarSesion() {
+    try {
+        const res = await fetch('/api/sesion');
+        const data = await res.json();
+        sesionActiva = !!data.activa;
+    } catch (err) {
+        sesionActiva = false;
+    }
+    actualizarBotonSesion();
+}
+
+function actualizarBotonSesion() {
+    const texto = sesionActiva ? '🔓 Cerrar sesión' : '🔒 Iniciar sesión';
+    const bd = document.getElementById('btn-sesion');
+    const bm = document.getElementById('btn-sesion-mobile');
+    if (bd) bd.textContent = texto;
+    if (bm) bm.textContent = texto;
+}
+
+function abrirLoginOLogout() {
+    if (sesionActiva) { cerrarSesion(); return; }
+    abrirLoginModal();
+}
+
+function abrirLoginModal(accionPendiente) {
+    accionPendienteTrasLogin = accionPendiente || null;
+    document.getElementById('login-error').classList.remove('visible');
+    document.getElementById('login-password').value = '';
+    document.getElementById('login-modal').classList.add('open');
+    setTimeout(() => document.getElementById('login-password').focus(), 50);
+}
+function cerrarLoginModal() {
+    document.getElementById('login-modal').classList.remove('open');
+    accionPendienteTrasLogin = null;
+}
+
+async function intentarLogin() {
+    const password = document.getElementById('login-password').value;
+    const errBox = document.getElementById('login-error');
+    errBox.classList.remove('visible');
+    try {
+        const res = await fetch('/api/login', {
+            method:'POST', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({ password })
+        });
+        if (!res.ok) {
+            const body = await res.json().catch(() => ({}));
+            errBox.textContent = body.error || 'Contraseña incorrecta.';
+            errBox.classList.add('visible');
+            return;
+        }
+        sesionActiva = true;
+        actualizarBotonSesion();
+        cerrarLoginModal();
+        mostrarToastInfo('Sesión iniciada.');
+        if (accionPendienteTrasLogin) {
+            const accion = accionPendienteTrasLogin;
+            accionPendienteTrasLogin = null;
+            accion();
+        }
+    } catch (err) {
+        errBox.textContent = 'No se pudo conectar con el servidor.';
+        errBox.classList.add('visible');
+    }
+}
+
+async function cerrarSesion() {
+    try { await fetch('/api/logout', { method:'POST' }); } catch (err) { /* no es grave si falla */ }
+    sesionActiva = false;
+    actualizarBotonSesion();
+    mostrarToastInfo('Sesión cerrada.');
+}
+
+// Helper: si no hay sesión, abre el login y guarda `accion` para reintentarla
+// automáticamente al iniciar sesión. Si ya hay sesión, corre `accion` directo.
+// Devuelve true si la acción se ejecutó (o se puso en cola), false si no hizo nada.
+function requiereSesion(accion) {
+    if (sesionActiva) { accion(); return true; }
+    abrirLoginModal(accion);
+    return false;
 }
 
 // ── MODO: bulk vs carpetas — dos inventarios 100% independientes ──────
@@ -1246,6 +1378,119 @@ function actualizarTarjetaProgresoPendientes(cantidad) {
     document.getElementById('jalon-global').classList.remove('visible');
 }
 
+// ── CONFETI: celebración al completar una generación o el 100% ────
+function lanzarConfeti() {
+    const contenedor = document.createElement('div');
+    contenedor.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:1000;overflow:hidden;';
+    document.body.appendChild(contenedor);
+    const colores = ['#3b5bdb','#7c3aed','#db2777','#dc2626','#f59e0b','#10b981'];
+    for (let i = 0; i < 40; i++) {
+        const p = document.createElement('div');
+        const color    = colores[Math.floor(Math.random() * colores.length)];
+        const izquierda = Math.random() * 100;
+        const retraso   = Math.random() * 0.4;
+        const duracion  = 1.8 + Math.random() * 1.2;
+        const tamano    = 6 + Math.random() * 6;
+        p.style.cssText = `position:absolute;top:-10px;left:${izquierda}%;width:${tamano}px;height:${tamano}px;background:${color};border-radius:${Math.random() > 0.5 ? '50%' : '2px'};opacity:0.9;animation:confeti-caida ${duracion}s ease-in ${retraso}s forwards;`;
+        contenedor.appendChild(p);
+    }
+    setTimeout(() => contenedor.remove(), 3200);
+}
+
+// Compara el snapshot de estadísticas ANTES de un cambio contra el de DESPUÉS,
+// y lanza confeti si alguna generación (o la colección completa) pasó de
+// incompleta a completa. Se usa alrededor de cargarEstadisticasSinMoverScroll().
+function detectarYCelebrarCompletado(statsAntes, statsDespues) {
+    if (!statsAntes || !statsDespues) return;
+    const globalAntesCompleto = statsAntes.global.conseguidos >= statsAntes.global.total && statsAntes.global.total > 0;
+    const globalDespuesCompleto = statsDespues.global.conseguidos >= statsDespues.global.total && statsDespues.global.total > 0;
+    if (!globalAntesCompleto && globalDespuesCompleto) { lanzarConfeti(); return; }
+    for (let g = 1; g <= 9; g++) {
+        const antes = statsAntes.generaciones[g], despues = statsDespues.generaciones[g];
+        if (!antes || !despues) continue;
+        const eraCompleta = antes.conseguidos >= antes.total && antes.total > 0;
+        const esCompleta  = despues.conseguidos >= despues.total && despues.total > 0;
+        if (!eraCompleta && esCompleta) { lanzarConfeti(); return; }
+    }
+}
+
+// ── IMPORTAR RESPALDO ───────────────────────────────────────────────
+function dispararInputImportar() {
+    requiereSesion(() => document.getElementById('input-importar').click());
+}
+async function manejarArchivoImportar(event) {
+    const archivo = event.target.files[0];
+    event.target.value = ''; // para poder volver a elegir el mismo archivo después
+    if (!archivo) return;
+
+    let data;
+    try {
+        const texto = await archivo.text();
+        data = JSON.parse(texto);
+    } catch (err) {
+        mostrarToastError('Ese archivo no es un JSON válido.');
+        return;
+    }
+    if (!data || (!data.bulk && !data.carpetas)) {
+        mostrarToastError('Ese archivo no tiene el formato de un respaldo de esta app.');
+        return;
+    }
+    const registros = data[modoActual];
+    if (!Array.isArray(registros)) {
+        mostrarToastError(`El archivo no trae datos para "${modoActual}".`);
+        return;
+    }
+    const ok = confirm(
+        `Esto REEMPLAZA todo tu inventario actual de "${modoActual === 'bulk' ? 'Bulk' : 'Carpetas'}" ` +
+        `con los ${registros.length} registros de este archivo. Se guarda un respaldo del estado actual por si acaso. ¿Continuar?`
+    );
+    if (!ok) return;
+
+    try {
+        const res = await fetch('/api/importar', {
+            method:'POST', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({ modo: modoActual, registros })
+        });
+        if (res.status === 401) {
+            abrirLoginModal(() => document.getElementById('input-importar').click());
+            return;
+        }
+        const body = await res.json();
+        if (!res.ok) throw new Error(body.error || 'respuesta no válida');
+        mostrarToastInfo(`Importado: ${body.importados} registros${body.ignorados ? ` (${body.ignorados} ignorados)` : ''}.`);
+        Object.keys(cachePokemon).forEach(k => delete cachePokemon[k]);
+        cerrarGaleriaYVolver();
+        await cargarEstadisticasSinMoverScroll();
+        actualizarBadgePendientes();
+    } catch (err) {
+        mostrarToastError('No se pudo importar el respaldo. Revisa el archivo o tu conexión.');
+    }
+}
+
+// ── LISTA DE FALTANTES (descarga en texto plano) ──────────────────
+async function descargarListaFaltantes() {
+    if (!dataGlobalCache) { mostrarToastError('Espera a que cargue la colección.'); return; }
+    const todos = await obtenerTodosPokemon();
+    const tenidos = new Set(Object.keys(dataGlobalCache.listaIds || {}).map(Number));
+    const faltan = todos.filter(p => !tenidos.has(p.id)).sort((a,b) => a.id - b.id);
+    if (!faltan.length) { mostrarToastInfo('¡No te falta ningún Pokémon en este modo!'); return; }
+
+    const encabezado = `Pokémon que faltan — ${modoActual === 'bulk' ? 'Bulk' : 'Carpetas'}\n` +
+        `Generado el ${new Date().toLocaleDateString('es', { day:'numeric', month:'long', year:'numeric' })}\n` +
+        `Total: ${faltan.length}\n\n`;
+    const lineas = faltan.map(p => `#${p.id.toString().padStart(4,'0')}  ${p.name.toLowerCase()}`).join('\n');
+
+    const blob = new Blob([encabezado + lineas], { type: 'text/plain' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url;
+    a.download = `pokedex-faltantes-${modoActual}-${new Date().toISOString().slice(0,10)}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+}
+
 async function verPendientesAcomodar() {
     const ids = await calcularIdsPendientes();
     if (ids === null) return;
@@ -1595,7 +1840,9 @@ function actualizarBotonEstado(tiene) {
     btn.textContent = tiene ? '✅ Ya lo tenemos' : '❌ No lo tenemos — tocar para guardar';
 }
 
-document.getElementById('btn-toggle-status').onclick = async () => {
+document.getElementById('btn-toggle-status').onclick = () => requiereSesion(ejecutarToggleStatus);
+
+async function ejecutarToggleStatus() {
     if (!pkSeleccionado) return;
     const idPk = pkSeleccionado.id;
 
@@ -1607,6 +1854,7 @@ document.getElementById('btn-toggle-status').onclick = async () => {
                 method:'POST', headers:{'Content-Type':'application/json'},
                 body: JSON.stringify({ id: idPk, estado: true, fecha: fechaIso, modo: 'carpetas' })
             });
+            if (res.status === 401) { abrirLoginModal(ejecutarToggleStatus); return; }
             if (!res.ok) throw new Error('respuesta no válida');
         } catch (err) {
             mostrarToastError('No se pudo guardar el cambio. Intenta de nuevo.');
@@ -1625,7 +1873,12 @@ document.getElementById('btn-toggle-status').onclick = async () => {
         mostrarGalleryShell(`Por acomodar (${pendientesActuales.length})`);
         actualizarTarjetaProgresoPendientes(pendientesActuales.length);
         renderGaleria(pendientesActuales, true, false, true);
-        if (modoActual === 'carpetas') await cargarEstadisticasSinMoverScroll();
+        if (modoActual === 'carpetas') {
+            const statsAntes = dataGlobalCache;
+            await cargarEstadisticasSinMoverScroll();
+            detectarYCelebrarCompletado(statsAntes, dataGlobalCache);
+        }
+        actualizarBadgePendientes();
         return;
     }
 
@@ -1638,6 +1891,7 @@ document.getElementById('btn-toggle-status').onclick = async () => {
             method:'POST', headers:{'Content-Type':'application/json'},
             body: JSON.stringify({ id: idPk, estado: nuevoEstado, fecha: fechaIso, modo: modoActual })
         });
+        if (res.status === 401) { abrirLoginModal(ejecutarToggleStatus); return; }
         if (!res.ok) throw new Error('respuesta no válida');
         let fechaServidor = null;
         try {
@@ -1650,13 +1904,15 @@ document.getElementById('btn-toggle-status').onclick = async () => {
         actualizarBotonEstado(nuevoEstado);
         document.getElementById('detail-overlay').style.display = 'none';
         pkSeleccionado = null;
+        const statsAntes = dataGlobalCache;
         await cargarEstadisticasSinMoverScroll();
+        if (nuevoEstado) detectarYCelebrarCompletado(statsAntes, dataGlobalCache);
         actualizarBadgePendientes();
         if (!nuevoEstado) mostrarToastDeshacer(idPk, fechaPreservada, nombrePk);
     } catch (err) {
         mostrarToastError('No se pudo guardar el cambio. Intenta de nuevo.');
     }
-};
+}
 
 document.getElementById('detail-close').onclick = () => {
     document.getElementById('detail-overlay').style.display = 'none';
@@ -1937,6 +2193,18 @@ function iniciarSSE() {
     const es = new EventSource('/api/eventos');
     es.onmessage = (e) => {
         const msg = JSON.parse(e.data);
+
+        if (msg.tipo === 'config') {
+            // Se reutiliza este tipo para avisar "algo grande cambió, recarga todo"
+            // (por ejemplo, alguien importó un respaldo desde otro dispositivo).
+            Object.keys(cachePokemon).forEach(k => delete cachePokemon[k]);
+            cerrarGaleriaYVolver();
+            cargarEstadisticasSinMoverScroll();
+            actualizarBadgePendientes();
+            mostrarToastInfo('Se importó un respaldo desde otro dispositivo — recargando.');
+            return;
+        }
+
         if (msg.tipo !== 'cambio') return;
         actualizarBadgePendientes(); // el sincronizador compara bulk y carpetas, así que cualquier cambio en cualquiera de los dos puede afectarlo
         if (msg.modo !== modoActual) return; // el resto de esta vista no aplica al otro inventario
@@ -1971,6 +2239,7 @@ window.onload = async () => {
     sincronizarGrids();
     aplicarTema();
     actualizarBotonesModo();
+    revisarSesion();
     await cargarEstadisticas();
 
     if (esDesktop()) verPokedexCompleta();
@@ -1978,7 +2247,19 @@ window.onload = async () => {
     precargarTodasLasGens();
     iniciarSSE();
     actualizarBadgePendientes();
+
+    // Service worker: permite ver la colección (últimos datos cargados) sin
+    // internet. Los cambios (marcar/desmarcar) siguen necesitando conexión.
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').catch(err => {
+            console.warn('No se pudo registrar el service worker:', err);
+        });
+    }
 };
+
+document.getElementById('login-password').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') intentarLogin();
+});
 
 window.addEventListener('resize', () => {
     sincronizarGrids();

@@ -8,7 +8,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Pokédex/TCG personal collection tracker (bulk + carpetas)",
   "dependencies": {
     "express": "^5.2.1",
     "node-fetch": "^3.3.2",

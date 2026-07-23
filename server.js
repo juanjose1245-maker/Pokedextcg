@@ -537,6 +537,8 @@ app.get('/api/eventos', (req, res) => {
 const DEPLOY_WEBHOOK_SECRET = process.env.DEPLOY_WEBHOOK_SECRET || null;
 if (!DEPLOY_WEBHOOK_SECRET) {
     console.warn('⚠️  DEPLOY_WEBHOOK_SECRET no configurado — el auto-deploy por webhook queda deshabilitado.');
+} else {
+    console.log('🔗 Auto-deploy por webhook activo.');
 }
 
 function firmaValida(req) {

@@ -344,9 +344,21 @@ async function mapConcurrencia(items, limite, fn) {
 
 const REGIONES = ['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'];
 
-async function generarPDFRecortables() {
+// Mismas 4 carpetas fijas que usa el frontend (public/app.js) para agrupar
+// generaciones en binders físicos.
+const CARPETAS_DEF = [
+    { nombre: 'Azul',   gens: [1, 2] },
+    { nombre: 'Morada', gens: [3, 4] },
+    { nombre: 'Rosa',   gens: [5, 6, 7] },
+    { nombre: 'Roja',   gens: [8, 9] }
+];
+
+// opciones = { gens: Set<number>, portadas: boolean, numeros: 'ambos'|'regional'|'nacional' }
+async function generarPDFRecortables(rutaSalida, opciones) {
     if (!fs.existsSync(CARPETA_CACHE)) fs.mkdirSync(CARPETA_CACHE, { recursive: true });
-    const pokemonOrdenados = [...pokemonDB].sort((a, b) => a.id - b.id);
+    const pokemonOrdenados = [...pokemonDB]
+        .filter(p => opciones.gens.has(p.gen))
+        .sort((a, b) => a.id - b.id);
     const imagenes = await mapConcurrencia(pokemonOrdenados, 12, p => descargarImagen(p.image));
     const imagenPorId = new Map(pokemonOrdenados.map((p, i) => [p.id, imagenes[i]]));
     const pokemonPorId = new Map(pokemonOrdenados.map(p => [p.id, p]));
@@ -360,7 +372,7 @@ async function generarPDFRecortables() {
     const anchoCelda = anchoUtil / COLS;
     const altoCelda  = altoUtil  / FILAS;
 
-    const temp = `${RUTA_PDF_RECORTABLES}.tmp-${process.pid}`;
+    const temp = `${rutaSalida}.tmp-${process.pid}-${Date.now()}`;
     const stream = fs.createWriteStream(temp);
     doc.pipe(stream);
 
@@ -373,36 +385,48 @@ async function generarPDFRecortables() {
         }
     }
 
+    function textoNumeros(p) {
+        const rTxt = `R#${String(numeroRegional(p)).padStart(3, '0')}`;
+        const nTxt = `N#${String(p.id).padStart(4, '0')}`;
+        if (opciones.numeros === 'regional') return rTxt;
+        if (opciones.numeros === 'nacional') return nTxt;
+        return `${rTxt}   ${nTxt}`;
+    }
+
     let primeraPagina = true;
     for (let gen = 1; gen <= 9; gen++) {
+        if (!opciones.gens.has(gen)) continue;
         const pokemonGen = pokemonOrdenados.filter(p => p.gen === gen);
         if (!pokemonGen.length) continue;
         if (!primeraPagina) doc.addPage();
         primeraPagina = false;
 
-        // ── Portada de la región: nombre + los 3 iniciales ──
-        // Los iniciales de cada juego siempre caen en las posiciones 1, 4 y 7
-        // de la Pokédex regional (planta, fuego, agua), así que se calculan
-        // con el mismo corte de generación que el número regional, en vez de
-        // tener que mantener una lista aparte a mano.
-        doc.fontSize(34).fillColor('#000000')
-           .text(REGIONES[gen - 1], margen, 130, { width: anchoUtil, align: 'center' });
-        doc.fontSize(14).fillColor('#666666')
-           .text(`Generación ${gen}`, margen, 175, { width: anchoUtil, align: 'center' });
+        if (opciones.portadas) {
+            // ── Portada de la región: nombre + los 3 iniciales ──
+            // Los iniciales de cada juego siempre caen en las posiciones 1, 4 y 7
+            // de la Pokédex regional (planta, fuego, agua), así que se calculan
+            // con el mismo corte de generación que el número regional, en vez de
+            // tener que mantener una lista aparte a mano.
+            doc.fontSize(34).fillColor('#000000')
+               .text(REGIONES[gen - 1], margen, 130, { width: anchoUtil, align: 'center' });
+            doc.fontSize(14).fillColor('#666666')
+               .text(`Generación ${gen}`, margen, 175, { width: anchoUtil, align: 'center' });
 
-        const idsIniciales = [CORTES_GEN[gen] + 1, CORTES_GEN[gen] + 4, CORTES_GEN[gen] + 7];
-        const anchoIni = anchoUtil / 3;
-        idsIniciales.forEach((id, i) => {
-            const pIni = pokemonPorId.get(id);
-            if (!pIni) return;
-            const xIni = margen + i * anchoIni;
-            dibujarImagenSegura(imagenPorId.get(id), xIni + 15, 260, anchoIni - 30, 170);
-            doc.fontSize(11).fillColor('#000000')
-               .text(pIni.name, xIni, 435, { width: anchoIni, align: 'center' });
-        });
+            const idsIniciales = [CORTES_GEN[gen] + 1, CORTES_GEN[gen] + 4, CORTES_GEN[gen] + 7];
+            const anchoIni = anchoUtil / 3;
+            idsIniciales.forEach((id, i) => {
+                const pIni = pokemonPorId.get(id);
+                if (!pIni) return;
+                const xIni = margen + i * anchoIni;
+                dibujarImagenSegura(imagenPorId.get(id), xIni + 15, 260, anchoIni - 30, 170);
+                doc.fontSize(11).fillColor('#000000')
+                   .text(pIni.name, xIni, 435, { width: anchoIni, align: 'center' });
+            });
+
+            doc.addPage();
+        }
 
         // ── Hojas de recortables de esta generación (nunca se mezcla con otra) ──
-        doc.addPage();
         pokemonGen.forEach((p, i) => {
             const posEnHoja = i % POR_HOJA;
             if (i > 0 && posEnHoja === 0) doc.addPage();
@@ -420,10 +444,8 @@ async function generarPDFRecortables() {
             dibujarImagenSegura(imagenPorId.get(p.id), x + padding, y + padding, anchoCelda - padding * 2, areaImagenAlto - padding);
 
             const textoY = y + areaImagenAlto + 2;
-            const rTxt = `R#${String(numeroRegional(p)).padStart(3, '0')}`;
-            const nTxt = `N#${String(p.id).padStart(4, '0')}`;
             doc.fontSize(10).fillColor('#000000')
-               .text(`${rTxt}   ${nTxt}`, x + padding, textoY, { width: anchoCelda - padding * 2, align: 'center' });
+               .text(textoNumeros(p), x + padding, textoY, { width: anchoCelda - padding * 2, align: 'center' });
             doc.fontSize(9)
                .text(p.name, x + padding, textoY + 13, { width: anchoCelda - padding * 2, align: 'center' });
         });
@@ -434,16 +456,44 @@ async function generarPDFRecortables() {
         stream.on('finish', resolve);
         stream.on('error', reject);
     });
-    fs.renameSync(temp, RUTA_PDF_RECORTABLES);
+    fs.renameSync(temp, rutaSalida);
 }
 
 app.get('/api/pdf-carpetas', async (req, res) => {
     try {
-        const dbStat  = fs.statSync(path.join(__dirname, 'pokemon_db.json'));
-        const cacheOk = fs.existsSync(RUTA_PDF_RECORTABLES) &&
-            fs.statSync(RUTA_PDF_RECORTABLES).mtimeMs >= dbStat.mtimeMs;
-        if (!cacheOk) await generarPDFRecortables();
-        res.download(RUTA_PDF_RECORTABLES, 'pokedex-recortables.pdf');
+        const nombresValidos = new Set(CARPETAS_DEF.map(c => c.nombre.toLowerCase()));
+        const carpetasParam = (req.query.carpetas || '').trim();
+        const nombresPedidos = carpetasParam
+            ? carpetasParam.split(',').map(s => s.trim().toLowerCase()).filter(n => nombresValidos.has(n))
+            : [...nombresValidos];
+        if (!nombresPedidos.length) {
+            return res.status(400).json({ success:false, error: 'No se seleccionó ninguna carpeta válida' });
+        }
+        const gens = new Set(
+            CARPETAS_DEF.filter(c => nombresPedidos.includes(c.nombre.toLowerCase())).flatMap(c => c.gens)
+        );
+        const portadas = req.query.portadas !== '0' && req.query.portadas !== 'false';
+        const numeros = ['ambos', 'regional', 'nacional'].includes(req.query.numeros) ? req.query.numeros : 'ambos';
+        const opciones = { gens, portadas, numeros };
+
+        const esDefault = gens.size === 9 && portadas && numeros === 'ambos';
+
+        if (esDefault) {
+            const dbStat  = fs.statSync(path.join(__dirname, 'pokemon_db.json'));
+            const cacheOk = fs.existsSync(RUTA_PDF_RECORTABLES) &&
+                fs.statSync(RUTA_PDF_RECORTABLES).mtimeMs >= dbStat.mtimeMs;
+            if (!cacheOk) await generarPDFRecortables(RUTA_PDF_RECORTABLES, opciones);
+            return res.download(RUTA_PDF_RECORTABLES, 'pokedex-recortables.pdf');
+        }
+
+        // Combinación personalizada: se genera al vuelo, sin tocar la caché
+        // (que solo vale para la combinación default de todas las carpetas).
+        if (!fs.existsSync(CARPETA_CACHE)) fs.mkdirSync(CARPETA_CACHE, { recursive: true });
+        const rutaTemp = path.join(CARPETA_CACHE, `recortables-personalizado-${process.pid}-${Date.now()}.pdf`);
+        await generarPDFRecortables(rutaTemp, opciones);
+        res.download(rutaTemp, 'pokedex-recortables.pdf', () => {
+            fs.unlink(rutaTemp, () => {});
+        });
     } catch (err) {
         console.error('⚠️  Error generando el PDF de recortables:', err.message);
         res.status(500).json({ success:false, error: 'No se pudo generar el PDF.' });

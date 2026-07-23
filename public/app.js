@@ -797,6 +797,19 @@ async function descargarRecortablesPDF() {
     const sub   = document.getElementById('btn-pdf-recortables-sub');
     if (btn.disabled) return; // ya se está generando, ignoramos clicks de más
 
+    const carpetasElegidas = [...document.querySelectorAll('.pdf-carpeta-check:checked')].map(c => c.value);
+    if (!carpetasElegidas.length) {
+        mostrarToastError('Elegí al menos una carpeta.');
+        return;
+    }
+    const incluirPortadas = document.getElementById('pdf-check-portadas').checked;
+    const numeros = document.querySelector('input[name="pdf-numeros"]:checked').value;
+    const params = new URLSearchParams({
+        carpetas: carpetasElegidas.join(','),
+        portadas: incluirPortadas ? '1' : '0',
+        numeros
+    });
+
     const subOriginal = sub.textContent;
     btn.disabled = true;
     icono.textContent = '⏳';
@@ -804,7 +817,7 @@ async function descargarRecortablesPDF() {
     sub.textContent = 'Generando... puede tardar un minuto';
 
     try {
-        const res = await fetch('/api/pdf-carpetas');
+        const res = await fetch(`/api/pdf-carpetas?${params.toString()}`);
         if (!res.ok) throw new Error('respuesta no válida');
         const blob = await res.blob();
         const url  = URL.createObjectURL(blob);
@@ -1366,6 +1379,27 @@ function cerrarAjustes() {
     document.getElementById('ajustes-modal').classList.remove('open');
 }
 document.getElementById('ajustes-close').onclick = cerrarAjustes;
+
+// ── PDF DE RECORTABLES: modal de opciones ───────────────────────────
+function abrirOpcionesPDF() {
+    const cont = document.getElementById('pdf-opciones-carpetas');
+    if (!cont.dataset.armado) {
+        cont.innerHTML = carpetas.map(c => `
+            <label class="pdf-opciones-check">
+                <input type="checkbox" class="pdf-carpeta-check" value="${c.nombre}" checked>
+                <span class="pdf-carpeta-swatch" style="background:${c.color}"></span>
+                ${c.nombre} (${c.rango})
+            </label>
+        `).join('');
+        cont.dataset.armado = '1';
+    }
+    cerrarAjustes();
+    document.getElementById('pdf-opciones-modal').classList.add('open');
+}
+function cerrarOpcionesPDF() {
+    document.getElementById('pdf-opciones-modal').classList.remove('open');
+}
+document.getElementById('pdf-opciones-close').onclick = cerrarOpcionesPDF;
 
 // ── CÁMARA OCR ───────────────────────────────────────────────────
 const cameraBoxView = document.getElementById('camera-fullscreen-view');

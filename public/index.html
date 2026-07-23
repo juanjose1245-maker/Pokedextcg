@@ -236,11 +236,11 @@
                     <span class="ajustes-item-sub">Descarga un .txt con lo que te falta</span>
                 </span>
             </button>
-            <button class="ajustes-item" id="btn-pdf-recortables" onclick="descargarRecortablesPDF()">
-                <span class="ajustes-item-icon" id="btn-pdf-recortables-icon">✂️</span>
+            <button class="ajustes-item" onclick="abrirOpcionesPDF()">
+                <span class="ajustes-item-icon">✂️</span>
                 <span class="ajustes-item-texto">
                     <span class="ajustes-item-titulo">Recortables para carpetas (PDF)</span>
-                    <span class="ajustes-item-sub" id="btn-pdf-recortables-sub">9 por hoja carta, en orden de Pokédex — puede tardar un minuto</span>
+                    <span class="ajustes-item-sub">9 por hoja carta, en orden de Pokédex — con opciones</span>
                 </span>
             </button>
             <button class="ajustes-item" onclick="toggleTema()" id="btn-tema-ajustes">
@@ -258,6 +258,42 @@
                 </span>
             </button>
         </div>
+    </div>
+</div>
+
+<!-- PDF RECORTABLES: OPCIONES -->
+<div class="ajustes-modal" id="pdf-opciones-modal">
+    <div class="ajustes-box">
+        <div class="ajustes-handle"></div>
+        <span class="ajustes-close" id="pdf-opciones-close">×</span>
+        <div class="ajustes-title">✂️ Recortables para carpetas</div>
+
+        <div class="pdf-opciones-seccion">
+            <div class="pdf-opciones-label">Carpetas a incluir</div>
+            <div id="pdf-opciones-carpetas"></div>
+        </div>
+
+        <div class="pdf-opciones-seccion">
+            <label class="pdf-opciones-check">
+                <input type="checkbox" id="pdf-check-portadas" checked>
+                Portada por región con los 3 iniciales
+            </label>
+        </div>
+
+        <div class="pdf-opciones-seccion">
+            <div class="pdf-opciones-label">Números a mostrar</div>
+            <label class="pdf-opciones-radio"><input type="radio" name="pdf-numeros" value="ambos" checked> Regional y Nacional</label>
+            <label class="pdf-opciones-radio"><input type="radio" name="pdf-numeros" value="regional"> Solo Regional</label>
+            <label class="pdf-opciones-radio"><input type="radio" name="pdf-numeros" value="nacional"> Solo Nacional</label>
+        </div>
+
+        <button class="ajustes-item" id="btn-pdf-recortables" onclick="descargarRecortablesPDF()">
+            <span class="ajustes-item-icon" id="btn-pdf-recortables-icon">✂️</span>
+            <span class="ajustes-item-texto">
+                <span class="ajustes-item-titulo">Generar PDF</span>
+                <span class="ajustes-item-sub" id="btn-pdf-recortables-sub">Puede tardar un minuto la primera vez</span>
+            </span>
+        </button>
     </div>
 </div>
 

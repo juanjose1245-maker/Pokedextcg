@@ -13,6 +13,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 const pokemonDB = JSON.parse(fs.readFileSync('pokemon_db.json', 'utf8'));
 const idsValidos = new Set(pokemonDB.map(p => p.id));
 
+// Mismo corte por generación que usa el frontend (public/app.js) para
+// calcular el "número regional" (posición dentro de su propia región/Pokédex
+// regional), separado del "número nacional" (su id global). Índice = gen.
+const CORTES_GEN = [0, 0, 151, 251, 386, 493, 649, 721, 809, 905];
+function numeroRegional(p) {
+    if (p.id >= 899 && p.id <= 905) return p.id - 809; // formas de Hisui
+    return p.id - CORTES_GEN[p.gen];
+}
+
 // Escritura atómica: escribe a un archivo temporal y recién después lo
 // renombra, para que un crash a mitad de escritura nunca deje el archivo
 // final truncado/corrupto (rename es atómico a nivel de sistema de archivos).
@@ -371,10 +380,12 @@ async function generarPDFRecortables() {
         }
 
         const textoY = y + areaImagenAlto + 2;
-        doc.fontSize(11).fillColor('#000000')
-           .text(`#${String(p.id).padStart(4, '0')}`, x + padding, textoY, { width: anchoCelda - padding * 2, align: 'center' });
+        const rTxt = `R#${String(numeroRegional(p)).padStart(3, '0')}`;
+        const nTxt = `N#${String(p.id).padStart(4, '0')}`;
+        doc.fontSize(10).fillColor('#000000')
+           .text(`${rTxt}   ${nTxt}`, x + padding, textoY, { width: anchoCelda - padding * 2, align: 'center' });
         doc.fontSize(9)
-           .text(p.name, x + padding, textoY + 14, { width: anchoCelda - padding * 2, align: 'center' });
+           .text(p.name, x + padding, textoY + 13, { width: anchoCelda - padding * 2, align: 'center' });
     });
 
     doc.end();

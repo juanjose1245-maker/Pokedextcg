@@ -792,45 +792,37 @@ async function exportarColeccion() {
 
 // ── PDF DE RECORTABLES PARA CARPETAS ────────────────────────────────
 async function descargarRecortablesPDF() {
+    const btn   = document.getElementById('btn-pdf-recortables');
+    const icono = document.getElementById('btn-pdf-recortables-icon');
+    const sub   = document.getElementById('btn-pdf-recortables-sub');
+    if (btn.disabled) return; // ya se está generando, ignoramos clicks de más
+
+    const subOriginal = sub.textContent;
+    btn.disabled = true;
+    icono.textContent = '⏳';
+    icono.classList.add('girando');
+    sub.textContent = 'Generando... puede tardar un minuto';
+
     try {
-        const btn   = document.getElementById('btn-pdf-recortables');
-        const icono = document.getElementById('btn-pdf-recortables-icon');
-        const sub   = document.getElementById('btn-pdf-recortables-sub');
-        if (!btn || !icono || !sub) {
-            alert('DEBUG: falta un elemento en el DOM — btn=' + !!btn + ' icono=' + !!icono + ' sub=' + !!sub);
-            return;
-        }
-        if (btn.disabled) return; // ya se está generando, ignoramos clicks de más
-
-        const subOriginal = sub.textContent;
-        btn.disabled = true;
-        icono.textContent = '⏳';
-        icono.classList.add('girando');
-        sub.textContent = 'Generando... puede tardar un minuto';
-
-        try {
-            const res = await fetch('/api/pdf-carpetas');
-            if (!res.ok) throw new Error('respuesta no válida: HTTP ' + res.status);
-            const blob = await res.blob();
-            const url  = URL.createObjectURL(blob);
-            const a    = document.createElement('a');
-            a.href = url;
-            a.download = `pokedex-recortables-${new Date().toISOString().slice(0,10)}.pdf`;
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            URL.revokeObjectURL(url);
-            mostrarToastInfo('PDF listo.');
-        } catch (err) {
-            alert('DEBUG error en fetch/descarga: ' + err.message);
-        } finally {
-            btn.disabled = false;
-            icono.textContent = '✂️';
-            icono.classList.remove('girando');
-            sub.textContent = subOriginal;
-        }
-    } catch (errExterno) {
-        alert('DEBUG error externo: ' + errExterno.message);
+        const res = await fetch('/api/pdf-carpetas');
+        if (!res.ok) throw new Error('respuesta no válida');
+        const blob = await res.blob();
+        const url  = URL.createObjectURL(blob);
+        const a    = document.createElement('a');
+        a.href = url;
+        a.download = `pokedex-recortables-${new Date().toISOString().slice(0,10)}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        mostrarToastInfo('PDF listo.');
+    } catch (err) {
+        mostrarToastError('No se pudo generar el PDF. Revisa tu conexión.');
+    } finally {
+        btn.disabled = false;
+        icono.textContent = '✂️';
+        icono.classList.remove('girando');
+        sub.textContent = subOriginal;
     }
 }
 

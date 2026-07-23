@@ -325,6 +325,7 @@ async function mapConcurrencia(items, limite, fn) {
 }
 
 async function generarPDFRecortables() {
+    if (!fs.existsSync(CARPETA_CACHE)) fs.mkdirSync(CARPETA_CACHE, { recursive: true });
     const pokemonOrdenados = [...pokemonDB].sort((a, b) => a.id - b.id);
     const imagenes = await mapConcurrencia(pokemonOrdenados, 12, p => descargarImagen(p.image));
 

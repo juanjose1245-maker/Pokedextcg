@@ -374,20 +374,78 @@
         .metrics-quick-btn:active{background:var(--border);}
         @media(min-width:800px){.metrics-quick-actions{display:none;}}
 
-        /* ── LOGIN MODAL ── */
-        .login-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:900;align-items:center;justify-content:center;padding:16px;}
-        .login-modal.open{display:flex;}
-        .login-box{background:var(--overlay-bg);border:1px solid var(--border);border-radius:20px;padding:24px;width:100%;max-width:340px;animation:fadeIn .2s ease;}
-        .login-title{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:4px;}
-        .login-sub{font-size:12px;color:var(--muted);margin-bottom:16px;}
-        .login-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:11px 14px;font-size:14px;color:var(--text);font-family:'Inter',sans-serif;outline:none;margin-bottom:10px;}
+        /* ── LOGIN MODAL — hoja deslizante en mobile, modal centrado en desktop ── */
+        .login-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:900;}
+        .login-modal.open{display:block;}
+        .login-box{
+            position:fixed;bottom:0;left:0;right:0;
+            background:var(--overlay-bg);border-radius:28px 28px 0 0;
+            padding:14px 24px 36px;
+            box-shadow:0 -12px 40px var(--shadow);
+            border-top:1px solid var(--border);
+            animation:slideUp .3s ease;
+            text-align:center;
+        }
+        .login-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 18px;}
+        .login-close{position:absolute;top:16px;right:18px;font-size:20px;color:var(--muted);cursor:pointer;padding:4px;}
+        .login-icon-circle{
+            width:56px;height:56px;margin:0 auto 14px;border-radius:50%;
+            background:var(--modo-bg);border:2px solid var(--modo-color);
+            display:flex;align-items:center;justify-content:center;font-size:24px;
+            transition:background .3s ease, border-color .3s ease;
+        }
+        .login-title{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px;}
+        .login-sub{font-size:12px;color:var(--muted);margin-bottom:20px;line-height:1.5;}
+        .login-input-wrap{position:relative;margin-bottom:10px;}
+        .login-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:13px 44px 13px 16px;font-size:15px;color:var(--text);font-family:'Inter',sans-serif;outline:none;text-align:left;}
         .login-input:focus{border-color:var(--accent2);}
-        .login-error{font-size:12px;color:var(--danger);margin-bottom:10px;display:none;}
+        .login-toggle-ver{position:absolute;right:4px;top:4px;bottom:4px;width:38px;border:none;background:none;font-size:16px;cursor:pointer;color:var(--muted);}
+        .login-error{font-size:12px;color:var(--danger);margin-bottom:10px;display:none;text-align:left;}
         .login-error.visible{display:block;}
         .login-actions{display:flex;gap:8px;}
-        .login-btn{flex:1;padding:11px;border-radius:10px;border:none;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.04em;cursor:pointer;}
-        .login-btn.primary{background:var(--accent2);color:#fff;}
+        .login-btn{flex:1;padding:13px;border-radius:12px;border:none;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;cursor:pointer;}
+        .login-btn.primary{background:var(--modo-color);color:#fff;transition:background .3s ease;}
         .login-btn.secondary{background:var(--surface2);color:var(--text);border:1px solid var(--border);}
+
+        @media(min-width:800px){
+            .login-modal{display:none;align-items:center;justify-content:center;padding:16px;}
+            .login-modal.open{display:flex;}
+            .login-box{
+                position:static;border-radius:24px;padding:28px 28px 24px;
+                max-width:340px;width:100%;border:1px solid var(--border);border-top:1px solid var(--border);
+                box-shadow:0 20px 60px rgba(0,0,0,0.2);
+            }
+            .login-handle{display:none;}
+        }
+
+        /* ── AJUSTES MODAL — mismo patrón que el login (hoja / modal centrado) ── */
+        .ajustes-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:850;}
+        .ajustes-modal.open{display:block;}
+        .ajustes-box{
+            position:fixed;bottom:0;left:0;right:0;
+            background:var(--overlay-bg);border-radius:28px 28px 0 0;
+            padding:14px 20px 30px;
+            box-shadow:0 -12px 40px var(--shadow);
+            border-top:1px solid var(--border);
+            animation:slideUp .3s ease;
+        }
+        .ajustes-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 14px;}
+        .ajustes-close{position:absolute;top:16px;right:18px;font-size:20px;color:var(--muted);cursor:pointer;padding:4px;}
+        .ajustes-title{font-family:'Rajdhani',sans-serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:14px;text-align:center;}
+        .ajustes-lista{display:flex;flex-direction:column;gap:8px;}
+        .ajustes-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;border:1px solid var(--border);background:var(--surface2);cursor:pointer;text-align:left;transition:background .15s;}
+        .ajustes-item:active{background:var(--border);}
+        .ajustes-item-icon{font-size:20px;flex-shrink:0;width:26px;text-align:center;}
+        .ajustes-item-texto{display:flex;flex-direction:column;gap:1px;}
+        .ajustes-item-titulo{font-size:13px;font-weight:700;color:var(--text);}
+        .ajustes-item-sub{font-size:11px;color:var(--muted);}
+
+        @media(min-width:800px){
+            .ajustes-modal{align-items:center;justify-content:center;padding:16px;}
+            .ajustes-modal.open{display:flex;}
+            .ajustes-box{position:static;border-radius:22px;padding:20px;max-width:360px;width:100%;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.2);}
+            .ajustes-handle{display:none;}
+        }
 
         /* ── CONFETI (celebración al completar) ── */
         @keyframes confeti-caida{
@@ -613,11 +671,7 @@
         <button class="sb-btn" onclick="mostrarMetricas()">📊 Métricas</button>
         <button class="sb-btn" id="sb-btn-cam" onclick="toggleCamaraOCR()">📷 Cámara</button>
         <button class="sb-btn" onclick="verPendientesAcomodar()">🔄 Por acomodar<span class="btn-badge" id="badge-pendientes-desktop"></span></button>
-        <button class="sb-btn" onclick="exportarColeccion()">⬇️ Exportar</button>
-        <button class="sb-btn" onclick="dispararInputImportar()">⬆️ Importar</button>
-        <button class="sb-btn" onclick="descargarListaFaltantes()">📋 Faltantes</button>
-        <button class="sb-btn" onclick="toggleTema()" id="btn-tema" title="Cambiar tema">🌓 Auto</button>
-        <button class="sb-btn" onclick="abrirLoginOLogout()" id="btn-sesion">🔒 Iniciar sesión</button>
+        <button class="sb-btn" onclick="abrirAjustes()">⚙️ Ajustes</button>
     </div>
 </div>
 <input type="file" id="input-importar" accept="application/json" style="display:none;" onchange="manejarArchivoImportar(event)">
@@ -763,22 +817,70 @@
         <div class="metrics-subtitle" id="metrics-subtitle"></div>
         <div id="metrics-content"></div>
         <div class="metrics-quick-actions" id="metrics-quick-actions">
-            <button class="metrics-quick-btn" onclick="exportarColeccion()">⬇️ Exportar mi colección</button>
-            <button class="metrics-quick-btn" onclick="dispararInputImportar()">⬆️ Importar respaldo</button>
-            <button class="metrics-quick-btn" onclick="descargarListaFaltantes()">📋 Lista de faltantes</button>
-            <button class="metrics-quick-btn" onclick="toggleTema()" id="btn-tema-mobile">🌓 Tema: Auto</button>
-            <button class="metrics-quick-btn" onclick="abrirLoginOLogout()" id="btn-sesion-mobile">🔒 Iniciar sesión</button>
+            <button class="metrics-quick-btn" onclick="cerrarMetricas(); abrirAjustes();">⚙️ Ajustes</button>
         </div>
         <button class="metrics-close" onclick="cerrarMetricas()">Cerrar</button>
+    </div>
+</div>
+
+<!-- AJUSTES MODAL -->
+<div class="ajustes-modal" id="ajustes-modal">
+    <div class="ajustes-box">
+        <div class="ajustes-handle"></div>
+        <span class="ajustes-close" id="ajustes-close">×</span>
+        <div class="ajustes-title">⚙️ Ajustes</div>
+        <div class="ajustes-lista">
+            <button class="ajustes-item" onclick="exportarColeccion()">
+                <span class="ajustes-item-icon">⬇️</span>
+                <span class="ajustes-item-texto">
+                    <span class="ajustes-item-titulo">Exportar mi colección</span>
+                    <span class="ajustes-item-sub">Descarga un respaldo en JSON</span>
+                </span>
+            </button>
+            <button class="ajustes-item" onclick="dispararInputImportar()">
+                <span class="ajustes-item-icon">⬆️</span>
+                <span class="ajustes-item-texto">
+                    <span class="ajustes-item-titulo">Importar respaldo</span>
+                    <span class="ajustes-item-sub">Reemplaza el inventario actual</span>
+                </span>
+            </button>
+            <button class="ajustes-item" onclick="descargarListaFaltantes()">
+                <span class="ajustes-item-icon">📋</span>
+                <span class="ajustes-item-texto">
+                    <span class="ajustes-item-titulo">Lista de faltantes</span>
+                    <span class="ajustes-item-sub">Descarga un .txt con lo que te falta</span>
+                </span>
+            </button>
+            <button class="ajustes-item" onclick="toggleTema()" id="btn-tema-ajustes">
+                <span class="ajustes-item-icon">🌓</span>
+                <span class="ajustes-item-texto">
+                    <span class="ajustes-item-titulo">Tema</span>
+                    <span class="ajustes-item-sub" id="btn-tema-ajustes-sub">Auto (según el sistema)</span>
+                </span>
+            </button>
+            <button class="ajustes-item" onclick="abrirLoginOLogout()" id="btn-sesion-ajustes">
+                <span class="ajustes-item-icon">🔒</span>
+                <span class="ajustes-item-texto">
+                    <span class="ajustes-item-titulo" id="btn-sesion-ajustes-titulo">Iniciar sesión</span>
+                    <span class="ajustes-item-sub">Necesaria para marcar/editar cartas</span>
+                </span>
+            </button>
+        </div>
     </div>
 </div>
 
 <!-- LOGIN MODAL -->
 <div class="login-modal" id="login-modal">
     <div class="login-box">
-        <div class="login-title">🔒 Iniciar sesión</div>
+        <div class="login-handle"></div>
+        <span class="login-close" id="login-close">×</span>
+        <div class="login-icon-circle">🔒</div>
+        <div class="login-title">Iniciar sesión</div>
         <div class="login-sub">Necesitas iniciar sesión para hacer cambios (marcar cartas, importar, etc). Ver tu colección no requiere sesión.</div>
-        <input type="password" id="login-password" class="login-input" placeholder="Contraseña" autocomplete="current-password">
+        <div class="login-input-wrap">
+            <input type="password" id="login-password" class="login-input" placeholder="Contraseña" autocomplete="current-password">
+            <button type="button" class="login-toggle-ver" id="login-toggle-ver" title="Mostrar/ocultar contraseña">👁️</button>
+        </div>
         <div class="login-error" id="login-error"></div>
         <div class="login-actions">
             <button class="login-btn secondary" onclick="cerrarLoginModal()">Cancelar</button>
@@ -818,12 +920,9 @@ function aplicarTema() {
     } else {
         document.documentElement.setAttribute('data-theme', temaActual);
     }
-    const etiquetas = { auto: '🌓 Tema: Auto', light: '☀️ Tema: Claro', dark: '🌙 Tema: Oscuro' };
-    const texto = etiquetas[temaActual];
-    const btnDesktop = document.getElementById('btn-tema');
-    const btnMobile  = document.getElementById('btn-tema-mobile');
-    if (btnDesktop) btnDesktop.textContent = texto;
-    if (btnMobile)  btnMobile.textContent  = texto;
+    const etiquetas = { auto: 'Auto (según el sistema)', light: '☀️ Claro', dark: '🌙 Oscuro' };
+    const sub = document.getElementById('btn-tema-ajustes-sub');
+    if (sub) sub.textContent = etiquetas[temaActual];
 }
 
 function toggleTema() {
@@ -852,18 +951,20 @@ async function revisarSesion() {
 
 function actualizarBotonSesion() {
     const texto = sesionActiva ? '🔓 Cerrar sesión' : '🔒 Iniciar sesión';
-    const bd = document.getElementById('btn-sesion');
-    const bm = document.getElementById('btn-sesion-mobile');
-    if (bd) bd.textContent = texto;
-    if (bm) bm.textContent = texto;
+    const titulo = document.getElementById('btn-sesion-ajustes-titulo');
+    if (titulo) titulo.textContent = sesionActiva ? 'Cerrar sesión' : 'Iniciar sesión';
+    const icono = document.querySelector('#btn-sesion-ajustes .ajustes-item-icon');
+    if (icono) icono.textContent = sesionActiva ? '🔓' : '🔒';
 }
 
 function abrirLoginOLogout() {
+    cerrarAjustes();
     if (sesionActiva) { cerrarSesion(); return; }
     abrirLoginModal();
 }
 
 function abrirLoginModal(accionPendiente) {
+    cerrarAjustes();
     accionPendienteTrasLogin = accionPendiente || null;
     document.getElementById('login-error').classList.remove('visible');
     document.getElementById('login-password').value = '';
@@ -2098,6 +2199,15 @@ function calcularProgresoReciente() {
 }
 function cerrarMetricas() { document.getElementById('metrics-modal').classList.remove('open'); }
 
+// ── AJUSTES: panel único, compartido entre desktop y mobile ────────
+function abrirAjustes() {
+    document.getElementById('ajustes-modal').classList.add('open');
+}
+function cerrarAjustes() {
+    document.getElementById('ajustes-modal').classList.remove('open');
+}
+document.getElementById('ajustes-close').onclick = cerrarAjustes;
+
 // ── CÁMARA OCR ───────────────────────────────────────────────────
 const cameraBoxView = document.getElementById('camera-fullscreen-view');
 const video         = document.getElementById('video');
@@ -2260,6 +2370,14 @@ window.onload = async () => {
 document.getElementById('login-password').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') intentarLogin();
 });
+document.getElementById('login-toggle-ver').addEventListener('click', () => {
+    const input = document.getElementById('login-password');
+    const btn   = document.getElementById('login-toggle-ver');
+    const verla = input.type === 'password';
+    input.type  = verla ? 'text' : 'password';
+    btn.textContent = verla ? '🙈' : '👁️';
+});
+document.getElementById('login-close').onclick = cerrarLoginModal;
 
 window.addEventListener('resize', () => {
     sincronizarGrids();

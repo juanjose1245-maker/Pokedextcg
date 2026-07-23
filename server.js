@@ -9,6 +9,22 @@ app.use(express.json({ limit: '2mb' })); // el respaldo importado puede pesar un
 app.use(express.static(path.join(__dirname, 'public')));
 
 const pokemonDB = JSON.parse(fs.readFileSync('pokemon_db.json', 'utf8'));
+const idsValidos = new Set(pokemonDB.map(p => p.id));
+
+// Escritura atómica: escribe a un archivo temporal y recién después lo
+// renombra, para que un crash a mitad de escritura nunca deje el archivo
+// final truncado/corrupto (rename es atómico a nivel de sistema de archivos).
+function escribirJSONAtomico(ruta, datos) {
+    const temp = `${ruta}.tmp-${process.pid}`;
+    fs.writeFileSync(temp, JSON.stringify(datos, null, 2));
+    fs.renameSync(temp, ruta);
+}
+
+// ── RESPALDO AUTOMÁTICO PERIÓDICO ───────────────────────────────────
+// Guarda una copia del inventario cada 24h (y una al arrancar el servidor),
+// quedándose solo con los últimos 14 respaldos para no llenar el disco.
+const CARPETA_RESPALDOS = path.join(__dirname, 'backups');
+if (!fs.existsSync(CARPETA_RESPALDOS)) fs.mkdirSync(CARPETA_RESPALDOS);
 
 // ── INVENTARIO ──────────────────────────────────────────────────────
 // Dos colecciones completamente independientes: "bulk" (cartas sueltas) y
@@ -16,7 +32,25 @@ const pokemonDB = JSON.parse(fs.readFileSync('pokemon_db.json', 'utf8'));
 // inventario[modo][id] = { fecha: "2026-07-15T12:00:00.000Z" }
 let inventario = { bulk: {}, carpetas: {} };
 if (fs.existsSync('inventario.json')) {
-    const raw = JSON.parse(fs.readFileSync('inventario.json', 'utf8'));
+    let raw;
+    try {
+        raw = JSON.parse(fs.readFileSync('inventario.json', 'utf8'));
+    } catch (err) {
+        // inventario.json corrupto (ej. crash a mitad de escritura): en vez de
+        // tirar el server abajo, caemos al respaldo automático más reciente.
+        console.error('⚠️  inventario.json está corrupto:', err.message);
+        const respaldos = fs.existsSync(CARPETA_RESPALDOS)
+            ? fs.readdirSync(CARPETA_RESPALDOS).filter(f => f.startsWith('inventario-')).sort()
+            : [];
+        const ultimo = respaldos[respaldos.length - 1];
+        if (ultimo) {
+            console.warn(`⚠️  Restaurando desde el respaldo más reciente: ${ultimo}`);
+            raw = JSON.parse(fs.readFileSync(path.join(CARPETA_RESPALDOS, ultimo), 'utf8'));
+        } else {
+            console.warn('⚠️  No hay respaldos disponibles, arrancando con inventario vacío.');
+            raw = {};
+        }
+    }
     if (raw.bulk || raw.carpetas) {
         inventario = { bulk: raw.bulk || {}, carpetas: raw.carpetas || {} };
     } else {
@@ -29,23 +63,17 @@ if (fs.existsSync('inventario.json')) {
     }
 }
 function guardarInventario() {
-    fs.writeFileSync('inventario.json', JSON.stringify(inventario, null, 2));
+    escribirJSONAtomico('inventario.json', inventario);
 }
 function modoValido(modo) {
     return modo === 'bulk' || modo === 'carpetas';
 }
 
-// ── RESPALDO AUTOMÁTICO PERIÓDICO ───────────────────────────────────
-// Guarda una copia del inventario cada 24h (y una al arrancar el servidor),
-// quedándose solo con los últimos 14 respaldos para no llenar el disco.
-const CARPETA_RESPALDOS = path.join(__dirname, 'backups');
-if (!fs.existsSync(CARPETA_RESPALDOS)) fs.mkdirSync(CARPETA_RESPALDOS);
-
 function respaldoAutomatico() {
     try {
         const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
         const ruta = path.join(CARPETA_RESPALDOS, `inventario-${timestamp}.json`);
-        fs.writeFileSync(ruta, JSON.stringify(inventario, null, 2));
+        escribirJSONAtomico(ruta, inventario);
         const archivos = fs.readdirSync(CARPETA_RESPALDOS)
             .filter(f => f.startsWith('inventario-'))
             .sort();
@@ -71,6 +99,23 @@ if (!process.env.ADMIN_PASSWORD) {
 }
 const SESION_DURACION_MS = 30 * 24 * 60 * 60 * 1000; // 30 días
 const sesionesActivas = new Map(); // token -> expiraEn
+
+// Comparación en tiempo constante para no filtrar por timing cuánto de la
+// contraseña coincidió (crypto.timingSafeEqual exige buffers del mismo
+// largo, así que un largo distinto ya alcanza para descartarla).
+function passwordValida(candidata) {
+    const bufA = Buffer.from(String(candidata || ''), 'utf8');
+    const bufB = Buffer.from(ADMIN_PASSWORD, 'utf8');
+    if (bufA.length !== bufB.length) return false;
+    return crypto.timingSafeEqual(bufA, bufB);
+}
+
+// La app puede correr detrás de un proxy que termina TLS (ej. nginx) y le
+// habla al server en HTTP plano, así que además de req.secure miramos el
+// header que ese proxy agrega.
+function esHttps(req) {
+    return req.secure || req.headers['x-forwarded-proto'] === 'https';
+}
 
 function parsearCookies(req) {
     const header = req.headers.cookie;
@@ -152,19 +197,21 @@ function broadcast(datos) {
 // ── LOGIN / LOGOUT ───────────────────────────────────────────────────
 app.post('/api/login', rateLimiter, (req, res) => {
     const { password } = req.body;
-    if (password !== ADMIN_PASSWORD) {
+    if (!passwordValida(password)) {
         return res.status(401).json({ success:false, error: 'Contraseña incorrecta.' });
     }
     const token = crypto.randomBytes(24).toString('hex');
     sesionesActivas.set(token, Date.now() + SESION_DURACION_MS);
-    res.setHeader('Set-Cookie', `sesion=${token}; HttpOnly; Path=/; Max-Age=${SESION_DURACION_MS / 1000}; SameSite=Lax`);
+    const secure = esHttps(req) ? '; Secure' : '';
+    res.setHeader('Set-Cookie', `sesion=${token}; HttpOnly; Path=/; Max-Age=${SESION_DURACION_MS / 1000}; SameSite=Lax${secure}`);
     res.json({ success: true });
 });
 
 app.post('/api/logout', (req, res) => {
     const cookies = parsearCookies(req);
     if (cookies.sesion) sesionesActivas.delete(cookies.sesion);
-    res.setHeader('Set-Cookie', 'sesion=; HttpOnly; Path=/; Max-Age=0; SameSite=Lax');
+    const secure = esHttps(req) ? '; Secure' : '';
+    res.setHeader('Set-Cookie', `sesion=; HttpOnly; Path=/; Max-Age=0; SameSite=Lax${secure}`);
     res.json({ success: true });
 });
 
@@ -235,6 +282,9 @@ app.post('/api/inventario', requiereLogin, rateLimiter, (req, res) => {
     if (!modoValido(modo)) {
         return res.status(400).json({ success:false, error: 'modo debe ser "bulk" o "carpetas"' });
     }
+    if (!idsValidos.has(Number(id))) {
+        return res.status(400).json({ success:false, error: 'id de Pokémon inválido' });
+    }
     const inv = inventario[modo];
     if (estado) {
         const fechaFinal = inv[id]?.fecha || fecha || new Date().toISOString();
@@ -264,13 +314,12 @@ app.post('/api/importar', requiereLogin, rateLimiter, (req, res) => {
 
     // Respaldo del estado justo antes de importar, por si algo sale mal.
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    fs.writeFileSync(
+    escribirJSONAtomico(
         path.join(CARPETA_RESPALDOS, `antes-de-importar-${timestamp}.json`),
-        JSON.stringify(inventario, null, 2)
+        inventario
     );
 
     const nuevo = {};
-    const idsValidos = new Set(pokemonDB.map(p => p.id));
     let ignorados = 0;
     registros.forEach(r => {
         const id = Number(r.id);
@@ -290,7 +339,6 @@ app.get('/api/eventos', (req, res) => {
     res.setHeader('Content-Type',  'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection',    'keep-alive');
-    res.setHeader('Access-Control-Allow-Origin', '*');
     res.flushHeaders();
 
     res.write(`data: ${JSON.stringify({ tipo: 'conectado' })}\n\n`);

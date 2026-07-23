@@ -333,10 +333,14 @@ async function mapConcurrencia(items, limite, fn) {
     return resultados;
 }
 
+const REGIONES = ['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'];
+
 async function generarPDFRecortables() {
     if (!fs.existsSync(CARPETA_CACHE)) fs.mkdirSync(CARPETA_CACHE, { recursive: true });
     const pokemonOrdenados = [...pokemonDB].sort((a, b) => a.id - b.id);
     const imagenes = await mapConcurrencia(pokemonOrdenados, 12, p => descargarImagen(p.image));
+    const imagenPorId = new Map(pokemonOrdenados.map((p, i) => [p.id, imagenes[i]]));
+    const pokemonPorId = new Map(pokemonOrdenados.map(p => [p.id, p]));
 
     const COLS = 3, FILAS = 3, POR_HOJA = COLS * FILAS;
     const margen = 20;
@@ -351,42 +355,70 @@ async function generarPDFRecortables() {
     const stream = fs.createWriteStream(temp);
     doc.pipe(stream);
 
-    pokemonOrdenados.forEach((p, i) => {
-        const posEnHoja = i % POR_HOJA;
-        if (i > 0 && posEnHoja === 0) doc.addPage();
-
-        const col   = posEnHoja % COLS;
-        const fila  = Math.floor(posEnHoja / COLS);
-        const x     = margen + col  * anchoCelda;
-        const y     = margen + fila * altoCelda;
-        const padding = 8;
-
-        // Línea de corte guía.
-        doc.lineWidth(0.5).rect(x, y, anchoCelda, altoCelda).stroke('#cccccc');
-
-        const areaImagenAlto = altoCelda * 0.72;
-        const imgBuf = imagenes[i];
-        if (imgBuf) {
-            try {
-                doc.image(imgBuf, x + padding, y + padding, {
-                    fit: [anchoCelda - padding * 2, areaImagenAlto - padding],
-                    align: 'center',
-                    valign: 'center'
-                });
-            } catch {
-                // Imagen corrupta o formato no soportado: seguimos sin ella,
-                // el número y el nombre alcanzan para identificar la casilla.
-            }
+    function dibujarImagenSegura(imgBuf, x, y, ancho, alto) {
+        if (!imgBuf) return;
+        try {
+            doc.image(imgBuf, x, y, { fit: [ancho, alto], align: 'center', valign: 'center' });
+        } catch {
+            // Imagen corrupta o formato no soportado: seguimos sin ella.
         }
+    }
 
-        const textoY = y + areaImagenAlto + 2;
-        const rTxt = `R#${String(numeroRegional(p)).padStart(3, '0')}`;
-        const nTxt = `N#${String(p.id).padStart(4, '0')}`;
-        doc.fontSize(10).fillColor('#000000')
-           .text(`${rTxt}   ${nTxt}`, x + padding, textoY, { width: anchoCelda - padding * 2, align: 'center' });
-        doc.fontSize(9)
-           .text(p.name, x + padding, textoY + 13, { width: anchoCelda - padding * 2, align: 'center' });
-    });
+    let primeraPagina = true;
+    for (let gen = 1; gen <= 9; gen++) {
+        const pokemonGen = pokemonOrdenados.filter(p => p.gen === gen);
+        if (!pokemonGen.length) continue;
+        if (!primeraPagina) doc.addPage();
+        primeraPagina = false;
+
+        // ── Portada de la región: nombre + los 3 iniciales ──
+        // Los iniciales de cada juego siempre caen en las posiciones 1, 4 y 7
+        // de la Pokédex regional (planta, fuego, agua), así que se calculan
+        // con el mismo corte de generación que el número regional, en vez de
+        // tener que mantener una lista aparte a mano.
+        doc.fontSize(34).fillColor('#000000')
+           .text(REGIONES[gen - 1], margen, 130, { width: anchoUtil, align: 'center' });
+        doc.fontSize(14).fillColor('#666666')
+           .text(`Generación ${gen}`, margen, 175, { width: anchoUtil, align: 'center' });
+
+        const idsIniciales = [CORTES_GEN[gen] + 1, CORTES_GEN[gen] + 4, CORTES_GEN[gen] + 7];
+        const anchoIni = anchoUtil / 3;
+        idsIniciales.forEach((id, i) => {
+            const pIni = pokemonPorId.get(id);
+            if (!pIni) return;
+            const xIni = margen + i * anchoIni;
+            dibujarImagenSegura(imagenPorId.get(id), xIni + 15, 260, anchoIni - 30, 170);
+            doc.fontSize(11).fillColor('#000000')
+               .text(pIni.name, xIni, 435, { width: anchoIni, align: 'center' });
+        });
+
+        // ── Hojas de recortables de esta generación (nunca se mezcla con otra) ──
+        doc.addPage();
+        pokemonGen.forEach((p, i) => {
+            const posEnHoja = i % POR_HOJA;
+            if (i > 0 && posEnHoja === 0) doc.addPage();
+
+            const col   = posEnHoja % COLS;
+            const fila  = Math.floor(posEnHoja / COLS);
+            const x     = margen + col  * anchoCelda;
+            const y     = margen + fila * altoCelda;
+            const padding = 8;
+
+            // Línea de corte guía.
+            doc.lineWidth(0.5).rect(x, y, anchoCelda, altoCelda).stroke('#cccccc');
+
+            const areaImagenAlto = altoCelda * 0.72;
+            dibujarImagenSegura(imagenPorId.get(p.id), x + padding, y + padding, anchoCelda - padding * 2, areaImagenAlto - padding);
+
+            const textoY = y + areaImagenAlto + 2;
+            const rTxt = `R#${String(numeroRegional(p)).padStart(3, '0')}`;
+            const nTxt = `N#${String(p.id).padStart(4, '0')}`;
+            doc.fontSize(10).fillColor('#000000')
+               .text(`${rTxt}   ${nTxt}`, x + padding, textoY, { width: anchoCelda - padding * 2, align: 'center' });
+            doc.fontSize(9)
+               .text(p.name, x + padding, textoY + 13, { width: anchoCelda - padding * 2, align: 'center' });
+        });
+    }
 
     doc.end();
     await new Promise((resolve, reject) => {

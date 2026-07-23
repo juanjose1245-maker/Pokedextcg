@@ -1,9 +1,11 @@
-const express = require('express');
-const fs      = require('fs');
-const path    = require('path');
-const crypto  = require('crypto');
-const app     = express();
-const PORT    = 3000;
+const express   = require('express');
+const fs        = require('fs');
+const path      = require('path');
+const crypto    = require('crypto');
+const PDFDocument = require('pdfkit');
+const sharp     = require('sharp');
+const app       = express();
+const PORT      = 3000;
 
 app.use(express.json({ limit: '2mb' })); // el respaldo importado puede pesar un poco
 app.use(express.static(path.join(__dirname, 'public')));
@@ -274,6 +276,125 @@ app.get('/api/exportar', (req, res) => {
         bulk: formatear(inventario.bulk),
         carpetas: formatear(inventario.carpetas)
     });
+});
+
+// ── PDF DE RECORTABLES ──────────────────────────────────────────────
+// Hojas carta imprimibles con los 1025 Pokémon en grilla 3x3 (9 por hoja),
+// en orden de Pokédex — el mismo orden en que caen en las 4 carpetas
+// físicas (cada una es un rango contiguo de generaciones/ids), para
+// recortar e ir guiándose de qué casilla es cada uno. Incluye a todos,
+// se tenga la carta o no. El contenido no depende del inventario (no
+// cambia si marcás/desmarcás cartas), así que se cachea en disco y solo
+// se regenera si pokemon_db.json es más nuevo que el PDF cacheado.
+const CARPETA_CACHE = path.join(__dirname, 'cache');
+if (!fs.existsSync(CARPETA_CACHE)) fs.mkdirSync(CARPETA_CACHE);
+const RUTA_PDF_RECORTABLES = path.join(CARPETA_CACHE, 'pokedex-recortables.pdf');
+
+async function descargarImagen(url) {
+    try {
+        const res = await fetch(url);
+        if (!res.ok) return null;
+        const original = Buffer.from(await res.arrayBuffer());
+        // Las artworks oficiales vienen en resolución mucho mayor a la que
+        // necesita un recortable de ~2.5in — las reducimos y pasamos a JPEG
+        // (aplanando la transparencia sobre blanco, igual que el fondo de la
+        // hoja) para que el PDF de 1025 imágenes no pese cientos de MB.
+        return await sharp(original)
+            .resize(600, 600, { fit: 'inside', withoutEnlargement: true })
+            .flatten({ background: '#ffffff' })
+            .jpeg({ quality: 82 })
+            .toBuffer();
+    } catch {
+        return null;
+    }
+}
+
+// Descarga las imágenes con concurrencia limitada: en paralelo pero sin
+// disparar las 1025 de una, para no saturar la red ni pegarle un pico a GitHub.
+async function mapConcurrencia(items, limite, fn) {
+    const resultados = new Array(items.length);
+    let indice = 0;
+    async function trabajador() {
+        while (indice < items.length) {
+            const i = indice++;
+            resultados[i] = await fn(items[i]);
+        }
+    }
+    await Promise.all(Array.from({ length: limite }, trabajador));
+    return resultados;
+}
+
+async function generarPDFRecortables() {
+    const pokemonOrdenados = [...pokemonDB].sort((a, b) => a.id - b.id);
+    const imagenes = await mapConcurrencia(pokemonOrdenados, 12, p => descargarImagen(p.image));
+
+    const COLS = 3, FILAS = 3, POR_HOJA = COLS * FILAS;
+    const margen = 20;
+
+    const doc = new PDFDocument({ size: 'letter', margin: margen });
+    const anchoUtil  = doc.page.width  - margen * 2;
+    const altoUtil   = doc.page.height - margen * 2;
+    const anchoCelda = anchoUtil / COLS;
+    const altoCelda  = altoUtil  / FILAS;
+
+    const temp = `${RUTA_PDF_RECORTABLES}.tmp-${process.pid}`;
+    const stream = fs.createWriteStream(temp);
+    doc.pipe(stream);
+
+    pokemonOrdenados.forEach((p, i) => {
+        const posEnHoja = i % POR_HOJA;
+        if (i > 0 && posEnHoja === 0) doc.addPage();
+
+        const col   = posEnHoja % COLS;
+        const fila  = Math.floor(posEnHoja / COLS);
+        const x     = margen + col  * anchoCelda;
+        const y     = margen + fila * altoCelda;
+        const padding = 8;
+
+        // Línea de corte guía.
+        doc.lineWidth(0.5).rect(x, y, anchoCelda, altoCelda).stroke('#cccccc');
+
+        const areaImagenAlto = altoCelda * 0.72;
+        const imgBuf = imagenes[i];
+        if (imgBuf) {
+            try {
+                doc.image(imgBuf, x + padding, y + padding, {
+                    fit: [anchoCelda - padding * 2, areaImagenAlto - padding],
+                    align: 'center',
+                    valign: 'center'
+                });
+            } catch {
+                // Imagen corrupta o formato no soportado: seguimos sin ella,
+                // el número y el nombre alcanzan para identificar la casilla.
+            }
+        }
+
+        const textoY = y + areaImagenAlto + 2;
+        doc.fontSize(11).fillColor('#000000')
+           .text(`#${String(p.id).padStart(4, '0')}`, x + padding, textoY, { width: anchoCelda - padding * 2, align: 'center' });
+        doc.fontSize(9)
+           .text(p.name, x + padding, textoY + 14, { width: anchoCelda - padding * 2, align: 'center' });
+    });
+
+    doc.end();
+    await new Promise((resolve, reject) => {
+        stream.on('finish', resolve);
+        stream.on('error', reject);
+    });
+    fs.renameSync(temp, RUTA_PDF_RECORTABLES);
+}
+
+app.get('/api/pdf-carpetas', async (req, res) => {
+    try {
+        const dbStat  = fs.statSync(path.join(__dirname, 'pokemon_db.json'));
+        const cacheOk = fs.existsSync(RUTA_PDF_RECORTABLES) &&
+            fs.statSync(RUTA_PDF_RECORTABLES).mtimeMs >= dbStat.mtimeMs;
+        if (!cacheOk) await generarPDFRecortables();
+        res.download(RUTA_PDF_RECORTABLES, 'pokedex-recortables.pdf');
+    } catch (err) {
+        console.error('⚠️  Error generando el PDF de recortables:', err.message);
+        res.status(500).json({ success:false, error: 'No se pudo generar el PDF.' });
+    }
 });
 
 // ── ENDPOINTS DE ESCRITURA (requieren sesión iniciada) ─────────────

@@ -790,6 +790,29 @@ async function exportarColeccion() {
     mostrarToastInfo('Respaldo descargado.');
 }
 
+// ── PDF DE RECORTABLES PARA CARPETAS ────────────────────────────────
+async function descargarRecortablesPDF() {
+    mostrarToastInfo('Generando PDF... la primera vez puede tardar un minuto.');
+    let blob;
+    try {
+        const res = await fetch('/api/pdf-carpetas');
+        if (!res.ok) throw new Error('respuesta no válida');
+        blob = await res.blob();
+    } catch (err) {
+        mostrarToastError('No se pudo generar el PDF. Revisa tu conexión.');
+        return;
+    }
+    const url = URL.createObjectURL(blob);
+    const a   = document.createElement('a');
+    a.href = url;
+    a.download = `pokedex-recortables-${new Date().toISOString().slice(0,10)}.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    mostrarToastInfo('PDF listo.');
+}
+
 // ── GALLERY ──
 async function verListadoGeneracion(gen, region) {
     genActualAbierta = { gen, region, esCarpeta: false };

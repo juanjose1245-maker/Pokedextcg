@@ -8,7 +8,7 @@
 // Colócalo en la misma carpeta donde sirves index.html (normalmente "public/"),
 // para que quede accesible en la raíz como "/sw.js".
 
-const CACHE_VERSION = 'pokedex-tcg-v3';
+const CACHE_VERSION = 'pokedex-tcg-v4';
 const CACHE_SHELL    = `${CACHE_VERSION}-shell`;
 const CACHE_LECTURAS = `${CACHE_VERSION}-lecturas`;
 
@@ -81,6 +81,14 @@ self.addEventListener('fetch', (event) => {
                 })
                 .catch(() => caches.match(request))
         );
+        return;
+    }
+
+    // Cualquier otra lectura de la API (exportar, PDF de recortables, etc.):
+    // siempre a la red, nunca cacheada — se generan al vuelo y no tiene
+    // sentido servir una respuesta vieja guardada por error.
+    if (url.pathname.startsWith('/api/')) {
+        event.respondWith(fetch(request));
         return;
     }
 

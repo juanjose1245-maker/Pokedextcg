@@ -8,15 +8,33 @@
 // Colócalo en la misma carpeta donde sirves index.html (normalmente "public/"),
 // para que quede accesible en la raíz como "/sw.js".
 
-const CACHE_VERSION = 'pokedex-tcg-v1';
+const CACHE_VERSION = 'pokedex-tcg-v2';
 const CACHE_SHELL    = `${CACHE_VERSION}-shell`;
 const CACHE_LECTURAS = `${CACHE_VERSION}-lecturas`;
 
 // Rutas de la app que no cambian seguido — se cachean al instalar.
+// Fuentes, íconos y el motor de OCR ahora se autohospedan (antes venían de
+// Google Fonts / icons8 / jsdelivr y no se cacheaban, así que offline se
+// veían rotos). Los archivos .wasm del OCR (~4MB cada uno) quedan afuera a
+// propósito: se cachean solos la primera vez que se usa la cámara, vía el
+// mismo cache-first de más abajo — no tiene sentido bajarlos en el install
+// si la persona nunca abre el escáner.
 const ARCHIVOS_SHELL = [
     '/',
     '/index.html',
-    '/manifest.json'
+    '/manifest.json',
+    '/fonts/fonts.css',
+    '/fonts/inter.woff2',
+    '/fonts/rajdhani-500.woff2',
+    '/fonts/rajdhani-700.woff2',
+    '/icons/pokeball-96.png',
+    '/icons/pokeball-120.png',
+    '/icons/pokeball-152.png',
+    '/icons/pokeball-180.png',
+    '/icons/pokeball-192.png',
+    '/icons/pokeball-512.png',
+    '/vendor/tesseract/tesseract.min.js',
+    '/vendor/tesseract/worker.min.js'
 ];
 
 self.addEventListener('install', (event) => {

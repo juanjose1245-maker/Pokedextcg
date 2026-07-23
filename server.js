@@ -2,12 +2,21 @@ const express   = require('express');
 const fs        = require('fs');
 const path      = require('path');
 const crypto    = require('crypto');
+const { exec }  = require('child_process');
+const util      = require('util');
+const execAsync = util.promisify(exec);
 const PDFDocument = require('pdfkit');
 const sharp     = require('sharp');
 const app       = express();
 const PORT      = 3000;
 
-app.use(express.json({ limit: '2mb' })); // el respaldo importado puede pesar un poco
+app.use(express.json({
+    limit: '2mb', // el respaldo importado puede pesar un poco
+    // Guardamos también el body crudo: el webhook de auto-deploy necesita
+    // verificar la firma HMAC de GitHub sobre los bytes exactos recibidos,
+    // no sobre el JSON ya parseado/re-serializado.
+    verify: (req, res, buf) => { req.rawBody = buf; }
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const pokemonDB = JSON.parse(fs.readFileSync('pokemon_db.json', 'utf8'));
@@ -515,6 +524,51 @@ app.get('/api/eventos', (req, res) => {
         clientes.delete(res);
         console.log(`📴 Cliente desconectado. Total: ${clientes.size}`);
     });
+});
+
+// ── AUTO-DEPLOY: webhook de GitHub ──────────────────────────────────
+// Cada push a main hace que GitHub llame a este endpoint. Verificamos la
+// firma HMAC-SHA256 (header X-Hub-Signature-256) contra DEPLOY_WEBHOOK_SECRET
+// antes de tocar nada, así nadie más puede disparar un deploy. Después de
+// actualizar el código, el proceso termina con código de error a propósito
+// — el unit de systemd tiene Restart=on-failure, así que lo vuelve a
+// levantar solo, ya con el código nuevo, sin que este proceso necesite
+// permisos para llamar a systemctl.
+const DEPLOY_WEBHOOK_SECRET = process.env.DEPLOY_WEBHOOK_SECRET || null;
+if (!DEPLOY_WEBHOOK_SECRET) {
+    console.warn('⚠️  DEPLOY_WEBHOOK_SECRET no configurado — el auto-deploy por webhook queda deshabilitado.');
+}
+
+function firmaValida(req) {
+    const firma = req.headers['x-hub-signature-256'];
+    if (!firma || !req.rawBody) return false;
+    const esperada = 'sha256=' + crypto.createHmac('sha256', DEPLOY_WEBHOOK_SECRET).update(req.rawBody).digest('hex');
+    const bufFirma = Buffer.from(firma);
+    const bufEsperada = Buffer.from(esperada);
+    if (bufFirma.length !== bufEsperada.length) return false;
+    return crypto.timingSafeEqual(bufFirma, bufEsperada);
+}
+
+app.post('/api/webhook-deploy', (req, res) => {
+    if (!DEPLOY_WEBHOOK_SECRET) return res.status(503).json({ success:false, error: 'Auto-deploy no configurado' });
+    if (!firmaValida(req)) return res.status(401).json({ success:false, error: 'Firma inválida' });
+    if (req.body.ref !== 'refs/heads/main') {
+        return res.json({ success:true, ignorado: true, motivo: 'no es push a main' });
+    }
+
+    res.json({ success:true, mensaje: 'Deploy en curso' });
+
+    (async () => {
+        try {
+            console.log('🚀 Webhook de GitHub: actualizando desde main...');
+            await execAsync('git fetch origin main && git reset --hard origin/main', { cwd: __dirname });
+            await execAsync('npm install', { cwd: __dirname });
+            console.log('✅ Deploy actualizado, reiniciando proceso...');
+            process.exit(1);
+        } catch (err) {
+            console.error('⚠️  Error en el auto-deploy:', err.message);
+        }
+    })();
 });
 
 app.listen(PORT, () => console.log(`🚀 Servidor activo en puerto ${PORT}`));

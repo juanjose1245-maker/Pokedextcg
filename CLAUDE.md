@@ -48,7 +48,9 @@ Write endpoints require a session, gated by `ADMIN_PASSWORD` env var (defaults t
 - Card scanning uses Tesseract.js (loaded from CDN, not npm) to OCR a camera feed and match recognized text against `pokemonDB` — see the `CÁMARA OCR` section near the end of the file (`toggleCamaraOCR`, `iniciarBucleOCR`).
 - Theme (light/dark/auto) and mode are both persisted to `localStorage` and applied on load.
 
-**`public/sw.js`** — PWA service worker. Only intercepts `GET`; all writes (`/api/login`, `/api/inventario`, `/api/importar`, etc.) always hit the network directly, by design, to avoid silent cross-device inconsistencies. `/api/buscar` and `/api/estadisticas` are network-first with a cache fallback for offline viewing; everything else (app shell, images) is cache-first.
+**`public/sw.js`** — PWA service worker. Only intercepts `GET`; all writes (`/api/login`, `/api/inventario`, `/api/importar`, etc.) always hit the network directly, by design, to avoid silent cross-device inconsistencies. `/api/buscar`, `/api/estadisticas`, and every other `/api/*` GET are network-first/network-only; everything else (app shell — `index.html`, `app.js`, `styles.css`, fonts, icons — plus images) is cache-first.
+
+**Gotcha (bit us repeatedly): bump `CACHE_VERSION` in `sw.js` in the SAME commit as any change to `index.html`, `app.js`, or `styles.css`.** The browser only re-checks/re-installs the service worker when `sw.js`'s own bytes change — if you edit the app shell files without touching `sw.js`, browsers keep serving the stale cached shell indefinitely (surviving even "clear site data" in some cases), with zero errors to signal it. There's no build step to catch this automatically, so it's a manual discipline: touched the shell? Bump the version.
 
 ## Data files (not code, but load-bearing)
 

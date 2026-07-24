@@ -1432,14 +1432,23 @@ function cerrarOpcionesPDF() {
 }
 document.getElementById('pdf-opciones-close').onclick = cerrarOpcionesPDF;
 
-// ── WIZARD: CONFIGURAR CARPETAS ─────────────────────────────────────
+// ── WIZARD: PLANEAR MIS CARPETAS ────────────────────────────────────
+// Pensado como ayuda para planificar el álbum físico, no como un
+// formulario de configuración: arranca preguntando el contexto (¿ya
+// tenés las carpetas o las vas a comprar?), ofrece presets en vez de
+// pedir números pelados, deja ajustar visualmente tocando fichas, y
+// habla en términos de hojas/bolsillos en vez de "espacios" a secas.
 const PALETA_CARPETAS = ['#3b5bdb','#7c3aed','#db2777','#dc2626','#059669','#d97706','#0891b2','#65a30d','#9333ea'];
-let wizardGrupos = [];      // array de arrays de gens, ej [[1,2],[3,4],[5,6,7],[8,9]]
-let wizardOrigenPaso3 = 'modo';
+let wizardContexto   = 'tengo';  // 'tengo' | 'comprar'
+let wizardAsignacion = {};       // { gen(1-9): numeroDeCarpeta(1-9) }
+let wizardGrupos     = [];       // array de arrays de gens, compactado desde wizardAsignacion
+let wizardCapacidades = [];      // espacios (hojas × bolsillos) por grupo, paralelo a wizardGrupos
 
 function abrirWizardCarpetas() {
     cerrarAjustes();
-    wizardMostrarPaso('modo');
+    wizardContexto = 'tengo';
+    document.getElementById('wizard-preset-parejo-cantidad').style.display = 'none';
+    wizardMostrarPaso('contexto');
     document.getElementById('wizard-carpetas-modal').classList.add('open');
 }
 function cerrarWizardCarpetas() {
@@ -1448,20 +1457,14 @@ function cerrarWizardCarpetas() {
 document.getElementById('wizard-carpetas-close').onclick = cerrarWizardCarpetas;
 
 function wizardMostrarPaso(paso) {
-    ['modo','auto','manual','nombres'].forEach(p => {
+    ['contexto','preset','ajuste','capacidad','nombres'].forEach(p => {
         document.getElementById(`wizard-paso-${p}`).style.display = (p === paso) ? '' : 'none';
     });
 }
 
-function wizardElegirModo(modo) {
-    if (modo === 'auto') {
-        wizardActualizarPreviewAuto();
-        document.getElementById('wizard-auto-cantidad').oninput = wizardActualizarPreviewAuto;
-        wizardMostrarPaso('auto');
-    } else {
-        wizardArmarPasoManual();
-        wizardMostrarPaso('manual');
-    }
+function wizardElegirContexto(ctx) {
+    wizardContexto = ctx;
+    wizardMostrarPaso('preset');
 }
 
 // Reparte las 9 generaciones en `cantidad` grupos contiguos, lo más parejo posible.
@@ -1479,51 +1482,96 @@ function wizardRepartirParejo(cantidad) {
     return grupos;
 }
 
-function wizardActualizarPreviewAuto() {
-    const cantidad = parseInt(document.getElementById('wizard-auto-cantidad').value) || 1;
-    const grupos = wizardRepartirParejo(cantidad);
-    document.getElementById('wizard-auto-preview').innerHTML = grupos.map((g, i) =>
-        `<div class="wizard-preview-fila"><strong>Carpeta ${i+1}:</strong> ${g.map(x => regiones[x-1]).join(', ')}</div>`
+function gruposAAsignacion(grupos) {
+    const asign = {};
+    grupos.forEach((g, i) => g.forEach(gen => { asign[gen] = i + 1; }));
+    return asign;
+}
+
+function wizardElegirPreset(preset) {
+    if (preset === 'parejo') {
+        document.getElementById('wizard-preset-parejo-cantidad').style.display = 'block';
+        return;
+    }
+    document.getElementById('wizard-preset-parejo-cantidad').style.display = 'none';
+    if (preset === 'una-por-gen') {
+        wizardAsignacion = gruposAAsignacion(Array.from({ length: 9 }, (_, i) => [i + 1]));
+    } else if (preset === 'clasicas') {
+        wizardAsignacion = gruposAAsignacion([[1,2],[3,4],[5,6,7],[8,9]]);
+    } else if (preset === 'actual') {
+        wizardAsignacion = gruposAAsignacion(carpetas.map(c => c.gens));
+    }
+    wizardArmarPasoAjuste();
+    wizardMostrarPaso('ajuste');
+}
+
+function wizardConfirmarParejo() {
+    const cantidad = parseInt(document.getElementById('wizard-parejo-cantidad').value) || 1;
+    wizardAsignacion = gruposAAsignacion(wizardRepartirParejo(cantidad));
+    wizardArmarPasoAjuste();
+    wizardMostrarPaso('ajuste');
+}
+
+// Renumera los grupos usados a 1..K sin huecos, en orden de primera
+// aparición (gen 1 a 9), para que tocar fichas nunca deje "Carpeta 4"
+// vacía con un salto a "Carpeta 5".
+function wizardCompactarAsignacion() {
+    const vistos = new Map();
+    let siguiente = 1;
+    for (let gen = 1; gen <= 9; gen++) {
+        const val = wizardAsignacion[gen] || 1;
+        if (!vistos.has(val)) vistos.set(val, siguiente++);
+        wizardAsignacion[gen] = vistos.get(val);
+    }
+}
+
+function wizardColorDeGrupo(numero) {
+    return PALETA_CARPETAS[(numero - 1) % PALETA_CARPETAS.length];
+}
+
+function wizardArmarPasoAjuste() {
+    wizardCompactarAsignacion();
+    document.getElementById('wizard-chips').innerHTML = Array.from({ length: 9 }, (_, i) => {
+        const gen = i + 1;
+        const grupo = wizardAsignacion[gen];
+        return `<button type="button" class="wizard-chip" style="background:${wizardColorDeGrupo(grupo)}" onclick="wizardCiclarChip(${gen})">
+            <span class="wizard-chip-region">${regiones[i]}</span>
+            <span class="wizard-chip-grupo">Carpeta ${grupo}</span>
+        </button>`;
+    }).join('');
+    wizardActualizarPreviewAjuste();
+}
+
+// Tocar una ficha la manda a la siguiente carpeta en uso, y una más allá
+// de la última permite "crear" una carpeta nueva para esa generación sola.
+function wizardCiclarChip(gen) {
+    const maxGrupo = Math.max(...Object.values(wizardAsignacion));
+    const actual = wizardAsignacion[gen];
+    const limite = Math.min(maxGrupo + 1, 9);
+    wizardAsignacion[gen] = actual >= limite ? 1 : actual + 1;
+    wizardArmarPasoAjuste();
+}
+
+function wizardGruposDesdeAsignacion() {
+    const porGrupo = new Map();
+    for (let gen = 1; gen <= 9; gen++) {
+        const g = wizardAsignacion[gen];
+        if (!porGrupo.has(g)) porGrupo.set(g, []);
+        porGrupo.get(g).push(gen);
+    }
+    return [...porGrupo.entries()];
+}
+
+function wizardActualizarPreviewAjuste() {
+    document.getElementById('wizard-ajuste-preview').innerHTML = wizardGruposDesdeAsignacion().map(([g, gens]) =>
+        `<div class="wizard-preview-fila" style="border-left:4px solid ${wizardColorDeGrupo(g)}"><strong>Carpeta ${g}:</strong> ${gens.map(x => regiones[x-1]).join(', ')}</div>`
     ).join('');
 }
 
-function wizardAutoSiguiente() {
-    const cantidad = parseInt(document.getElementById('wizard-auto-cantidad').value) || 1;
-    wizardGrupos = wizardRepartirParejo(cantidad);
-    wizardOrigenPaso3 = 'auto';
-    wizardArmarPasoNombres();
-    wizardMostrarPaso('nombres');
-}
-
-function wizardArmarPasoManual() {
-    // Precarga con la agrupación actual, para que "Manual" parta de algo conocido.
-    const grupoDeGen = {};
-    carpetas.forEach((c, i) => c.gens.forEach(g => { grupoDeGen[g] = i + 1; }));
-    document.getElementById('wizard-manual-lista').innerHTML = Array.from({ length: 9 }, (_, i) => {
-        const gen = i + 1;
-        return `<div class="wizard-manual-fila">
-            <span>Gen ${gen} · ${regiones[i]}</span>
-            <input type="number" min="1" max="9" value="${grupoDeGen[gen] || 1}" class="wizard-manual-grupo" data-gen="${gen}">
-        </div>`;
-    }).join('');
-}
-
-function wizardManualSiguiente() {
-    const porGrupo = new Map(); // etiqueta tal cual la tipeó el usuario -> gens, en orden de primera aparición
-    document.querySelectorAll('.wizard-manual-grupo').forEach(inp => {
-        const gen = parseInt(inp.dataset.gen);
-        const etiqueta = inp.value.trim() || '1';
-        if (!porGrupo.has(etiqueta)) porGrupo.set(etiqueta, []);
-        porGrupo.get(etiqueta).push(gen);
-    });
-    wizardGrupos = [...porGrupo.values()];
-    wizardOrigenPaso3 = 'manual';
-    wizardArmarPasoNombres();
-    wizardMostrarPaso('nombres');
-}
-
-function wizardVolverAlPaso2() {
-    wizardMostrarPaso(wizardOrigenPaso3);
+function wizardAjusteSiguiente() {
+    wizardGrupos = wizardGruposDesdeAsignacion().map(([, gens]) => gens);
+    wizardArmarPasoCapacidad();
+    wizardMostrarPaso('capacidad');
 }
 
 // Cuántos Pokémon en total (toda la Pokédex, no solo lo que ya tenés)
@@ -1533,56 +1581,80 @@ function pokemonNecesarios(gens) {
     return gens.reduce((total, g) => total + (dataGlobalCache.generaciones[g]?.total || 0), 0);
 }
 
-function wizardArmarPasoNombres() {
-    document.getElementById('wizard-nombres-lista').innerHTML = wizardGrupos.map((gens, i) => {
-        // Si el grupo coincide exactamente con una carpeta existente, reusamos su nombre/color/espacios.
+function wizardArmarPasoCapacidad() {
+    const bolsillos = parseInt(document.getElementById('wizard-bolsillos-hoja').value) || 9;
+    document.getElementById('wizard-capacidad-lista').innerHTML = wizardGrupos.map((gens, i) => {
+        const necesarios = pokemonNecesarios(gens);
+        const hojasMinimas = Math.ceil(necesarios / bolsillos);
         const existente = carpetas.find(c => c.gens.length === gens.length && c.gens.every(g => gens.includes(g)));
-        const nombreDefault = existente ? existente.nombre : `Carpeta ${i + 1}`;
-        const colorDefault  = existente ? existente.color : PALETA_CARPETAS[i % PALETA_CARPETAS.length];
-        const necesarios    = pokemonNecesarios(gens);
-        const espaciosDefault = existente && existente.espacios >= necesarios ? existente.espacios : necesarios;
-        const swatches = PALETA_CARPETAS.map(col =>
-            `<button type="button" class="wizard-swatch${col === colorDefault ? ' selected' : ''}" style="background:${col}" data-color="${col}" onclick="wizardElegirColor(this)"></button>`
-        ).join('');
-        return `<div class="wizard-nombre-fila" data-gens="${gens.join(',')}" data-necesarios="${necesarios}">
-            <input type="text" class="wizard-nombre-input" value="${nombreDefault}" maxlength="24" placeholder="Nombre de la carpeta">
-            <div class="wizard-swatches" data-color-actual="${colorDefault}">${swatches}</div>
+        const hojasDefault = existente && existente.espacios >= necesarios
+            ? Math.ceil(existente.espacios / bolsillos)
+            : hojasMinimas;
+        const etiquetaHojas = wizardContexto === 'comprar' ? `Hojas a comprar (mínimo: ${hojasMinimas})` : 'Hojas que ya tenés';
+        return `<div class="wizard-capacidad-fila" data-gens="${gens.join(',')}" data-necesarios="${necesarios}">
             <div class="wizard-nombre-sub">${formatearRango(gens)} · ${necesarios} Pokémon en total</div>
             <div class="wizard-espacios-fila">
-                <label>Espacios en esta carpeta</label>
-                <input type="number" class="wizard-espacios-input" min="${necesarios}" value="${espaciosDefault}" oninput="wizardActualizarEspacios(this)">
+                <label>${etiquetaHojas}</label>
+                <input type="number" min="1" value="${hojasDefault}" class="wizard-capacidad-hojas" oninput="wizardActualizarCapacidad(this)">
             </div>
             <div class="wizard-espacios-feedback"></div>
         </div>`;
     }).join('');
-    document.querySelectorAll('.wizard-espacios-input').forEach(wizardActualizarEspacios);
+    document.querySelectorAll('.wizard-capacidad-hojas').forEach(wizardActualizarCapacidad);
 }
 
-function wizardActualizarEspacios(input) {
-    const fila = input.closest('.wizard-nombre-fila');
+function wizardActualizarCapacidad(input) {
+    const bolsillos = parseInt(document.getElementById('wizard-bolsillos-hoja').value) || 9;
+    const fila = input.closest('.wizard-capacidad-fila');
     const necesarios = parseInt(fila.dataset.necesarios);
-    const espacios = parseInt(input.value) || 0;
+    const hojas = parseInt(input.value) || 0;
+    const espacios = hojas * bolsillos;
+    fila.dataset.espacios = espacios;
     const feedback = fila.querySelector('.wizard-espacios-feedback');
     if (espacios < necesarios) {
-        feedback.textContent = `⚠️ Faltan ${necesarios - espacios} espacios — esta carpeta necesita al menos ${necesarios}.`;
+        const faltanHojas = Math.ceil((necesarios - espacios) / bolsillos);
+        feedback.textContent = wizardContexto === 'comprar'
+            ? `⚠️ No alcanza — conseguí al menos ${faltanHojas} hoja${faltanHojas === 1 ? '' : 's'} más.`
+            : `⚠️ Te faltan ${necesarios - espacios} espacios (unas ${faltanHojas} hoja${faltanHojas === 1 ? '' : 's'} más).`;
         feedback.className = 'wizard-espacios-feedback error';
     } else {
         const vacios = espacios - necesarios;
         feedback.textContent = vacios > 0 ? `✓ Quedarían ${vacios} espacios vacíos.` : '✓ Justo, sin espacios vacíos.';
         feedback.className = 'wizard-espacios-feedback ok';
     }
-    wizardActualizarBotonGuardar();
+    wizardActualizarBotonCapacidad();
 }
 
-function wizardActualizarBotonGuardar() {
-    const btn = document.getElementById('wizard-btn-guardar');
-    const hayInsuficientes = [...document.querySelectorAll('.wizard-nombre-fila')].some(fila => {
-        const necesarios = parseInt(fila.dataset.necesarios);
-        const espacios = parseInt(fila.querySelector('.wizard-espacios-input').value) || 0;
-        return espacios < necesarios;
-    });
+function wizardActualizarBotonCapacidad() {
+    const btn = document.getElementById('wizard-btn-a-nombres');
+    const hayInsuficientes = [...document.querySelectorAll('.wizard-capacidad-fila')].some(fila =>
+        (parseInt(fila.dataset.espacios) || 0) < parseInt(fila.dataset.necesarios)
+    );
     btn.disabled = hayInsuficientes;
-    btn.textContent = hayInsuficientes ? 'Ajustá los espacios primero' : 'Guardar';
+    btn.textContent = hayInsuficientes ? 'Ajustá las hojas primero' : 'Siguiente →';
+}
+
+function wizardCapacidadSiguiente() {
+    wizardCapacidades = [...document.querySelectorAll('.wizard-capacidad-fila')].map(fila => parseInt(fila.dataset.espacios));
+    wizardArmarPasoNombres();
+    wizardMostrarPaso('nombres');
+}
+
+function wizardArmarPasoNombres() {
+    document.getElementById('wizard-nombres-lista').innerHTML = wizardGrupos.map((gens, i) => {
+        // Si el grupo coincide exactamente con una carpeta existente, reusamos su nombre/color.
+        const existente = carpetas.find(c => c.gens.length === gens.length && c.gens.every(g => gens.includes(g)));
+        const nombreDefault = existente ? existente.nombre : `Carpeta ${i + 1}`;
+        const colorDefault  = existente ? existente.color : PALETA_CARPETAS[i % PALETA_CARPETAS.length];
+        const swatches = PALETA_CARPETAS.map(col =>
+            `<button type="button" class="wizard-swatch${col === colorDefault ? ' selected' : ''}" style="background:${col}" data-color="${col}" onclick="wizardElegirColor(this)"></button>`
+        ).join('');
+        return `<div class="wizard-nombre-fila" data-gens="${gens.join(',')}">
+            <input type="text" class="wizard-nombre-input" value="${nombreDefault}" maxlength="24" placeholder="Nombre de la carpeta">
+            <div class="wizard-swatches" data-color-actual="${colorDefault}">${swatches}</div>
+            <div class="wizard-nombre-sub">${formatearRango(gens)} · ${wizardCapacidades[i]} espacios</div>
+        </div>`;
+    }).join('');
 }
 
 function wizardElegirColor(btn) {
@@ -1593,18 +1665,14 @@ function wizardElegirColor(btn) {
 
 async function wizardGuardar() {
     const filas = [...document.querySelectorAll('.wizard-nombre-fila')];
-    const nueva = filas.map(fila => ({
+    const nueva = filas.map((fila, i) => ({
         nombre: fila.querySelector('.wizard-nombre-input').value.trim(),
         color: fila.querySelector('.wizard-swatches').dataset.colorActual,
         gens: fila.dataset.gens.split(',').map(Number),
-        espacios: parseInt(fila.querySelector('.wizard-espacios-input').value) || 0
+        espacios: wizardCapacidades[i]
     }));
     if (nueva.some(c => !c.nombre)) {
         mostrarToastError('Todas las carpetas necesitan un nombre.');
-        return;
-    }
-    if (nueva.some((c, i) => c.espacios < parseInt(filas[i].dataset.necesarios))) {
-        mostrarToastError('Alguna carpeta no tiene espacios suficientes para sus Pokémon.');
         return;
     }
 
@@ -1627,7 +1695,8 @@ async function wizardGuardar() {
     } catch (err) {
         mostrarToastError(err.message || 'No se pudo guardar la configuración.');
     } finally {
-        wizardActualizarBotonGuardar();
+        btn.disabled = false;
+        btn.textContent = 'Guardar';
     }
 }
 

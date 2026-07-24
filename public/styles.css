@@ -453,16 +453,17 @@
         .wizard-preview{display:flex;flex-direction:column;gap:6px;margin-bottom:8px;}
         .wizard-preview-fila{font-size:12px;color:var(--muted);padding:8px 10px;border-radius:10px;background:var(--surface2);}
         .wizard-preview-fila strong{color:var(--text);}
-        .wizard-manual-fila{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 2px;font-size:13px;color:var(--text);border-bottom:1px solid var(--border);}
-        .wizard-manual-fila:last-child{border-bottom:none;}
-        .wizard-manual-grupo{width:56px;padding:8px;font-size:15px;text-align:center;border-radius:10px;border:1px solid var(--border);background:var(--input-bg);color:var(--text);}
-        .wizard-nombre-fila{padding:12px 2px;border-bottom:1px solid var(--border);}
-        .wizard-nombre-fila:last-child{border-bottom:none;}
+        .wizard-chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+        .wizard-chip{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 6px;border-radius:14px;border:none;cursor:pointer;color:#fff;}
+        .wizard-chip-region{font-size:12px;font-weight:700;}
+        .wizard-chip-grupo{font-size:10px;opacity:.9;}
+        .wizard-nombre-fila,.wizard-capacidad-fila{padding:12px 2px;border-bottom:1px solid var(--border);}
+        .wizard-nombre-fila:last-child,.wizard-capacidad-fila:last-child{border-bottom:none;}
         .wizard-nombre-input{width:100%;padding:9px 12px;font-size:15px;border-radius:10px;border:1px solid var(--border);background:var(--input-bg);color:var(--text);margin-bottom:8px;}
         .wizard-nombre-sub{font-size:11px;color:var(--muted);margin-top:6px;}
         .wizard-espacios-fila{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;}
         .wizard-espacios-fila label{font-size:12px;color:var(--text);}
-        .wizard-espacios-input{width:80px;padding:8px;font-size:15px;text-align:center;border-radius:10px;border:1px solid var(--border);background:var(--input-bg);color:var(--text);}
+        .wizard-capacidad-hojas{width:80px;padding:8px;font-size:15px;text-align:center;border-radius:10px;border:1px solid var(--border);background:var(--input-bg);color:var(--text);}
         .wizard-espacios-feedback{font-size:11px;margin-top:6px;font-weight:600;}
         .wizard-espacios-feedback.ok{color:var(--found);}
         .wizard-espacios-feedback.error{color:var(--danger);}

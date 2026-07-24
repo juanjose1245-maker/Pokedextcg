@@ -93,11 +93,14 @@ function modoValido(modo) {
 // Antes eran 4 carpetas fijas hardcodeadas (Azul/Morada/Rosa/Roja); ahora
 // vive en disco y es configurable desde la app (Ajustes → Configurar
 // carpetas), para que cualquier dispositivo vea la misma agrupación.
+function pokemonPorGens(gens) {
+    return pokemonDB.filter(p => gens.includes(p.gen)).length;
+}
 const CARPETAS_DEFAULT = [
-    { nombre: 'Azul',   color: '#3b5bdb', gens: [1, 2] },
-    { nombre: 'Morada', color: '#7c3aed', gens: [3, 4] },
-    { nombre: 'Rosa',   color: '#db2777', gens: [5, 6, 7] },
-    { nombre: 'Roja',   color: '#dc2626', gens: [8, 9] }
+    { nombre: 'Azul',   color: '#3b5bdb', gens: [1, 2],    espacios: pokemonPorGens([1, 2]) },
+    { nombre: 'Morada', color: '#7c3aed', gens: [3, 4],    espacios: pokemonPorGens([3, 4]) },
+    { nombre: 'Rosa',   color: '#db2777', gens: [5, 6, 7], espacios: pokemonPorGens([5, 6, 7]) },
+    { nombre: 'Roja',   color: '#dc2626', gens: [8, 9],    espacios: pokemonPorGens([8, 9]) }
 ];
 
 function carpetasConfigValida(candidato) {
@@ -111,6 +114,7 @@ function carpetasConfigValida(candidato) {
             if (!Number.isInteger(g) || g < 1 || g > 9 || vistos.has(g)) return false;
             vistos.add(g);
         }
+        if (!Number.isInteger(c.espacios) || c.espacios < pokemonPorGens(c.gens)) return false;
     }
     return vistos.size === 9; // las 9 generaciones, cada una en exactamente una carpeta
 }
@@ -565,10 +569,15 @@ app.post('/api/carpetas-config', requiereLogin, rateLimiter, (req, res) => {
     if (!carpetasConfigValida(nueva)) {
         return res.status(400).json({
             success: false,
-            error: 'Configuración inválida: cada carpeta necesita nombre, color (#rrggbb) y al menos una generación, y las 9 generaciones deben repartirse sin faltar ni repetirse.'
+            error: 'Configuración inválida: cada carpeta necesita nombre, color (#rrggbb), al menos una generación, y espacios suficientes para todos sus Pokémon — y las 9 generaciones deben repartirse sin faltar ni repetirse.'
         });
     }
-    carpetasConfig = nueva.map(c => ({ nombre: c.nombre.trim(), color: c.color, gens: [...c.gens].sort((a, b) => a - b) }));
+    carpetasConfig = nueva.map(c => ({
+        nombre: c.nombre.trim(),
+        color: c.color,
+        gens: [...c.gens].sort((a, b) => a - b),
+        espacios: c.espacios
+    }));
     guardarCarpetasConfig();
     broadcast({ tipo: 'config' }); // mismo evento que usa /api/importar para avisar "recargá todo"
     res.json({ success: true, carpetas: carpetasConfig });

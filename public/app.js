@@ -37,7 +37,8 @@ async function cargarCarpetasConfig() {
             color: c.color,
             bg: hexToRgba(c.color, 0.16),
             gens: c.gens,
-            rango: formatearRango(c.gens)
+            rango: formatearRango(c.gens),
+            espacios: c.espacios
         }));
     } catch (err) {
         console.error('No se pudo cargar la configuración de carpetas:', err.message);
@@ -1525,21 +1526,63 @@ function wizardVolverAlPaso2() {
     wizardMostrarPaso(wizardOrigenPaso3);
 }
 
+// Cuántos Pokémon en total (toda la Pokédex, no solo lo que ya tenés)
+// necesitan un espacio en una carpeta que agrupe estas generaciones.
+function pokemonNecesarios(gens) {
+    if (!dataGlobalCache) return 0;
+    return gens.reduce((total, g) => total + (dataGlobalCache.generaciones[g]?.total || 0), 0);
+}
+
 function wizardArmarPasoNombres() {
     document.getElementById('wizard-nombres-lista').innerHTML = wizardGrupos.map((gens, i) => {
-        // Si el grupo coincide exactamente con una carpeta existente, reusamos su nombre/color.
+        // Si el grupo coincide exactamente con una carpeta existente, reusamos su nombre/color/espacios.
         const existente = carpetas.find(c => c.gens.length === gens.length && c.gens.every(g => gens.includes(g)));
         const nombreDefault = existente ? existente.nombre : `Carpeta ${i + 1}`;
         const colorDefault  = existente ? existente.color : PALETA_CARPETAS[i % PALETA_CARPETAS.length];
+        const necesarios    = pokemonNecesarios(gens);
+        const espaciosDefault = existente && existente.espacios >= necesarios ? existente.espacios : necesarios;
         const swatches = PALETA_CARPETAS.map(col =>
             `<button type="button" class="wizard-swatch${col === colorDefault ? ' selected' : ''}" style="background:${col}" data-color="${col}" onclick="wizardElegirColor(this)"></button>`
         ).join('');
-        return `<div class="wizard-nombre-fila" data-gens="${gens.join(',')}">
+        return `<div class="wizard-nombre-fila" data-gens="${gens.join(',')}" data-necesarios="${necesarios}">
             <input type="text" class="wizard-nombre-input" value="${nombreDefault}" maxlength="24" placeholder="Nombre de la carpeta">
             <div class="wizard-swatches" data-color-actual="${colorDefault}">${swatches}</div>
-            <div class="wizard-nombre-sub">${formatearRango(gens)}</div>
+            <div class="wizard-nombre-sub">${formatearRango(gens)} · ${necesarios} Pokémon en total</div>
+            <div class="wizard-espacios-fila">
+                <label>Espacios en esta carpeta</label>
+                <input type="number" class="wizard-espacios-input" min="${necesarios}" value="${espaciosDefault}" oninput="wizardActualizarEspacios(this)">
+            </div>
+            <div class="wizard-espacios-feedback"></div>
         </div>`;
     }).join('');
+    document.querySelectorAll('.wizard-espacios-input').forEach(wizardActualizarEspacios);
+}
+
+function wizardActualizarEspacios(input) {
+    const fila = input.closest('.wizard-nombre-fila');
+    const necesarios = parseInt(fila.dataset.necesarios);
+    const espacios = parseInt(input.value) || 0;
+    const feedback = fila.querySelector('.wizard-espacios-feedback');
+    if (espacios < necesarios) {
+        feedback.textContent = `⚠️ Faltan ${necesarios - espacios} espacios — esta carpeta necesita al menos ${necesarios}.`;
+        feedback.className = 'wizard-espacios-feedback error';
+    } else {
+        const vacios = espacios - necesarios;
+        feedback.textContent = vacios > 0 ? `✓ Quedarían ${vacios} espacios vacíos.` : '✓ Justo, sin espacios vacíos.';
+        feedback.className = 'wizard-espacios-feedback ok';
+    }
+    wizardActualizarBotonGuardar();
+}
+
+function wizardActualizarBotonGuardar() {
+    const btn = document.getElementById('wizard-btn-guardar');
+    const hayInsuficientes = [...document.querySelectorAll('.wizard-nombre-fila')].some(fila => {
+        const necesarios = parseInt(fila.dataset.necesarios);
+        const espacios = parseInt(fila.querySelector('.wizard-espacios-input').value) || 0;
+        return espacios < necesarios;
+    });
+    btn.disabled = hayInsuficientes;
+    btn.textContent = hayInsuficientes ? 'Ajustá los espacios primero' : 'Guardar';
 }
 
 function wizardElegirColor(btn) {
@@ -1553,10 +1596,15 @@ async function wizardGuardar() {
     const nueva = filas.map(fila => ({
         nombre: fila.querySelector('.wizard-nombre-input').value.trim(),
         color: fila.querySelector('.wizard-swatches').dataset.colorActual,
-        gens: fila.dataset.gens.split(',').map(Number)
+        gens: fila.dataset.gens.split(',').map(Number),
+        espacios: parseInt(fila.querySelector('.wizard-espacios-input').value) || 0
     }));
     if (nueva.some(c => !c.nombre)) {
         mostrarToastError('Todas las carpetas necesitan un nombre.');
+        return;
+    }
+    if (nueva.some((c, i) => c.espacios < parseInt(filas[i].dataset.necesarios))) {
+        mostrarToastError('Alguna carpeta no tiene espacios suficientes para sus Pokémon.');
         return;
     }
 
@@ -1579,8 +1627,7 @@ async function wizardGuardar() {
     } catch (err) {
         mostrarToastError(err.message || 'No se pudo guardar la configuración.');
     } finally {
-        btn.disabled = false;
-        btn.textContent = 'Guardar';
+        wizardActualizarBotonGuardar();
     }
 }
 

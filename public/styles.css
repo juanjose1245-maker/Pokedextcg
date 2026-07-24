@@ -460,6 +460,12 @@
         .wizard-nombre-fila:last-child{border-bottom:none;}
         .wizard-nombre-input{width:100%;padding:9px 12px;font-size:15px;border-radius:10px;border:1px solid var(--border);background:var(--input-bg);color:var(--text);margin-bottom:8px;}
         .wizard-nombre-sub{font-size:11px;color:var(--muted);margin-top:6px;}
+        .wizard-espacios-fila{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;}
+        .wizard-espacios-fila label{font-size:12px;color:var(--text);}
+        .wizard-espacios-input{width:80px;padding:8px;font-size:15px;text-align:center;border-radius:10px;border:1px solid var(--border);background:var(--input-bg);color:var(--text);}
+        .wizard-espacios-feedback{font-size:11px;margin-top:6px;font-weight:600;}
+        .wizard-espacios-feedback.ok{color:var(--found);}
+        .wizard-espacios-feedback.error{color:var(--danger);}
         .wizard-swatches{display:flex;gap:6px;flex-wrap:wrap;}
         .wizard-swatch{width:24px;height:24px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0;}
         .wizard-swatch.selected{border-color:var(--text);}

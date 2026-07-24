@@ -89,6 +89,46 @@ function modoValido(modo) {
     return modo === 'bulk' || modo === 'carpetas';
 }
 
+// ── CONFIGURACIÓN DE CARPETAS (wizard) ──────────────────────────────
+// Antes eran 4 carpetas fijas hardcodeadas (Azul/Morada/Rosa/Roja); ahora
+// vive en disco y es configurable desde la app (Ajustes → Configurar
+// carpetas), para que cualquier dispositivo vea la misma agrupación.
+const CARPETAS_DEFAULT = [
+    { nombre: 'Azul',   color: '#3b5bdb', gens: [1, 2] },
+    { nombre: 'Morada', color: '#7c3aed', gens: [3, 4] },
+    { nombre: 'Rosa',   color: '#db2777', gens: [5, 6, 7] },
+    { nombre: 'Roja',   color: '#dc2626', gens: [8, 9] }
+];
+
+function carpetasConfigValida(candidato) {
+    if (!Array.isArray(candidato) || !candidato.length) return false;
+    const vistos = new Set();
+    for (const c of candidato) {
+        if (!c || typeof c.nombre !== 'string' || !c.nombre.trim()) return false;
+        if (typeof c.color !== 'string' || !/^#[0-9a-fA-F]{6}$/.test(c.color)) return false;
+        if (!Array.isArray(c.gens) || !c.gens.length) return false;
+        for (const g of c.gens) {
+            if (!Number.isInteger(g) || g < 1 || g > 9 || vistos.has(g)) return false;
+            vistos.add(g);
+        }
+    }
+    return vistos.size === 9; // las 9 generaciones, cada una en exactamente una carpeta
+}
+
+let carpetasConfig = CARPETAS_DEFAULT;
+if (fs.existsSync('carpetas.json')) {
+    try {
+        const raw = JSON.parse(fs.readFileSync('carpetas.json', 'utf8'));
+        if (carpetasConfigValida(raw)) carpetasConfig = raw;
+        else console.warn('⚠️  carpetas.json inválido, usando la configuración por defecto.');
+    } catch (err) {
+        console.error('⚠️  carpetas.json corrupto, usando la configuración por defecto:', err.message);
+    }
+}
+function guardarCarpetasConfig() {
+    escribirJSONAtomico('carpetas.json', carpetasConfig);
+}
+
 function respaldoAutomatico() {
     try {
         const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
@@ -296,6 +336,10 @@ app.get('/api/exportar', (req, res) => {
     });
 });
 
+app.get('/api/carpetas-config', (req, res) => {
+    res.json(carpetasConfig);
+});
+
 // ── PDF DE RECORTABLES ──────────────────────────────────────────────
 // Hojas carta imprimibles con los 1025 Pokémon en grilla 3x3 (9 por hoja),
 // en orden de Pokédex — el mismo orden en que caen en las 4 carpetas
@@ -343,15 +387,6 @@ async function mapConcurrencia(items, limite, fn) {
 }
 
 const REGIONES = ['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'];
-
-// Mismas 4 carpetas fijas que usa el frontend (public/app.js) para agrupar
-// generaciones en binders físicos.
-const CARPETAS_DEF = [
-    { nombre: 'Azul',   gens: [1, 2] },
-    { nombre: 'Morada', gens: [3, 4] },
-    { nombre: 'Rosa',   gens: [5, 6, 7] },
-    { nombre: 'Roja',   gens: [8, 9] }
-];
 
 // opciones = { gens: Set<number>, portadas: boolean, numeros: 'ambos'|'regional'|'nacional' }
 async function generarPDFRecortables(rutaSalida, opciones) {
@@ -461,7 +496,7 @@ async function generarPDFRecortables(rutaSalida, opciones) {
 
 app.get('/api/pdf-carpetas', async (req, res) => {
     try {
-        const nombresValidos = new Set(CARPETAS_DEF.map(c => c.nombre.toLowerCase()));
+        const nombresValidos = new Set(carpetasConfig.map(c => c.nombre.toLowerCase()));
         const carpetasParam = (req.query.carpetas || '').trim();
         const nombresPedidos = carpetasParam
             ? carpetasParam.split(',').map(s => s.trim().toLowerCase()).filter(n => nombresValidos.has(n))
@@ -470,7 +505,7 @@ app.get('/api/pdf-carpetas', async (req, res) => {
             return res.status(400).json({ success:false, error: 'No se seleccionó ninguna carpeta válida' });
         }
         const gens = new Set(
-            CARPETAS_DEF.filter(c => nombresPedidos.includes(c.nombre.toLowerCase())).flatMap(c => c.gens)
+            carpetasConfig.filter(c => nombresPedidos.includes(c.nombre.toLowerCase())).flatMap(c => c.gens)
         );
         const portadas = req.query.portadas !== '0' && req.query.portadas !== 'false';
         const numeros = ['ambos', 'regional', 'nacional'].includes(req.query.numeros) ? req.query.numeros : 'ambos';
@@ -522,6 +557,21 @@ app.post('/api/inventario', requiereLogin, rateLimiter, (req, res) => {
     broadcast({ tipo: 'cambio', modo, id: String(id), estado: !!estado, fecha: fechaGuardada });
 
     res.json({ success: true, fecha: fechaGuardada });
+});
+
+// ── CONFIGURAR CARPETAS (wizard) ────────────────────────────────────
+app.post('/api/carpetas-config', requiereLogin, rateLimiter, (req, res) => {
+    const nueva = req.body;
+    if (!carpetasConfigValida(nueva)) {
+        return res.status(400).json({
+            success: false,
+            error: 'Configuración inválida: cada carpeta necesita nombre, color (#rrggbb) y al menos una generación, y las 9 generaciones deben repartirse sin faltar ni repetirse.'
+        });
+    }
+    carpetasConfig = nueva.map(c => ({ nombre: c.nombre.trim(), color: c.color, gens: [...c.gens].sort((a, b) => a - b) }));
+    guardarCarpetasConfig();
+    broadcast({ tipo: 'config' }); // mismo evento que usa /api/importar para avisar "recargá todo"
+    res.json({ success: true, carpetas: carpetasConfig });
 });
 
 // ── IMPORTAR: restaura un respaldo generado por /api/exportar ─────

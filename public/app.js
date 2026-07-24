@@ -3,16 +3,48 @@ const coloresGen = ["#3b5bdb","#3b5bdb","#7c3aed","#7c3aed","#db2777","#db2777",
 const coloresBg  = ["rgba(59,91,219,0.16)","rgba(59,91,219,0.16)","rgba(124,58,237,0.16)","rgba(124,58,237,0.16)",
                     "rgba(219,39,119,0.16)","rgba(219,39,119,0.16)","rgba(219,39,119,0.16)",
                     "rgba(220,38,38,0.16)","rgba(220,38,38,0.16)"];
-// 4 carpetas fijas (sin wizard). Aplican por igual a los dos inventarios (bulk y carpetas);
-// lo único que cambia entre modos es qué Pokémon están marcados como "tenemos".
-const carpetas = [
-    { nombre:'Azul',   color:'#3b5bdb', bg:'rgba(59,91,219,0.16)',   gens:[1,2],   rango:'Gens 1-2', emoji:'🔵' },
-    { nombre:'Morada', color:'#7c3aed', bg:'rgba(124,58,237,0.16)', gens:[3,4],   rango:'Gens 3-4', emoji:'🟣' },
-    { nombre:'Rosa',   color:'#db2777', bg:'rgba(219,39,119,0.16)', gens:[5,6,7], rango:'Gens 5-7', emoji:'💗' },
-    { nombre:'Roja',   color:'#dc2626', bg:'rgba(220,38,38,0.16)',  gens:[8,9],   rango:'Gens 8-9', emoji:'🔴' }
-];
+// Las carpetas se configuran desde el servidor (Ajustes → Configurar
+// carpetas — wizard), para que todos los dispositivos vean la misma
+// agrupación. Acá solo completamos `bg` y `rango`, que el servidor no
+// guarda (solo nombre/color/gens).
+let carpetas = [];
 
-// Devuelve la carpeta fija a la que pertenece un Pokémon, según su generación.
+function formatearRango(gens) {
+    const ordenados = [...gens].sort((a, b) => a - b);
+    const bloques = [];
+    let inicio = ordenados[0], anterior = ordenados[0];
+    for (let i = 1; i <= ordenados.length; i++) {
+        const actual = ordenados[i];
+        if (actual === anterior + 1) { anterior = actual; continue; }
+        bloques.push(inicio === anterior ? `${inicio}` : `${inicio}-${anterior}`);
+        inicio = anterior = actual;
+    }
+    return `Gens ${bloques.join(', ')}`;
+}
+
+function hexToRgba(hex, alpha) {
+    const n = parseInt(hex.slice(1), 16);
+    return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${alpha})`;
+}
+
+async function cargarCarpetasConfig() {
+    try {
+        const res = await fetch('/api/carpetas-config');
+        if (!res.ok) throw new Error('respuesta no válida');
+        const datos = await res.json();
+        carpetas = datos.map(c => ({
+            nombre: c.nombre,
+            color: c.color,
+            bg: hexToRgba(c.color, 0.16),
+            gens: c.gens,
+            rango: formatearRango(c.gens)
+        }));
+    } catch (err) {
+        console.error('No se pudo cargar la configuración de carpetas:', err.message);
+    }
+}
+
+// Devuelve la carpeta a la que pertenece un Pokémon, según su generación.
 function carpetaDe(p) {
     return carpetas.find(c => c.gens.includes(p.gen)) || null;
 }
@@ -1085,7 +1117,7 @@ function mostrarFicha(p, esPendientes) {
 
     const carpetaPk = carpetaDe(p);
     const bd = carpetaPk
-        ? { bg: carpetaPk.bg, color: carpetaPk.color, border: carpetaPk.color, text: `${carpetaPk.emoji} Carpeta ${carpetaPk.nombre} — ${carpetaPk.rango}` }
+        ? { bg: carpetaPk.bg, color: carpetaPk.color, border: carpetaPk.color, text: `Carpeta ${carpetaPk.nombre} — ${carpetaPk.rango}` }
         : { bg: coloresBg[p.gen-1] || 'rgba(153,153,153,0.16)', color: coloresGen[p.gen-1] || '#999', border: coloresGen[p.gen-1] || '#999', text: '' };
     const guide = document.getElementById('binder-guide');
     guide.style.background = bd.bg; guide.style.color = bd.color;
@@ -1382,17 +1414,15 @@ document.getElementById('ajustes-close').onclick = cerrarAjustes;
 
 // ── PDF DE RECORTABLES: modal de opciones ───────────────────────────
 function abrirOpcionesPDF() {
-    const cont = document.getElementById('pdf-opciones-carpetas');
-    if (!cont.dataset.armado) {
-        cont.innerHTML = carpetas.map(c => `
-            <label class="pdf-opciones-check">
-                <input type="checkbox" class="pdf-carpeta-check" value="${c.nombre}" checked>
-                <span class="pdf-carpeta-swatch" style="background:${c.color}"></span>
-                ${c.nombre} (${c.rango})
-            </label>
-        `).join('');
-        cont.dataset.armado = '1';
-    }
+    // Se re-arma siempre (no se cachea) para reflejar cambios recientes del
+    // wizard de carpetas sin depender de un reload de página.
+    document.getElementById('pdf-opciones-carpetas').innerHTML = carpetas.map(c => `
+        <label class="pdf-opciones-check">
+            <input type="checkbox" class="pdf-carpeta-check" value="${c.nombre}" checked>
+            <span class="pdf-carpeta-swatch" style="background:${c.color}"></span>
+            ${c.nombre} (${c.rango})
+        </label>
+    `).join('');
     cerrarAjustes();
     document.getElementById('pdf-opciones-modal').classList.add('open');
 }
@@ -1400,6 +1430,159 @@ function cerrarOpcionesPDF() {
     document.getElementById('pdf-opciones-modal').classList.remove('open');
 }
 document.getElementById('pdf-opciones-close').onclick = cerrarOpcionesPDF;
+
+// ── WIZARD: CONFIGURAR CARPETAS ─────────────────────────────────────
+const PALETA_CARPETAS = ['#3b5bdb','#7c3aed','#db2777','#dc2626','#059669','#d97706','#0891b2','#65a30d','#9333ea'];
+let wizardGrupos = [];      // array de arrays de gens, ej [[1,2],[3,4],[5,6,7],[8,9]]
+let wizardOrigenPaso3 = 'modo';
+
+function abrirWizardCarpetas() {
+    cerrarAjustes();
+    wizardMostrarPaso('modo');
+    document.getElementById('wizard-carpetas-modal').classList.add('open');
+}
+function cerrarWizardCarpetas() {
+    document.getElementById('wizard-carpetas-modal').classList.remove('open');
+}
+document.getElementById('wizard-carpetas-close').onclick = cerrarWizardCarpetas;
+
+function wizardMostrarPaso(paso) {
+    ['modo','auto','manual','nombres'].forEach(p => {
+        document.getElementById(`wizard-paso-${p}`).style.display = (p === paso) ? '' : 'none';
+    });
+}
+
+function wizardElegirModo(modo) {
+    if (modo === 'auto') {
+        wizardActualizarPreviewAuto();
+        document.getElementById('wizard-auto-cantidad').oninput = wizardActualizarPreviewAuto;
+        wizardMostrarPaso('auto');
+    } else {
+        wizardArmarPasoManual();
+        wizardMostrarPaso('manual');
+    }
+}
+
+// Reparte las 9 generaciones en `cantidad` grupos contiguos, lo más parejo posible.
+function wizardRepartirParejo(cantidad) {
+    cantidad = Math.max(1, Math.min(9, cantidad || 1));
+    const base = Math.floor(9 / cantidad), resto = 9 % cantidad;
+    const grupos = [];
+    let gen = 1;
+    for (let i = 0; i < cantidad; i++) {
+        const tamano = base + (i < resto ? 1 : 0);
+        const grupo = [];
+        for (let j = 0; j < tamano; j++) { grupo.push(gen); gen++; }
+        grupos.push(grupo);
+    }
+    return grupos;
+}
+
+function wizardActualizarPreviewAuto() {
+    const cantidad = parseInt(document.getElementById('wizard-auto-cantidad').value) || 1;
+    const grupos = wizardRepartirParejo(cantidad);
+    document.getElementById('wizard-auto-preview').innerHTML = grupos.map((g, i) =>
+        `<div class="wizard-preview-fila"><strong>Carpeta ${i+1}:</strong> ${g.map(x => regiones[x-1]).join(', ')}</div>`
+    ).join('');
+}
+
+function wizardAutoSiguiente() {
+    const cantidad = parseInt(document.getElementById('wizard-auto-cantidad').value) || 1;
+    wizardGrupos = wizardRepartirParejo(cantidad);
+    wizardOrigenPaso3 = 'auto';
+    wizardArmarPasoNombres();
+    wizardMostrarPaso('nombres');
+}
+
+function wizardArmarPasoManual() {
+    // Precarga con la agrupación actual, para que "Manual" parta de algo conocido.
+    const grupoDeGen = {};
+    carpetas.forEach((c, i) => c.gens.forEach(g => { grupoDeGen[g] = i + 1; }));
+    document.getElementById('wizard-manual-lista').innerHTML = Array.from({ length: 9 }, (_, i) => {
+        const gen = i + 1;
+        return `<div class="wizard-manual-fila">
+            <span>Gen ${gen} · ${regiones[i]}</span>
+            <input type="number" min="1" max="9" value="${grupoDeGen[gen] || 1}" class="wizard-manual-grupo" data-gen="${gen}">
+        </div>`;
+    }).join('');
+}
+
+function wizardManualSiguiente() {
+    const porGrupo = new Map(); // etiqueta tal cual la tipeó el usuario -> gens, en orden de primera aparición
+    document.querySelectorAll('.wizard-manual-grupo').forEach(inp => {
+        const gen = parseInt(inp.dataset.gen);
+        const etiqueta = inp.value.trim() || '1';
+        if (!porGrupo.has(etiqueta)) porGrupo.set(etiqueta, []);
+        porGrupo.get(etiqueta).push(gen);
+    });
+    wizardGrupos = [...porGrupo.values()];
+    wizardOrigenPaso3 = 'manual';
+    wizardArmarPasoNombres();
+    wizardMostrarPaso('nombres');
+}
+
+function wizardVolverAlPaso2() {
+    wizardMostrarPaso(wizardOrigenPaso3);
+}
+
+function wizardArmarPasoNombres() {
+    document.getElementById('wizard-nombres-lista').innerHTML = wizardGrupos.map((gens, i) => {
+        // Si el grupo coincide exactamente con una carpeta existente, reusamos su nombre/color.
+        const existente = carpetas.find(c => c.gens.length === gens.length && c.gens.every(g => gens.includes(g)));
+        const nombreDefault = existente ? existente.nombre : `Carpeta ${i + 1}`;
+        const colorDefault  = existente ? existente.color : PALETA_CARPETAS[i % PALETA_CARPETAS.length];
+        const swatches = PALETA_CARPETAS.map(col =>
+            `<button type="button" class="wizard-swatch${col === colorDefault ? ' selected' : ''}" style="background:${col}" data-color="${col}" onclick="wizardElegirColor(this)"></button>`
+        ).join('');
+        return `<div class="wizard-nombre-fila" data-gens="${gens.join(',')}">
+            <input type="text" class="wizard-nombre-input" value="${nombreDefault}" maxlength="24" placeholder="Nombre de la carpeta">
+            <div class="wizard-swatches" data-color-actual="${colorDefault}">${swatches}</div>
+            <div class="wizard-nombre-sub">${formatearRango(gens)}</div>
+        </div>`;
+    }).join('');
+}
+
+function wizardElegirColor(btn) {
+    const cont = btn.parentElement;
+    cont.dataset.colorActual = btn.dataset.color;
+    [...cont.children].forEach(b => b.classList.toggle('selected', b === btn));
+}
+
+async function wizardGuardar() {
+    const filas = [...document.querySelectorAll('.wizard-nombre-fila')];
+    const nueva = filas.map(fila => ({
+        nombre: fila.querySelector('.wizard-nombre-input').value.trim(),
+        color: fila.querySelector('.wizard-swatches').dataset.colorActual,
+        gens: fila.dataset.gens.split(',').map(Number)
+    }));
+    if (nueva.some(c => !c.nombre)) {
+        mostrarToastError('Todas las carpetas necesitan un nombre.');
+        return;
+    }
+
+    const btn = document.getElementById('wizard-btn-guardar');
+    btn.disabled = true;
+    btn.textContent = 'Guardando...';
+    try {
+        const res = await fetch('/api/carpetas-config', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(nueva)
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) throw new Error(data.error || 'respuesta no válida');
+        await cargarCarpetasConfig();
+        renderSidebar();
+        renderBinderBar();
+        cerrarWizardCarpetas();
+        mostrarToastInfo('Carpetas actualizadas.');
+    } catch (err) {
+        mostrarToastError(err.message || 'No se pudo guardar la configuración.');
+    } finally {
+        btn.disabled = false;
+        btn.textContent = 'Guardar';
+    }
+}
 
 // ── CÁMARA OCR ───────────────────────────────────────────────────
 const cameraBoxView = document.getElementById('camera-fullscreen-view');
@@ -1506,12 +1689,14 @@ function iniciarSSE() {
 
         if (msg.tipo === 'config') {
             // Se reutiliza este tipo para avisar "algo grande cambió, recarga todo"
-            // (por ejemplo, alguien importó un respaldo desde otro dispositivo).
+            // (alguien importó un respaldo, o reconfiguró las carpetas, desde otro
+            // dispositivo).
             Object.keys(cachePokemon).forEach(k => delete cachePokemon[k]);
             cerrarGaleriaYVolver();
+            cargarCarpetasConfig().then(() => { renderSidebar(); renderBinderBar(); });
             cargarEstadisticasSinMoverScroll();
             actualizarBadgePendientes();
-            mostrarToastInfo('Se importó un respaldo desde otro dispositivo — recargando.');
+            mostrarToastInfo('La colección se actualizó desde otro dispositivo — recargando.');
             return;
         }
 
@@ -1550,6 +1735,7 @@ window.onload = async () => {
     aplicarTema();
     actualizarBotonesModo();
     revisarSesion();
+    await cargarCarpetasConfig();
     await cargarEstadisticas();
 
     if (esDesktop()) verPokedexCompleta();

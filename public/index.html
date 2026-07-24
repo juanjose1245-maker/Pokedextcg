@@ -243,6 +243,13 @@
                     <span class="ajustes-item-sub">9 por hoja carta, en orden de Pokédex — con opciones</span>
                 </span>
             </button>
+            <button class="ajustes-item" onclick="abrirWizardCarpetas()">
+                <span class="ajustes-item-icon">🗂️</span>
+                <span class="ajustes-item-texto">
+                    <span class="ajustes-item-titulo">Configurar carpetas</span>
+                    <span class="ajustes-item-sub">Elegí cuántas carpetas tenés y qué generaciones va en cada una</span>
+                </span>
+            </button>
             <button class="ajustes-item" onclick="toggleTema()" id="btn-tema-ajustes">
                 <span class="ajustes-item-icon">🌓</span>
                 <span class="ajustes-item-texto">
@@ -294,6 +301,59 @@
                 <span class="ajustes-item-sub" id="btn-pdf-recortables-sub">Puede tardar un minuto la primera vez</span>
             </span>
         </button>
+    </div>
+</div>
+
+<!-- WIZARD: CONFIGURAR CARPETAS -->
+<div class="ajustes-modal" id="wizard-carpetas-modal">
+    <div class="ajustes-box wizard-box">
+        <div class="ajustes-handle"></div>
+        <span class="ajustes-close" id="wizard-carpetas-close">×</span>
+        <div class="ajustes-title">🗂️ Configurar carpetas</div>
+
+        <!-- Paso 1: elegir modo -->
+        <div class="wizard-paso" id="wizard-paso-modo">
+            <div class="pdf-opciones-label">¿Cómo repartimos las 9 generaciones?</div>
+            <button type="button" class="wizard-opcion-modo" onclick="wizardElegirModo('auto')">
+                <strong>Automático</strong>
+                <span>Elegís cuántas carpetas y se reparten parejo, en orden</span>
+            </button>
+            <button type="button" class="wizard-opcion-modo" onclick="wizardElegirModo('manual')">
+                <strong>Manual</strong>
+                <span>Asignás vos cada generación a una carpeta</span>
+            </button>
+        </div>
+
+        <!-- Paso 2a: automático -->
+        <div class="wizard-paso" id="wizard-paso-auto" style="display:none;">
+            <div class="pdf-opciones-label">¿Cuántas carpetas?</div>
+            <input type="number" id="wizard-auto-cantidad" min="1" max="9" value="4" class="wizard-input-numero">
+            <div class="wizard-preview" id="wizard-auto-preview"></div>
+            <div class="wizard-nav">
+                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('modo')">← Atrás</button>
+                <button type="button" class="wizard-btn-siguiente" onclick="wizardAutoSiguiente()">Siguiente →</button>
+            </div>
+        </div>
+
+        <!-- Paso 2b: manual -->
+        <div class="wizard-paso" id="wizard-paso-manual" style="display:none;">
+            <div class="pdf-opciones-label">Número de carpeta para cada generación</div>
+            <div id="wizard-manual-lista"></div>
+            <div class="wizard-nav">
+                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('modo')">← Atrás</button>
+                <button type="button" class="wizard-btn-siguiente" onclick="wizardManualSiguiente()">Siguiente →</button>
+            </div>
+        </div>
+
+        <!-- Paso 3: nombres y colores -->
+        <div class="wizard-paso" id="wizard-paso-nombres" style="display:none;">
+            <div class="pdf-opciones-label">Nombre y color de cada carpeta</div>
+            <div id="wizard-nombres-lista"></div>
+            <div class="wizard-nav">
+                <button type="button" class="wizard-btn-volver" onclick="wizardVolverAlPaso2()">← Atrás</button>
+                <button type="button" class="wizard-btn-siguiente" id="wizard-btn-guardar" onclick="wizardGuardar()">Guardar</button>
+            </div>
+        </div>
     </div>
 </div>
 

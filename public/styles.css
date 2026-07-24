@@ -444,11 +444,36 @@
         .pdf-opciones-check input,.pdf-opciones-radio input{width:17px;height:17px;flex-shrink:0;accent-color:var(--accent2);}
         .pdf-carpeta-swatch{width:11px;height:11px;border-radius:50%;flex-shrink:0;}
 
+        .wizard-box{max-height:80vh;overflow-y:auto;}
+        .wizard-opcion-modo{display:flex;flex-direction:column;gap:4px;width:100%;text-align:left;padding:14px 16px;margin-bottom:10px;border-radius:14px;border:1px solid var(--border);background:var(--surface2);cursor:pointer;}
+        .wizard-opcion-modo:active{background:var(--border);}
+        .wizard-opcion-modo strong{font-size:14px;color:var(--text);}
+        .wizard-opcion-modo span{font-size:12px;color:var(--muted);}
+        .wizard-input-numero{width:100%;padding:11px 16px;font-size:16px;border-radius:12px;border:1px solid var(--border);background:var(--input-bg);color:var(--text);margin-bottom:12px;}
+        .wizard-preview{display:flex;flex-direction:column;gap:6px;margin-bottom:8px;}
+        .wizard-preview-fila{font-size:12px;color:var(--muted);padding:8px 10px;border-radius:10px;background:var(--surface2);}
+        .wizard-preview-fila strong{color:var(--text);}
+        .wizard-manual-fila{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 2px;font-size:13px;color:var(--text);border-bottom:1px solid var(--border);}
+        .wizard-manual-fila:last-child{border-bottom:none;}
+        .wizard-manual-grupo{width:56px;padding:8px;font-size:15px;text-align:center;border-radius:10px;border:1px solid var(--border);background:var(--input-bg);color:var(--text);}
+        .wizard-nombre-fila{padding:12px 2px;border-bottom:1px solid var(--border);}
+        .wizard-nombre-fila:last-child{border-bottom:none;}
+        .wizard-nombre-input{width:100%;padding:9px 12px;font-size:15px;border-radius:10px;border:1px solid var(--border);background:var(--input-bg);color:var(--text);margin-bottom:8px;}
+        .wizard-nombre-sub{font-size:11px;color:var(--muted);margin-top:6px;}
+        .wizard-swatches{display:flex;gap:6px;flex-wrap:wrap;}
+        .wizard-swatch{width:24px;height:24px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0;}
+        .wizard-swatch.selected{border-color:var(--text);}
+        .wizard-nav{display:flex;justify-content:space-between;gap:10px;margin-top:16px;}
+        .wizard-btn-volver{padding:11px 16px;border-radius:12px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:13px;font-weight:700;cursor:pointer;}
+        .wizard-btn-siguiente{flex:1;padding:11px 16px;border-radius:12px;border:none;background:var(--accent2);color:#fff;font-size:13px;font-weight:700;cursor:pointer;}
+        .wizard-btn-siguiente:disabled{opacity:.6;cursor:default;}
+
         @media(min-width:800px){
             .ajustes-modal{align-items:center;justify-content:center;padding:16px;}
             .ajustes-modal.open{display:flex;}
             .ajustes-box{position:relative;bottom:auto;left:auto;right:auto;animation:none;border-radius:22px;padding:20px;max-width:360px;width:100%;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.2);}
             .ajustes-handle{display:none;}
+            .wizard-box{max-width:440px;}
         }
 
         /* ── CONFETI (celebración al completar) ── */

@@ -8,7 +8,7 @@
 // Colócalo en la misma carpeta donde sirves index.html (normalmente "public/"),
 // para que quede accesible en la raíz como "/sw.js".
 
-const CACHE_VERSION = 'pokedex-tcg-v8';
+const CACHE_VERSION = 'pokedex-tcg-v9';
 const CACHE_SHELL    = `${CACHE_VERSION}-shell`;
 const CACHE_LECTURAS = `${CACHE_VERSION}-lecturas`;
 

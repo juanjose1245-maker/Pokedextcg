@@ -1581,7 +1581,7 @@ function wizardHuellaGen(gen) {
 function wizardConfirmarCantidad() {
     wizardNumCarpetas = Math.max(1, Math.min(9, parseInt(document.getElementById('wizard-cantidad-carpetas').value) || 1));
     wizardBolsillos = parseInt(document.getElementById('wizard-bolsillos-hoja').value) || 9;
-    wizardEspaciosBlanco = document.getElementById('wizard-espacios-blanco').checked;
+    wizardEspaciosBlanco = wizardModo === 'seguidas' ? false : document.getElementById('wizard-espacios-blanco').checked;
     wizardArmarPasoCapacidad();
     wizardMostrarPaso('capacidad');
 }
@@ -1591,8 +1591,15 @@ function wizardModoCapacidad() {
     return document.querySelector('input[name="wizard-modo-capacidad"]:checked').value;
 }
 
+// Cuánto necesita cubrir la capacidad total: 1025 (toda la colección) en
+// modo seguidas, o la suma de "huellas" de las 9 generaciones en separadas.
+function wizardNecesarioTotal() {
+    if (wizardModo === 'seguidas') return 1025;
+    return Array.from({ length: 9 }, (_, i) => wizardHuellaGen(i + 1)).reduce((a, b) => a + b, 0);
+}
+
 function wizardArmarPasoCapacidad() {
-    const necesarioTotal = Array.from({ length: 9 }, (_, i) => wizardHuellaGen(i + 1)).reduce((a, b) => a + b, 0);
+    const necesarioTotal = wizardNecesarioTotal();
     const modo = wizardModoCapacidad();
     if (modo === 'hojas') {
         // Una hoja tiene 2 páginas (frente y dorso), así que multiplicamos x2
@@ -1623,14 +1630,14 @@ function wizardCapacidadDeInput(inp) {
 }
 
 function wizardActualizarTotalCapacidad() {
-    const necesarioTotal = Array.from({ length: 9 }, (_, i) => wizardHuellaGen(i + 1)).reduce((a, b) => a + b, 0);
+    const necesarioTotal = wizardNecesarioTotal();
     let capacidadTotal = 0;
     document.querySelectorAll('.wizard-capacidad-fija-input').forEach(inp => {
         capacidadTotal += wizardCapacidadDeInput(inp);
     });
     const div = document.getElementById('wizard-capacidad-total');
     if (capacidadTotal < necesarioTotal) {
-        div.innerHTML = `<div class="wizard-preview-fila error">⚠️ Entre todas suman ${capacidadTotal} espacios, y hacen falta ${necesarioTotal} para las 9 generaciones.</div>`;
+        div.innerHTML = `<div class="wizard-preview-fila error">⚠️ Entre todas suman ${capacidadTotal} espacios, y hacen falta ${necesarioTotal} para cubrir toda la colección.</div>`;
     } else {
         div.innerHTML = `<div class="wizard-preview-fila ok">✓ Entre todas suman ${capacidadTotal} espacios (necesitás al menos ${necesarioTotal}).</div>`;
     }
@@ -1640,9 +1647,44 @@ function wizardCapacidadSiguiente() {
     wizardCapacidadesFijas = [...document.querySelectorAll('.wizard-capacidad-fija-input')]
         .sort((a, b) => parseInt(a.dataset.carpeta) - parseInt(b.dataset.carpeta))
         .map(wizardCapacidadDeInput);
+
+    if (wizardModo === 'seguidas') {
+        // Sin paso de ajuste manual (confirmado: el reparto automático alcanza)
+        // — pero si la capacidad no llega a 1025, no hay "ajuste" que lo salve
+        // más adelante como en modo separadas, así que se bloquea acá.
+        const total = wizardCapacidadesFijas.reduce((a, b) => a + b, 0);
+        if (total < 1025) {
+            mostrarToastError(`Entre todas suman ${total} espacios, y hacen falta 1025 para cubrir toda la colección.`);
+            return;
+        }
+        wizardRangos = wizardCalcularRangos();
+        wizardArmarPasoNombres();
+        wizardMostrarPaso('nombres');
+        return;
+    }
+
     wizardAsignacion = wizardRecomendarAsignacion();
     wizardArmarPasoAjuste();
     wizardMostrarPaso('ajuste');
+}
+
+// Reparte 1..1025 en rangos contiguos según la capacidad fija de cada
+// carpeta, en orden. La última carpeta siempre termina en 1025 (si le sobra
+// o falta capacidad declarada, ese desajuste se absorbe ahí). Si una carpeta
+// anterior ya consumió todo el rango (capacidades muy dispares), las
+// carpetas siguientes quedan en null — se descartan al guardar, igual que
+// las carpetas sin generaciones asignadas en modo separadas.
+function wizardCalcularRangos() {
+    const rangos = [];
+    let desde = 1;
+    for (let i = 0; i < wizardNumCarpetas; i++) {
+        if (desde > 1025) { rangos.push(null); continue; }
+        const esUltima = i === wizardNumCarpetas - 1;
+        const hasta = esUltima ? 1025 : Math.min(1025, desde + wizardCapacidadesFijas[i] - 1);
+        rangos.push({ desde, hasta });
+        desde = hasta + 1;
+    }
+    return rangos;
 }
 
 // Reparte las 9 generaciones, en orden, en las carpetas ya definidas

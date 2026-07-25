@@ -317,9 +317,12 @@ app.get('/api/sesion', (req, res) => {
 
 // ── ENDPOINTS DE LECTURA (siempre abiertos, sin login) ─────────────
 app.get('/api/buscar', (req, res) => {
-    const q   = req.query.q ? req.query.q.toUpperCase().trim() : '';
-    const gen = req.query.gen ? parseInt(req.query.gen) : null;
+    const q     = req.query.q ? req.query.q.toUpperCase().trim() : '';
+    const gen   = req.query.gen ? parseInt(req.query.gen) : null;
+    const desde = req.query.desde ? parseInt(req.query.desde) : null;
+    const hasta = req.query.hasta ? parseInt(req.query.hasta) : null;
     if (gen) return res.json(pokemonDB.filter(p => p.gen == gen));
+    if (desde && hasta) return res.json(pokemonDB.filter(p => p.id >= desde && p.id <= hasta));
     if (!q)  return res.json([]);
     const resultados = pokemonDB.filter(p => p.name.startsWith(q) || p.name === q);
     res.json(resultados.slice(0, 5));
@@ -601,15 +604,24 @@ app.post('/api/carpetas-config', requiereLogin, rateLimiter, (req, res) => {
     if (!carpetasConfigValida(nueva)) {
         return res.status(400).json({
             success: false,
-            error: 'Configuración inválida: cada carpeta necesita nombre, color (#rrggbb), al menos una generación, y espacios suficientes para todos sus Pokémon — y las 9 generaciones deben repartirse sin faltar ni repetirse.'
+            error: nueva && nueva.modo === 'seguidas'
+                ? 'Configuración inválida: cada carpeta necesita nombre, color (#rrggbb) y un rango de nº de Pokédex — y los rangos deben cubrir del 1 al 1025 sin huecos ni superposición.'
+                : 'Configuración inválida: cada carpeta necesita nombre, color (#rrggbb), al menos una generación, y espacios suficientes para todos sus Pokémon — y las 9 generaciones deben repartirse sin faltar ni repetirse.'
         });
     }
-    carpetasConfig = nueva.map(c => ({
-        nombre: c.nombre.trim(),
-        color: c.color,
-        gens: [...c.gens].sort((a, b) => a - b),
-        espacios: c.espacios
-    }));
+    carpetasConfig = nueva.modo === 'seguidas'
+        ? {
+            modo: 'seguidas',
+            carpetas: [...nueva.carpetas].sort((a, b) => a.desde - b.desde).map(c => ({
+                nombre: c.nombre.trim(), color: c.color, desde: c.desde, hasta: c.hasta, espacios: c.espacios
+            }))
+        }
+        : {
+            modo: 'separadas',
+            carpetas: nueva.carpetas.map(c => ({
+                nombre: c.nombre.trim(), color: c.color, gens: [...c.gens].sort((a, b) => a - b), espacios: c.espacios
+            }))
+        };
     guardarCarpetasConfig();
     broadcast({ tipo: 'config' }); // mismo evento que usa /api/importar para avisar "recargá todo"
     res.json({ success: true, carpetas: carpetasConfig });

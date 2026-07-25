@@ -182,17 +182,20 @@
 <!-- FAB VOLVER -->
 <div class="fab-home" id="fab-home" onclick="cambiarTab('home')">← Volver</div>
 
-<!-- DETAIL OVERLAY -->
-<div class="detail-overlay" id="detail-overlay">
-    <div class="detail-handle"></div>
-    <span class="detail-close" id="detail-close">×</span>
-    <div id="pk-region" class="detail-region"></div>
-    <div id="pk-name" class="detail-name">Pokémon</div>
-    <div id="pk-id" class="detail-ids"></div>
-    <div class="art-box"><img id="pk-img" src="" alt=""></div>
-    <div id="binder-guide" class="binder-box"></div>
-    <button id="btn-toggle-status" class="btn-status"></button>
-    <div class="detail-fecha" id="detail-fecha"></div>
+<!-- DETAIL MODAL — backdrop propio, mismo patrón que login/ajustes/métricas,
+     para que no queden clickeables las cartas de la galería de atrás. -->
+<div class="detail-modal" id="detail-modal">
+    <div class="detail-overlay" id="detail-overlay">
+        <div class="detail-handle"></div>
+        <span class="detail-close" id="detail-close">×</span>
+        <div id="pk-region" class="detail-region"></div>
+        <div id="pk-name" class="detail-name">Pokémon</div>
+        <div id="pk-id" class="detail-ids"></div>
+        <div class="art-box"><img id="pk-img" src="" alt=""></div>
+        <div id="binder-guide" class="binder-box"></div>
+        <button id="btn-toggle-status" class="btn-status"></button>
+        <div class="detail-fecha" id="detail-fecha"></div>
+    </div>
 </div>
 
 <!-- METRICS MODAL -->

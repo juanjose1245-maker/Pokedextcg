@@ -229,7 +229,11 @@ let fichaOrigenPendientes = false; // ¿la ficha abierta viene de la vista "Por 
 const cortesGen    = [0,0,151,251,386,493,649,721,809,905];
 const cachePokemon = {};
 
-const esDesktop = () => window.innerWidth >= 800;
+// Debe coincidir con el breakpoint del layout de dos paneles en styles.css
+// (@media min-width:768px) — si se desalinean, el CSS muestra el shell de
+// escritorio pero el JS sigue pensando que es mobile (o viceversa) y la
+// galería queda en blanco.
+const esDesktop = () => window.innerWidth >= 768;
 
 // ── TOASTS (error / info) ──────────────────────────────────────────
 let errorToastTimer = null;
@@ -1141,7 +1145,7 @@ function mostrarFicha(p, esPendientes) {
         const fecha = getFechaRegistro(p.id);
         document.getElementById('detail-fecha').textContent = tiene && fecha ? `Registrado el ${fecha}` : '';
     }
-    document.getElementById('detail-overlay').style.display = 'block';
+    document.getElementById('detail-modal').classList.add('open');
 }
 
 function actualizarBotonEstado(tiene) {
@@ -1174,7 +1178,7 @@ async function ejecutarToggleStatus() {
             localStorage.setItem(claveLS(idPk), 'true');
             guardarFechaRegistro(idPk, fechaIso);
         }
-        document.getElementById('detail-overlay').style.display = 'none';
+        document.getElementById('detail-modal').classList.remove('open');
         pkSeleccionado = null;
         fichaOrigenPendientes = false;
         // Lo sacamos de la lista de pendientes en pantalla, sin volver a comparar todo el inventario.
@@ -1212,7 +1216,7 @@ async function ejecutarToggleStatus() {
         localStorage.setItem(claveLS(idPk), nuevoEstado ? 'true' : 'false');
         if (nuevoEstado) guardarFechaRegistro(idPk, fechaServidor || fechaIso);
         actualizarBotonEstado(nuevoEstado);
-        document.getElementById('detail-overlay').style.display = 'none';
+        document.getElementById('detail-modal').classList.remove('open');
         pkSeleccionado = null;
         const statsAntes = dataGlobalCache;
         await cargarEstadisticasSinMoverScroll();
@@ -1225,7 +1229,7 @@ async function ejecutarToggleStatus() {
 }
 
 document.getElementById('detail-close').onclick = () => {
-    document.getElementById('detail-overlay').style.display = 'none';
+    document.getElementById('detail-modal').classList.remove('open');
     pkSeleccionado = null;
 };
 

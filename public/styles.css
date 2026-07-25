@@ -324,7 +324,9 @@
         .fab-home:active{opacity:.85;transform:translateX(-50%) scale(0.96);}
 
         /* ── DETAIL OVERLAY ── */
-        .detail-overlay{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--overlay-bg);border-radius:28px 28px 0 0;padding:24px 20px 44px;box-shadow:0 -12px 40px var(--shadow);z-index:600;text-align:center;border-top:1px solid var(--border);animation:slideUp .3s ease;}
+        .detail-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:600;}
+        .detail-modal.open{display:block;}
+        .detail-overlay{position:fixed;bottom:0;left:0;right:0;background:var(--overlay-bg);border-radius:28px 28px 0 0;padding:24px 20px 44px;box-shadow:0 -12px 40px var(--shadow);text-align:center;border-top:1px solid var(--border);animation:slideUp .3s ease;}
         @keyframes slideUp{from{transform:translateY(30px);opacity:0;}to{transform:translateY(0);opacity:1;}}
         .detail-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px;}
         .detail-close{position:absolute;top:20px;right:18px;font-size:20px;color:var(--muted);cursor:pointer;padding:4px;}
@@ -370,7 +372,7 @@
         .metrics-quick-actions{display:flex;flex-direction:column;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
         .metrics-quick-btn{width:100%;border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:12px;padding:11px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;text-align:left;transition:background .15s;}
         .metrics-quick-btn:active{background:var(--border);}
-        @media(min-width:800px){.metrics-quick-actions{display:none;}}
+        @media(min-width:768px){.metrics-quick-actions{display:none;}}
 
         /* ── LOGIN MODAL — hoja deslizante en mobile, modal centrado en desktop ── */
         .login-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:900;}
@@ -405,7 +407,7 @@
         .login-btn.primary{background:var(--modo-color);color:#fff;transition:background .3s ease;}
         .login-btn.secondary{background:var(--surface2);color:var(--text);border:1px solid var(--border);}
 
-        @media(min-width:800px){
+        @media(min-width:768px){
             .login-modal{display:none;align-items:center;justify-content:center;padding:16px;}
             .login-modal.open{display:flex;}
             .login-box{
@@ -482,7 +484,7 @@
         .wizard-btn-siguiente{flex:1;padding:11px 16px;border-radius:12px;border:none;background:var(--accent2);color:#fff;font-size:13px;font-weight:700;cursor:pointer;}
         .wizard-btn-siguiente:disabled{opacity:.6;cursor:default;}
 
-        @media(min-width:800px){
+        @media(min-width:768px){
             .ajustes-modal{align-items:center;justify-content:center;padding:16px;}
             .ajustes-modal.open{display:flex;}
             .ajustes-box{position:relative;bottom:auto;left:auto;right:auto;animation:none;border-radius:22px;padding:20px;max-width:360px;width:100%;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.2);}
@@ -520,9 +522,12 @@
         }
 
         /* ═══════════════════════════════════════════════════════
-           DESKTOP 1024px — layout de dos paneles
+           DESKTOP 768px — layout de dos paneles. Mismo corte que el
+           bloque "TABLET 768px" de arriba: van juntos a propósito, para
+           que no quede un rango intermedio (ej. iPad vertical) mostrando
+           el layout mobile estirado con espacio vacío abajo.
         ═══════════════════════════════════════════════════════ */
-        @media(min-width:800px){
+        @media(min-width:768px){
             body{display:flex;flex-direction:row;overflow:hidden;}
 
             /* ── SIDEBAR ── */

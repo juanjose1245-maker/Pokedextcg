@@ -103,26 +103,53 @@ const CARPETAS_DEFAULT = [
     { nombre: 'Roja',   color: '#dc2626', gens: [8, 9],    espacios: pokemonPorGens([8, 9]) }
 ];
 
+// candidato = { modo: 'separadas'|'seguidas', carpetas: [...] }
+// - separadas: cada carpeta tiene generaciones completas (gens: number[]); entre
+//   todas, las 9 generaciones aparecen exactamente una vez.
+// - seguidas: cada carpeta tiene un rango de nº de Pokédex nacional (desde/hasta);
+//   los rangos son contiguos, sin huecos ni superposición, y cubren 1 a 1025 entero.
 function carpetasConfigValida(candidato) {
-    if (!Array.isArray(candidato) || !candidato.length) return false;
-    const vistos = new Set();
-    for (const c of candidato) {
-        if (!c || typeof c.nombre !== 'string' || !c.nombre.trim()) return false;
-        if (typeof c.color !== 'string' || !/^#[0-9a-fA-F]{6}$/.test(c.color)) return false;
-        if (!Array.isArray(c.gens) || !c.gens.length) return false;
-        for (const g of c.gens) {
-            if (!Number.isInteger(g) || g < 1 || g > 9 || vistos.has(g)) return false;
-            vistos.add(g);
+    if (!candidato || typeof candidato !== 'object' || Array.isArray(candidato)) return false;
+    const { modo, carpetas } = candidato;
+    if (!Array.isArray(carpetas) || !carpetas.length) return false;
+
+    if (modo === 'seguidas') {
+        const ordenadas = [...carpetas].sort((a, b) => a.desde - b.desde);
+        let siguienteDesde = 1;
+        for (const c of ordenadas) {
+            if (!c || typeof c.nombre !== 'string' || !c.nombre.trim()) return false;
+            if (typeof c.color !== 'string' || !/^#[0-9a-fA-F]{6}$/.test(c.color)) return false;
+            if (!Number.isInteger(c.desde) || !Number.isInteger(c.hasta)) return false;
+            if (c.desde !== siguienteDesde || c.hasta < c.desde) return false;
+            if (!Number.isInteger(c.espacios) || c.espacios < (c.hasta - c.desde + 1)) return false;
+            siguienteDesde = c.hasta + 1;
         }
-        if (!Number.isInteger(c.espacios) || c.espacios < pokemonPorGens(c.gens)) return false;
+        return siguienteDesde === 1026; // la última carpeta terminó justo en el Pokémon #1025
     }
-    return vistos.size === 9; // las 9 generaciones, cada una en exactamente una carpeta
+
+    if (modo === 'separadas') {
+        const vistos = new Set();
+        for (const c of carpetas) {
+            if (!c || typeof c.nombre !== 'string' || !c.nombre.trim()) return false;
+            if (typeof c.color !== 'string' || !/^#[0-9a-fA-F]{6}$/.test(c.color)) return false;
+            if (!Array.isArray(c.gens) || !c.gens.length) return false;
+            for (const g of c.gens) {
+                if (!Number.isInteger(g) || g < 1 || g > 9 || vistos.has(g)) return false;
+                vistos.add(g);
+            }
+            if (!Number.isInteger(c.espacios) || c.espacios < pokemonPorGens(c.gens)) return false;
+        }
+        return vistos.size === 9; // las 9 generaciones, cada una en exactamente una carpeta
+    }
+
+    return false;
 }
 
-let carpetasConfig = CARPETAS_DEFAULT;
+let carpetasConfig = { modo: 'separadas', carpetas: CARPETAS_DEFAULT };
 if (fs.existsSync('carpetas.json')) {
     try {
-        const raw = JSON.parse(fs.readFileSync('carpetas.json', 'utf8'));
+        let raw = JSON.parse(fs.readFileSync('carpetas.json', 'utf8'));
+        if (Array.isArray(raw)) raw = { modo: 'separadas', carpetas: raw }; // formato viejo, antes de este cambio
         if (carpetasConfigValida(raw)) carpetasConfig = raw;
         else console.warn('⚠️  carpetas.json inválido, usando la configuración por defecto.');
     } catch (err) {

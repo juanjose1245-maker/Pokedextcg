@@ -1671,9 +1671,11 @@ function wizardCapacidadSiguiente() {
 // Reparte 1..1025 en rangos contiguos según la capacidad fija de cada
 // carpeta, en orden. La última carpeta siempre termina en 1025 (si le sobra
 // o falta capacidad declarada, ese desajuste se absorbe ahí). Si una carpeta
-// anterior ya consumió todo el rango (capacidades muy dispares), las
-// carpetas siguientes quedan en null — se descartan al guardar, igual que
-// las carpetas sin generaciones asignadas en modo separadas.
+// anterior ya consumió todo el rango (capacidades muy dispares), o si a una
+// carpeta (que no sea la última) le tocó una capacidad propia de 0 o menos
+// (input vaciado/en 0), esa carpeta queda en null en vez de un rango vacío o
+// invertido — se descartan al guardar, igual que las carpetas sin
+// generaciones asignadas en modo separadas.
 function wizardCalcularRangos() {
     const rangos = [];
     let desde = 1;
@@ -1681,6 +1683,7 @@ function wizardCalcularRangos() {
         if (desde > 1025) { rangos.push(null); continue; }
         const esUltima = i === wizardNumCarpetas - 1;
         const hasta = esUltima ? 1025 : Math.min(1025, desde + wizardCapacidadesFijas[i] - 1);
+        if (hasta < desde) { rangos.push(null); continue; }
         rangos.push({ desde, hasta });
         desde = hasta + 1;
     }

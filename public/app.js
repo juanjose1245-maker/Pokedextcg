@@ -1493,24 +1493,47 @@ function wizardConfirmarCantidad() {
     wizardMostrarPaso('capacidad');
 }
 
+// 'hojas' (contando las 2 caras) o 'espacios' (número total, directo).
+function wizardModoCapacidad() {
+    return document.querySelector('input[name="wizard-modo-capacidad"]:checked').value;
+}
+
 function wizardArmarPasoCapacidad() {
-    // Precarga con las hojas necesarias para un reparto parejo, como punto de partida razonable.
     const necesarioTotal = Array.from({ length: 9 }, (_, i) => wizardHuellaGen(i + 1)).reduce((a, b) => a + b, 0);
-    const hojasSugeridas = Math.ceil(Math.ceil(necesarioTotal / wizardNumCarpetas) / wizardBolsillos);
-    document.getElementById('wizard-capacidad-lista').innerHTML = Array.from({ length: wizardNumCarpetas }, (_, i) => `
-        <div class="wizard-espacios-fila">
-            <label>Carpeta ${i + 1} — hojas</label>
-            <input type="number" min="1" value="${hojasSugeridas}" class="wizard-capacidad-fija-input" data-carpeta="${i}" oninput="wizardActualizarTotalCapacidad()">
-        </div>
-    `).join('');
+    const modo = wizardModoCapacidad();
+    if (modo === 'hojas') {
+        // Una hoja tiene 2 páginas (frente y dorso), así que multiplicamos x2
+        // los bolsillos por página que se eligieron en el paso anterior.
+        const espaciosPorHoja = wizardBolsillos * 2;
+        const hojasSugeridas = Math.ceil(Math.ceil(necesarioTotal / wizardNumCarpetas) / espaciosPorHoja);
+        document.getElementById('wizard-capacidad-lista').innerHTML = Array.from({ length: wizardNumCarpetas }, (_, i) => `
+            <div class="wizard-espacios-fila">
+                <label>Carpeta ${i + 1} — hojas (${espaciosPorHoja} espacios c/u)</label>
+                <input type="number" min="1" value="${hojasSugeridas}" class="wizard-capacidad-fija-input" data-carpeta="${i}" oninput="wizardActualizarTotalCapacidad()">
+            </div>
+        `).join('');
+    } else {
+        const espaciosSugeridos = Math.ceil(necesarioTotal / wizardNumCarpetas);
+        document.getElementById('wizard-capacidad-lista').innerHTML = Array.from({ length: wizardNumCarpetas }, (_, i) => `
+            <div class="wizard-espacios-fila">
+                <label>Carpeta ${i + 1} — espacios totales</label>
+                <input type="number" min="1" value="${espaciosSugeridos}" class="wizard-capacidad-fija-input" data-carpeta="${i}" oninput="wizardActualizarTotalCapacidad()">
+            </div>
+        `).join('');
+    }
     wizardActualizarTotalCapacidad();
+}
+
+function wizardCapacidadDeInput(inp) {
+    const valor = parseInt(inp.value) || 0;
+    return wizardModoCapacidad() === 'hojas' ? valor * wizardBolsillos * 2 : valor;
 }
 
 function wizardActualizarTotalCapacidad() {
     const necesarioTotal = Array.from({ length: 9 }, (_, i) => wizardHuellaGen(i + 1)).reduce((a, b) => a + b, 0);
     let capacidadTotal = 0;
     document.querySelectorAll('.wizard-capacidad-fija-input').forEach(inp => {
-        capacidadTotal += (parseInt(inp.value) || 0) * wizardBolsillos;
+        capacidadTotal += wizardCapacidadDeInput(inp);
     });
     const div = document.getElementById('wizard-capacidad-total');
     if (capacidadTotal < necesarioTotal) {
@@ -1523,7 +1546,7 @@ function wizardActualizarTotalCapacidad() {
 function wizardCapacidadSiguiente() {
     wizardCapacidadesFijas = [...document.querySelectorAll('.wizard-capacidad-fija-input')]
         .sort((a, b) => parseInt(a.dataset.carpeta) - parseInt(b.dataset.carpeta))
-        .map(inp => (parseInt(inp.value) || 0) * wizardBolsillos);
+        .map(wizardCapacidadDeInput);
     wizardAsignacion = wizardRecomendarAsignacion();
     wizardArmarPasoAjuste();
     wizardMostrarPaso('ajuste');

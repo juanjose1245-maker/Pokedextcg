@@ -326,15 +326,16 @@
 
         <!-- Paso 2: formato de hoja -->
         <div class="wizard-paso" id="wizard-paso-formato" style="display:none;">
-            <div class="pdf-opciones-label">¿Bolsillos por hoja?</div>
+            <div class="pdf-opciones-label">¿Bolsillos por página (una cara)?</div>
             <select id="wizard-bolsillos-hoja" class="wizard-input-numero">
-                <option value="4">4 por hoja</option>
-                <option value="9" selected>9 por hoja (lo más común)</option>
-                <option value="12">12 por hoja</option>
+                <option value="4">4 por página</option>
+                <option value="9" selected>9 por página (lo más común)</option>
+                <option value="12">12 por página</option>
             </select>
+            <div class="wizard-nota">💡 Una hoja tiene 2 páginas (frente y dorso) — cuando más adelante pidamos "hojas", ya vamos a contar las dos caras solas.</div>
             <label class="pdf-opciones-check">
                 <input type="checkbox" id="wizard-espacios-blanco">
-                Dejar espacios en blanco para que cada generación empiece en una hoja nueva
+                Dejar espacios en blanco para que cada generación empiece en una página nueva
             </label>
             <div class="wizard-nav">
                 <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('modo')">← Atrás</button>
@@ -354,7 +355,9 @@
 
         <!-- Paso 4: capacidad de cada carpeta -->
         <div class="wizard-paso" id="wizard-paso-capacidad" style="display:none;">
-            <div class="pdf-opciones-label">¿Cuántas hojas tiene cada carpeta?</div>
+            <div class="pdf-opciones-label">¿Cómo preferís poner la capacidad?</div>
+            <label class="pdf-opciones-radio"><input type="radio" name="wizard-modo-capacidad" value="hojas" checked onchange="wizardArmarPasoCapacidad()"> En hojas (contando las 2 caras)</label>
+            <label class="pdf-opciones-radio"><input type="radio" name="wizard-modo-capacidad" value="espacios" onchange="wizardArmarPasoCapacidad()"> En espacios totales</label>
             <div id="wizard-capacidad-lista"></div>
             <div class="wizard-preview" id="wizard-capacidad-total"></div>
             <div class="wizard-nav">

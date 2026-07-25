@@ -450,6 +450,7 @@
         .wizard-opcion-modo strong{font-size:14px;color:var(--text);}
         .wizard-opcion-modo span{font-size:12px;color:var(--muted);}
         .wizard-input-numero{width:100%;padding:11px 16px;font-size:16px;border-radius:12px;border:1px solid var(--border);background:var(--input-bg);color:var(--text);margin-bottom:12px;}
+        .wizard-nota{font-size:11px;color:var(--muted);background:var(--surface2);border-radius:10px;padding:9px 11px;margin-bottom:12px;line-height:1.4;}
         .wizard-preview{display:flex;flex-direction:column;gap:6px;margin-bottom:8px;}
         .wizard-preview-fila{font-size:12px;color:var(--muted);padding:8px 10px;border-radius:10px;background:var(--surface2);}
         .wizard-preview-fila strong{color:var(--text);}
@@ -465,7 +466,7 @@
         .wizard-nombre-sub{font-size:11px;color:var(--muted);margin-top:6px;}
         .wizard-espacios-fila{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;}
         .wizard-espacios-fila label{font-size:12px;color:var(--text);}
-        .wizard-capacidad-hojas{width:80px;padding:8px;font-size:15px;text-align:center;border-radius:10px;border:1px solid var(--border);background:var(--input-bg);color:var(--text);}
+        .wizard-capacidad-hojas,.wizard-capacidad-fija-input{width:80px;padding:8px;font-size:15px;text-align:center;border-radius:10px;border:1px solid var(--border);background:var(--input-bg);color:var(--text);}
         .wizard-espacios-feedback{font-size:11px;margin-top:6px;font-weight:600;}
         .wizard-espacios-feedback.ok{color:var(--found);}
         .wizard-espacios-feedback.error{color:var(--danger);}

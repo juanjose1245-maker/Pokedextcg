@@ -31,8 +31,9 @@ const coloresBg  = ["rgba(59,91,219,0.16)","rgba(59,91,219,0.16)","rgba(124,58,2
 // Las carpetas se configuran desde el servidor (Ajustes → Configurar
 // carpetas — wizard), para que todos los dispositivos vean la misma
 // agrupación. Acá solo completamos `bg` y `rango`, que el servidor no
-// guarda (solo nombre/color/gens).
+// guarda (solo nombre/color/gens, o nombre/color/desde/hasta).
 let carpetas = [];
+let modoCarpetasConfig = 'separadas'; // 'separadas' | 'seguidas'
 
 function formatearRango(gens) {
     const ordenados = [...gens].sort((a, b) => a - b);
@@ -57,21 +58,22 @@ async function cargarCarpetasConfig() {
         const res = await fetch('/api/carpetas-config');
         if (!res.ok) throw new Error('respuesta no válida');
         const datos = await res.json();
-        carpetas = datos.map(c => ({
-            nombre: c.nombre,
-            color: c.color,
-            bg: hexToRgba(c.color, 0.16),
-            gens: c.gens,
-            rango: formatearRango(c.gens),
-            espacios: c.espacios
-        }));
+        modoCarpetasConfig = datos.modo;
+        carpetas = datos.carpetas.map(c => modoCarpetasConfig === 'seguidas'
+            ? { nombre: c.nombre, color: c.color, bg: hexToRgba(c.color, 0.16), desde: c.desde, hasta: c.hasta, rango: `#${c.desde}–${c.hasta}`, espacios: c.espacios }
+            : { nombre: c.nombre, color: c.color, bg: hexToRgba(c.color, 0.16), gens: c.gens, rango: formatearRango(c.gens), espacios: c.espacios }
+        );
     } catch (err) {
         console.error('No se pudo cargar la configuración de carpetas:', err.message);
     }
 }
 
-// Devuelve la carpeta a la que pertenece un Pokémon, según su generación.
+// Devuelve la carpeta a la que pertenece un Pokémon, según generación
+// (modo separadas) o según su nº de Pokédex nacional (modo seguidas).
 function carpetaDe(p) {
+    if (modoCarpetasConfig === 'seguidas') {
+        return carpetas.find(c => p.id >= c.desde && p.id <= c.hasta) || null;
+    }
     return carpetas.find(c => c.gens.includes(p.gen)) || null;
 }
 

@@ -427,11 +427,14 @@ async function mapConcurrencia(items, limite, fn) {
 
 const REGIONES = ['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'];
 
-// opciones = { gens: Set<number>, portadas: boolean, numeros: 'ambos'|'regional'|'nacional' }
+// opciones = { modo: 'separadas'|'seguidas', gens?: Set<number>, rangos?: {desde,hasta}[],
+//              portadas: boolean, numeros: 'ambos'|'regional'|'nacional' }
 async function generarPDFRecortables(rutaSalida, opciones) {
     if (!fs.existsSync(CARPETA_CACHE)) fs.mkdirSync(CARPETA_CACHE, { recursive: true });
     const pokemonOrdenados = [...pokemonDB]
-        .filter(p => opciones.gens.has(p.gen))
+        .filter(p => opciones.modo === 'seguidas'
+            ? opciones.rangos.some(r => p.id >= r.desde && p.id <= r.hasta)
+            : opciones.gens.has(p.gen))
         .sort((a, b) => a.id - b.id);
     const imagenes = await mapConcurrencia(pokemonOrdenados, 12, p => descargarImagen(p.image));
     const imagenPorId = new Map(pokemonOrdenados.map((p, i) => [p.id, imagenes[i]]));
@@ -467,8 +470,29 @@ async function generarPDFRecortables(rutaSalida, opciones) {
         return `${rTxt}   ${nTxt}`;
     }
 
-    let primeraPagina = true;
-    for (let gen = 1; gen <= 9; gen++) {
+    if (opciones.modo === 'seguidas') {
+        // Sin portadas y sin cortes por generación: una sola tira continua de
+        // hojas en orden de Pokédex, exactamente lo que "todas seguidas" significa.
+        pokemonOrdenados.forEach((p, i) => {
+            const posEnHoja = i % POR_HOJA;
+            if (i > 0 && posEnHoja === 0) doc.addPage();
+            const col = posEnHoja % COLS;
+            const fila = Math.floor(posEnHoja / COLS);
+            const x = margen + col * anchoCelda;
+            const y = margen + fila * altoCelda;
+            const padding = 8;
+            doc.lineWidth(0.5).rect(x, y, anchoCelda, altoCelda).stroke('#cccccc');
+            const areaImagenAlto = altoCelda * 0.72;
+            dibujarImagenSegura(imagenPorId.get(p.id), x + padding, y + padding, anchoCelda - padding * 2, areaImagenAlto - padding);
+            const textoY = y + areaImagenAlto + 2;
+            doc.fontSize(10).fillColor('#000000')
+               .text(textoNumeros(p), x + padding, textoY, { width: anchoCelda - padding * 2, align: 'center' });
+            doc.fontSize(9)
+               .text(p.name, x + padding, textoY + 13, { width: anchoCelda - padding * 2, align: 'center' });
+        });
+    } else {
+        let primeraPagina = true;
+        for (let gen = 1; gen <= 9; gen++) {
         if (!opciones.gens.has(gen)) continue;
         const pokemonGen = pokemonOrdenados.filter(p => p.gen === gen);
         if (!pokemonGen.length) continue;
@@ -523,7 +547,8 @@ async function generarPDFRecortables(rutaSalida, opciones) {
             doc.fontSize(9)
                .text(p.name, x + padding, textoY + 13, { width: anchoCelda - padding * 2, align: 'center' });
         });
-    }
+        } // cierra el for (gen) del modo separadas
+    } // cierra el else (modo separadas)
 
     doc.end();
     await new Promise((resolve, reject) => {
@@ -535,7 +560,7 @@ async function generarPDFRecortables(rutaSalida, opciones) {
 
 app.get('/api/pdf-carpetas', async (req, res) => {
     try {
-        const nombresValidos = new Set(carpetasConfig.map(c => c.nombre.toLowerCase()));
+        const nombresValidos = new Set(carpetasConfig.carpetas.map(c => c.nombre.toLowerCase()));
         const carpetasParam = (req.query.carpetas || '').trim();
         const nombresPedidos = carpetasParam
             ? carpetasParam.split(',').map(s => s.trim().toLowerCase()).filter(n => nombresValidos.has(n))
@@ -543,14 +568,24 @@ app.get('/api/pdf-carpetas', async (req, res) => {
         if (!nombresPedidos.length) {
             return res.status(400).json({ success:false, error: 'No se seleccionó ninguna carpeta válida' });
         }
-        const gens = new Set(
-            carpetasConfig.filter(c => nombresPedidos.includes(c.nombre.toLowerCase())).flatMap(c => c.gens)
-        );
-        const portadas = req.query.portadas !== '0' && req.query.portadas !== 'false';
+        const seleccionadas = carpetasConfig.carpetas.filter(c => nombresPedidos.includes(c.nombre.toLowerCase()));
         const numeros = ['ambos', 'regional', 'nacional'].includes(req.query.numeros) ? req.query.numeros : 'ambos';
-        const opciones = { gens, portadas, numeros };
 
-        const esDefault = gens.size === 9 && portadas && numeros === 'ambos';
+        let opciones;
+        if (carpetasConfig.modo === 'seguidas') {
+            opciones = {
+                modo: 'seguidas',
+                rangos: seleccionadas.map(c => ({ desde: c.desde, hasta: c.hasta })),
+                portadas: false,
+                numeros
+            };
+        } else {
+            const gens = new Set(seleccionadas.flatMap(c => c.gens));
+            const portadas = req.query.portadas !== '0' && req.query.portadas !== 'false';
+            opciones = { modo: 'separadas', gens, portadas, numeros };
+        }
+
+        const esDefault = opciones.modo === 'separadas' && opciones.gens.size === 9 && opciones.portadas && numeros === 'ambos';
 
         if (esDefault) {
             const dbStat  = fs.statSync(path.join(__dirname, 'pokemon_db.json'));

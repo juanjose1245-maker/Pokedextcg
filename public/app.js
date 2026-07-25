@@ -906,7 +906,7 @@ async function descargarRecortablesPDF() {
         mostrarToastError('Elegí al menos una carpeta.');
         return;
     }
-    const incluirPortadas = document.getElementById('pdf-check-portadas').checked;
+    const incluirPortadas = modoCarpetasConfig === 'seguidas' ? false : document.getElementById('pdf-check-portadas').checked;
     const numeros = document.querySelector('input[name="pdf-numeros"]:checked').value;
     const params = new URLSearchParams({
         carpetas: carpetasElegidas.join(','),
@@ -1509,6 +1509,10 @@ function abrirOpcionesPDF() {
             ${c.nombre} (${c.rango})
         </label>
     `).join('');
+    // La portada por región no aplica en modo "seguidas": una carpeta puede
+    // cortar una región al medio, así que no hay "la región" de esa carpeta.
+    document.getElementById('pdf-opciones-portadas-seccion').style.display =
+        modoCarpetasConfig === 'seguidas' ? 'none' : '';
     cerrarAjustes();
     document.getElementById('pdf-opciones-modal').classList.add('open');
 }

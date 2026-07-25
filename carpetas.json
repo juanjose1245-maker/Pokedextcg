@@ -1,0 +1,39 @@
+[
+  {
+    "nombre": "Azul",
+    "color": "#3b5bdb",
+    "gens": [
+      1,
+      2
+    ],
+    "espacios": 360
+  },
+  {
+    "nombre": "Morada",
+    "color": "#7c3aed",
+    "gens": [
+      3,
+      4
+    ],
+    "espacios": 360
+  },
+  {
+    "nombre": "Carpeta 3",
+    "color": "#db2777",
+    "gens": [
+      5,
+      6,
+      7
+    ],
+    "espacios": 360
+  },
+  {
+    "nombre": "Carpeta 4",
+    "color": "#dc2626",
+    "gens": [
+      8,
+      9
+    ],
+    "espacios": 360
+  }
+]

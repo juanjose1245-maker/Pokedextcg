@@ -9,6 +9,7 @@
             --found-bg:linear-gradient(145deg,#f0fdf4,#fff);--found-glow:rgba(16,114,81,0.05);
             --sidebar-bg:#fff;--sidebar-width:260px;
             --modo-color:var(--accent);--modo-bg:rgba(217,119,6,0.08);
+            --accent-rgb:217,119,6;--accent2-rgb:79,70,229;--danger-rgb:239,68,68;
         }
         @media(prefers-color-scheme:dark){:root{
             --bg:#0d1117;--surface:#161b22;--surface2:#1c2128;--border:#30363d;
@@ -19,6 +20,7 @@
             --input-bg:#161b22;--sug-bg:#161b22;--overlay-bg:#161b22;
             --found-bg:linear-gradient(145deg,#0f1f14,#161b22);--found-glow:rgba(63,185,80,0.05);
             --sidebar-bg:#0b0f14;
+            --accent-rgb:59,130,246;--accent2-rgb:124,134,255;--danger-rgb:248,81,73;
         }}
 
         /* Tema forzado manualmente (independiente del sistema operativo).
@@ -33,6 +35,7 @@
             --input-bg:#fff;--sug-bg:#fff;--overlay-bg:#fff;
             --found-bg:linear-gradient(145deg,#f0fdf4,#fff);--found-glow:rgba(16,114,81,0.05);
             --sidebar-bg:#fff;
+            --accent-rgb:217,119,6;--accent2-rgb:79,70,229;--danger-rgb:239,68,68;
         }
         :root[data-theme="dark"]{
             --bg:#0d1117;--surface:#161b22;--surface2:#1c2128;--border:#30363d;
@@ -43,6 +46,7 @@
             --input-bg:#161b22;--sug-bg:#161b22;--overlay-bg:#161b22;
             --found-bg:linear-gradient(145deg,#0f1f14,#161b22);--found-glow:rgba(63,185,80,0.05);
             --sidebar-bg:#0b0f14;
+            --accent-rgb:59,130,246;--accent2-rgb:124,134,255;--danger-rgb:248,81,73;
         }
         /* Estos dos detalles puntuales también dependían de la media query;
            los replicamos con el atributo para que el tema forzado se vea bien. */
@@ -185,7 +189,7 @@
         .progress-count span{color:var(--accent2);}
         .progress-sub{font-size:12px;color:var(--muted);margin-top:3px;}
         .circle-wrap{width:72px;height:72px;flex-shrink:0;}
-        .jalon-box{display:none;margin-top:10px;padding:8px 12px;border-radius:10px;background:rgba(79,70,229,0.08);border:1px solid rgba(79,70,229,0.2);font-size:12px;color:var(--accent2);font-weight:600;}
+        .jalon-box{display:none;margin-top:10px;padding:8px 12px;border-radius:10px;background:rgba(var(--accent2-rgb),0.08);border:1px solid rgba(var(--accent2-rgb),0.2);font-size:12px;color:var(--accent2);font-weight:600;}
         .jalon-box.visible{display:block;}
         .binder-bar-wrap{margin-top:14px;padding-top:12px;border-top:1px solid var(--border);}
         .binder-bar{display:flex;gap:3px;height:10px;border-radius:6px;overflow:hidden;margin-bottom:10px;}
@@ -361,7 +365,7 @@
         .metrics-row-val{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;color:var(--text);}
         .metrics-row-sub{font-size:11px;color:var(--muted);text-align:right;}
         .metrics-section-title{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px;}
-        .metrics-jalon{background:rgba(79,70,229,0.08);border:1px solid rgba(79,70,229,0.2);border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:12px;color:var(--accent2);font-weight:600;}
+        .metrics-jalon{background:rgba(var(--accent2-rgb),0.08);border:1px solid rgba(var(--accent2-rgb),0.2);border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:12px;color:var(--accent2);font-weight:600;}
         .metrics-close{width:100%;margin-top:16px;border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:12px;padding:12px;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;letter-spacing:.06em;cursor:pointer;}
         .metrics-quick-actions{display:flex;flex-direction:column;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
         .metrics-quick-btn{width:100%;border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:12px;padding:11px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;text-align:left;transition:background .15s;}
@@ -455,7 +459,7 @@
         .wizard-preview-fila{font-size:12px;color:var(--muted);padding:8px 10px;border-radius:10px;background:var(--surface2);}
         .wizard-preview-fila strong{color:var(--text);}
         .wizard-preview-fila.ok{color:var(--found);background:var(--found-bg);}
-        .wizard-preview-fila.error{color:var(--danger);background:rgba(220,38,38,0.08);}
+        .wizard-preview-fila.error{color:var(--danger);background:rgba(var(--danger-rgb),0.08);}
         .wizard-chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
         .wizard-chip{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 6px;border-radius:14px;border:none;cursor:pointer;color:#fff;}
         .wizard-chip-region{font-size:12px;font-weight:700;}
@@ -555,7 +559,7 @@
             .sb-carpeta{margin:0 12px 4px;}
             .sb-carpeta-header{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:10px;cursor:pointer;transition:background .15s;}
             .sb-carpeta-header:hover{background:var(--surface2);}
-            .sb-carpeta-header.active{background:rgba(79,70,229,0.08);border:0.5px solid rgba(79,70,229,0.15);}
+            .sb-carpeta-header.active{background:rgba(var(--accent2-rgb),0.08);border:0.5px solid rgba(var(--accent2-rgb),0.15);}
             .sb-carpeta-left{display:flex;align-items:center;gap:7px;}
             .sb-carpeta-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
             .sb-carpeta-name{font-size:13px;font-weight:600;color:var(--text);}
@@ -566,7 +570,7 @@
             .sb-gens{margin:2px 12px 6px 24px;}
             .sb-gen-item{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-radius:8px;cursor:pointer;transition:background .15s;border-left:2px solid transparent;}
             .sb-gen-item:hover{background:var(--surface2);}
-            .sb-gen-item.active{background:rgba(79,70,229,0.08);border-left-color:var(--accent2);}
+            .sb-gen-item.active{background:rgba(var(--accent2-rgb),0.08);border-left-color:var(--accent2);}
             .sb-gen-name{font-size:13px;color:var(--text);}
             .sb-gen-item.active .sb-gen-name{font-weight:600;color:var(--accent2);}
             .sb-gen-count{font-size:11px;font-weight:600;color:var(--muted);}

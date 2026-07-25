@@ -182,8 +182,12 @@ function actualizarBotonesModo() {
     // Ámbar para Bulk (cartas sueltas), índigo para Carpetas (organizadas) —
     // este color se propaga a header/sidebar/tarjeta de progreso/badge, para
     // que siempre sea obvio en qué modo estás sin tener que leer nada.
+    // rgba(var(--x-rgb),alpha) en vez de un rgba() fijo: así el fondo sigue al
+    // color real de --accent/--accent2 del tema activo (antes quedaba anclado
+    // al valor del tema claro y desentonaba en oscuro, sobre todo en Bulk
+    // donde el acento pasa de ámbar a azul).
     const color = modoActual === 'carpetas' ? 'var(--accent2)' : 'var(--accent)';
-    const bg    = modoActual === 'carpetas' ? 'rgba(79,70,229,0.08)' : 'rgba(217,119,6,0.08)';
+    const bg    = modoActual === 'carpetas' ? 'rgba(var(--accent2-rgb),0.08)' : 'rgba(var(--accent-rgb),0.08)';
     document.documentElement.style.setProperty('--modo-color', color);
     document.documentElement.style.setProperty('--modo-bg', bg);
 

@@ -1530,12 +1530,14 @@ document.getElementById('pdf-opciones-close').onclick = cerrarOpcionesPDF;
 // (bin-packing en orden), dejás ajustar tocando fichas, avisa si algo
 // no entra → nombre y color.
 const PALETA_CARPETAS = ['#3b5bdb','#7c3aed','#db2777','#dc2626','#059669','#d97706','#0891b2','#65a30d','#9333ea'];
+let wizardModo          = 'separadas'; // 'separadas' | 'seguidas'
 let wizardBolsillos     = 9;
 let wizardEspaciosBlanco = false;
 let wizardNumCarpetas    = 4;
 let wizardCapacidadesFijas = []; // espacios (hojas × bolsillos) por carpeta, largo wizardNumCarpetas
-let wizardAsignacion    = {};    // { gen(1-9): numeroDeCarpeta(1..wizardNumCarpetas) }
-let wizardGrupos        = [];    // array de arrays de gens, derivado de wizardAsignacion al pasar a nombres
+let wizardAsignacion    = {};    // { gen(1-9): numeroDeCarpeta(1..wizardNumCarpetas) } — solo modo separadas
+let wizardGrupos        = [];    // array de arrays de gens — solo modo separadas
+let wizardRangos        = [];    // array de {desde,hasta}|null por carpeta — solo modo seguidas
 
 function abrirWizardCarpetas() {
     cerrarAjustes();
@@ -1554,8 +1556,10 @@ function wizardMostrarPaso(paso) {
     });
 }
 
-function wizardModoSeguidas() {
-    mostrarToastInfo('"Todas seguidas" todavía no está disponible — por ahora elegí "Separadas por generación".');
+function wizardElegirModo(modo) {
+    wizardModo = modo;
+    document.getElementById('wizard-espacios-blanco-fila').style.display = modo === 'seguidas' ? 'none' : '';
+    wizardMostrarPaso('formato');
 }
 
 // Cuántos Pokémon en total (toda la Pokédex, no solo lo que ya tenés)

@@ -322,11 +322,11 @@
         <!-- Paso 1: modo de acomodo -->
         <div class="wizard-paso" id="wizard-paso-modo">
             <div class="pdf-opciones-label">¿Cómo querés acomodar tu colección?</div>
-            <button type="button" class="wizard-opcion-modo" onclick="wizardModoSeguidas()">
+            <button type="button" class="wizard-opcion-modo" onclick="wizardElegirModo('seguidas')">
                 <strong>Todas seguidas</strong>
-                <span>Próximamente — por ahora elegí "Separadas por generación"</span>
+                <span>Reparte la colección en orden de Pokédex nacional, sin respetar cortes de generación</span>
             </button>
-            <button type="button" class="wizard-opcion-modo" onclick="wizardMostrarPaso('formato')">
+            <button type="button" class="wizard-opcion-modo" onclick="wizardElegirModo('separadas')">
                 <strong>Separadas por generación</strong>
                 <span>Cada carpeta tiene generaciones completas, nunca partidas</span>
             </button>
@@ -341,10 +341,12 @@
                 <option value="12">12 por página</option>
             </select>
             <div class="wizard-nota">💡 Una hoja tiene 2 páginas (frente y dorso) — cuando más adelante pidamos "hojas", ya vamos a contar las dos caras solas.</div>
-            <label class="pdf-opciones-check">
-                <input type="checkbox" id="wizard-espacios-blanco">
-                Dejar espacios en blanco para que cada generación empiece en una página nueva
-            </label>
+            <div id="wizard-espacios-blanco-fila">
+                <label class="pdf-opciones-check">
+                    <input type="checkbox" id="wizard-espacios-blanco">
+                    Dejar espacios en blanco para que cada generación empiece en una página nueva
+                </label>
+            </div>
             <div class="wizard-nav">
                 <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('modo')">← Atrás</button>
                 <button type="button" class="wizard-btn-siguiente" onclick="wizardMostrarPaso('cantidad')">Siguiente →</button>

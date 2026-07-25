@@ -1769,10 +1769,29 @@ function wizardAjusteSiguiente() {
     wizardMostrarPaso('nombres');
 }
 
+function wizardVolverDesdeNombres() {
+    wizardMostrarPaso(wizardModo === 'seguidas' ? 'capacidad' : 'ajuste');
+}
+
 function wizardArmarPasoNombres() {
+    if (wizardModo === 'seguidas') {
+        document.getElementById('wizard-nombres-lista').innerHTML = wizardRangos.map((r, i) => {
+            const colorDefault = wizardColorDeGrupo(i + 1);
+            const swatches = PALETA_CARPETAS.map(col =>
+                `<button type="button" class="wizard-swatch${col === colorDefault ? ' selected' : ''}" style="background:${col}" data-color="${col}" onclick="wizardElegirColor(this)"></button>`
+            ).join('');
+            const sub = r ? `#${r.desde}–${r.hasta} · ${wizardCapacidadesFijas[i]} espacios` : `Sin Pokémon asignados · ${wizardCapacidadesFijas[i]} espacios`;
+            return `<div class="wizard-nombre-fila" data-desde="${r ? r.desde : ''}" data-hasta="${r ? r.hasta : ''}">
+                <input type="text" class="wizard-nombre-input" value="Carpeta ${i + 1}" maxlength="24" placeholder="Nombre de la carpeta">
+                <div class="wizard-swatches" data-color-actual="${colorDefault}">${swatches}</div>
+                <div class="wizard-nombre-sub">${sub}</div>
+            </div>`;
+        }).join('');
+        return;
+    }
     document.getElementById('wizard-nombres-lista').innerHTML = wizardGrupos.map((gens, i) => {
         // Si el grupo coincide exactamente con una carpeta existente, reusamos su nombre/color.
-        const existente = carpetas.find(c => c.gens.length === gens.length && c.gens.every(g => gens.includes(g)));
+        const existente = carpetas.find(c => c.gens && c.gens.length === gens.length && c.gens.every(g => gens.includes(g)));
         const nombreDefault = existente ? existente.nombre : `Carpeta ${i + 1}`;
         const colorDefault  = existente ? existente.color : wizardColorDeGrupo(i + 1);
         const swatches = PALETA_CARPETAS.map(col =>
@@ -1795,18 +1814,28 @@ function wizardElegirColor(btn) {
 
 async function wizardGuardar() {
     const filas = [...document.querySelectorAll('.wizard-nombre-fila')];
-    // Las carpetas sin generaciones asignadas no se guardan (no hay nada que las identifique).
-    const nueva = filas
-        .map((fila, i) => ({
-            nombre: fila.querySelector('.wizard-nombre-input').value.trim(),
-            color: fila.querySelector('.wizard-swatches').dataset.colorActual,
-            gens: fila.dataset.gens ? fila.dataset.gens.split(',').map(Number) : [],
-            espacios: wizardCapacidadesFijas[i]
-        }))
-        .filter(c => c.gens.length);
+    // Las carpetas sin nada asignado no se guardan (no hay nada que las identifique).
+    const nueva = wizardModo === 'seguidas'
+        ? filas
+            .map((fila, i) => ({
+                nombre: fila.querySelector('.wizard-nombre-input').value.trim(),
+                color: fila.querySelector('.wizard-swatches').dataset.colorActual,
+                desde: fila.dataset.desde ? Number(fila.dataset.desde) : null,
+                hasta: fila.dataset.hasta ? Number(fila.dataset.hasta) : null,
+                espacios: wizardCapacidadesFijas[i]
+            }))
+            .filter(c => c.desde !== null)
+        : filas
+            .map((fila, i) => ({
+                nombre: fila.querySelector('.wizard-nombre-input').value.trim(),
+                color: fila.querySelector('.wizard-swatches').dataset.colorActual,
+                gens: fila.dataset.gens ? fila.dataset.gens.split(',').map(Number) : [],
+                espacios: wizardCapacidadesFijas[i]
+            }))
+            .filter(c => c.gens.length);
 
     if (!nueva.length) {
-        mostrarToastError('Asigná al menos una generación a alguna carpeta.');
+        mostrarToastError(wizardModo === 'seguidas' ? 'Asigná al menos un rango a alguna carpeta.' : 'Asigná al menos una generación a alguna carpeta.');
         return;
     }
     if (nueva.some(c => !c.nombre)) {
@@ -1821,7 +1850,7 @@ async function wizardGuardar() {
         const res = await fetch('/api/carpetas-config', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(nueva)
+            body: JSON.stringify({ modo: wizardModo, carpetas: nueva })
         });
         const data = await res.json();
         if (!res.ok || !data.success) throw new Error(data.error || 'respuesta no válida');

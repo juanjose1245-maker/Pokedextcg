@@ -311,80 +311,75 @@
         <span class="ajustes-close" id="wizard-carpetas-close">×</span>
         <div class="ajustes-title">🗂️ Planear mis carpetas</div>
 
-        <!-- Paso 1: contexto -->
-        <div class="wizard-paso" id="wizard-paso-contexto">
-            <div class="pdf-opciones-label">¿Ya tenés las carpetas o las vas a comprar?</div>
-            <button type="button" class="wizard-opcion-modo" onclick="wizardElegirContexto('tengo')">
-                <strong>Ya las tengo</strong>
-                <span>Te digo si tu colección entra, y cuánto sobra o falta</span>
+        <!-- Paso 1: modo de acomodo -->
+        <div class="wizard-paso" id="wizard-paso-modo">
+            <div class="pdf-opciones-label">¿Cómo querés acomodar tu colección?</div>
+            <button type="button" class="wizard-opcion-modo" onclick="wizardModoSeguidas()">
+                <strong>Todas seguidas</strong>
+                <span>Próximamente — por ahora elegí "Separadas por generación"</span>
             </button>
-            <button type="button" class="wizard-opcion-modo" onclick="wizardElegirContexto('comprar')">
-                <strong>Las voy a comprar</strong>
-                <span>Te digo cuántas hojas conseguir para que entre justo</span>
+            <button type="button" class="wizard-opcion-modo" onclick="wizardMostrarPaso('formato')">
+                <strong>Separadas por generación</strong>
+                <span>Cada carpeta tiene generaciones completas, nunca partidas</span>
             </button>
         </div>
 
-        <!-- Paso 2: preset -->
-        <div class="wizard-paso" id="wizard-paso-preset" style="display:none;">
-            <div class="pdf-opciones-label">¿Cómo repartimos las 9 generaciones?</div>
-            <button type="button" class="wizard-opcion-modo" onclick="wizardElegirPreset('una-por-gen')">
-                <strong>Una carpeta por generación</strong>
-                <span>9 carpetas, cada una con una sola generación</span>
-            </button>
-            <button type="button" class="wizard-opcion-modo" onclick="wizardElegirPreset('clasicas')">
-                <strong>Como las 4 clásicas</strong>
-                <span>Azul (1-2) · Morada (3-4) · Rosa (5-7) · Roja (8-9)</span>
-            </button>
-            <button type="button" class="wizard-opcion-modo" onclick="wizardElegirPreset('parejo')">
-                <strong>Repartir parejo entre N carpetas</strong>
-                <span>Elegís cuántas y se dividen lo más parejo posible</span>
-            </button>
-            <button type="button" class="wizard-opcion-modo" onclick="wizardElegirPreset('actual')">
-                <strong>Partir de mi configuración actual</strong>
-                <span>Arrancá desde cómo están repartidas hoy y ajustá</span>
-            </button>
-            <div id="wizard-preset-parejo-cantidad" style="display:none;margin-top:10px;">
-                <label class="pdf-opciones-label">¿Cuántas carpetas?</label>
-                <input type="number" id="wizard-parejo-cantidad" min="1" max="9" value="4" class="wizard-input-numero">
-                <button type="button" class="wizard-btn-siguiente" onclick="wizardConfirmarParejo()">Siguiente →</button>
-            </div>
-            <div class="wizard-nav">
-                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('contexto')">← Atrás</button>
-            </div>
-        </div>
-
-        <!-- Paso 3: ajuste visual -->
-        <div class="wizard-paso" id="wizard-paso-ajuste" style="display:none;">
-            <div class="pdf-opciones-label">Tocá una generación para cambiarla de carpeta</div>
-            <div class="wizard-chips" id="wizard-chips"></div>
-            <div class="wizard-preview" id="wizard-ajuste-preview"></div>
-            <div class="wizard-nav">
-                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('preset')">← Atrás</button>
-                <button type="button" class="wizard-btn-siguiente" onclick="wizardAjusteSiguiente()">Siguiente →</button>
-            </div>
-        </div>
-
-        <!-- Paso 4: capacidad física -->
-        <div class="wizard-paso" id="wizard-paso-capacidad" style="display:none;">
+        <!-- Paso 2: formato de hoja -->
+        <div class="wizard-paso" id="wizard-paso-formato" style="display:none;">
             <div class="pdf-opciones-label">¿Bolsillos por hoja?</div>
-            <select id="wizard-bolsillos-hoja" class="wizard-input-numero" onchange="wizardArmarPasoCapacidad()">
+            <select id="wizard-bolsillos-hoja" class="wizard-input-numero">
                 <option value="4">4 por hoja</option>
                 <option value="9" selected>9 por hoja (lo más común)</option>
                 <option value="12">12 por hoja</option>
             </select>
-            <div id="wizard-capacidad-lista"></div>
+            <label class="pdf-opciones-check">
+                <input type="checkbox" id="wizard-espacios-blanco">
+                Dejar espacios en blanco para que cada generación empiece en una hoja nueva
+            </label>
             <div class="wizard-nav">
-                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('ajuste')">← Atrás</button>
-                <button type="button" class="wizard-btn-siguiente" id="wizard-btn-a-nombres" onclick="wizardCapacidadSiguiente()">Siguiente →</button>
+                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('modo')">← Atrás</button>
+                <button type="button" class="wizard-btn-siguiente" onclick="wizardMostrarPaso('cantidad')">Siguiente →</button>
             </div>
         </div>
 
-        <!-- Paso 5: nombres y colores -->
+        <!-- Paso 3: cuántas carpetas -->
+        <div class="wizard-paso" id="wizard-paso-cantidad" style="display:none;">
+            <div class="pdf-opciones-label">¿Cuántas carpetas querés usar?</div>
+            <input type="number" id="wizard-cantidad-carpetas" min="1" max="9" value="4" class="wizard-input-numero">
+            <div class="wizard-nav">
+                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('formato')">← Atrás</button>
+                <button type="button" class="wizard-btn-siguiente" onclick="wizardConfirmarCantidad()">Siguiente →</button>
+            </div>
+        </div>
+
+        <!-- Paso 4: capacidad de cada carpeta -->
+        <div class="wizard-paso" id="wizard-paso-capacidad" style="display:none;">
+            <div class="pdf-opciones-label">¿Cuántas hojas tiene cada carpeta?</div>
+            <div id="wizard-capacidad-lista"></div>
+            <div class="wizard-preview" id="wizard-capacidad-total"></div>
+            <div class="wizard-nav">
+                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('cantidad')">← Atrás</button>
+                <button type="button" class="wizard-btn-siguiente" onclick="wizardCapacidadSiguiente()">Siguiente →</button>
+            </div>
+        </div>
+
+        <!-- Paso 5: recomendación + ajuste -->
+        <div class="wizard-paso" id="wizard-paso-ajuste" style="display:none;">
+            <div class="pdf-opciones-label">Así te recomendamos acomodarlas — tocá una generación para cambiarla de carpeta</div>
+            <div class="wizard-chips" id="wizard-chips"></div>
+            <div class="wizard-preview" id="wizard-ajuste-preview"></div>
+            <div class="wizard-nav">
+                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('capacidad')">← Atrás</button>
+                <button type="button" class="wizard-btn-siguiente" id="wizard-btn-a-nombres" onclick="wizardAjusteSiguiente()">Siguiente →</button>
+            </div>
+        </div>
+
+        <!-- Paso 6: nombres y colores -->
         <div class="wizard-paso" id="wizard-paso-nombres" style="display:none;">
             <div class="pdf-opciones-label">Nombre y color de cada carpeta</div>
             <div id="wizard-nombres-lista"></div>
             <div class="wizard-nav">
-                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('capacidad')">← Atrás</button>
+                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('ajuste')">← Atrás</button>
                 <button type="button" class="wizard-btn-siguiente" id="wizard-btn-guardar" onclick="wizardGuardar()">Guardar</button>
             </div>
         </div>

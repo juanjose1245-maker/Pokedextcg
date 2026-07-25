@@ -114,10 +114,15 @@ function carpetasConfigValida(candidato) {
     if (!Array.isArray(carpetas) || !carpetas.length) return false;
 
     if (modo === 'seguidas') {
+        // Validar que todos los elementos sean objetos válidos antes de ordenar
+        // (prevenir TypeError al acceder a .desde)
+        for (const c of carpetas) {
+            if (!c || typeof c !== 'object') return false;
+        }
         const ordenadas = [...carpetas].sort((a, b) => a.desde - b.desde);
         let siguienteDesde = 1;
         for (const c of ordenadas) {
-            if (!c || typeof c.nombre !== 'string' || !c.nombre.trim()) return false;
+            if (typeof c.nombre !== 'string' || !c.nombre.trim()) return false;
             if (typeof c.color !== 'string' || !/^#[0-9a-fA-F]{6}$/.test(c.color)) return false;
             if (!Number.isInteger(c.desde) || !Number.isInteger(c.hasta)) return false;
             if (c.desde !== siguienteDesde || c.hasta < c.desde) return false;

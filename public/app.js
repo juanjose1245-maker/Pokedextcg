@@ -342,6 +342,17 @@ async function fetchGenSegura(g) {
     }
 }
 
+async function fetchRangoSegura(desde, hasta) {
+    try {
+        const res = await fetch(`/api/buscar?desde=${desde}&hasta=${hasta}`);
+        if (!res.ok) throw new Error('respuesta no válida');
+        return await res.json();
+    } catch (err) {
+        mostrarToastError(`No se pudo cargar el rango #${desde}-${hasta}. Reintenta.`);
+        return null;
+    }
+}
+
 function guardarFechaRegistro(id, isoDelServidor) {
     if (!localStorage.getItem(claveFechaLS(id)) || isoDelServidor) {
         localStorage.setItem(claveFechaLS(id), isoDelServidor || new Date().toISOString());
@@ -578,7 +589,7 @@ function actualizarTarjetaProgreso() {
 
 // ── VER CARPETA ──────────────────────────────────────────────────
 async function verCarpeta(carpeta) {
-    genActualAbierta = { gen: carpeta.gens[0], region: `Carpeta ${carpeta.nombre}`, esCarpeta: true, carpeta };
+    genActualAbierta = { gen: carpeta.gens ? carpeta.gens[0] : null, region: `Carpeta ${carpeta.nombre}`, esCarpeta: true, carpeta };
     actualizarTarjetaProgreso();
     renderSidebar();
     if (!esDesktop()) {
@@ -589,14 +600,19 @@ async function verCarpeta(carpeta) {
         document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
     }
     mostrarGalleryShell(`Carpeta ${carpeta.nombre}`);
-    const todos = [];
-    for (const g of carpeta.gens) {
-        if (!cachePokemon[g]) {
-            const datos = await fetchGenSegura(g);
-            if (!datos) continue;
-            cachePokemon[g] = datos;
+    let todos;
+    if (carpeta.gens) {
+        todos = [];
+        for (const g of carpeta.gens) {
+            if (!cachePokemon[g]) {
+                const datos = await fetchGenSegura(g);
+                if (!datos) continue;
+                cachePokemon[g] = datos;
+            }
+            todos.push(...cachePokemon[g]);
         }
-        todos.push(...cachePokemon[g]);
+    } else {
+        todos = await fetchRangoSegura(carpeta.desde, carpeta.hasta) || [];
     }
     pkmsActuales = todos;
     renderGaleria(todos, false);

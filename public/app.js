@@ -367,6 +367,24 @@ function calcularJalon(conseguidos, total) {
     return null;
 }
 
+// Progreso de una carpeta, sin importar el modo: en "separadas" se suma por
+// generación (ya lo tenemos agregado en dataGlobalCache.generaciones); en
+// "seguidas" se cuenta directo sobre el rango de ids, usando el mapa de
+// poseídos que ya viaja en dataGlobalCache.listaIds — sin pedir nada nuevo
+// al servidor.
+function progresoCarpeta(c, d = dataGlobalCache) {
+    if (c.gens) {
+        const conseguidos = c.gens.reduce((a, g) => a + (d.generaciones[g]?.conseguidos || 0), 0);
+        const total       = c.gens.reduce((a, g) => a + (d.generaciones[g]?.total || 0), 0);
+        return { conseguidos, total };
+    }
+    let conseguidos = 0;
+    for (let id = c.desde; id <= c.hasta; id++) {
+        if (d.listaIds && d.listaIds[id]) conseguidos++;
+    }
+    return { conseguidos, total: c.hasta - c.desde + 1 };
+}
+
 // ── SIDEBAR ──────────────────────────────────────────────────────
 function renderSidebar() {
     if (!dataGlobalCache) return;
@@ -387,9 +405,8 @@ function renderSidebar() {
     wrap.innerHTML = '';
 
     carpetas.forEach(c => {
-        const cCons  = c.gens.reduce((a,g) => a + (d.generaciones[g]?.conseguidos || 0), 0);
-        const cTotal = c.gens.reduce((a,g) => a + (d.generaciones[g]?.total || 0), 0);
-        const cPct   = cTotal > 0 ? Math.round((cCons / cTotal) * 100) : 0;
+        const { conseguidos: cCons, total: cTotal } = progresoCarpeta(c, d);
+        const cPct = cTotal > 0 ? Math.round((cCons / cTotal) * 100) : 0;
 
         const div = document.createElement('div');
         div.className = 'sb-carpeta';
@@ -409,18 +426,23 @@ function renderSidebar() {
             </div>`;
         div.querySelector('.sb-carpeta-header').onclick = () => verCarpeta(c);
 
-        const gensDiv = document.createElement('div');
-        gensDiv.className = 'sb-gens';
-        c.gens.forEach(g => {
-            const gd       = d.generaciones[g];
-            const isActive = !genActualAbierta?.esCarpeta && !genActualAbierta?.esCompleta && genActualAbierta?.gen === g;
-            const item     = document.createElement('div');
-            item.className = `sb-gen-item${isActive ? ' active' : ''}`;
-            item.onclick   = () => verListadoGeneracion(g, regiones[g-1]);
-            item.innerHTML = `<span class="sb-gen-name">${regiones[g-1]}</span><span class="sb-gen-count" style="color:${c.color}">${gd.conseguidos}/${gd.total}</span>`;
-            gensDiv.appendChild(item);
-        });
-        div.appendChild(gensDiv);
+        // La sublista de generaciones solo tiene sentido en modo "separadas"
+        // (cada carpeta ES un conjunto de generaciones); en "seguidas" una
+        // carpeta puede cortar una generación al medio, así que no se listan.
+        if (c.gens) {
+            const gensDiv = document.createElement('div');
+            gensDiv.className = 'sb-gens';
+            c.gens.forEach(g => {
+                const gd       = d.generaciones[g];
+                const isActive = !genActualAbierta?.esCarpeta && !genActualAbierta?.esCompleta && genActualAbierta?.gen === g;
+                const item     = document.createElement('div');
+                item.className = `sb-gen-item${isActive ? ' active' : ''}`;
+                item.onclick   = () => verListadoGeneracion(g, regiones[g-1]);
+                item.innerHTML = `<span class="sb-gen-name">${regiones[g-1]}</span><span class="sb-gen-count" style="color:${c.color}">${gd.conseguidos}/${gd.total}</span>`;
+                gensDiv.appendChild(item);
+            });
+            div.appendChild(gensDiv);
+        }
         wrap.appendChild(div);
     });
 }
@@ -432,7 +454,7 @@ function renderBinderBar() {
     if (!bar || !legend || !dataGlobalCache) return;
     bar.innerHTML = ''; legend.innerHTML = '';
     carpetas.forEach(c => {
-        const t = c.gens.reduce((a,g) => a + (dataGlobalCache.generaciones[g]?.total || 0), 0);
+        const { total: t } = progresoCarpeta(c);
         const seg = document.createElement('button');
         seg.className = 'binder-bar-segment';
         seg.style.flex = t || 1;
@@ -536,9 +558,7 @@ function actualizarTarjetaProgreso() {
         const gd = dataGlobalCache.generaciones[genActualAbierta.gen];
         conseguidos = gd.conseguidos; total = gd.total;
     } else if (genActualAbierta?.esCarpeta) {
-        const c = genActualAbierta.carpeta;
-        conseguidos = c.gens.reduce((a,g) => a + dataGlobalCache.generaciones[g].conseguidos, 0);
-        total       = c.gens.reduce((a,g) => a + dataGlobalCache.generaciones[g].total, 0);
+        ({ conseguidos, total } = progresoCarpeta(genActualAbierta.carpeta));
     } else {
         conseguidos = dataGlobalCache.global.conseguidos || 0;
         total       = dataGlobalCache.global.total || 1025;

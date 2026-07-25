@@ -8,7 +8,7 @@
 // Colócalo en la misma carpeta donde sirves index.html (normalmente "public/"),
 // para que quede accesible en la raíz como "/sw.js".
 
-const CACHE_VERSION = 'pokedex-tcg-v16';
+const CACHE_VERSION = 'pokedex-tcg-v19';
 const CACHE_SHELL    = `${CACHE_VERSION}-shell`;
 const CACHE_LECTURAS = `${CACHE_VERSION}-lecturas`;
 
@@ -75,8 +75,14 @@ self.addEventListener('fetch', (event) => {
         event.respondWith(
             fetch(request)
                 .then(res => {
-                    const copia = res.clone();
-                    caches.open(CACHE_LECTURAS).then(cache => cache.put(request, copia));
+                    // Solo guardamos respuestas completas y exitosas — una respuesta
+                    // cortada a medias (ej. el navegador mata el Service Worker en
+                    // medio de la descarga) quedaría cacheada rota para siempre,
+                    // ya que después nunca la volvemos a pedir a la red.
+                    if (res.ok) {
+                        const copia = res.clone();
+                        caches.open(CACHE_LECTURAS).then(cache => cache.put(request, copia));
+                    }
                     return res;
                 })
                 .catch(() => caches.match(request))
@@ -94,14 +100,26 @@ self.addEventListener('fetch', (event) => {
 
     // Todo lo demás (el shell de la app, imágenes, fuentes): caché primero,
     // red de respaldo, y si tampoco hay red, lo que haya en caché (o nada).
+    //
+    // El .catch() de más afuera es necesario aparte del de más abajo: si
+    // Cache Storage no está disponible (ej. ventanas privadas de Safari, que
+    // le dan cuota cero a propósito), "caches.match()" puede rechazar antes
+    // de llegar siquiera a pedir la red — sin este catch, ese rechazo llega
+    // tal cual a respondWith() y el navegador lo trata como error de red,
+    // así que la imagen/recurso no carga aunque haya internet.
     event.respondWith(
         caches.match(request).then(cacheado => {
             if (cacheado) return cacheado;
             return fetch(request).then(res => {
-                const copia = res.clone();
-                caches.open(CACHE_SHELL).then(cache => cache.put(request, copia));
+                // Mismo cuidado que arriba: no cachear una respuesta rota/incompleta,
+                // porque en cache-first eso se sirve para siempre sin volver a
+                // intentar la red hasta el próximo bump de CACHE_VERSION.
+                if (res.ok) {
+                    const copia = res.clone();
+                    caches.open(CACHE_SHELL).then(cache => cache.put(request, copia)).catch(() => {});
+                }
                 return res;
             }).catch(() => cacheado);
-        })
+        }).catch(() => fetch(request))
     );
 });

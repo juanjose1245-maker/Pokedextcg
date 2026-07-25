@@ -1,52 +1,57 @@
+        /* Paleta "carta física": rojo Poké Ball (modo Bulk) y azul Pokédex
+           (modo Carpetas) como acentos, sobre un neutro gris-cálido (no el
+           slate/indigo de Tailwind ni el negro azulado de GitHub). Los
+           colores de tipo (por Pokémon) viven aparte, en coloresTipo (app.js),
+           aplicados inline donde corresponde. */
         :root {
-            --bg:#f8fafc;--surface:#fff;--surface2:#f1f5f9;--border:#e2e8f0;
-            --accent:#d97706;--accent2:#4f46e5;--found:#10b981;--danger:#ef4444;
-            --text:#0f172a;--muted:#64748b;--radius:16px;
-            --header-bg:rgba(248,250,252,0.92);--shadow:rgba(15,23,42,0.06);
-            --grad1:rgba(79,70,229,0.04);--grad2:rgba(217,119,6,0.05);
-            --nav-bg:rgba(255,255,255,0.94);--nav-border:rgba(226,232,240,0.8);
+            --bg:#f1f1ee;--surface:#fff;--surface2:#e9e8e3;--border:#dcdad3;
+            --accent:#dc0a2d;--accent2:#2a65b8;--found:#3fa129;--danger:#e4572e;
+            --text:#1b1b1d;--muted:#6b6a66;--radius:16px;
+            --header-bg:rgba(241,241,238,0.92);--shadow:rgba(27,27,29,0.08);
+            --grad1:rgba(42,101,184,0.04);--grad2:rgba(220,10,45,0.05);
+            --nav-bg:rgba(255,255,255,0.94);--nav-border:rgba(220,218,211,0.8);
             --input-bg:#fff;--sug-bg:#fff;--overlay-bg:#fff;
-            --found-bg:linear-gradient(145deg,#f0fdf4,#fff);--found-glow:rgba(16,114,81,0.05);
+            --found-bg:linear-gradient(145deg,#eefbe9,#fff);--found-glow:rgba(63,161,41,0.06);
             --sidebar-bg:#fff;--sidebar-width:260px;
-            --modo-color:var(--accent);--modo-bg:rgba(217,119,6,0.08);
-            --accent-rgb:217,119,6;--accent2-rgb:79,70,229;--danger-rgb:239,68,68;
+            --modo-color:var(--accent);--modo-bg:rgba(220,10,45,0.08);
+            --accent-rgb:220,10,45;--accent2-rgb:42,101,184;--danger-rgb:228,87,46;
         }
         @media(prefers-color-scheme:dark){:root{
-            --bg:#0d1117;--surface:#161b22;--surface2:#1c2128;--border:#30363d;
-            --accent:#3b82f6;--accent2:#7c86ff;--found:#3fb950;--danger:#f85149;
-            --text:#e6edf3;--muted:#8b949e;--header-bg:rgba(13,17,23,0.85);
+            --bg:#16181b;--surface:#1e2124;--surface2:#26292d;--border:#35383d;
+            --accent:#ff4d5e;--accent2:#5b9bff;--found:#5fcb3f;--danger:#ff7a4d;
+            --text:#ededea;--muted:#9a9995;--header-bg:rgba(22,24,27,0.85);
             --shadow:rgba(0,0,0,0.5);--grad1:transparent;--grad2:transparent;
-            --nav-bg:rgba(22,27,34,0.85);--nav-border:rgba(48,54,61,0.8);
-            --input-bg:#161b22;--sug-bg:#161b22;--overlay-bg:#161b22;
-            --found-bg:linear-gradient(145deg,#0f1f14,#161b22);--found-glow:rgba(63,185,80,0.05);
-            --sidebar-bg:#0b0f14;
-            --accent-rgb:59,130,246;--accent2-rgb:124,134,255;--danger-rgb:248,81,73;
+            --nav-bg:rgba(30,33,36,0.85);--nav-border:rgba(53,56,61,0.8);
+            --input-bg:#1e2124;--sug-bg:#1e2124;--overlay-bg:#1e2124;
+            --found-bg:linear-gradient(145deg,#122015,#1e2124);--found-glow:rgba(95,203,63,0.06);
+            --sidebar-bg:#101214;
+            --accent-rgb:255,77,94;--accent2-rgb:91,155,255;--danger-rgb:255,122,77;
         }}
 
         /* Tema forzado manualmente (independiente del sistema operativo).
            El atributo [data-theme] tiene más especificidad que la media query
            de arriba, así que gana sin importar lo que diga el sistema. */
         :root[data-theme="light"]{
-            --bg:#f8fafc;--surface:#fff;--surface2:#f1f5f9;--border:#e2e8f0;
-            --accent:#d97706;--accent2:#4f46e5;--found:#10b981;--danger:#ef4444;
-            --text:#0f172a;--muted:#64748b;--header-bg:rgba(248,250,252,0.92);
-            --shadow:rgba(15,23,42,0.06);--grad1:rgba(79,70,229,0.04);--grad2:rgba(217,119,6,0.05);
-            --nav-bg:rgba(255,255,255,0.94);--nav-border:rgba(226,232,240,0.8);
+            --bg:#f1f1ee;--surface:#fff;--surface2:#e9e8e3;--border:#dcdad3;
+            --accent:#dc0a2d;--accent2:#2a65b8;--found:#3fa129;--danger:#e4572e;
+            --text:#1b1b1d;--muted:#6b6a66;--header-bg:rgba(241,241,238,0.92);
+            --shadow:rgba(27,27,29,0.08);--grad1:rgba(42,101,184,0.04);--grad2:rgba(220,10,45,0.05);
+            --nav-bg:rgba(255,255,255,0.94);--nav-border:rgba(220,218,211,0.8);
             --input-bg:#fff;--sug-bg:#fff;--overlay-bg:#fff;
-            --found-bg:linear-gradient(145deg,#f0fdf4,#fff);--found-glow:rgba(16,114,81,0.05);
+            --found-bg:linear-gradient(145deg,#eefbe9,#fff);--found-glow:rgba(63,161,41,0.06);
             --sidebar-bg:#fff;
-            --accent-rgb:217,119,6;--accent2-rgb:79,70,229;--danger-rgb:239,68,68;
+            --accent-rgb:220,10,45;--accent2-rgb:42,101,184;--danger-rgb:228,87,46;
         }
         :root[data-theme="dark"]{
-            --bg:#0d1117;--surface:#161b22;--surface2:#1c2128;--border:#30363d;
-            --accent:#3b82f6;--accent2:#7c86ff;--found:#3fb950;--danger:#f85149;
-            --text:#e6edf3;--muted:#8b949e;--header-bg:rgba(13,17,23,0.85);
+            --bg:#16181b;--surface:#1e2124;--surface2:#26292d;--border:#35383d;
+            --accent:#ff4d5e;--accent2:#5b9bff;--found:#5fcb3f;--danger:#ff7a4d;
+            --text:#ededea;--muted:#9a9995;--header-bg:rgba(22,24,27,0.85);
             --shadow:rgba(0,0,0,0.5);--grad1:transparent;--grad2:transparent;
-            --nav-bg:rgba(22,27,34,0.85);--nav-border:rgba(48,54,61,0.8);
-            --input-bg:#161b22;--sug-bg:#161b22;--overlay-bg:#161b22;
-            --found-bg:linear-gradient(145deg,#0f1f14,#161b22);--found-glow:rgba(63,185,80,0.05);
-            --sidebar-bg:#0b0f14;
-            --accent-rgb:59,130,246;--accent2-rgb:124,134,255;--danger-rgb:248,81,73;
+            --nav-bg:rgba(30,33,36,0.85);--nav-border:rgba(53,56,61,0.8);
+            --input-bg:#1e2124;--sug-bg:#1e2124;--overlay-bg:#1e2124;
+            --found-bg:linear-gradient(145deg,#122015,#1e2124);--found-glow:rgba(95,203,63,0.06);
+            --sidebar-bg:#101214;
+            --accent-rgb:255,77,94;--accent2-rgb:91,155,255;--danger-rgb:255,122,77;
         }
         /* Estos dos detalles puntuales también dependían de la media query;
            los replicamos con el atributo para que el tema forzado se vea bien. */
@@ -323,16 +328,36 @@
         .fab-home.visible{display:flex;}
         .fab-home:active{opacity:.85;transform:translateX(-50%) scale(0.96);}
 
-        /* ── DETAIL OVERLAY ── */
+        /* ── DETAIL OVERLAY — tratada como una carta física: marco de color
+           por tipo de Pokémon (--type-color, seteado inline por JS en
+           mostrarFicha), plaqueta superior con nº de dex + tipo(s), y un
+           brillo tipo "foil" que recorre el arte una sola vez al abrir. ── */
         .detail-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:600;}
         .detail-modal.open{display:block;}
-        .detail-overlay{position:fixed;bottom:0;left:0;right:0;background:var(--overlay-bg);border-radius:28px 28px 0 0;padding:24px 20px 44px;box-shadow:0 -12px 40px var(--shadow);text-align:center;border-top:1px solid var(--border);animation:slideUp .3s ease;}
+        .detail-overlay{
+            --type-color: var(--border);
+            position:fixed;bottom:0;left:0;right:0;background:var(--overlay-bg);
+            border-radius:28px 28px 0 0;padding:24px 20px 44px;
+            box-shadow:0 -12px 40px var(--shadow);text-align:center;
+            border-top:6px solid var(--type-color);
+            animation:slideUp .3s ease;
+            transition:border-color .2s ease;
+        }
+        /* Falta: el marco queda en contorno punteado — como un bolsillo vacío
+           de la carpeta — en vez del color de tipo a pleno. */
+        .detail-overlay.missing{border-top-style:dashed;}
         @keyframes slideUp{from{transform:translateY(30px);opacity:0;}to{transform:translateY(0);opacity:1;}}
         .detail-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px;}
         .detail-close{position:absolute;top:20px;right:18px;font-size:20px;color:var(--muted);cursor:pointer;padding:4px;}
-        .detail-region{display:inline-block;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.03em;padding:4px 12px;border-radius:7px;margin-bottom:8px;}
-        .detail-name{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;color:var(--text);text-transform:capitalize;letter-spacing:-.02em;margin-bottom:4px;}
-        .detail-ids{font-size:12px;color:var(--muted);margin-bottom:14px;}
+
+        .detail-header-plate{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;row-gap:4px;gap:8px;margin-bottom:10px;}
+        .detail-ids{font-size:12px;color:var(--muted);text-align:left;}
+        .detail-tipos{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;}
+        .tipo-pill{display:inline-flex;align-items:center;gap:3px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.03em;padding:3px 9px;border-radius:20px;white-space:nowrap;}
+
+        .detail-region{display:inline-block;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.03em;padding:4px 12px;border-radius:7px;margin-bottom:10px;}
+        .detail-name{font-family:'Rajdhani',sans-serif;font-size:30px;font-weight:700;color:var(--text);text-transform:capitalize;letter-spacing:-.02em;margin-bottom:8px;display:inline-block;position:relative;}
+        .detail-name::after{content:'';display:block;width:40px;height:3px;border-radius:2px;margin:6px auto 0;background:var(--type-color);}
 
         .art-box{
             width:130px;
@@ -341,6 +366,9 @@
             display:flex;
             align-items:center;
             justify-content:center;
+            position:relative;
+            overflow:hidden;
+            border-radius:16px;
         }
         .art-box img{
             display:block;
@@ -348,7 +376,22 @@
             max-height:100%;
             object-fit:contain;
             margin:0 auto;
+            position:relative;
+            z-index:1;
         }
+        /* Brillo "foil" — un único barrido diagonal al abrir la ficha, solo
+           para Pokémon que sí tenés (celebra la posesión, no lo que falta)
+           y solo si el usuario no pidió reducir movimiento. */
+        @media(prefers-reduced-motion:no-preference){
+            .art-box.tiene::after{
+                content:'';
+                position:absolute;inset:-40% -10%;z-index:2;pointer-events:none;
+                background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,0.55) 50%,transparent 58%);
+                transform:translateX(-120%);
+                animation:foilSweep 1s ease-out .2s both;
+            }
+        }
+        @keyframes foilSweep{to{transform:translateX(120%);}}
 
         .binder-box{border-radius:12px;padding:12px 16px;margin-bottom:14px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.04em;}
         .btn-status{width:100%;border:none;border-radius:14px;padding:14px;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;cursor:pointer;transition:opacity .2s;}
@@ -557,7 +600,7 @@
             .sb-progress-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
             .sb-progress-pct{font-size:13px;font-weight:700;color:var(--accent2);}
             .sb-progress-bar-bg{background:var(--border);border-radius:4px;height:6px;margin-bottom:6px;overflow:hidden;}
-            .sb-progress-bar-fill{height:100%;background:linear-gradient(90deg,#4f46e5,#7c3aed);border-radius:4px;transition:width .4s ease;}
+            .sb-progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:4px;transition:width .4s ease;}
             .sb-progress-count{font-size:12px;color:var(--muted);}
             .sb-section-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:4px 4px 6px;margin:0 12px;}
             .sb-scroll{flex:1;overflow-y:auto;padding-bottom:8px;}
@@ -649,7 +692,7 @@
             }
             .pk-dt-footer .pk-name{font-size:14px;font-weight:700;text-transform:capitalize;margin-top:0;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;position:static;}
             .pk-dt-footer .pk-status-tag{font-size:11px;margin-top:3px;position:static;display:flex !important;}
-            .pk-card.found .pk-dt-header{background:linear-gradient(145deg,#f0fdf4,#fff);}
+            .pk-card.found .pk-dt-header{background:var(--found-bg);}
             .pk-card.missing .pk-dt-header{background:var(--surface2);}
 
             /* ── FAB oculto en desktop ── */
@@ -665,12 +708,13 @@
                 height:auto;
                 max-height:85vh;
                 border-radius:24px;
-                border:1px solid var(--border);
+                border:3px solid var(--type-color);
                 padding:24px 24px 32px;
                 overflow-y:auto;
                 box-shadow:0 20px 60px rgba(0,0,0,0.2);
                 animation: slideUpDesktop .3s ease forwards;
             }
+            .detail-overlay.missing{border-style:dashed;}
             .detail-handle{display:none;}
         }
 

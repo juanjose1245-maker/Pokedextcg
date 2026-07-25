@@ -1,5 +1,30 @@
 const regiones   = ["Kanto","Johto","Hoenn","Sinnoh","Unova","Kalos","Alola","Galar","Paldea"];
 const coloresGen = ["#3b5bdb","#3b5bdb","#7c3aed","#7c3aed","#db2777","#db2777","#db2777","#dc2626","#dc2626"];
+
+// Color y etiqueta por tipo de Pokémon — paleta canónica de tipo (la que
+// cualquier fan reconoce), usada en la ficha de detalle a modo de "carta
+// física": el tipo primario define el color del marco.
+const tiposInfo = {
+    normal:   { color:'#9CA88C', label:'Normal',   emoji:'⚪' },
+    fire:     { color:'#EE7B2C', label:'Fuego',    emoji:'🔥' },
+    water:    { color:'#4F8EF7', label:'Agua',     emoji:'💧' },
+    grass:    { color:'#5FBB4E', label:'Planta',   emoji:'🌿' },
+    electric: { color:'#F4C623', label:'Eléctrico',emoji:'⚡' },
+    ice:      { color:'#78D6D1', label:'Hielo',    emoji:'❄️' },
+    fighting: { color:'#C0392B', label:'Lucha',    emoji:'🥊' },
+    poison:   { color:'#9B4F96', label:'Veneno',   emoji:'☠️' },
+    ground:   { color:'#D4A85A', label:'Tierra',   emoji:'🌎' },
+    flying:   { color:'#94A6E8', label:'Volador',  emoji:'🪽' },
+    psychic:  { color:'#F0568C', label:'Psíquico', emoji:'🔮' },
+    bug:      { color:'#9DB82C', label:'Bicho',    emoji:'🐛' },
+    rock:     { color:'#B7A03C', label:'Roca',     emoji:'🪨' },
+    ghost:    { color:'#6C5B9E', label:'Fantasma', emoji:'👻' },
+    dragon:   { color:'#6F4CDB', label:'Dragón',   emoji:'🐉' },
+    dark:     { color:'#5E4B3C', label:'Oscuro',   emoji:'🌙' },
+    steel:    { color:'#9AA3B0', label:'Acero',    emoji:'⚙️' },
+    fairy:    { color:'#E893AE', label:'Hada',     emoji:'✨' },
+};
+function infoTipo(t) { return tiposInfo[t] || tiposInfo.normal; }
 const coloresBg  = ["rgba(59,91,219,0.16)","rgba(59,91,219,0.16)","rgba(124,58,237,0.16)","rgba(124,58,237,0.16)",
                     "rgba(219,39,119,0.16)","rgba(219,39,119,0.16)","rgba(219,39,119,0.16)",
                     "rgba(220,38,38,0.16)","rgba(220,38,38,0.16)"];
@@ -1123,6 +1148,20 @@ function mostrarFicha(p, esPendientes) {
     document.getElementById('pk-id').textContent   = `Regional #${numR.toString().padStart(3,'0')} · Nacional #${p.id.toString().padStart(4,'0')}`;
     document.getElementById('pk-img').src = p.image;
     document.getElementById('pk-img').alt = p.name;
+
+    // "Carta física": el tipo primario define el color del marco (--type-color);
+    // los demás tipos se listan como pills adicionales, sin pelear por el color.
+    const tipos = p.types && p.types.length ? p.types : ['normal'];
+    const tipoPrincipal = infoTipo(tipos[0]);
+    const overlay = document.getElementById('detail-overlay');
+    const tieneVisual = fichaOrigenPendientes ? true : tieneEnLS(p.id);
+    overlay.style.setProperty('--type-color', tieneVisual ? tipoPrincipal.color : 'var(--border)');
+    overlay.classList.toggle('missing', !tieneVisual);
+    document.getElementById('pk-tipos').innerHTML = tipos.map(t => {
+        const info = infoTipo(t);
+        return `<span class="tipo-pill" style="background:${hexToRgba(info.color,0.16)};color:${info.color};">${info.emoji} ${info.label}</span>`;
+    }).join('');
+    document.getElementById('art-box').classList.toggle('tiene', tieneVisual);
 
     const carpetaPk = carpetaDe(p);
     const bd = carpetaPk

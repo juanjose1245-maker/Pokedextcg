@@ -332,8 +332,14 @@
         .pk-dt-footer{display:none;}
 
         /* ── FAB ── */
-        .fab-home{display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--nav-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--nav-border);border-radius:22px;padding:10px 20px;gap:8px;align-items:center;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.05em;color:var(--accent2);cursor:pointer;box-shadow:0 8px 24px var(--shadow);z-index:500;white-space:nowrap;animation:fadeIn .2s ease;}
+        /* Anima con su propio keyframe (no el fadeIn compartido): al centrarse
+           con left:50%+transform:translateX(-50%), un fadeIn que solo anima
+           translateY pisaría ese translateX durante la animación y el botón
+           se vería tirado a la derecha hasta que termina y recién ahí salta
+           al centro. */
+        .fab-home{display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--nav-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--nav-border);border-radius:22px;padding:10px 20px;gap:8px;align-items:center;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.05em;color:var(--accent2);cursor:pointer;box-shadow:0 8px 24px var(--shadow);z-index:500;white-space:nowrap;animation:fadeInFab .2s ease;}
         .fab-home.visible{display:flex;}
+        @keyframes fadeInFab{from{opacity:0;transform:translateX(-50%) translateY(8px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
         .fab-home:active{opacity:.85;transform:translateX(-50%) scale(0.96);}
 
         /* ── DETAIL OVERLAY — tratada como una carta física: marco de color

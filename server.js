@@ -390,6 +390,12 @@ app.get('/api/carpetas-config', (req, res) => {
 const CARPETA_CACHE = path.join(__dirname, 'cache');
 if (!fs.existsSync(CARPETA_CACHE)) fs.mkdirSync(CARPETA_CACHE);
 const RUTA_PDF_RECORTABLES = path.join(CARPETA_CACHE, 'pokedex-recortables.pdf');
+// Caché gemela para el modo "seguidas" con todas las carpetas seleccionadas:
+// cuando se eligen todas, la unión de los rangos siempre cubre el 1 al 1025
+// completo (invariante de carpetasConfigValida), así que el PDF resultante
+// es siempre el mismo listado de los 1025 en orden nacional, sin portadas —
+// se puede cachear igual que el default de "separadas".
+const RUTA_PDF_RECORTABLES_SEGUIDAS = path.join(CARPETA_CACHE, 'pokedex-recortables-seguidas.pdf');
 
 async function descargarImagen(url) {
     try {
@@ -585,14 +591,20 @@ app.get('/api/pdf-carpetas', async (req, res) => {
             opciones = { modo: 'separadas', gens, portadas, numeros };
         }
 
-        const esDefault = opciones.modo === 'separadas' && opciones.gens.size === 9 && opciones.portadas && numeros === 'ambos';
+        // "Default" = todas las carpetas seleccionadas, con el formato de números
+        // por defecto (y, en separadas, con portadas) — la combinación que sirve
+        // la app de entrada y la única que vale la pena cachear en disco.
+        const todasSeleccionadas = seleccionadas.length === carpetasConfig.carpetas.length;
+        const esDefault = numeros === 'ambos' && todasSeleccionadas &&
+            (opciones.modo === 'seguidas' || opciones.portadas);
 
         if (esDefault) {
+            const rutaCache = opciones.modo === 'seguidas' ? RUTA_PDF_RECORTABLES_SEGUIDAS : RUTA_PDF_RECORTABLES;
             const dbStat  = fs.statSync(path.join(__dirname, 'pokemon_db.json'));
-            const cacheOk = fs.existsSync(RUTA_PDF_RECORTABLES) &&
-                fs.statSync(RUTA_PDF_RECORTABLES).mtimeMs >= dbStat.mtimeMs;
-            if (!cacheOk) await generarPDFRecortables(RUTA_PDF_RECORTABLES, opciones);
-            return res.download(RUTA_PDF_RECORTABLES, 'pokedex-recortables.pdf');
+            const cacheOk = fs.existsSync(rutaCache) &&
+                fs.statSync(rutaCache).mtimeMs >= dbStat.mtimeMs;
+            if (!cacheOk) await generarPDFRecortables(rutaCache, opciones);
+            return res.download(rutaCache, 'pokedex-recortables.pdf');
         }
 
         // Combinación personalizada: se genera al vuelo, sin tocar la caché

@@ -412,10 +412,6 @@
         .metrics-section-title{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px;}
         .metrics-jalon{background:rgba(var(--accent2-rgb),0.08);border:1px solid rgba(var(--accent2-rgb),0.2);border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:12px;color:var(--accent2);font-weight:600;}
         .metrics-close{position:absolute;top:16px;right:18px;font-size:20px;color:var(--muted);cursor:pointer;padding:4px;}
-        .metrics-quick-actions{display:flex;flex-direction:column;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
-        .metrics-quick-btn{width:100%;border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:12px;padding:11px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;text-align:left;transition:background .15s;}
-        .metrics-quick-btn:active{background:var(--border);}
-        @media(min-width:768px){.metrics-quick-actions{display:none;}}
 
         /* ── LOGIN MODAL — hoja deslizante en mobile, modal centrado en desktop ── */
         .login-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:900;}

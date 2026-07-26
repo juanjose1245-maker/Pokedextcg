@@ -10,6 +10,12 @@ const sharp     = require('sharp');
 const app       = express();
 const PORT      = 3000;
 
+// Corre detrás de un único proxy inverso (nginx) que termina TLS — sin esto,
+// Express ignora X-Forwarded-For y req.ip siempre da la IP del proxy, con lo
+// que el rate limiter por IP (ver más abajo) termina compartiendo un solo
+// balde entre todos los clientes en vez de uno por IP real.
+app.set('trust proxy', 1);
+
 app.use(express.json({
     limit: '2mb', // el respaldo importado puede pesar un poco
     // Guardamos también el body crudo: el webhook de auto-deploy necesita
@@ -108,10 +114,25 @@ const CARPETAS_DEFAULT = [
 //   todas, las 9 generaciones aparecen exactamente una vez.
 // - seguidas: cada carpeta tiene un rango de nº de Pokédex nacional (desde/hasta);
 //   los rangos son contiguos, sin huecos ni superposición, y cubren 1 a 1025 entero.
+function nombresUnicos(carpetas) {
+    // Se usa el nombre (case-insensitive) para identificar carpetas en
+    // /api/pdf-carpetas, así que dos carpetas con el mismo nombre son
+    // indistinguibles ahí y romperían la selección.
+    const vistos = new Set();
+    for (const c of carpetas) {
+        if (!c || typeof c !== 'object' || typeof c.nombre !== 'string') return false;
+        const clave = c.nombre.trim().toLowerCase();
+        if (!clave || vistos.has(clave)) return false;
+        vistos.add(clave);
+    }
+    return true;
+}
+
 function carpetasConfigValida(candidato) {
     if (!candidato || typeof candidato !== 'object' || Array.isArray(candidato)) return false;
     const { modo, carpetas } = candidato;
     if (!Array.isArray(carpetas) || !carpetas.length) return false;
+    if (!nombresUnicos(carpetas)) return false;
 
     if (modo === 'seguidas') {
         // Validar que todos los elementos sean objetos válidos antes de ordenar
@@ -652,8 +673,8 @@ app.post('/api/carpetas-config', requiereLogin, rateLimiter, (req, res) => {
         return res.status(400).json({
             success: false,
             error: nueva && nueva.modo === 'seguidas'
-                ? 'Configuración inválida: cada carpeta necesita nombre, color (#rrggbb) y un rango de nº de Pokédex — y los rangos deben cubrir del 1 al 1025 sin huecos ni superposición.'
-                : 'Configuración inválida: cada carpeta necesita nombre, color (#rrggbb), al menos una generación, y espacios suficientes para todos sus Pokémon — y las 9 generaciones deben repartirse sin faltar ni repetirse.'
+                ? 'Configuración inválida: cada carpeta necesita nombre único, color (#rrggbb) y un rango de nº de Pokédex — y los rangos deben cubrir del 1 al 1025 sin huecos ni superposición.'
+                : 'Configuración inválida: cada carpeta necesita nombre único, color (#rrggbb), al menos una generación, y espacios suficientes para todos sus Pokémon — y las 9 generaciones deben repartirse sin faltar ni repetirse.'
         });
     }
     carpetasConfig = nueva.modo === 'seguidas'

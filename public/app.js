@@ -1842,6 +1842,16 @@ async function wizardGuardar() {
         mostrarToastError('Todas las carpetas necesitan un nombre.');
         return;
     }
+    const nombresVistos = new Set();
+    if (nueva.some(c => {
+        const clave = c.nombre.toLowerCase();
+        if (nombresVistos.has(clave)) return true;
+        nombresVistos.add(clave);
+        return false;
+    })) {
+        mostrarToastError('Cada carpeta necesita un nombre distinto.');
+        return;
+    }
 
     const btn = document.getElementById('wizard-btn-guardar');
     btn.disabled = true;

@@ -156,16 +156,24 @@
         .header-icon-btn:active{transform:scale(0.9);}
         .header-icon-btn.cam-active{background:var(--danger);border-color:var(--danger);}
 
-        /* Pantallas angostas (iPhone SE, Android chicos): la fila de marca
-           (pokeball + título + badge + contador + 3 botones) queda al límite
+        /* Pantallas angostas (iPhone SE, Android chicos, y anchos "de en medio"
+           como 393px de iPhone 14/15/16 y Pixel 5/7a): la fila de marca
+           (pokeball + título + badge + contador + 4 botones) queda al límite
            del ancho disponible. Se libera espacio ocultando el contador y
            achicando botones/título en vez de dejar que se corte o envuelva. */
-        @media(max-width:390px){
+        @media(max-width:440px){
             .brand-count{display:none;}
             .brand-row{gap:6px;}
             .brand-title{font-size:14px;}
             .header-actions{gap:4px;}
             .header-icon-btn{width:30px;height:30px;font-size:14px;}
+        }
+
+        /* Anchos muy angostos (~343px o menos): incluso compacto, el badge
+           de modo (CARPETAS/BULK) ya no entra junto a los 4 botones. */
+        @media(max-width:343px){
+            #modo-badge-mobile{display:none;}
+            .header-icon-btn{width:28px;height:28px;font-size:13px;}
         }
 
         /* ── SEARCH ── */
@@ -467,6 +475,7 @@
             box-shadow:0 -12px 40px var(--shadow);
             border-top:1px solid var(--border);
             animation:slideUp .3s ease;
+            max-height:calc(100vh - 24px);overflow-y:auto;
         }
         .ajustes-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 14px;}
         .ajustes-close{position:absolute;top:16px;right:18px;font-size:20px;color:var(--muted);cursor:pointer;padding:4px;}

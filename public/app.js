@@ -123,6 +123,8 @@ function actualizarBotonSesion() {
     if (titulo) titulo.textContent = sesionActiva ? 'Cerrar sesión' : 'Iniciar sesión';
     const icono = document.querySelector('#btn-sesion-ajustes .ajustes-item-icon');
     if (icono) icono.textContent = sesionActiva ? '🔓' : '🔒';
+    const chev = document.querySelector('#btn-sesion-ajustes .ajustes-item-chev');
+    if (chev) chev.style.display = sesionActiva ? 'none' : '';
 }
 
 function abrirLoginOLogout() {

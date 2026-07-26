@@ -220,56 +220,67 @@
         <div class="ajustes-handle"></div>
         <span class="ajustes-close" id="ajustes-close">×</span>
         <div class="ajustes-title">⚙️ Ajustes</div>
-        <div class="ajustes-lista">
-            <button class="ajustes-item" onclick="exportarColeccion()">
-                <span class="ajustes-item-icon">⬇️</span>
-                <span class="ajustes-item-texto">
-                    <span class="ajustes-item-titulo">Exportar mi colección</span>
-                    <span class="ajustes-item-sub">Descarga un respaldo en JSON</span>
-                </span>
-            </button>
-            <button class="ajustes-item" onclick="dispararInputImportar()">
-                <span class="ajustes-item-icon">⬆️</span>
-                <span class="ajustes-item-texto">
-                    <span class="ajustes-item-titulo">Importar respaldo</span>
-                    <span class="ajustes-item-sub">Reemplaza el inventario actual</span>
-                </span>
-            </button>
-            <button class="ajustes-item" onclick="descargarListaFaltantes()">
-                <span class="ajustes-item-icon">📋</span>
-                <span class="ajustes-item-texto">
-                    <span class="ajustes-item-titulo">Lista de faltantes</span>
-                    <span class="ajustes-item-sub">Descarga un .txt con lo que te falta</span>
-                </span>
-            </button>
-            <button class="ajustes-item" onclick="abrirOpcionesPDF()">
-                <span class="ajustes-item-icon">✂️</span>
-                <span class="ajustes-item-texto">
-                    <span class="ajustes-item-titulo">Recortables para carpetas (PDF)</span>
-                    <span class="ajustes-item-sub">9 por hoja carta, en orden de Pokédex — con opciones</span>
-                </span>
-            </button>
-            <button class="ajustes-item" onclick="abrirWizardCarpetas()">
-                <span class="ajustes-item-icon">🗂️</span>
-                <span class="ajustes-item-texto">
-                    <span class="ajustes-item-titulo">Configurar carpetas</span>
-                    <span class="ajustes-item-sub">Elegí cuántas carpetas tenés y qué generaciones va en cada una</span>
-                </span>
-            </button>
-            <button class="ajustes-item" onclick="toggleTema()" id="btn-tema-ajustes">
-                <span class="ajustes-item-icon">🌓</span>
-                <span class="ajustes-item-texto">
-                    <span class="ajustes-item-titulo">Tema</span>
-                    <span class="ajustes-item-sub" id="btn-tema-ajustes-sub">Auto (según el sistema)</span>
-                </span>
-            </button>
-            <button class="ajustes-item" onclick="abrirLoginOLogout()" id="btn-sesion-ajustes">
-                <span class="ajustes-item-icon">🔒</span>
-                <span class="ajustes-item-texto">
-                    <span class="ajustes-item-titulo" id="btn-sesion-ajustes-titulo">Iniciar sesión</span>
-                    <span class="ajustes-item-sub">Necesaria para marcar/editar cartas</span>
-                </span>
-            </button>
+        <div class="ajustes-secciones">
+            <div class="ajustes-section-label">Colección</div>
+            <div class="ajustes-grupo">
+                <button class="ajustes-item" onclick="exportarColeccion()">
+                    <span class="ajustes-item-icon">⬇️</span>
+                    <span class="ajustes-item-texto">
+                        <span class="ajustes-item-titulo">Exportar mi colección</span>
+                        <span class="ajustes-item-sub">Descarga un respaldo en JSON</span>
+                    </span>
+                </button>
+                <button class="ajustes-item" onclick="dispararInputImportar()">
+                    <span class="ajustes-item-icon">⬆️</span>
+                    <span class="ajustes-item-texto">
+                        <span class="ajustes-item-titulo">Importar respaldo</span>
+                        <span class="ajustes-item-sub">Reemplaza el inventario actual</span>
+                    </span>
+                </button>
+                <button class="ajustes-item" onclick="descargarListaFaltantes()">
+                    <span class="ajustes-item-icon">📋</span>
+                    <span class="ajustes-item-texto">
+                        <span class="ajustes-item-titulo">Lista de faltantes</span>
+                        <span class="ajustes-item-sub">Descarga un .txt con lo que te falta</span>
+                    </span>
+                </button>
+            </div>
+
+            <div class="ajustes-section-label">Carpetas</div>
+            <div class="ajustes-grupo">
+                <button class="ajustes-item" onclick="abrirOpcionesPDF()">
+                    <span class="ajustes-item-icon">✂️</span>
+                    <span class="ajustes-item-texto">
+                        <span class="ajustes-item-titulo">Recortables para carpetas (PDF)</span>
+                        <span class="ajustes-item-sub">9 por hoja carta, en orden de Pokédex — con opciones</span>
+                    </span>
+                </button>
+                <button class="ajustes-item" onclick="abrirWizardCarpetas()">
+                    <span class="ajustes-item-icon">🗂️</span>
+                    <span class="ajustes-item-texto">
+                        <span class="ajustes-item-titulo">Configurar carpetas</span>
+                        <span class="ajustes-item-sub">Elegí cuántas carpetas tenés y qué generaciones va en cada una</span>
+                    </span>
+                </button>
+            </div>
+
+            <div class="ajustes-section-label">Preferencias</div>
+            <div class="ajustes-grupo">
+                <button class="ajustes-item" onclick="toggleTema()" id="btn-tema-ajustes">
+                    <span class="ajustes-item-icon">🌓</span>
+                    <span class="ajustes-item-texto">
+                        <span class="ajustes-item-titulo">Tema</span>
+                        <span class="ajustes-item-sub" id="btn-tema-ajustes-sub">Auto (según el sistema)</span>
+                    </span>
+                </button>
+                <button class="ajustes-item" onclick="abrirLoginOLogout()" id="btn-sesion-ajustes">
+                    <span class="ajustes-item-icon">🔒</span>
+                    <span class="ajustes-item-texto">
+                        <span class="ajustes-item-titulo" id="btn-sesion-ajustes-titulo">Iniciar sesión</span>
+                        <span class="ajustes-item-sub">Necesaria para marcar/editar cartas</span>
+                    </span>
+                </button>
+            </div>
         </div>
     </div>
 </div>

@@ -14,7 +14,7 @@ Comments and UI text in this codebase are in Spanish; keep new comments/strings 
 node server.js
 ```
 
-Serves on port `3000`. In production it runs as the systemd unit `pokedex.service` (`WorkingDirectory=/var/www/html/pokedex-tcg`, `User=www-data`, auto-restarts on failure). Files the process needs to write (`inventario.json`, `carpetas.json`, `backups/`, `cache/`, `node_modules/`, `package.json`/`package-lock.json` for `/api/webhook-deploy`'s `npm install`) must be owned by `www-data` or the auto-deploy/writes will fail with `EACCES`:
+Serves on port `3000`. In production it runs as the systemd unit `pokedex.service` (`WorkingDirectory=/var/www/html/pokedex-tcg`, `User=www-data`, auto-restarts on failure). Files the process needs to write (`inventario.json`, `carpetas.json`, `backups/`, `cache/`, `node_modules/`, `package.json`/`package-lock.json` for `/api/webhook-deploy`'s `npm install`) must be owned by `www-data`, and `/var/www/.npm` (npm's cache dir, under `www-data`'s home) must exist and be owned by `www-data` too — otherwise auto-deploy/writes fail with `EACCES`:
 
 ```bash
 systemctl restart pokedex.service

@@ -1488,6 +1488,7 @@ function calcularProgresoReciente() {
     return { ultimos7, ultimos30 };
 }
 function cerrarMetricas() { document.getElementById('metrics-modal').classList.remove('open'); }
+document.getElementById('metrics-close').onclick = cerrarMetricas;
 
 // ── AJUSTES: panel único, compartido entre desktop y mobile ────────
 function abrirAjustes() {

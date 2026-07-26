@@ -401,7 +401,7 @@
         /* ── METRICS ── */
         .metrics-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:700;align-items:center;justify-content:center;}
         .metrics-modal.open{display:flex;}
-        .metrics-box{background:var(--overlay-bg);border:1px solid var(--border);border-radius:24px;padding:24px 20px;width:calc(100% - 40px);max-width:380px;animation:fadeIn .2s ease;max-height:80vh;overflow-y:auto;}
+        .metrics-box{position:relative;background:var(--overlay-bg);border:1px solid var(--border);border-radius:24px;padding:24px 20px;width:calc(100% - 40px);max-width:380px;animation:fadeIn .2s ease;max-height:80vh;overflow-y:auto;}
         .metrics-title{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:var(--accent);margin-bottom:4px;letter-spacing:.06em;text-transform:uppercase;}
         .metrics-subtitle{font-size:12px;color:var(--muted);margin-bottom:16px;}
         .metrics-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;}
@@ -411,7 +411,7 @@
         .metrics-row-sub{font-size:11px;color:var(--muted);text-align:right;}
         .metrics-section-title{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px;}
         .metrics-jalon{background:rgba(var(--accent2-rgb),0.08);border:1px solid rgba(var(--accent2-rgb),0.2);border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:12px;color:var(--accent2);font-weight:600;}
-        .metrics-close{width:100%;margin-top:16px;border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:12px;padding:12px;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;letter-spacing:.06em;cursor:pointer;}
+        .metrics-close{position:absolute;top:16px;right:18px;font-size:20px;color:var(--muted);cursor:pointer;padding:4px;}
         .metrics-quick-actions{display:flex;flex-direction:column;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
         .metrics-quick-btn{width:100%;border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:12px;padding:11px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;text-align:left;transition:background .15s;}
         .metrics-quick-btn:active{background:var(--border);}

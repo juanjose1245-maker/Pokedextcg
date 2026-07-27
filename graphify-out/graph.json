@@ -10201,7 +10201,7 @@
       "label": "Fuera de alcance (a prop\u00f3sito, queda para la Fase 2)",
       "file_type": "document",
       "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
-      "source_location": "L144",
+      "source_location": "L158",
       "_origin": "ast",
       "id": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_fuera_de_alcance_a_prop\u00f3sito_queda_para_la_fase_2",
       "community": 63,
@@ -10212,7 +10212,7 @@
       "label": "Testing",
       "file_type": "document",
       "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
-      "source_location": "L157",
+      "source_location": "L171",
       "_origin": "ast",
       "id": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_testing",
       "community": 63,
@@ -30822,7 +30822,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
-      "source_location": "L144",
+      "source_location": "L158",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_megas_formas_regionales_gigamax_etc",
@@ -30855,7 +30855,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
-      "source_location": "L157",
+      "source_location": "L171",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_megas_formas_regionales_gigamax_etc",
@@ -30930,5 +30930,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "d20f410384eeb1e225c169b7c5d7d829cc58b47f"
+  "built_at_commit": "eccda81f698e0739f71da1ce3f74c64e08f62fd4"
 }

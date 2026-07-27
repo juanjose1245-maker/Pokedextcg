@@ -136,10 +136,24 @@ de diseño. Se compila durante la ejecución del plan de la Fase 1, con este cri
 - **Formas alternativas con carta propia**: la más propensa a error/omisión, porque
   "¿tiene carta TCG propia?" no es un dato que exponga PokeAPI — se investiga con
   búsqueda web (Bulbapedia/Serebii/bases de datos de cartas) cruzando "el Pokémon tiene
-  una forma alternativa en el videojuego" contra "esa forma tiene un print de carta
-  TCG distinto al de la forma base". Se trata como una primera lista revisable, no
-  definitiva — el usuario la revisa antes de darla por buena, y es fácil sumar/sacar
-  entradas después sin rehacer nada (son filas independientes al final del archivo).
+  una forma alternativa en el videojuego" contra "existe una carta impresa cuyo **arte**
+  (no necesariamente el nombre impreso) muestra específicamente esa forma". Se trata
+  como una primera lista revisable, no definitiva — el usuario la revisa antes de darla
+  por buena, y es fácil sumar/sacar entradas después sin rehacer nada (son filas
+  independientes al final del archivo).
+
+  **Historial del criterio** (se ajustó una vez ya con datos reales sobre la mesa):
+  la primera pasada (Fase 1, Tareas 4 y 9) usó un criterio más estricto — solo contaba
+  si el **nombre impreso** de la carta distinguía la forma (ej. "Black Kyurem"), no
+  alcanzaba que el arte mostrara la forma bajo el nombre genérico de la especie. Ese
+  criterio excluyó, entre otros, los 3 ejemplos que el usuario dio de entrada (Giratina
+  Origen, Zygarde 10%/Completo, Palafín Héroe). Tras revisar los resultados, el usuario
+  confirmó que el criterio real que quiere es más amplio: **si existe una carta real
+  cuyo arte muestre esa forma específica, cuenta como carta propia, aunque el nombre
+  impreso sea genérico**. Esto reabre los ~22 candidatos descartados bajo el criterio
+  viejo para una segunda pasada de investigación bajo el criterio nuevo (ver el plan de
+  implementación para el detalle de esa segunda pasada, incluida la investigación
+  puntual de Arceus, que por sus 18 tipos es el caso con más superficie).
 
 ## Fuera de alcance (a propósito, queda para la Fase 2)
 

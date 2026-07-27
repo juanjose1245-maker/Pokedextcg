@@ -85,8 +85,8 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1785112238.5122576,
-    "ast_hash": "14635c89fec7b6f7854a66d00d042548",
+    "mtime": 1785120464.3073907,
+    "ast_hash": "fd611a478fc282df78e1bca172f38b0d",
     "semantic_hash": ""
   },
   "docs/superpowers/plans/2026-07-25-carpetas-todas-seguidas.md": {
@@ -162,6 +162,11 @@
   "fetch_variantes.js": {
     "mtime": 1785119400.9264414,
     "ast_hash": "2f2de182224f36e396ba540dccc63d4b",
+    "semantic_hash": ""
+  },
+  "docs/variantes-criterio-investigacion.md": {
+    "mtime": 1785120464.3073907,
+    "ast_hash": "a1336130463988a8f28dc9fb9dd2f48d",
     "semantic_hash": ""
   }
 }

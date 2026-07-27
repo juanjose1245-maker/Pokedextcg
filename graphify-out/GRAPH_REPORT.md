@@ -1,21 +1,22 @@
 # Graph Report - variantes-pokedex  (2026-07-26)
 
 ## Corpus Check
-- 26 files · ~79,664 words
+- 27 files · ~80,802 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 926 nodes · 1789 edges · 65 communities (34 shown, 31 thin omitted)
+- 931 nodes · 1793 edges · 68 communities (34 shown, 34 thin omitted)
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 220 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `5c95c873`
+- Built from commit: `7ded66c7`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - worker.min.js
+- O
 - app.js
 - server.js
 - V
@@ -76,9 +77,12 @@
 - kb
 - qb
 - ii
+- Criterio de investigación: variantes de Pokémon con carta TCG propia
 - Fase 1 — Base de datos de variantes de Pokémon (Megas, formas regionales, Gigamax, etc.)
 - Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación
 - fetch_variantes.js
+- hi
+- Sh
 
 ## God Nodes (most connected - your core abstractions)
 1. `V()` - 66 edges
@@ -107,11 +111,15 @@
 ## Import Cycles
 - None detected.
 
-## Communities (65 total, 31 thin omitted)
+## Communities (68 total, 34 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
 Nodes (53): A(), b(), c(), e(), f(), G(), h(), i() (+45 more)
+
+### Community 1 - "O"
+Cohesion: 0.15
+Nodes (3): hi(), ji(), Ya()
 
 ### Community 2 - "app.js"
 Cohesion: 0.06
@@ -123,11 +131,11 @@ Nodes (38): x(), app, CARPETA_CACHE, CARPETA_RESPALDOS, CARPETAS_DEFAULT, carpet
 
 ### Community 6 - "tesseract-core-lstm.wasm.js"
 Cohesion: 0.07
-Nodes (16): ci(), Da(), fi(), gb(), gi(), hb(), Kh(), R() (+8 more)
+Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
 ### Community 7 - "tesseract-core-simd-lstm.wasm.js"
 Cohesion: 0.07
-Nodes (21): Ab(), ci(), Da(), Db(), Eb(), fi(), gi(), kb() (+13 more)
+Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
 ### Community 10 - "esDesktop"
 Cohesion: 0.19
@@ -144,10 +152,6 @@ Nodes (18): express, node-fetch, author, dependencies, express, node-fetch, pdfk
 ### Community 15 - "renderGaleria"
 Cohesion: 0.18
 Nodes (19): actualizarBotonEstado(), actualizarGalleryHeader(), agregarAlHistorial(), carpetaDe(), clearSearchTimer(), detenerCamara(), getFechaRegistro(), gridActivo() (+11 more)
-
-### Community 17 - "ji"
-Cohesion: 0.15
-Nodes (3): hi(), ji(), Ya()
 
 ### Community 19 - "Modo "Todas seguidas" para configuración de carpetas"
 Cohesion: 0.11
@@ -182,12 +186,8 @@ Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 29 - "p"
-Cohesion: 0.50
-Nodes (5): e(), Ma(), Na(), Oa(), Pa()
-
-### Community 30 - "d"
-Cohesion: 0.16
-Nodes (4): ai(), hi(), ji(), Sh()
+Cohesion: 0.22
+Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
 
 ### Community 32 - "manifest.json"
 Cohesion: 0.22
@@ -218,8 +218,8 @@ Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 56 - "p"
-Cohesion: 0.22
-Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
+Cohesion: 0.24
+Nodes (9): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+1 more)
 
 ### Community 57 - "Reorganizar accesos rápidos y agrupar "Ajustes" — Plan de implementación"
 Cohesion: 0.22
@@ -229,9 +229,17 @@ Nodes (8): Global Constraints, Reorganizar accesos rápidos y agrupar "Ajustes" 
 Cohesion: 0.25
 Nodes (7): Accesos rápidos (Métricas / Cámara / Por acomodar / Ajustes), Affordance por fila: `›` solo en las que navegan, "Ajustes" agrupado en 3 secciones, Contexto, Fuera de alcance (a propósito), Reorganizar los accesos a Métricas/Cámara/Por acomodar/Ajustes y agrupar "Ajustes", Testing
 
+### Community 59 - "kb"
+Cohesion: 0.33
+Nodes (7): Ab(), Db(), Eb(), kb(), Nb(), Ta(), Ua()
+
 ### Community 60 - "qb"
 Cohesion: 0.33
 Nodes (5): Ha(), Ia(), qb(), sb(), t()
+
+### Community 62 - "Criterio de investigación: variantes de Pokémon con carta TCG propia"
+Cohesion: 0.40
+Nodes (4): Criterio de inclusión, Criterio de investigación: variantes de Pokémon con carta TCG propia, Lista de candidatos investigados y descartados, Notas
 
 ### Community 63 - "Fase 1 — Base de datos de variantes de Pokémon (Megas, formas regionales, Gigamax, etc.)"
 Cohesion: 0.22
@@ -242,24 +250,24 @@ Cohesion: 0.11
 Nodes (17): Addendum — hallazgos de la revisión final + investigación propia del usuario, Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación, Formato de `variantes_lista.json`, Global Constraints, Self-Review del addendum (Tareas 7-11), Self-Review (hecho al escribir este plan), Task 10: Documentar en CLAUDE.md, Task 11: Regenerar `pokemon_db.json` completo y verificar (con chequeo de imágenes duplicadas) (+9 more)
 
 ## Knowledge Gaps
-- **137 isolated node(s):** `fs`, `fs`, `fs`, `path`, `RUTA_INVENTARIO` (+132 more)
+- **140 isolated node(s):** `fs`, `fs`, `fs`, `path`, `RUTA_INVENTARIO` (+135 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **31 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **34 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `g()` connect `worker.min.js` to `server.js`, `esDesktop`, `qb`, `wizardCapacidadSiguiente`, `qb`?**
-  _High betweenness centrality (0.229) - this node is a cross-community bridge._
-- **Why does `a()` connect `worker.min.js` to `qb`, `A`, `A`, `p`, `kb`, `qb`?**
-  _High betweenness centrality (0.220) - this node is a cross-community bridge._
-- **Why does `A()` connect `A` to `worker.min.js`, `O`, `K`, `tesseract-core-simd-lstm.wasm.js`, `Q`, `J`, `di`, `d`, `Lh`, `p`, `qb`?**
-  _High betweenness centrality (0.109) - this node is a cross-community bridge._
+  _High betweenness centrality (0.227) - this node is a cross-community bridge._
+- **Why does `a()` connect `worker.min.js` to `qb`, `A`, `A`, `p`, `qb`, `p`?**
+  _High betweenness centrality (0.218) - this node is a cross-community bridge._
+- **Why does `A()` connect `A` to `worker.min.js`, `O`, `K`, `tesseract-core-simd-lstm.wasm.js`, `Q`, `J`, `di`, `d`, `Lh`, `p`, `kb`, `qb`?**
+  _High betweenness centrality (0.108) - this node is a cross-community bridge._
 - **What connects `fs`, `fs`, `fs` to the rest of the system?**
-  _137 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _140 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `O` be split into smaller, more focused modules?**
+  _Cohesion score 0.14736842105263157 - nodes in this community are weakly interconnected._
 - **Should `app.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05735430157261795 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05272895467160037 - nodes in this community are weakly interconnected._
-- **Should `V` be split into smaller, more focused modules?**
-  _Cohesion score 0.07007575757575757 - nodes in this community are weakly interconnected._

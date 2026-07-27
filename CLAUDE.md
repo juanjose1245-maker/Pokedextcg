@@ -58,6 +58,8 @@ Write endpoints require a session, gated by `ADMIN_PASSWORD` env var (defaults t
 ## Data files (not code, but load-bearing)
 
 - `pokemon_db.json` — the reference Pokédex data (1025 entries), regenerated via `fetch_pokemon.js` (hits pokeapi.co, one request per Pokémon; slow, run only when the reference data actually needs refreshing).
+- `variantes_lista.json` — research list (not runtime) of Pokémon variants (regional forms, Mega, Gigamax, alternate forms with their own TCG card) by form name in PokeAPI + category + base species. Consumed by `fetch_variantes.js`.
+- `fetch_variantes.js` — extends `pokemon_db.json` (which `fetch_pokemon.js` leaves at 1025 entries) with variants from `variantes_lista.json`. **Regeneration order: if you run `fetch_pokemon.js`, always run `fetch_variantes.js` after it** — `fetch_pokemon.js` overwrites the entire file with only the 1025 base entries and silently deletes any existing variants.
 - `inventario.json` — live user collection state, `{ bulk, carpetas }`. Treat as data, not config; it's rewritten by the server on every change plus auto-backed-up.
 - `carpetas.json` — the folder/binder layout (`{ modo: 'separadas'|'seguidas', carpetas: [...] }`), written by the client-side wizard through `/api/carpetas-config`. Falls back to `CARPETAS_DEFAULT` (in `server.js`) if missing or invalid.
 - `migrar-carpetas-a-bulk.js` — a one-off, manually-run migration script that copies everything marked in `carpetas` into `bulk` (without overwriting existing `bulk` dates). Stop the server before running it; it writes its own timestamped backup first.

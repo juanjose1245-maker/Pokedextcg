@@ -137,7 +137,6 @@
   { "nombrePokeAPI": "appletun-gmax", "categoria": "gigamax", "especieBase": 842 },
   { "nombrePokeAPI": "sandaconda-gmax", "categoria": "gigamax", "especieBase": 844 },
   { "nombrePokeAPI": "toxtricity-amped-gmax", "categoria": "gigamax", "especieBase": 849 },
-  { "nombrePokeAPI": "toxtricity-low-key-gmax", "categoria": "gigamax", "especieBase": 849 },
   { "nombrePokeAPI": "centiskorch-gmax", "categoria": "gigamax", "especieBase": 851 },
   { "nombrePokeAPI": "hatterene-gmax", "categoria": "gigamax", "especieBase": 858 },
   { "nombrePokeAPI": "grimmsnarl-gmax", "categoria": "gigamax", "especieBase": 861 },
@@ -164,5 +163,11 @@
   { "nombrePokeAPI": "wormadam-trash", "categoria": "alternativa", "especieBase": 413 },
   { "nombrePokeAPI": "calyrex-ice", "categoria": "alternativa", "especieBase": 898 },
   { "nombrePokeAPI": "calyrex-shadow", "categoria": "alternativa", "especieBase": 898 },
-  { "nombrePokeAPI": "urshifu-rapid-strike", "categoria": "alternativa", "especieBase": 892 }
+  { "nombrePokeAPI": "urshifu-rapid-strike", "categoria": "alternativa", "especieBase": 892 },
+  { "nombrePokeAPI": "dialga-origin", "categoria": "alternativa", "especieBase": 483 },
+  { "nombrePokeAPI": "palkia-origin", "categoria": "alternativa", "especieBase": 484 },
+  { "nombrePokeAPI": "ursaluna-bloodmoon", "categoria": "alternativa", "especieBase": 901 },
+  { "nombrePokeAPI": "ogerpon-hearthflame-mask", "categoria": "alternativa", "especieBase": 1017 },
+  { "nombrePokeAPI": "ogerpon-wellspring-mask", "categoria": "alternativa", "especieBase": 1017 },
+  { "nombrePokeAPI": "ogerpon-cornerstone-mask", "categoria": "alternativa", "especieBase": 1017 }
 ]

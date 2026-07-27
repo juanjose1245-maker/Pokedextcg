@@ -417,8 +417,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "public_app_formatearrango",
-      "community": 27,
-      "community_name": "mostrarToastError",
+      "community": 11,
+      "community_name": "wizardCapacidadSiguiente",
       "norm_label": "formatearrango()"
     },
     {
@@ -428,8 +428,8 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "public_app_hextorgba",
-      "community": 27,
-      "community_name": "mostrarToastError",
+      "community": 11,
+      "community_name": "wizardCapacidadSiguiente",
       "norm_label": "hextorgba()"
     },
     {
@@ -439,8 +439,8 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "public_app_cargarcarpetasconfig",
-      "community": 27,
-      "community_name": "mostrarToastError",
+      "community": 11,
+      "community_name": "wizardCapacidadSiguiente",
       "norm_label": "cargarcarpetasconfig()"
     },
     {
@@ -483,8 +483,8 @@
       "source_location": "L109",
       "_origin": "ast",
       "id": "public_app_revisarsesion",
-      "community": 2,
-      "community_name": "app.js",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": "revisarsesion()"
     },
     {
@@ -494,8 +494,8 @@
       "source_location": "L120",
       "_origin": "ast",
       "id": "public_app_actualizarbotonsesion",
-      "community": 2,
-      "community_name": "app.js",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": "actualizarbotonsesion()"
     },
     {
@@ -505,8 +505,8 @@
       "source_location": "L130",
       "_origin": "ast",
       "id": "public_app_abrirloginologout",
-      "community": 2,
-      "community_name": "app.js",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": "abrirloginologout()"
     },
     {
@@ -516,8 +516,8 @@
       "source_location": "L136",
       "_origin": "ast",
       "id": "public_app_abrirloginmodal",
-      "community": 2,
-      "community_name": "app.js",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": "abrirloginmodal()"
     },
     {
@@ -527,8 +527,8 @@
       "source_location": "L144",
       "_origin": "ast",
       "id": "public_app_cerrarloginmodal",
-      "community": 2,
-      "community_name": "app.js",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": "cerrarloginmodal()"
     },
     {
@@ -538,8 +538,8 @@
       "source_location": "L149",
       "_origin": "ast",
       "id": "public_app_intentarlogin",
-      "community": 2,
-      "community_name": "app.js",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": "intentarlogin()"
     },
     {
@@ -549,8 +549,8 @@
       "source_location": "L179",
       "_origin": "ast",
       "id": "public_app_cerrarsesion",
-      "community": 2,
-      "community_name": "app.js",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": "cerrarsesion()"
     },
     {
@@ -560,8 +560,8 @@
       "source_location": "L189",
       "_origin": "ast",
       "id": "public_app_requieresesion",
-      "community": 2,
-      "community_name": "app.js",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": "requieresesion()"
     },
     {
@@ -945,8 +945,8 @@
       "source_location": "L740",
       "_origin": "ast",
       "id": "public_app_dispararinputimportar",
-      "community": 2,
-      "community_name": "app.js",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": "dispararinputimportar()"
     },
     {
@@ -1429,8 +1429,8 @@
       "source_location": "L1556",
       "_origin": "ast",
       "id": "public_app_wizardmostrarpaso",
-      "community": 11,
-      "community_name": "wizardCapacidadSiguiente",
+      "community": 2,
+      "community_name": "app.js",
       "norm_label": "wizardmostrarpaso()"
     },
     {
@@ -1440,8 +1440,8 @@
       "source_location": "L1562",
       "_origin": "ast",
       "id": "public_app_wizardelegirmodo",
-      "community": 11,
-      "community_name": "wizardCapacidadSiguiente",
+      "community": 2,
+      "community_name": "app.js",
       "norm_label": "wizardelegirmodo()"
     },
     {
@@ -1473,8 +1473,8 @@
       "source_location": "L1584",
       "_origin": "ast",
       "id": "public_app_wizardconfirmarcantidad",
-      "community": 11,
-      "community_name": "wizardCapacidadSiguiente",
+      "community": 2,
+      "community_name": "app.js",
       "norm_label": "wizardconfirmarcantidad()"
     },
     {
@@ -1638,8 +1638,8 @@
       "source_location": "L1775",
       "_origin": "ast",
       "id": "public_app_wizardvolverdesdenombres",
-      "community": 11,
-      "community_name": "wizardCapacidadSiguiente",
+      "community": 2,
+      "community_name": "app.js",
       "norm_label": "wizardvolverdesdenombres()"
     },
     {
@@ -1935,8 +1935,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_xa",
-      "community": 12,
-      "community_name": "J",
+      "community": 29,
+      "community_name": "p",
       "norm_label": "xa()"
     },
     {
@@ -1979,8 +1979,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_p",
-      "community": 12,
-      "community_name": "J",
+      "community": 29,
+      "community_name": "p",
       "norm_label": "p()"
     },
     {
@@ -2100,8 +2100,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ya",
-      "community": 52,
-      "community_name": "Sh",
+      "community": 29,
+      "community_name": "p",
       "norm_label": "ya()"
     },
     {
@@ -2155,8 +2155,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_gb",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 29,
+      "community_name": "p",
       "norm_label": "gb()"
     },
     {
@@ -2166,8 +2166,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hb",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 29,
+      "community_name": "p",
       "norm_label": "hb()"
     },
     {
@@ -2936,8 +2936,8 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_rowattributes",
-      "community": 50,
-      "community_name": "ai",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".rowattributes()"
     },
     {
@@ -3024,8 +3024,8 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_wordfontattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".wordfontattributes()"
     },
     {
@@ -3541,8 +3541,8 @@
       "source_location": "L224",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_p_destroy",
-      "community": 12,
-      "community_name": "J",
+      "community": 29,
+      "community_name": "p",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4839,8 +4839,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_wrap",
-      "community": 52,
-      "community_name": "Sh",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".wrap()"
     },
     {
@@ -4850,8 +4850,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_bool",
-      "community": 52,
-      "community_name": "Sh",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".bool()"
     },
     {
@@ -4872,8 +4872,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_f32",
-      "community": 50,
-      "community_name": "ai",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".f32()"
     },
     {
@@ -4938,8 +4938,8 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getrowattributes",
-      "community": 50,
-      "community_name": "ai",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".getrowattributes()"
     },
     {
@@ -4949,8 +4949,8 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getwordfontattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".getwordfontattributes()"
     },
     {
@@ -9579,6 +9579,127 @@
       "id": "docs_superpowers_plans_2026_07_26_ajustes_navegacion_self_review_hecho_al_escribir_este_plan",
       "community": 57,
       "community_name": "Reorganizar accesos r\u00e1pidos y agrupar \"Ajustes\" \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "self-review (hecho al escribir este plan)"
+    },
+    {
+      "label": "2026-07-26-variantes-pokedex.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_26_variantes_pokedex",
+      "community": 64,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "2026-07-26-variantes-pokedex.md"
+    },
+    {
+      "label": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon \u2014 Plan de implementaci\u00f3n",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_26_variantes_pokedex_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_plan_de_implementaci\u00f3n",
+      "community": 64,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "fase 1 \u2014 base de datos de variantes de pokemon \u2014 plan de implementacion"
+    },
+    {
+      "label": "Global Constraints",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_26_variantes_pokedex_global_constraints",
+      "community": 64,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "global constraints"
+    },
+    {
+      "label": "Formato de `variantes_lista.json`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_26_variantes_pokedex_formato_de_variantes_lista_json",
+      "community": 64,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "formato de `variantes_lista.json`"
+    },
+    {
+      "label": "Task 1: Investigar y compilar formas regionales",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L57",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_26_variantes_pokedex_task_1_investigar_y_compilar_formas_regionales",
+      "community": 64,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 1: investigar y compilar formas regionales"
+    },
+    {
+      "label": "Task 2: Investigar y compilar Megaevoluci\u00f3n y Regresi\u00f3n Primigenia",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L122",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_26_variantes_pokedex_task_2_investigar_y_compilar_megaevoluci\u00f3n_y_regresi\u00f3n_primigenia",
+      "community": 64,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 2: investigar y compilar megaevolucion y regresion primigenia"
+    },
+    {
+      "label": "Task 3: Investigar y compilar Gigamax",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L174",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_26_variantes_pokedex_task_3_investigar_y_compilar_gigamax",
+      "community": 64,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 3: investigar y compilar gigamax"
+    },
+    {
+      "label": "Task 4: Investigar y compilar formas alternativas con carta TCG propia",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L232",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_26_variantes_pokedex_task_4_investigar_y_compilar_formas_alternativas_con_carta_tcg_propia",
+      "community": 64,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 4: investigar y compilar formas alternativas con carta tcg propia"
+    },
+    {
+      "label": "Task 5: Escribir `fetch_variantes.js`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L284",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_26_variantes_pokedex_task_5_escribir_fetch_variantes_js",
+      "community": 64,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 5: escribir `fetch_variantes.js`"
+    },
+    {
+      "label": "Task 6: Correr el fetch completo y verificar `pokemon_db.json` final",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L395",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_26_variantes_pokedex_task_6_correr_el_fetch_completo_y_verificar_pokemon_db_json_final",
+      "community": 64,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 6: correr el fetch completo y verificar `pokemon_db.json` final"
+    },
+    {
+      "label": "Self-Review (hecho al escribir este plan)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L493",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_26_variantes_pokedex_self_review_hecho_al_escribir_este_plan",
+      "community": 64,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon \u2014 Plan de implementaci\u00f3n",
       "norm_label": "self-review (hecho al escribir este plan)"
     },
     {
@@ -29984,6 +30105,116 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_26_variantes_pokedex",
+      "target": "docs_superpowers_plans_2026_07_26_variantes_pokedex_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_plan_de_implementaci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_26_variantes_pokedex_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_26_variantes_pokedex_formato_de_variantes_lista_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_26_variantes_pokedex_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_26_variantes_pokedex_global_constraints",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L493",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_26_variantes_pokedex_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_26_variantes_pokedex_self_review_hecho_al_escribir_este_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L57",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_26_variantes_pokedex_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_26_variantes_pokedex_task_1_investigar_y_compilar_formas_regionales",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L122",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_26_variantes_pokedex_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_26_variantes_pokedex_task_2_investigar_y_compilar_megaevoluci\u00f3n_y_regresi\u00f3n_primigenia",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L174",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_26_variantes_pokedex_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_26_variantes_pokedex_task_3_investigar_y_compilar_gigamax",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L232",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_26_variantes_pokedex_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_26_variantes_pokedex_task_4_investigar_y_compilar_formas_alternativas_con_carta_tcg_propia",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L284",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_26_variantes_pokedex_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_26_variantes_pokedex_task_5_escribir_fetch_variantes_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L395",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_26_variantes_pokedex_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_26_variantes_pokedex_task_6_correr_el_fetch_completo_y_verificar_pokemon_db_json_final",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/superpowers/specs/2026-07-25-carpetas-todas-seguidas-design.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -30335,5 +30566,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "37168291d931e767f8109df09e9588a356575147"
+  "built_at_commit": "710c22e1b69f5bbb68ec21e2814599ce36f1b98c"
 }

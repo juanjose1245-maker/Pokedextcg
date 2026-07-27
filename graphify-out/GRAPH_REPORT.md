@@ -1,16 +1,16 @@
 # Graph Report - pokedex-tcg  (2026-07-26)
 
 ## Corpus Check
-- 24 files · ~69,709 words
+- 25 files · ~72,931 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 905 nodes · 1770 edges · 64 communities (32 shown, 32 thin omitted)
+- 916 nodes · 1780 edges · 65 communities (32 shown, 33 thin omitted)
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 220 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `37168291`
+- Built from commit: `710c22e1`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -79,6 +79,7 @@
 - ii
 - Sh
 - Fase 1 — Base de datos de variantes de Pokémon (Megas, formas regionales, Gigamax, etc.)
+- Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación
 
 ## God Nodes (most connected - your core abstractions)
 1. `V()` - 66 edges
@@ -107,7 +108,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (64 total, 32 thin omitted)
+## Communities (65 total, 33 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -115,7 +116,7 @@ Nodes (53): A(), b(), c(), e(), f(), G(), h(), i() (+45 more)
 
 ### Community 2 - "app.js"
 Cohesion: 0.06
-Nodes (41): abrirLoginModal(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirWizardCarpetas(), actualizarBotonSesion(), aplicarTema(), cachePokemon, calcularJalon() (+33 more)
+Nodes (36): abrirOpcionesPDF(), abrirWizardCarpetas(), aplicarTema(), cachePokemon, calcularJalon(), calcularProgresoReciente(), cameraBoxView, carpetas (+28 more)
 
 ### Community 3 - "server.js"
 Cohesion: 0.05
@@ -123,7 +124,7 @@ Nodes (38): x(), app, CARPETA_CACHE, CARPETA_RESPALDOS, CARPETAS_DEFAULT, carpet
 
 ### Community 6 - "tesseract-core-lstm.wasm.js"
 Cohesion: 0.07
-Nodes (16): ci(), Da(), fi(), gb(), gi(), hb(), Kh(), R() (+8 more)
+Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
 ### Community 7 - "tesseract-core-simd-lstm.wasm.js"
 Cohesion: 0.07
@@ -135,11 +136,7 @@ Nodes (22): actualizarBotonesModo(), actualizarTarjetaProgreso(), actualizarTarj
 
 ### Community 11 - "wizardCapacidadSiguiente"
 Cohesion: 0.14
-Nodes (21): pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste(), wizardArmarPasoCapacidad(), wizardArmarPasoNombres(), wizardCalcularRangos() (+13 more)
-
-### Community 12 - "J"
-Cohesion: 0.16
-Nodes (4): I(), J(), p(), xa()
+Nodes (20): cargarCarpetasConfig(), formatearRango(), hexToRgba(), pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste() (+12 more)
 
 ### Community 14 - "package.json"
 Cohesion: 0.11
@@ -174,16 +171,16 @@ Cohesion: 0.32
 Nodes (12): actualizarBadgePendientes(), calcularIdsPendientesSilencioso(), cargarEstadisticasSinMoverScroll(), claveFechaLS(), claveLS(), ejecutarToggleStatus(), getFechaISO(), guardarFechaRegistro() (+4 more)
 
 ### Community 27 - "mostrarToastError"
-Cohesion: 0.23
-Nodes (12): cargarCarpetasConfig(), cerrarWizardCarpetas(), descargarListaFaltantes(), descargarRecortablesPDF(), exportarColeccion(), fetchRangoSegura(), formatearRango(), hexToRgba() (+4 more)
+Cohesion: 0.15
+Nodes (18): abrirLoginModal(), abrirLoginOLogout(), actualizarBotonSesion(), cerrarLoginModal(), cerrarSesion(), cerrarWizardCarpetas(), descargarListaFaltantes(), descargarRecortablesPDF() (+10 more)
 
 ### Community 28 - "d"
 Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 29 - "p"
-Cohesion: 0.50
-Nodes (5): e(), Ma(), Na(), Oa(), Pa()
+Cohesion: 0.22
+Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
 
 ### Community 32 - "manifest.json"
 Cohesion: 0.22
@@ -237,24 +234,28 @@ Nodes (5): Ha(), Ia(), qb(), sb(), t()
 Cohesion: 0.22
 Nodes (8): Contexto, Esquema de cada entrada variante, Fase 1 — Base de datos de variantes de Pokémon (Megas, formas regionales, Gigamax, etc.), `fetch_pokemon.js`, Fuera de alcance (a propósito, queda para la Fase 2), Modelo de datos, Proceso de investigación, Testing
 
+### Community 64 - "Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación"
+Cohesion: 0.18
+Nodes (10): Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación, Formato de `variantes_lista.json`, Global Constraints, Self-Review (hecho al escribir este plan), Task 1: Investigar y compilar formas regionales, Task 2: Investigar y compilar Megaevolución y Regresión Primigenia, Task 3: Investigar y compilar Gigamax, Task 4: Investigar y compilar formas alternativas con carta TCG propia (+2 more)
+
 ## Knowledge Gaps
-- **122 isolated node(s):** `fs`, `fs`, `path`, `RUTA_INVENTARIO`, `raw` (+117 more)
+- **131 isolated node(s):** `fs`, `fs`, `path`, `RUTA_INVENTARIO`, `raw` (+126 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **32 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **33 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `g()` connect `worker.min.js` to `server.js`, `esDesktop`, `qb`, `wizardCapacidadSiguiente`, `qb`?**
-  _High betweenness centrality (0.240) - this node is a cross-community bridge._
-- **Why does `a()` connect `worker.min.js` to `qb`, `J`, `A`, `A`, `p`, `qb`?**
-  _High betweenness centrality (0.230) - this node is a cross-community bridge._
+  _High betweenness centrality (0.235) - this node is a cross-community bridge._
+- **Why does `a()` connect `worker.min.js` to `qb`, `A`, `A`, `p`, `qb`, `p`?**
+  _High betweenness centrality (0.225) - this node is a cross-community bridge._
 - **Why does `A()` connect `A` to `worker.min.js`, `O`, `K`, `tesseract-core-simd-lstm.wasm.js`, `Q`, `J`, `di`, `d`, `Lh`, `p`, `kb`, `qb`?**
-  _High betweenness centrality (0.114) - this node is a cross-community bridge._
+  _High betweenness centrality (0.112) - this node is a cross-community bridge._
 - **What connects `fs`, `fs`, `path` to the rest of the system?**
-  _122 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _131 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.05735430157261795 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.059233449477351915 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05272895467160037 - nodes in this community are weakly interconnected._
 - **Should `V` be split into smaller, more focused modules?**

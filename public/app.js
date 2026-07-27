@@ -348,6 +348,59 @@ function mostrarToastDeshacer(idPk, fechaPreservada, nombrePk) {
     deshacerToastTimer = setTimeout(() => { toast.style.opacity = '0'; }, 6000);
 }
 
+// Toast con acción: avisa que activar una categoría de variantes dejó la
+// capacidad de las carpetas ya configuradas por debajo de lo necesario. No
+// bloquea nada — la config vieja sigue funcionando, esto es solo un aviso
+// con un atajo directo a re-abrir el wizard y ajustar.
+let avisoCapacidadTimer = null;
+function mostrarToastAvisoCapacidad(msg) {
+    let toast = document.getElementById('aviso-capacidad-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'aviso-capacidad-toast';
+        toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 8px 8px 16px;font-size:12px;font-weight:600;color:var(--text);box-shadow:0 4px 16px var(--shadow);z-index:800;max-width:calc(100vw - 32px);opacity:0;transition:opacity .2s ease;display:flex;align-items:center;gap:10px;';
+        document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<span>${msg}</span>
+        <button id="btn-ajustar-capacidad" style="background:var(--accent2);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:11px;cursor:pointer;font-family:'Rajdhani',sans-serif;letter-spacing:.04em;white-space:nowrap;">AJUSTAR</button>`;
+    toast.style.opacity = '1';
+    clearTimeout(avisoCapacidadTimer);
+    avisoCapacidadTimer = setTimeout(() => { toast.style.opacity = '0'; }, 6000);
+    document.getElementById('btn-ajustar-capacidad').onclick = () => {
+        toast.style.opacity = '0';
+        cerrarPanelVariantes();
+        abrirWizardCarpetas();
+    };
+}
+
+// Revisa, después de guardar variantes-config, si la capacidad de carpetas ya
+// configurada alcanza para la colección efectiva actual — si no, avisa (no
+// bloquea nada: la config vieja sigue funcionando mientras tanto).
+async function revisarCapacidadCarpetas() {
+    if (!carpetas.length) return; // todavía no se configuraron carpetas
+    if (modoCarpetasConfig === 'separadas') {
+        for (const c of carpetas) {
+            const necesario = c.gens.reduce((acc, gen) => acc + (dataGlobalCache.generaciones[gen]?.total || 0), 0);
+            if (necesario > c.espacios) {
+                mostrarToastAvisoCapacidad(`"${c.nombre}" necesita ${necesario} espacios y tiene ${c.espacios} — ajustá tus carpetas cuando puedas.`);
+                return;
+            }
+        }
+        return;
+    }
+    for (const c of carpetas) {
+        try {
+            const res = await fetch(`/api/buscar?desde=${c.desde}&hasta=${c.hasta}`);
+            if (!res.ok) continue;
+            const lista = await res.json();
+            if (lista.length > c.espacios) {
+                mostrarToastAvisoCapacidad(`"${c.nombre}" necesita ${lista.length} espacios y tiene ${c.espacios} — ajustá tus carpetas cuando puedas.`);
+                return;
+            }
+        } catch { /* no bloquea el flujo si falla la revisión */ }
+    }
+}
+
 // Fetch con manejo de error: devuelve null y avisa al usuario si algo falla.
 async function fetchGenSegura(g) {
     try {
@@ -516,7 +569,7 @@ async function cargarEstadisticas() {
     renderBinderBar();
     renderSidebar();
     const total = Object.keys(data.listaIds || {}).length;
-    document.getElementById('brand-count').textContent = `${total} / 1025`;
+    document.getElementById('brand-count').textContent = `${total} / ${data.global.total || 1025}`;
 
     const grid = document.getElementById('grid-generaciones');
     grid.innerHTML = '';
@@ -556,7 +609,7 @@ async function cargarEstadisticasSinMoverScroll() {
     renderBinderBar();
     renderSidebar();
     const total = Object.keys(data.listaIds || {}).length;
-    document.getElementById('brand-count').textContent = `${total} / 1025`;
+    document.getElementById('brand-count').textContent = `${total} / ${data.global.total || 1025}`;
     if (genActualAbierta) RefrescarGaleria(true);
 }
 
@@ -1599,6 +1652,7 @@ async function toggleCategoriaVariante(categoria, activada) {
             if (!res.ok || !data.success) throw new Error(data.error || 'respuesta no válida');
             variantesConfigActual = nueva;
             await cargarEstadisticasSinMoverScroll();
+            if (activada) await revisarCapacidadCarpetas();
             mostrarToastInfo(activada ? 'Categoría activada.' : 'Categoría desactivada.');
         } catch (err) {
             if (checkbox) checkbox.checked = !activada; // revertir el toggle visual si falló
@@ -1679,10 +1733,12 @@ function wizardModoCapacidad() {
     return document.querySelector('input[name="wizard-modo-capacidad"]:checked').value;
 }
 
-// Cuánto necesita cubrir la capacidad total: 1025 (toda la colección) en
-// modo seguidas, o la suma de "huellas" de las 9 generaciones en separadas.
+// Cuánto necesita cubrir la capacidad total: toda la colección efectiva
+// (1025 + variantes activas) en modo seguidas, o la suma de "huellas" de las
+// 9 generaciones en separadas (que ya incluyen variantes activas, porque
+// pokemonEnGen() lee de dataGlobalCache, ya filtrado por el servidor).
 function wizardNecesarioTotal() {
-    if (wizardModo === 'seguidas') return 1025;
+    if (wizardModo === 'seguidas') return (dataGlobalCache && dataGlobalCache.global.total) || 1025;
     return Array.from({ length: 9 }, (_, i) => wizardHuellaGen(i + 1)).reduce((a, b) => a + b, 0);
 }
 
@@ -1738,11 +1794,12 @@ function wizardCapacidadSiguiente() {
 
     if (wizardModo === 'seguidas') {
         // Sin paso de ajuste manual (confirmado: el reparto automático alcanza)
-        // — pero si la capacidad no llega a 1025, no hay "ajuste" que lo salve
-        // más adelante como en modo separadas, así que se bloquea acá.
+        // — pero si la capacidad no llega a lo necesario, no hay "ajuste" que lo
+        // salve más adelante como en modo separadas, así que se bloquea acá.
         const total = wizardCapacidadesFijas.reduce((a, b) => a + b, 0);
-        if (total < 1025) {
-            mostrarToastError(`Entre todas suman ${total} espacios, y hacen falta 1025 para cubrir toda la colección.`);
+        const necesario = wizardNecesarioTotal();
+        if (total < necesario) {
+            mostrarToastError(`Entre todas suman ${total} espacios, y hacen falta ${necesario} para cubrir toda la colección.`);
             return;
         }
         wizardRangos = wizardCalcularRangos();

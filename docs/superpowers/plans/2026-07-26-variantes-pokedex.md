@@ -490,6 +490,343 @@ git commit -m "Poblar pokemon_db.json con las variantes investigadas (Fase 1 com
 
 ---
 
+## Addendum — hallazgos de la revisión final + investigación propia del usuario
+
+Tras completar las Tareas 1-6 y pasar la revisión final de todo el branch, surgieron 5
+hallazgos que se resuelven con 5 tareas más antes de mergear/deployar:
+
+- La revisión final encontró que `TOXTRICITY AMPED GMAX` y `TOXTRICITY LOW KEY GMAX`
+  tienen **arte idéntico** (mismo hash de imagen) — es la misma carta física
+  ("Toxtricity VMAX", una sola en el TCG real), duplicada como si fueran dos.
+- La revisión final encontró 6 formas más que sí superan el criterio de "nombre de
+  carta distinto" de la Tarea 4 y quedaron afuera por error: Dialga Origen, Palkia
+  Origen, Ursaluna Bloodmoon, y las 3 máscaras de Ogerpon (ya verificadas contra
+  PokeAPI, ver tabla abajo).
+- El usuario, en su propia investigación en paralelo, señaló otros candidatos no
+  investigados todavía: Silvally, Castform, Cherrim, Enamorus (forma Tótem), y
+  Terapagos (Terastal/Stellar) — este último es un caso especial: son formas fijas de
+  **una sola especie**, no la Teracristalización general (que sigue fuera de alcance).
+- `fetch_variantes.js` no es re-ejecutable de forma segura (aborta si `pokemon_db.json`
+  no tiene exactamente 1025 entradas) y no falla ruidosamente si PokeAPI devuelve un
+  error transitorio a mitad de la corrida (sigue y corre los ids siguientes en
+  silencio).
+- Falta documentar en `CLAUDE.md` que existe `fetch_variantes.js`/`variantes_lista.json`,
+  y el orden correcto de regeneración — hoy correr solo `fetch_pokemon.js` borraría las
+  159 variantes sin aviso (sobreescribe todo el archivo).
+
+Ids de PokeAPI de las 6 entradas nuevas, ya verificados contra la API real:
+
+| `nombrePokeAPI` | `especieBase` | `types` reales |
+|---|---|---|
+| `dialga-origin` | 483 (DIALGA) | steel, dragon |
+| `palkia-origin` | 484 (PALKIA) | water, dragon |
+| `ursaluna-bloodmoon` | 901 (URSALUNA) | ground, normal |
+| `ogerpon-hearthflame-mask` | 1017 (OGERPON) | grass, fire |
+| `ogerpon-wellspring-mask` | 1017 (OGERPON) | grass, water |
+| `ogerpon-cornerstone-mask` | 1017 (OGERPON) | grass, rock |
+
+### Task 7: Arreglar `fetch_variantes.js` (re-ejecutable + falla ante datos incompletos)
+
+**Files:**
+- Modify: `fetch_variantes.js`
+
+**Interfaces:**
+- Consumes: nada nuevo.
+- Produces: mismo contrato de antes, pero ahora seguro de re-correr sin restaurar
+  `pokemon_db.json` a mano primero.
+
+- [ ] **Step 1: Hacer la detección de la base idempotente**
+
+Antes:
+```js
+const base = JSON.parse(fs.readFileSync('pokemon_db.json', 'utf8'));
+const baseIds = new Set(base.map(p => p.id));
+if (base.length !== 1025) {
+    throw new Error(`pokemon_db.json tiene ${base.length} entradas, se esperaban 1025 — abortando para no pisar datos inesperados.`);
+}
+```
+
+Después:
+```js
+const dbActual = JSON.parse(fs.readFileSync('pokemon_db.json', 'utf8'));
+const base = dbActual.filter(p => p.id <= 1025);
+if (base.length !== 1025) {
+    throw new Error(`Las entradas con id <= 1025 en pokemon_db.json son ${base.length}, se esperaban 1025 — abortando para no pisar datos inesperados.`);
+}
+```
+
+Esto hace que el script siempre regenere las variantes desde cero a partir de la base
+real (ids 1-1025), sin importar si `pokemon_db.json` ya tenía una corrida anterior de
+variantes — no hace falta restaurar nada a mano antes de re-correrlo. (`baseIds` ya no
+se usa en ningún lado del script — se elimina esa línea, era código muerto.)
+
+- [ ] **Step 2: Fallar en vez de escribir un resultado parcial si algo se saltó**
+
+Antes (dentro del `for` loop, en el `catch`/chequeos de `response.ok`/`imagen`):
+```js
+if (!response.ok) {
+    console.error(`❌ ${entrada.nombrePokeAPI}: HTTP ${response.status}, se omite`);
+    continue;
+}
+```
+(y el bloque análogo para `!imagen`, y el `catch` de error de red)
+
+Después: agregar un array `const saltados = [];` antes del loop, y en cada uno de los 3
+puntos donde hoy se hace `continue` (HTTP no ok, sin imagen, error de red), agregar
+`saltados.push(entrada.nombrePokeAPI);` antes del `continue`. Después del loop, antes
+de escribir el archivo:
+
+```js
+if (saltados.length > 0) {
+    throw new Error(`Se omitieron ${saltados.length} entradas por datos incompletos/error de red: ${saltados.join(', ')} — no se escribe pokemon_db.json. Investigar y reintentar.`);
+}
+```
+
+Así una falla transitoria de PokeAPI nunca corre los ids silenciosamente ni deja un
+archivo a medias committeado — el operador tiene que ver el error y decidir (reintentar
+la corrida completa, ya que el Step 1 la hace segura de repetir).
+
+- [ ] **Step 3: Smoke test de que sigue funcionando igual que antes**
+
+Mismo test de humo que la Tarea 5 (backup, lista de juguete de 1 entrada, verificar,
+restaurar) — confirmar que sigue pasando con el script modificado.
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add fetch_variantes.js
+git commit -m "Fix: fetch_variantes.js re-ejecutable y falla ante datos incompletos en vez de correr ids en silencio"
+```
+
+---
+
+### Task 8: Sacar el duplicado de Toxtricity y agregar las 6 entradas que faltaban
+
+**Files:**
+- Modify: `variantes_lista.json`
+
+**Interfaces:**
+- Consumes: `pokemon_db.json` (para confirmar los `especieBase` 483/484/901/1017).
+- Produces: `variantes_lista.json` con 1 entrada menos (Toxtricity Low Key Gmax) y 6 más
+  (tabla de arriba), neto +5 respecto a las 159 actuales.
+
+- [ ] **Step 1: Sacar `toxtricity-low-key-gmax`**
+
+Es la carta idéntica a `toxtricity-amped-gmax` (mismo arte, una sola carta real en el
+TCG) — borrar esa entrada del array.
+
+- [ ] **Step 2: Agregar las 6 entradas de la tabla de arriba**, todas con
+  `"categoria": "alternativa"`.
+
+- [ ] **Step 3: Verificar**
+
+```bash
+python3 -c "
+import json
+lista = json.load(open('variantes_lista.json'))
+db = json.load(open('pokemon_db.json'))
+ids_validos = {p['id'] for p in db if p['id'] <= 1025}
+nombres = [e['nombrePokeAPI'] for e in lista]
+assert len(nombres) == len(set(nombres)), 'hay nombrePokeAPI duplicados'
+assert 'toxtricity-low-key-gmax' not in nombres, 'el duplicado de Toxtricity sigue ahí'
+for slug in ['dialga-origin','palkia-origin','ursaluna-bloodmoon','ogerpon-hearthflame-mask','ogerpon-wellspring-mask','ogerpon-cornerstone-mask']:
+    assert slug in nombres, f'falta {slug}'
+for e in lista:
+    assert e['especieBase'] in ids_validos
+print(f'OK: {len(lista)} entradas (era 159, ahora 159-1+6=164)')
+"
+```
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add variantes_lista.json
+git commit -m "Sacar duplicado de Toxtricity Gmax y agregar Dialga/Palkia Origen, Ursaluna Bloodmoon, y las 3 máscaras de Ogerpon"
+```
+
+---
+
+### Task 9: Investigar candidatos nuevos (Silvally, Castform, Cherrim, Enamorus, Terapagos)
+
+**Spec:** mismo criterio de la Tarea 4 (sección "Proceso de investigación" del spec) —
+"nombre de carta impreso distinto", no solo arte distinto.
+
+**Files:**
+- Modify: `variantes_lista.json` (agregar, no pisar las 164 entradas ya existentes tras
+  la Tarea 8)
+
+**Interfaces:**
+- Consumes: `pokemon_db.json`, `variantes_lista.json` existente.
+- Produces: entradas nuevas con `"categoria": "alternativa"` para lo que se confirme.
+
+- [ ] **Step 1: Investigar cada candidato con el mismo criterio estricto de la Tarea 4**
+
+Para cada uno, buscar en `api.pokemontcg.io/v2/cards?q=name:X` (o WebSearch/Bulbapedia
+si la API está caída) si existe una carta cuyo **nombre impreso** distinga la forma:
+
+- **Silvally** (17 memorias/tipos): ¿alguna carta dice "Silvally Fire" o similar, o son
+  todas "Silvally" genéricas?
+- **Ogerpon** (ya se agregaron sus 3 máscaras en la Tarea 8 vía el hallazgo de la
+  revisión — no dupliques esta investigación, solo confirmá que esas 3 ya están).
+- **Castform** (3 formas climáticas): ¿"Sunny Castform"/similar, o genérico?
+- **Cherrim** (forma soleada): ¿"Sunshine Cherrim" o genérico?
+- **Enamorus** (forma Tótem/Therian): mismo patrón que Landorus/Thundurus/Tornadus
+  (ya descartados en la Tarea 4 por no tener nombre distinto) — confirmar si Enamorus
+  corre la misma suerte o es la excepción.
+- **Terapagos** (Terastal/Stellar): son formas fijas de una sola especie (no la
+  Teracristalización general de cualquier Pokémon, que sigue excluida) — ¿tienen
+  nombre de carta propio?
+
+Para cada uno que SÍ confirme carta con nombre distinto, resolver el slug de PokeAPI y
+verificar con `curl` que devuelve `types` y artwork.
+
+- [ ] **Step 2: Resolver `especieBase` para cada confirmado** (mismo método que
+  siempre: por id de Pokédex nacional en `pokemon_db.json`, no por nombre)
+
+- [ ] **Step 3: Agregar los confirmados a `variantes_lista.json`**
+
+- [ ] **Step 4: Reportar también lo descartado, con la razón** (mismo estándar que la
+  Tarea 4 — no es opcional)
+
+- [ ] **Step 5: Verificar**
+
+```bash
+python3 -c "
+import json
+lista = json.load(open('variantes_lista.json'))
+db = json.load(open('pokemon_db.json'))
+ids_validos = {p['id'] for p in db if p['id'] <= 1025}
+nombres = [e['nombrePokeAPI'] for e in lista]
+assert len(nombres) == len(set(nombres)), 'hay nombrePokeAPI duplicados'
+for e in lista:
+    assert e['especieBase'] in ids_validos
+print(f'OK: {len(lista)} entradas totales en variantes_lista.json')
+"
+```
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add variantes_lista.json
+git commit -m "Investigar candidatos adicionales de formas alternativas (Silvally, Castform, Cherrim, Enamorus, Terapagos)"
+```
+
+---
+
+### Task 10: Documentar en CLAUDE.md
+
+**Files:**
+- Modify: `CLAUDE.md` (sección "Data files (not code, but load-bearing)")
+- Create: `docs/variantes-criterio-investigacion.md` — el criterio de "nombre de carta
+  distinto" y la lista de candidatos investigados y descartados (hoy solo vive en
+  reportes de subagentes que están en `.superpowers/`, gitignoreado — se pierde en
+  cuanto se borra el workspace de esta ejecución).
+
+- [ ] **Step 1: Agregar entradas nuevas a la sección "Data files" de `CLAUDE.md`**
+
+Después de la línea de `pokemon_db.json`:
+```markdown
+- `variantes_lista.json` — lista de investigación (no runtime) de variantes de Pokémon
+  (formas regionales, Mega, Gigamax, formas alternativas con carta TCG propia) por
+  nombre de forma en PokeAPI + categoría + especie base. La consume `fetch_variantes.js`.
+- `fetch_variantes.js` — extiende `pokemon_db.json` (que `fetch_pokemon.js` deja en
+  1025 entradas) con las variantes de `variantes_lista.json`. **Orden de regeneración:
+  si corrés `fetch_pokemon.js`, corré `fetch_variantes.js` siempre después** —
+  `fetch_pokemon.js` sobreescribe todo el archivo con solo las 1025 entradas base y
+  borra cualquier variante existente sin avisar.
+```
+
+- [ ] **Step 2: Crear `docs/variantes-criterio-investigacion.md`** con el criterio
+  usado ("¿existe una carta impresa cuyo nombre oficial distinga esta forma de la
+  especie base, no solo el arte?") y la lista de candidatos descartados hasta ahora
+  (Giratina Origen, Zygarde 10%/Completo, Palafín Héroe, Shaymin Cielo, Landorus/
+  Thundurus/Tornadus Tótem, Arceus, más lo que decida la Tarea 9) con su razón — para
+  que una investigación futura no repita el trabajo.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add CLAUDE.md docs/variantes-criterio-investigacion.md
+git commit -m "Documentar variantes_lista.json/fetch_variantes.js y el criterio de investigación"
+```
+
+---
+
+### Task 11: Regenerar `pokemon_db.json` completo y verificar (con chequeo de imágenes duplicadas)
+
+**Files:**
+- Modify: `pokemon_db.json`
+
+**Interfaces:**
+- Consumes: `variantes_lista.json` final (Tareas 8-9), `fetch_variantes.js` arreglado
+  (Tarea 7).
+- Produces: `pokemon_db.json` final de la Fase 1.
+
+- [ ] **Step 1: Backup y correr el fetch completo**
+
+```bash
+cp pokemon_db.json pokemon_db.backup-pre-addendum.json
+node fetch_variantes.js
+```
+
+Gracias a la Tarea 7, esto regenera las variantes desde cero gracias a la base
+(ids ≤ 1025) — no hace falta restaurar nada a mano antes de correrlo.
+
+- [ ] **Step 2: Verificar contra las mismas 1025 base + esquema completo** (mismo
+  script que la Tarea 6, Steps 3-4)
+
+- [ ] **Step 3: Chequeo de imágenes duplicadas (nuevo — esto es justo lo que se le
+  escapó a la Tarea 6 con Toxtricity)**
+
+```bash
+python3 -c "
+import json, urllib.request, hashlib
+db = json.load(open('pokemon_db.json'))
+variantes = [p for p in db if p['id'] > 1025]
+hashes = {}
+dupes = []
+for v in variantes:
+    try:
+        data = urllib.request.urlopen(v['image'], timeout=10).read()
+        h = hashlib.md5(data).hexdigest()
+        if h in hashes:
+            dupes.append((hashes[h], v['id'], v['name']))
+        else:
+            hashes[h] = (v['id'], v['name'])
+    except Exception as e:
+        print(f'no se pudo bajar {v[\"id\"]} ({v[\"name\"]}): {e}')
+if dupes:
+    print('⚠️  IMÁGENES DUPLICADAS ENCONTRADAS:')
+    for a, id2, name2 in dupes:
+        print(f'  {a} == ({id2}, {name2})')
+else:
+    print(f'OK: {len(variantes)} imágenes de variantes, ninguna duplicada')
+"
+```
+
+Si aparece algún duplicado nuevo, repetir el criterio de la Tarea 8 (sacar la entrada
+redundante de `variantes_lista.json`, volver a este Step).
+
+- [ ] **Step 4: Confirmar el total esperado y borrar el backup**
+
+```bash
+python3 -c "
+import json
+db = json.load(open('pokemon_db.json'))
+print('total:', len(db))
+"
+rm pokemon_db.backup-pre-addendum.json
+```
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add pokemon_db.json
+git commit -m "Regenerar pokemon_db.json con el duplicado de Toxtricity sacado y las entradas nuevas (addendum a la Fase 1)"
+```
+
+---
+
 ## Self-Review (hecho al escribir este plan)
 
 - **Cobertura del spec:** las 5 categorías (regional, mega, primigenia, gigamax, alternativa) tienen tarea propia de investigación (1-4, con mega+primigenia combinadas por ser ambas Gen 6/bajo riesgo). El esquema de datos, el script de fetch, y la verificación final tienen sus propias tareas (5, 6).
@@ -497,3 +834,10 @@ git commit -m "Poblar pokemon_db.json con las variantes investigadas (Fase 1 com
 - **Consistencia de nombres:** `nombrePokeAPI`/`categoria`/`especieBase` se usan idénticos en las 6 tareas. El comando de verificación de cada tarea de investigación (2-4) es el mismo patrón, ampliado.
 - **Riesgo cubierto explícitamente:** el gotcha de Zygarde (especie base sin nombre "limpio") está en Global Constraints; el riesgo de Gigamax con datos incompletos en PokeAPI tiene su propio Step de verificación previa (Tarea 3, Step 2) antes de agregar cualquier entrada; el riesgo de inventar formas alternativas sin carta real tiene su propio Step de reporte de descartes (Tarea 4, Step 5) para que el usuario lo revise.
 - **Verificado contra la API real antes de escribir el plan:** los 5 ejemplos de la tabla de formato (`raichu-alola`, `charizard-mega-x`, `rotom-heat`, `kyogre-primal`, `charizard-gmax`, `zygarde-complete`) fueron probados con `curl` real contra PokeAPI, no son hipotéticos.
+
+### Self-Review del addendum (Tareas 7-11)
+
+- **Cobertura de los hallazgos de la revisión final:** el duplicado de Toxtricity (Tarea 8), las 6 entradas faltantes (Tarea 8), los 2 bugs de `fetch_variantes.js` (Tarea 7), y el gap de documentación (Tarea 10) tienen tarea propia cada uno. El chequeo de imágenes duplicadas que hubiera atrapado el problema de Toxtricity desde el principio se agrega permanentemente al proceso de verificación (Tarea 11, Step 3), no es un parche de una sola vez.
+- **Cobertura de la investigación propia del usuario:** Silvally/Castform/Cherrim/Enamorus/Terapagos tienen su propia tarea de investigación (9), con el mismo criterio y estándar de reporte de descartes que la Tarea 4. Ogerpon no se duplica (ya viene de la Tarea 8, vía el hallazgo de la revisión).
+- **Verificado antes de escribir:** los 6 slugs de la tabla del addendum (`dialga-origin`, `palkia-origin`, `ursaluna-bloodmoon`, y las 3 máscaras de `ogerpon-*-mask`) fueron probados con `curl` real, y sus `especieBase` (483/484/901/1017) confirmados contra `pokemon_db.json` real, antes de escribir estas tareas.
+- **No deploy todavía:** el addendum no agrega ninguna tarea de "avisar que no hay que deployar" porque eso no es una tarea de código — se lo comunica directamente al usuario (ya se hizo) y queda como decisión suya cuándo integrar esto con la Fase 2.

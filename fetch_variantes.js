@@ -1,10 +1,10 @@
 const fs = require('fs');
 
 async function fetchVariantes() {
-    const base = JSON.parse(fs.readFileSync('pokemon_db.json', 'utf8'));
-    const baseIds = new Set(base.map(p => p.id));
+    const dbActual = JSON.parse(fs.readFileSync('pokemon_db.json', 'utf8'));
+    const base = dbActual.filter(p => p.id <= 1025);
     if (base.length !== 1025) {
-        throw new Error(`pokemon_db.json tiene ${base.length} entradas, se esperaban 1025 — abortando para no pisar datos inesperados.`);
+        throw new Error(`Las entradas con id <= 1025 en pokemon_db.json son ${base.length}, se esperaban 1025 — abortando para no pisar datos inesperados.`);
     }
     const genPorId = new Map(base.map(p => [p.id, p.gen]));
     const lista = JSON.parse(fs.readFileSync('variantes_lista.json', 'utf8'));
@@ -12,6 +12,7 @@ async function fetchVariantes() {
     const categoriasValidas = new Set(['regional', 'mega', 'primigenia', 'gigamax', 'alternativa']);
     const variantes = [];
     let siguienteId = 1026;
+    const saltados = [];
 
     console.log(`🚀 Procesando ${lista.length} variantes...`);
 
@@ -26,12 +27,14 @@ async function fetchVariantes() {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${entrada.nombrePokeAPI}`);
             if (!response.ok) {
                 console.error(`❌ ${entrada.nombrePokeAPI}: HTTP ${response.status}, se omite`);
+                saltados.push(entrada.nombrePokeAPI);
                 continue;
             }
             const data = await response.json();
             const imagen = data.sprites.other['official-artwork'].front_default;
             if (!imagen) {
                 console.error(`❌ ${entrada.nombrePokeAPI}: sin artwork oficial, se omite`);
+                saltados.push(entrada.nombrePokeAPI);
                 continue;
             }
             variantes.push({
@@ -45,7 +48,12 @@ async function fetchVariantes() {
             });
         } catch (error) {
             console.error(`❌ Error en ${entrada.nombrePokeAPI}:`, error.message);
+            saltados.push(entrada.nombrePokeAPI);
         }
+    }
+
+    if (saltados.length > 0) {
+        throw new Error(`Se omitieron ${saltados.length} entradas por datos incompletos/error de red: ${saltados.join(', ')} — no se escribe pokemon_db.json. Investigar y reintentar.`);
     }
 
     const idsNuevos = variantes.map(v => v.id);

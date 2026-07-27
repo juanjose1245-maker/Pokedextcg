@@ -1,6 +1,6 @@
 {
   "carpetas.json": {
-    "mtime": 1785192683.7263474,
+    "mtime": 1785195362.2335505,
     "ast_hash": "96623d64ad2532609acdc837e930fd19",
     "semantic_hash": ""
   },
@@ -35,8 +35,8 @@
     "semantic_hash": ""
   },
   "public/app.js": {
-    "mtime": 1785194209.2331789,
-    "ast_hash": "ed8e4bcd1af215cee4f72984c306a967",
+    "mtime": 1785195261.8964171,
+    "ast_hash": "2a6eea6f1e24e0d6558796207bd34679",
     "semantic_hash": ""
   },
   "public/manifest.json": {
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "public/sw.js": {
-    "mtime": 1785194211.798167,
-    "ast_hash": "b9e8f38d898f9758539974541915c69c",
+    "mtime": 1785195290.628286,
+    "ast_hash": "348704c657110ccac01706bd30f96e9e",
     "semantic_hash": ""
   },
   "public/vendor/tesseract/tesseract-core-lstm.wasm.js": {
@@ -70,8 +70,8 @@
     "semantic_hash": ""
   },
   "server.js": {
-    "mtime": 1785193922.2187428,
-    "ast_hash": "602ca65fd61be27586593c43db894868",
+    "mtime": 1785195362.232518,
+    "ast_hash": "598a4ed44da2861d34b408c81b793a16",
     "semantic_hash": ""
   },
   "update_script.sh": {

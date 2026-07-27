@@ -713,6 +713,19 @@
             .pk-card.found .pk-dt-header{background:var(--found-bg);}
             .pk-card.missing .pk-dt-header{background:var(--surface2);}
 
+            /* .pk-var-badge es position:absolute pensado para el layout mobile;
+               en desktop se agrega como último hijo de .pk-card (después de
+               .pk-dt-footer), así que acá se vuelve elemento de flujo normal
+               para que caiga debajo del footer en vez de superponerse. */
+            .pk-var-badge{
+                position:static;
+                bottom:auto;
+                left:auto;
+                display:block;
+                width:fit-content;
+                margin:0 12px 10px;
+            }
+
             /* ── FAB oculto en desktop ── */
             .fab-home{display:none !important;}
 

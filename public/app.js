@@ -1450,9 +1450,10 @@ function handleSearchInput(e, inputEl) {
         if (!data.length) { sugBox.style.display = 'none'; return; }
         const frag = document.createDocumentFragment();
         data.forEach(p => {
-            let numR = p.id - cortesGen[p.gen];
+            const ancla = anclaIdCliente(p);
+            let numR = ancla - cortesGen[p.gen];
             let rName = regiones[p.gen - 1];
-            if (p.id >= 899 && p.id <= 905) { numR = p.id - 809; rName = 'Hisui'; }
+            if (ancla >= 899 && ancla <= 905) { numR = ancla - 809; rName = 'Hisui'; }
             const tiene = tieneEnLS(p.id);
             const carpetaPk = carpetaDe(p);
             const colorPk = carpetaPk ? carpetaPk.color : coloresGen[p.gen-1];
@@ -1643,6 +1644,7 @@ async function toggleCategoriaVariante(categoria, activada) {
     const guardar = async () => {
         const nueva = { ...variantesConfigActual, [categoria]: activada };
         try {
+            sseIgnorarProximoConfig = true;
             const res = await fetch('/api/variantes-config', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -1655,6 +1657,7 @@ async function toggleCategoriaVariante(categoria, activada) {
             if (activada) await revisarCapacidadCarpetas();
             mostrarToastInfo(activada ? 'Categoría activada.' : 'Categoría desactivada.');
         } catch (err) {
+            sseIgnorarProximoConfig = false; // no se llegó a guardar: no habrá eco que ignorar
             if (checkbox) checkbox.checked = !activada; // revertir el toggle visual si falló
             mostrarToastError(err.message || 'No se pudo guardar la configuración de variantes.');
         }
@@ -2015,6 +2018,9 @@ async function wizardGuardar() {
         localStorage.setItem('carpetasWizardVisto', '1');
         cerrarWizardCarpetas();
         mostrarToastInfo('Carpetas actualizadas.');
+        // La config recién guardada puede no alcanzar para las variantes activas
+        // (wizardCalcularRangos no las conoce en modo "seguidas"); avisar sin bloquear.
+        await revisarCapacidadCarpetas();
     } catch (err) {
         mostrarToastError(err.message || 'No se pudo guardar la configuración.');
     } finally {
@@ -2042,8 +2048,9 @@ function renderHistorial() {
     list.innerHTML = '';
     historialOCR.forEach(p => {
         const tiene = tieneEnLS(p.id);
-        let numR = p.id - cortesGen[p.gen];
-        if (p.id >= 899 && p.id <= 905) numR = p.id - 809;
+        const ancla = anclaIdCliente(p);
+        let numR = ancla - cortesGen[p.gen];
+        if (ancla >= 899 && ancla <= 905) numR = ancla - 809;
         const carpetaPk = carpetaDe(p);
         const colorPk = carpetaPk ? carpetaPk.color : coloresGen[p.gen-1];
         const bgPk    = carpetaPk ? carpetaPk.bg    : coloresBg[p.gen-1];
@@ -2122,12 +2129,18 @@ async function iniciarBucleOCR() {
 }
 
 // ── SSE ──────────────────────────────────────────────────────────
+// Se activa justo antes de que ESTA pestaña dispare un cambio que el propio
+// servidor le va a reflejar de vuelta por el mismo broadcast (p.ej. togglear
+// una categoría de variantes) — así el eco de nuestro propio cambio no
+// dispara el aviso de "otro dispositivo" ni cierra la galería.
+let sseIgnorarProximoConfig = false;
 function iniciarSSE() {
     const es = new EventSource('/api/eventos');
     es.onmessage = (e) => {
         const msg = JSON.parse(e.data);
 
         if (msg.tipo === 'config') {
+            if (sseIgnorarProximoConfig) { sseIgnorarProximoConfig = false; return; }
             // Se reutiliza este tipo para avisar "algo grande cambió, recarga todo"
             // (alguien importó un respaldo, o reconfiguró las carpetas, desde otro
             // dispositivo).

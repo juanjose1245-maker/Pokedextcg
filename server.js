@@ -162,7 +162,11 @@ function pokemonEfectivo() {
 // vive en disco y es configurable desde la app (Ajustes → Configurar
 // carpetas), para que cualquier dispositivo vea la misma agrupación.
 function pokemonPorGens(gens) {
-    return pokemonEfectivo().filter(p => gens.includes(p.gen)).length;
+    // Cuenta SIEMPRE solo la base (1025), sin mirar variantesConfig: se usa como
+    // piso estructural (validación de carpetas.json y seed de CARPETAS_DEFAULT),
+    // no debe cambiar cuando el usuario activa/desactiva una categoría de
+    // variantes (ver Hallazgo 1 de la revisión final de variantes-fase2).
+    return pokemonDB.filter(p => p.id <= 1025 && gens.includes(p.gen)).length;
 }
 const CARPETAS_DEFAULT = [
     { nombre: 'Azul',   color: '#3b5bdb', gens: [1, 2],    espacios: pokemonPorGens([1, 2]) },

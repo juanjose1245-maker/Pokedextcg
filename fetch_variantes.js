@@ -1,4 +1,25 @@
 const fs = require('fs');
+const crypto = require('crypto');
+
+// Dos variantes con el arte idéntico son la misma carta física repetida (ver
+// el caso real de Toxtricity Amped/Low Key Gmax, que compartían imagen y se
+// coló sin este chequeo la primera vez) — se hashea cada imagen bajada y se
+// aborta si dos variantes nuevas comparten hash, antes de escribir el archivo.
+async function buscarImagenesDuplicadas(variantes) {
+    const porHash = new Map();
+    const duplicados = [];
+    for (const v of variantes) {
+        const res = await fetch(v.image);
+        const buffer = Buffer.from(await res.arrayBuffer());
+        const hash = crypto.createHash('md5').update(buffer).digest('hex');
+        if (porHash.has(hash)) {
+            duplicados.push([porHash.get(hash), v.name]);
+        } else {
+            porHash.set(hash, v.name);
+        }
+    }
+    return duplicados;
+}
 
 async function fetchVariantes() {
     const dbActual = JSON.parse(fs.readFileSync('pokemon_db.json', 'utf8'));
@@ -61,8 +82,18 @@ async function fetchVariantes() {
         throw new Error('ids duplicados generados — no se escribe el archivo');
     }
 
+    console.log('🔎 Chequeando imágenes duplicadas entre las variantes nuevas...');
+    const duplicados = await buscarImagenesDuplicadas(variantes);
+    if (duplicados.length > 0) {
+        const detalle = duplicados.map(([a, b]) => `${a} == ${b}`).join('; ');
+        throw new Error(`Imágenes idénticas entre variantes (misma carta física repetida): ${detalle} — no se escribe pokemon_db.json. Sacar la entrada redundante de variantes_lista.json y reintentar.`);
+    }
+
     fs.writeFileSync('pokemon_db.json', JSON.stringify([...base, ...variantes], null, 2));
     console.log(`✅ ${variantes.length} variantes agregadas (ids ${variantes[0]?.id}–${variantes[variantes.length - 1]?.id}). Total: ${base.length + variantes.length}.`);
 }
 
-fetchVariantes();
+fetchVariantes().catch(err => {
+    console.error(`❌ ${err.message}`);
+    process.exitCode = 1;
+});

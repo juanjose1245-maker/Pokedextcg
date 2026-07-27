@@ -1,16 +1,16 @@
 # Graph Report - variantes-pokedex  (2026-07-26)
 
 ## Corpus Check
-- 27 files · ~80,802 words
+- 27 files · ~81,196 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 931 nodes · 1793 edges · 68 communities (34 shown, 34 thin omitted)
+- 933 nodes · 1796 edges · 68 communities (34 shown, 34 thin omitted)
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 220 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7ded66c7`
+- Built from commit: `d20f4103`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -117,10 +117,6 @@
 Cohesion: 0.15
 Nodes (53): A(), b(), c(), e(), f(), G(), h(), i() (+45 more)
 
-### Community 1 - "O"
-Cohesion: 0.15
-Nodes (3): hi(), ji(), Ya()
-
 ### Community 2 - "app.js"
 Cohesion: 0.06
 Nodes (41): abrirLoginModal(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirWizardCarpetas(), actualizarBotonSesion(), aplicarTema(), cachePokemon, calcularJalon() (+33 more)
@@ -218,8 +214,8 @@ Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 56 - "p"
-Cohesion: 0.24
-Nodes (9): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+1 more)
+Cohesion: 0.22
+Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
 
 ### Community 57 - "Reorganizar accesos rápidos y agrupar "Ajustes" — Plan de implementación"
 Cohesion: 0.22
@@ -249,8 +245,12 @@ Nodes (8): Contexto, Esquema de cada entrada variante, Fase 1 — Base de datos 
 Cohesion: 0.11
 Nodes (17): Addendum — hallazgos de la revisión final + investigación propia del usuario, Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación, Formato de `variantes_lista.json`, Global Constraints, Self-Review del addendum (Tareas 7-11), Self-Review (hecho al escribir este plan), Task 10: Documentar en CLAUDE.md, Task 11: Regenerar `pokemon_db.json` completo y verificar (con chequeo de imágenes duplicadas) (+9 more)
 
+### Community 65 - "fetch_variantes.js"
+Cohesion: 0.50
+Nodes (4): buscarImagenesDuplicadas(), crypto, fetchVariantes(), fs
+
 ## Knowledge Gaps
-- **140 isolated node(s):** `fs`, `fs`, `fs`, `path`, `RUTA_INVENTARIO` (+135 more)
+- **141 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+136 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **34 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -258,16 +258,16 @@ Nodes (17): Addendum — hallazgos de la revisión final + investigación propia
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `g()` connect `worker.min.js` to `server.js`, `esDesktop`, `qb`, `wizardCapacidadSiguiente`, `qb`?**
-  _High betweenness centrality (0.227) - this node is a cross-community bridge._
+  _High betweenness centrality (0.226) - this node is a cross-community bridge._
 - **Why does `a()` connect `worker.min.js` to `qb`, `A`, `A`, `p`, `qb`, `p`?**
-  _High betweenness centrality (0.218) - this node is a cross-community bridge._
+  _High betweenness centrality (0.217) - this node is a cross-community bridge._
 - **Why does `A()` connect `A` to `worker.min.js`, `O`, `K`, `tesseract-core-simd-lstm.wasm.js`, `Q`, `J`, `di`, `d`, `Lh`, `p`, `kb`, `qb`?**
   _High betweenness centrality (0.108) - this node is a cross-community bridge._
-- **What connects `fs`, `fs`, `fs` to the rest of the system?**
-  _140 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `O` be split into smaller, more focused modules?**
-  _Cohesion score 0.14736842105263157 - nodes in this community are weakly interconnected._
+- **What connects `fs`, `fs`, `crypto` to the rest of the system?**
+  _141 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05735430157261795 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05272895467160037 - nodes in this community are weakly interconnected._
+- **Should `V` be split into smaller, more focused modules?**
+  _Cohesion score 0.07007575757575757 - nodes in this community are weakly interconnected._

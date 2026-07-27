@@ -59,10 +59,32 @@
       "norm_label": "fs"
     },
     {
+      "label": "crypto",
+      "file_type": "code",
+      "source_file": "fetch_variantes.js",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "fetch_variantes_crypto",
+      "community": 65,
+      "community_name": "fetch_variantes.js",
+      "norm_label": "crypto"
+    },
+    {
+      "label": "buscarImagenesDuplicadas()",
+      "file_type": "code",
+      "source_file": "fetch_variantes.js",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "fetch_variantes_buscarimagenesduplicadas",
+      "community": 65,
+      "community_name": "fetch_variantes.js",
+      "norm_label": "buscarimagenesduplicadas()"
+    },
+    {
       "label": "fetchVariantes()",
       "file_type": "code",
       "source_file": "fetch_variantes.js",
-      "source_location": "L3",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "fetch_variantes_fetchvariantes",
       "community": 65,
@@ -5169,8 +5191,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ya",
-      "community": 1,
-      "community_name": "O",
+      "community": 56,
+      "community_name": "p",
       "norm_label": "ya()"
     },
     {
@@ -10280,7 +10302,29 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "fetch_variantes.js",
-      "source_location": "L3",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "fetch_variantes",
+      "target": "fetch_variantes_buscarimagenesduplicadas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fetch_variantes.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "fetch_variantes",
+      "target": "fetch_variantes_crypto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fetch_variantes.js",
+      "source_location": "L24",
       "weight": 1.0,
       "_origin": "ast",
       "source": "fetch_variantes",
@@ -10296,6 +10340,18 @@
       "_origin": "ast",
       "source": "fetch_variantes",
       "target": "fetch_variantes_fs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "fetch_variantes.js",
+      "source_location": "L86",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "fetch_variantes_fetchvariantes",
+      "target": "fetch_variantes_buscarimagenesduplicadas",
       "confidence_score": 1.0
     },
     {
@@ -30874,5 +30930,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "7ded66c7d6a7e2b52dcaf7c7b40ebfa93bbba4b7"
+  "built_at_commit": "d20f410384eeb1e225c169b7c5d7d829cc58b47f"
 }

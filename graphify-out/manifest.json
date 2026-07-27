@@ -35,7 +35,7 @@
     "semantic_hash": ""
   },
   "pokemon_db.json": {
-    "mtime": 1785120806.4283075,
+    "mtime": 1785121725.26633,
     "ast_hash": "43e0e40f0442bc5c1bf1021c506b1634",
     "semantic_hash": ""
   },
@@ -85,8 +85,8 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1785120464.3073907,
-    "ast_hash": "fd611a478fc282df78e1bca172f38b0d",
+    "mtime": 1785121704.7557747,
+    "ast_hash": "d27bd83982d1a738d68a4de7767f8ee1",
     "semantic_hash": ""
   },
   "docs/superpowers/plans/2026-07-25-carpetas-todas-seguidas.md": {
@@ -155,13 +155,13 @@
     "semantic_hash": ""
   },
   "variantes_lista.json": {
-    "mtime": 1785119941.0279675,
+    "mtime": 1785121725.2673976,
     "ast_hash": "fa8e78dc18216c5718123680bd49a3ae",
     "semantic_hash": ""
   },
   "fetch_variantes.js": {
-    "mtime": 1785119400.9264414,
-    "ast_hash": "2f2de182224f36e396ba540dccc63d4b",
+    "mtime": 1785121687.8507276,
+    "ast_hash": "2cf78170ce17f8d164c4e375c72f7120",
     "semantic_hash": ""
   },
   "docs/variantes-criterio-investigacion.md": {

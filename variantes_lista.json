@@ -172,13 +172,5 @@
   { "nombrePokeAPI": "ogerpon-cornerstone-mask", "categoria": "alternativa", "especieBase": 1017 },
   { "nombrePokeAPI": "castform-sunny", "categoria": "alternativa", "especieBase": 351 },
   { "nombrePokeAPI": "castform-rainy", "categoria": "alternativa", "especieBase": 351 },
-  { "nombrePokeAPI": "castform-snowy", "categoria": "alternativa", "especieBase": 351 },
-  { "nombrePokeAPI": "arceus-fire", "categoria": "alternativa", "especieBase": 493 },
-  { "nombrePokeAPI": "arceus-water", "categoria": "alternativa", "especieBase": 493 },
-  { "nombrePokeAPI": "arceus-electric", "categoria": "alternativa", "especieBase": 493 },
-  { "nombrePokeAPI": "arceus-grass", "categoria": "alternativa", "especieBase": 493 },
-  { "nombrePokeAPI": "arceus-fighting", "categoria": "alternativa", "especieBase": 493 },
-  { "nombrePokeAPI": "arceus-psychic", "categoria": "alternativa", "especieBase": 493 },
-  { "nombrePokeAPI": "arceus-dark", "categoria": "alternativa", "especieBase": 493 },
-  { "nombrePokeAPI": "arceus-steel", "categoria": "alternativa", "especieBase": 493 }
+  { "nombrePokeAPI": "castform-snowy", "categoria": "alternativa", "especieBase": 351 }
 ]

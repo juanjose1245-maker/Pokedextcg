@@ -5026,7 +5026,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_xa",
-      "community": 56,
+      "community": 69,
       "community_name": "p",
       "norm_label": "xa()"
     },
@@ -5070,7 +5070,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_p",
-      "community": 56,
+      "community": 69,
       "community_name": "p",
       "norm_label": "p()"
     },
@@ -5191,8 +5191,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ya",
-      "community": 56,
-      "community_name": "p",
+      "community": 67,
+      "community_name": "Sh",
       "norm_label": "ya()"
     },
     {
@@ -5246,8 +5246,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_gb",
-      "community": 56,
-      "community_name": "p",
+      "community": 7,
+      "community_name": "tesseract-core-simd-lstm.wasm.js",
       "norm_label": "gb()"
     },
     {
@@ -5257,8 +5257,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_hb",
-      "community": 56,
-      "community_name": "p",
+      "community": 7,
+      "community_name": "tesseract-core-simd-lstm.wasm.js",
       "norm_label": "hb()"
     },
     {
@@ -5708,8 +5708,8 @@
       "source_location": "L201",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_k_begindocument",
-      "community": 38,
-      "community_name": "K",
+      "community": 13,
+      "community_name": "J",
       "norm_label": ".begindocument()"
     },
     {
@@ -6632,7 +6632,7 @@
       "source_location": "L224",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_p_destroy",
-      "community": 56,
+      "community": 69,
       "community_name": "p",
       "norm_label": ".__destroy__()"
     },
@@ -6654,8 +6654,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_begindocument",
-      "community": 40,
-      "community_name": "Q",
+      "community": 13,
+      "community_name": "J",
       "norm_label": ".begindocument()"
     },
     {
@@ -6863,8 +6863,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_di_get_script_id_from_name",
-      "community": 46,
-      "community_name": "di",
+      "community": 13,
+      "community_name": "J",
       "norm_label": ".get_script_id_from_name()"
     },
     {
@@ -9910,6 +9910,116 @@
       "community": 64,
       "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon \u2014 Plan de implementaci\u00f3n",
       "norm_label": "self-review del addendum 2"
+    },
+    {
+      "label": "2026-07-27-variantes-fase2-tracking.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking",
+      "community": 68,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking) \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "2026-07-27-variantes-fase2-tracking.md"
+    },
+    {
+      "label": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking) \u2014 Plan de implementaci\u00f3n",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking_plan_de_implementaci\u00f3n",
+      "community": 68,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking) \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "fase 2 \u2014 seleccion de categorias de variantes (nucleo de tracking) \u2014 plan de implementacion"
+    },
+    {
+      "label": "Global Constraints",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_global_constraints",
+      "community": 68,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking) \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "global constraints"
+    },
+    {
+      "label": "Task 1: `variantes-config.json` + vista derivada `pokemonEfectivo()` en el servidor",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_task_1_variantes_config_json_vista_derivada_pokemonefectivo_en_el_servidor",
+      "community": 68,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking) \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 1: `variantes-config.json` + vista derivada `pokemonefectivo()` en el servidor"
+    },
+    {
+      "label": "Task 2: Endpoints `/api/variantes-config` + integrar `pokemonEfectivo()` en `/api/buscar` y `/api/estadisticas`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L179",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_task_2_endpoints_api_variantes_config_integrar_pokemonefectivo_en_api_buscar_y_api_estadisticas",
+      "community": 68,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking) \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 2: endpoints `/api/variantes-config` + integrar `pokemonefectivo()` en `/api/buscar` y `/api/estadisticas`"
+    },
+    {
+      "label": "Task 3: Corregir la numeraci\u00f3n de variantes en galer\u00eda/ficha + badge de categor\u00eda",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L362",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_task_3_corregir_la_numeraci\u00f3n_de_variantes_en_galer\u00eda_ficha_badge_de_categor\u00eda",
+      "community": 68,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking) \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 3: corregir la numeracion de variantes en galeria/ficha + badge de categoria"
+    },
+    {
+      "label": "Task 4: Panel \"Variantes\" en Ajustes",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L527",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_task_4_panel_variantes_en_ajustes",
+      "community": 68,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking) \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 4: panel \"variantes\" en ajustes"
+    },
+    {
+      "label": "Task 5: Denominador din\u00e1mico en `brand-count` + capacidad del wizard consciente de variantes",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L665",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_task_5_denominador_din\u00e1mico_en_brand_count_capacidad_del_wizard_consciente_de_variantes",
+      "community": 68,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking) \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 5: denominador dinamico en `brand-count` + capacidad del wizard consciente de variantes"
+    },
+    {
+      "label": "Limitaci\u00f3n conocida (no cubierta por este plan)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L840",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_limitaci\u00f3n_conocida_no_cubierta_por_este_plan",
+      "community": 68,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking) \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "limitacion conocida (no cubierta por este plan)"
+    },
+    {
+      "label": "Self-Review (hecho al escribir este plan)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L844",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_self_review_hecho_al_escribir_este_plan",
+      "community": 68,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking) \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "self-review (hecho al escribir este plan)"
     },
     {
       "label": "2026-07-25-carpetas-todas-seguidas-design.md",
@@ -30876,6 +30986,105 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking",
+      "target": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking_plan_de_implementaci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_global_constraints",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L840",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_limitaci\u00f3n_conocida_no_cubierta_por_este_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L844",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_self_review_hecho_al_escribir_este_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_task_1_variantes_config_json_vista_derivada_pokemonefectivo_en_el_servidor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L179",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_task_2_endpoints_api_variantes_config_integrar_pokemonefectivo_en_api_buscar_y_api_estadisticas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L362",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_task_3_corregir_la_numeraci\u00f3n_de_variantes_en_galer\u00eda_ficha_badge_de_categor\u00eda",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L527",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_task_4_panel_variantes_en_ajustes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md",
+      "source_location": "L665",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_task_5_denominador_din\u00e1mico_en_brand_count_capacidad_del_wizard_consciente_de_variantes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/superpowers/specs/2026-07-25-carpetas-todas-seguidas-design.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -31447,5 +31656,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "6f94436b120138e05e7223838bbf7abe10c83185"
+  "built_at_commit": "1e2409751dfe6562468c23f12de6765bc5801444"
 }

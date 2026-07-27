@@ -1,16 +1,16 @@
 # Graph Report - pokedex-tcg  (2026-07-27)
 
 ## Corpus Check
-- 29 files · ~86,845 words
+- 30 files · ~92,034 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 957 nodes · 1819 edges · 68 communities (35 shown, 33 thin omitted)
+- 967 nodes · 1828 edges · 70 communities (37 shown, 33 thin omitted)
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 220 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6f94436b`
+- Built from commit: `1e240975`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -83,6 +83,8 @@
 - fetch_variantes.js
 - Sh
 - Sh
+- Fase 2 — Selección de categorías de variantes (núcleo de tracking) — Plan de implementación
+- p
 
 ## God Nodes (most connected - your core abstractions)
 1. `V()` - 66 edges
@@ -111,7 +113,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (68 total, 33 thin omitted)
+## Communities (70 total, 33 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -131,7 +133,7 @@ Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
 ### Community 7 - "tesseract-core-simd-lstm.wasm.js"
 Cohesion: 0.07
-Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
+Nodes (16): ci(), Da(), fi(), gb(), gi(), hb(), Kh(), R() (+8 more)
 
 ### Community 10 - "esDesktop"
 Cohesion: 0.19
@@ -218,8 +220,8 @@ Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 56 - "p"
-Cohesion: 0.22
-Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
+Cohesion: 0.50
+Nodes (5): e(), Ma(), Na(), Oa(), Pa()
 
 ### Community 57 - "Reorganizar accesos rápidos y agrupar "Ajustes" — Plan de implementación"
 Cohesion: 0.22
@@ -253,8 +255,16 @@ Nodes (24): Addendum 2 — ampliar el criterio de "formas alternativas" a arte d
 Cohesion: 0.50
 Nodes (4): buscarImagenesDuplicadas(), crypto, fetchVariantes(), fs
 
+### Community 67 - "Sh"
+Cohesion: 0.15
+Nodes (3): hi(), ji(), Ya()
+
+### Community 68 - "Fase 2 — Selección de categorías de variantes (núcleo de tracking) — Plan de implementación"
+Cohesion: 0.20
+Nodes (9): Fase 2 — Selección de categorías de variantes (núcleo de tracking) — Plan de implementación, Global Constraints, Limitación conocida (no cubierta por este plan), Self-Review (hecho al escribir este plan), Task 1: `variantes-config.json` + vista derivada `pokemonEfectivo()` en el servidor, Task 2: Endpoints `/api/variantes-config` + integrar `pokemonEfectivo()` en `/api/buscar` y `/api/estadisticas`, Task 3: Corregir la numeración de variantes en galería/ficha + badge de categoría, Task 4: Panel "Variantes" en Ajustes (+1 more)
+
 ## Knowledge Gaps
-- **159 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+154 more)
+- **167 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+162 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **33 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -262,13 +272,13 @@ Nodes (4): buscarImagenesDuplicadas(), crypto, fetchVariantes(), fs
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `g()` connect `worker.min.js` to `server.js`, `esDesktop`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
-  _High betweenness centrality (0.215) - this node is a cross-community bridge._
-- **Why does `a()` connect `worker.min.js` to `A`, `qb`, `A`, `p`, `qb`, `p`?**
-  _High betweenness centrality (0.206) - this node is a cross-community bridge._
-- **Why does `A()` connect `A` to `worker.min.js`, `Sh`, `K`, `tesseract-core-simd-lstm.wasm.js`, `Q`, `J`, `di`, `d`, `Lh`, `p`, `kb`, `qb`?**
-  _High betweenness centrality (0.102) - this node is a cross-community bridge._
+  _High betweenness centrality (0.210) - this node is a cross-community bridge._
+- **Why does `a()` connect `worker.min.js` to `p`, `A`, `qb`, `A`, `qb`, `p`?**
+  _High betweenness centrality (0.202) - this node is a cross-community bridge._
+- **Why does `A()` connect `A` to `worker.min.js`, `Sh`, `p`, `K`, `tesseract-core-simd-lstm.wasm.js`, `Q`, `J`, `di`, `d`, `Lh`, `kb`, `qb`?**
+  _High betweenness centrality (0.100) - this node is a cross-community bridge._
 - **What connects `fs`, `fs`, `crypto` to the rest of the system?**
-  _159 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _167 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05735430157261795 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**

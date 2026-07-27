@@ -35,7 +35,7 @@
     "semantic_hash": ""
   },
   "pokemon_db.json": {
-    "mtime": 1785112238.519564,
+    "mtime": 1785115921.464739,
     "ast_hash": "ea9e322aa6b2c7393e4000860a255ef9",
     "semantic_hash": ""
   },
@@ -155,8 +155,13 @@
     "semantic_hash": ""
   },
   "variantes_lista.json": {
-    "mtime": 1785115053.0344238,
+    "mtime": 1785115921.4661448,
     "ast_hash": "871e14048b7642011d9cf970dcd8a808",
+    "semantic_hash": ""
+  },
+  "fetch_variantes.js": {
+    "mtime": 1785115903.6198678,
+    "ast_hash": "27d2b6290c5ae771b8602606b78a0bac",
     "semantic_hash": ""
   }
 }

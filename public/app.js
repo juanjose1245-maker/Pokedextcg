@@ -1552,6 +1552,63 @@ function cerrarOpcionesPDF() {
 }
 document.getElementById('pdf-opciones-close').onclick = cerrarOpcionesPDF;
 
+// ── AJUSTES: panel de categorías de variantes ───────────────────────
+const CATEGORIAS_VARIANTES_INFO = [
+    { key: 'regional',    label: 'Formas regionales',      sub: 'Alolan, Galarian, Hisuian, Paldean' },
+    { key: 'mega',        label: 'Megaevolución',          sub: 'Incluye los casos X/Y (Charizard, Mewtwo)' },
+    { key: 'primigenia',  label: 'Regresión Primigenia',   sub: 'Kyogre y Groudon' },
+    { key: 'gigamax',     label: 'Gigamax',                sub: 'Espada/Escudo + expansiones' },
+    { key: 'alternativa', label: 'Formas alternativas',    sub: 'Con carta TCG propia (Deoxys, Rotom, Arceus, etc.)' },
+];
+let variantesConfigActual = null;
+
+async function abrirPanelVariantes() {
+    try {
+        const res = await fetch('/api/variantes-config');
+        if (!res.ok) throw new Error('respuesta no válida');
+        variantesConfigActual = await res.json();
+    } catch (err) {
+        mostrarToastError('No se pudo cargar la configuración de variantes.');
+        return;
+    }
+    document.getElementById('variantes-checks').innerHTML = CATEGORIAS_VARIANTES_INFO.map(c => `
+        <label class="pdf-opciones-check">
+            <input type="checkbox" class="variante-cat-check" data-cat="${c.key}" ${variantesConfigActual[c.key] ? 'checked' : ''} onchange="toggleCategoriaVariante('${c.key}', this.checked)">
+            <span>${c.label}<br><span style="font-size:11px;color:var(--muted);font-weight:400;">${c.sub}</span></span>
+        </label>
+    `).join('');
+    cerrarAjustes();
+    document.getElementById('variantes-modal').classList.add('open');
+}
+function cerrarPanelVariantes() {
+    document.getElementById('variantes-modal').classList.remove('open');
+}
+document.getElementById('variantes-close').onclick = cerrarPanelVariantes;
+
+async function toggleCategoriaVariante(categoria, activada) {
+    const checkbox = document.querySelector(`.variante-cat-check[data-cat="${categoria}"]`);
+    const guardar = async () => {
+        const nueva = { ...variantesConfigActual, [categoria]: activada };
+        try {
+            const res = await fetch('/api/variantes-config', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(nueva)
+            });
+            const data = await res.json();
+            if (!res.ok || !data.success) throw new Error(data.error || 'respuesta no válida');
+            variantesConfigActual = nueva;
+            await cargarEstadisticasSinMoverScroll();
+            mostrarToastInfo(activada ? 'Categoría activada.' : 'Categoría desactivada.');
+        } catch (err) {
+            if (checkbox) checkbox.checked = !activada; // revertir el toggle visual si falló
+            mostrarToastError(err.message || 'No se pudo guardar la configuración de variantes.');
+        }
+    };
+    const revertirSiCancela = () => { if (checkbox) checkbox.checked = !activada; };
+    requiereSesion(guardar) || revertirSiCancela();
+}
+
 // ── WIZARD: PLANEAR MIS CARPETAS ────────────────────────────────────
 // Pensado como ayuda para planificar el álbum físico, no como un
 // formulario de configuración. Secuencia: modo de acomodo → formato de

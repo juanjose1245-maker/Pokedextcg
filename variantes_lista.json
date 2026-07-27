@@ -172,5 +172,17 @@
   { "nombrePokeAPI": "ogerpon-cornerstone-mask", "categoria": "alternativa", "especieBase": 1017 },
   { "nombrePokeAPI": "castform-sunny", "categoria": "alternativa", "especieBase": 351 },
   { "nombrePokeAPI": "castform-rainy", "categoria": "alternativa", "especieBase": 351 },
-  { "nombrePokeAPI": "castform-snowy", "categoria": "alternativa", "especieBase": 351 }
+  { "nombrePokeAPI": "castform-snowy", "categoria": "alternativa", "especieBase": 351 },
+  { "nombrePokeAPI": "giratina-origin", "categoria": "alternativa", "especieBase": 487 },
+  { "nombrePokeAPI": "zygarde-10", "categoria": "alternativa", "especieBase": 718 },
+  { "nombrePokeAPI": "zygarde-complete", "categoria": "alternativa", "especieBase": 718 },
+  { "nombrePokeAPI": "palafin-hero", "categoria": "alternativa", "especieBase": 964 },
+  { "nombrePokeAPI": "shaymin-sky", "categoria": "alternativa", "especieBase": 492 },
+  { "nombrePokeAPI": "meloetta-pirouette", "categoria": "alternativa", "especieBase": 648 },
+  { "nombrePokeAPI": "hoopa-unbound", "categoria": "alternativa", "especieBase": 720 },
+  { "nombrePokeAPI": "aegislash-blade", "categoria": "alternativa", "especieBase": 681 },
+  { "nombrePokeAPI": "zacian-crowned", "categoria": "alternativa", "especieBase": 888 },
+  { "nombrePokeAPI": "zamazenta-crowned", "categoria": "alternativa", "especieBase": 889 },
+  { "nombrePokeAPI": "terapagos-terastal", "categoria": "alternativa", "especieBase": 1024 },
+  { "nombrePokeAPI": "terapagos-stellar", "categoria": "alternativa", "especieBase": 1024 }
 ]

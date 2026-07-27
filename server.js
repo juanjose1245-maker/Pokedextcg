@@ -404,36 +404,47 @@ app.get('/api/buscar', (req, res) => {
     const gen   = req.query.gen ? parseInt(req.query.gen) : null;
     const desde = req.query.desde ? parseInt(req.query.desde) : null;
     const hasta = req.query.hasta ? parseInt(req.query.hasta) : null;
-    if (gen) return res.json(pokemonDB.filter(p => p.gen == gen));
-    if (desde && hasta) return res.json(pokemonDB.filter(p => p.id >= desde && p.id <= hasta));
+    const efectivo = pokemonEfectivo();
+    if (gen) return res.json(efectivo.filter(p => p.gen == gen));
+    // El rango se compara contra la especie base de cada entrada (anclaId), no
+    // contra su propio id — así una variante cae en el rango de su base aunque
+    // su id propio sea >= 1026, fuera de cualquier rango literal 1–1025.
+    if (desde && hasta) return res.json(efectivo.filter(p => { const a = anclaId(p); return a >= desde && a <= hasta; }));
     if (!q)  return res.json([]);
-    const resultados = pokemonDB.filter(p => p.name.startsWith(q) || p.name === q);
+    const resultados = efectivo.filter(p => p.name.startsWith(q) || p.name === q);
     res.json(resultados.slice(0, 5));
 });
 
 app.get('/api/estadisticas', (req, res) => {
     const modo = modoValido(req.query.modo) ? req.query.modo : 'carpetas';
     const inv  = inventario[modo];
+    const efectivo = pokemonEfectivo();
+    const idsEfectivos = new Set(efectivo.map(p => p.id));
 
-    const stats = {};
-    for (let g = 1; g <= 9; g++) {
-        const totalGen       = pokemonDB.filter(p => p.gen == g).length;
-        const conseguidosGen = pokemonDB.filter(p => p.gen == g && inv[p.id] !== undefined).length;
-        stats[g] = { total: totalGen, conseguidos: conseguidosGen };
-    }
-    const totalGlobal       = pokemonDB.length;
-    const conseguidosGlobal = Object.keys(inv).length;
-
+    // listaIds/fechas se filtran contra idsEfectivos primero: si una variante
+    // quedó marcada mientras su categoría estaba activa y después se
+    // desactivó, deja de contar acá (pero el dato sigue intacto en
+    // inventario.json — reaparece si se reactiva la categoría).
     const listaIds = {};
     const fechas    = {};
     for (const [id, datos] of Object.entries(inv)) {
+        if (!idsEfectivos.has(Number(id))) continue;
         listaIds[id] = true;
         if (datos && datos.fecha) fechas[id] = datos.fecha;
     }
 
+    const stats = {};
+    for (let g = 1; g <= 9; g++) {
+        const pkmsGen = efectivo.filter(p => p.gen == g);
+        stats[g] = {
+            total: pkmsGen.length,
+            conseguidos: pkmsGen.filter(p => listaIds[p.id] !== undefined).length
+        };
+    }
+
     res.json({
         modo,
-        global: { total: totalGlobal, conseguidos: conseguidosGlobal },
+        global: { total: efectivo.length, conseguidos: Object.keys(listaIds).length },
         generaciones: stats,
         listaIds,
         fechas
@@ -460,6 +471,10 @@ app.get('/api/exportar', (req, res) => {
 
 app.get('/api/carpetas-config', (req, res) => {
     res.json(carpetasConfig);
+});
+
+app.get('/api/variantes-config', (req, res) => {
+    res.json(variantesConfig);
 });
 
 // ── PDF DE RECORTABLES ──────────────────────────────────────────────
@@ -755,6 +770,17 @@ app.post('/api/carpetas-config', requiereLogin, rateLimiter, (req, res) => {
     guardarCarpetasConfig();
     broadcast({ tipo: 'config' }); // mismo evento que usa /api/importar para avisar "recargá todo"
     res.json({ success: true, carpetas: carpetasConfig });
+});
+
+// ── CONFIGURAR VARIANTES (Ajustes) ──────────────────────────────────
+app.post('/api/variantes-config', requiereLogin, rateLimiter, (req, res) => {
+    if (!variantesConfigValida(req.body)) {
+        return res.status(400).json({ success: false, error: 'Configuración de variantes inválida.' });
+    }
+    variantesConfig = req.body;
+    guardarVariantesConfig();
+    broadcast({ tipo: 'config' }); // mismo evento que ya usan /api/importar y /api/carpetas-config
+    res.json({ success: true, variantesConfig });
 });
 
 // ── IMPORTAR: restaura un respaldo generado por /api/exportar ─────

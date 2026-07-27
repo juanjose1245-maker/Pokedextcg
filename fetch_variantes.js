@@ -5,9 +5,23 @@ const crypto = require('crypto');
 // el caso real de Toxtricity Amped/Low Key Gmax, que compartían imagen y se
 // coló sin este chequeo la primera vez) — se hashea cada imagen bajada y se
 // aborta si dos variantes nuevas comparten hash, antes de escribir el archivo.
-async function buscarImagenesDuplicadas(variantes) {
+// También se precarga el hash de cada especie base referenciada por alguna
+// variante, para atrapar el caso de una variante cuya "forma distinta" en
+// realidad devuelve el mismo arte que su propia especie base (no solo
+// duplicados entre variantes nuevas entre sí).
+async function buscarImagenesDuplicadas(variantes, base) {
     const porHash = new Map();
     const duplicados = [];
+
+    const especiesBaseUsadas = new Set(variantes.map(v => v.especieBase));
+    for (const id of especiesBaseUsadas) {
+        const especie = base.find(p => p.id === id);
+        const res = await fetch(especie.image);
+        const buffer = Buffer.from(await res.arrayBuffer());
+        const hash = crypto.createHash('md5').update(buffer).digest('hex');
+        porHash.set(hash, especie.name);
+    }
+
     for (const v of variantes) {
         const res = await fetch(v.image);
         const buffer = Buffer.from(await res.arrayBuffer());
@@ -82,11 +96,11 @@ async function fetchVariantes() {
         throw new Error('ids duplicados generados — no se escribe el archivo');
     }
 
-    console.log('🔎 Chequeando imágenes duplicadas entre las variantes nuevas...');
-    const duplicados = await buscarImagenesDuplicadas(variantes);
+    console.log('🔎 Chequeando imágenes duplicadas (entre variantes nuevas y contra sus especies base)...');
+    const duplicados = await buscarImagenesDuplicadas(variantes, base);
     if (duplicados.length > 0) {
         const detalle = duplicados.map(([a, b]) => `${a} == ${b}`).join('; ');
-        throw new Error(`Imágenes idénticas entre variantes (misma carta física repetida): ${detalle} — no se escribe pokemon_db.json. Sacar la entrada redundante de variantes_lista.json y reintentar.`);
+        throw new Error(`Imágenes idénticas (misma carta física repetida, o el arte de la variante es igual al de su especie base): ${detalle} — no se escribe pokemon_db.json. Sacar la entrada redundante de variantes_lista.json y reintentar.`);
     }
 
     fs.writeFileSync('pokemon_db.json', JSON.stringify([...base, ...variantes], null, 2));

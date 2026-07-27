@@ -49,11 +49,11 @@ Tabla completa de las 39 entradas actualmente presentes en `variantes_lista.json
 | castform-rainy | 351 (Castform) | nombre distinto | "Rain Castform" (Delta Species, Hidden Legends); "Castform Rain Form" (Legends Awakened); "Castform Rainy Form" (Chilling Reign) |
 | castform-snowy | 351 (Castform) | nombre distinto | "Snow-cloud Castform" (Delta Species, Hidden Legends); "Castform Snow-Cloud Form" (Legends Awakened); "Castform Snowy Form" (Chilling Reign) |
 | giratina-origin | 487 (Giratina) | arte distinto | "Giratina V" (swsh11-130) y "Giratina LV.X" (pl1-124): arte con cuerpo serpentino/alado dorado de Origin Forme |
-| zygarde-10 | 718 (Zygarde) | arte distinto | "Zygarde" (sm11-124, Unified Minds): flavor text impreso dice "This is Zygarde's form when about 10% of its pieces have been assembled" + arte de perro pequeño |
+| zygarde-10 | 718 (Zygarde) | arte distinto | "Zygarde" (sm11-124, Unified Minds): flavor text impreso dice, textual, "This is Zygarde when about 10% of its pieces have been assembled." + arte de perro pequeño |
 | zygarde-complete | 718 (Zygarde) | arte distinto | "Zygarde-GX" (sm6-73/123/136), "Zygarde-EX" (xy10-54): arte de figura humanoide gigante con "alas" de hoja/cuchilla |
 | palafin-hero | 964 (Palafin) | arte distinto | "Palafin" (sv3-62) y "Palafin ex" (sv6-61, habilidad "Hero's Spirit"/"Zero to Hero"): arte de delfín musculoso con puños |
 | shaymin-sky | 492 (Shaymin) | arte distinto | "Shaymin-EX" (bw4-5, xy6-77) y "Shaymin VSTAR" (swsh9-14): arte de forma alada/aerodinámica |
-| meloetta-pirouette | 648 (Meloetta) | arte distinto | "Meloetta" (sm11-124/123, Unified Minds, ataque "Shooting Star Pirouette"): arte de turbante naranja y "falda" de tentáculos grises |
+| meloetta-pirouette | 648 (Meloetta) | arte distinto | "Meloetta" (sm11-123, Unified Minds, ataque "Shooting Star Pirouette"): arte de turbante naranja y "falda" de tentáculos grises |
 | hoopa-unbound | 720 (Hoopa) | arte distinto | "Hoopa-EX" (xy7-89, Ancient Origins): arte de cuerpo magenta multi-brazo con anillos dorados |
 | aegislash-blade | 681 (Aegislash) | arte distinto | "Aegislash" (xy1-85) y "Aegislash ex" (sv4-135): pose ofensiva con espada al frente, contrastada con "Aegislash" (swsh2-135) cuyo flavor text dice explícitamente "In this defensive stance" (esa sí es Shield Forme) |
 | zacian-crowned | 888 (Zacian) | arte distinto | "Zacian V" (swsh1-138) y toda la línea V/VSTAR/V-UNION posterior: espada en la boca, melena dorada tipo corona |
@@ -90,7 +90,9 @@ Candidatos con forma confirmada en el videojuego, investigados bajo el criterio 
 
 ## Formas confirmadas por arte pero bloqueadas por falta de datos en PokeAPI
 
-Estas formas **sí** tienen carta real que confirma su arte — superan el criterio de inclusión — pero no están en `variantes_lista.json` porque PokeAPI no expone artwork utilizable para ellas: para estas formas puramente cosméticas (sin diferencia de stats/movepool en el videojuego), PokeAPI solo devuelve un objeto `pokemon-form` que apunta de vuelta a la especie base, sin clave `official-artwork` (solo sprites clásicos de baja resolución). El pipeline de fetch actual (`fetch_variantes.js`) depende exclusivamente de `sprites.other['official-artwork'].front_default` de PokeAPI, así que no tiene de dónde traer una imagen para estas formas. El usuario decidió explícitamente diferirlas de esta fase (commit `7e1469f`, "Diferir las 8 variantes de tipo de Arceus confirmadas en la Tarea 12") en vez de cambiar la arquitectura del fetch.
+Estas formas **sí** tienen carta real que confirma su arte — superan el criterio de inclusión — pero no están en `variantes_lista.json` porque PokeAPI no expone artwork utilizable para ellas: para estas formas puramente cosméticas (sin diferencia de stats/movepool en el videojuego), PokeAPI solo devuelve un objeto `pokemon-form` que apunta de vuelta a la especie base, sin clave `official-artwork` (solo sprites clásicos de baja resolución). El pipeline de fetch actual (`fetch_variantes.js`) depende exclusivamente de `sprites.other['official-artwork'].front_default` de PokeAPI, así que no tiene de dónde traer una imagen para estas formas. El usuario decidió explícitamente diferirlas de esta fase — las 8 de Arceus en el commit `7e1469f` ("Diferir las 8 variantes de tipo de Arceus confirmadas en la Tarea 12"), Cherrim en el commit `6cc2fdf` (Tarea 13) — en vez de cambiar la arquitectura del fetch.
+
+De los 18 tipos posibles de Arceus, 8 están en esta tabla (confirmados por arte, bloqueados) y 9 en la tabla de descartados (sin carta que los muestre) — la cuenta cierra en 17: el tipo Normal es la especie base (`id 493` en `pokemon_db.json`) y no necesita entrada propia.
 
 | Candidato | especie (dex #) | Carta que confirma el arte | Bloqueo técnico |
 |---|---|---|---|

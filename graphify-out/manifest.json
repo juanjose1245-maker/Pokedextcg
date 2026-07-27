@@ -35,7 +35,7 @@
     "semantic_hash": ""
   },
   "pokemon_db.json": {
-    "mtime": 1785160319.4797404,
+    "mtime": 1785175856.9068394,
     "ast_hash": "7046eba43505f99079bd62de7b5ca7a9",
     "semantic_hash": ""
   },
@@ -155,18 +155,18 @@
     "semantic_hash": ""
   },
   "variantes_lista.json": {
-    "mtime": 1785158671.7629704,
+    "mtime": 1785175856.9078934,
     "ast_hash": "991c25d9e2a3cf727981bbbfe90896b1",
     "semantic_hash": ""
   },
   "fetch_variantes.js": {
-    "mtime": 1785121687.8507276,
-    "ast_hash": "2cf78170ce17f8d164c4e375c72f7120",
+    "mtime": 1785175841.1738772,
+    "ast_hash": "748f78753112b428e1328ee1afdbdeb4",
     "semantic_hash": ""
   },
   "docs/variantes-criterio-investigacion.md": {
-    "mtime": 1785160029.4828978,
-    "ast_hash": "2af3e401f4fdd0980e4e2290287f9620",
+    "mtime": 1785175810.739844,
+    "ast_hash": "a5c3e66417d28de18ff0b5b68063af46",
     "semantic_hash": ""
   }
 }

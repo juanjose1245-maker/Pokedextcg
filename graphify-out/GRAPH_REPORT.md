@@ -1,16 +1,16 @@
 # Graph Report - pokedex-tcg  (2026-07-27)
 
 ## Corpus Check
-- 30 files · ~92,034 words
+- 30 files · ~92,607 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 967 nodes · 1828 edges · 70 communities (37 shown, 33 thin omitted)
+- 967 nodes · 1828 edges · 69 communities (37 shown, 32 thin omitted)
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 220 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1e240975`
+- Built from commit: `8ddbb325`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -46,7 +46,6 @@
 - d
 - p
 - d
-- p
 - manifest.json
 - CLAUDE.md
 - migrar-carpetas-a-bulk.js
@@ -113,7 +112,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (70 total, 33 thin omitted)
+## Communities (69 total, 32 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -256,8 +255,8 @@ Cohesion: 0.50
 Nodes (4): buscarImagenesDuplicadas(), crypto, fetchVariantes(), fs
 
 ### Community 67 - "Sh"
-Cohesion: 0.15
-Nodes (3): hi(), ji(), Ya()
+Cohesion: 0.20
+Nodes (4): hi(), ji(), Sh(), Ya()
 
 ### Community 68 - "Fase 2 — Selección de categorías de variantes (núcleo de tracking) — Plan de implementación"
 Cohesion: 0.20
@@ -266,7 +265,7 @@ Nodes (9): Fase 2 — Selección de categorías de variantes (núcleo de trackin
 ## Knowledge Gaps
 - **167 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+162 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **33 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **32 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -275,7 +274,7 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.210) - this node is a cross-community bridge._
 - **Why does `a()` connect `worker.min.js` to `p`, `A`, `qb`, `A`, `qb`, `p`?**
   _High betweenness centrality (0.202) - this node is a cross-community bridge._
-- **Why does `A()` connect `A` to `worker.min.js`, `Sh`, `p`, `K`, `tesseract-core-simd-lstm.wasm.js`, `Q`, `J`, `di`, `d`, `Lh`, `kb`, `qb`?**
+- **Why does `A()` connect `A` to `worker.min.js`, `O`, `p`, `K`, `tesseract-core-simd-lstm.wasm.js`, `Q`, `J`, `di`, `d`, `Lh`, `kb`, `qb`?**
   _High betweenness centrality (0.100) - this node is a cross-community bridge._
 - **What connects `fs`, `fs`, `crypto` to the rest of the system?**
   _167 weakly-connected nodes found - possible documentation gaps or missing edges._

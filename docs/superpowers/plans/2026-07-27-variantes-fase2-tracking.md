@@ -16,7 +16,8 @@
 - `/api/exportar` **no cambia** — sigue exportando el inventario crudo completo, sin filtrar por categorías activas.
 - No hay suite de tests (`npm test` es un placeholder). Cada tarea se verifica con scripts puntuales (`node -e`, `curl`) contra el servidor real, igual que hicieron los planes anteriores de este proyecto (`docs/superpowers/plans/2026-07-26-variantes-pokedex.md`).
 - **Gotcha del proyecto:** cualquier tarea que toque `public/index.html`, `public/app.js` o `public/styles.css` DEBE bumpear `CACHE_VERSION` en `public/sw.js` en el mismo commit (hoy está en `'pokedex-tcg-v25'`) — si no, los navegadores siguen sirviendo el shell viejo cacheado indefinidamente.
-- Este plan asume que `pokemon_db.json` ya tiene las 179 variantes (Fase 1, ya commiteada) y que el servidor corre como `pokedex.service` (`systemctl restart pokedex.service` para aplicar cambios de `server.js`).
+- Este plan asume que `pokemon_db.json` ya tiene las 179 variantes (Fase 1, ya commiteada).
+- **La implementación corre en un worktree aislado** (`.worktrees/variantes-fase2-tracking/`), separado del checkout principal donde vive `pokedex.service` (producción, `WorkingDirectory=/var/www/html/pokedex-tcg`). **Ninguna tarea de este plan corre `systemctl restart/stop pokedex.service`** — reiniciar ese servicio no reflejaría los cambios del worktree (systemd sirve el código del checkout principal) y además reiniciaría la app real del usuario sin necesidad. Para probar cambios de `server.js` contra un servidor real, cada tarea arranca una instancia temporal del propio worktree en el puerto `3099` (ver el patrón en cada Step de verificación), nunca toca el puerto `3000` de producción, y la mata al terminar.
 
 ---
 
@@ -324,16 +325,18 @@ app.post('/api/variantes-config', requiereLogin, rateLimiter, (req, res) => {
 
 - [ ] **Step 4: Verificar contra el servidor real**
 
+**Nunca reinicies `pokedex.service`** — es la producción, corre el código del checkout principal, no el de este worktree. Arrancá una instancia temporal del worktree en el puerto 3099:
+
 ```bash
-systemctl restart pokedex.service
+sed -i 's/const PORT = 3000;/const PORT = 3099;/' server.js
+node server.js & SERVER_PID=$!
 sleep 1
-systemctl is-active pokedex.service
 
 # GET nuevo, sin login, debe dar las 5 en false (todavía no se activó nada)
-curl -s http://localhost:3000/api/variantes-config
+curl -s http://localhost:3099/api/variantes-config
 
 # /api/estadisticas sigue dando 1025 de total con todo apagado
-curl -s "http://localhost:3000/api/estadisticas?modo=carpetas" | node -e "
+curl -s "http://localhost:3099/api/estadisticas?modo=carpetas" | node -e "
 let d=''; process.stdin.on('data', c => d += c);
 process.stdin.on('end', () => {
     const j = JSON.parse(d);
@@ -343,12 +346,16 @@ process.stdin.on('end', () => {
 "
 
 # POST sin sesión debe rechazarse (401), no debe poder tocar la config sin login
-curl -s -o /dev/null -w "%{http_code}\n" -X POST http://localhost:3000/api/variantes-config \
+curl -s -o /dev/null -w "%{http_code}\n" -X POST http://localhost:3099/api/variantes-config \
   -H "Content-Type: application/json" \
   -d '{"regional":true,"mega":false,"primigenia":false,"gigamax":false,"alternativa":false}'
+
+kill $SERVER_PID
+sed -i 's/const PORT = 3099;/const PORT = 3000;/' server.js
+git diff server.js  # confirmar que no quedó ningún cambio de PORT sin revertir antes de comitear
 ```
 
-Expected: el primer `curl` da las 5 categorías en `false`; el script de `/api/estadisticas` imprime el OK; el último `curl` imprime `401`.
+Expected: el primer `curl` da las 5 categorías en `false`; el script de `/api/estadisticas` imprime el OK; el `curl` de POST imprime `401`; el `git diff` final no muestra ninguna línea de `PORT`.
 
 - [ ] **Step 5: Commit**
 
@@ -505,15 +512,30 @@ En `public/sw.js` (línea 11):
 const CACHE_VERSION = 'pokedex-tcg-v26';
 ```
 
-- [ ] **Step 7: Verificar manualmente**
+- [ ] **Step 7: Verificar**
+
+Esta tarea es 100% cliente (`public/app.js`/`styles.css`/`sw.js`) — no hay servidor que arrancar para probarla. Primero, chequeo de sintaxis:
 
 ```bash
-systemctl restart pokedex.service
-sleep 1
-curl -s "http://localhost:3000/api/buscar?q=CHARIZARD"
+node --check public/app.js && echo "app.js: sintaxis OK"
 ```
 
-Expected: por ahora sigue devolviendo solo `CHARIZARD` (sin variantes — todavía nadie activó ninguna categoría, eso llega en la Tarea 4). Abrir la app en el navegador, entrar a la galería de Gen 1, confirmar que Charizard se ve igual que antes (sin badge, número regional correcto) — es la verificación de que el refactor de `renderGaleria`/`mostrarFicha` no rompió el camino existente (base-only).
+Segundo, verificación puntual de la lógica de `anclaIdCliente()` (la pieza nueva de la que depende todo lo demás en esta tarea) sin necesidad de un navegador — se extrae la función tal cual quedó en el archivo y se prueba contra un objeto base y uno de variante:
+
+```bash
+node -e "
+const fs = require('fs');
+const src = fs.readFileSync('public/app.js', 'utf8');
+const m = src.match(/function anclaIdCliente\(p\) \{[\s\S]*?\n\}/);
+console.assert(m, 'no se encontró anclaIdCliente() en app.js');
+eval(m[0]);
+console.assert(anclaIdCliente({ id: 6 }) === 6, 'una entrada base debería anclar a su propio id');
+console.assert(anclaIdCliente({ id: 1030, categoria: 'mega', especieBase: 6 }) === 6, 'una variante debería anclar a especieBase, no a su propio id');
+console.log('OK: anclaIdCliente() distingue base de variante correctamente');
+"
+```
+
+Expected: ambos comandos imprimen su OK. La confirmación visual (el badge se ve bien, los colores son correctos, Charizard base se sigue viendo igual que antes en la galería) se hace en una pasada manual en el navegador después de que las 5 tareas del plan estén todas mergeadas — no es parte de esta tarea individual.
 
 - [ ] **Step 8: Commit**
 
@@ -641,17 +663,45 @@ En `public/sw.js`:
 const CACHE_VERSION = 'pokedex-tcg-v27';
 ```
 
-- [ ] **Step 4: Verificar manualmente en el navegador**
+- [ ] **Step 4: Verificar el flujo autenticado completo contra una instancia temporal**
+
+**Nunca reinicies `pokedex.service`** (producción, checkout principal) — arrancá el worktree en el puerto 3099, igual que en la Tarea 2:
 
 ```bash
-systemctl restart pokedex.service
+sed -i 's/const PORT = 3000;/const PORT = 3099;/' server.js
+node server.js & SERVER_PID=$!
+sleep 1
+
+# Login con la contraseña por defecto (ADMIN_PASSWORD no está seteada en este entorno de prueba)
+curl -s -c /tmp/cookies-variantes.txt -X POST http://localhost:3099/api/login \
+  -H "Content-Type: application/json" -d '{"password":"pokedex123"}'
+
+# Activar "regional" ya autenticado
+curl -s -b /tmp/cookies-variantes.txt -X POST http://localhost:3099/api/variantes-config \
+  -H "Content-Type: application/json" \
+  -d '{"regional":true,"mega":false,"primigenia":false,"gigamax":false,"alternativa":false}'
+
+# Confirmar que quedó guardado y que la galería de Gen 1 ahora trae la variante
+curl -s http://localhost:3099/api/variantes-config
+curl -s "http://localhost:3099/api/buscar?gen=1" | node -e "
+let d=''; process.stdin.on('data', c => d += c);
+process.stdin.on('end', () => {
+    const lista = JSON.parse(d);
+    const idx = lista.findIndex(p => p.id === 26);
+    console.assert(idx !== -1, 'no se encontró RAICHU (id 26) en gen 1');
+    console.assert(lista[idx+1] && lista[idx+1].name.includes('ALOLA'), 'la entrada siguiente a RAICHU debería ser su forma de Alola');
+    console.log('OK: RAICHU ALOLA aparece justo después de RAICHU en /api/buscar?gen=1');
+});
+"
+
+rm -f /tmp/cookies-variantes.txt
+kill $SERVER_PID
+sed -i 's/const PORT = 3099;/const PORT = 3000;/' server.js
+git diff server.js  # confirmar que no quedó ningún cambio de PORT ni de variantes-config.json sin revertir
+rm -f variantes-config.json  # lo creó la corrida de prueba; no es parte del commit (ver Global Constraints: las 5 arrancan en false)
 ```
 
-Abrir la app, iniciar sesión, Ajustes → Variantes, activar "Formas regionales", confirmar:
-- El checkbox queda marcado y aparece el toast "Categoría activada."
-- `curl -s http://localhost:3000/api/variantes-config` ahora muestra `"regional":true`.
-- La galería de Gen 1 ahora muestra `RAICHU` seguido de `RAICHU ALOLA` con su badge.
-- Desactivarla vuelve a ocultar la variante y el toast dice "Categoría desactivada."
+Expected: el primer `curl` de login da `{"success":true}`; `GET /api/variantes-config` muestra `"regional":true`; el script de Node imprime el OK; el `git diff` final no muestra cambios de `PORT`.
 
 - [ ] **Step 5: Commit**
 
@@ -820,13 +870,24 @@ En `public/sw.js`:
 const CACHE_VERSION = 'pokedex-tcg-v28';
 ```
 
-- [ ] **Step 5: Verificar manualmente**
+- [ ] **Step 5: Verificar**
+
+Esta tarea es 100% cliente — no hay servidor que arrancar. Chequeo de sintaxis y de que los patrones exactos del brief quedaron aplicados (no un texto parecido, el exacto):
 
 ```bash
-systemctl restart pokedex.service
+node --check public/app.js && echo "app.js: sintaxis OK"
+
+# El denominador dinámico debe aparecer exactamente 2 veces (cargarEstadisticas y cargarEstadisticasSinMoverScroll)
+grep -c '${total} / ${data.global.total || 1025}' public/app.js
+
+# No debe quedar ningún hardcodeo del viejo denominador fijo
+grep -c '`${total} / 1025`' public/app.js
+
+# wizardNecesarioTotal ya no debe retornar el literal 1025 para 'seguidas'
+grep -c "if (wizardModo === 'seguidas') return 1025;" public/app.js
 ```
 
-Con una config de carpetas en modo "separadas" ya guardada con capacidad ajustada (sin margen extra), activar una categoría en Ajustes → Variantes y confirmar que aparece el toast "AJUSTAR" si la carpeta correspondiente queda corta; tocar "AJUSTAR" debe cerrar el panel de variantes y abrir el wizard de carpetas directamente. Confirmar también que `brand-count` en el header ahora muestra el total efectivo (ej. "342 / 1082") en vez de quedarse en "/1025".
+Expected: `app.js: sintaxis OK`; el primer `grep -c` da `2`; el segundo da `0`; el tercero da `0`. La confirmación visual completa (el toast "AJUSTAR" aparece cuando corresponde, tocarlo abre el wizard, `brand-count` se ve bien en el header) se hace en una pasada manual en el navegador después de que las 5 tareas del plan estén todas mergeadas — no es parte de esta tarea individual.
 
 - [ ] **Step 6: Commit**
 

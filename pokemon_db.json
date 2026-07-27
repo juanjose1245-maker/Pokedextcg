@@ -9749,5 +9749,1874 @@
     ],
     "gen": 9,
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1025.png"
+  },
+  {
+    "id": 1026,
+    "name": "RATTATA ALOLA",
+    "types": [
+      "dark",
+      "normal"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10091.png",
+    "categoria": "regional",
+    "especieBase": 19
+  },
+  {
+    "id": 1027,
+    "name": "RATICATE ALOLA",
+    "types": [
+      "dark",
+      "normal"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10092.png",
+    "categoria": "regional",
+    "especieBase": 20
+  },
+  {
+    "id": 1028,
+    "name": "RAICHU ALOLA",
+    "types": [
+      "electric",
+      "psychic"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10100.png",
+    "categoria": "regional",
+    "especieBase": 26
+  },
+  {
+    "id": 1029,
+    "name": "SANDSHREW ALOLA",
+    "types": [
+      "ice",
+      "steel"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10101.png",
+    "categoria": "regional",
+    "especieBase": 27
+  },
+  {
+    "id": 1030,
+    "name": "SANDSLASH ALOLA",
+    "types": [
+      "ice",
+      "steel"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10102.png",
+    "categoria": "regional",
+    "especieBase": 28
+  },
+  {
+    "id": 1031,
+    "name": "VULPIX ALOLA",
+    "types": [
+      "ice"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10103.png",
+    "categoria": "regional",
+    "especieBase": 37
+  },
+  {
+    "id": 1032,
+    "name": "NINETALES ALOLA",
+    "types": [
+      "ice",
+      "fairy"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10104.png",
+    "categoria": "regional",
+    "especieBase": 38
+  },
+  {
+    "id": 1033,
+    "name": "DIGLETT ALOLA",
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10105.png",
+    "categoria": "regional",
+    "especieBase": 50
+  },
+  {
+    "id": 1034,
+    "name": "DUGTRIO ALOLA",
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10106.png",
+    "categoria": "regional",
+    "especieBase": 51
+  },
+  {
+    "id": 1035,
+    "name": "MEOWTH ALOLA",
+    "types": [
+      "dark"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10107.png",
+    "categoria": "regional",
+    "especieBase": 52
+  },
+  {
+    "id": 1036,
+    "name": "PERSIAN ALOLA",
+    "types": [
+      "dark"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10108.png",
+    "categoria": "regional",
+    "especieBase": 53
+  },
+  {
+    "id": 1037,
+    "name": "GEODUDE ALOLA",
+    "types": [
+      "rock",
+      "electric"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10109.png",
+    "categoria": "regional",
+    "especieBase": 74
+  },
+  {
+    "id": 1038,
+    "name": "GRAVELER ALOLA",
+    "types": [
+      "rock",
+      "electric"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10110.png",
+    "categoria": "regional",
+    "especieBase": 75
+  },
+  {
+    "id": 1039,
+    "name": "GOLEM ALOLA",
+    "types": [
+      "rock",
+      "electric"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10111.png",
+    "categoria": "regional",
+    "especieBase": 76
+  },
+  {
+    "id": 1040,
+    "name": "GRIMER ALOLA",
+    "types": [
+      "poison",
+      "dark"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10112.png",
+    "categoria": "regional",
+    "especieBase": 88
+  },
+  {
+    "id": 1041,
+    "name": "MUK ALOLA",
+    "types": [
+      "poison",
+      "dark"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10113.png",
+    "categoria": "regional",
+    "especieBase": 89
+  },
+  {
+    "id": 1042,
+    "name": "EXEGGUTOR ALOLA",
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10114.png",
+    "categoria": "regional",
+    "especieBase": 103
+  },
+  {
+    "id": 1043,
+    "name": "MAROWAK ALOLA",
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10115.png",
+    "categoria": "regional",
+    "especieBase": 105
+  },
+  {
+    "id": 1044,
+    "name": "MEOWTH GALAR",
+    "types": [
+      "steel"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10161.png",
+    "categoria": "regional",
+    "especieBase": 52
+  },
+  {
+    "id": 1045,
+    "name": "PONYTA GALAR",
+    "types": [
+      "psychic"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10162.png",
+    "categoria": "regional",
+    "especieBase": 77
+  },
+  {
+    "id": 1046,
+    "name": "RAPIDASH GALAR",
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10163.png",
+    "categoria": "regional",
+    "especieBase": 78
+  },
+  {
+    "id": 1047,
+    "name": "SLOWPOKE GALAR",
+    "types": [
+      "psychic"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10164.png",
+    "categoria": "regional",
+    "especieBase": 79
+  },
+  {
+    "id": 1048,
+    "name": "SLOWBRO GALAR",
+    "types": [
+      "poison",
+      "psychic"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10165.png",
+    "categoria": "regional",
+    "especieBase": 80
+  },
+  {
+    "id": 1049,
+    "name": "FARFETCHD GALAR",
+    "types": [
+      "fighting"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10166.png",
+    "categoria": "regional",
+    "especieBase": 83
+  },
+  {
+    "id": 1050,
+    "name": "WEEZING GALAR",
+    "types": [
+      "poison",
+      "fairy"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10167.png",
+    "categoria": "regional",
+    "especieBase": 110
+  },
+  {
+    "id": 1051,
+    "name": "MR MIME GALAR",
+    "types": [
+      "ice",
+      "psychic"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10168.png",
+    "categoria": "regional",
+    "especieBase": 122
+  },
+  {
+    "id": 1052,
+    "name": "ARTICUNO GALAR",
+    "types": [
+      "psychic",
+      "flying"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10169.png",
+    "categoria": "regional",
+    "especieBase": 144
+  },
+  {
+    "id": 1053,
+    "name": "ZAPDOS GALAR",
+    "types": [
+      "fighting",
+      "flying"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10170.png",
+    "categoria": "regional",
+    "especieBase": 145
+  },
+  {
+    "id": 1054,
+    "name": "MOLTRES GALAR",
+    "types": [
+      "dark",
+      "flying"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10171.png",
+    "categoria": "regional",
+    "especieBase": 146
+  },
+  {
+    "id": 1055,
+    "name": "SLOWKING GALAR",
+    "types": [
+      "poison",
+      "psychic"
+    ],
+    "gen": 2,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10172.png",
+    "categoria": "regional",
+    "especieBase": 199
+  },
+  {
+    "id": 1056,
+    "name": "CORSOLA GALAR",
+    "types": [
+      "ghost"
+    ],
+    "gen": 2,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10173.png",
+    "categoria": "regional",
+    "especieBase": 222
+  },
+  {
+    "id": 1057,
+    "name": "ZIGZAGOON GALAR",
+    "types": [
+      "dark",
+      "normal"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10174.png",
+    "categoria": "regional",
+    "especieBase": 263
+  },
+  {
+    "id": 1058,
+    "name": "LINOONE GALAR",
+    "types": [
+      "dark",
+      "normal"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10175.png",
+    "categoria": "regional",
+    "especieBase": 264
+  },
+  {
+    "id": 1059,
+    "name": "DARUMAKA GALAR",
+    "types": [
+      "ice"
+    ],
+    "gen": 5,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10176.png",
+    "categoria": "regional",
+    "especieBase": 554
+  },
+  {
+    "id": 1060,
+    "name": "DARMANITAN GALAR STANDARD",
+    "types": [
+      "ice"
+    ],
+    "gen": 5,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10177.png",
+    "categoria": "regional",
+    "especieBase": 555
+  },
+  {
+    "id": 1061,
+    "name": "YAMASK GALAR",
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "gen": 5,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10179.png",
+    "categoria": "regional",
+    "especieBase": 562
+  },
+  {
+    "id": 1062,
+    "name": "STUNFISK GALAR",
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "gen": 5,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10180.png",
+    "categoria": "regional",
+    "especieBase": 618
+  },
+  {
+    "id": 1063,
+    "name": "GROWLITHE HISUI",
+    "types": [
+      "fire",
+      "rock"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10229.png",
+    "categoria": "regional",
+    "especieBase": 58
+  },
+  {
+    "id": 1064,
+    "name": "ARCANINE HISUI",
+    "types": [
+      "fire",
+      "rock"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10230.png",
+    "categoria": "regional",
+    "especieBase": 59
+  },
+  {
+    "id": 1065,
+    "name": "VOLTORB HISUI",
+    "types": [
+      "electric",
+      "grass"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10231.png",
+    "categoria": "regional",
+    "especieBase": 100
+  },
+  {
+    "id": 1066,
+    "name": "ELECTRODE HISUI",
+    "types": [
+      "electric",
+      "grass"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10232.png",
+    "categoria": "regional",
+    "especieBase": 101
+  },
+  {
+    "id": 1067,
+    "name": "TYPHLOSION HISUI",
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "gen": 2,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10233.png",
+    "categoria": "regional",
+    "especieBase": 157
+  },
+  {
+    "id": 1068,
+    "name": "QWILFISH HISUI",
+    "types": [
+      "dark",
+      "poison"
+    ],
+    "gen": 2,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10234.png",
+    "categoria": "regional",
+    "especieBase": 211
+  },
+  {
+    "id": 1069,
+    "name": "SNEASEL HISUI",
+    "types": [
+      "fighting",
+      "poison"
+    ],
+    "gen": 2,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10235.png",
+    "categoria": "regional",
+    "especieBase": 215
+  },
+  {
+    "id": 1070,
+    "name": "SAMUROTT HISUI",
+    "types": [
+      "water",
+      "dark"
+    ],
+    "gen": 5,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10236.png",
+    "categoria": "regional",
+    "especieBase": 503
+  },
+  {
+    "id": 1071,
+    "name": "LILLIGANT HISUI",
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "gen": 5,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10237.png",
+    "categoria": "regional",
+    "especieBase": 549
+  },
+  {
+    "id": 1072,
+    "name": "ZORUA HISUI",
+    "types": [
+      "normal",
+      "ghost"
+    ],
+    "gen": 5,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10238.png",
+    "categoria": "regional",
+    "especieBase": 570
+  },
+  {
+    "id": 1073,
+    "name": "ZOROARK HISUI",
+    "types": [
+      "normal",
+      "ghost"
+    ],
+    "gen": 5,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10239.png",
+    "categoria": "regional",
+    "especieBase": 571
+  },
+  {
+    "id": 1074,
+    "name": "BRAVIARY HISUI",
+    "types": [
+      "psychic",
+      "flying"
+    ],
+    "gen": 5,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10240.png",
+    "categoria": "regional",
+    "especieBase": 628
+  },
+  {
+    "id": 1075,
+    "name": "SLIGGOO HISUI",
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "gen": 6,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10241.png",
+    "categoria": "regional",
+    "especieBase": 705
+  },
+  {
+    "id": 1076,
+    "name": "GOODRA HISUI",
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "gen": 6,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10242.png",
+    "categoria": "regional",
+    "especieBase": 706
+  },
+  {
+    "id": 1077,
+    "name": "AVALUGG HISUI",
+    "types": [
+      "ice",
+      "rock"
+    ],
+    "gen": 6,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10243.png",
+    "categoria": "regional",
+    "especieBase": 713
+  },
+  {
+    "id": 1078,
+    "name": "DECIDUEYE HISUI",
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "gen": 7,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10244.png",
+    "categoria": "regional",
+    "especieBase": 724
+  },
+  {
+    "id": 1079,
+    "name": "TAUROS PALDEA COMBAT BREED",
+    "types": [
+      "fighting"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10250.png",
+    "categoria": "regional",
+    "especieBase": 128
+  },
+  {
+    "id": 1080,
+    "name": "TAUROS PALDEA BLAZE BREED",
+    "types": [
+      "fighting",
+      "fire"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10251.png",
+    "categoria": "regional",
+    "especieBase": 128
+  },
+  {
+    "id": 1081,
+    "name": "TAUROS PALDEA AQUA BREED",
+    "types": [
+      "fighting",
+      "water"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10252.png",
+    "categoria": "regional",
+    "especieBase": 128
+  },
+  {
+    "id": 1082,
+    "name": "WOOPER PALDEA",
+    "types": [
+      "poison",
+      "ground"
+    ],
+    "gen": 2,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10253.png",
+    "categoria": "regional",
+    "especieBase": 194
+  },
+  {
+    "id": 1083,
+    "name": "VENUSAUR MEGA",
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10033.png",
+    "categoria": "mega",
+    "especieBase": 3
+  },
+  {
+    "id": 1084,
+    "name": "CHARIZARD MEGA X",
+    "types": [
+      "fire",
+      "dragon"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10034.png",
+    "categoria": "mega",
+    "especieBase": 6
+  },
+  {
+    "id": 1085,
+    "name": "CHARIZARD MEGA Y",
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10035.png",
+    "categoria": "mega",
+    "especieBase": 6
+  },
+  {
+    "id": 1086,
+    "name": "BLASTOISE MEGA",
+    "types": [
+      "water"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10036.png",
+    "categoria": "mega",
+    "especieBase": 9
+  },
+  {
+    "id": 1087,
+    "name": "BEEDRILL MEGA",
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10090.png",
+    "categoria": "mega",
+    "especieBase": 15
+  },
+  {
+    "id": 1088,
+    "name": "PIDGEOT MEGA",
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10073.png",
+    "categoria": "mega",
+    "especieBase": 18
+  },
+  {
+    "id": 1089,
+    "name": "ALAKAZAM MEGA",
+    "types": [
+      "psychic"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10037.png",
+    "categoria": "mega",
+    "especieBase": 65
+  },
+  {
+    "id": 1090,
+    "name": "SLOWBRO MEGA",
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10071.png",
+    "categoria": "mega",
+    "especieBase": 80
+  },
+  {
+    "id": 1091,
+    "name": "GENGAR MEGA",
+    "types": [
+      "ghost",
+      "poison"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10038.png",
+    "categoria": "mega",
+    "especieBase": 94
+  },
+  {
+    "id": 1092,
+    "name": "KANGASKHAN MEGA",
+    "types": [
+      "normal"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10039.png",
+    "categoria": "mega",
+    "especieBase": 115
+  },
+  {
+    "id": 1093,
+    "name": "PINSIR MEGA",
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10040.png",
+    "categoria": "mega",
+    "especieBase": 127
+  },
+  {
+    "id": 1094,
+    "name": "GYARADOS MEGA",
+    "types": [
+      "water",
+      "dark"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10041.png",
+    "categoria": "mega",
+    "especieBase": 130
+  },
+  {
+    "id": 1095,
+    "name": "AERODACTYL MEGA",
+    "types": [
+      "rock",
+      "flying"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10042.png",
+    "categoria": "mega",
+    "especieBase": 142
+  },
+  {
+    "id": 1096,
+    "name": "MEWTWO MEGA X",
+    "types": [
+      "psychic",
+      "fighting"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10043.png",
+    "categoria": "mega",
+    "especieBase": 150
+  },
+  {
+    "id": 1097,
+    "name": "MEWTWO MEGA Y",
+    "types": [
+      "psychic"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10044.png",
+    "categoria": "mega",
+    "especieBase": 150
+  },
+  {
+    "id": 1098,
+    "name": "AMPHAROS MEGA",
+    "types": [
+      "electric",
+      "dragon"
+    ],
+    "gen": 2,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10045.png",
+    "categoria": "mega",
+    "especieBase": 181
+  },
+  {
+    "id": 1099,
+    "name": "STEELIX MEGA",
+    "types": [
+      "steel",
+      "ground"
+    ],
+    "gen": 2,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10072.png",
+    "categoria": "mega",
+    "especieBase": 208
+  },
+  {
+    "id": 1100,
+    "name": "SCIZOR MEGA",
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "gen": 2,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10046.png",
+    "categoria": "mega",
+    "especieBase": 212
+  },
+  {
+    "id": 1101,
+    "name": "HERACROSS MEGA",
+    "types": [
+      "bug",
+      "fighting"
+    ],
+    "gen": 2,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10047.png",
+    "categoria": "mega",
+    "especieBase": 214
+  },
+  {
+    "id": 1102,
+    "name": "HOUNDOOM MEGA",
+    "types": [
+      "dark",
+      "fire"
+    ],
+    "gen": 2,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10048.png",
+    "categoria": "mega",
+    "especieBase": 229
+  },
+  {
+    "id": 1103,
+    "name": "TYRANITAR MEGA",
+    "types": [
+      "rock",
+      "dark"
+    ],
+    "gen": 2,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10049.png",
+    "categoria": "mega",
+    "especieBase": 248
+  },
+  {
+    "id": 1104,
+    "name": "SCEPTILE MEGA",
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10065.png",
+    "categoria": "mega",
+    "especieBase": 254
+  },
+  {
+    "id": 1105,
+    "name": "BLAZIKEN MEGA",
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10050.png",
+    "categoria": "mega",
+    "especieBase": 257
+  },
+  {
+    "id": 1106,
+    "name": "SWAMPERT MEGA",
+    "types": [
+      "water",
+      "ground"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10064.png",
+    "categoria": "mega",
+    "especieBase": 260
+  },
+  {
+    "id": 1107,
+    "name": "GARDEVOIR MEGA",
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10051.png",
+    "categoria": "mega",
+    "especieBase": 282
+  },
+  {
+    "id": 1108,
+    "name": "SABLEYE MEGA",
+    "types": [
+      "dark",
+      "ghost"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10066.png",
+    "categoria": "mega",
+    "especieBase": 302
+  },
+  {
+    "id": 1109,
+    "name": "MAWILE MEGA",
+    "types": [
+      "steel",
+      "fairy"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10052.png",
+    "categoria": "mega",
+    "especieBase": 303
+  },
+  {
+    "id": 1110,
+    "name": "AGGRON MEGA",
+    "types": [
+      "steel"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10053.png",
+    "categoria": "mega",
+    "especieBase": 306
+  },
+  {
+    "id": 1111,
+    "name": "MEDICHAM MEGA",
+    "types": [
+      "fighting",
+      "psychic"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10054.png",
+    "categoria": "mega",
+    "especieBase": 308
+  },
+  {
+    "id": 1112,
+    "name": "MANECTRIC MEGA",
+    "types": [
+      "electric"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10055.png",
+    "categoria": "mega",
+    "especieBase": 310
+  },
+  {
+    "id": 1113,
+    "name": "SHARPEDO MEGA",
+    "types": [
+      "water",
+      "dark"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10070.png",
+    "categoria": "mega",
+    "especieBase": 319
+  },
+  {
+    "id": 1114,
+    "name": "CAMERUPT MEGA",
+    "types": [
+      "fire",
+      "ground"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10087.png",
+    "categoria": "mega",
+    "especieBase": 323
+  },
+  {
+    "id": 1115,
+    "name": "ALTARIA MEGA",
+    "types": [
+      "dragon",
+      "fairy"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10067.png",
+    "categoria": "mega",
+    "especieBase": 334
+  },
+  {
+    "id": 1116,
+    "name": "BANETTE MEGA",
+    "types": [
+      "ghost"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10056.png",
+    "categoria": "mega",
+    "especieBase": 354
+  },
+  {
+    "id": 1117,
+    "name": "ABSOL MEGA",
+    "types": [
+      "dark"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10057.png",
+    "categoria": "mega",
+    "especieBase": 359
+  },
+  {
+    "id": 1118,
+    "name": "GLALIE MEGA",
+    "types": [
+      "ice"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10074.png",
+    "categoria": "mega",
+    "especieBase": 362
+  },
+  {
+    "id": 1119,
+    "name": "SALAMENCE MEGA",
+    "types": [
+      "dragon",
+      "flying"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10089.png",
+    "categoria": "mega",
+    "especieBase": 373
+  },
+  {
+    "id": 1120,
+    "name": "METAGROSS MEGA",
+    "types": [
+      "steel",
+      "psychic"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10076.png",
+    "categoria": "mega",
+    "especieBase": 376
+  },
+  {
+    "id": 1121,
+    "name": "LATIAS MEGA",
+    "types": [
+      "dragon",
+      "psychic"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10062.png",
+    "categoria": "mega",
+    "especieBase": 380
+  },
+  {
+    "id": 1122,
+    "name": "LATIOS MEGA",
+    "types": [
+      "dragon",
+      "psychic"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10063.png",
+    "categoria": "mega",
+    "especieBase": 381
+  },
+  {
+    "id": 1123,
+    "name": "RAYQUAZA MEGA",
+    "types": [
+      "dragon",
+      "flying"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10079.png",
+    "categoria": "mega",
+    "especieBase": 384
+  },
+  {
+    "id": 1124,
+    "name": "LOPUNNY MEGA",
+    "types": [
+      "normal",
+      "fighting"
+    ],
+    "gen": 4,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10088.png",
+    "categoria": "mega",
+    "especieBase": 428
+  },
+  {
+    "id": 1125,
+    "name": "GARCHOMP MEGA",
+    "types": [
+      "dragon",
+      "ground"
+    ],
+    "gen": 4,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10058.png",
+    "categoria": "mega",
+    "especieBase": 445
+  },
+  {
+    "id": 1126,
+    "name": "LUCARIO MEGA",
+    "types": [
+      "fighting",
+      "steel"
+    ],
+    "gen": 4,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10059.png",
+    "categoria": "mega",
+    "especieBase": 448
+  },
+  {
+    "id": 1127,
+    "name": "ABOMASNOW MEGA",
+    "types": [
+      "grass",
+      "ice"
+    ],
+    "gen": 4,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10060.png",
+    "categoria": "mega",
+    "especieBase": 460
+  },
+  {
+    "id": 1128,
+    "name": "GALLADE MEGA",
+    "types": [
+      "psychic",
+      "fighting"
+    ],
+    "gen": 4,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10068.png",
+    "categoria": "mega",
+    "especieBase": 475
+  },
+  {
+    "id": 1129,
+    "name": "AUDINO MEGA",
+    "types": [
+      "normal",
+      "fairy"
+    ],
+    "gen": 5,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10069.png",
+    "categoria": "mega",
+    "especieBase": 531
+  },
+  {
+    "id": 1130,
+    "name": "DIANCIE MEGA",
+    "types": [
+      "rock",
+      "fairy"
+    ],
+    "gen": 6,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10075.png",
+    "categoria": "mega",
+    "especieBase": 719
+  },
+  {
+    "id": 1131,
+    "name": "KYOGRE PRIMAL",
+    "types": [
+      "water"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10077.png",
+    "categoria": "primigenia",
+    "especieBase": 382
+  },
+  {
+    "id": 1132,
+    "name": "GROUDON PRIMAL",
+    "types": [
+      "ground",
+      "fire"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10078.png",
+    "categoria": "primigenia",
+    "especieBase": 383
+  },
+  {
+    "id": 1133,
+    "name": "VENUSAUR GMAX",
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10195.png",
+    "categoria": "gigamax",
+    "especieBase": 3
+  },
+  {
+    "id": 1134,
+    "name": "CHARIZARD GMAX",
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10196.png",
+    "categoria": "gigamax",
+    "especieBase": 6
+  },
+  {
+    "id": 1135,
+    "name": "BLASTOISE GMAX",
+    "types": [
+      "water"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10197.png",
+    "categoria": "gigamax",
+    "especieBase": 9
+  },
+  {
+    "id": 1136,
+    "name": "BUTTERFREE GMAX",
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10198.png",
+    "categoria": "gigamax",
+    "especieBase": 12
+  },
+  {
+    "id": 1137,
+    "name": "PIKACHU GMAX",
+    "types": [
+      "electric"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10199.png",
+    "categoria": "gigamax",
+    "especieBase": 25
+  },
+  {
+    "id": 1138,
+    "name": "MEOWTH GMAX",
+    "types": [
+      "normal"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10200.png",
+    "categoria": "gigamax",
+    "especieBase": 52
+  },
+  {
+    "id": 1139,
+    "name": "MACHAMP GMAX",
+    "types": [
+      "fighting"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10201.png",
+    "categoria": "gigamax",
+    "especieBase": 68
+  },
+  {
+    "id": 1140,
+    "name": "GENGAR GMAX",
+    "types": [
+      "ghost",
+      "poison"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10202.png",
+    "categoria": "gigamax",
+    "especieBase": 94
+  },
+  {
+    "id": 1141,
+    "name": "KINGLER GMAX",
+    "types": [
+      "water"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10203.png",
+    "categoria": "gigamax",
+    "especieBase": 99
+  },
+  {
+    "id": 1142,
+    "name": "LAPRAS GMAX",
+    "types": [
+      "water",
+      "ice"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10204.png",
+    "categoria": "gigamax",
+    "especieBase": 131
+  },
+  {
+    "id": 1143,
+    "name": "EEVEE GMAX",
+    "types": [
+      "normal"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10205.png",
+    "categoria": "gigamax",
+    "especieBase": 133
+  },
+  {
+    "id": 1144,
+    "name": "SNORLAX GMAX",
+    "types": [
+      "normal"
+    ],
+    "gen": 1,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10206.png",
+    "categoria": "gigamax",
+    "especieBase": 143
+  },
+  {
+    "id": 1145,
+    "name": "GARBODOR GMAX",
+    "types": [
+      "poison"
+    ],
+    "gen": 5,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10207.png",
+    "categoria": "gigamax",
+    "especieBase": 569
+  },
+  {
+    "id": 1146,
+    "name": "MELMETAL GMAX",
+    "types": [
+      "steel"
+    ],
+    "gen": 7,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10208.png",
+    "categoria": "gigamax",
+    "especieBase": 809
+  },
+  {
+    "id": 1147,
+    "name": "RILLABOOM GMAX",
+    "types": [
+      "grass"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10209.png",
+    "categoria": "gigamax",
+    "especieBase": 812
+  },
+  {
+    "id": 1148,
+    "name": "CINDERACE GMAX",
+    "types": [
+      "fire"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10210.png",
+    "categoria": "gigamax",
+    "especieBase": 815
+  },
+  {
+    "id": 1149,
+    "name": "INTELEON GMAX",
+    "types": [
+      "water"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10211.png",
+    "categoria": "gigamax",
+    "especieBase": 818
+  },
+  {
+    "id": 1150,
+    "name": "CORVIKNIGHT GMAX",
+    "types": [
+      "flying",
+      "steel"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10212.png",
+    "categoria": "gigamax",
+    "especieBase": 823
+  },
+  {
+    "id": 1151,
+    "name": "ORBEETLE GMAX",
+    "types": [
+      "bug",
+      "psychic"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10213.png",
+    "categoria": "gigamax",
+    "especieBase": 826
+  },
+  {
+    "id": 1152,
+    "name": "DREDNAW GMAX",
+    "types": [
+      "water",
+      "rock"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10214.png",
+    "categoria": "gigamax",
+    "especieBase": 834
+  },
+  {
+    "id": 1153,
+    "name": "COALOSSAL GMAX",
+    "types": [
+      "rock",
+      "fire"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10215.png",
+    "categoria": "gigamax",
+    "especieBase": 839
+  },
+  {
+    "id": 1154,
+    "name": "FLAPPLE GMAX",
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10216.png",
+    "categoria": "gigamax",
+    "especieBase": 841
+  },
+  {
+    "id": 1155,
+    "name": "APPLETUN GMAX",
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10217.png",
+    "categoria": "gigamax",
+    "especieBase": 842
+  },
+  {
+    "id": 1156,
+    "name": "SANDACONDA GMAX",
+    "types": [
+      "ground"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10218.png",
+    "categoria": "gigamax",
+    "especieBase": 844
+  },
+  {
+    "id": 1157,
+    "name": "TOXTRICITY AMPED GMAX",
+    "types": [
+      "electric",
+      "poison"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10219.png",
+    "categoria": "gigamax",
+    "especieBase": 849
+  },
+  {
+    "id": 1158,
+    "name": "TOXTRICITY LOW KEY GMAX",
+    "types": [
+      "electric",
+      "poison"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10228.png",
+    "categoria": "gigamax",
+    "especieBase": 849
+  },
+  {
+    "id": 1159,
+    "name": "CENTISKORCH GMAX",
+    "types": [
+      "fire",
+      "bug"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10220.png",
+    "categoria": "gigamax",
+    "especieBase": 851
+  },
+  {
+    "id": 1160,
+    "name": "HATTERENE GMAX",
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10221.png",
+    "categoria": "gigamax",
+    "especieBase": 858
+  },
+  {
+    "id": 1161,
+    "name": "GRIMMSNARL GMAX",
+    "types": [
+      "dark",
+      "fairy"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10222.png",
+    "categoria": "gigamax",
+    "especieBase": 861
+  },
+  {
+    "id": 1162,
+    "name": "ALCREMIE GMAX",
+    "types": [
+      "fairy"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10223.png",
+    "categoria": "gigamax",
+    "especieBase": 869
+  },
+  {
+    "id": 1163,
+    "name": "COPPERAJAH GMAX",
+    "types": [
+      "steel"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10224.png",
+    "categoria": "gigamax",
+    "especieBase": 879
+  },
+  {
+    "id": 1164,
+    "name": "DURALUDON GMAX",
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10225.png",
+    "categoria": "gigamax",
+    "especieBase": 884
+  },
+  {
+    "id": 1165,
+    "name": "URSHIFU SINGLE STRIKE GMAX",
+    "types": [
+      "fighting",
+      "dark"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10226.png",
+    "categoria": "gigamax",
+    "especieBase": 892
+  },
+  {
+    "id": 1166,
+    "name": "URSHIFU RAPID STRIKE GMAX",
+    "types": [
+      "fighting",
+      "water"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10227.png",
+    "categoria": "gigamax",
+    "especieBase": 892
+  },
+  {
+    "id": 1167,
+    "name": "DEOXYS ATTACK",
+    "types": [
+      "psychic"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10001.png",
+    "categoria": "alternativa",
+    "especieBase": 386
+  },
+  {
+    "id": 1168,
+    "name": "DEOXYS DEFENSE",
+    "types": [
+      "psychic"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10002.png",
+    "categoria": "alternativa",
+    "especieBase": 386
+  },
+  {
+    "id": 1169,
+    "name": "DEOXYS SPEED",
+    "types": [
+      "psychic"
+    ],
+    "gen": 3,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10003.png",
+    "categoria": "alternativa",
+    "especieBase": 386
+  },
+  {
+    "id": 1170,
+    "name": "ROTOM HEAT",
+    "types": [
+      "electric",
+      "fire"
+    ],
+    "gen": 4,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10008.png",
+    "categoria": "alternativa",
+    "especieBase": 479
+  },
+  {
+    "id": 1171,
+    "name": "ROTOM WASH",
+    "types": [
+      "electric",
+      "water"
+    ],
+    "gen": 4,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10009.png",
+    "categoria": "alternativa",
+    "especieBase": 479
+  },
+  {
+    "id": 1172,
+    "name": "ROTOM FROST",
+    "types": [
+      "electric",
+      "ice"
+    ],
+    "gen": 4,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10010.png",
+    "categoria": "alternativa",
+    "especieBase": 479
+  },
+  {
+    "id": 1173,
+    "name": "ROTOM FAN",
+    "types": [
+      "electric",
+      "flying"
+    ],
+    "gen": 4,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10011.png",
+    "categoria": "alternativa",
+    "especieBase": 479
+  },
+  {
+    "id": 1174,
+    "name": "ROTOM MOW",
+    "types": [
+      "electric",
+      "grass"
+    ],
+    "gen": 4,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10012.png",
+    "categoria": "alternativa",
+    "especieBase": 479
+  },
+  {
+    "id": 1175,
+    "name": "KYUREM BLACK",
+    "types": [
+      "dragon",
+      "ice"
+    ],
+    "gen": 5,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10022.png",
+    "categoria": "alternativa",
+    "especieBase": 646
+  },
+  {
+    "id": 1176,
+    "name": "KYUREM WHITE",
+    "types": [
+      "dragon",
+      "ice"
+    ],
+    "gen": 5,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10023.png",
+    "categoria": "alternativa",
+    "especieBase": 646
+  },
+  {
+    "id": 1177,
+    "name": "NECROZMA DUSK",
+    "types": [
+      "psychic",
+      "steel"
+    ],
+    "gen": 7,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10155.png",
+    "categoria": "alternativa",
+    "especieBase": 800
+  },
+  {
+    "id": 1178,
+    "name": "NECROZMA DAWN",
+    "types": [
+      "psychic",
+      "ghost"
+    ],
+    "gen": 7,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10156.png",
+    "categoria": "alternativa",
+    "especieBase": 800
+  },
+  {
+    "id": 1179,
+    "name": "NECROZMA ULTRA",
+    "types": [
+      "psychic",
+      "dragon"
+    ],
+    "gen": 7,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10157.png",
+    "categoria": "alternativa",
+    "especieBase": 800
+  },
+  {
+    "id": 1180,
+    "name": "WORMADAM SANDY",
+    "types": [
+      "bug",
+      "ground"
+    ],
+    "gen": 4,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10004.png",
+    "categoria": "alternativa",
+    "especieBase": 413
+  },
+  {
+    "id": 1181,
+    "name": "WORMADAM TRASH",
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "gen": 4,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10005.png",
+    "categoria": "alternativa",
+    "especieBase": 413
+  },
+  {
+    "id": 1182,
+    "name": "CALYREX ICE",
+    "types": [
+      "psychic",
+      "ice"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10193.png",
+    "categoria": "alternativa",
+    "especieBase": 898
+  },
+  {
+    "id": 1183,
+    "name": "CALYREX SHADOW",
+    "types": [
+      "psychic",
+      "ghost"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10194.png",
+    "categoria": "alternativa",
+    "especieBase": 898
+  },
+  {
+    "id": 1184,
+    "name": "URSHIFU RAPID STRIKE",
+    "types": [
+      "fighting",
+      "water"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10191.png",
+    "categoria": "alternativa",
+    "especieBase": 892
   }
 ]

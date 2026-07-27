@@ -68,11 +68,27 @@ async function cargarCarpetasConfig() {
     }
 }
 
+// Ancla de una entrada a un id 1–1025: el suyo propio si es especie base, o
+// el de su especie base si es una variante (mismo criterio que anclaId() en
+// server.js, pero acá sobre las entradas que ya llegaron filtradas del server).
+function anclaIdCliente(p) {
+    return p.categoria ? p.especieBase : p.id;
+}
+
+const CATEGORIA_INFO = {
+    regional:    { label: 'Regional',   color: '#0891b2' },
+    mega:        { label: 'Mega',       color: '#7c3aed' },
+    primigenia:  { label: 'Primigenia', color: '#dc2626' },
+    gigamax:     { label: 'Gigamax',    color: '#db2777' },
+    alternativa: { label: 'Alt.',       color: '#d97706' },
+};
+
 // Devuelve la carpeta a la que pertenece un Pokémon, según generación
 // (modo separadas) o según su nº de Pokédex nacional (modo seguidas).
 function carpetaDe(p) {
     if (modoCarpetasConfig === 'seguidas') {
-        return carpetas.find(c => p.id >= c.desde && p.id <= c.hasta) || null;
+        const ancla = anclaIdCliente(p);
+        return carpetas.find(c => ancla >= c.desde && ancla <= c.hasta) || null;
     }
     return carpetas.find(c => c.gens.includes(p.gen)) || null;
 }
@@ -1029,11 +1045,13 @@ function renderGaleria(pkms, mantenerScroll, forzarEstado, esVistaPendientes) {
         // En la vista "Por acomodar" el estado no depende del modo que estés viendo:
         // ahí siempre se muestran como pendientes (forzarEstado=false), sin consultar localStorage.
         const tiene   = (forzarEstado !== undefined) ? forzarEstado : tieneEnLS(p.id);
-        let numR      = p.id - cortesGen[p.gen];
-        if (p.id >= 899 && p.id <= 905) numR = p.id - 809;
-        const prefijo = (p.id >= 899 && p.id <= 905) ? 'H' : 'R';
+        const ancla   = anclaIdCliente(p);
+        let numR      = ancla - cortesGen[p.gen];
+        if (ancla >= 899 && ancla <= 905) numR = ancla - 809;
+        const prefijo = (ancla >= 899 && ancla <= 905) ? 'H' : 'R';
         const ridTxt  = `${prefijo}#${numR.toString().padStart(3,'0')}`;
-        const nidTxt  = `N#${p.id.toString().padStart(4,'0')}`;
+        const nidTxt  = `N#${ancla.toString().padStart(4,'0')}`;
+        const catInfo = p.categoria ? CATEGORIA_INFO[p.categoria] : null;
 
         const carpetaPk = carpetaDe(p);
         const colorPk   = carpetaPk ? carpetaPk.color : (coloresGen[p.gen-1] || '#999');
@@ -1049,7 +1067,7 @@ function renderGaleria(pkms, mantenerScroll, forzarEstado, esVistaPendientes) {
         ridM.style.color = colorPk; ridM.style.background = bgPk;
         ridM.textContent = ridTxt;
         const nidM = document.createElement('div'); nidM.className = 'pk-nid';
-        nidM.textContent = `N#${p.id.toString().padStart(3,'0')}`;
+        nidM.textContent = `N#${ancla.toString().padStart(3,'0')}`;
         const imgM = document.createElement('img'); imgM.className = 'pk-img';
         imgM.src = p.image; imgM.alt = p.name; imgM.loading = 'lazy';
         const nameM = document.createElement('div'); nameM.className = 'pk-name';
@@ -1082,6 +1100,13 @@ function renderGaleria(pkms, mantenerScroll, forzarEstado, esVistaPendientes) {
         card.appendChild(ridM); card.appendChild(nidM); card.appendChild(imgM);
         card.appendChild(nameM); card.appendChild(statusM); card.appendChild(dotM);
         card.appendChild(header); card.appendChild(imgD); card.appendChild(footer);
+
+        if (catInfo) {
+            const badge = document.createElement('div'); badge.className = 'pk-var-badge';
+            badge.style.background = catInfo.color;
+            badge.textContent = catInfo.label;
+            card.appendChild(badge);
+        }
 
         frag.appendChild(card);
     });
@@ -1177,15 +1202,18 @@ function sincronizarGrids() {
 function mostrarFicha(p, esPendientes) {
     fichaOrigenPendientes = !!esPendientes;
     pkSeleccionado = p;
-    let numR = p.id - cortesGen[p.gen];
+    const ancla = anclaIdCliente(p);
+    let numR = ancla - cortesGen[p.gen];
     let regionName = regiones[p.gen - 1];
-    if (p.id >= 899 && p.id <= 905) { numR = p.id - 809; regionName = 'Hisui'; }
+    if (ancla >= 899 && ancla <= 905) { numR = ancla - 809; regionName = 'Hisui'; }
     const regionEl = document.getElementById('pk-region');
     regionEl.textContent = regionName.toUpperCase() + ' · GEN ' + p.gen;
     regionEl.style.color = coloresGen[p.gen-1];
     regionEl.style.background = coloresBg[p.gen-1];
     document.getElementById('pk-name').textContent = p.name.toLowerCase();
-    document.getElementById('pk-id').textContent   = `Regional #${numR.toString().padStart(3,'0')} · Nacional #${p.id.toString().padStart(4,'0')}`;
+    const catInfo = p.categoria ? CATEGORIA_INFO[p.categoria] : null;
+    document.getElementById('pk-id').textContent =
+        `Regional #${numR.toString().padStart(3,'0')} · Nacional #${ancla.toString().padStart(4,'0')}${catInfo ? ' · ' + catInfo.label : ''}`;
     document.getElementById('pk-img').src = p.image;
     document.getElementById('pk-img').alt = p.name;
 

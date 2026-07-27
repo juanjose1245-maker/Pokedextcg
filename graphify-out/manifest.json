@@ -148,5 +148,10 @@
     "mtime": 1785083806.9653904,
     "ast_hash": "dbb31c71a9f7fd42507f152baa98914e",
     "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md": {
+    "mtime": 1785110878.3496315,
+    "ast_hash": "cf7dc18905e66a10aeedcae5eea55148",
+    "semantic_hash": ""
   }
 }

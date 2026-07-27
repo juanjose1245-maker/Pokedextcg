@@ -1935,8 +1935,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_xa",
-      "community": 29,
-      "community_name": "p",
+      "community": 12,
+      "community_name": "J",
       "norm_label": "xa()"
     },
     {
@@ -1979,8 +1979,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_p",
-      "community": 29,
-      "community_name": "p",
+      "community": 12,
+      "community_name": "J",
       "norm_label": "p()"
     },
     {
@@ -2100,8 +2100,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ya",
-      "community": 29,
-      "community_name": "p",
+      "community": 52,
+      "community_name": "Sh",
       "norm_label": "ya()"
     },
     {
@@ -2155,8 +2155,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_gb",
-      "community": 29,
-      "community_name": "p",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "gb()"
     },
     {
@@ -2166,8 +2166,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hb",
-      "community": 29,
-      "community_name": "p",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "hb()"
     },
     {
@@ -2936,8 +2936,8 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_rowattributes",
-      "community": 17,
-      "community_name": "ji",
+      "community": 50,
+      "community_name": "ai",
       "norm_label": ".rowattributes()"
     },
     {
@@ -3024,8 +3024,8 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_wordfontattributes",
-      "community": 17,
-      "community_name": "ji",
+      "community": 9,
+      "community_name": "L",
       "norm_label": ".wordfontattributes()"
     },
     {
@@ -3541,8 +3541,8 @@
       "source_location": "L224",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_p_destroy",
-      "community": 29,
-      "community_name": "p",
+      "community": 12,
+      "community_name": "J",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4839,8 +4839,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_wrap",
-      "community": 17,
-      "community_name": "ji",
+      "community": 52,
+      "community_name": "Sh",
       "norm_label": ".wrap()"
     },
     {
@@ -4850,8 +4850,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_bool",
-      "community": 17,
-      "community_name": "ji",
+      "community": 52,
+      "community_name": "Sh",
       "norm_label": ".bool()"
     },
     {
@@ -4872,8 +4872,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_f32",
-      "community": 17,
-      "community_name": "ji",
+      "community": 50,
+      "community_name": "ai",
       "norm_label": ".f32()"
     },
     {
@@ -4938,8 +4938,8 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getrowattributes",
-      "community": 17,
-      "community_name": "ji",
+      "community": 50,
+      "community_name": "ai",
       "norm_label": ".getrowattributes()"
     },
     {
@@ -4949,8 +4949,8 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getwordfontattributes",
-      "community": 17,
-      "community_name": "ji",
+      "community": 9,
+      "community_name": "L",
       "norm_label": ".getwordfontattributes()"
     },
     {
@@ -5136,8 +5136,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ya",
-      "community": 1,
-      "community_name": "O",
+      "community": 56,
+      "community_name": "p",
       "norm_label": "ya()"
     },
     {
@@ -9865,6 +9865,105 @@
       "id": "docs_superpowers_specs_2026_07_26_ajustes_navegacion_design_testing",
       "community": 58,
       "community_name": "Reorganizar los accesos a M\u00e9tricas/C\u00e1mara/Por acomodar/Ajustes y agrupar \"Ajustes\"",
+      "norm_label": "testing"
+    },
+    {
+      "label": "2026-07-26-variantes-pokedex-design.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design",
+      "community": 63,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon (Megas, formas regionales, Gigamax, etc.)",
+      "norm_label": "2026-07-26-variantes-pokedex-design.md"
+    },
+    {
+      "label": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon (Megas, formas regionales, Gigamax, etc.)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_megas_formas_regionales_gigamax_etc",
+      "community": 63,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon (Megas, formas regionales, Gigamax, etc.)",
+      "norm_label": "fase 1 \u2014 base de datos de variantes de pokemon (megas, formas regionales, gigamax, etc.)"
+    },
+    {
+      "label": "Contexto",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_contexto",
+      "community": 63,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon (Megas, formas regionales, Gigamax, etc.)",
+      "norm_label": "contexto"
+    },
+    {
+      "label": "Modelo de datos",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
+      "source_location": "L47",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_modelo_de_datos",
+      "community": 63,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon (Megas, formas regionales, Gigamax, etc.)",
+      "norm_label": "modelo de datos"
+    },
+    {
+      "label": "Esquema de cada entrada variante",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
+      "source_location": "L49",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_esquema_de_cada_entrada_variante",
+      "community": 63,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon (Megas, formas regionales, Gigamax, etc.)",
+      "norm_label": "esquema de cada entrada variante"
+    },
+    {
+      "label": "`fetch_pokemon.js`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
+      "source_location": "L107",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_fetch_pokemon_js",
+      "community": 63,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon (Megas, formas regionales, Gigamax, etc.)",
+      "norm_label": "`fetch_pokemon.js`"
+    },
+    {
+      "label": "Proceso de investigaci\u00f3n",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
+      "source_location": "L123",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_proceso_de_investigaci\u00f3n",
+      "community": 63,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon (Megas, formas regionales, Gigamax, etc.)",
+      "norm_label": "proceso de investigacion"
+    },
+    {
+      "label": "Fuera de alcance (a prop\u00f3sito, queda para la Fase 2)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
+      "source_location": "L144",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_fuera_de_alcance_a_prop\u00f3sito_queda_para_la_fase_2",
+      "community": 63,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon (Megas, formas regionales, Gigamax, etc.)",
+      "norm_label": "fuera de alcance (a proposito, queda para la fase 2)"
+    },
+    {
+      "label": "Testing",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
+      "source_location": "L157",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_testing",
+      "community": 63,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon (Megas, formas regionales, Gigamax, etc.)",
       "norm_label": "testing"
     }
   ],
@@ -30145,8 +30244,96 @@
       "source": "docs_superpowers_specs_2026_07_26_ajustes_navegacion_design_reorganizar_los_accesos_a_m\u00e9tricas_c\u00e1mara_por_acomodar_ajustes_y_agrupar_ajustes",
       "target": "docs_superpowers_specs_2026_07_26_ajustes_navegacion_design_testing",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design",
+      "target": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_megas_formas_regionales_gigamax_etc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_megas_formas_regionales_gigamax_etc",
+      "target": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_contexto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
+      "source_location": "L144",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_megas_formas_regionales_gigamax_etc",
+      "target": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_fuera_de_alcance_a_prop\u00f3sito_queda_para_la_fase_2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
+      "source_location": "L47",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_megas_formas_regionales_gigamax_etc",
+      "target": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_modelo_de_datos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
+      "source_location": "L123",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_megas_formas_regionales_gigamax_etc",
+      "target": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_proceso_de_investigaci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
+      "source_location": "L157",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_megas_formas_regionales_gigamax_etc",
+      "target": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_testing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_modelo_de_datos",
+      "target": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_esquema_de_cada_entrada_variante",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
+      "source_location": "L107",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_modelo_de_datos",
+      "target": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_fetch_pokemon_js",
+      "confidence_score": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "d67e93b0c653f10a47ad48f79988a2865f57acfc"
+  "built_at_commit": "37168291d931e767f8109df09e9588a356575147"
 }

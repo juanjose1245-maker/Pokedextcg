@@ -11711,5 +11711,146 @@
     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10015.png",
     "categoria": "alternativa",
     "especieBase": 351
+  },
+  {
+    "id": 1193,
+    "name": "GIRATINA ORIGIN",
+    "types": [
+      "ghost",
+      "dragon"
+    ],
+    "gen": 4,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10007.png",
+    "categoria": "alternativa",
+    "especieBase": 487
+  },
+  {
+    "id": 1194,
+    "name": "ZYGARDE 10",
+    "types": [
+      "dragon",
+      "ground"
+    ],
+    "gen": 6,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10181.png",
+    "categoria": "alternativa",
+    "especieBase": 718
+  },
+  {
+    "id": 1195,
+    "name": "ZYGARDE COMPLETE",
+    "types": [
+      "dragon",
+      "ground"
+    ],
+    "gen": 6,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10120.png",
+    "categoria": "alternativa",
+    "especieBase": 718
+  },
+  {
+    "id": 1196,
+    "name": "PALAFIN HERO",
+    "types": [
+      "water"
+    ],
+    "gen": 9,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10256.png",
+    "categoria": "alternativa",
+    "especieBase": 964
+  },
+  {
+    "id": 1197,
+    "name": "SHAYMIN SKY",
+    "types": [
+      "grass",
+      "flying"
+    ],
+    "gen": 4,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10006.png",
+    "categoria": "alternativa",
+    "especieBase": 492
+  },
+  {
+    "id": 1198,
+    "name": "MELOETTA PIROUETTE",
+    "types": [
+      "normal",
+      "fighting"
+    ],
+    "gen": 5,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10018.png",
+    "categoria": "alternativa",
+    "especieBase": 648
+  },
+  {
+    "id": 1199,
+    "name": "HOOPA UNBOUND",
+    "types": [
+      "psychic",
+      "dark"
+    ],
+    "gen": 6,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10086.png",
+    "categoria": "alternativa",
+    "especieBase": 720
+  },
+  {
+    "id": 1200,
+    "name": "AEGISLASH BLADE",
+    "types": [
+      "steel",
+      "ghost"
+    ],
+    "gen": 6,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10026.png",
+    "categoria": "alternativa",
+    "especieBase": 681
+  },
+  {
+    "id": 1201,
+    "name": "ZACIAN CROWNED",
+    "types": [
+      "fairy",
+      "steel"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10188.png",
+    "categoria": "alternativa",
+    "especieBase": 888
+  },
+  {
+    "id": 1202,
+    "name": "ZAMAZENTA CROWNED",
+    "types": [
+      "fighting",
+      "steel"
+    ],
+    "gen": 8,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10189.png",
+    "categoria": "alternativa",
+    "especieBase": 889
+  },
+  {
+    "id": 1203,
+    "name": "TERAPAGOS TERASTAL",
+    "types": [
+      "normal"
+    ],
+    "gen": 9,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10276.png",
+    "categoria": "alternativa",
+    "especieBase": 1024
+  },
+  {
+    "id": 1204,
+    "name": "TERAPAGOS STELLAR",
+    "types": [
+      "normal"
+    ],
+    "gen": 9,
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10277.png",
+    "categoria": "alternativa",
+    "especieBase": 1024
   }
 ]

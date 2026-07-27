@@ -2012,8 +2012,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ha",
-      "community": 43,
-      "community_name": "qb",
+      "community": 29,
+      "community_name": "p",
       "norm_label": "ha()"
     },
     {
@@ -2023,8 +2023,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ia",
-      "community": 43,
-      "community_name": "qb",
+      "community": 29,
+      "community_name": "p",
       "norm_label": "ia()"
     },
     {
@@ -2111,8 +2111,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ta",
-      "community": 41,
-      "community_name": "kb",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "ta()"
     },
     {
@@ -2122,8 +2122,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ua",
-      "community": 41,
-      "community_name": "kb",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "ua()"
     },
     {
@@ -2155,8 +2155,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ya",
-      "community": 29,
-      "community_name": "p",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": "ya()"
     },
     {
@@ -2254,8 +2254,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_kb",
-      "community": 41,
-      "community_name": "kb",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "kb()"
     },
     {
@@ -2276,8 +2276,8 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_qb",
-      "community": 43,
-      "community_name": "qb",
+      "community": 29,
+      "community_name": "p",
       "norm_label": "qb()"
     },
     {
@@ -2287,8 +2287,8 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sb",
-      "community": 43,
-      "community_name": "qb",
+      "community": 29,
+      "community_name": "p",
       "norm_label": "sb()"
     },
     {
@@ -2419,8 +2419,8 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ab",
-      "community": 41,
-      "community_name": "kb",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "ab()"
     },
     {
@@ -2430,8 +2430,8 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_db",
-      "community": 41,
-      "community_name": "kb",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "db()"
     },
     {
@@ -2441,8 +2441,8 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_eb",
-      "community": 41,
-      "community_name": "kb",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "eb()"
     },
     {
@@ -2463,8 +2463,8 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_nb",
-      "community": 41,
-      "community_name": "kb",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "nb()"
     },
     {
@@ -2485,8 +2485,8 @@
       "source_location": "L87",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_t",
-      "community": 43,
-      "community_name": "qb",
+      "community": 29,
+      "community_name": "p",
       "norm_label": "t()"
     },
     {
@@ -2639,8 +2639,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh",
-      "community": 52,
-      "community_name": "Sh",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": "sh()"
     },
     {
@@ -2650,8 +2650,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_destroy",
-      "community": 52,
-      "community_name": "Sh",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".__destroy__()"
     },
     {
@@ -2947,8 +2947,8 @@
       "source_location": "L206",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_blockpolygon",
-      "community": 48,
-      "community_name": "M",
+      "community": 20,
+      "community_name": "O",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -3079,8 +3079,8 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_wordfontattributes",
-      "community": 17,
-      "community_name": "ji",
+      "community": 9,
+      "community_name": "L",
       "norm_label": ".wordfontattributes()"
     },
     {
@@ -3442,8 +3442,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_blockpolygon",
-      "community": 48,
-      "community_name": "M",
+      "community": 20,
+      "community_name": "O",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -3706,8 +3706,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai",
-      "community": 50,
-      "community_name": "ai",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": "ai()"
     },
     {
@@ -3717,8 +3717,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai_destroy",
-      "community": 50,
-      "community_name": "ai",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3948,8 +3948,8 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_t_destroy",
-      "community": 43,
-      "community_name": "qb",
+      "community": 29,
+      "community_name": "p",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3959,8 +3959,8 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_m",
-      "community": 48,
-      "community_name": "M",
+      "community": 20,
+      "community_name": "O",
       "norm_label": "m()"
     },
     {
@@ -3970,8 +3970,8 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_m_destroy",
-      "community": 48,
-      "community_name": "M",
+      "community": 20,
+      "community_name": "O",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4839,8 +4839,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_getvalue",
-      "community": 52,
-      "community_name": "Sh",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".getvalue()"
     },
     {
@@ -4861,8 +4861,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai_getvalue",
-      "community": 50,
-      "community_name": "ai",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".getvalue()"
     },
     {
@@ -5004,8 +5004,8 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getwordfontattributes",
-      "community": 17,
-      "community_name": "ji",
+      "community": 9,
+      "community_name": "L",
       "norm_label": ".getwordfontattributes()"
     },
     {
@@ -5191,8 +5191,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ya",
-      "community": 67,
-      "community_name": "Sh",
+      "community": 56,
+      "community_name": "p",
       "norm_label": "ya()"
     },
     {
@@ -9868,10 +9868,21 @@
       "norm_label": "task 13: re-investigar los otros 21 candidatos descartados con el criterio de arte"
     },
     {
-      "label": "Task 14: Actualizar `docs/variantes-criterio-investigacion.md` con el criterio nuevo",
+      "label": "Task 13b: Re-investigar Enamorus (Therian Forme) \u2014 corrige un hueco de la Tarea 13",
       "file_type": "document",
       "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
       "source_location": "L986",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_26_variantes_pokedex_task_13b_re_investigar_enamorus_therian_forme_corrige_un_hueco_de_la_tarea_13",
+      "community": 64,
+      "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 13b: re-investigar enamorus (therian forme) \u2014 corrige un hueco de la tarea 13"
+    },
+    {
+      "label": "Task 14: Actualizar `docs/variantes-criterio-investigacion.md` con el criterio nuevo",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L1039",
       "_origin": "ast",
       "id": "docs_superpowers_plans_2026_07_26_variantes_pokedex_task_14_actualizar_docs_variantes_criterio_investigacion_md_con_el_criterio_nuevo",
       "community": 64,
@@ -9882,7 +9893,7 @@
       "label": "Task 15: Re-ejecutar `fetch_variantes.js` con la lista final y verificar",
       "file_type": "document",
       "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
-      "source_location": "L1019",
+      "source_location": "L1072",
       "_origin": "ast",
       "id": "docs_superpowers_plans_2026_07_26_variantes_pokedex_task_15_re_ejecutar_fetch_variantes_js_con_la_lista_final_y_verificar",
       "community": 64,
@@ -9893,7 +9904,7 @@
       "label": "Self-Review del Addendum 2",
       "file_type": "document",
       "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
-      "source_location": "L1073",
+      "source_location": "L1126",
       "_origin": "ast",
       "id": "docs_superpowers_plans_2026_07_26_variantes_pokedex_self_review_del_addendum_2",
       "community": 64,
@@ -30503,7 +30514,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
-      "source_location": "L1073",
+      "source_location": "L1126",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_superpowers_plans_2026_07_26_variantes_pokedex_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_plan_de_implementaci\u00f3n",
@@ -30683,6 +30694,17 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_superpowers_plans_2026_07_26_variantes_pokedex_addendum_2_ampliar_el_criterio_de_formas_alternativas_a_arte_distinto",
+      "target": "docs_superpowers_plans_2026_07_26_variantes_pokedex_task_13b_re_investigar_enamorus_therian_forme_corrige_un_hueco_de_la_tarea_13",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
+      "source_location": "L1039",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_26_variantes_pokedex_addendum_2_ampliar_el_criterio_de_formas_alternativas_a_arte_distinto",
       "target": "docs_superpowers_plans_2026_07_26_variantes_pokedex_task_14_actualizar_docs_variantes_criterio_investigacion_md_con_el_criterio_nuevo",
       "confidence_score": 1.0
     },
@@ -30690,7 +30712,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/superpowers/plans/2026-07-26-variantes-pokedex.md",
-      "source_location": "L1019",
+      "source_location": "L1072",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_superpowers_plans_2026_07_26_variantes_pokedex_addendum_2_ampliar_el_criterio_de_formas_alternativas_a_arte_distinto",
@@ -31128,5 +31150,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "6cc2fdfc7d625f835013bcc59c67746604bbc190"
+  "built_at_commit": "9f1ee988b99d1c666651eba05fcd286dbdb20553"
 }

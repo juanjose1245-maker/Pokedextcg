@@ -983,6 +983,59 @@ git commit -m "Re-investigar candidatos descartados con el criterio de arte dist
 
 ---
 
+### Task 13b: Re-investigar Enamorus (Therian Forme) — corrige un hueco de la Tarea 13
+
+Al escribir la Tarea 13 este plan anunció "21 candidatos" pero solo enumeró 20 —
+Enamorus (Therian Forme) quedó afuera de la lista por error de quien escribió el plan,
+no de quien ejecutó la Tarea 13. La Tarea 14 lo detectó y lo documentó como hueco
+abierto en vez de inventar una investigación. Esta tarea lo cierra.
+
+**Files:**
+- Modify: `variantes_lista.json` (si se confirma)
+
+**Interfaces:**
+- Consumes: `pokemon_db.json`, `api.pokemontcg.io`.
+- Produces: entrada `"categoria": "alternativa"` para Enamorus Therian si se confirma
+  visualmente (mismo método de 3 pasos del Addendum 2), o ningún cambio si no.
+
+- [ ] **Step 1: Investigar con el mismo método visual que la Tarea 13**
+
+Buscar cartas de Enamorus en `api.pokemontcg.io/v2/cards?q=name:enamorus`, bajar y
+mirar las imágenes — ¿alguna muestra la forma Therian (a diferencia de la Incarnate,
+que es la que ya está en la base)? Landorus/Thundurus/Tornadus (la misma familia)
+fueron descartados en la Tarea 13 porque ninguna carta mostraba su forma Therian —
+confirmar si Enamorus sigue el mismo patrón o es la excepción.
+
+- [ ] **Step 2: Si se confirma, resolver especieBase y slug de PokeAPI** (verificar con
+  `curl` que el slug realmente devuelve `official-artwork`, no solo que resuelve)
+
+- [ ] **Step 3: Agregar a `variantes_lista.json` si corresponde, o dejarlo sin cambios**
+
+- [ ] **Step 4: Verificar**
+
+```bash
+python3 -c "
+import json
+lista = json.load(open('variantes_lista.json'))
+nombres = [e['nombrePokeAPI'] for e in lista]
+assert len(nombres) == len(set(nombres))
+print(f'OK: {len(lista)} entradas totales')
+"
+```
+
+- [ ] **Step 5: Actualizar `docs/variantes-criterio-investigacion.md`** — mover la fila
+  de Enamorus de "hueco sin investigar" a la tabla que corresponda (confirmada o
+  genuinamente descartada), con la evidencia (o falta de ella) encontrada.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add variantes_lista.json docs/variantes-criterio-investigacion.md
+git commit -m "Re-investigar Enamorus Therian con el criterio de arte (corrige hueco de la Tarea 13)"
+```
+
+---
+
 ### Task 14: Actualizar `docs/variantes-criterio-investigacion.md` con el criterio nuevo
 
 **Files:**

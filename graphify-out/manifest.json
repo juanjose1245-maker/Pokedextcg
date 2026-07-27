@@ -1,186 +1,176 @@
 {
-  ".claude/settings.local.json": {
-    "mtime": 1785192448.7954516,
-    "ast_hash": "c86853a02e2bc3f4cd7aa9b323993c9e",
-    "semantic_hash": ""
-  },
   "carpetas.json": {
-    "mtime": 1785080120.1278086,
+    "mtime": 1785192683.7263474,
     "ast_hash": "96623d64ad2532609acdc837e930fd19",
     "semantic_hash": ""
   },
   "fetch_pokemon.js": {
-    "mtime": 1784838743.8491464,
+    "mtime": 1785192683.7299807,
     "ast_hash": "4f6da2b9c40eaa0c2ed98b250488f088",
     "semantic_hash": ""
   },
   "inventario.backup-2026-07-19T16-49-14-701Z.json": {
-    "mtime": 1784838743.8491464,
+    "mtime": 1785192683.7333474,
     "ast_hash": "9a24b4fb93c7fa52851e70faad9ee851",
     "semantic_hash": ""
   },
   "inventario.json": {
-    "mtime": 1784861719.1648662,
+    "mtime": 1785192683.7343473,
     "ast_hash": "9ff12133e6d050fa542a56ad9d4387e6",
     "semantic_hash": ""
   },
   "migrar-carpetas-a-bulk.js": {
-    "mtime": 1784838743.8501465,
+    "mtime": 1785192683.7343473,
     "ast_hash": "f612f29a8f476438e5cc1c465ff1d9ce",
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1785013088.4359846,
+    "mtime": 1785192683.7343473,
     "ast_hash": "aa52a343c2a6ba70b373460027ac38f6",
     "semantic_hash": ""
   },
   "pokemon_db.json": {
-    "mtime": 1785176392.762342,
+    "mtime": 1785192683.7353473,
     "ast_hash": "7046eba43505f99079bd62de7b5ca7a9",
     "semantic_hash": ""
   },
   "public/app.js": {
-    "mtime": 1785085141.1897743,
+    "mtime": 1785192683.7353473,
     "ast_hash": "e1de9842d08c55597339ad7a856de14c",
     "semantic_hash": ""
   },
   "public/manifest.json": {
-    "mtime": 1784838743.8541465,
+    "mtime": 1785192683.7381363,
     "ast_hash": "22c3ef11d671b44292e0aa9b583c42bc",
     "semantic_hash": ""
   },
   "public/sw.js": {
-    "mtime": 1785097759.4476125,
+    "mtime": 1785192683.7383473,
     "ast_hash": "e5be316f3005ce4ba087ac8a7d999b00",
     "semantic_hash": ""
   },
   "public/vendor/tesseract/tesseract-core-lstm.wasm.js": {
-    "mtime": 1784838743.8811464,
+    "mtime": 1785192683.7533472,
     "ast_hash": "486dab5655805bd39d7f98f104d09885",
     "semantic_hash": ""
   },
   "public/vendor/tesseract/tesseract-core-simd-lstm.wasm.js": {
-    "mtime": 1784838743.9091463,
+    "mtime": 1785192683.770347,
     "ast_hash": "ca8abab53ef47a8422004081fb942a39",
     "semantic_hash": ""
   },
   "public/vendor/tesseract/tesseract.min.js": {
-    "mtime": 1784838743.9101465,
+    "mtime": 1785192683.770347,
     "ast_hash": "762c42567bee631741908f3541ebf1c2",
     "semantic_hash": ""
   },
   "public/vendor/tesseract/worker.min.js": {
-    "mtime": 1784838743.9101465,
+    "mtime": 1785192683.771347,
     "ast_hash": "65249fe45d712ea365c37080f19904a2",
     "semantic_hash": ""
   },
   "server.js": {
-    "mtime": 1785080049.477605,
-    "ast_hash": "9e6e22f346a3c557de4967e3a980ed49",
+    "mtime": 1785192791.5958405,
+    "ast_hash": "7f5bb3e1e3842686a9d7b28dcc242136",
     "semantic_hash": ""
   },
   "update_script.sh": {
-    "mtime": 1784838743.9111464,
+    "mtime": 1785192683.7723472,
     "ast_hash": "1d7c4ce02d8483778205480455dc1565",
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1785176392.7573419,
+    "mtime": 1785192683.7263474,
     "ast_hash": "d27bd83982d1a738d68a4de7767f8ee1",
     "semantic_hash": ""
   },
   "docs/superpowers/plans/2026-07-25-carpetas-todas-seguidas.md": {
-    "mtime": 1785020580.997161,
+    "mtime": 1785192683.7282639,
     "ast_hash": "4aed979f438be678bb1430b36df89301",
     "semantic_hash": ""
   },
   "docs/superpowers/specs/2026-07-25-carpetas-todas-seguidas-design.md": {
-    "mtime": 1785020077.5132327,
+    "mtime": 1785192683.728731,
     "ast_hash": "efd5632f857cb72bf6d1100973dbc101",
     "semantic_hash": ""
   },
   "public/index.html": {
-    "mtime": 1785085123.4923182,
+    "mtime": 1785192683.7381363,
     "ast_hash": "265c4745055e9e661a33d79b981562c7",
     "semantic_hash": ""
   },
   "public/icons/pokeball-120.png": {
-    "mtime": 1784838743.8521464,
+    "mtime": 1785192683.7374108,
     "ast_hash": "aff6f0e59c68a09f3c41cd522c0fab96",
     "semantic_hash": ""
   },
   "public/icons/pokeball-152.png": {
-    "mtime": 1784838743.8521464,
+    "mtime": 1785192683.7381363,
     "ast_hash": "21f04b44613cadae16b3ca36796f6745",
     "semantic_hash": ""
   },
   "public/icons/pokeball-180.png": {
-    "mtime": 1784838743.8521464,
+    "mtime": 1785192683.7381363,
     "ast_hash": "cc14c53eda6e94d51163543f3554e2d3",
     "semantic_hash": ""
   },
   "public/icons/pokeball-192.png": {
-    "mtime": 1784838743.8521464,
+    "mtime": 1785192683.7381363,
     "ast_hash": "667b4240a647db726a82795fe9039c23",
     "semantic_hash": ""
   },
   "public/icons/pokeball-512.png": {
-    "mtime": 1784838743.8541465,
+    "mtime": 1785192683.7381363,
     "ast_hash": "112a43a8f1c4949266852999447b0340",
     "semantic_hash": ""
   },
   "public/icons/pokeball-96.png": {
-    "mtime": 1784838743.8541465,
+    "mtime": 1785192683.7381363,
     "ast_hash": "bf7daab1a0ada710112c2e5f3e997993",
     "semantic_hash": ""
   },
   "docs/superpowers/plans/2026-07-26-ajustes-navegacion.md": {
-    "mtime": 1785084150.659434,
+    "mtime": 1785192683.728731,
     "ast_hash": "02694ef601b1cf8b5a2bb21ac7d67a46",
     "semantic_hash": ""
   },
   "docs/superpowers/specs/2026-07-26-ajustes-navegacion-design.md": {
-    "mtime": 1785083806.9653904,
+    "mtime": 1785192683.7299807,
     "ast_hash": "dbb31c71a9f7fd42507f152baa98914e",
     "semantic_hash": ""
   },
   "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md": {
-    "mtime": 1785178320.1480339,
+    "mtime": 1785192683.7299807,
     "ast_hash": "f79dd9c532e9e6b59155639841ad9b71",
     "semantic_hash": ""
   },
   "docs/superpowers/plans/2026-07-26-variantes-pokedex.md": {
-    "mtime": 1785176392.7583418,
+    "mtime": 1785192683.728731,
     "ast_hash": "dc4d569f89d88deffb88e8016b4a0af7",
     "semantic_hash": ""
   },
   "variantes_lista.json": {
-    "mtime": 1785176392.762342,
+    "mtime": 1785192683.7723472,
     "ast_hash": "991c25d9e2a3cf727981bbbfe90896b1",
     "semantic_hash": ""
   },
   "fetch_variantes.js": {
-    "mtime": 1785176392.7583418,
+    "mtime": 1785192683.7299807,
     "ast_hash": "748f78753112b428e1328ee1afdbdeb4",
     "semantic_hash": ""
   },
   "docs/variantes-criterio-investigacion.md": {
-    "mtime": 1785176392.7583418,
+    "mtime": 1785192683.7299807,
     "ast_hash": "a5c3e66417d28de18ff0b5b68063af46",
     "semantic_hash": ""
   },
-  ".claude/settings.json": {
-    "mtime": 1785079008.1369622,
-    "ast_hash": "8e354e95633a2e8f9b91523377f1968c",
-    "semantic_hash": ""
-  },
   "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md": {
-    "mtime": 1785179098.203143,
+    "mtime": 1785192683.7299807,
     "ast_hash": "ab035a725932ec1c4246ad267b76dbde",
     "semantic_hash": ""
   },
   "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md": {
-    "mtime": 1785185122.6320498,
+    "mtime": 1785192683.728731,
     "ast_hash": "2b125df85d21b66cfa94ffdc40ffbc2d",
     "semantic_hash": ""
   }

@@ -1,16 +1,16 @@
-# Graph Report - pokedex-tcg  (2026-07-27)
+# Graph Report - variantes-fase2-tracking  (2026-07-27)
 
 ## Corpus Check
-- 30 files · ~92,034 words
+- 28 files · ~92,309 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 967 nodes · 1828 edges · 70 communities (37 shown, 33 thin omitted)
-- Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 220 edges (avg confidence: 0.57)
+- 974 nodes · 1839 edges · 75 communities (41 shown, 34 thin omitted)
+- Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 221 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1e240975`
+- Built from commit: `8ddbb325`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -85,6 +85,11 @@
 - Sh
 - Fase 2 — Selección de categorías de variantes (núcleo de tracking) — Plan de implementación
 - p
+- escribirJSONAtomico
+- carpetasConfigValida
+- p
+- sesionValida
+- CATEGORIAS_VARIANTES
 
 ## God Nodes (most connected - your core abstractions)
 1. `V()` - 66 edges
@@ -103,41 +108,41 @@
   server.js → public/vendor/tesseract/worker.min.js
 - `carpetasConfigValida()` --indirect_call--> `g()`  [INFERRED]
   server.js → public/vendor/tesseract/worker.min.js
+- `pokemonEfectivo()` --indirect_call--> `v()`  [INFERRED]
+  server.js → public/vendor/tesseract/worker.min.js
 - `generarPDFRecortables()` --indirect_call--> `x()`  [INFERRED]
   server.js → public/vendor/tesseract/worker.min.js
-- `precargarTodasLasGens()` --indirect_call--> `r()`  [INFERRED]
-  public/app.js → public/vendor/tesseract/tesseract.min.js
 - `renderSidebar()` --indirect_call--> `g()`  [INFERRED]
   public/app.js → public/vendor/tesseract/worker.min.js
 
 ## Import Cycles
 - None detected.
 
-## Communities (70 total, 33 thin omitted)
+## Communities (75 total, 34 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
-Nodes (53): A(), b(), c(), e(), f(), G(), h(), i() (+45 more)
+Nodes (54): precargarTodasLasGens(), A(), b(), c(), e(), f(), G(), h() (+46 more)
 
 ### Community 2 - "app.js"
 Cohesion: 0.06
-Nodes (41): abrirLoginModal(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirWizardCarpetas(), actualizarBotonSesion(), aplicarTema(), cachePokemon, calcularJalon() (+33 more)
+Nodes (43): abrirLoginModal(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirWizardCarpetas(), actualizarBotonSesion(), aplicarTema(), cachePokemon, calcularJalon() (+35 more)
 
 ### Community 3 - "server.js"
-Cohesion: 0.05
-Nodes (38): x(), app, CARPETA_CACHE, CARPETA_RESPALDOS, CARPETAS_DEFAULT, carpetasConfig, carpetasConfigValida(), clientes (+30 more)
+Cohesion: 0.06
+Nodes (24): app, CARPETA_CACHE, CARPETA_RESPALDOS, CARPETAS_DEFAULT, carpetasConfig, clientes, CORTES_GEN, crypto (+16 more)
 
 ### Community 6 - "tesseract-core-lstm.wasm.js"
 Cohesion: 0.07
-Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
+Nodes (16): ci(), Da(), fi(), gb(), gi(), hb(), Kh(), R() (+8 more)
 
 ### Community 7 - "tesseract-core-simd-lstm.wasm.js"
 Cohesion: 0.07
-Nodes (16): ci(), Da(), fi(), gb(), gi(), hb(), Kh(), R() (+8 more)
+Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
 ### Community 10 - "esDesktop"
-Cohesion: 0.19
-Nodes (22): actualizarBotonesModo(), actualizarTarjetaProgreso(), actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cerrarGaleriaYVolver() (+14 more)
+Cohesion: 0.24
+Nodes (19): actualizarBotonesModo(), actualizarTarjetaProgreso(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cerrarGaleriaYVolver(), esDesktop(), fetchGenSegura() (+11 more)
 
 ### Community 11 - "wizardCapacidadSiguiente"
 Cohesion: 0.14
@@ -149,7 +154,11 @@ Nodes (18): express, node-fetch, author, dependencies, express, node-fetch, pdfk
 
 ### Community 15 - "renderGaleria"
 Cohesion: 0.18
-Nodes (19): actualizarBotonEstado(), actualizarGalleryHeader(), agregarAlHistorial(), carpetaDe(), clearSearchTimer(), detenerCamara(), getFechaRegistro(), gridActivo() (+11 more)
+Nodes (18): actualizarBotonEstado(), actualizarGalleryHeader(), agregarAlHistorial(), carpetaDe(), clearSearchTimer(), detenerCamara(), getFechaRegistro(), gridActivo() (+10 more)
+
+### Community 17 - "ji"
+Cohesion: 0.15
+Nodes (3): hi(), ji(), Ya()
 
 ### Community 19 - "Modo "Todas seguidas" para configuración de carpetas"
 Cohesion: 0.11
@@ -176,16 +185,16 @@ Cohesion: 0.32
 Nodes (12): actualizarBadgePendientes(), calcularIdsPendientesSilencioso(), cargarEstadisticasSinMoverScroll(), claveFechaLS(), claveLS(), ejecutarToggleStatus(), getFechaISO(), guardarFechaRegistro() (+4 more)
 
 ### Community 27 - "mostrarToastError"
-Cohesion: 0.23
-Nodes (12): cargarCarpetasConfig(), cerrarWizardCarpetas(), descargarListaFaltantes(), descargarRecortablesPDF(), exportarColeccion(), fetchRangoSegura(), formatearRango(), hexToRgba() (+4 more)
+Cohesion: 0.22
+Nodes (13): actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), cerrarWizardCarpetas(), descargarListaFaltantes(), descargarRecortablesPDF(), exportarColeccion(), fetchRangoSegura(), manejarArchivoImportar() (+5 more)
 
 ### Community 28 - "d"
 Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 29 - "p"
-Cohesion: 0.22
-Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
+Cohesion: 0.50
+Nodes (5): e(), Ma(), Na(), Oa(), Pa()
 
 ### Community 32 - "manifest.json"
 Cohesion: 0.22
@@ -220,8 +229,8 @@ Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 56 - "p"
-Cohesion: 0.50
-Nodes (5): e(), Ma(), Na(), Oa(), Pa()
+Cohesion: 0.22
+Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
 
 ### Community 57 - "Reorganizar accesos rápidos y agrupar "Ajustes" — Plan de implementación"
 Cohesion: 0.22
@@ -255,33 +264,45 @@ Nodes (24): Addendum 2 — ampliar el criterio de "formas alternativas" a arte d
 Cohesion: 0.50
 Nodes (4): buscarImagenesDuplicadas(), crypto, fetchVariantes(), fs
 
-### Community 67 - "Sh"
-Cohesion: 0.15
-Nodes (3): hi(), ji(), Ya()
-
 ### Community 68 - "Fase 2 — Selección de categorías de variantes (núcleo de tracking) — Plan de implementación"
 Cohesion: 0.20
 Nodes (9): Fase 2 — Selección de categorías de variantes (núcleo de tracking) — Plan de implementación, Global Constraints, Limitación conocida (no cubierta por este plan), Self-Review (hecho al escribir este plan), Task 1: `variantes-config.json` + vista derivada `pokemonEfectivo()` en el servidor, Task 2: Endpoints `/api/variantes-config` + integrar `pokemonEfectivo()` en `/api/buscar` y `/api/estadisticas`, Task 3: Corregir la numeración de variantes en galería/ficha + badge de categoría, Task 4: Panel "Variantes" en Ajustes (+1 more)
 
+### Community 69 - "p"
+Cohesion: 0.33
+Nodes (6): x(), descargarImagen(), generarPDFRecortables(), mapConcurrencia(), PDFDocument, sharp
+
+### Community 70 - "escribirJSONAtomico"
+Cohesion: 0.40
+Nodes (5): escribirJSONAtomico(), guardarCarpetasConfig(), guardarInventario(), guardarVariantesConfig(), respaldoAutomatico()
+
+### Community 71 - "carpetasConfigValida"
+Cohesion: 0.50
+Nodes (4): carpetasConfigValida(), nombresUnicos(), pokemonEfectivo(), pokemonPorGens()
+
+### Community 73 - "sesionValida"
+Cohesion: 0.67
+Nodes (3): parsearCookies(), requiereLogin(), sesionValida()
+
 ## Knowledge Gaps
-- **167 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+162 more)
+- **169 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+164 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **33 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **34 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `g()` connect `worker.min.js` to `server.js`, `esDesktop`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
-  _High betweenness centrality (0.210) - this node is a cross-community bridge._
-- **Why does `a()` connect `worker.min.js` to `p`, `A`, `qb`, `A`, `qb`, `p`?**
-  _High betweenness centrality (0.202) - this node is a cross-community bridge._
-- **Why does `A()` connect `A` to `worker.min.js`, `Sh`, `p`, `K`, `tesseract-core-simd-lstm.wasm.js`, `Q`, `J`, `di`, `d`, `Lh`, `kb`, `qb`?**
+- **Why does `g()` connect `worker.min.js` to `carpetasConfigValida`, `esDesktop`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
+  _High betweenness centrality (0.206) - this node is a cross-community bridge._
+- **Why does `a()` connect `worker.min.js` to `p`, `A`, `qb`, `A`, `p`, `qb`?**
+  _High betweenness centrality (0.203) - this node is a cross-community bridge._
+- **Why does `A()` connect `A` to `worker.min.js`, `Sh`, `K`, `tesseract-core-simd-lstm.wasm.js`, `Q`, `J`, `di`, `d`, `Lh`, `p`, `kb`, `qb`?**
   _High betweenness centrality (0.100) - this node is a cross-community bridge._
 - **What connects `fs`, `fs`, `crypto` to the rest of the system?**
-  _167 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _169 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `worker.min.js` be split into smaller, more focused modules?**
+  _Cohesion score 0.14732142857142858 - nodes in this community are weakly interconnected._
 - **Should `app.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.05735430157261795 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05612244897959184 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.05272895467160037 - nodes in this community are weakly interconnected._
-- **Should `V` be split into smaller, more focused modules?**
-  _Cohesion score 0.07007575757575757 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.058823529411764705 - nodes in this community are weakly interconnected._

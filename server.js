@@ -95,12 +95,74 @@ function modoValido(modo) {
     return modo === 'bulk' || modo === 'carpetas';
 }
 
+// ── CONFIGURACIÓN DE VARIANTES (Ajustes → Variantes) ────────────────
+// Qué categorías de variantes (formas regionales, Mega, Regresión Primigenia,
+// Gigamax, alternativas) cuentan como cartas propias — configuración global,
+// afecta tanto bulk como carpetas por igual. Todas arrancan en `false`: cero
+// cambio de comportamiento para quien no toca nada en Ajustes.
+const CATEGORIAS_VARIANTES = ['regional', 'mega', 'primigenia', 'gigamax', 'alternativa'];
+
+function variantesConfigValida(candidato) {
+    if (!candidato || typeof candidato !== 'object' || Array.isArray(candidato)) return false;
+    const claves = Object.keys(candidato);
+    if (claves.length !== CATEGORIAS_VARIANTES.length) return false;
+    return CATEGORIAS_VARIANTES.every(cat => typeof candidato[cat] === 'boolean');
+}
+
+let variantesConfig = Object.fromEntries(CATEGORIAS_VARIANTES.map(c => [c, false]));
+if (fs.existsSync('variantes-config.json')) {
+    try {
+        const raw = JSON.parse(fs.readFileSync('variantes-config.json', 'utf8'));
+        if (variantesConfigValida(raw)) variantesConfig = raw;
+        else console.warn('⚠️  variantes-config.json inválido, usando todas las categorías desactivadas.');
+    } catch (err) {
+        console.error('⚠️  variantes-config.json corrupto, usando todas las categorías desactivadas:', err.message);
+    }
+}
+function guardarVariantesConfig() {
+    escribirJSONAtomico('variantes-config.json', variantesConfig);
+}
+
+// especieBase (1–1025) -> variantes[], en el mismo orden en que aparecen en
+// pokemon_db.json. Se calcula una sola vez: pokemonDB no cambia en caliente.
+const variantesPorBase = new Map();
+for (const p of pokemonDB) {
+    if (p.id <= 1025) continue;
+    if (!variantesPorBase.has(p.especieBase)) variantesPorBase.set(p.especieBase, []);
+    variantesPorBase.get(p.especieBase).push(p);
+}
+
+// Ancla de un Pokémon a un id de especie base (1–1025): el suyo propio si ya
+// es base, o el de su especie base si es una variante (id siempre >= 1026).
+// Sirve para decidir a qué carpeta/rango pertenece una variante en modo
+// "seguidas", donde los rangos se definen sobre 1–1025.
+function anclaId(p) {
+    return p.id <= 1025 ? p.id : p.especieBase;
+}
+
+// Base (1025) + solo las variantes de categorías activas, cada una
+// intercalada justo después de su especie base — así el orden de
+// galería/carpeta/búsqueda las agrupa junto a su base sin que el cliente
+// tenga que reordenar nada.
+function pokemonEfectivo() {
+    const activas = new Set(CATEGORIAS_VARIANTES.filter(cat => variantesConfig[cat]));
+    const resultado = [];
+    for (const p of pokemonDB) {
+        if (p.id > 1025) continue;
+        resultado.push(p);
+        for (const v of variantesPorBase.get(p.id) || []) {
+            if (activas.has(v.categoria)) resultado.push(v);
+        }
+    }
+    return resultado;
+}
+
 // ── CONFIGURACIÓN DE CARPETAS (wizard) ──────────────────────────────
 // Antes eran 4 carpetas fijas hardcodeadas (Azul/Morada/Rosa/Roja); ahora
 // vive en disco y es configurable desde la app (Ajustes → Configurar
 // carpetas), para que cualquier dispositivo vea la misma agrupación.
 function pokemonPorGens(gens) {
-    return pokemonDB.filter(p => gens.includes(p.gen)).length;
+    return pokemonEfectivo().filter(p => gens.includes(p.gen)).length;
 }
 const CARPETAS_DEFAULT = [
     { nombre: 'Azul',   color: '#3b5bdb', gens: [1, 2],    espacios: pokemonPorGens([1, 2]) },

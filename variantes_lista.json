@@ -145,5 +145,24 @@
   { "nombrePokeAPI": "copperajah-gmax", "categoria": "gigamax", "especieBase": 879 },
   { "nombrePokeAPI": "duraludon-gmax", "categoria": "gigamax", "especieBase": 884 },
   { "nombrePokeAPI": "urshifu-single-strike-gmax", "categoria": "gigamax", "especieBase": 892 },
-  { "nombrePokeAPI": "urshifu-rapid-strike-gmax", "categoria": "gigamax", "especieBase": 892 }
+  { "nombrePokeAPI": "urshifu-rapid-strike-gmax", "categoria": "gigamax", "especieBase": 892 },
+
+  { "nombrePokeAPI": "deoxys-attack", "categoria": "alternativa", "especieBase": 386 },
+  { "nombrePokeAPI": "deoxys-defense", "categoria": "alternativa", "especieBase": 386 },
+  { "nombrePokeAPI": "deoxys-speed", "categoria": "alternativa", "especieBase": 386 },
+  { "nombrePokeAPI": "rotom-heat", "categoria": "alternativa", "especieBase": 479 },
+  { "nombrePokeAPI": "rotom-wash", "categoria": "alternativa", "especieBase": 479 },
+  { "nombrePokeAPI": "rotom-frost", "categoria": "alternativa", "especieBase": 479 },
+  { "nombrePokeAPI": "rotom-fan", "categoria": "alternativa", "especieBase": 479 },
+  { "nombrePokeAPI": "rotom-mow", "categoria": "alternativa", "especieBase": 479 },
+  { "nombrePokeAPI": "kyurem-black", "categoria": "alternativa", "especieBase": 646 },
+  { "nombrePokeAPI": "kyurem-white", "categoria": "alternativa", "especieBase": 646 },
+  { "nombrePokeAPI": "necrozma-dusk", "categoria": "alternativa", "especieBase": 800 },
+  { "nombrePokeAPI": "necrozma-dawn", "categoria": "alternativa", "especieBase": 800 },
+  { "nombrePokeAPI": "necrozma-ultra", "categoria": "alternativa", "especieBase": 800 },
+  { "nombrePokeAPI": "wormadam-sandy", "categoria": "alternativa", "especieBase": 413 },
+  { "nombrePokeAPI": "wormadam-trash", "categoria": "alternativa", "especieBase": 413 },
+  { "nombrePokeAPI": "calyrex-ice", "categoria": "alternativa", "especieBase": 898 },
+  { "nombrePokeAPI": "calyrex-shadow", "categoria": "alternativa", "especieBase": 898 },
+  { "nombrePokeAPI": "urshifu-rapid-strike", "categoria": "alternativa", "especieBase": 892 }
 ]

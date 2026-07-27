@@ -169,5 +169,8 @@
   { "nombrePokeAPI": "ursaluna-bloodmoon", "categoria": "alternativa", "especieBase": 901 },
   { "nombrePokeAPI": "ogerpon-hearthflame-mask", "categoria": "alternativa", "especieBase": 1017 },
   { "nombrePokeAPI": "ogerpon-wellspring-mask", "categoria": "alternativa", "especieBase": 1017 },
-  { "nombrePokeAPI": "ogerpon-cornerstone-mask", "categoria": "alternativa", "especieBase": 1017 }
+  { "nombrePokeAPI": "ogerpon-cornerstone-mask", "categoria": "alternativa", "especieBase": 1017 },
+  { "nombrePokeAPI": "castform-sunny", "categoria": "alternativa", "especieBase": 351 },
+  { "nombrePokeAPI": "castform-rainy", "categoria": "alternativa", "especieBase": 351 },
+  { "nombrePokeAPI": "castform-snowy", "categoria": "alternativa", "especieBase": 351 }
 ]

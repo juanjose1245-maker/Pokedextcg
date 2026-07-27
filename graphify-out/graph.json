@@ -5026,7 +5026,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_xa",
-      "community": 31,
+      "community": 56,
       "community_name": "p",
       "norm_label": "xa()"
     },
@@ -5070,7 +5070,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_p",
-      "community": 31,
+      "community": 56,
       "community_name": "p",
       "norm_label": "p()"
     },
@@ -5246,8 +5246,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_gb",
-      "community": 7,
-      "community_name": "tesseract-core-simd-lstm.wasm.js",
+      "community": 56,
+      "community_name": "p",
       "norm_label": "gb()"
     },
     {
@@ -5257,8 +5257,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_hb",
-      "community": 7,
-      "community_name": "tesseract-core-simd-lstm.wasm.js",
+      "community": 56,
+      "community_name": "p",
       "norm_label": "hb()"
     },
     {
@@ -5675,8 +5675,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_sh",
-      "community": 67,
-      "community_name": "Sh",
+      "community": 31,
+      "community_name": "p",
       "norm_label": "sh()"
     },
     {
@@ -5686,8 +5686,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_sh_destroy",
-      "community": 67,
-      "community_name": "Sh",
+      "community": 31,
+      "community_name": "p",
       "norm_label": ".__destroy__()"
     },
     {
@@ -5708,8 +5708,8 @@
       "source_location": "L201",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_k_begindocument",
-      "community": 13,
-      "community_name": "J",
+      "community": 38,
+      "community_name": "K",
       "norm_label": ".begindocument()"
     },
     {
@@ -6027,8 +6027,8 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_rowattributes",
-      "community": 30,
-      "community_name": "d",
+      "community": 67,
+      "community_name": "Sh",
       "norm_label": ".rowattributes()"
     },
     {
@@ -6115,8 +6115,8 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_wordfontattributes",
-      "community": 1,
-      "community_name": "O",
+      "community": 67,
+      "community_name": "Sh",
       "norm_label": ".wordfontattributes()"
     },
     {
@@ -6434,8 +6434,8 @@
       "source_location": "L217",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_boundingbox",
-      "community": 1,
-      "community_name": "O",
+      "community": 67,
+      "community_name": "Sh",
       "norm_label": ".boundingbox()"
     },
     {
@@ -6511,8 +6511,8 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_baseline",
-      "community": 1,
-      "community_name": "O",
+      "community": 67,
+      "community_name": "Sh",
       "norm_label": ".baseline()"
     },
     {
@@ -6632,7 +6632,7 @@
       "source_location": "L224",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_p_destroy",
-      "community": 31,
+      "community": 56,
       "community_name": "p",
       "norm_label": ".__destroy__()"
     },
@@ -6654,8 +6654,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_begindocument",
-      "community": 13,
-      "community_name": "J",
+      "community": 40,
+      "community_name": "Q",
       "norm_label": ".begindocument()"
     },
     {
@@ -6863,8 +6863,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_di_get_script_id_from_name",
-      "community": 13,
-      "community_name": "J",
+      "community": 46,
+      "community_name": "di",
       "norm_label": ".get_script_id_from_name()"
     },
     {
@@ -7875,8 +7875,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_sh_getvalue",
-      "community": 67,
-      "community_name": "Sh",
+      "community": 31,
+      "community_name": "p",
       "norm_label": ".getvalue()"
     },
     {
@@ -7952,8 +7952,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ji_i32",
-      "community": 1,
-      "community_name": "O",
+      "community": 67,
+      "community_name": "Sh",
       "norm_label": ".i32()"
     },
     {
@@ -7963,8 +7963,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ji_f32",
-      "community": 30,
-      "community_name": "d",
+      "community": 67,
+      "community_name": "Sh",
       "norm_label": ".f32()"
     },
     {
@@ -7996,8 +7996,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ji_get",
-      "community": 1,
-      "community_name": "O",
+      "community": 67,
+      "community_name": "Sh",
       "norm_label": ".get()"
     },
     {
@@ -8007,8 +8007,8 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_getboundingbox",
-      "community": 1,
-      "community_name": "O",
+      "community": 67,
+      "community_name": "Sh",
       "norm_label": ".getboundingbox()"
     },
     {
@@ -8018,8 +8018,8 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_getbaseline",
-      "community": 1,
-      "community_name": "O",
+      "community": 67,
+      "community_name": "Sh",
       "norm_label": ".getbaseline()"
     },
     {
@@ -8029,8 +8029,8 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_getrowattributes",
-      "community": 30,
-      "community_name": "d",
+      "community": 67,
+      "community_name": "Sh",
       "norm_label": ".getrowattributes()"
     },
     {
@@ -8040,8 +8040,8 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_getwordfontattributes",
-      "community": 1,
-      "community_name": "O",
+      "community": 67,
+      "community_name": "Sh",
       "norm_label": ".getwordfontattributes()"
     },
     {
@@ -10319,21 +10319,54 @@
       "norm_label": "criterio de inclusion"
     },
     {
-      "label": "Lista de candidatos investigados y descartados",
+      "label": "Historial del criterio",
       "file_type": "document",
       "source_file": "docs/variantes-criterio-investigacion.md",
-      "source_location": "L13",
+      "source_location": "L14",
       "_origin": "ast",
-      "id": "docs_variantes_criterio_investigacion_lista_de_candidatos_investigados_y_descartados",
+      "id": "docs_variantes_criterio_investigacion_historial_del_criterio",
       "community": 62,
       "community_name": "Criterio de investigaci\u00f3n: variantes de Pok\u00e9mon con carta TCG propia",
-      "norm_label": "lista de candidatos investigados y descartados"
+      "norm_label": "historial del criterio"
+    },
+    {
+      "label": "Evidencia positiva (formas incluidas)",
+      "file_type": "document",
+      "source_file": "docs/variantes-criterio-investigacion.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "docs_variantes_criterio_investigacion_evidencia_positiva_formas_incluidas",
+      "community": 62,
+      "community_name": "Criterio de investigaci\u00f3n: variantes de Pok\u00e9mon con carta TCG propia",
+      "norm_label": "evidencia positiva (formas incluidas)"
+    },
+    {
+      "label": "Formas investigadas y descartadas",
+      "file_type": "document",
+      "source_file": "docs/variantes-criterio-investigacion.md",
+      "source_location": "L66",
+      "_origin": "ast",
+      "id": "docs_variantes_criterio_investigacion_formas_investigadas_y_descartadas",
+      "community": 62,
+      "community_name": "Criterio de investigaci\u00f3n: variantes de Pok\u00e9mon con carta TCG propia",
+      "norm_label": "formas investigadas y descartadas"
+    },
+    {
+      "label": "Formas confirmadas por arte pero bloqueadas por falta de datos en PokeAPI",
+      "file_type": "document",
+      "source_file": "docs/variantes-criterio-investigacion.md",
+      "source_location": "L91",
+      "_origin": "ast",
+      "id": "docs_variantes_criterio_investigacion_formas_confirmadas_por_arte_pero_bloqueadas_por_falta_de_datos_en_pokeapi",
+      "community": 62,
+      "community_name": "Criterio de investigaci\u00f3n: variantes de Pok\u00e9mon con carta TCG propia",
+      "norm_label": "formas confirmadas por arte pero bloqueadas por falta de datos en pokeapi"
     },
     {
       "label": "Notas",
       "file_type": "document",
       "source_file": "docs/variantes-criterio-investigacion.md",
-      "source_location": "L42",
+      "source_location": "L109",
       "_origin": "ast",
       "id": "docs_variantes_criterio_investigacion_notas",
       "community": 62,
@@ -31042,25 +31075,58 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/variantes-criterio-investigacion.md",
-      "source_location": "L13",
+      "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_variantes_criterio_investigacion_criterio_de_investigaci\u00f3n_variantes_de_pok\u00e9mon_con_carta_tcg_propia",
-      "target": "docs_variantes_criterio_investigacion_lista_de_candidatos_investigados_y_descartados",
+      "target": "docs_variantes_criterio_investigacion_evidencia_positiva_formas_incluidas",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/variantes-criterio-investigacion.md",
-      "source_location": "L42",
+      "source_location": "L91",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_variantes_criterio_investigacion_criterio_de_investigaci\u00f3n_variantes_de_pok\u00e9mon_con_carta_tcg_propia",
+      "target": "docs_variantes_criterio_investigacion_formas_confirmadas_por_arte_pero_bloqueadas_por_falta_de_datos_en_pokeapi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/variantes-criterio-investigacion.md",
+      "source_location": "L66",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_variantes_criterio_investigacion_criterio_de_investigaci\u00f3n_variantes_de_pok\u00e9mon_con_carta_tcg_propia",
+      "target": "docs_variantes_criterio_investigacion_formas_investigadas_y_descartadas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/variantes-criterio-investigacion.md",
+      "source_location": "L109",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_variantes_criterio_investigacion_criterio_de_investigaci\u00f3n_variantes_de_pok\u00e9mon_con_carta_tcg_propia",
       "target": "docs_variantes_criterio_investigacion_notas",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/variantes-criterio-investigacion.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_variantes_criterio_investigacion_criterio_de_inclusi\u00f3n",
+      "target": "docs_variantes_criterio_investigacion_historial_del_criterio",
+      "confidence_score": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "bdc12820fd39e7371b729a7ea42558fc75a1bbc3"
+  "built_at_commit": "6cc2fdfc7d625f835013bcc59c67746604bbc190"
 }

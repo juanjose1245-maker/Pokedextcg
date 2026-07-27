@@ -841,3 +841,250 @@ git commit -m "Regenerar pokemon_db.json con el duplicado de Toxtricity sacado y
 - **Cobertura de la investigación propia del usuario:** Silvally/Castform/Cherrim/Enamorus/Terapagos tienen su propia tarea de investigación (9), con el mismo criterio y estándar de reporte de descartes que la Tarea 4. Ogerpon no se duplica (ya viene de la Tarea 8, vía el hallazgo de la revisión).
 - **Verificado antes de escribir:** los 6 slugs de la tabla del addendum (`dialga-origin`, `palkia-origin`, `ursaluna-bloodmoon`, y las 3 máscaras de `ogerpon-*-mask`) fueron probados con `curl` real, y sus `especieBase` (483/484/901/1017) confirmados contra `pokemon_db.json` real, antes de escribir estas tareas.
 - **No deploy todavía:** el addendum no agrega ninguna tarea de "avisar que no hay que deployar" porque eso no es una tarea de código — se lo comunica directamente al usuario (ya se hizo) y queda como decisión suya cuándo integrar esto con la Fase 2.
+
+---
+
+## Addendum 2 — ampliar el criterio de "formas alternativas" a arte distinto
+
+Al confirmar la exclusión de Palafín Héroe (Addendum 1), el usuario aclaró que el
+criterio real que quiere es más amplio de lo que se implementó: **alcanza con que una
+carta real muestre esa forma en su arte**, aunque el nombre impreso sea el genérico de
+la especie — no hace falta que el nombre la distinga. Esto reabre los ~22 candidatos
+descartados en las Tareas 4 y 9 (ver `docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md`,
+sección "Proceso de investigación", para el historial completo del criterio).
+
+Esto requiere **inspección visual real** de cartas, no solo búsqueda de nombre — el
+método para cada candidato es:
+1. Buscar cartas de la especie base en `api.pokemontcg.io/v2/cards?q=name:X` (esto
+   devuelve también `images.large`/`images.small`, URLs de la imagen de cada carta).
+2. Para cada carta encontrada, bajar la imagen (`curl -o /tmp/carta.png <url>`) y
+   mirarla con la herramienta de lectura de imágenes — ¿el arte de esa carta puntual
+   muestra la forma específica que se está buscando (no la forma base)?
+3. Si hay match visual, esa es la carta que confirma la variante — anotar cuál carta
+   (set + número) lo confirma, para dejarlo documentado.
+
+Arceus es el caso con más superficie (hasta 18 tipos/placas posibles) y tiene su
+propia tarea dedicada; el resto de los 21 candidatos van juntos en otra.
+
+### Task 12: Re-investigar Arceus (hasta 18 variantes por tipo) con el criterio de arte
+
+**Files:**
+- Modify: `variantes_lista.json`
+
+**Interfaces:**
+- Consumes: `pokemon_db.json` (especieBase de Arceus = 493), `api.pokemontcg.io`.
+- Produces: entradas `"categoria": "alternativa"` para cada tipo de Arceus confirmado
+  con carta propia (arte distinto), `especieBase: 493`.
+
+- [ ] **Step 1: Investigar las cartas reales de Arceus**
+
+Arceus tuvo un set dedicado en el TCG ("Arceus", 2009) que imprimió variantes por
+tipo/placa, cada una con su propio arte (el color del aura/placa coincide con el tipo
+de esa carta puntual) — además de otras apariciones en sets posteriores. Buscar
+`api.pokemontcg.io/v2/cards?q=name:arceus` y revisar cada carta encontrada.
+
+- [ ] **Step 2: Para cada uno de los 18 tipos posibles, confirmar visualmente si existe
+  una carta cuyo arte muestre ese tipo/placa específico**
+
+Bajar la imagen de cada carta candidata y mirarla. El tipo de energía impreso en la
+carta (`types` en la respuesta de la API) es una señal fuerte pero **confirmar con la
+imagen real**, no solo con el campo de tipo — el objetivo es que el arte
+efectivamente muestre esa forma, no inferirlo indirectamente.
+
+- [ ] **Step 3: Para cada tipo confirmado, resolver el slug de PokeAPI**
+
+PokeAPI expone las placas de Arceus como formas propias, patrón `arceus-{tipo}` (ej.
+`arceus-fire`, `arceus-water` — verificar con `curl` cada una, el tipo "normal" ya es
+la especie base y no necesita entrada nueva).
+
+- [ ] **Step 4: Agregar las entradas confirmadas a `variantes_lista.json`**
+
+- [ ] **Step 5: Verificar**
+
+```bash
+python3 -c "
+import json
+lista = json.load(open('variantes_lista.json'))
+db = json.load(open('pokemon_db.json'))
+ids_validos = {p['id'] for p in db if p['id'] <= 1025}
+arceus = [e for e in lista if e.get('especieBase') == 493]
+nombres = [e['nombrePokeAPI'] for e in lista]
+assert len(nombres) == len(set(nombres)), 'hay nombrePokeAPI duplicados'
+for e in arceus:
+    assert e['categoria'] == 'alternativa'
+print(f'OK: {len(arceus)} variantes de Arceus agregadas, {len(lista)} entradas totales')
+"
+```
+
+- [ ] **Step 6: Reportar qué tipos se confirmaron y cuáles no (con la carta/set que lo
+  respalda, o la razón de por qué no se encontró arte para ese tipo)** — mismo estándar
+  de reporte de descartes que las tareas anteriores, ahora con evidencia visual en vez
+  de solo nombre.
+
+- [ ] **Step 7: Commit**
+
+```bash
+git add variantes_lista.json
+git commit -m "Re-investigar Arceus bajo el criterio de arte distinto (hasta 18 tipos)"
+```
+
+---
+
+### Task 13: Re-investigar los otros 21 candidatos descartados con el criterio de arte
+
+**Files:**
+- Modify: `variantes_lista.json`
+
+**Interfaces:**
+- Consumes: `pokemon_db.json`, `api.pokemontcg.io`.
+- Produces: entradas `"categoria": "alternativa"` para cada candidato confirmado.
+
+Los 21 candidatos a re-investigar (los mismos de las Tareas 4 y 9, menos Arceus que ya
+tiene su propia tarea): Giratina (Origin Forme), Zygarde 10% Forme, Zygarde Complete
+Forme, Palafín Héroe, Shaymin Sky Forme, Meloetta Pirouette Forme, Hoopa Unbound,
+Darmanitan Zen Mode, Darmanitan Galar Zen Mode, Aegislash Blade Forme, Zacian Crowned
+Sword, Zamazenta Crowned Shield, Landorus Therian, Thundurus Therian, Tornadus
+Therian, Basculegion (hembra), Genesect (Drives), Silvally, Cherrim (Sunshine Form),
+Terapagos (Terastal/Stellar).
+
+- [ ] **Step 1: Para cada candidato, buscar sus cartas reales y confirmar visualmente**
+  (mismo método de 3 pasos descrito en la introducción del Addendum 2)
+
+- [ ] **Step 2: Para cada confirmado, resolver el slug de PokeAPI y `especieBase`**
+  (por id de Pokédex nacional, no por nombre)
+
+- [ ] **Step 3: Agregar los confirmados a `variantes_lista.json`**
+
+- [ ] **Step 4: Verificar**
+
+```bash
+python3 -c "
+import json
+lista = json.load(open('variantes_lista.json'))
+db = json.load(open('pokemon_db.json'))
+ids_validos = {p['id'] for p in db if p['id'] <= 1025}
+nombres = [e['nombrePokeAPI'] for e in lista]
+assert len(nombres) == len(set(nombres)), 'hay nombrePokeAPI duplicados'
+for e in lista:
+    assert e['especieBase'] in ids_validos
+print(f'OK: {len(lista)} entradas totales en variantes_lista.json')
+"
+```
+
+- [ ] **Step 5: Reportar qué candidatos se confirmaron (con la carta que lo respalda)
+  y cuáles siguen sin carta real que muestre esa forma** — no es opcional.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add variantes_lista.json
+git commit -m "Re-investigar candidatos descartados con el criterio de arte distinto"
+```
+
+---
+
+### Task 14: Actualizar `docs/variantes-criterio-investigacion.md` con el criterio nuevo
+
+**Files:**
+- Modify: `docs/variantes-criterio-investigacion.md`
+
+**Interfaces:**
+- Consumes: los reportes de las Tareas 12-13.
+- Produces: doc actualizado, reflejando el criterio real (arte, no nombre) y la lista
+  final de lo que sigue sin confirmar (si queda algo).
+
+- [ ] **Step 1: Reescribir la sección de criterio** para reflejar que alcanza con arte
+  distinto, no nombre distinto — incluir el historial breve de por qué cambió (ver la
+  sección correspondiente ya actualizada en el spec).
+
+- [ ] **Step 2: Actualizar la tabla de descartes** — sacar los que las Tareas 12-13
+  confirmaron (ya no están descartados) y dejar solo los que de verdad siguen sin
+  carta con arte que los muestre, con la razón puntual de cada uno.
+
+- [ ] **Step 3: Agregar una tabla de evidencia positiva** para todo lo incluido en la
+  categoría `alternativa` (forma → carta/set que lo confirma) — esto ya lo había
+  recomendado la segunda revisión final para las entradas de la primera pasada, y
+  ahora es más importante todavía dado que el criterio depende de inspección visual
+  puntual de cada carta.
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add docs/variantes-criterio-investigacion.md
+git commit -m "Actualizar el doc de criterio de investigación con el criterio de arte distinto"
+```
+
+---
+
+### Task 15: Re-ejecutar `fetch_variantes.js` con la lista final y verificar
+
+**Files:**
+- Modify: `pokemon_db.json`
+
+**Interfaces:**
+- Consumes: `variantes_lista.json` final (Tareas 12-13), `fetch_variantes.js` (ya
+  incluye el chequeo de imágenes duplicadas de forma permanente, Addendum 1).
+- Produces: `pokemon_db.json` final de la Fase 1 (segunda ronda).
+
+- [ ] **Step 1: Verificar el directorio de trabajo primero** (mismo chequeo obligatorio
+  que la Tarea 11 — `pwd` / `git rev-parse --show-toplevel` / `git branch --show-current`
+  deben apuntar al worktree, nunca al checkout principal)
+
+- [ ] **Step 2: Backup y correr el fetch completo**
+
+```bash
+cp pokemon_db.json pokemon_db.backup-pre-addendum2.json
+node fetch_variantes.js
+```
+
+El chequeo de imágenes duplicadas (ya permanente en el script) corre solo — si
+encuentra una imagen repetida entre las nuevas entradas de Arceus o de los otros
+candidatos, el script aborta sin escribir nada; en ese caso, sacar la entrada
+redundante de `variantes_lista.json` y volver a correr.
+
+- [ ] **Step 3: Verificar contra las mismas 1025 base + esquema completo** (mismo
+  script que las Tareas 6/11)
+
+- [ ] **Step 4: Confirmar el total final y borrar el backup**
+
+```bash
+python3 -c "
+import json
+db = json.load(open('pokemon_db.json'))
+print('total:', len(db))
+por_cat = {}
+for p in db:
+    if p['id'] > 1025:
+        por_cat[p['categoria']] = por_cat.get(p['categoria'], 0) + 1
+print('por categoría:', por_cat)
+"
+rm pokemon_db.backup-pre-addendum2.json
+```
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add pokemon_db.json
+git commit -m "Regenerar pokemon_db.json con las variantes confirmadas bajo el criterio de arte (Addendum 2)"
+```
+
+---
+
+## Self-Review del Addendum 2
+
+- **Cobertura del cambio de criterio:** Arceus (el caso de mayor superficie, hasta 18
+  entradas posibles) tiene su propia tarea (12) separada de los otros 21 candidatos
+  (13), para que cada review pueda enfocarse — igual que se hizo con Gigamax/
+  alternativas en el plan original.
+- **Método verificable, no solo "parece que sí":** cada confirmación requiere bajar la
+  imagen real de una carta y mirarla, no solo leer texto — y se pide explícitamente
+  citar qué carta/set respalda cada inclusión, así una revisión futura puede
+  verificarlo sin rehacer la investigación.
+- **No es un cambio de esquema:** sigue siendo el mismo `variantes_lista.json`
+  (`nombrePokeAPI`/`categoria`/`especieBase`), mismo script de fetch (ya reforzado con
+  el chequeo de duplicados del Addendum 1) — este addendum solo cambia CUÁLES
+  candidatos pasan el criterio, no cómo se almacenan.
+- **Riesgo de imágenes duplicadas ya cubierto:** el chequeo permanente agregado en el
+  Addendum 1 corre automáticamente en la Tarea 15 — si alguna de las nuevas variantes
+  de Arceus (u otro candidato) resulta tener el mismo arte que una ya existente, el
+  fetch aborta solo, sin necesitar una tarea de verificación aparte.

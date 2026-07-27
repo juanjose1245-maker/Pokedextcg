@@ -157,7 +157,11 @@ de diseño. Se compila durante la ejecución del plan de la Fase 1, con este cri
 
 ## Fuera de alcance (a propósito, queda para la Fase 2)
 
-- El paso nuevo del wizard ("Nacional" vs. "Con variantes").
+- El paso nuevo del wizard — **actualizado**: no es un toggle binario "Nacional" vs.
+  "Con variantes". El usuario quiere elegir/marcar **cada categoría de variantes por
+  separado** (regionales, Mega, Regresión Primigenia, Gigamax, alternativas), no
+  todo-o-nada. La Fase 2 tiene que diseñar esa selección multi-categoría (checkboxes
+  por `categoria`, probablemente), no un simple sí/no.
 - Cómo se muestran/numeran las variantes en la UI (no tienen un "número regional"
   real propio — hay que decidir qué mostrar en su lugar).
 - Cambios en `carpetasConfigValida`, rangos de carpetas, o el PDF de recortables para

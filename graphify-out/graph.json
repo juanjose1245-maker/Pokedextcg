@@ -2012,8 +2012,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ha",
-      "community": 29,
-      "community_name": "p",
+      "community": 48,
+      "community_name": "qb",
       "norm_label": "ha()"
     },
     {
@@ -2023,8 +2023,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ia",
-      "community": 29,
-      "community_name": "p",
+      "community": 48,
+      "community_name": "qb",
       "norm_label": "ia()"
     },
     {
@@ -2111,8 +2111,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ta",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 43,
+      "community_name": "kb",
       "norm_label": "ta()"
     },
     {
@@ -2122,8 +2122,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ua",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 43,
+      "community_name": "kb",
       "norm_label": "ua()"
     },
     {
@@ -2155,8 +2155,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ya",
-      "community": 17,
-      "community_name": "ji",
+      "community": 29,
+      "community_name": "p",
       "norm_label": "ya()"
     },
     {
@@ -2254,8 +2254,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_kb",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 43,
+      "community_name": "kb",
       "norm_label": "kb()"
     },
     {
@@ -2276,8 +2276,8 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_qb",
-      "community": 29,
-      "community_name": "p",
+      "community": 48,
+      "community_name": "qb",
       "norm_label": "qb()"
     },
     {
@@ -2287,8 +2287,8 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sb",
-      "community": 29,
-      "community_name": "p",
+      "community": 48,
+      "community_name": "qb",
       "norm_label": "sb()"
     },
     {
@@ -2419,8 +2419,8 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ab",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 43,
+      "community_name": "kb",
       "norm_label": "ab()"
     },
     {
@@ -2430,8 +2430,8 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_db",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 43,
+      "community_name": "kb",
       "norm_label": "db()"
     },
     {
@@ -2441,8 +2441,8 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_eb",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 43,
+      "community_name": "kb",
       "norm_label": "eb()"
     },
     {
@@ -2463,8 +2463,8 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_nb",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 43,
+      "community_name": "kb",
       "norm_label": "nb()"
     },
     {
@@ -2485,8 +2485,8 @@
       "source_location": "L87",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_t",
-      "community": 29,
-      "community_name": "p",
+      "community": 48,
+      "community_name": "qb",
       "norm_label": "t()"
     },
     {
@@ -2639,8 +2639,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh",
-      "community": 17,
-      "community_name": "ji",
+      "community": 66,
+      "community_name": "Sh",
       "norm_label": "sh()"
     },
     {
@@ -2650,8 +2650,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_destroy",
-      "community": 17,
-      "community_name": "ji",
+      "community": 66,
+      "community_name": "Sh",
       "norm_label": ".__destroy__()"
     },
     {
@@ -2947,8 +2947,8 @@
       "source_location": "L206",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_blockpolygon",
-      "community": 20,
-      "community_name": "O",
+      "community": 50,
+      "community_name": "M",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -3079,8 +3079,8 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_wordfontattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".wordfontattributes()"
     },
     {
@@ -3442,8 +3442,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_blockpolygon",
-      "community": 20,
-      "community_name": "O",
+      "community": 50,
+      "community_name": "M",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -3706,8 +3706,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai",
-      "community": 17,
-      "community_name": "ji",
+      "community": 52,
+      "community_name": "ai",
       "norm_label": "ai()"
     },
     {
@@ -3717,8 +3717,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai_destroy",
-      "community": 17,
-      "community_name": "ji",
+      "community": 52,
+      "community_name": "ai",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3948,8 +3948,8 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_t_destroy",
-      "community": 29,
-      "community_name": "p",
+      "community": 48,
+      "community_name": "qb",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3959,8 +3959,8 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_m",
-      "community": 20,
-      "community_name": "O",
+      "community": 50,
+      "community_name": "M",
       "norm_label": "m()"
     },
     {
@@ -3970,8 +3970,8 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_m_destroy",
-      "community": 20,
-      "community_name": "O",
+      "community": 50,
+      "community_name": "M",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4839,8 +4839,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_getvalue",
-      "community": 17,
-      "community_name": "ji",
+      "community": 66,
+      "community_name": "Sh",
       "norm_label": ".getvalue()"
     },
     {
@@ -4861,8 +4861,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai_getvalue",
-      "community": 17,
-      "community_name": "ji",
+      "community": 52,
+      "community_name": "ai",
       "norm_label": ".getvalue()"
     },
     {
@@ -5004,8 +5004,8 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getwordfontattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".getwordfontattributes()"
     },
     {
@@ -10289,11 +10289,165 @@
       "label": "Testing",
       "file_type": "document",
       "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
-      "source_location": "L171",
+      "source_location": "L175",
       "_origin": "ast",
       "id": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_testing",
       "community": 63,
       "community_name": "Fase 1 \u2014 Base de datos de variantes de Pok\u00e9mon (Megas, formas regionales, Gigamax, etc.)",
+      "norm_label": "testing"
+    },
+    {
+      "label": "2026-07-27-variantes-fase2-tracking-design.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design",
+      "community": 41,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking)",
+      "norm_label": "2026-07-27-variantes-fase2-tracking-design.md"
+    },
+    {
+      "label": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking",
+      "community": 41,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking)",
+      "norm_label": "fase 2 \u2014 seleccion de categorias de variantes (nucleo de tracking)"
+    },
+    {
+      "label": "Contexto",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_contexto",
+      "community": 41,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking)",
+      "norm_label": "contexto"
+    },
+    {
+      "label": "Modelo de datos",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_modelo_de_datos",
+      "community": 41,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking)",
+      "norm_label": "modelo de datos"
+    },
+    {
+      "label": "`variantes-config.json`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_variantes_config_json",
+      "community": 41,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking)",
+      "norm_label": "`variantes-config.json`"
+    },
+    {
+      "label": "Vista derivada: `pokemonEfectivo()`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_vista_derivada_pokemonefectivo",
+      "community": 41,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking)",
+      "norm_label": "vista derivada: `pokemonefectivo()`"
+    },
+    {
+      "label": "Cambios en endpoints existentes",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L96",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_cambios_en_endpoints_existentes",
+      "community": 41,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking)",
+      "norm_label": "cambios en endpoints existentes"
+    },
+    {
+      "label": "Cliente",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L124",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_cliente",
+      "community": 41,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking)",
+      "norm_label": "cliente"
+    },
+    {
+      "label": "Ajustes",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L126",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_ajustes",
+      "community": 41,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking)",
+      "norm_label": "ajustes"
+    },
+    {
+      "label": "Galer\u00eda / ficha",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L137",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_galer\u00eda_ficha",
+      "community": 41,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking)",
+      "norm_label": "galeria / ficha"
+    },
+    {
+      "label": "Wizard de carpetas \u2014 aviso de capacidad",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L145",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_wizard_de_carpetas_aviso_de_capacidad",
+      "community": 41,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking)",
+      "norm_label": "wizard de carpetas \u2014 aviso de capacidad"
+    },
+    {
+      "label": "Manejo de errores y edge cases",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L154",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_manejo_de_errores_y_edge_cases",
+      "community": 41,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking)",
+      "norm_label": "manejo de errores y edge cases"
+    },
+    {
+      "label": "Fuera de alcance (a prop\u00f3sito, queda para Fase 3)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L166",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_fuera_de_alcance_a_prop\u00f3sito_queda_para_fase_3",
+      "community": 41,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking)",
+      "norm_label": "fuera de alcance (a proposito, queda para fase 3)"
+    },
+    {
+      "label": "Testing",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L177",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_testing",
+      "community": 41,
+      "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking)",
       "norm_label": "testing"
     },
     {
@@ -31042,7 +31196,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/superpowers/specs/2026-07-26-variantes-pokedex-design.md",
-      "source_location": "L171",
+      "source_location": "L175",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_fase_1_base_de_datos_de_variantes_de_pok\u00e9mon_megas_formas_regionales_gigamax_etc",
@@ -31069,6 +31223,149 @@
       "_origin": "ast",
       "source": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_modelo_de_datos",
       "target": "docs_superpowers_specs_2026_07_26_variantes_pokedex_design_fetch_pokemon_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L96",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_cambios_en_endpoints_existentes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L124",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_cliente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_contexto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L166",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_fuera_de_alcance_a_prop\u00f3sito_queda_para_fase_3",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L154",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_manejo_de_errores_y_edge_cases",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L39",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_modelo_de_datos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L177",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_fase_2_selecci\u00f3n_de_categor\u00edas_de_variantes_n\u00facleo_de_tracking",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_testing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L41",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_modelo_de_datos",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_variantes_config_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L64",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_modelo_de_datos",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_vista_derivada_pokemonefectivo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L126",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_cliente",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_ajustes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L137",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_cliente",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_galer\u00eda_ficha",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md",
+      "source_location": "L145",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_cliente",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_wizard_de_carpetas_aviso_de_capacidad",
       "confidence_score": 1.0
     },
     {
@@ -31150,5 +31447,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "deecfd3a57b031874a14d3ec93369c49770b4a85"
+  "built_at_commit": "6f94436b120138e05e7223838bbf7abe10c83185"
 }

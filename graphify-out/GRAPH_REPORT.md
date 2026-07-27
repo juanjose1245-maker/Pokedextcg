@@ -1,16 +1,16 @@
-# Graph Report - variantes-pokedex  (2026-07-27)
+# Graph Report - pokedex-tcg  (2026-07-27)
 
 ## Corpus Check
-- 27 files · ~85,345 words
+- 29 files · ~86,845 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 943 nodes · 1806 edges · 62 communities (33 shown, 29 thin omitted)
+- 957 nodes · 1819 edges · 68 communities (35 shown, 33 thin omitted)
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 220 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `deecfd3a`
+- Built from commit: `6f94436b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -56,13 +56,18 @@
 - K
 - N
 - Q
+- Fase 2 — Selección de categorías de variantes (núcleo de tracking)
+- kb
 - kb
 - qb
 - di
 - di
 - ei
+- qb
 - fetch_pokemon.js
+- M
 - ii
+- ai
 - d
 - sw.js
 - update_script.sh
@@ -76,6 +81,7 @@
 - Fase 1 — Base de datos de variantes de Pokémon (Megas, formas regionales, Gigamax, etc.)
 - Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación
 - fetch_variantes.js
+- Sh
 - Sh
 
 ## God Nodes (most connected - your core abstractions)
@@ -105,7 +111,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (62 total, 29 thin omitted)
+## Communities (68 total, 33 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -121,7 +127,7 @@ Nodes (38): x(), app, CARPETA_CACHE, CARPETA_RESPALDOS, CARPETAS_DEFAULT, carpet
 
 ### Community 6 - "tesseract-core-lstm.wasm.js"
 Cohesion: 0.07
-Nodes (21): Ab(), ci(), Da(), Db(), Eb(), fi(), gi(), kb() (+13 more)
+Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
 ### Community 7 - "tesseract-core-simd-lstm.wasm.js"
 Cohesion: 0.07
@@ -142,10 +148,6 @@ Nodes (18): express, node-fetch, author, dependencies, express, node-fetch, pdfk
 ### Community 15 - "renderGaleria"
 Cohesion: 0.18
 Nodes (19): actualizarBotonEstado(), actualizarGalleryHeader(), agregarAlHistorial(), carpetaDe(), clearSearchTimer(), detenerCamara(), getFechaRegistro(), gridActivo() (+11 more)
-
-### Community 17 - "ji"
-Cohesion: 0.11
-Nodes (5): ai(), hi(), ji(), Sh(), Ya()
 
 ### Community 19 - "Modo "Todas seguidas" para configuración de carpetas"
 Cohesion: 0.11
@@ -180,8 +182,8 @@ Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 29 - "p"
-Cohesion: 0.15
-Nodes (14): e(), gb(), Ha(), hb(), Ia(), Ma(), Na(), Oa() (+6 more)
+Cohesion: 0.22
+Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
 
 ### Community 32 - "manifest.json"
 Cohesion: 0.22
@@ -195,9 +197,21 @@ Nodes (7): Architecture, Auth, Data files (not code, but load-bearing), Editing 
 Cohesion: 0.25
 Nodes (7): fs, idsCarpetas, path, raw, RUTA_INVENTARIO, rutaRespaldo, timestamp
 
+### Community 41 - "Fase 2 — Selección de categorías de variantes (núcleo de tracking)"
+Cohesion: 0.14
+Nodes (13): Ajustes, Cambios en endpoints existentes, Cliente, Contexto, Fase 2 — Selección de categorías de variantes (núcleo de tracking), Fuera de alcance (a propósito, queda para Fase 3), Galería / ficha, Manejo de errores y edge cases (+5 more)
+
+### Community 43 - "kb"
+Cohesion: 0.33
+Nodes (7): Ab(), Db(), Eb(), kb(), Nb(), Ta(), Ua()
+
 ### Community 44 - "qb"
 Cohesion: 0.42
 Nodes (13): ac(), $b(), bc(), cc(), Hh(), Pb(), tb(), ub() (+5 more)
+
+### Community 48 - "qb"
+Cohesion: 0.33
+Nodes (5): Ha(), Ia(), qb(), sb(), t()
 
 ### Community 53 - "d"
 Cohesion: 0.29
@@ -240,21 +254,21 @@ Cohesion: 0.50
 Nodes (4): buscarImagenesDuplicadas(), crypto, fetchVariantes(), fs
 
 ## Knowledge Gaps
-- **149 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+144 more)
+- **159 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+154 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **29 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **33 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `g()` connect `worker.min.js` to `server.js`, `esDesktop`, `wizardCapacidadSiguiente`, `qb`, `p`?**
-  _High betweenness centrality (0.221) - this node is a cross-community bridge._
-- **Why does `a()` connect `worker.min.js` to `A`, `A`, `p`, `qb`, `p`?**
-  _High betweenness centrality (0.212) - this node is a cross-community bridge._
+- **Why does `g()` connect `worker.min.js` to `server.js`, `esDesktop`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
+  _High betweenness centrality (0.215) - this node is a cross-community bridge._
+- **Why does `a()` connect `worker.min.js` to `A`, `qb`, `A`, `p`, `qb`, `p`?**
+  _High betweenness centrality (0.206) - this node is a cross-community bridge._
 - **Why does `A()` connect `A` to `worker.min.js`, `Sh`, `K`, `tesseract-core-simd-lstm.wasm.js`, `Q`, `J`, `di`, `d`, `Lh`, `p`, `kb`, `qb`?**
-  _High betweenness centrality (0.105) - this node is a cross-community bridge._
+  _High betweenness centrality (0.102) - this node is a cross-community bridge._
 - **What connects `fs`, `fs`, `crypto` to the rest of the system?**
-  _149 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _159 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05735430157261795 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**

@@ -2727,8 +2727,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh",
-      "community": 17,
-      "community_name": "ji",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": "sh()"
     },
     {
@@ -2738,8 +2738,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_destroy",
-      "community": 17,
-      "community_name": "ji",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3035,8 +3035,8 @@
       "source_location": "L206",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_blockpolygon",
-      "community": 17,
-      "community_name": "ji",
+      "community": 47,
+      "community_name": "M",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -3079,7 +3079,7 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_rowattributes",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".rowattributes()"
     },
@@ -3486,7 +3486,7 @@
       "source_location": "L217",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_boundingbox",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".boundingbox()"
     },
@@ -3530,8 +3530,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_blockpolygon",
-      "community": 17,
-      "community_name": "ji",
+      "community": 47,
+      "community_name": "M",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -3563,7 +3563,7 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_baseline",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".baseline()"
     },
@@ -3794,8 +3794,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai",
-      "community": 17,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "ai",
       "norm_label": "ai()"
     },
     {
@@ -3805,8 +3805,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai_destroy",
-      "community": 17,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "ai",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3948,8 +3948,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei",
-      "community": 17,
-      "community_name": "ji",
+      "community": 43,
+      "community_name": "ei",
       "norm_label": "ei()"
     },
     {
@@ -3959,8 +3959,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei_destroy",
-      "community": 17,
-      "community_name": "ji",
+      "community": 43,
+      "community_name": "ei",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4047,8 +4047,8 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_m",
-      "community": 17,
-      "community_name": "ji",
+      "community": 47,
+      "community_name": "M",
       "norm_label": "m()"
     },
     {
@@ -4058,8 +4058,8 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_m_destroy",
-      "community": 17,
-      "community_name": "ji",
+      "community": 47,
+      "community_name": "M",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4091,8 +4091,8 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi",
-      "community": 17,
-      "community_name": "ji",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": "hi()"
     },
     {
@@ -4102,8 +4102,8 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi_destroy",
-      "community": 17,
-      "community_name": "ji",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4729,8 +4729,8 @@
       "source_location": "L258",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_v_allwordconfidences",
-      "community": 17,
-      "community_name": "ji",
+      "community": 43,
+      "community_name": "ei",
       "norm_label": ".allwordconfidences()"
     },
     {
@@ -4927,8 +4927,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_getvalue",
-      "community": 17,
-      "community_name": "ji",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".getvalue()"
     },
     {
@@ -4938,8 +4938,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei_getvalue",
-      "community": 17,
-      "community_name": "ji",
+      "community": 43,
+      "community_name": "ei",
       "norm_label": ".getvalue()"
     },
     {
@@ -4949,8 +4949,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai_getvalue",
-      "community": 17,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "ai",
       "norm_label": ".getvalue()"
     },
     {
@@ -4960,8 +4960,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi_getvalue",
-      "community": 17,
-      "community_name": "ji",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".getvalue()"
     },
     {
@@ -4971,7 +4971,7 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": "ji()"
     },
@@ -4982,7 +4982,7 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_wrap",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".wrap()"
     },
@@ -4993,7 +4993,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_bool",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".bool()"
     },
@@ -5004,7 +5004,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_i32",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".i32()"
     },
@@ -5015,7 +5015,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_f32",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".f32()"
     },
@@ -5026,8 +5026,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_f64",
-      "community": 17,
-      "community_name": "ji",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".f64()"
     },
     {
@@ -5037,8 +5037,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_peek",
-      "community": 17,
-      "community_name": "ji",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".peek()"
     },
     {
@@ -5048,7 +5048,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_get",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".get()"
     },
@@ -5059,7 +5059,7 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getboundingbox",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".getboundingbox()"
     },
@@ -5070,7 +5070,7 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getbaseline",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".getbaseline()"
     },
@@ -5081,7 +5081,7 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getrowattributes",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".getrowattributes()"
     },
@@ -10723,6 +10723,94 @@
       "id": "docs_superpowers_specs_2026_07_27_variantes_fase2_tracking_design_testing",
       "community": 41,
       "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking)",
+      "norm_label": "testing"
+    },
+    {
+      "label": "2026-07-27-variantes-fase3-pdf-design.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase3-pdf-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design",
+      "community": 26,
+      "community_name": "Fase 3 \u2014 Variantes en el PDF de recortables",
+      "norm_label": "2026-07-27-variantes-fase3-pdf-design.md"
+    },
+    {
+      "label": "Fase 3 \u2014 Variantes en el PDF de recortables",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase3-pdf-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_fase_3_variantes_en_el_pdf_de_recortables",
+      "community": 26,
+      "community_name": "Fase 3 \u2014 Variantes en el PDF de recortables",
+      "norm_label": "fase 3 \u2014 variantes en el pdf de recortables"
+    },
+    {
+      "label": "Contexto",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase3-pdf-design.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_contexto",
+      "community": 26,
+      "community_name": "Fase 3 \u2014 Variantes en el PDF de recortables",
+      "norm_label": "contexto"
+    },
+    {
+      "label": "Cambios",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase3-pdf-design.md",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_cambios",
+      "community": 26,
+      "community_name": "Fase 3 \u2014 Variantes en el PDF de recortables",
+      "norm_label": "cambios"
+    },
+    {
+      "label": "`generarPDFRecortables(rutaSalida, opciones)` (`server.js`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase3-pdf-design.md",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_generarpdfrecortables_rutasalida_opciones_server_js",
+      "community": 26,
+      "community_name": "Fase 3 \u2014 Variantes en el PDF de recortables",
+      "norm_label": "`generarpdfrecortables(rutasalida, opciones)` (`server.js`)"
+    },
+    {
+      "label": "Cach\u00e9 e invalidaci\u00f3n (`/api/pdf-carpetas`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase3-pdf-design.md",
+      "source_location": "L74",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_cach\u00e9_e_invalidaci\u00f3n_api_pdf_carpetas",
+      "community": 26,
+      "community_name": "Fase 3 \u2014 Variantes en el PDF de recortables",
+      "norm_label": "cache e invalidacion (`/api/pdf-carpetas`)"
+    },
+    {
+      "label": "Fuera de alcance",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase3-pdf-design.md",
+      "source_location": "L91",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_fuera_de_alcance",
+      "community": 26,
+      "community_name": "Fase 3 \u2014 Variantes en el PDF de recortables",
+      "norm_label": "fuera de alcance"
+    },
+    {
+      "label": "Testing",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase3-pdf-design.md",
+      "source_location": "L102",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_testing",
+      "community": 26,
+      "community_name": "Fase 3 \u2014 Variantes en el PDF de recortables",
       "norm_label": "testing"
     },
     {
@@ -32162,6 +32250,83 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase3-pdf-design.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_fase_3_variantes_en_el_pdf_de_recortables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase3-pdf-design.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_fase_3_variantes_en_el_pdf_de_recortables",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_cambios",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase3-pdf-design.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_fase_3_variantes_en_el_pdf_de_recortables",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_contexto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase3-pdf-design.md",
+      "source_location": "L91",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_fase_3_variantes_en_el_pdf_de_recortables",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_fuera_de_alcance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase3-pdf-design.md",
+      "source_location": "L102",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_fase_3_variantes_en_el_pdf_de_recortables",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_testing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase3-pdf-design.md",
+      "source_location": "L74",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_cambios",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_cach\u00e9_e_invalidaci\u00f3n_api_pdf_carpetas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-07-27-variantes-fase3-pdf-design.md",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_cambios",
+      "target": "docs_superpowers_specs_2026_07_27_variantes_fase3_pdf_design_generarpdfrecortables_rutasalida_opciones_server_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/variantes-criterio-investigacion.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -32238,5 +32403,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "fe30d4269dea28cf61ae614f2e0f63e2ea79dc72"
+  "built_at_commit": "a4abb695399e4a5b7b85567b991b7ca4e823c0a6"
 }

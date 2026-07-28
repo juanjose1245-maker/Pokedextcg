@@ -1,16 +1,16 @@
-# Graph Report - pokedex-tcg  (2026-07-28)
+# Graph Report - variantes-fase3-pdf  (2026-07-28)
 
 ## Corpus Check
-- 33 files · ~97,235 words
+- 30 files · ~97,212 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 996 nodes · 1876 edges · 76 communities (42 shown, 34 thin omitted)
+- 996 nodes · 1878 edges · 76 communities (42 shown, 34 thin omitted)
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 221 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2a0c6a7a`
+- Built from commit: `25c02905`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -105,11 +105,11 @@
 10. `J()` - 25 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `pokemonEfectivo()` --indirect_call--> `v()`  [INFERRED]
-  server.js → public/vendor/tesseract/worker.min.js
 - `generarPDFRecortables()` --indirect_call--> `y()`  [INFERRED]
   server.js → public/vendor/tesseract/worker.min.js
 - `carpetasConfigValida()` --indirect_call--> `g()`  [INFERRED]
+  server.js → public/vendor/tesseract/worker.min.js
+- `pokemonEfectivo()` --indirect_call--> `v()`  [INFERRED]
   server.js → public/vendor/tesseract/worker.min.js
 - `generarPDFRecortables()` --indirect_call--> `x()`  [INFERRED]
   server.js → public/vendor/tesseract/worker.min.js
@@ -135,7 +135,7 @@ Nodes (36): actualizarBotonSesion(), aplicarTema(), cachePokemon, calcularJalon(
 
 ### Community 3 - "server.js"
 Cohesion: 0.06
-Nodes (25): app, CARPETA_CACHE, CARPETA_RESPALDOS, CARPETAS_DEFAULT, carpetasConfig, clientes, CORTES_GEN, crypto (+17 more)
+Nodes (24): app, CARPETA_CACHE, CARPETA_RESPALDOS, CARPETAS_DEFAULT, carpetasConfig, clientes, CORTES_GEN, crypto (+16 more)
 
 ### Community 6 - "tesseract-core-lstm.wasm.js"
 Cohesion: 0.07
@@ -274,8 +274,8 @@ Cohesion: 0.20
 Nodes (9): Fase 2 — Selección de categorías de variantes (núcleo de tracking) — Plan de implementación, Global Constraints, Limitación conocida (no cubierta por este plan), Self-Review (hecho al escribir este plan), Task 1: `variantes-config.json` + vista derivada `pokemonEfectivo()` en el servidor, Task 2: Endpoints `/api/variantes-config` + integrar `pokemonEfectivo()` en `/api/buscar` y `/api/estadisticas`, Task 3: Corregir la numeración de variantes en galería/ficha + badge de categoría, Task 4: Panel "Variantes" en Ajustes (+1 more)
 
 ### Community 69 - "p"
-Cohesion: 0.33
-Nodes (6): x(), descargarImagen(), generarPDFRecortables(), mapConcurrencia(), PDFDocument, sharp
+Cohesion: 0.25
+Nodes (8): x(), anclaId(), descargarImagen(), generarPDFRecortables(), mapConcurrencia(), PDFDocument, pokemonEfectivo(), sharp
 
 ### Community 70 - "escribirJSONAtomico"
 Cohesion: 0.40
@@ -298,7 +298,7 @@ Nodes (3): parsearCookies(), requiereLogin(), sesionValida()
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `g()` connect `worker.min.js` to `carpetasConfigValida`, `esDesktop`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
-  _High betweenness centrality (0.208) - this node is a cross-community bridge._
+  _High betweenness centrality (0.207) - this node is a cross-community bridge._
 - **Why does `a()` connect `worker.min.js` to `qb`, `A`, `A`, `p`, `qb`, `p`?**
   _High betweenness centrality (0.195) - this node is a cross-community bridge._
 - **Why does `A()` connect `A` to `worker.min.js`, `K`, `tesseract-core-simd-lstm.wasm.js`, `Q`, `J`, `di`, `d`, `Lh`, `p`, `zb`, `kb`, `qb`?**
@@ -308,6 +308,6 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `app.js` be split into smaller, more focused modules?**
   _Cohesion score 0.056910569105691054 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06060606060606061 - nodes in this community are weakly interconnected._
 - **Should `V` be split into smaller, more focused modules?**
   _Cohesion score 0.07007575757575757 - nodes in this community are weakly interconnected._

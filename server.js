@@ -539,11 +539,13 @@ const REGIONES = ['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola'
 //              portadas: boolean, numeros: 'ambos'|'regional'|'nacional' }
 async function generarPDFRecortables(rutaSalida, opciones) {
     if (!fs.existsSync(CARPETA_CACHE)) fs.mkdirSync(CARPETA_CACHE, { recursive: true });
-    const pokemonOrdenados = [...pokemonDB]
+    // pokemonEfectivo() ya entrega cada variante activa justo después de su
+    // especie base — NO se vuelve a ordenar por id acá, porque eso agruparía
+    // todas las variantes (id >= 1026) al final, rompiendo el intercalado.
+    const pokemonOrdenados = pokemonEfectivo()
         .filter(p => opciones.modo === 'seguidas'
-            ? opciones.rangos.some(r => p.id >= r.desde && p.id <= r.hasta)
-            : opciones.gens.has(p.gen))
-        .sort((a, b) => a.id - b.id);
+            ? opciones.rangos.some(r => { const a = anclaId(p); return a >= r.desde && a <= r.hasta; })
+            : opciones.gens.has(p.gen));
     const imagenes = await mapConcurrencia(pokemonOrdenados, 12, p => descargarImagen(p.image));
     const imagenPorId = new Map(pokemonOrdenados.map((p, i) => [p.id, imagenes[i]]));
     const pokemonPorId = new Map(pokemonOrdenados.map(p => [p.id, p]));
@@ -571,11 +573,13 @@ async function generarPDFRecortables(rutaSalida, opciones) {
     }
 
     function textoNumeros(p) {
-        const rTxt = `R#${String(numeroRegional(p)).padStart(3, '0')}`;
-        const nTxt = `N#${String(p.id).padStart(4, '0')}`;
-        if (opciones.numeros === 'regional') return rTxt;
-        if (opciones.numeros === 'nacional') return nTxt;
-        return `${rTxt}   ${nTxt}`;
+        const ancla = anclaId(p);
+        const rTxt = `R#${String(numeroRegional({ id: ancla, gen: p.gen })).padStart(3, '0')}`;
+        const nTxt = `N#${String(ancla).padStart(4, '0')}`;
+        const catTxt = p.categoria ? ` (${p.categoria.toUpperCase()})` : '';
+        if (opciones.numeros === 'regional') return rTxt + catTxt;
+        if (opciones.numeros === 'nacional') return nTxt + catTxt;
+        return `${rTxt}   ${nTxt}${catTxt}`;
     }
 
     if (opciones.modo === 'seguidas') {

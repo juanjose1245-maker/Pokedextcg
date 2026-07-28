@@ -706,9 +706,13 @@ app.get('/api/pdf-carpetas', async (req, res) => {
 
         if (esDefault) {
             const rutaCache = opciones.modo === 'seguidas' ? RUTA_PDF_RECORTABLES_SEGUIDAS : RUTA_PDF_RECORTABLES;
-            const dbStat  = fs.statSync(path.join(__dirname, 'pokemon_db.json'));
+            const dbStat = fs.statSync(path.join(__dirname, 'pokemon_db.json'));
+            // variantes-config.json puede no existir todavía (nadie tocó Ajustes
+            // → Variantes) — en ese caso la referencia sigue siendo solo pokemon_db.json.
+            const variantesStat = fs.existsSync('variantes-config.json') ? fs.statSync('variantes-config.json') : null;
+            const referenciaMasNueva = variantesStat ? Math.max(dbStat.mtimeMs, variantesStat.mtimeMs) : dbStat.mtimeMs;
             const cacheOk = fs.existsSync(rutaCache) &&
-                fs.statSync(rutaCache).mtimeMs >= dbStat.mtimeMs;
+                fs.statSync(rutaCache).mtimeMs >= referenciaMasNueva;
             if (!cacheOk) await generarPDFRecortables(rutaCache, opciones);
             return res.download(rutaCache, 'pokedex-recortables.pdf');
         }

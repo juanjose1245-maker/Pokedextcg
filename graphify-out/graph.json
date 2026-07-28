@@ -9412,7 +9412,7 @@
       "label": "firmaValida()",
       "file_type": "code",
       "source_file": "server.js",
-      "source_location": "L861",
+      "source_location": "L865",
       "_origin": "ast",
       "id": "server_firmavalida",
       "community": 3,
@@ -30596,7 +30596,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "server.js",
-      "source_location": "L861",
+      "source_location": "L865",
       "weight": 1.0,
       "_origin": "ast",
       "source": "server",
@@ -30850,7 +30850,7 @@
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "server.js",
-      "source_location": "L731",
+      "source_location": "L735",
       "weight": 1.0,
       "_origin": "ast",
       "context": "argument",
@@ -32548,5 +32548,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "25c02905225b90e86afbcd6b3c4deb9183eeffe8"
+  "built_at_commit": "84b7cdeeecd1ea199902ca99a29b95e042aa4336"
 }

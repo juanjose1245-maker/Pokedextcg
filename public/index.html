@@ -244,6 +244,14 @@
                         <span class="ajustes-item-sub">Descarga un .txt con lo que te falta</span>
                     </span>
                 </button>
+                <button class="ajustes-item" onclick="abrirPanelVariantes()">
+                    <span class="ajustes-item-icon">🧬</span>
+                    <span class="ajustes-item-texto">
+                        <span class="ajustes-item-titulo">Variantes</span>
+                        <span class="ajustes-item-sub">Formas regionales, Mega, Gigamax y más como cartas propias</span>
+                    </span>
+                    <span class="ajustes-item-chev">›</span>
+                </button>
             </div>
 
             <div class="ajustes-section-label">Carpetas</div>
@@ -321,6 +329,19 @@
                 <span class="ajustes-item-sub" id="btn-pdf-recortables-sub">Puede tardar un minuto la primera vez</span>
             </span>
         </button>
+    </div>
+</div>
+
+<!-- VARIANTES: CATEGORÍAS A TRACKEAR -->
+<div class="ajustes-modal" id="variantes-modal">
+    <div class="ajustes-box">
+        <div class="ajustes-handle"></div>
+        <span class="ajustes-close" id="variantes-close">×</span>
+        <div class="ajustes-title">🧬 Variantes</div>
+        <div class="pdf-opciones-seccion">
+            <div class="pdf-opciones-label">Categorías a trackear como cartas propias</div>
+            <div id="variantes-checks"></div>
+        </div>
     </div>
 </div>
 

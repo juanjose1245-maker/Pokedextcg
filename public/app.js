@@ -68,11 +68,27 @@ async function cargarCarpetasConfig() {
     }
 }
 
+// Ancla de una entrada a un id 1–1025: el suyo propio si es especie base, o
+// el de su especie base si es una variante (mismo criterio que anclaId() en
+// server.js, pero acá sobre las entradas que ya llegaron filtradas del server).
+function anclaIdCliente(p) {
+    return p.categoria ? p.especieBase : p.id;
+}
+
+const CATEGORIA_INFO = {
+    regional:    { label: 'Regional',   color: '#0891b2' },
+    mega:        { label: 'Mega',       color: '#7c3aed' },
+    primigenia:  { label: 'Primigenia', color: '#dc2626' },
+    gigamax:     { label: 'Gigamax',    color: '#db2777' },
+    alternativa: { label: 'Alt.',       color: '#d97706' },
+};
+
 // Devuelve la carpeta a la que pertenece un Pokémon, según generación
 // (modo separadas) o según su nº de Pokédex nacional (modo seguidas).
 function carpetaDe(p) {
     if (modoCarpetasConfig === 'seguidas') {
-        return carpetas.find(c => p.id >= c.desde && p.id <= c.hasta) || null;
+        const ancla = anclaIdCliente(p);
+        return carpetas.find(c => ancla >= c.desde && ancla <= c.hasta) || null;
     }
     return carpetas.find(c => c.gens.includes(p.gen)) || null;
 }
@@ -332,6 +348,59 @@ function mostrarToastDeshacer(idPk, fechaPreservada, nombrePk) {
     deshacerToastTimer = setTimeout(() => { toast.style.opacity = '0'; }, 6000);
 }
 
+// Toast con acción: avisa que activar una categoría de variantes dejó la
+// capacidad de las carpetas ya configuradas por debajo de lo necesario. No
+// bloquea nada — la config vieja sigue funcionando, esto es solo un aviso
+// con un atajo directo a re-abrir el wizard y ajustar.
+let avisoCapacidadTimer = null;
+function mostrarToastAvisoCapacidad(msg) {
+    let toast = document.getElementById('aviso-capacidad-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'aviso-capacidad-toast';
+        toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 8px 8px 16px;font-size:12px;font-weight:600;color:var(--text);box-shadow:0 4px 16px var(--shadow);z-index:800;max-width:calc(100vw - 32px);opacity:0;transition:opacity .2s ease;display:flex;align-items:center;gap:10px;';
+        document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<span>${msg}</span>
+        <button id="btn-ajustar-capacidad" style="background:var(--accent2);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:11px;cursor:pointer;font-family:'Rajdhani',sans-serif;letter-spacing:.04em;white-space:nowrap;">AJUSTAR</button>`;
+    toast.style.opacity = '1';
+    clearTimeout(avisoCapacidadTimer);
+    avisoCapacidadTimer = setTimeout(() => { toast.style.opacity = '0'; }, 6000);
+    document.getElementById('btn-ajustar-capacidad').onclick = () => {
+        toast.style.opacity = '0';
+        cerrarPanelVariantes();
+        abrirWizardCarpetas();
+    };
+}
+
+// Revisa, después de guardar variantes-config, si la capacidad de carpetas ya
+// configurada alcanza para la colección efectiva actual — si no, avisa (no
+// bloquea nada: la config vieja sigue funcionando mientras tanto).
+async function revisarCapacidadCarpetas() {
+    if (!carpetas.length) return; // todavía no se configuraron carpetas
+    if (modoCarpetasConfig === 'separadas') {
+        for (const c of carpetas) {
+            const necesario = c.gens.reduce((acc, gen) => acc + (dataGlobalCache.generaciones[gen]?.total || 0), 0);
+            if (necesario > c.espacios) {
+                mostrarToastAvisoCapacidad(`"${c.nombre}" necesita ${necesario} espacios y tiene ${c.espacios} — ajustá tus carpetas cuando puedas.`);
+                return;
+            }
+        }
+        return;
+    }
+    for (const c of carpetas) {
+        try {
+            const res = await fetch(`/api/buscar?desde=${c.desde}&hasta=${c.hasta}`);
+            if (!res.ok) continue;
+            const lista = await res.json();
+            if (lista.length > c.espacios) {
+                mostrarToastAvisoCapacidad(`"${c.nombre}" necesita ${lista.length} espacios y tiene ${c.espacios} — ajustá tus carpetas cuando puedas.`);
+                return;
+            }
+        } catch { /* no bloquea el flujo si falla la revisión */ }
+    }
+}
+
 // Fetch con manejo de error: devuelve null y avisa al usuario si algo falla.
 async function fetchGenSegura(g) {
     try {
@@ -500,7 +569,7 @@ async function cargarEstadisticas() {
     renderBinderBar();
     renderSidebar();
     const total = Object.keys(data.listaIds || {}).length;
-    document.getElementById('brand-count').textContent = `${total} / 1025`;
+    document.getElementById('brand-count').textContent = `${total} / ${data.global.total || 1025}`;
 
     const grid = document.getElementById('grid-generaciones');
     grid.innerHTML = '';
@@ -540,7 +609,7 @@ async function cargarEstadisticasSinMoverScroll() {
     renderBinderBar();
     renderSidebar();
     const total = Object.keys(data.listaIds || {}).length;
-    document.getElementById('brand-count').textContent = `${total} / 1025`;
+    document.getElementById('brand-count').textContent = `${total} / ${data.global.total || 1025}`;
     if (genActualAbierta) RefrescarGaleria(true);
 }
 
@@ -1029,11 +1098,13 @@ function renderGaleria(pkms, mantenerScroll, forzarEstado, esVistaPendientes) {
         // En la vista "Por acomodar" el estado no depende del modo que estés viendo:
         // ahí siempre se muestran como pendientes (forzarEstado=false), sin consultar localStorage.
         const tiene   = (forzarEstado !== undefined) ? forzarEstado : tieneEnLS(p.id);
-        let numR      = p.id - cortesGen[p.gen];
-        if (p.id >= 899 && p.id <= 905) numR = p.id - 809;
-        const prefijo = (p.id >= 899 && p.id <= 905) ? 'H' : 'R';
+        const ancla   = anclaIdCliente(p);
+        let numR      = ancla - cortesGen[p.gen];
+        if (ancla >= 899 && ancla <= 905) numR = ancla - 809;
+        const prefijo = (ancla >= 899 && ancla <= 905) ? 'H' : 'R';
         const ridTxt  = `${prefijo}#${numR.toString().padStart(3,'0')}`;
-        const nidTxt  = `N#${p.id.toString().padStart(4,'0')}`;
+        const nidTxt  = `N#${ancla.toString().padStart(4,'0')}`;
+        const catInfo = p.categoria ? CATEGORIA_INFO[p.categoria] : null;
 
         const carpetaPk = carpetaDe(p);
         const colorPk   = carpetaPk ? carpetaPk.color : (coloresGen[p.gen-1] || '#999');
@@ -1049,7 +1120,7 @@ function renderGaleria(pkms, mantenerScroll, forzarEstado, esVistaPendientes) {
         ridM.style.color = colorPk; ridM.style.background = bgPk;
         ridM.textContent = ridTxt;
         const nidM = document.createElement('div'); nidM.className = 'pk-nid';
-        nidM.textContent = `N#${p.id.toString().padStart(3,'0')}`;
+        nidM.textContent = `N#${ancla.toString().padStart(3,'0')}`;
         const imgM = document.createElement('img'); imgM.className = 'pk-img';
         imgM.src = p.image; imgM.alt = p.name; imgM.loading = 'lazy';
         const nameM = document.createElement('div'); nameM.className = 'pk-name';
@@ -1082,6 +1153,13 @@ function renderGaleria(pkms, mantenerScroll, forzarEstado, esVistaPendientes) {
         card.appendChild(ridM); card.appendChild(nidM); card.appendChild(imgM);
         card.appendChild(nameM); card.appendChild(statusM); card.appendChild(dotM);
         card.appendChild(header); card.appendChild(imgD); card.appendChild(footer);
+
+        if (catInfo) {
+            const badge = document.createElement('div'); badge.className = 'pk-var-badge';
+            badge.style.background = catInfo.color;
+            badge.textContent = catInfo.label;
+            card.appendChild(badge);
+        }
 
         frag.appendChild(card);
     });
@@ -1177,15 +1255,18 @@ function sincronizarGrids() {
 function mostrarFicha(p, esPendientes) {
     fichaOrigenPendientes = !!esPendientes;
     pkSeleccionado = p;
-    let numR = p.id - cortesGen[p.gen];
+    const ancla = anclaIdCliente(p);
+    let numR = ancla - cortesGen[p.gen];
     let regionName = regiones[p.gen - 1];
-    if (p.id >= 899 && p.id <= 905) { numR = p.id - 809; regionName = 'Hisui'; }
+    if (ancla >= 899 && ancla <= 905) { numR = ancla - 809; regionName = 'Hisui'; }
     const regionEl = document.getElementById('pk-region');
     regionEl.textContent = regionName.toUpperCase() + ' · GEN ' + p.gen;
     regionEl.style.color = coloresGen[p.gen-1];
     regionEl.style.background = coloresBg[p.gen-1];
     document.getElementById('pk-name').textContent = p.name.toLowerCase();
-    document.getElementById('pk-id').textContent   = `Regional #${numR.toString().padStart(3,'0')} · Nacional #${p.id.toString().padStart(4,'0')}`;
+    const catInfo = p.categoria ? CATEGORIA_INFO[p.categoria] : null;
+    document.getElementById('pk-id').textContent =
+        `Regional #${numR.toString().padStart(3,'0')} · Nacional #${ancla.toString().padStart(4,'0')}${catInfo ? ' · ' + catInfo.label : ''}`;
     document.getElementById('pk-img').src = p.image;
     document.getElementById('pk-img').alt = p.name;
 
@@ -1369,9 +1450,10 @@ function handleSearchInput(e, inputEl) {
         if (!data.length) { sugBox.style.display = 'none'; return; }
         const frag = document.createDocumentFragment();
         data.forEach(p => {
-            let numR = p.id - cortesGen[p.gen];
+            const ancla = anclaIdCliente(p);
+            let numR = ancla - cortesGen[p.gen];
             let rName = regiones[p.gen - 1];
-            if (p.id >= 899 && p.id <= 905) { numR = p.id - 809; rName = 'Hisui'; }
+            if (ancla >= 899 && ancla <= 905) { numR = ancla - 809; rName = 'Hisui'; }
             const tiene = tieneEnLS(p.id);
             const carpetaPk = carpetaDe(p);
             const colorPk = carpetaPk ? carpetaPk.color : coloresGen[p.gen-1];
@@ -1524,6 +1606,66 @@ function cerrarOpcionesPDF() {
 }
 document.getElementById('pdf-opciones-close').onclick = cerrarOpcionesPDF;
 
+// ── AJUSTES: panel de categorías de variantes ───────────────────────
+const CATEGORIAS_VARIANTES_INFO = [
+    { key: 'regional',    label: 'Formas regionales',      sub: 'Alolan, Galarian, Hisuian, Paldean' },
+    { key: 'mega',        label: 'Megaevolución',          sub: 'Incluye los casos X/Y (Charizard, Mewtwo)' },
+    { key: 'primigenia',  label: 'Regresión Primigenia',   sub: 'Kyogre y Groudon' },
+    { key: 'gigamax',     label: 'Gigamax',                sub: 'Espada/Escudo + expansiones' },
+    { key: 'alternativa', label: 'Formas alternativas',    sub: 'Con carta TCG propia (Deoxys, Rotom, Arceus, etc.)' },
+];
+let variantesConfigActual = null;
+
+async function abrirPanelVariantes() {
+    try {
+        const res = await fetch('/api/variantes-config');
+        if (!res.ok) throw new Error('respuesta no válida');
+        variantesConfigActual = await res.json();
+    } catch (err) {
+        mostrarToastError('No se pudo cargar la configuración de variantes.');
+        return;
+    }
+    document.getElementById('variantes-checks').innerHTML = CATEGORIAS_VARIANTES_INFO.map(c => `
+        <label class="pdf-opciones-check">
+            <input type="checkbox" class="variante-cat-check" data-cat="${c.key}" ${variantesConfigActual[c.key] ? 'checked' : ''} onchange="toggleCategoriaVariante('${c.key}', this.checked)">
+            <span>${c.label}<br><span style="font-size:11px;color:var(--muted);font-weight:400;">${c.sub}</span></span>
+        </label>
+    `).join('');
+    cerrarAjustes();
+    document.getElementById('variantes-modal').classList.add('open');
+}
+function cerrarPanelVariantes() {
+    document.getElementById('variantes-modal').classList.remove('open');
+}
+document.getElementById('variantes-close').onclick = cerrarPanelVariantes;
+
+async function toggleCategoriaVariante(categoria, activada) {
+    const checkbox = document.querySelector(`.variante-cat-check[data-cat="${categoria}"]`);
+    const guardar = async () => {
+        const nueva = { ...variantesConfigActual, [categoria]: activada };
+        try {
+            sseIgnorarProximoConfig = true;
+            const res = await fetch('/api/variantes-config', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(nueva)
+            });
+            const data = await res.json();
+            if (!res.ok || !data.success) throw new Error(data.error || 'respuesta no válida');
+            variantesConfigActual = nueva;
+            await cargarEstadisticasSinMoverScroll();
+            if (activada) await revisarCapacidadCarpetas();
+            mostrarToastInfo(activada ? 'Categoría activada.' : 'Categoría desactivada.');
+        } catch (err) {
+            sseIgnorarProximoConfig = false; // no se llegó a guardar: no habrá eco que ignorar
+            if (checkbox) checkbox.checked = !activada; // revertir el toggle visual si falló
+            mostrarToastError(err.message || 'No se pudo guardar la configuración de variantes.');
+        }
+    };
+    const revertirSiCancela = () => { if (checkbox) checkbox.checked = !activada; };
+    requiereSesion(guardar) || revertirSiCancela();
+}
+
 // ── WIZARD: PLANEAR MIS CARPETAS ────────────────────────────────────
 // Pensado como ayuda para planificar el álbum físico, no como un
 // formulario de configuración. Secuencia: modo de acomodo → formato de
@@ -1594,10 +1736,12 @@ function wizardModoCapacidad() {
     return document.querySelector('input[name="wizard-modo-capacidad"]:checked').value;
 }
 
-// Cuánto necesita cubrir la capacidad total: 1025 (toda la colección) en
-// modo seguidas, o la suma de "huellas" de las 9 generaciones en separadas.
+// Cuánto necesita cubrir la capacidad total: toda la colección efectiva
+// (1025 + variantes activas) en modo seguidas, o la suma de "huellas" de las
+// 9 generaciones en separadas (que ya incluyen variantes activas, porque
+// pokemonEnGen() lee de dataGlobalCache, ya filtrado por el servidor).
 function wizardNecesarioTotal() {
-    if (wizardModo === 'seguidas') return 1025;
+    if (wizardModo === 'seguidas') return (dataGlobalCache && dataGlobalCache.global.total) || 1025;
     return Array.from({ length: 9 }, (_, i) => wizardHuellaGen(i + 1)).reduce((a, b) => a + b, 0);
 }
 
@@ -1653,11 +1797,12 @@ function wizardCapacidadSiguiente() {
 
     if (wizardModo === 'seguidas') {
         // Sin paso de ajuste manual (confirmado: el reparto automático alcanza)
-        // — pero si la capacidad no llega a 1025, no hay "ajuste" que lo salve
-        // más adelante como en modo separadas, así que se bloquea acá.
+        // — pero si la capacidad no llega a lo necesario, no hay "ajuste" que lo
+        // salve más adelante como en modo separadas, así que se bloquea acá.
         const total = wizardCapacidadesFijas.reduce((a, b) => a + b, 0);
-        if (total < 1025) {
-            mostrarToastError(`Entre todas suman ${total} espacios, y hacen falta 1025 para cubrir toda la colección.`);
+        const necesario = wizardNecesarioTotal();
+        if (total < necesario) {
+            mostrarToastError(`Entre todas suman ${total} espacios, y hacen falta ${necesario} para cubrir toda la colección.`);
             return;
         }
         wizardRangos = wizardCalcularRangos();
@@ -1873,6 +2018,9 @@ async function wizardGuardar() {
         localStorage.setItem('carpetasWizardVisto', '1');
         cerrarWizardCarpetas();
         mostrarToastInfo('Carpetas actualizadas.');
+        // La config recién guardada puede no alcanzar para las variantes activas
+        // (wizardCalcularRangos no las conoce en modo "seguidas"); avisar sin bloquear.
+        await revisarCapacidadCarpetas();
     } catch (err) {
         mostrarToastError(err.message || 'No se pudo guardar la configuración.');
     } finally {
@@ -1900,8 +2048,9 @@ function renderHistorial() {
     list.innerHTML = '';
     historialOCR.forEach(p => {
         const tiene = tieneEnLS(p.id);
-        let numR = p.id - cortesGen[p.gen];
-        if (p.id >= 899 && p.id <= 905) numR = p.id - 809;
+        const ancla = anclaIdCliente(p);
+        let numR = ancla - cortesGen[p.gen];
+        if (ancla >= 899 && ancla <= 905) numR = ancla - 809;
         const carpetaPk = carpetaDe(p);
         const colorPk = carpetaPk ? carpetaPk.color : coloresGen[p.gen-1];
         const bgPk    = carpetaPk ? carpetaPk.bg    : coloresBg[p.gen-1];
@@ -1980,12 +2129,18 @@ async function iniciarBucleOCR() {
 }
 
 // ── SSE ──────────────────────────────────────────────────────────
+// Se activa justo antes de que ESTA pestaña dispare un cambio que el propio
+// servidor le va a reflejar de vuelta por el mismo broadcast (p.ej. togglear
+// una categoría de variantes) — así el eco de nuestro propio cambio no
+// dispara el aviso de "otro dispositivo" ni cierra la galería.
+let sseIgnorarProximoConfig = false;
 function iniciarSSE() {
     const es = new EventSource('/api/eventos');
     es.onmessage = (e) => {
         const msg = JSON.parse(e.data);
 
         if (msg.tipo === 'config') {
+            if (sseIgnorarProximoConfig) { sseIgnorarProximoConfig = false; return; }
             // Se reutiliza este tipo para avisar "algo grande cambió, recarga todo"
             // (alguien importó un respaldo, o reconfiguró las carpetas, desde otro
             // dispositivo).

@@ -95,12 +95,78 @@ function modoValido(modo) {
     return modo === 'bulk' || modo === 'carpetas';
 }
 
+// ── CONFIGURACIÓN DE VARIANTES (Ajustes → Variantes) ────────────────
+// Qué categorías de variantes (formas regionales, Mega, Regresión Primigenia,
+// Gigamax, alternativas) cuentan como cartas propias — configuración global,
+// afecta tanto bulk como carpetas por igual. Todas arrancan en `false`: cero
+// cambio de comportamiento para quien no toca nada en Ajustes.
+const CATEGORIAS_VARIANTES = ['regional', 'mega', 'primigenia', 'gigamax', 'alternativa'];
+
+function variantesConfigValida(candidato) {
+    if (!candidato || typeof candidato !== 'object' || Array.isArray(candidato)) return false;
+    const claves = Object.keys(candidato);
+    if (claves.length !== CATEGORIAS_VARIANTES.length) return false;
+    return CATEGORIAS_VARIANTES.every(cat => typeof candidato[cat] === 'boolean');
+}
+
+let variantesConfig = Object.fromEntries(CATEGORIAS_VARIANTES.map(c => [c, false]));
+if (fs.existsSync('variantes-config.json')) {
+    try {
+        const raw = JSON.parse(fs.readFileSync('variantes-config.json', 'utf8'));
+        if (variantesConfigValida(raw)) variantesConfig = raw;
+        else console.warn('⚠️  variantes-config.json inválido, usando todas las categorías desactivadas.');
+    } catch (err) {
+        console.error('⚠️  variantes-config.json corrupto, usando todas las categorías desactivadas:', err.message);
+    }
+}
+function guardarVariantesConfig() {
+    escribirJSONAtomico('variantes-config.json', variantesConfig);
+}
+
+// especieBase (1–1025) -> variantes[], en el mismo orden en que aparecen en
+// pokemon_db.json. Se calcula una sola vez: pokemonDB no cambia en caliente.
+const variantesPorBase = new Map();
+for (const p of pokemonDB) {
+    if (p.id <= 1025) continue;
+    if (!variantesPorBase.has(p.especieBase)) variantesPorBase.set(p.especieBase, []);
+    variantesPorBase.get(p.especieBase).push(p);
+}
+
+// Ancla de un Pokémon a un id de especie base (1–1025): el suyo propio si ya
+// es base, o el de su especie base si es una variante (id siempre >= 1026).
+// Sirve para decidir a qué carpeta/rango pertenece una variante en modo
+// "seguidas", donde los rangos se definen sobre 1–1025.
+function anclaId(p) {
+    return p.id <= 1025 ? p.id : p.especieBase;
+}
+
+// Base (1025) + solo las variantes de categorías activas, cada una
+// intercalada justo después de su especie base — así el orden de
+// galería/carpeta/búsqueda las agrupa junto a su base sin que el cliente
+// tenga que reordenar nada.
+function pokemonEfectivo() {
+    const activas = new Set(CATEGORIAS_VARIANTES.filter(cat => variantesConfig[cat]));
+    const resultado = [];
+    for (const p of pokemonDB) {
+        if (p.id > 1025) continue;
+        resultado.push(p);
+        for (const v of variantesPorBase.get(p.id) || []) {
+            if (activas.has(v.categoria)) resultado.push(v);
+        }
+    }
+    return resultado;
+}
+
 // ── CONFIGURACIÓN DE CARPETAS (wizard) ──────────────────────────────
 // Antes eran 4 carpetas fijas hardcodeadas (Azul/Morada/Rosa/Roja); ahora
 // vive en disco y es configurable desde la app (Ajustes → Configurar
 // carpetas), para que cualquier dispositivo vea la misma agrupación.
 function pokemonPorGens(gens) {
-    return pokemonDB.filter(p => gens.includes(p.gen)).length;
+    // Cuenta SIEMPRE solo la base (1025), sin mirar variantesConfig: se usa como
+    // piso estructural (validación de carpetas.json y seed de CARPETAS_DEFAULT),
+    // no debe cambiar cuando el usuario activa/desactiva una categoría de
+    // variantes (ver Hallazgo 1 de la revisión final de variantes-fase2).
+    return pokemonDB.filter(p => p.id <= 1025 && gens.includes(p.gen)).length;
 }
 const CARPETAS_DEFAULT = [
     { nombre: 'Azul',   color: '#3b5bdb', gens: [1, 2],    espacios: pokemonPorGens([1, 2]) },
@@ -342,36 +408,47 @@ app.get('/api/buscar', (req, res) => {
     const gen   = req.query.gen ? parseInt(req.query.gen) : null;
     const desde = req.query.desde ? parseInt(req.query.desde) : null;
     const hasta = req.query.hasta ? parseInt(req.query.hasta) : null;
-    if (gen) return res.json(pokemonDB.filter(p => p.gen == gen));
-    if (desde && hasta) return res.json(pokemonDB.filter(p => p.id >= desde && p.id <= hasta));
+    const efectivo = pokemonEfectivo();
+    if (gen) return res.json(efectivo.filter(p => p.gen == gen));
+    // El rango se compara contra la especie base de cada entrada (anclaId), no
+    // contra su propio id — así una variante cae en el rango de su base aunque
+    // su id propio sea >= 1026, fuera de cualquier rango literal 1–1025.
+    if (desde && hasta) return res.json(efectivo.filter(p => { const a = anclaId(p); return a >= desde && a <= hasta; }));
     if (!q)  return res.json([]);
-    const resultados = pokemonDB.filter(p => p.name.startsWith(q) || p.name === q);
+    const resultados = efectivo.filter(p => p.name.startsWith(q) || p.name === q);
     res.json(resultados.slice(0, 5));
 });
 
 app.get('/api/estadisticas', (req, res) => {
     const modo = modoValido(req.query.modo) ? req.query.modo : 'carpetas';
     const inv  = inventario[modo];
+    const efectivo = pokemonEfectivo();
+    const idsEfectivos = new Set(efectivo.map(p => p.id));
 
-    const stats = {};
-    for (let g = 1; g <= 9; g++) {
-        const totalGen       = pokemonDB.filter(p => p.gen == g).length;
-        const conseguidosGen = pokemonDB.filter(p => p.gen == g && inv[p.id] !== undefined).length;
-        stats[g] = { total: totalGen, conseguidos: conseguidosGen };
-    }
-    const totalGlobal       = pokemonDB.length;
-    const conseguidosGlobal = Object.keys(inv).length;
-
+    // listaIds/fechas se filtran contra idsEfectivos primero: si una variante
+    // quedó marcada mientras su categoría estaba activa y después se
+    // desactivó, deja de contar acá (pero el dato sigue intacto en
+    // inventario.json — reaparece si se reactiva la categoría).
     const listaIds = {};
     const fechas    = {};
     for (const [id, datos] of Object.entries(inv)) {
+        if (!idsEfectivos.has(Number(id))) continue;
         listaIds[id] = true;
         if (datos && datos.fecha) fechas[id] = datos.fecha;
     }
 
+    const stats = {};
+    for (let g = 1; g <= 9; g++) {
+        const pkmsGen = efectivo.filter(p => p.gen == g);
+        stats[g] = {
+            total: pkmsGen.length,
+            conseguidos: pkmsGen.filter(p => listaIds[p.id] !== undefined).length
+        };
+    }
+
     res.json({
         modo,
-        global: { total: totalGlobal, conseguidos: conseguidosGlobal },
+        global: { total: efectivo.length, conseguidos: Object.keys(listaIds).length },
         generaciones: stats,
         listaIds,
         fechas
@@ -398,6 +475,10 @@ app.get('/api/exportar', (req, res) => {
 
 app.get('/api/carpetas-config', (req, res) => {
     res.json(carpetasConfig);
+});
+
+app.get('/api/variantes-config', (req, res) => {
+    res.json(variantesConfig);
 });
 
 // ── PDF DE RECORTABLES ──────────────────────────────────────────────
@@ -693,6 +774,17 @@ app.post('/api/carpetas-config', requiereLogin, rateLimiter, (req, res) => {
     guardarCarpetasConfig();
     broadcast({ tipo: 'config' }); // mismo evento que usa /api/importar para avisar "recargá todo"
     res.json({ success: true, carpetas: carpetasConfig });
+});
+
+// ── CONFIGURAR VARIANTES (Ajustes) ──────────────────────────────────
+app.post('/api/variantes-config', requiereLogin, rateLimiter, (req, res) => {
+    if (!variantesConfigValida(req.body)) {
+        return res.status(400).json({ success: false, error: 'Configuración de variantes inválida.' });
+    }
+    variantesConfig = req.body;
+    guardarVariantesConfig();
+    broadcast({ tipo: 'config' }); // mismo evento que ya usan /api/importar y /api/carpetas-config
+    res.json({ success: true, variantesConfig });
 });
 
 // ── IMPORTAR: restaura un respaldo generado por /api/exportar ─────

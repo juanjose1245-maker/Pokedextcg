@@ -1,9 +1,4 @@
 {
-  ".claude/settings.local.json": {
-    "mtime": 1785192448.7954516,
-    "ast_hash": "c86853a02e2bc3f4cd7aa9b323993c9e",
-    "semantic_hash": ""
-  },
   "carpetas.json": {
     "mtime": 1785080120.1278086,
     "ast_hash": "96623d64ad2532609acdc837e930fd19",
@@ -40,8 +35,8 @@
     "semantic_hash": ""
   },
   "public/app.js": {
-    "mtime": 1785085141.1897743,
-    "ast_hash": "e1de9842d08c55597339ad7a856de14c",
+    "mtime": 1785196928.3367085,
+    "ast_hash": "2a6eea6f1e24e0d6558796207bd34679",
     "semantic_hash": ""
   },
   "public/manifest.json": {
@@ -50,8 +45,8 @@
     "semantic_hash": ""
   },
   "public/sw.js": {
-    "mtime": 1785097759.4476125,
-    "ast_hash": "e5be316f3005ce4ba087ac8a7d999b00",
+    "mtime": 1785196928.3377087,
+    "ast_hash": "348704c657110ccac01706bd30f96e9e",
     "semantic_hash": ""
   },
   "public/vendor/tesseract/tesseract-core-lstm.wasm.js": {
@@ -75,8 +70,8 @@
     "semantic_hash": ""
   },
   "server.js": {
-    "mtime": 1785080049.477605,
-    "ast_hash": "9e6e22f346a3c557de4967e3a980ed49",
+    "mtime": 1785196928.3377087,
+    "ast_hash": "598a4ed44da2861d34b408c81b793a16",
     "semantic_hash": ""
   },
   "update_script.sh": {
@@ -100,8 +95,8 @@
     "semantic_hash": ""
   },
   "public/index.html": {
-    "mtime": 1785085123.4923182,
-    "ast_hash": "265c4745055e9e661a33d79b981562c7",
+    "mtime": 1785196928.3367085,
+    "ast_hash": "efd484ae75c56c10c55e1130e9b20eeb",
     "semantic_hash": ""
   },
   "public/icons/pokeball-120.png": {
@@ -169,11 +164,6 @@
     "ast_hash": "a5c3e66417d28de18ff0b5b68063af46",
     "semantic_hash": ""
   },
-  ".claude/settings.json": {
-    "mtime": 1785079008.1369622,
-    "ast_hash": "8e354e95633a2e8f9b91523377f1968c",
-    "semantic_hash": ""
-  },
   "docs/superpowers/specs/2026-07-27-variantes-fase2-tracking-design.md": {
     "mtime": 1785179098.203143,
     "ast_hash": "ab035a725932ec1c4246ad267b76dbde",
@@ -182,6 +172,16 @@
   "docs/superpowers/plans/2026-07-27-variantes-fase2-tracking.md": {
     "mtime": 1785193191.2509973,
     "ast_hash": "609cd4b78d54348124e0687aaa64fe61",
+    "semantic_hash": ""
+  },
+  ".claude/settings.json": {
+    "mtime": 1785079008.1369622,
+    "ast_hash": "8e354e95633a2e8f9b91523377f1968c",
+    "semantic_hash": ""
+  },
+  ".claude/settings.local.json": {
+    "mtime": 1785192448.7954516,
+    "ast_hash": "c86853a02e2bc3f4cd7aa9b323993c9e",
     "semantic_hash": ""
   }
 }

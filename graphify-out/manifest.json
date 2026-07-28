@@ -185,13 +185,18 @@
     "semantic_hash": ""
   },
   "variantes-config.json": {
-    "mtime": 1785211696.2444367,
-    "ast_hash": "79648466527ddef52e2b7c93a57bc55a",
+    "mtime": 1785241784.034761,
+    "ast_hash": "ff58d43f3020c4385da69fc3ab281832",
     "semantic_hash": ""
   },
   "docs/superpowers/specs/2026-07-27-variantes-fase3-pdf-design.md": {
     "mtime": 1785212353.93067,
     "ast_hash": "4c141d531f5c1024357b8e97f170981a",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-07-28-variantes-fase3-pdf.md": {
+    "mtime": 1785245401.2960596,
+    "ast_hash": "12e2b535d3d05188dd973de9e88e9730",
     "semantic_hash": ""
   }
 }

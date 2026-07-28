@@ -3167,8 +3167,8 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_wordfontattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".wordfontattributes()"
     },
     {
@@ -4091,8 +4091,8 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi",
-      "community": 30,
-      "community_name": "hi",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": "hi()"
     },
     {
@@ -4102,8 +4102,8 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi_destroy",
-      "community": 30,
-      "community_name": "hi",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4960,8 +4960,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi_getvalue",
-      "community": 30,
-      "community_name": "hi",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".getvalue()"
     },
     {
@@ -5026,8 +5026,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_f64",
-      "community": 30,
-      "community_name": "hi",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".f64()"
     },
     {
@@ -5037,8 +5037,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_peek",
-      "community": 30,
-      "community_name": "hi",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".peek()"
     },
     {
@@ -5092,8 +5092,8 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getwordfontattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".getwordfontattributes()"
     },
     {
@@ -5763,8 +5763,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_sh",
-      "community": 25,
-      "community_name": "zb",
+      "community": 75,
+      "community_name": "Sh",
       "norm_label": "sh()"
     },
     {
@@ -5774,8 +5774,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_sh_destroy",
-      "community": 25,
-      "community_name": "zb",
+      "community": 75,
+      "community_name": "Sh",
       "norm_label": ".__destroy__()"
     },
     {
@@ -6071,8 +6071,8 @@
       "source_location": "L206",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_blockpolygon",
-      "community": 25,
-      "community_name": "zb",
+      "community": 67,
+      "community_name": "M",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -6203,8 +6203,8 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_wordfontattributes",
-      "community": 8,
-      "community_name": "L",
+      "community": 25,
+      "community_name": "zb",
       "norm_label": ".wordfontattributes()"
     },
     {
@@ -6412,8 +6412,8 @@
       "source_location": "L214",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o",
-      "community": 25,
-      "community_name": "zb",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": "o()"
     },
     {
@@ -6423,8 +6423,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_begin",
-      "community": 25,
-      "community_name": "zb",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".begin()"
     },
     {
@@ -6434,8 +6434,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_restartparagraph",
-      "community": 25,
-      "community_name": "zb",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".restartparagraph()"
     },
     {
@@ -6445,8 +6445,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_iswithinfirsttextlineofparagraph",
-      "community": 25,
-      "community_name": "zb",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".iswithinfirsttextlineofparagraph()"
     },
     {
@@ -6456,8 +6456,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_restartrow",
-      "community": 25,
-      "community_name": "zb",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".restartrow()"
     },
     {
@@ -6467,8 +6467,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_next",
-      "community": 25,
-      "community_name": "zb",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".next()"
     },
     {
@@ -6478,8 +6478,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_isatbeginningof",
-      "community": 25,
-      "community_name": "zb",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".isatbeginningof()"
     },
     {
@@ -6489,8 +6489,8 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_isatfinalelement",
-      "community": 25,
-      "community_name": "zb",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".isatfinalelement()"
     },
     {
@@ -6500,8 +6500,8 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_cmp",
-      "community": 25,
-      "community_name": "zb",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".cmp()"
     },
     {
@@ -6511,8 +6511,8 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_setboundingboxcomponents",
-      "community": 25,
-      "community_name": "zb",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".setboundingboxcomponents()"
     },
     {
@@ -6533,8 +6533,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_boundingboxinternal",
-      "community": 25,
-      "community_name": "zb",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".boundingboxinternal()"
     },
     {
@@ -6544,8 +6544,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_empty",
-      "community": 25,
-      "community_name": "zb",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".empty()"
     },
     {
@@ -6555,8 +6555,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_blocktype",
-      "community": 25,
-      "community_name": "zb",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".blocktype()"
     },
     {
@@ -6566,8 +6566,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_blockpolygon",
-      "community": 25,
-      "community_name": "zb",
+      "community": 67,
+      "community_name": "M",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -6610,8 +6610,8 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_orientation",
-      "community": 25,
-      "community_name": "zb",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".orientation()"
     },
     {
@@ -6621,8 +6621,8 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_paragraphinfo",
-      "community": 25,
-      "community_name": "zb",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".paragraphinfo()"
     },
     {
@@ -6632,8 +6632,8 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_destroy",
-      "community": 25,
-      "community_name": "zb",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".__destroy__()"
     },
     {
@@ -6830,8 +6830,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ai",
-      "community": 25,
-      "community_name": "zb",
+      "community": 72,
+      "community_name": "ai",
       "norm_label": "ai()"
     },
     {
@@ -6841,8 +6841,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ai_destroy",
-      "community": 25,
-      "community_name": "zb",
+      "community": 72,
+      "community_name": "ai",
       "norm_label": ".__destroy__()"
     },
     {
@@ -6984,8 +6984,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ei",
-      "community": 25,
-      "community_name": "zb",
+      "community": 66,
+      "community_name": "ei",
       "norm_label": "ei()"
     },
     {
@@ -6995,8 +6995,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ei_destroy",
-      "community": 25,
-      "community_name": "zb",
+      "community": 66,
+      "community_name": "ei",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7083,8 +7083,8 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_m",
-      "community": 25,
-      "community_name": "zb",
+      "community": 67,
+      "community_name": "M",
       "norm_label": "m()"
     },
     {
@@ -7094,8 +7094,8 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_m_destroy",
-      "community": 25,
-      "community_name": "zb",
+      "community": 67,
+      "community_name": "M",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7611,8 +7611,8 @@
       "source_location": "L254",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_v_analyselayout",
-      "community": 25,
-      "community_name": "zb",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": ".analyselayout()"
     },
     {
@@ -7622,8 +7622,8 @@
       "source_location": "L254",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_v_recognize",
-      "community": 53,
-      "community_name": "d",
+      "community": 5,
+      "community_name": "V",
       "norm_label": ".recognize()"
     },
     {
@@ -7765,8 +7765,8 @@
       "source_location": "L258",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_v_allwordconfidences",
-      "community": 25,
-      "community_name": "zb",
+      "community": 66,
+      "community_name": "ei",
       "norm_label": ".allwordconfidences()"
     },
     {
@@ -7963,8 +7963,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_sh_getvalue",
-      "community": 25,
-      "community_name": "zb",
+      "community": 75,
+      "community_name": "Sh",
       "norm_label": ".getvalue()"
     },
     {
@@ -7974,8 +7974,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ei_getvalue",
-      "community": 25,
-      "community_name": "zb",
+      "community": 66,
+      "community_name": "ei",
       "norm_label": ".getvalue()"
     },
     {
@@ -7985,8 +7985,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ai_getvalue",
-      "community": 25,
-      "community_name": "zb",
+      "community": 72,
+      "community_name": "ai",
       "norm_label": ".getvalue()"
     },
     {
@@ -8128,8 +8128,8 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_getwordfontattributes",
-      "community": 8,
-      "community_name": "L",
+      "community": 25,
+      "community_name": "zb",
       "norm_label": ".getwordfontattributes()"
     },
     {
@@ -10184,6 +10184,72 @@
       "id": "docs_superpowers_plans_2026_07_27_variantes_fase2_tracking_self_review_hecho_al_escribir_este_plan",
       "community": 68,
       "community_name": "Fase 2 \u2014 Selecci\u00f3n de categor\u00edas de variantes (n\u00facleo de tracking) \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "self-review (hecho al escribir este plan)"
+    },
+    {
+      "label": "2026-07-28-variantes-fase3-pdf.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-28-variantes-fase3-pdf.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_28_variantes_fase3_pdf",
+      "community": 52,
+      "community_name": "Fase 3 \u2014 Variantes en el PDF de recortables \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "2026-07-28-variantes-fase3-pdf.md"
+    },
+    {
+      "label": "Fase 3 \u2014 Variantes en el PDF de recortables \u2014 Plan de implementaci\u00f3n",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-28-variantes-fase3-pdf.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_28_variantes_fase3_pdf_fase_3_variantes_en_el_pdf_de_recortables_plan_de_implementaci\u00f3n",
+      "community": 52,
+      "community_name": "Fase 3 \u2014 Variantes en el PDF de recortables \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "fase 3 \u2014 variantes en el pdf de recortables \u2014 plan de implementacion"
+    },
+    {
+      "label": "Global Constraints",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-28-variantes-fase3-pdf.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_28_variantes_fase3_pdf_global_constraints",
+      "community": 52,
+      "community_name": "Fase 3 \u2014 Variantes en el PDF de recortables \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "global constraints"
+    },
+    {
+      "label": "Task 1: `generarPDFRecortables()` variant-aware (orden, rango, y numeraci\u00f3n)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-28-variantes-fase3-pdf.md",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_28_variantes_fase3_pdf_task_1_generarpdfrecortables_variant_aware_orden_rango_y_numeraci\u00f3n",
+      "community": 52,
+      "community_name": "Fase 3 \u2014 Variantes en el PDF de recortables \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 1: `generarpdfrecortables()` variant-aware (orden, rango, y numeracion)"
+    },
+    {
+      "label": "Task 2: Invalidaci\u00f3n de cach\u00e9 consciente de `variantes-config.json`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-28-variantes-fase3-pdf.md",
+      "source_location": "L168",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_28_variantes_fase3_pdf_task_2_invalidaci\u00f3n_de_cach\u00e9_consciente_de_variantes_config_json",
+      "community": 52,
+      "community_name": "Fase 3 \u2014 Variantes en el PDF de recortables \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 2: invalidacion de cache consciente de `variantes-config.json`"
+    },
+    {
+      "label": "Self-Review (hecho al escribir este plan)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-28-variantes-fase3-pdf.md",
+      "source_location": "L261",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_28_variantes_fase3_pdf_self_review_hecho_al_escribir_este_plan",
+      "community": 52,
+      "community_name": "Fase 3 \u2014 Variantes en el PDF de recortables \u2014 Plan de implementaci\u00f3n",
       "norm_label": "self-review (hecho al escribir este plan)"
     },
     {
@@ -31755,6 +31821,61 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-28-variantes-fase3-pdf.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_28_variantes_fase3_pdf",
+      "target": "docs_superpowers_plans_2026_07_28_variantes_fase3_pdf_fase_3_variantes_en_el_pdf_de_recortables_plan_de_implementaci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-28-variantes-fase3-pdf.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_28_variantes_fase3_pdf_fase_3_variantes_en_el_pdf_de_recortables_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_28_variantes_fase3_pdf_global_constraints",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-28-variantes-fase3-pdf.md",
+      "source_location": "L261",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_28_variantes_fase3_pdf_fase_3_variantes_en_el_pdf_de_recortables_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_28_variantes_fase3_pdf_self_review_hecho_al_escribir_este_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-28-variantes-fase3-pdf.md",
+      "source_location": "L24",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_28_variantes_fase3_pdf_fase_3_variantes_en_el_pdf_de_recortables_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_28_variantes_fase3_pdf_task_1_generarpdfrecortables_variant_aware_orden_rango_y_numeraci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-28-variantes-fase3-pdf.md",
+      "source_location": "L168",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_28_variantes_fase3_pdf_fase_3_variantes_en_el_pdf_de_recortables_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_28_variantes_fase3_pdf_task_2_invalidaci\u00f3n_de_cach\u00e9_consciente_de_variantes_config_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/superpowers/specs/2026-07-25-carpetas-todas-seguidas-design.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -32403,5 +32524,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "a4abb695399e4a5b7b85567b991b7ca4e823c0a6"
+  "built_at_commit": "2a0c6a7af7b86523e9f49a976ac8fe6e71766e06"
 }

@@ -1,16 +1,16 @@
-# Graph Report - pokedex-tcg  (2026-07-27)
+# Graph Report - pokedex-tcg  (2026-07-28)
 
 ## Corpus Check
-- 32 files · ~95,222 words
+- 33 files · ~97,235 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 990 nodes · 1871 edges · 71 communities (42 shown, 29 thin omitted)
+- 996 nodes · 1876 edges · 76 communities (42 shown, 34 thin omitted)
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 221 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a4abb695`
+- Built from commit: `2a0c6a7a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -67,6 +67,7 @@
 - fetch_pokemon.js
 - Sh
 - ii
+- Fase 3 — Variantes en el PDF de recortables — Plan de implementación
 - d
 - sw.js
 - update_script.sh
@@ -80,12 +81,16 @@
 - Fase 1 — Base de datos de variantes de Pokémon (Megas, formas regionales, Gigamax, etc.)
 - Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación
 - fetch_variantes.js
+- ei
+- M
 - Fase 2 — Selección de categorías de variantes (núcleo de tracking) — Plan de implementación
 - p
 - escribirJSONAtomico
 - carpetasConfigValida
+- ai
 - sesionValida
 - CATEGORIAS_VARIANTES
+- Sh
 
 ## God Nodes (most connected - your core abstractions)
 1. `V()` - 66 edges
@@ -114,7 +119,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (71 total, 29 thin omitted)
+## Communities (76 total, 34 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -176,10 +181,6 @@ Nodes (4): bi(), Lh(), Y(), Zh()
 Cohesion: 0.42
 Nodes (13): ac(), $b(), bc(), cc(), Hh(), Pb(), tb(), ub() (+5 more)
 
-### Community 25 - "zb"
-Cohesion: 0.05
-Nodes (7): ai(), ei(), hi(), ji(), M(), O(), Sh()
-
 ### Community 26 - "Fase 3 — Variantes en el PDF de recortables"
 Cohesion: 0.25
 Nodes (7): Caché e invalidación (`/api/pdf-carpetas`), Cambios, Contexto, Fase 3 — Variantes en el PDF de recortables, Fuera de alcance, `generarPDFRecortables(rutaSalida, opciones)` (`server.js`), Testing
@@ -224,8 +225,12 @@ Nodes (5): Ha(), Ia(), qb(), sb(), t()
 Cohesion: 0.42
 Nodes (13): ac(), $b(), bc(), cc(), Hh(), Pb(), tb(), ub() (+5 more)
 
+### Community 52 - "Fase 3 — Variantes en el PDF de recortables — Plan de implementación"
+Cohesion: 0.33
+Nodes (5): Fase 3 — Variantes en el PDF de recortables — Plan de implementación, Global Constraints, Self-Review (hecho al escribir este plan), Task 1: `generarPDFRecortables()` variant-aware (orden, rango, y numeración), Task 2: Invalidación de caché consciente de `variantes-config.json`
+
 ### Community 53 - "d"
-Cohesion: 0.29
+Cohesion: 0.33
 Nodes (3): d(), h(), Za()
 
 ### Community 56 - "p"
@@ -285,21 +290,21 @@ Cohesion: 0.67
 Nodes (3): parsearCookies(), requiereLogin(), sesionValida()
 
 ## Knowledge Gaps
-- **176 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+171 more)
+- **180 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+175 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **29 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **34 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `g()` connect `worker.min.js` to `carpetasConfigValida`, `esDesktop`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
-  _High betweenness centrality (0.210) - this node is a cross-community bridge._
+  _High betweenness centrality (0.208) - this node is a cross-community bridge._
 - **Why does `a()` connect `worker.min.js` to `qb`, `A`, `A`, `p`, `qb`, `p`?**
-  _High betweenness centrality (0.197) - this node is a cross-community bridge._
-- **Why does `A()` connect `A` to `worker.min.js`, `K`, `tesseract-core-simd-lstm.wasm.js`, `L`, `Q`, `J`, `di`, `d`, `Lh`, `p`, `kb`, `qb`?**
-  _High betweenness centrality (0.097) - this node is a cross-community bridge._
+  _High betweenness centrality (0.195) - this node is a cross-community bridge._
+- **Why does `A()` connect `A` to `worker.min.js`, `K`, `tesseract-core-simd-lstm.wasm.js`, `Q`, `J`, `di`, `d`, `Lh`, `p`, `zb`, `kb`, `qb`?**
+  _High betweenness centrality (0.096) - this node is a cross-community bridge._
 - **What connects `fs`, `fs`, `crypto` to the rest of the system?**
-  _176 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _180 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
   _Cohesion score 0.056910569105691054 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**

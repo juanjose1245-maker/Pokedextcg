@@ -1653,6 +1653,16 @@ async function toggleCategoriaVariante(categoria, activada) {
             const data = await res.json();
             if (!res.ok || !data.success) throw new Error(data.error || 'respuesta no válida');
             variantesConfigActual = nueva;
+            // cachePokemon (por generación) y pkmsActuales pueden tener datos
+            // cargados antes de este cambio, sin las variantes recién
+            // activadas/desactivadas — si no se limpian, la galería que ya
+            // estaba abierta seguiría mostrando la lista vieja hasta que el
+            // usuario recargue la página a mano. Volvemos a la vista general
+            // (misma acción que ya hace el handler de SSE 'config' para otros
+            // cambios grandes) para que la próxima vez que abra una
+            // generación/carpeta la traiga de nuevo, ya con la config nueva.
+            Object.keys(cachePokemon).forEach(k => delete cachePokemon[k]);
+            if (genActualAbierta) cerrarGaleriaYVolver();
             await cargarEstadisticasSinMoverScroll();
             if (activada) await revisarCapacidadCarpetas();
             mostrarToastInfo(activada ? 'Categoría activada.' : 'Categoría desactivada.');

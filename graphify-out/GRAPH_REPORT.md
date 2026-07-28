@@ -1,16 +1,16 @@
 # Graph Report - pokedex-tcg  (2026-07-27)
 
 ## Corpus Check
-- 30 files · ~94,045 words
+- 31 files · ~94,152 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 982 nodes · 1863 edges · 64 communities (42 shown, 22 thin omitted)
+- 982 nodes · 1864 edges · 64 communities (42 shown, 22 thin omitted)
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 221 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `38faac24`
+- Built from commit: `fe30d426`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -119,7 +119,7 @@ Nodes (15): actualizarBadgePendientes(), actualizarBotonEstado(), actualizarTarj
 
 ### Community 2 - "app.js"
 Cohesion: 0.06
-Nodes (35): actualizarBotonSesion(), aplicarTema(), cachePokemon, calcularJalon(), calcularProgresoReciente(), cameraBoxView, carpetas, CATEGORIA_INFO (+27 more)
+Nodes (36): actualizarBotonSesion(), aplicarTema(), cachePokemon, calcularJalon(), calcularProgresoReciente(), cameraBoxView, carpetas, CATEGORIA_INFO (+28 more)
 
 ### Community 3 - "server.js"
 Cohesion: 0.06
@@ -179,7 +179,7 @@ Nodes (7): ai(), ei(), hi(), ji(), M(), O(), Sh()
 
 ### Community 27 - "mostrarToastError"
 Cohesion: 0.14
-Nodes (22): abrirLoginModal(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelVariantes(), abrirWizardCarpetas(), cerrarAjustes(), cerrarPanelVariantes(), cerrarSesion() (+14 more)
+Nodes (21): abrirLoginModal(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelVariantes(), abrirWizardCarpetas(), cerrarAjustes(), cerrarPanelVariantes(), cerrarWizardCarpetas() (+13 more)
 
 ### Community 28 - "d"
 Cohesion: 0.29
@@ -294,7 +294,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `fs`, `fs`, `crypto` to the rest of the system?**
   _171 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.05731707317073171 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.056910569105691054 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._
 - **Should `V` be split into smaller, more focused modules?**

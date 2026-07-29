@@ -2078,8 +2078,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_xa",
-      "community": 12,
-      "community_name": "J",
+      "community": 29,
+      "community_name": "p",
       "norm_label": "xa()"
     },
     {
@@ -2122,8 +2122,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_p",
-      "community": 12,
-      "community_name": "J",
+      "community": 29,
+      "community_name": "p",
       "norm_label": "p()"
     },
     {
@@ -2243,8 +2243,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ya",
-      "community": 48,
-      "community_name": "ai",
+      "community": 29,
+      "community_name": "p",
       "norm_label": "ya()"
     },
     {
@@ -2298,8 +2298,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_gb",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 29,
+      "community_name": "p",
       "norm_label": "gb()"
     },
     {
@@ -2309,8 +2309,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hb",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 29,
+      "community_name": "p",
       "norm_label": "hb()"
     },
     {
@@ -2727,8 +2727,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh",
-      "community": 48,
-      "community_name": "ai",
+      "community": 75,
+      "community_name": "Sh",
       "norm_label": "sh()"
     },
     {
@@ -2738,8 +2738,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_destroy",
-      "community": 48,
-      "community_name": "ai",
+      "community": 75,
+      "community_name": "Sh",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3079,8 +3079,8 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_rowattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".rowattributes()"
     },
     {
@@ -3167,8 +3167,8 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_wordfontattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".wordfontattributes()"
     },
     {
@@ -3684,8 +3684,8 @@
       "source_location": "L224",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_p_destroy",
-      "community": 12,
-      "community_name": "J",
+      "community": 29,
+      "community_name": "p",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4091,8 +4091,8 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": "hi()"
     },
     {
@@ -4102,8 +4102,8 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi_destroy",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4927,8 +4927,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_getvalue",
-      "community": 48,
-      "community_name": "ai",
+      "community": 75,
+      "community_name": "Sh",
       "norm_label": ".getvalue()"
     },
     {
@@ -4960,8 +4960,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi_getvalue",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".getvalue()"
     },
     {
@@ -4971,8 +4971,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji",
-      "community": 48,
-      "community_name": "ai",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": "ji()"
     },
     {
@@ -4982,8 +4982,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_wrap",
-      "community": 48,
-      "community_name": "ai",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".wrap()"
     },
     {
@@ -4993,8 +4993,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_bool",
-      "community": 48,
-      "community_name": "ai",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".bool()"
     },
     {
@@ -5015,8 +5015,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_f32",
-      "community": 48,
-      "community_name": "ai",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".f32()"
     },
     {
@@ -5026,8 +5026,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_f64",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".f64()"
     },
     {
@@ -5037,8 +5037,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_peek",
-      "community": 48,
-      "community_name": "ai",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".peek()"
     },
     {
@@ -5081,8 +5081,8 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getrowattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".getrowattributes()"
     },
     {
@@ -5092,8 +5092,8 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getwordfontattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".getwordfontattributes()"
     },
     {
@@ -5114,7 +5114,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_xa",
-      "community": 56,
+      "community": 77,
       "community_name": "p",
       "norm_label": "xa()"
     },
@@ -5158,7 +5158,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_p",
-      "community": 56,
+      "community": 77,
       "community_name": "p",
       "norm_label": "p()"
     },
@@ -5279,8 +5279,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ya",
-      "community": 56,
-      "community_name": "p",
+      "community": 25,
+      "community_name": "zb",
       "norm_label": "ya()"
     },
     {
@@ -5334,8 +5334,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_gb",
-      "community": 56,
-      "community_name": "p",
+      "community": 7,
+      "community_name": "tesseract-core-simd-lstm.wasm.js",
       "norm_label": "gb()"
     },
     {
@@ -5345,8 +5345,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_hb",
-      "community": 56,
-      "community_name": "p",
+      "community": 7,
+      "community_name": "tesseract-core-simd-lstm.wasm.js",
       "norm_label": "hb()"
     },
     {
@@ -5763,8 +5763,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_sh",
-      "community": 25,
-      "community_name": "zb",
+      "community": 78,
+      "community_name": "Sh",
       "norm_label": "sh()"
     },
     {
@@ -5774,8 +5774,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_sh_destroy",
-      "community": 25,
-      "community_name": "zb",
+      "community": 78,
+      "community_name": "Sh",
       "norm_label": ".__destroy__()"
     },
     {
@@ -5796,8 +5796,8 @@
       "source_location": "L201",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_k_begindocument",
-      "community": 38,
-      "community_name": "K",
+      "community": 13,
+      "community_name": "J",
       "norm_label": ".begindocument()"
     },
     {
@@ -6071,8 +6071,8 @@
       "source_location": "L206",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_blockpolygon",
-      "community": 25,
-      "community_name": "zb",
+      "community": 72,
+      "community_name": "M",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -6203,8 +6203,8 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_wordfontattributes",
-      "community": 8,
-      "community_name": "L",
+      "community": 25,
+      "community_name": "zb",
       "norm_label": ".wordfontattributes()"
     },
     {
@@ -6412,8 +6412,8 @@
       "source_location": "L214",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o",
-      "community": 25,
-      "community_name": "zb",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": "o()"
     },
     {
@@ -6423,8 +6423,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_begin",
-      "community": 25,
-      "community_name": "zb",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".begin()"
     },
     {
@@ -6434,8 +6434,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_restartparagraph",
-      "community": 25,
-      "community_name": "zb",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".restartparagraph()"
     },
     {
@@ -6445,8 +6445,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_iswithinfirsttextlineofparagraph",
-      "community": 25,
-      "community_name": "zb",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".iswithinfirsttextlineofparagraph()"
     },
     {
@@ -6456,8 +6456,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_restartrow",
-      "community": 25,
-      "community_name": "zb",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".restartrow()"
     },
     {
@@ -6467,8 +6467,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_next",
-      "community": 25,
-      "community_name": "zb",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".next()"
     },
     {
@@ -6478,8 +6478,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_isatbeginningof",
-      "community": 25,
-      "community_name": "zb",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".isatbeginningof()"
     },
     {
@@ -6489,8 +6489,8 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_isatfinalelement",
-      "community": 25,
-      "community_name": "zb",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".isatfinalelement()"
     },
     {
@@ -6500,8 +6500,8 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_cmp",
-      "community": 25,
-      "community_name": "zb",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".cmp()"
     },
     {
@@ -6511,8 +6511,8 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_setboundingboxcomponents",
-      "community": 25,
-      "community_name": "zb",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".setboundingboxcomponents()"
     },
     {
@@ -6533,8 +6533,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_boundingboxinternal",
-      "community": 25,
-      "community_name": "zb",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".boundingboxinternal()"
     },
     {
@@ -6544,8 +6544,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_empty",
-      "community": 25,
-      "community_name": "zb",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".empty()"
     },
     {
@@ -6555,8 +6555,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_blocktype",
-      "community": 25,
-      "community_name": "zb",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".blocktype()"
     },
     {
@@ -6566,8 +6566,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_blockpolygon",
-      "community": 25,
-      "community_name": "zb",
+      "community": 72,
+      "community_name": "M",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -6610,8 +6610,8 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_orientation",
-      "community": 25,
-      "community_name": "zb",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".orientation()"
     },
     {
@@ -6621,8 +6621,8 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_paragraphinfo",
-      "community": 25,
-      "community_name": "zb",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".paragraphinfo()"
     },
     {
@@ -6632,8 +6632,8 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_destroy",
-      "community": 25,
-      "community_name": "zb",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".__destroy__()"
     },
     {
@@ -6720,7 +6720,7 @@
       "source_location": "L224",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_p_destroy",
-      "community": 56,
+      "community": 77,
       "community_name": "p",
       "norm_label": ".__destroy__()"
     },
@@ -6742,8 +6742,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_begindocument",
-      "community": 40,
-      "community_name": "Q",
+      "community": 13,
+      "community_name": "J",
       "norm_label": ".begindocument()"
     },
     {
@@ -6830,8 +6830,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ai",
-      "community": 25,
-      "community_name": "zb",
+      "community": 76,
+      "community_name": "ai",
       "norm_label": "ai()"
     },
     {
@@ -6841,8 +6841,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ai_destroy",
-      "community": 25,
-      "community_name": "zb",
+      "community": 76,
+      "community_name": "ai",
       "norm_label": ".__destroy__()"
     },
     {
@@ -6951,8 +6951,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_di_get_script_id_from_name",
-      "community": 46,
-      "community_name": "di",
+      "community": 13,
+      "community_name": "J",
       "norm_label": ".get_script_id_from_name()"
     },
     {
@@ -6984,8 +6984,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ei",
-      "community": 25,
-      "community_name": "zb",
+      "community": 67,
+      "community_name": "ei",
       "norm_label": "ei()"
     },
     {
@@ -6995,8 +6995,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ei_destroy",
-      "community": 25,
-      "community_name": "zb",
+      "community": 67,
+      "community_name": "ei",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7083,8 +7083,8 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_m",
-      "community": 25,
-      "community_name": "zb",
+      "community": 72,
+      "community_name": "M",
       "norm_label": "m()"
     },
     {
@@ -7094,8 +7094,8 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_m_destroy",
-      "community": 25,
-      "community_name": "zb",
+      "community": 72,
+      "community_name": "M",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7611,8 +7611,8 @@
       "source_location": "L254",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_v_analyselayout",
-      "community": 25,
-      "community_name": "zb",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".analyselayout()"
     },
     {
@@ -7765,8 +7765,8 @@
       "source_location": "L258",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_v_allwordconfidences",
-      "community": 25,
-      "community_name": "zb",
+      "community": 67,
+      "community_name": "ei",
       "norm_label": ".allwordconfidences()"
     },
     {
@@ -7963,8 +7963,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_sh_getvalue",
-      "community": 25,
-      "community_name": "zb",
+      "community": 78,
+      "community_name": "Sh",
       "norm_label": ".getvalue()"
     },
     {
@@ -7974,8 +7974,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ei_getvalue",
-      "community": 25,
-      "community_name": "zb",
+      "community": 67,
+      "community_name": "ei",
       "norm_label": ".getvalue()"
     },
     {
@@ -7985,8 +7985,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ai_getvalue",
-      "community": 25,
-      "community_name": "zb",
+      "community": 76,
+      "community_name": "ai",
       "norm_label": ".getvalue()"
     },
     {
@@ -8128,8 +8128,8 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_getwordfontattributes",
-      "community": 8,
-      "community_name": "L",
+      "community": 25,
+      "community_name": "zb",
       "norm_label": ".getwordfontattributes()"
     },
     {
@@ -10250,6 +10250,72 @@
       "id": "docs_superpowers_plans_2026_07_28_variantes_fase3_pdf_self_review_hecho_al_escribir_este_plan",
       "community": 52,
       "community_name": "Fase 3 \u2014 Variantes en el PDF de recortables \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "self-review (hecho al escribir este plan)"
+    },
+    {
+      "label": "2026-07-29-tamano-tarjeta-galeria.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-29-tamano-tarjeta-galeria.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_29_tamano_tarjeta_galeria",
+      "community": 66,
+      "community_name": "Control de tama\u00f1o de tarjeta en la galer\u00eda (Chico/Normal/Grande) \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "2026-07-29-tamano-tarjeta-galeria.md"
+    },
+    {
+      "label": "Control de tama\u00f1o de tarjeta en la galer\u00eda (Chico/Normal/Grande) \u2014 Plan de implementaci\u00f3n",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-29-tamano-tarjeta-galeria.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_29_tamano_tarjeta_galeria_control_de_tama\u00f1o_de_tarjeta_en_la_galer\u00eda_chico_normal_grande_plan_de_implementaci\u00f3n",
+      "community": 66,
+      "community_name": "Control de tama\u00f1o de tarjeta en la galer\u00eda (Chico/Normal/Grande) \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "control de tamano de tarjeta en la galeria (chico/normal/grande) \u2014 plan de implementacion"
+    },
+    {
+      "label": "Global Constraints",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-29-tamano-tarjeta-galeria.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_29_tamano_tarjeta_galeria_global_constraints",
+      "community": 66,
+      "community_name": "Control de tama\u00f1o de tarjeta en la galer\u00eda (Chico/Normal/Grande) \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "global constraints"
+    },
+    {
+      "label": "Task 1: Renombrar a `modoVista`, persistir en `localStorage`, y el selector de 3 botones",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-29-tamano-tarjeta-galeria.md",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_29_tamano_tarjeta_galeria_task_1_renombrar_a_modovista_persistir_en_localstorage_y_el_selector_de_3_botones",
+      "community": 66,
+      "community_name": "Control de tama\u00f1o de tarjeta en la galer\u00eda (Chico/Normal/Grande) \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 1: renombrar a `modovista`, persistir en `localstorage`, y el selector de 3 botones"
+    },
+    {
+      "label": "Task 2: Modo Grande \u2014 menos columnas + tipos y fecha en la tarjeta",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-29-tamano-tarjeta-galeria.md",
+      "source_location": "L203",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_29_tamano_tarjeta_galeria_task_2_modo_grande_menos_columnas_tipos_y_fecha_en_la_tarjeta",
+      "community": 66,
+      "community_name": "Control de tama\u00f1o de tarjeta en la galer\u00eda (Chico/Normal/Grande) \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 2: modo grande \u2014 menos columnas + tipos y fecha en la tarjeta"
+    },
+    {
+      "label": "Self-Review (hecho al escribir este plan)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-07-29-tamano-tarjeta-galeria.md",
+      "source_location": "L348",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_07_29_tamano_tarjeta_galeria_self_review_hecho_al_escribir_este_plan",
+      "community": 66,
+      "community_name": "Control de tama\u00f1o de tarjeta en la galer\u00eda (Chico/Normal/Grande) \u2014 Plan de implementaci\u00f3n",
       "norm_label": "self-review (hecho al escribir este plan)"
     },
     {
@@ -32036,6 +32102,61 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-29-tamano-tarjeta-galeria.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_29_tamano_tarjeta_galeria",
+      "target": "docs_superpowers_plans_2026_07_29_tamano_tarjeta_galeria_control_de_tama\u00f1o_de_tarjeta_en_la_galer\u00eda_chico_normal_grande_plan_de_implementaci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-29-tamano-tarjeta-galeria.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_29_tamano_tarjeta_galeria_control_de_tama\u00f1o_de_tarjeta_en_la_galer\u00eda_chico_normal_grande_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_29_tamano_tarjeta_galeria_global_constraints",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-29-tamano-tarjeta-galeria.md",
+      "source_location": "L348",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_29_tamano_tarjeta_galeria_control_de_tama\u00f1o_de_tarjeta_en_la_galer\u00eda_chico_normal_grande_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_29_tamano_tarjeta_galeria_self_review_hecho_al_escribir_este_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-29-tamano-tarjeta-galeria.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_29_tamano_tarjeta_galeria_control_de_tama\u00f1o_de_tarjeta_en_la_galer\u00eda_chico_normal_grande_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_29_tamano_tarjeta_galeria_task_1_renombrar_a_modovista_persistir_en_localstorage_y_el_selector_de_3_botones",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-07-29-tamano-tarjeta-galeria.md",
+      "source_location": "L203",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_07_29_tamano_tarjeta_galeria_control_de_tama\u00f1o_de_tarjeta_en_la_galer\u00eda_chico_normal_grande_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_07_29_tamano_tarjeta_galeria_task_2_modo_grande_menos_columnas_tipos_y_fecha_en_la_tarjeta",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/superpowers/specs/2026-07-25-carpetas-todas-seguidas-design.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -32761,5 +32882,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "d01d8db152e3ce9a0a03f17315f10591b3c0d11b"
+  "built_at_commit": "e3d5e30b084ae60cafe46cc78c75fe77b224829c"
 }

@@ -1,16 +1,16 @@
 # Graph Report - pokedex-tcg  (2026-07-29)
 
 ## Corpus Check
-- 34 files · ~98,203 words
+- 35 files · ~100,196 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1004 nodes · 1889 edges · 72 communities (47 shown, 25 thin omitted)
+- 1010 nodes · 1894 edges · 79 communities (45 shown, 34 thin omitted)
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 221 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d01d8db1`
+- Built from commit: `e3d5e30b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -35,6 +35,7 @@
 - ji
 - A
 - Modo "Todas seguidas" para configuración de carpetas
+- ji
 - Global Constraints
 - Lh
 - Lh
@@ -80,12 +81,19 @@
 - Fase 1 — Base de datos de variantes de Pokémon (Megas, formas regionales, Gigamax, etc.)
 - Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación
 - fetch_variantes.js
+- Control de tamaño de tarjeta en la galería (Chico/Normal/Grande) — Plan de implementación
+- ei
 - Fase 2 — Selección de categorías de variantes (núcleo de tracking) — Plan de implementación
 - p
 - escribirJSONAtomico
 - carpetasConfigValida
+- M
 - sesionValida
 - CATEGORIAS_VARIANTES
+- Sh
+- ai
+- p
+- Sh
 
 ## God Nodes (most connected - your core abstractions)
 1. `V()` - 66 edges
@@ -114,7 +122,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (72 total, 25 thin omitted)
+## Communities (79 total, 34 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -134,11 +142,11 @@ Nodes (24): app, CARPETA_CACHE, CARPETA_RESPALDOS, CARPETAS_DEFAULT, carpetasCon
 
 ### Community 6 - "tesseract-core-lstm.wasm.js"
 Cohesion: 0.07
-Nodes (16): ci(), Da(), fi(), gb(), gi(), hb(), Kh(), R() (+8 more)
+Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
 ### Community 7 - "tesseract-core-simd-lstm.wasm.js"
 Cohesion: 0.07
-Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
+Nodes (16): ci(), Da(), fi(), gb(), gi(), hb(), Kh(), R() (+8 more)
 
 ### Community 10 - "esDesktop"
 Cohesion: 0.22
@@ -147,10 +155,6 @@ Nodes (23): actualizarBotonesModo(), actualizarTarjetaProgreso(), cambiarModo(),
 ### Community 11 - "wizardCapacidadSiguiente"
 Cohesion: 0.12
 Nodes (24): cargarCarpetasConfig(), formatearRango(), hexToRgba(), pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste() (+16 more)
-
-### Community 12 - "J"
-Cohesion: 0.16
-Nodes (4): I(), J(), p(), xa()
 
 ### Community 14 - "package.json"
 Cohesion: 0.11
@@ -181,8 +185,8 @@ Cohesion: 0.42
 Nodes (13): ac(), $b(), bc(), cc(), Hh(), Pb(), tb(), ub() (+5 more)
 
 ### Community 25 - "zb"
-Cohesion: 0.05
-Nodes (7): ai(), ei(), hi(), ji(), M(), O(), Sh()
+Cohesion: 0.15
+Nodes (3): hi(), ji(), Ya()
 
 ### Community 26 - "Fase 3 — Variantes en el PDF de recortables"
 Cohesion: 0.25
@@ -197,8 +201,8 @@ Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 29 - "p"
-Cohesion: 0.50
-Nodes (5): e(), Ma(), Na(), Oa(), Pa()
+Cohesion: 0.22
+Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
 
 ### Community 30 - "hi"
 Cohesion: 0.67
@@ -232,10 +236,6 @@ Nodes (5): Ha(), Ia(), qb(), sb(), t()
 Cohesion: 0.42
 Nodes (13): ac(), $b(), bc(), cc(), Hh(), Pb(), tb(), ub() (+5 more)
 
-### Community 48 - "ai"
-Cohesion: 0.20
-Nodes (4): ai(), ji(), Sh(), Ya()
-
 ### Community 52 - "Fase 3 — Variantes en el PDF de recortables — Plan de implementación"
 Cohesion: 0.33
 Nodes (5): Fase 3 — Variantes en el PDF de recortables — Plan de implementación, Global Constraints, Self-Review (hecho al escribir este plan), Task 1: `generarPDFRecortables()` variant-aware (orden, rango, y numeración), Task 2: Invalidación de caché consciente de `variantes-config.json`
@@ -245,8 +245,8 @@ Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 56 - "p"
-Cohesion: 0.22
-Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
+Cohesion: 0.50
+Nodes (5): e(), Ma(), Na(), Oa(), Pa()
 
 ### Community 57 - "Reorganizar accesos rápidos y agrupar "Ajustes" — Plan de implementación"
 Cohesion: 0.22
@@ -280,6 +280,10 @@ Nodes (24): Addendum 2 — ampliar el criterio de "formas alternativas" a arte d
 Cohesion: 0.50
 Nodes (4): buscarImagenesDuplicadas(), crypto, fetchVariantes(), fs
 
+### Community 66 - "Control de tamaño de tarjeta en la galería (Chico/Normal/Grande) — Plan de implementación"
+Cohesion: 0.33
+Nodes (5): Control de tamaño de tarjeta en la galería (Chico/Normal/Grande) — Plan de implementación, Global Constraints, Self-Review (hecho al escribir este plan), Task 1: Renombrar a `modoVista`, persistir en `localStorage`, y el selector de 3 botones, Task 2: Modo Grande — menos columnas + tipos y fecha en la tarjeta
+
 ### Community 68 - "Fase 2 — Selección de categorías de variantes (núcleo de tracking) — Plan de implementación"
 Cohesion: 0.20
 Nodes (9): Fase 2 — Selección de categorías de variantes (núcleo de tracking) — Plan de implementación, Global Constraints, Limitación conocida (no cubierta por este plan), Self-Review (hecho al escribir este plan), Task 1: `variantes-config.json` + vista derivada `pokemonEfectivo()` en el servidor, Task 2: Endpoints `/api/variantes-config` + integrar `pokemonEfectivo()` en `/api/buscar` y `/api/estadisticas`, Task 3: Corregir la numeración de variantes en galería/ficha + badge de categoría, Task 4: Panel "Variantes" en Ajustes (+1 more)
@@ -301,21 +305,21 @@ Cohesion: 0.67
 Nodes (3): parsearCookies(), requiereLogin(), sesionValida()
 
 ## Knowledge Gaps
-- **186 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+181 more)
+- **190 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+185 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **25 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **34 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `g()` connect `worker.min.js` to `carpetasConfigValida`, `esDesktop`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
-  _High betweenness centrality (0.217) - this node is a cross-community bridge._
-- **Why does `a()` connect `worker.min.js` to `qb`, `J`, `A`, `A`, `p`, `qb`?**
-  _High betweenness centrality (0.184) - this node is a cross-community bridge._
-- **Why does `A()` connect `A` to `worker.min.js`, `K`, `tesseract-core-simd-lstm.wasm.js`, `L`, `Q`, `J`, `di`, `d`, `Lh`, `p`, `kb`, `qb`?**
-  _High betweenness centrality (0.090) - this node is a cross-community bridge._
+  _High betweenness centrality (0.214) - this node is a cross-community bridge._
+- **Why does `a()` connect `worker.min.js` to `qb`, `p`, `A`, `A`, `qb`, `p`?**
+  _High betweenness centrality (0.181) - this node is a cross-community bridge._
+- **Why does `A()` connect `A` to `worker.min.js`, `K`, `tesseract-core-simd-lstm.wasm.js`, `Q`, `p`, `di`, `J`, `d`, `Lh`, `zb`, `kb`, `qb`?**
+  _High betweenness centrality (0.087) - this node is a cross-community bridge._
 - **What connects `fs`, `fs`, `crypto` to the rest of the system?**
-  _186 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _190 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05224963715529753 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**

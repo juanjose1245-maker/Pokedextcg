@@ -1112,6 +1112,13 @@ function renderGaleria(pkms, mantenerScroll, forzarEstado, esVistaPendientes) {
         const nidTxt  = `N#${ancla.toString().padStart(4,'0')}`;
         const catInfo = p.categoria ? CATEGORIA_INFO[p.categoria] : null;
 
+        const tiposPk   = p.types && p.types.length ? p.types : ['normal'];
+        const pillsHTML = tiposPk.map(t => {
+            const info = infoTipo(t);
+            return `<span class="tipo-pill-mini" style="background:${hexToRgba(info.color,0.16)};color:${info.color};">${info.emoji} ${info.label}</span>`;
+        }).join('');
+        const fechaTxt = tiene ? getFechaRegistro(p.id) : null;
+
         const carpetaPk = carpetaDe(p);
         const colorPk   = carpetaPk ? carpetaPk.color : (coloresGen[p.gen-1] || '#999');
         const bgPk      = carpetaPk ? carpetaPk.bg    : (coloresBg[p.gen-1] || 'rgba(153,153,153,0.16)');
@@ -1135,6 +1142,8 @@ function renderGaleria(pkms, mantenerScroll, forzarEstado, esVistaPendientes) {
         statusM.textContent = tiene ? 'tenemos' : 'falta';
         const dotM = document.createElement('div'); dotM.className = 'pk-status-dot';
         dotM.textContent = tiene ? '✓' : '○';
+        const extraM = document.createElement('div'); extraM.className = 'pk-extra-mobile';
+        extraM.innerHTML = `<div class="pk-extra-tipos">${pillsHTML}</div>${fechaTxt ? `<div class="pk-extra-fecha">Registrado el ${fechaTxt}</div>` : ''}`;
 
         // ── DESKTOP elements ──
         const header = document.createElement('div'); header.className = 'pk-dt-header';
@@ -1155,9 +1164,13 @@ function renderGaleria(pkms, mantenerScroll, forzarEstado, esVistaPendientes) {
         statusD.textContent = tiene ? 'tenemos' : 'falta';
         if (tiene) statusD.style.color = 'var(--found)';
         footer.appendChild(nameD); footer.appendChild(statusD);
+        const extraD = document.createElement('div'); extraD.className = 'pk-extra-desktop';
+        extraD.innerHTML = `<div class="pk-extra-tipos">${pillsHTML}</div>${fechaTxt ? `<div class="pk-extra-fecha">Registrado el ${fechaTxt}</div>` : ''}`;
+        footer.appendChild(extraD);
 
         card.appendChild(ridM); card.appendChild(nidM); card.appendChild(imgM);
         card.appendChild(nameM); card.appendChild(statusM); card.appendChild(dotM);
+        card.appendChild(extraM);
         card.appendChild(header); card.appendChild(imgD); card.appendChild(footer);
 
         if (catInfo) {

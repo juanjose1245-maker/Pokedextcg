@@ -1,16 +1,16 @@
 # Graph Report - tamano-tarjeta-galeria  (2026-07-29)
 
 ## Corpus Check
-- 32 files · ~100,029 words
+- 32 files · ~100,101 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1011 nodes · 1893 edges · 78 communities (45 shown, 33 thin omitted)
+- 1011 nodes · 1896 edges · 78 communities (45 shown, 33 thin omitted)
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 221 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b7bc2436`
+- Built from commit: `fb20a6ab`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -152,16 +152,16 @@ Cohesion: 0.25
 Nodes (18): actualizarBotonesModo(), actualizarTarjetaProgreso(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cerrarGaleriaYVolver(), esDesktop(), mostrarFAB() (+10 more)
 
 ### Community 11 - "wizardCapacidadSiguiente"
-Cohesion: 0.12
-Nodes (24): cargarCarpetasConfig(), formatearRango(), hexToRgba(), pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste() (+16 more)
+Cohesion: 0.13
+Nodes (22): formatearRango(), pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste(), wizardArmarPasoCapacidad(), wizardArmarPasoNombres() (+14 more)
 
 ### Community 14 - "package.json"
 Cohesion: 0.11
 Nodes (18): express, node-fetch, author, dependencies, express, node-fetch, pdfkit, sharp (+10 more)
 
 ### Community 15 - "renderGaleria"
-Cohesion: 0.21
-Nodes (18): actualizarBotonEstado(), actualizarGalleryHeader(), agregarAlHistorial(), anclaIdCliente(), carpetaDe(), clearSearchTimer(), detenerCamara(), gridActivo() (+10 more)
+Cohesion: 0.19
+Nodes (20): actualizarBotonEstado(), actualizarGalleryHeader(), agregarAlHistorial(), anclaIdCliente(), cargarCarpetasConfig(), carpetaDe(), clearSearchTimer(), detenerCamara() (+12 more)
 
 ### Community 19 - "Modo "Todas seguidas" para configuración de carpetas"
 Cohesion: 0.11

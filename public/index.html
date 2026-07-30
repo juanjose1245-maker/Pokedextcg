@@ -147,7 +147,11 @@
                         <button class="filter-btn" id="filter-tenemos-d" onclick="setFiltro('tenemos')">✓ Tenemos</button>
                         <button class="filter-btn" id="filter-faltan-d" onclick="setFiltro('faltan')">○ Faltan</button>
                     </div>
-                    <button class="btn-acomodar" id="btn-acomodar-d" onclick="toggleModoAcomodar()">📂 Acomodar</button>
+                    <div class="vista-selector" id="vista-selector-d">
+                        <button class="vista-btn" data-vista="chico" onclick="elegirModoVista('chico')">Chico</button>
+                        <button class="vista-btn active" data-vista="normal" onclick="elegirModoVista('normal')">Normal</button>
+                        <button class="vista-btn" data-vista="grande" onclick="elegirModoVista('grande')">Grande</button>
+                    </div>
                 </div>
             </div>
             <!-- Header mobile -->
@@ -156,7 +160,11 @@
                     <div class="gallery-title" id="gallery-title-text"></div>
                     <div class="gallery-subtitle" id="gallery-subtitle-text"></div>
                 </div>
-                <button class="btn-acomodar" id="btn-acomodar" onclick="toggleModoAcomodar()">📂 Acomodar</button>
+                <div class="vista-selector" id="vista-selector">
+                    <button class="vista-btn" data-vista="chico" onclick="elegirModoVista('chico')">Chico</button>
+                    <button class="vista-btn active" data-vista="normal" onclick="elegirModoVista('normal')">Normal</button>
+                    <button class="vista-btn" data-vista="grande" onclick="elegirModoVista('grande')">Grande</button>
+                </div>
             </div>
             <div class="gallery-filter" id="gallery-filter-mobile">
                 <button class="filter-btn active" id="filter-todos" onclick="setFiltro('todos')">Todos</button>

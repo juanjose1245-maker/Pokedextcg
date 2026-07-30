@@ -1,16 +1,16 @@
-# Graph Report - pokedex-tcg  (2026-07-29)
+# Graph Report - tamano-tarjeta-galeria  (2026-07-29)
 
 ## Corpus Check
-- 35 files · ~100,196 words
+- 32 files · ~100,029 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1010 nodes · 1894 edges · 79 communities (45 shown, 34 thin omitted)
+- 1011 nodes · 1893 edges · 78 communities (45 shown, 33 thin omitted)
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 221 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `e3d5e30b`
+- Built from commit: `b7bc2436`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -92,7 +92,6 @@
 - CATEGORIAS_VARIANTES
 - Sh
 - ai
-- p
 - Sh
 
 ## God Nodes (most connected - your core abstractions)
@@ -122,7 +121,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (79 total, 34 thin omitted)
+## Communities (78 total, 33 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -134,7 +133,7 @@ Nodes (7): Contexto, Control de tamaño de tarjeta en la galería (Chico/Normal/
 
 ### Community 2 - "app.js"
 Cohesion: 0.05
-Nodes (47): abrirLoginModal(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelVariantes(), abrirWizardCarpetas(), actualizarBotonSesion(), aplicarTema(), cachePokemon (+39 more)
+Nodes (46): abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelVariantes(), abrirWizardCarpetas(), actualizarBotonSesion(), aplicarModoVista(), aplicarTema(), cachePokemon (+38 more)
 
 ### Community 3 - "server.js"
 Cohesion: 0.06
@@ -146,11 +145,11 @@ Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
 ### Community 7 - "tesseract-core-simd-lstm.wasm.js"
 Cohesion: 0.07
-Nodes (16): ci(), Da(), fi(), gb(), gi(), hb(), Kh(), R() (+8 more)
+Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
 ### Community 10 - "esDesktop"
-Cohesion: 0.22
-Nodes (23): actualizarBotonesModo(), actualizarTarjetaProgreso(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cargarEstadisticasSinMoverScroll(), cerrarGaleriaYVolver(), esDesktop() (+15 more)
+Cohesion: 0.25
+Nodes (18): actualizarBotonesModo(), actualizarTarjetaProgreso(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cerrarGaleriaYVolver(), esDesktop(), mostrarFAB() (+10 more)
 
 ### Community 11 - "wizardCapacidadSiguiente"
 Cohesion: 0.12
@@ -161,8 +160,8 @@ Cohesion: 0.11
 Nodes (18): express, node-fetch, author, dependencies, express, node-fetch, pdfkit, sharp (+10 more)
 
 ### Community 15 - "renderGaleria"
-Cohesion: 0.19
-Nodes (21): actualizarBotonEstado(), actualizarGalleryHeader(), anclaIdCliente(), carpetaDe(), claveFechaLS(), claveLS(), clearSearchTimer(), ejecutarToggleStatus() (+13 more)
+Cohesion: 0.21
+Nodes (18): actualizarBotonEstado(), actualizarGalleryHeader(), agregarAlHistorial(), anclaIdCliente(), carpetaDe(), clearSearchTimer(), detenerCamara(), gridActivo() (+10 more)
 
 ### Community 19 - "Modo "Todas seguidas" para configuración de carpetas"
 Cohesion: 0.11
@@ -193,8 +192,8 @@ Cohesion: 0.25
 Nodes (7): Caché e invalidación (`/api/pdf-carpetas`), Cambios, Contexto, Fase 3 — Variantes en el PDF de recortables, Fuera de alcance, `generarPDFRecortables(rutaSalida, opciones)` (`server.js`), Testing
 
 ### Community 27 - "mostrarToastError"
-Cohesion: 0.18
-Nodes (16): actualizarBadgePendientes(), actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), calcularIdsPendientesSilencioso(), cerrarWizardCarpetas(), descargarListaFaltantes(), descargarRecortablesPDF(), exportarColeccion() (+8 more)
+Cohesion: 0.17
+Nodes (16): actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), cerrarWizardCarpetas(), descargarListaFaltantes(), descargarRecortablesPDF(), dispararInputImportar(), exportarColeccion(), fetchGenSegura() (+8 more)
 
 ### Community 28 - "d"
 Cohesion: 0.29
@@ -205,8 +204,8 @@ Cohesion: 0.22
 Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
 
 ### Community 30 - "hi"
-Cohesion: 0.67
-Nodes (4): agregarAlHistorial(), detenerCamara(), iniciarBucleOCR(), toggleCamaraOCR()
+Cohesion: 0.25
+Nodes (15): abrirLoginModal(), actualizarBadgePendientes(), calcularIdsPendientesSilencioso(), cargarEstadisticasSinMoverScroll(), claveFechaLS(), claveLS(), ejecutarToggleStatus(), getFechaISO() (+7 more)
 
 ### Community 31 - "kb"
 Cohesion: 0.33
@@ -245,8 +244,8 @@ Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 56 - "p"
-Cohesion: 0.50
-Nodes (5): e(), Ma(), Na(), Oa(), Pa()
+Cohesion: 0.24
+Nodes (9): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+1 more)
 
 ### Community 57 - "Reorganizar accesos rápidos y agrupar "Ajustes" — Plan de implementación"
 Cohesion: 0.22
@@ -307,21 +306,21 @@ Nodes (3): parsearCookies(), requiereLogin(), sesionValida()
 ## Knowledge Gaps
 - **190 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+185 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **34 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **33 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `g()` connect `worker.min.js` to `carpetasConfigValida`, `esDesktop`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
-  _High betweenness centrality (0.214) - this node is a cross-community bridge._
-- **Why does `a()` connect `worker.min.js` to `qb`, `p`, `A`, `A`, `qb`, `p`?**
-  _High betweenness centrality (0.181) - this node is a cross-community bridge._
-- **Why does `A()` connect `A` to `worker.min.js`, `K`, `tesseract-core-simd-lstm.wasm.js`, `Q`, `p`, `di`, `J`, `d`, `Lh`, `zb`, `kb`, `qb`?**
-  _High betweenness centrality (0.087) - this node is a cross-community bridge._
+  _High betweenness centrality (0.208) - this node is a cross-community bridge._
+- **Why does `a()` connect `worker.min.js` to `qb`, `A`, `A`, `p`, `qb`, `p`?**
+  _High betweenness centrality (0.190) - this node is a cross-community bridge._
+- **Why does `A()` connect `A` to `worker.min.js`, `K`, `tesseract-core-simd-lstm.wasm.js`, `Q`, `J`, `di`, `d`, `Lh`, `p`, `zb`, `kb`, `qb`?**
+  _High betweenness centrality (0.094) - this node is a cross-community bridge._
 - **What connects `fs`, `fs`, `crypto` to the rest of the system?**
   _190 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.05224963715529753 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05254901960784314 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
   _Cohesion score 0.06060606060606061 - nodes in this community are weakly interconnected._
 - **Should `V` be split into smaller, more focused modules?**

@@ -265,7 +265,7 @@ let genActualAbierta = null;
 let scanActivo       = false;
 let dataGlobalCache  = null;
 let filtroActual     = 'todos';
-let modoAcomodar     = false;
+let modoVista = localStorage.getItem('vistaGaleriaPreferida') || 'normal'; // 'chico' | 'normal' | 'grande'
 let pkmsActuales     = [];
 let historialOCR     = [];
 let pendientesActuales    = []; // Pokémon en Bulk que aún no están en Carpetas
@@ -1074,12 +1074,18 @@ function setFiltro(f) {
     renderGaleria(filtrados, true);
 }
 
-function toggleModoAcomodar() {
-    modoAcomodar = !modoAcomodar;
+function aplicarModoVista() {
     const grids = [document.getElementById('gallery-grid'), document.getElementById('gallery-grid-mobile')];
-    const btns  = [document.getElementById('btn-acomodar'), document.getElementById('btn-acomodar-d')];
-    grids.forEach(g => g && g.classList.toggle('modo-acomodar', modoAcomodar));
-    btns.forEach(b  => b && (b.classList.toggle('active', modoAcomodar), b.textContent = modoAcomodar ? '📂 Normal' : '📂 Acomodar'));
+    grids.forEach(g => g && g.classList.toggle('vista-chico', modoVista === 'chico'));
+    grids.forEach(g => g && g.classList.toggle('vista-grande', modoVista === 'grande'));
+    document.querySelectorAll('.vista-btn').forEach(b => b.classList.toggle('active', b.dataset.vista === modoVista));
+}
+
+function elegirModoVista(modo) {
+    modoVista = modo;
+    localStorage.setItem('vistaGaleriaPreferida', modo);
+    aplicarModoVista();
+    if (genActualAbierta) RefrescarGaleria(true);
 }
 
 function gridActivo() {
@@ -1210,7 +1216,7 @@ async function RefrescarGaleria(mantenerScroll = false) {
 }
 
 function cerrarGaleriaYVolver() {
-    genActualAbierta = null; pkmsActuales = []; filtroActual = 'todos'; modoAcomodar = false;
+    genActualAbierta = null; pkmsActuales = []; filtroActual = 'todos';
     pendientesActuales = []; fichaOrigenPendientes = false;
     document.querySelectorAll('.gallery-filter').forEach(f => f.style.display = '');
     ['todos','tenemos','faltan'].forEach(x => {
@@ -1218,11 +1224,6 @@ function cerrarGaleriaYVolver() {
         const b = document.getElementById(`filter-${x}-d`);
         if (a) a.classList.toggle('active', x === 'todos');
         if (b) b.classList.toggle('active', x === 'todos');
-    });
-    [document.getElementById('gallery-grid'), document.getElementById('gallery-grid-mobile')].forEach(g => g && g.classList.remove('modo-acomodar'));
-    ['btn-acomodar','btn-acomodar-d'].forEach(id => {
-        const b = document.getElementById(id);
-        if (b) { b.classList.remove('active'); b.textContent = '📂 Acomodar'; }
     });
     if (!esDesktop()) {
         document.getElementById('gallery-section').style.display = 'none';
@@ -2196,6 +2197,7 @@ function mostrarToastSync(id, estado) {
 window.onload = async () => {
     sincronizarGrids();
     aplicarTema();
+    aplicarModoVista();
     actualizarBotonesModo();
     revisarSesion();
     await cargarCarpetasConfig();

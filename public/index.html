@@ -148,9 +148,15 @@
                         <button class="filter-btn" id="filter-faltan-d" onclick="setFiltro('faltan')">○ Faltan</button>
                     </div>
                     <div class="vista-selector" id="vista-selector-d">
-                        <button class="vista-btn" data-vista="chico" onclick="elegirModoVista('chico')">Chico</button>
-                        <button class="vista-btn active" data-vista="normal" onclick="elegirModoVista('normal')">Normal</button>
-                        <button class="vista-btn" data-vista="grande" onclick="elegirModoVista('grande')">Grande</button>
+                        <button class="vista-btn" data-vista="chico" title="Chico" onclick="elegirModoVista('chico')">
+                            <span class="vista-icon vista-icon-chico"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
+                        </button>
+                        <button class="vista-btn active" data-vista="normal" title="Normal" onclick="elegirModoVista('normal')">
+                            <span class="vista-icon vista-icon-normal"><span></span><span></span><span></span><span></span></span>
+                        </button>
+                        <button class="vista-btn" data-vista="grande" title="Grande" onclick="elegirModoVista('grande')">
+                            <span class="vista-icon vista-icon-grande"><span></span></span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -161,9 +167,15 @@
                     <div class="gallery-subtitle" id="gallery-subtitle-text"></div>
                 </div>
                 <div class="vista-selector" id="vista-selector">
-                    <button class="vista-btn" data-vista="chico" onclick="elegirModoVista('chico')">Chico</button>
-                    <button class="vista-btn active" data-vista="normal" onclick="elegirModoVista('normal')">Normal</button>
-                    <button class="vista-btn" data-vista="grande" onclick="elegirModoVista('grande')">Grande</button>
+                    <button class="vista-btn" data-vista="chico" title="Chico" onclick="elegirModoVista('chico')">
+                        <span class="vista-icon vista-icon-chico"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
+                    </button>
+                    <button class="vista-btn active" data-vista="normal" title="Normal" onclick="elegirModoVista('normal')">
+                        <span class="vista-icon vista-icon-normal"><span></span><span></span><span></span><span></span></span>
+                    </button>
+                    <button class="vista-btn" data-vista="grande" title="Grande" onclick="elegirModoVista('grande')">
+                        <span class="vista-icon vista-icon-grande"><span></span></span>
+                    </button>
                 </div>
             </div>
             <div class="gallery-filter" id="gallery-filter-mobile">

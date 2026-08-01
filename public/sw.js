@@ -8,7 +8,7 @@
 // Colócalo en la misma carpeta donde sirves index.html (normalmente "public/"),
 // para que quede accesible en la raíz como "/sw.js".
 
-const CACHE_VERSION = 'pokedex-tcg-v39';
+const CACHE_VERSION = 'pokedex-tcg-v40';
 const CACHE_SHELL    = `${CACHE_VERSION}-shell`;
 const CACHE_LECTURAS = `${CACHE_VERSION}-lecturas`;
 
@@ -113,8 +113,13 @@ self.addEventListener('fetch', (event) => {
             return fetch(request).then(res => {
                 // Mismo cuidado que arriba: no cachear una respuesta rota/incompleta,
                 // porque en cache-first eso se sirve para siempre sin volver a
-                // intentar la red hasta el próximo bump de CACHE_VERSION.
-                if (res.ok) {
+                // intentar la red hasta el próximo bump de CACHE_VERSION. OJO: las
+                // imágenes de Pokémon vienen de otro origen (raw.githubusercontent.com,
+                // pedidas por <img>) y llegan acá como respuesta "opaque" — status 0,
+                // res.ok siempre false, aunque hayan cargado perfectamente — así que
+                // exigir solo res.ok las dejaba SIEMPRE afuera de la caché (cada
+                // imagen se rebajaba de la red en cada visita, mucho más lento).
+                if (res.ok || res.type === 'opaque') {
                     const copia = res.clone();
                     caches.open(CACHE_SHELL).then(cache => cache.put(request, copia)).catch(() => {});
                 }

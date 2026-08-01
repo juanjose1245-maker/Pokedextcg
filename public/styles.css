@@ -56,9 +56,11 @@
         /* Estos dos detalles puntuales también dependían de la media query;
            los replicamos con el atributo para que el tema forzado se vea bien. */
         :root[data-theme="light"] .filter-btn.active,
-        :root[data-theme="light"] .mode-switch-btn.active{color:#fff;}
+        :root[data-theme="light"] .mode-switch-btn.active,
+        :root[data-theme="light"] .vista-btn.active{color:#fff;}
         :root[data-theme="dark"] .filter-btn.active,
-        :root[data-theme="dark"] .mode-switch-btn.active{color:var(--bg);}
+        :root[data-theme="dark"] .mode-switch-btn.active,
+        :root[data-theme="dark"] .vista-btn.active{color:var(--bg);}
 
         *{box-sizing:border-box;margin:0;padding:0;}
         html,body{height:100%;overflow:hidden;}
@@ -221,15 +223,14 @@
         .gallery-filter{display:flex;gap:6px;margin-bottom:12px;}
         .filter-btn{flex:1;padding:7px 4px;border-radius:10px;border:1px solid var(--border);background:var(--surface);font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--muted);cursor:pointer;transition:all .15s;}
         .filter-btn.active{background:var(--accent2);border-color:var(--accent2);color:#fff;}
-        @media(prefers-color-scheme:dark){.filter-btn.active{color:var(--bg);}}
+        @media(prefers-color-scheme:dark){.filter-btn.active,.vista-btn.active{color:var(--bg);}}
         .vista-selector{display:flex;gap:4px;}
         .vista-btn{width:30px;height:30px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;transition:all .15s;}
-        .vista-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;}
-        .vista-icon{display:grid;gap:1.5px;width:14px;height:14px;}
-        .vista-icon-chico{grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);}
-        .vista-icon-normal{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);}
-        .vista-icon-grande{grid-template-columns:1fr;grid-template-rows:1fr;}
-        .vista-icon span{background:currentColor;border-radius:1px;}
+        .vista-btn.active{background:var(--accent2);border-color:var(--accent2);color:#fff;}
+        .vista-icon{display:block;background:currentColor;border-radius:3px;}
+        .vista-icon-chico{width:6px;height:6px;}
+        .vista-icon-normal{width:10px;height:10px;}
+        .vista-icon-grande{width:15px;height:15px;}
         .gallery-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
         .gallery-controls-mobile{display:flex;gap:8px;align-items:center;margin-bottom:12px;}
         .gallery-controls-mobile .gallery-filter{flex:1;min-width:0;margin-bottom:0;}

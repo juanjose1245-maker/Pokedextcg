@@ -530,6 +530,14 @@
         .pdf-opciones-check input,.pdf-opciones-radio input{width:17px;height:17px;flex-shrink:0;accent-color:var(--accent2);}
         .pdf-carpeta-swatch{width:11px;height:11px;border-radius:50%;flex-shrink:0;}
 
+        .respaldo-fila{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 4px;border-bottom:1px solid var(--border);}
+        .respaldo-fila:last-child{border-bottom:none;}
+        .respaldo-info{display:flex;flex-direction:column;gap:2px;}
+        .respaldo-fecha{font-size:13px;color:var(--text);font-weight:600;}
+        .respaldo-tipo{font-size:11px;color:var(--muted);}
+        .respaldo-btn-restaurar{flex-shrink:0;padding:8px 14px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--accent2);font-size:12px;font-weight:700;cursor:pointer;}
+        .respaldo-btn-restaurar:active{background:var(--border);}
+
         .wizard-box{max-height:80vh;overflow-y:auto;}
         .wizard-opcion-modo{display:flex;flex-direction:column;gap:4px;width:100%;text-align:left;padding:14px 16px;margin-bottom:10px;border-radius:14px;border:1px solid var(--border);background:var(--surface2);cursor:pointer;}
         .wizard-opcion-modo:active{background:var(--border);}

@@ -481,6 +481,32 @@ app.get('/api/variantes-config', (req, res) => {
     res.json(variantesConfig);
 });
 
+// ── RESPALDOS: listar (la restauración está en la sección de escritura) ──
+// Un mismo listado sirve tanto para mostrarlo en Ajustes como para validar,
+// al restaurar, que el archivo pedido es realmente uno de los que existen en
+// disco — así /api/backups/restaurar nunca abre una ruta arbitraria.
+function listarRespaldos() {
+    if (!fs.existsSync(CARPETA_RESPALDOS)) return [];
+    return fs.readdirSync(CARPETA_RESPALDOS)
+        .filter(f => /^(inventario|antes-de-importar|antes-de-restaurar)-.+\.json$/.test(f))
+        .map(f => {
+            const stat = fs.statSync(path.join(CARPETA_RESPALDOS, f));
+            return {
+                archivo: f,
+                fecha: stat.mtime.toISOString(),
+                tamano: stat.size,
+                tipo: f.startsWith('antes-de-importar-') ? 'pre-importacion'
+                    : f.startsWith('antes-de-restaurar-') ? 'pre-restauracion'
+                    : 'automatico'
+            };
+        })
+        .sort((a, b) => b.fecha.localeCompare(a.fecha));
+}
+
+app.get('/api/backups', (req, res) => {
+    res.json(listarRespaldos());
+});
+
 // ── PDF DE RECORTABLES ──────────────────────────────────────────────
 // Hojas carta imprimibles con los 1025 Pokémon en grilla 3x3 (9 por hoja),
 // en orden de Pokédex — el mismo orden en que caen en las 4 carpetas
@@ -827,6 +853,37 @@ app.post('/api/importar', requiereLogin, rateLimiter, (req, res) => {
     broadcast({ tipo: 'config' }); // reutilizamos este tipo para decir "recarga todo"
 
     res.json({ success: true, importados: Object.keys(nuevo).length, ignorados });
+});
+
+// ── RESTAURAR DESDE RESPALDO ─────────────────────────────────────────
+// Reemplaza bulk y carpetas enteros (el respaldo guarda ambos juntos, a
+// diferencia de /api/importar que solo toca el modo actual). Igual que ahí,
+// primero se guarda un respaldo del estado justo antes de pisarlo.
+app.post('/api/backups/restaurar', requiereLogin, rateLimiter, (req, res) => {
+    const { archivo } = req.body;
+    const disponibles = new Set(listarRespaldos().map(r => r.archivo));
+    if (typeof archivo !== 'string' || !disponibles.has(archivo)) {
+        return res.status(400).json({ success:false, error: 'Ese respaldo no existe.' });
+    }
+
+    let raw;
+    try {
+        raw = JSON.parse(fs.readFileSync(path.join(CARPETA_RESPALDOS, archivo), 'utf8'));
+    } catch (err) {
+        return res.status(500).json({ success:false, error: 'El archivo de respaldo está corrupto.' });
+    }
+
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    escribirJSONAtomico(
+        path.join(CARPETA_RESPALDOS, `antes-de-restaurar-${timestamp}.json`),
+        inventario
+    );
+
+    inventario = { bulk: raw.bulk || {}, carpetas: raw.carpetas || {} };
+    guardarInventario();
+    broadcast({ tipo: 'config' }); // mismo evento que usan /api/importar y /api/carpetas-config para "recargá todo"
+
+    res.json({ success: true });
 });
 
 // ── SSE: endpoint de eventos en tiempo real ───────────────────────

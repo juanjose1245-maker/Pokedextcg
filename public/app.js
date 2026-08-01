@@ -1707,6 +1707,76 @@ async function toggleCategoriaVariante(categoria, activada) {
     requiereSesion(guardar) || revertirSiCancela();
 }
 
+// ── AJUSTES: ver y restaurar respaldos automáticos ──────────────────
+const RESPALDO_TIPO_LABEL = {
+    'automatico': 'Automático',
+    'pre-importacion': 'Antes de importar',
+    'pre-restauracion': 'Antes de restaurar'
+};
+
+async function abrirPanelRespaldos() {
+    const lista = document.getElementById('respaldos-lista');
+    lista.innerHTML = '<div class="pdf-opciones-label">Cargando…</div>';
+    cerrarAjustes();
+    document.getElementById('respaldos-modal').classList.add('open');
+
+    let respaldos;
+    try {
+        const res = await fetch('/api/backups');
+        if (!res.ok) throw new Error('respuesta no válida');
+        respaldos = await res.json();
+    } catch (err) {
+        lista.innerHTML = '<div class="pdf-opciones-label">No se pudieron cargar los respaldos.</div>';
+        return;
+    }
+
+    if (!respaldos.length) {
+        lista.innerHTML = '<div class="pdf-opciones-label">Todavía no hay respaldos guardados.</div>';
+        return;
+    }
+
+    lista.innerHTML = respaldos.map(r => `
+        <div class="respaldo-fila">
+            <div class="respaldo-info">
+                <span class="respaldo-fecha">${new Date(r.fecha).toLocaleString('es', { dateStyle: 'medium', timeStyle: 'short' })}</span>
+                <span class="respaldo-tipo">${RESPALDO_TIPO_LABEL[r.tipo] || r.tipo}</span>
+            </div>
+            <button class="respaldo-btn-restaurar" onclick="restaurarRespaldo('${r.archivo}')">Restaurar</button>
+        </div>
+    `).join('');
+}
+function cerrarPanelRespaldos() {
+    document.getElementById('respaldos-modal').classList.remove('open');
+}
+document.getElementById('respaldos-close').onclick = cerrarPanelRespaldos;
+
+function restaurarRespaldo(archivo) {
+    requiereSesion(async () => {
+        const ok = confirm(
+            'Esto REEMPLAZA todo tu inventario actual (Bulk Y Carpetas) con el contenido de este respaldo. ' +
+            'Se guarda una copia del estado actual antes de pisarlo, por si acaso. ¿Continuar?'
+        );
+        if (!ok) return;
+        try {
+            const res = await fetch('/api/backups/restaurar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ archivo })
+            });
+            const data = await res.json();
+            if (!res.ok || !data.success) throw new Error(data.error || 'respuesta no válida');
+            mostrarToastInfo('Inventario restaurado.');
+            cerrarPanelRespaldos();
+            Object.keys(cachePokemon).forEach(k => delete cachePokemon[k]);
+            cerrarGaleriaYVolver();
+            await cargarEstadisticasSinMoverScroll();
+            actualizarBadgePendientes();
+        } catch (err) {
+            mostrarToastError(err.message || 'No se pudo restaurar el respaldo.');
+        }
+    });
+}
+
 // ── WIZARD: PLANEAR MIS CARPETAS ────────────────────────────────────
 // Pensado como ayuda para planificar el álbum físico, no como un
 // formulario de configuración. Secuencia: modo de acomodo → formato de

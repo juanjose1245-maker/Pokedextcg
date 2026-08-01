@@ -708,30 +708,26 @@
             .gallery-grid{grid-template-columns:repeat(5,1fr);gap:16px;width:100%;display:grid;}
             .gallery-grid.vista-grande{grid-template-columns:repeat(3,1fr);}
 
-            /* Chico en escritorio: no es una grilla de tarjetas más chicas, es una
-               LISTA — una fila angosta por Pokémon, a todo lo ancho, para tener el
-               máximo posible a la vista sin scrollear. Reusa el mismo DOM de la
-               tarjeta grande (pk-dt-header/pk-dt-img/pk-dt-footer), solo los
-               reacomoda en una fila en vez de apilarlos. */
-            .gallery-grid.vista-chico{grid-template-columns:1fr;gap:0;}
+            /* Chico en escritorio: lista de 4 columnas, solo nombre + estado — sin
+               imagen ni R#/N#, la mínima expresión para barrer la Pokédex rápido.
+               Reusa el DOM de siempre (pk-dt-header/pk-dt-img/pk-dt-footer),
+               ocultando header e imagen y dejando solo el footer (nombre+estado). */
+            .gallery-grid.vista-chico{grid-template-columns:repeat(4,1fr);gap:0;}
             .gallery-grid.vista-chico .pk-card{
-                flex-direction:row;align-items:center;gap:10px;
                 border-radius:0;border:none;border-bottom:1px solid var(--border);
                 background:transparent;
             }
             .gallery-grid.vista-chico .pk-card:hover{background:var(--surface2);}
             .gallery-grid.vista-chico .pk-card.found::after{display:none;}
-            .gallery-grid.vista-chico .pk-dt-header{
-                flex-direction:row;flex-shrink:0;width:112px;padding:8px 0 8px 12px;
-                justify-content:flex-start;gap:8px;
-            }
-            .gallery-grid.vista-chico .pk-dt-img{width:26px;height:26px;margin:0;flex-shrink:0;}
+            .gallery-grid.vista-chico .pk-dt-header,
+            .gallery-grid.vista-chico .pk-dt-img,
+            .gallery-grid.vista-chico .pk-var-badge{display:none !important;}
             .gallery-grid.vista-chico .pk-dt-footer{
-                flex:1;display:flex;align-items:center;justify-content:space-between;
-                border-top:none;background:transparent;padding:8px 14px 8px 0;
+                display:flex !important;align-items:center;justify-content:space-between;
+                border-top:none;background:transparent;padding:8px 14px;
             }
-            .gallery-grid.vista-chico .pk-dt-footer .pk-name{font-size:13px;white-space:nowrap;}
-            .gallery-grid.vista-chico .pk-var-badge{display:none;}
+            .gallery-grid.vista-chico .pk-dt-footer .pk-name{font-size:13px;width:auto;flex:0 1 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:0;margin-right:10px;}
+            .gallery-grid.vista-chico .pk-dt-footer .pk-status-tag{flex-shrink:0;}
             /* Ocultar elementos mobile dentro de gallery-section en desktop */
             #gallery-header-mobile{display:none !important;}
             #gallery-filter-mobile{display:none !important;}

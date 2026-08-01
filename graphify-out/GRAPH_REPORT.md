@@ -1,16 +1,16 @@
 # Graph Report - pokedex-tcg  (2026-08-01)
 
 ## Corpus Check
-- 35 files · ~100,284 words
+- 35 files · ~100,329 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1011 nodes · 1900 edges · 78 communities (46 shown, 32 thin omitted)
+- 1012 nodes · 1903 edges · 74 communities (46 shown, 28 thin omitted)
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 221 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `5621c462`
+- Built from commit: `a853df9e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -58,12 +58,9 @@
 - Q
 - Fase 2 — Selección de categorías de variantes (núcleo de tracking)
 - qb
-- ei
 - qb
 - di
 - di
-- M
-- ai
 - fetch_pokemon.js
 - Sh
 - ii
@@ -90,7 +87,6 @@
 - M
 - sesionValida
 - CATEGORIAS_VARIANTES
-- Sh
 - ai
 - iniciarBucleOCR
 
@@ -121,7 +117,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (78 total, 32 thin omitted)
+## Communities (74 total, 28 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -133,7 +129,7 @@ Nodes (7): Contexto, Control de tamaño de tarjeta en la galería (Chico/Normal/
 
 ### Community 2 - "app.js"
 Cohesion: 0.05
-Nodes (51): abrirLoginModal(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelVariantes(), abrirWizardCarpetas(), actualizarBotonSesion(), aplicarModoVista(), aplicarTema() (+43 more)
+Nodes (54): abrirLoginModal(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelVariantes(), abrirWizardCarpetas(), actualizarBotonesModo(), actualizarBotonSesion(), aplicarModoVista() (+46 more)
 
 ### Community 3 - "server.js"
 Cohesion: 0.06
@@ -148,24 +144,32 @@ Cohesion: 0.07
 Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
 ### Community 10 - "esDesktop"
-Cohesion: 0.24
-Nodes (21): actualizarBotonesModo(), actualizarTarjetaProgreso(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cargarEstadisticasSinMoverScroll(), cerrarGaleriaYVolver(), esDesktop() (+13 more)
+Cohesion: 0.17
+Nodes (31): actualizarTarjetaProgreso(), actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cargarEstadisticasSinMoverScroll(), cerrarGaleriaYVolver() (+23 more)
 
 ### Community 11 - "wizardCapacidadSiguiente"
-Cohesion: 0.16
-Nodes (18): formatearRango(), pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste(), wizardArmarPasoCapacidad(), wizardArmarPasoNombres() (+10 more)
+Cohesion: 0.13
+Nodes (23): cargarCarpetasConfig(), formatearRango(), pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste(), wizardArmarPasoCapacidad() (+15 more)
 
 ### Community 14 - "package.json"
 Cohesion: 0.11
 Nodes (18): express, node-fetch, author, dependencies, express, node-fetch, pdfkit, sharp (+10 more)
 
 ### Community 15 - "renderGaleria"
-Cohesion: 0.24
-Nodes (17): actualizarBotonEstado(), actualizarGalleryHeader(), anclaIdCliente(), cargarCarpetasConfig(), carpetaDe(), clearSearchTimer(), gridActivo(), handleSearchInput() (+9 more)
+Cohesion: 0.27
+Nodes (16): actualizarGalleryHeader(), anclaIdCliente(), carpetaDe(), clearSearchTimer(), getFechaRegistro(), gridActivo(), handleSearchInput(), hexToRgba() (+8 more)
+
+### Community 17 - "ji"
+Cohesion: 0.06
+Nodes (5): ei(), hi(), ji(), M(), O()
 
 ### Community 19 - "Modo "Todas seguidas" para configuración de carpetas"
 Cohesion: 0.11
 Nodes (17): Apertura de galería de una carpeta (~app.js:559-571), `/api/buscar` (server.js:287), `/api/carpetas-config` GET/POST (server.js:343, 567), `carpetaDe(p)` (app.js:74), `carpetas.json` (servidor), Cliente (`public/app.js`), Contexto, Fuera de alcance (a propósito) (+9 more)
+
+### Community 20 - "ji"
+Cohesion: 0.20
+Nodes (3): ai(), Sh(), Ya()
 
 ### Community 21 - "Global Constraints"
 Cohesion: 0.14
@@ -187,21 +191,17 @@ Nodes (13): ac(), $b(), bc(), cc(), Hh(), Pb(), tb(), ub() (+5 more)
 Cohesion: 0.25
 Nodes (7): Caché e invalidación (`/api/pdf-carpetas`), Cambios, Contexto, Fase 3 — Variantes en el PDF de recortables, Fuera de alcance, `generarPDFRecortables(rutaSalida, opciones)` (`server.js`), Testing
 
-### Community 27 - "mostrarToastError"
-Cohesion: 0.18
-Nodes (16): actualizarBadgePendientes(), actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), calcularIdsPendientesSilencioso(), cerrarWizardCarpetas(), descargarListaFaltantes(), descargarRecortablesPDF(), exportarColeccion() (+8 more)
-
 ### Community 28 - "d"
 Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 29 - "p"
-Cohesion: 0.22
-Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
+Cohesion: 0.24
+Nodes (9): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+1 more)
 
 ### Community 30 - "hi"
-Cohesion: 0.29
-Nodes (10): claveFechaLS(), claveLS(), detectarYCelebrarCompletado(), ejecutarToggleStatus(), getFechaISO(), getFechaRegistro(), guardarFechaRegistro(), lanzarConfeti() (+2 more)
+Cohesion: 0.31
+Nodes (10): actualizarBadgePendientes(), actualizarBotonEstado(), calcularIdsPendientesSilencioso(), claveFechaLS(), claveLS(), ejecutarToggleStatus(), getFechaISO(), guardarFechaRegistro() (+2 more)
 
 ### Community 31 - "kb"
 Cohesion: 0.33
@@ -240,8 +240,8 @@ Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 56 - "p"
-Cohesion: 0.24
-Nodes (9): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+1 more)
+Cohesion: 0.22
+Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
 
 ### Community 57 - "Reorganizar accesos rápidos y agrupar "Ajustes" — Plan de implementación"
 Cohesion: 0.22
@@ -299,10 +299,6 @@ Nodes (3): carpetasConfigValida(), nombresUnicos(), pokemonPorGens()
 Cohesion: 0.67
 Nodes (3): parsearCookies(), requiereLogin(), sesionValida()
 
-### Community 76 - "ai"
-Cohesion: 0.17
-Nodes (3): ai(), Sh(), Ya()
-
 ### Community 77 - "iniciarBucleOCR"
 Cohesion: 0.67
 Nodes (4): agregarAlHistorial(), detenerCamara(), iniciarBucleOCR(), toggleCamaraOCR()
@@ -310,21 +306,21 @@ Nodes (4): agregarAlHistorial(), detenerCamara(), iniciarBucleOCR(), toggleCamar
 ## Knowledge Gaps
 - **190 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+185 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **32 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **28 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `g()` connect `worker.min.js` to `carpetasConfigValida`, `esDesktop`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
-  _High betweenness centrality (0.208) - this node is a cross-community bridge._
+  _High betweenness centrality (0.211) - this node is a cross-community bridge._
 - **Why does `a()` connect `worker.min.js` to `qb`, `A`, `A`, `p`, `qb`, `p`?**
-  _High betweenness centrality (0.190) - this node is a cross-community bridge._
+  _High betweenness centrality (0.192) - this node is a cross-community bridge._
 - **Why does `A()` connect `A` to `worker.min.js`, `K`, `tesseract-core-simd-lstm.wasm.js`, `Q`, `J`, `di`, `d`, `Lh`, `p`, `zb`, `kb`, `qb`?**
-  _High betweenness centrality (0.094) - this node is a cross-community bridge._
+  _High betweenness centrality (0.092) - this node is a cross-community bridge._
 - **What connects `fs`, `fs`, `crypto` to the rest of the system?**
   _190 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.0512987012987013 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.046171829339567504 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
   _Cohesion score 0.06060606060606061 - nodes in this community are weakly interconnected._
 - **Should `V` be split into smaller, more focused modules?**

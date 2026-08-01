@@ -553,24 +553,11 @@ function renderBinderBar() {
 }
 
 // ── ESTADÍSTICAS (siempre contra el modo activo) ─────────────────
-async function cargarEstadisticas() {
-    let data;
-    try {
-        const res = await fetch(`/api/estadisticas?modo=${modoActual}&nocache=${Date.now()}`);
-        if (!res.ok) throw new Error('respuesta no válida');
-        data = await res.json();
-    } catch (err) {
-        mostrarToastError('No se pudo cargar la colección. Revisa tu conexión.');
-        return;
-    }
-    dataGlobalCache = data;
-    sincronizarLocalStorageDesde(data);
-    actualizarTarjetaProgreso();
-    renderBinderBar();
-    renderSidebar();
-    const total = Object.keys(data.listaIds || {}).length;
-    document.getElementById('brand-count').textContent = `${total} / ${data.global.total || 1025}`;
-
+// Reconstruye las tarjetas "Gen N · conseguidos/total" de la pantalla de
+// inicio (mobile). En escritorio no hace falta: ahí los totales por
+// generación se muestran vía renderSidebar(), que lee dataGlobalCache en
+// vivo en cada llamada.
+function renderGridGeneraciones(data) {
     const grid = document.getElementById('grid-generaciones');
     grid.innerHTML = '';
     for (let g = 1; g <= 9; g++) {
@@ -590,6 +577,26 @@ async function cargarEstadisticas() {
             <div class="gen-bar-bg"><div class="gen-bar-fill" style="width:${pct}%;background:${coloresGen[g-1]};"></div></div>`;
         grid.appendChild(card);
     }
+}
+
+async function cargarEstadisticas() {
+    let data;
+    try {
+        const res = await fetch(`/api/estadisticas?modo=${modoActual}&nocache=${Date.now()}`);
+        if (!res.ok) throw new Error('respuesta no válida');
+        data = await res.json();
+    } catch (err) {
+        mostrarToastError('No se pudo cargar la colección. Revisa tu conexión.');
+        return;
+    }
+    dataGlobalCache = data;
+    sincronizarLocalStorageDesde(data);
+    actualizarTarjetaProgreso();
+    renderBinderBar();
+    renderSidebar();
+    const total = Object.keys(data.listaIds || {}).length;
+    document.getElementById('brand-count').textContent = `${total} / ${data.global.total || 1025}`;
+    renderGridGeneraciones(data);
     if (genActualAbierta) RefrescarGaleria(false);
 }
 
@@ -610,6 +617,7 @@ async function cargarEstadisticasSinMoverScroll() {
     renderSidebar();
     const total = Object.keys(data.listaIds || {}).length;
     document.getElementById('brand-count').textContent = `${total} / ${data.global.total || 1025}`;
+    renderGridGeneraciones(data);
     if (genActualAbierta) RefrescarGaleria(true);
 }
 

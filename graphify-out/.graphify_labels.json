@@ -42,12 +42,9 @@
   "40": "Q",
   "41": "Fase 2 — Selección de categorías de variantes (núcleo de tracking)",
   "42": "qb",
-  "43": "ei",
   "44": "qb",
   "45": "di",
   "46": "di",
-  "47": "M",
-  "48": "ai",
   "49": "fetch_pokemon.js",
   "50": "Sh",
   "51": "ii",
@@ -74,7 +71,6 @@
   "72": "M",
   "73": "sesionValida",
   "74": "CATEGORIAS_VARIANTES",
-  "75": "Sh",
   "76": "ai",
   "77": "iniciarBucleOCR"
 }

@@ -35,8 +35,8 @@
     "semantic_hash": ""
   },
   "public/app.js": {
-    "mtime": 1785603313.88803,
-    "ast_hash": "f670f0df1ba6cd76e6d0af00e9a22dd7",
+    "mtime": 1785603814.7551093,
+    "ast_hash": "1667c67b2df937a3c724c509e8b45ee2",
     "semantic_hash": ""
   },
   "public/manifest.json": {
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "public/sw.js": {
-    "mtime": 1785603323.1180508,
-    "ast_hash": "f6c4ef5e7c3279a3cce8c8dd3c4bb7af",
+    "mtime": 1785603822.1141248,
+    "ast_hash": "65d669dbbc82adb17e986d62da6044b4",
     "semantic_hash": ""
   },
   "public/vendor/tesseract/tesseract-core-lstm.wasm.js": {
@@ -205,8 +205,8 @@
     "semantic_hash": ""
   },
   "variantes-config.json": {
-    "mtime": 1785372297.696543,
-    "ast_hash": "ff58d43f3020c4385da69fc3ab281832",
+    "mtime": 1785603593.2296457,
+    "ast_hash": "a35e4a32e468939fe960c0cd6a2681bd",
     "semantic_hash": ""
   }
 }

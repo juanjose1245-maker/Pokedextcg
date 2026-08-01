@@ -1,6 +1,7 @@
 node_modules/
 backups/
 cache/
+inventario.json
 .superpowers/
 .worktrees/
 graphify-out/cache/

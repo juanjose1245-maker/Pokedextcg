@@ -348,6 +348,24 @@ function mostrarToastDeshacer(idPk, fechaPreservada, nombrePk) {
     deshacerToastTimer = setTimeout(() => { toast.style.opacity = '0'; }, 6000);
 }
 
+// Toast con acción: avisa que ya hay una versión nueva de la app instalada
+// de fondo y ofrece recargar para verla ya. A diferencia de los demás toasts
+// NO se auto-oculta — perderla de vista no debería dejar a alguien
+// preguntándose por qué no ve un cambio que ya sabemos que está instalado.
+function mostrarToastActualizacion() {
+    let toast = document.getElementById('actualizacion-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'actualizacion-toast';
+        toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 8px 8px 16px;font-size:12px;font-weight:600;color:var(--text);box-shadow:0 4px 16px var(--shadow);z-index:800;white-space:nowrap;opacity:0;transition:opacity .2s ease;display:flex;align-items:center;gap:10px;';
+        document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<span>🔄 Hay una versión nueva</span>
+        <button id="btn-actualizacion-toast" style="background:var(--accent2);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:11px;cursor:pointer;font-family:'Rajdhani',sans-serif;letter-spacing:.04em;">ACTUALIZAR</button>`;
+    toast.style.opacity = '1';
+    document.getElementById('btn-actualizacion-toast').onclick = () => location.reload();
+}
+
 // Toast con acción: avisa que activar una categoría de variantes dejó la
 // capacidad de las carpetas ya configuradas por debajo de lo necesario. No
 // bloquea nada — la config vieja sigue funcionando, esto es solo un aviso
@@ -2315,9 +2333,27 @@ window.onload = async () => {
 
     // Service worker: permite ver la colección (últimos datos cargados) sin
     // internet. Los cambios (marcar/desmarcar) siguen necesitando conexión.
+    // También es la vía para enterarse de un deploy nuevo: por defecto el
+    // browser solo revisa si hay sw.js nuevo cada tanto (o al navegar), así
+    // que una PWA que se queda abierta en el celular puede tardar bastante
+    // en darse cuenta — de ahí el chequeo manual en cada vuelta a primer
+    // plano, más el aviso para recargar cuando SÍ hay una versión nueva.
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js').catch(err => {
+        const yaControlada = !!navigator.serviceWorker.controller;
+        navigator.serviceWorker.register('/sw.js').then(reg => {
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible') reg.update().catch(() => {});
+            });
+        }).catch(err => {
             console.warn('No se pudo registrar el service worker:', err);
+        });
+        // Se dispara cuando un service worker nuevo pasa a controlar la página
+        // (activate + clients.claim() en sw.js). Si ya había uno controlándola
+        // antes de este registro, es una actualización real y de verdad
+        // conviene recargar — el HTML/JS ya cargado en memoria sigue siendo
+        // el viejo hasta que se recarga, aunque el SW de atrás ya haya cambiado.
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (yaControlada) mostrarToastActualizacion();
         });
     }
 

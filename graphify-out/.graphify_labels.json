@@ -42,9 +42,12 @@
   "40": "Q",
   "41": "Fase 2 — Selección de categorías de variantes (núcleo de tracking)",
   "42": "qb",
+  "43": "Integrar el selector de tamaño (Chico/Normal/Grande) a la barra de filtros",
   "44": "qb",
   "45": "di",
   "46": "di",
+  "47": "ei",
+  "48": "M",
   "49": "fetch_pokemon.js",
   "50": "Sh",
   "51": "ii",
@@ -71,6 +74,8 @@
   "72": "M",
   "73": "sesionValida",
   "74": "CATEGORIAS_VARIANTES",
+  "75": "ai",
   "76": "ai",
-  "77": "iniciarBucleOCR"
+  "77": "iniciarBucleOCR",
+  "78": "Sh"
 }

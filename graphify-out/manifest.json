@@ -205,8 +205,13 @@
     "semantic_hash": ""
   },
   "variantes-config.json": {
-    "mtime": 1785603593.2296457,
-    "ast_hash": "a35e4a32e468939fe960c0cd6a2681bd",
+    "mtime": 1785604081.7596788,
+    "ast_hash": "ff58d43f3020c4385da69fc3ab281832",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-08-01-selector-tamano-integrado-design.md": {
+    "mtime": 1785604572.3888178,
+    "ast_hash": "08c928c932d4dd87bd2aec39759ddadf",
     "semantic_hash": ""
   }
 }

@@ -2749,8 +2749,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh",
-      "community": 20,
-      "community_name": "ji",
+      "community": 78,
+      "community_name": "Sh",
       "norm_label": "sh()"
     },
     {
@@ -2760,8 +2760,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_destroy",
-      "community": 20,
-      "community_name": "ji",
+      "community": 78,
+      "community_name": "Sh",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3057,8 +3057,8 @@
       "source_location": "L206",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_blockpolygon",
-      "community": 17,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "M",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -3101,8 +3101,8 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_rowattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".rowattributes()"
     },
     {
@@ -3189,8 +3189,8 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_wordfontattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".wordfontattributes()"
     },
     {
@@ -3508,7 +3508,7 @@
       "source_location": "L217",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_boundingbox",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".boundingbox()"
     },
@@ -3552,8 +3552,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_blockpolygon",
-      "community": 17,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "M",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -3585,7 +3585,7 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_baseline",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".baseline()"
     },
@@ -3816,8 +3816,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai",
-      "community": 20,
-      "community_name": "ji",
+      "community": 75,
+      "community_name": "ai",
       "norm_label": "ai()"
     },
     {
@@ -3827,8 +3827,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai_destroy",
-      "community": 20,
-      "community_name": "ji",
+      "community": 75,
+      "community_name": "ai",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3970,8 +3970,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei",
-      "community": 17,
-      "community_name": "ji",
+      "community": 47,
+      "community_name": "ei",
       "norm_label": "ei()"
     },
     {
@@ -3981,8 +3981,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei_destroy",
-      "community": 17,
-      "community_name": "ji",
+      "community": 47,
+      "community_name": "ei",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4069,8 +4069,8 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_m",
-      "community": 17,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "M",
       "norm_label": "m()"
     },
     {
@@ -4080,8 +4080,8 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_m_destroy",
-      "community": 17,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "M",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4113,7 +4113,7 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": "hi()"
     },
@@ -4124,7 +4124,7 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi_destroy",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".__destroy__()"
     },
@@ -4751,8 +4751,8 @@
       "source_location": "L258",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_v_allwordconfidences",
-      "community": 17,
-      "community_name": "ji",
+      "community": 47,
+      "community_name": "ei",
       "norm_label": ".allwordconfidences()"
     },
     {
@@ -4949,8 +4949,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_getvalue",
-      "community": 20,
-      "community_name": "ji",
+      "community": 78,
+      "community_name": "Sh",
       "norm_label": ".getvalue()"
     },
     {
@@ -4960,8 +4960,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei_getvalue",
-      "community": 17,
-      "community_name": "ji",
+      "community": 47,
+      "community_name": "ei",
       "norm_label": ".getvalue()"
     },
     {
@@ -4971,8 +4971,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai_getvalue",
-      "community": 20,
-      "community_name": "ji",
+      "community": 75,
+      "community_name": "ai",
       "norm_label": ".getvalue()"
     },
     {
@@ -4982,7 +4982,7 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi_getvalue",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".getvalue()"
     },
@@ -4993,7 +4993,7 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": "ji()"
     },
@@ -5026,7 +5026,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_i32",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".i32()"
     },
@@ -5048,7 +5048,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_f64",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".f64()"
     },
@@ -5059,7 +5059,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_peek",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".peek()"
     },
@@ -5070,7 +5070,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_get",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".get()"
     },
@@ -5081,7 +5081,7 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getboundingbox",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".getboundingbox()"
     },
@@ -5092,7 +5092,7 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getbaseline",
-      "community": 17,
+      "community": 20,
       "community_name": "ji",
       "norm_label": ".getbaseline()"
     },
@@ -5103,8 +5103,8 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getrowattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".getrowattributes()"
     },
     {
@@ -5114,8 +5114,8 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getwordfontattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".getwordfontattributes()"
     },
     {
@@ -11053,6 +11053,83 @@
       "id": "docs_superpowers_specs_2026_07_29_tamano_tarjeta_galeria_design_testing",
       "community": 1,
       "community_name": "ejecutarToggleStatus",
+      "norm_label": "testing"
+    },
+    {
+      "label": "2026-08-01-selector-tamano-integrado-design.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-01-selector-tamano-integrado-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design",
+      "community": 43,
+      "community_name": "Integrar el selector de tama\u00f1o (Chico/Normal/Grande) a la barra de filtros",
+      "norm_label": "2026-08-01-selector-tamano-integrado-design.md"
+    },
+    {
+      "label": "Integrar el selector de tama\u00f1o (Chico/Normal/Grande) a la barra de filtros",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-01-selector-tamano-integrado-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design_integrar_el_selector_de_tama\u00f1o_chico_normal_grande_a_la_barra_de_filtros",
+      "community": 43,
+      "community_name": "Integrar el selector de tama\u00f1o (Chico/Normal/Grande) a la barra de filtros",
+      "norm_label": "integrar el selector de tamano (chico/normal/grande) a la barra de filtros"
+    },
+    {
+      "label": "Contexto",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-01-selector-tamano-integrado-design.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design_contexto",
+      "community": 43,
+      "community_name": "Integrar el selector de tama\u00f1o (Chico/Normal/Grande) a la barra de filtros",
+      "norm_label": "contexto"
+    },
+    {
+      "label": "Iconos de tama\u00f1o",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-01-selector-tamano-integrado-design.md",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design_iconos_de_tama\u00f1o",
+      "community": 43,
+      "community_name": "Integrar el selector de tama\u00f1o (Chico/Normal/Grande) a la barra de filtros",
+      "norm_label": "iconos de tamano"
+    },
+    {
+      "label": "Ubicaci\u00f3n",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-01-selector-tamano-integrado-design.md",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design_ubicaci\u00f3n",
+      "community": 43,
+      "community_name": "Integrar el selector de tama\u00f1o (Chico/Normal/Grande) a la barra de filtros",
+      "norm_label": "ubicacion"
+    },
+    {
+      "label": "Fuera de alcance",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-01-selector-tamano-integrado-design.md",
+      "source_location": "L66",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design_fuera_de_alcance",
+      "community": 43,
+      "community_name": "Integrar el selector de tama\u00f1o (Chico/Normal/Grande) a la barra de filtros",
+      "norm_label": "fuera de alcance"
+    },
+    {
+      "label": "Testing",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-01-selector-tamano-integrado-design.md",
+      "source_location": "L78",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design_testing",
+      "community": 43,
+      "community_name": "Integrar el selector de tama\u00f1o (Chico/Normal/Grande) a la barra de filtros",
       "norm_label": "testing"
     },
     {
@@ -32934,6 +33011,72 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-01-selector-tamano-integrado-design.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design",
+      "target": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design_integrar_el_selector_de_tama\u00f1o_chico_normal_grande_a_la_barra_de_filtros",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-01-selector-tamano-integrado-design.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design_integrar_el_selector_de_tama\u00f1o_chico_normal_grande_a_la_barra_de_filtros",
+      "target": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design_contexto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-01-selector-tamano-integrado-design.md",
+      "source_location": "L66",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design_integrar_el_selector_de_tama\u00f1o_chico_normal_grande_a_la_barra_de_filtros",
+      "target": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design_fuera_de_alcance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-01-selector-tamano-integrado-design.md",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design_integrar_el_selector_de_tama\u00f1o_chico_normal_grande_a_la_barra_de_filtros",
+      "target": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design_iconos_de_tama\u00f1o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-01-selector-tamano-integrado-design.md",
+      "source_location": "L78",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design_integrar_el_selector_de_tama\u00f1o_chico_normal_grande_a_la_barra_de_filtros",
+      "target": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design_testing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-01-selector-tamano-integrado-design.md",
+      "source_location": "L52",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design_integrar_el_selector_de_tama\u00f1o_chico_normal_grande_a_la_barra_de_filtros",
+      "target": "docs_superpowers_specs_2026_08_01_selector_tamano_integrado_design_ubicaci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/variantes-criterio-investigacion.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -33010,5 +33153,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "a853df9e1386a4b3f6cca94f93af25741ac25f6a"
+  "built_at_commit": "4343f8921732a60bd074949af1461946b0dcbe2f"
 }

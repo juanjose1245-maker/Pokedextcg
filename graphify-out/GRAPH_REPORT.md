@@ -1,16 +1,16 @@
 # Graph Report - pokedex-tcg  (2026-08-01)
 
 ## Corpus Check
-- 36 files · ~101,066 words
+- 37 files · ~102,594 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1019 nodes · 1909 edges · 79 communities (46 shown, 33 thin omitted)
+- 1025 nodes · 1914 edges · 79 communities (47 shown, 32 thin omitted)
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 221 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `4343f892`
+- Built from commit: `8998b805`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -122,7 +122,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (79 total, 33 thin omitted)
+## Communities (79 total, 32 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -168,10 +168,6 @@ Nodes (16): actualizarGalleryHeader(), anclaIdCliente(), carpetaDe(), clearSearc
 Cohesion: 0.11
 Nodes (17): Apertura de galería de una carpeta (~app.js:559-571), `/api/buscar` (server.js:287), `/api/carpetas-config` GET/POST (server.js:343, 567), `carpetaDe(p)` (app.js:74), `carpetas.json` (servidor), Cliente (`public/app.js`), Contexto, Fuera de alcance (a propósito) (+9 more)
 
-### Community 20 - "ji"
-Cohesion: 0.15
-Nodes (3): hi(), ji(), Ya()
-
 ### Community 21 - "Global Constraints"
 Cohesion: 0.14
 Nodes (13): Global Constraints, Modo "Todas Seguidas" para Carpetas — Implementation Plan, Self-Review Notes, Task 10: Wizard — paso "nombres", guardar, y botón "Atrás", Task 1: Server — data model, migration, validation, Task 2: Server — `/api/carpetas-config` + `/api/buscar` for ranges, Task 3: Server — PDF de recortables por rango, Task 4: Cliente — `cargarCarpetasConfig` y `carpetaDe` para el nuevo formato (+5 more)
@@ -192,13 +188,17 @@ Nodes (13): ac(), $b(), bc(), cc(), Hh(), Pb(), tb(), ub() (+5 more)
 Cohesion: 0.25
 Nodes (7): Caché e invalidación (`/api/pdf-carpetas`), Cambios, Contexto, Fase 3 — Variantes en el PDF de recortables, Fuera de alcance, `generarPDFRecortables(rutaSalida, opciones)` (`server.js`), Testing
 
+### Community 27 - "mostrarToastError"
+Cohesion: 0.17
+Nodes (3): ai(), Sh(), Ya()
+
 ### Community 28 - "d"
 Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 29 - "p"
-Cohesion: 0.24
-Nodes (9): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+1 more)
+Cohesion: 0.22
+Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
 
 ### Community 30 - "hi"
 Cohesion: 0.31
@@ -245,8 +245,8 @@ Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 56 - "p"
-Cohesion: 0.22
-Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
+Cohesion: 0.24
+Nodes (9): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+1 more)
 
 ### Community 57 - "Reorganizar accesos rápidos y agrupar "Ajustes" — Plan de implementación"
 Cohesion: 0.22
@@ -304,26 +304,30 @@ Nodes (3): carpetasConfigValida(), nombresUnicos(), pokemonPorGens()
 Cohesion: 0.67
 Nodes (3): parsearCookies(), requiereLogin(), sesionValida()
 
+### Community 76 - "ai"
+Cohesion: 0.33
+Nodes (5): Global Constraints, Integrar el selector de tamaño (Chico/Normal/Grande) a la barra de filtros — Plan de implementación, Self-Review (hecho al escribir este plan), Task 1: Reemplazar el texto de los botones por iconos compactos, Task 2: Mover el selector de tamaño mobile a la fila de filtros
+
 ### Community 77 - "iniciarBucleOCR"
 Cohesion: 0.67
 Nodes (4): agregarAlHistorial(), detenerCamara(), iniciarBucleOCR(), toggleCamaraOCR()
 
 ## Knowledge Gaps
-- **195 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+190 more)
+- **199 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+194 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **33 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **32 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `g()` connect `worker.min.js` to `carpetasConfigValida`, `esDesktop`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
-  _High betweenness centrality (0.209) - this node is a cross-community bridge._
+  _High betweenness centrality (0.210) - this node is a cross-community bridge._
 - **Why does `a()` connect `worker.min.js` to `qb`, `A`, `A`, `p`, `qb`, `p`?**
-  _High betweenness centrality (0.190) - this node is a cross-community bridge._
+  _High betweenness centrality (0.189) - this node is a cross-community bridge._
 - **Why does `A()` connect `A` to `worker.min.js`, `K`, `tesseract-core-simd-lstm.wasm.js`, `Q`, `J`, `di`, `d`, `Lh`, `p`, `zb`, `kb`, `qb`?**
-  _High betweenness centrality (0.092) - this node is a cross-community bridge._
+  _High betweenness centrality (0.093) - this node is a cross-community bridge._
 - **What connects `fs`, `fs`, `crypto` to the rest of the system?**
-  _195 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _199 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
   _Cohesion score 0.046171829339567504 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**

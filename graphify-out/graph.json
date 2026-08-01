@@ -2265,8 +2265,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ya",
-      "community": 20,
-      "community_name": "ji",
+      "community": 29,
+      "community_name": "p",
       "norm_label": "ya()"
     },
     {
@@ -5301,8 +5301,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ya",
-      "community": 56,
-      "community_name": "p",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": "ya()"
     },
     {
@@ -6137,8 +6137,8 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_rowattributes",
-      "community": 25,
-      "community_name": "zb",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": ".rowattributes()"
     },
     {
@@ -6852,8 +6852,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ai",
-      "community": 76,
-      "community_name": "ai",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": "ai()"
     },
     {
@@ -6863,8 +6863,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ai_destroy",
-      "community": 76,
-      "community_name": "ai",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": ".__destroy__()"
     },
     {
@@ -8007,8 +8007,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ai_getvalue",
-      "community": 76,
-      "community_name": "ai",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": ".getvalue()"
     },
     {
@@ -8040,8 +8040,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ji_wrap",
-      "community": 25,
-      "community_name": "zb",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": ".wrap()"
     },
     {
@@ -8051,8 +8051,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ji_bool",
-      "community": 25,
-      "community_name": "zb",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": ".bool()"
     },
     {
@@ -8073,8 +8073,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ji_f32",
-      "community": 25,
-      "community_name": "zb",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": ".f32()"
     },
     {
@@ -8139,8 +8139,8 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_getrowattributes",
-      "community": 25,
-      "community_name": "zb",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": ".getrowattributes()"
     },
     {
@@ -10338,6 +10338,72 @@
       "id": "docs_superpowers_plans_2026_07_29_tamano_tarjeta_galeria_self_review_hecho_al_escribir_este_plan",
       "community": 66,
       "community_name": "Control de tama\u00f1o de tarjeta en la galer\u00eda (Chico/Normal/Grande) \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "self-review (hecho al escribir este plan)"
+    },
+    {
+      "label": "2026-08-01-selector-tamano-integrado.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-01-selector-tamano-integrado.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_01_selector_tamano_integrado",
+      "community": 76,
+      "community_name": "ai",
+      "norm_label": "2026-08-01-selector-tamano-integrado.md"
+    },
+    {
+      "label": "Integrar el selector de tama\u00f1o (Chico/Normal/Grande) a la barra de filtros \u2014 Plan de implementaci\u00f3n",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-01-selector-tamano-integrado.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_01_selector_tamano_integrado_integrar_el_selector_de_tama\u00f1o_chico_normal_grande_a_la_barra_de_filtros_plan_de_implementaci\u00f3n",
+      "community": 76,
+      "community_name": "ai",
+      "norm_label": "integrar el selector de tamano (chico/normal/grande) a la barra de filtros \u2014 plan de implementacion"
+    },
+    {
+      "label": "Global Constraints",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-01-selector-tamano-integrado.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_01_selector_tamano_integrado_global_constraints",
+      "community": 76,
+      "community_name": "ai",
+      "norm_label": "global constraints"
+    },
+    {
+      "label": "Task 1: Reemplazar el texto de los botones por iconos compactos",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-01-selector-tamano-integrado.md",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_01_selector_tamano_integrado_task_1_reemplazar_el_texto_de_los_botones_por_iconos_compactos",
+      "community": 76,
+      "community_name": "ai",
+      "norm_label": "task 1: reemplazar el texto de los botones por iconos compactos"
+    },
+    {
+      "label": "Task 2: Mover el selector de tama\u00f1o mobile a la fila de filtros",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-01-selector-tamano-integrado.md",
+      "source_location": "L164",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_01_selector_tamano_integrado_task_2_mover_el_selector_de_tama\u00f1o_mobile_a_la_fila_de_filtros",
+      "community": 76,
+      "community_name": "ai",
+      "norm_label": "task 2: mover el selector de tamano mobile a la fila de filtros"
+    },
+    {
+      "label": "Self-Review (hecho al escribir este plan)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-01-selector-tamano-integrado.md",
+      "source_location": "L315",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_01_selector_tamano_integrado_self_review_hecho_al_escribir_este_plan",
+      "community": 76,
+      "community_name": "ai",
       "norm_label": "self-review (hecho al escribir este plan)"
     },
     {
@@ -32362,6 +32428,61 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-01-selector-tamano-integrado.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_01_selector_tamano_integrado",
+      "target": "docs_superpowers_plans_2026_08_01_selector_tamano_integrado_integrar_el_selector_de_tama\u00f1o_chico_normal_grande_a_la_barra_de_filtros_plan_de_implementaci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-01-selector-tamano-integrado.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_01_selector_tamano_integrado_integrar_el_selector_de_tama\u00f1o_chico_normal_grande_a_la_barra_de_filtros_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_01_selector_tamano_integrado_global_constraints",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-01-selector-tamano-integrado.md",
+      "source_location": "L315",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_01_selector_tamano_integrado_integrar_el_selector_de_tama\u00f1o_chico_normal_grande_a_la_barra_de_filtros_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_01_selector_tamano_integrado_self_review_hecho_al_escribir_este_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-01-selector-tamano-integrado.md",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_01_selector_tamano_integrado_integrar_el_selector_de_tama\u00f1o_chico_normal_grande_a_la_barra_de_filtros_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_01_selector_tamano_integrado_task_1_reemplazar_el_texto_de_los_botones_por_iconos_compactos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-01-selector-tamano-integrado.md",
+      "source_location": "L164",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_01_selector_tamano_integrado_integrar_el_selector_de_tama\u00f1o_chico_normal_grande_a_la_barra_de_filtros_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_01_selector_tamano_integrado_task_2_mover_el_selector_de_tama\u00f1o_mobile_a_la_fila_de_filtros",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/superpowers/specs/2026-07-25-carpetas-todas-seguidas-design.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -33153,5 +33274,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "4343f8921732a60bd074949af1461946b0dcbe2f"
+  "built_at_commit": "8998b80579075d1e4f1245b1b2867192b9339efc"
 }

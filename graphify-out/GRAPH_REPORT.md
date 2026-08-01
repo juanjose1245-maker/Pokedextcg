@@ -1,16 +1,16 @@
-# Graph Report - tamano-tarjeta-galeria  (2026-07-29)
+# Graph Report - pokedex-tcg  (2026-08-01)
 
 ## Corpus Check
-- 32 files · ~100,101 words
+- 35 files · ~100,284 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1011 nodes · 1896 edges · 78 communities (45 shown, 33 thin omitted)
+- 1011 nodes · 1900 edges · 78 communities (46 shown, 32 thin omitted)
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 221 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `fb20a6ab`
+- Built from commit: `5621c462`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -92,7 +92,7 @@
 - CATEGORIAS_VARIANTES
 - Sh
 - ai
-- Sh
+- iniciarBucleOCR
 
 ## God Nodes (most connected - your core abstractions)
 1. `V()` - 66 edges
@@ -121,7 +121,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (78 total, 33 thin omitted)
+## Communities (78 total, 32 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -133,7 +133,7 @@ Nodes (7): Contexto, Control de tamaño de tarjeta en la galería (Chico/Normal/
 
 ### Community 2 - "app.js"
 Cohesion: 0.05
-Nodes (46): abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelVariantes(), abrirWizardCarpetas(), actualizarBotonSesion(), aplicarModoVista(), aplicarTema(), cachePokemon (+38 more)
+Nodes (51): abrirLoginModal(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelVariantes(), abrirWizardCarpetas(), actualizarBotonSesion(), aplicarModoVista(), aplicarTema() (+43 more)
 
 ### Community 3 - "server.js"
 Cohesion: 0.06
@@ -148,20 +148,20 @@ Cohesion: 0.07
 Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
 ### Community 10 - "esDesktop"
-Cohesion: 0.25
-Nodes (18): actualizarBotonesModo(), actualizarTarjetaProgreso(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cerrarGaleriaYVolver(), esDesktop(), mostrarFAB() (+10 more)
+Cohesion: 0.24
+Nodes (21): actualizarBotonesModo(), actualizarTarjetaProgreso(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cargarEstadisticasSinMoverScroll(), cerrarGaleriaYVolver(), esDesktop() (+13 more)
 
 ### Community 11 - "wizardCapacidadSiguiente"
-Cohesion: 0.13
-Nodes (22): formatearRango(), pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste(), wizardArmarPasoCapacidad(), wizardArmarPasoNombres() (+14 more)
+Cohesion: 0.16
+Nodes (18): formatearRango(), pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste(), wizardArmarPasoCapacidad(), wizardArmarPasoNombres() (+10 more)
 
 ### Community 14 - "package.json"
 Cohesion: 0.11
 Nodes (18): express, node-fetch, author, dependencies, express, node-fetch, pdfkit, sharp (+10 more)
 
 ### Community 15 - "renderGaleria"
-Cohesion: 0.19
-Nodes (20): actualizarBotonEstado(), actualizarGalleryHeader(), agregarAlHistorial(), anclaIdCliente(), cargarCarpetasConfig(), carpetaDe(), clearSearchTimer(), detenerCamara() (+12 more)
+Cohesion: 0.24
+Nodes (17): actualizarBotonEstado(), actualizarGalleryHeader(), anclaIdCliente(), cargarCarpetasConfig(), carpetaDe(), clearSearchTimer(), gridActivo(), handleSearchInput() (+9 more)
 
 ### Community 19 - "Modo "Todas seguidas" para configuración de carpetas"
 Cohesion: 0.11
@@ -183,17 +183,13 @@ Nodes (4): bi(), Lh(), Y(), Zh()
 Cohesion: 0.42
 Nodes (13): ac(), $b(), bc(), cc(), Hh(), Pb(), tb(), ub() (+5 more)
 
-### Community 25 - "zb"
-Cohesion: 0.15
-Nodes (3): hi(), ji(), Ya()
-
 ### Community 26 - "Fase 3 — Variantes en el PDF de recortables"
 Cohesion: 0.25
 Nodes (7): Caché e invalidación (`/api/pdf-carpetas`), Cambios, Contexto, Fase 3 — Variantes en el PDF de recortables, Fuera de alcance, `generarPDFRecortables(rutaSalida, opciones)` (`server.js`), Testing
 
 ### Community 27 - "mostrarToastError"
-Cohesion: 0.17
-Nodes (16): actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), cerrarWizardCarpetas(), descargarListaFaltantes(), descargarRecortablesPDF(), dispararInputImportar(), exportarColeccion(), fetchGenSegura() (+8 more)
+Cohesion: 0.18
+Nodes (16): actualizarBadgePendientes(), actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), calcularIdsPendientesSilencioso(), cerrarWizardCarpetas(), descargarListaFaltantes(), descargarRecortablesPDF(), exportarColeccion() (+8 more)
 
 ### Community 28 - "d"
 Cohesion: 0.29
@@ -204,8 +200,8 @@ Cohesion: 0.22
 Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
 
 ### Community 30 - "hi"
-Cohesion: 0.25
-Nodes (15): abrirLoginModal(), actualizarBadgePendientes(), calcularIdsPendientesSilencioso(), cargarEstadisticasSinMoverScroll(), claveFechaLS(), claveLS(), ejecutarToggleStatus(), getFechaISO() (+7 more)
+Cohesion: 0.29
+Nodes (10): claveFechaLS(), claveLS(), detectarYCelebrarCompletado(), ejecutarToggleStatus(), getFechaISO(), getFechaRegistro(), guardarFechaRegistro(), lanzarConfeti() (+2 more)
 
 ### Community 31 - "kb"
 Cohesion: 0.33
@@ -303,10 +299,18 @@ Nodes (3): carpetasConfigValida(), nombresUnicos(), pokemonPorGens()
 Cohesion: 0.67
 Nodes (3): parsearCookies(), requiereLogin(), sesionValida()
 
+### Community 76 - "ai"
+Cohesion: 0.17
+Nodes (3): ai(), Sh(), Ya()
+
+### Community 77 - "iniciarBucleOCR"
+Cohesion: 0.67
+Nodes (4): agregarAlHistorial(), detenerCamara(), iniciarBucleOCR(), toggleCamaraOCR()
+
 ## Knowledge Gaps
 - **190 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+185 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **33 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **32 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -320,7 +324,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `fs`, `fs`, `crypto` to the rest of the system?**
   _190 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.05254901960784314 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.0512987012987013 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
   _Cohesion score 0.06060606060606061 - nodes in this community are weakly interconnected._
 - **Should `V` be split into smaller, more focused modules?**

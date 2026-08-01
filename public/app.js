@@ -1675,8 +1675,17 @@ async function toggleCategoriaVariante(categoria, activada) {
             // (misma acción que ya hace el handler de SSE 'config' para otros
             // cambios grandes) para que la próxima vez que abra una
             // generación/carpeta la traiga de nuevo, ya con la config nueva.
+            // En escritorio no hay una "pantalla de inicio" separada de la
+            // galería (a diferencia de mobile, donde cerrarGaleriaYVolver()
+            // vuelve a la grilla de generaciones) — sin volver a abrir una
+            // vista, el panel se queda mostrando exactamente lo que había
+            // antes del toggle. Mismo patrón que ya usan cambiarModo() y
+            // cambiarTab('home').
             Object.keys(cachePokemon).forEach(k => delete cachePokemon[k]);
-            if (genActualAbierta) cerrarGaleriaYVolver();
+            if (genActualAbierta) {
+                cerrarGaleriaYVolver();
+                if (esDesktop()) await verPokedexCompleta();
+            }
             await cargarEstadisticasSinMoverScroll();
             if (activada) await revisarCapacidadCarpetas();
             mostrarToastInfo(activada ? 'Categoría activada.' : 'Categoría desactivada.');
@@ -2170,6 +2179,10 @@ function iniciarSSE() {
             // dispositivo).
             Object.keys(cachePokemon).forEach(k => delete cachePokemon[k]);
             cerrarGaleriaYVolver();
+            // En escritorio no hay pantalla de inicio separada de la galería
+            // (ver mismo fix en toggleCategoriaVariante()) — sin esto el panel
+            // se queda mostrando la vista vieja.
+            if (esDesktop()) verPokedexCompleta();
             cargarCarpetasConfig().then(() => { renderSidebar(); renderBinderBar(); });
             cargarEstadisticasSinMoverScroll();
             actualizarBadgePendientes();

@@ -501,11 +501,20 @@
             box-shadow:0 -12px 40px var(--shadow);
             border-top:1px solid var(--border);
             animation:slideUp .3s ease;
-            max-height:calc(100vh - 24px);overflow-y:auto;
+            max-height:calc(100vh - 24px);
+            /* El botón de cerrar vive acá afuera, no dentro de .ajustes-scroll,
+               así que nunca se va de la pantalla scrolleando: solo el CONTENIDO
+               (.ajustes-scroll más abajo) hace scroll, la caja entera no. Antes
+               .ajustes-box scrolleaba completa con overflow-y:auto y .ajustes-close
+               (position:absolute DENTRO de ese scroll) se iba para arriba junto
+               con el contenido, dejando el modal sin forma de cerrarlo una vez
+               que la lista de Ajustes creció más que la pantalla. */
+            display:flex;flex-direction:column;overflow:hidden;
         }
-        .ajustes-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 14px;}
+        .ajustes-scroll{overflow-y:auto;min-height:0;}
+        .ajustes-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 14px;flex-shrink:0;}
         .ajustes-close{position:absolute;top:16px;right:18px;font-size:20px;color:var(--muted);cursor:pointer;padding:4px;}
-        .ajustes-title{font-family:'Rajdhani',sans-serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:14px;text-align:center;}
+        .ajustes-title{font-family:'Rajdhani',sans-serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:14px;text-align:center;flex-shrink:0;}
         .ajustes-secciones{display:flex;flex-direction:column;gap:8px;}
         .ajustes-section-label{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:8px 0 2px;}
         .ajustes-secciones .ajustes-section-label:first-child{margin-top:0;}
@@ -538,7 +547,7 @@
         .respaldo-btn-restaurar{flex-shrink:0;padding:8px 14px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--accent2);font-size:12px;font-weight:700;cursor:pointer;}
         .respaldo-btn-restaurar:active{background:var(--border);}
 
-        .wizard-box{max-height:80vh;overflow-y:auto;}
+        .wizard-box{max-height:80vh;}
         .wizard-opcion-modo{display:flex;flex-direction:column;gap:4px;width:100%;text-align:left;padding:14px 16px;margin-bottom:10px;border-radius:14px;border:1px solid var(--border);background:var(--surface2);cursor:pointer;}
         .wizard-opcion-modo:active{background:var(--border);}
         .wizard-opcion-modo strong{font-size:14px;color:var(--text);}

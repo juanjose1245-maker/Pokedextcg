@@ -273,11 +273,24 @@
         /* ── GALLERY (mobile) ── */
         .gallery-section{display:none;animation:fadeIn .25s ease;}
         .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
-        .gallery-grid.vista-chico .pk-card{aspect-ratio:auto;padding:8px 6px;min-height:48px;flex-direction:row;gap:6px;text-align:left;justify-content:flex-start;}
-        .gallery-grid.vista-chico .pk-img{width:32px;height:32px;}
-        .gallery-grid.vista-chico .pk-name{font-size:11px;margin-top:0;text-align:left;}
-        .gallery-grid.vista-chico .pk-status-tag{display:none;}
-        .gallery-grid.vista-chico{grid-template-columns:repeat(2,1fr);}
+        /* Chico en mobile: lista real (nombre + estado, sin imagen ni R#/N#),
+           mismo criterio que en escritorio — ver la vista-chico de arriba. */
+        .gallery-grid.vista-chico .pk-card{
+            aspect-ratio:auto;min-height:auto;padding:10px 4px;
+            flex-direction:row;align-items:center;justify-content:space-between;gap:6px;
+            border-radius:0;border:none;border-top:none;border-bottom:1px solid var(--border);
+            background:transparent;
+        }
+        .gallery-grid.vista-chico .pk-card.found::after{display:none;}
+        .gallery-grid.vista-chico .pk-rid,
+        .gallery-grid.vista-chico .pk-nid,
+        .gallery-grid.vista-chico .pk-img,
+        .gallery-grid.vista-chico .pk-status-dot,
+        .gallery-grid.vista-chico .pk-var-badge{display:none !important;}
+        .gallery-grid.vista-chico .pk-name{font-size:12px;margin-top:0;margin-bottom:0;text-align:left;width:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        .gallery-grid.vista-chico .pk-status-tag{display:block !important;position:static;font-size:11px;color:var(--muted);flex-shrink:0;}
+        .gallery-grid.vista-chico .pk-card.found .pk-status-tag{color:var(--found);}
+        .gallery-grid.vista-chico{grid-template-columns:repeat(2,1fr);gap:0;}
         .gallery-grid.vista-grande{grid-template-columns:repeat(2,1fr);}
 
         /* ── PK CARD (mobile) ── */

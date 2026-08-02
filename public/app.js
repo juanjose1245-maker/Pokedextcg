@@ -1617,6 +1617,25 @@ document.getElementById('metrics-close').onclick = cerrarMetricas;
 // ── AJUSTES: panel único, compartido entre desktop y mobile ────────
 function abrirAjustes() {
     document.getElementById('ajustes-modal').classList.add('open');
+    mostrarVersionServidor();
+}
+
+// Pide siempre a la red (el service worker nunca cachea /api/version) qué
+// commit está corriendo el backend ahora mismo, y lo muestra abajo de todo
+// en Ajustes. Sirve para distinguir "no llegó el deploy" de "mi navegador
+// tiene un caché viejo" — si esto no coincide con lo que se espera, el
+// problema es el caché del shell (app.js/index.html/styles.css), no el
+// deploy en sí.
+async function mostrarVersionServidor() {
+    const el = document.getElementById('ajustes-version');
+    if (!el) return;
+    try {
+        const res = await fetch('/api/version');
+        const data = await res.json();
+        el.textContent = data.commit ? `Versión ${data.commit}` : '';
+    } catch (err) {
+        el.textContent = '';
+    }
 }
 function cerrarAjustes() {
     document.getElementById('ajustes-modal').classList.remove('open');

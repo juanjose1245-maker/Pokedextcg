@@ -538,6 +538,7 @@
         .ajustes-item-titulo{font-size:13px;font-weight:700;color:var(--text);}
         .ajustes-item-sub{font-size:11px;color:var(--muted);}
         .ajustes-item-chev{margin-left:auto;flex-shrink:0;color:var(--border);font-size:16px;}
+        .ajustes-version{text-align:center;font-size:10px;color:var(--muted);opacity:.6;margin-top:14px;font-family:'Rajdhani',sans-serif;letter-spacing:.03em;}
         .ajustes-item:disabled{opacity:.6;cursor:default;}
         .ajustes-item:disabled:active{background:var(--surface2);}
         .ajustes-item-icon.girando{display:inline-block;animation:girar 1s linear infinite;}

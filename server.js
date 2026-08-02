@@ -2,13 +2,26 @@ const express   = require('express');
 const fs        = require('fs');
 const path      = require('path');
 const crypto    = require('crypto');
-const { exec }  = require('child_process');
+const { exec, execSync } = require('child_process');
 const util      = require('util');
 const execAsync = util.promisify(exec);
 const PDFDocument = require('pdfkit');
 const sharp     = require('sharp');
 const app       = express();
 const PORT      = 3000;
+
+// Commit corriendo ahora mismo, para que el cliente pueda mostrarlo y
+// compararlo contra lo que espera — útil para distinguir "no llegó el
+// deploy todavía" de "el caché del navegador está viejo" cuando algo no
+// se ve como debería. Se lee una sola vez al arrancar (no cambia en
+// caliente); si no hay git disponible (ej. un despliegue sin carpeta
+// .git) queda en null y el cliente simplemente no muestra nada.
+let VERSION_COMMIT = null;
+try {
+    VERSION_COMMIT = execSync('git rev-parse --short HEAD', { cwd: __dirname }).toString().trim();
+} catch (err) {
+    console.warn('⚠️  No se pudo leer el commit actual (git rev-parse):', err.message);
+}
 
 // Corre detrás de un único proxy inverso (nginx) que termina TLS — sin esto,
 // Express ignora X-Forwarded-For y req.ip siempre da la IP del proxy, con lo
@@ -479,6 +492,10 @@ app.get('/api/carpetas-config', (req, res) => {
 
 app.get('/api/variantes-config', (req, res) => {
     res.json(variantesConfig);
+});
+
+app.get('/api/version', (req, res) => {
+    res.json({ commit: VERSION_COMMIT });
 });
 
 // ── RESPALDOS: listar (la restauración está en la sección de escritura) ──

@@ -501,7 +501,17 @@
             box-shadow:0 -12px 40px var(--shadow);
             border-top:1px solid var(--border);
             animation:slideUp .3s ease;
+            /* 100vh en Safari iOS es el viewport SIN la barra de direcciones
+               (el más grande posible), no el alto realmente visible — con la
+               barra de direcciones desplegada (el estado normal), la caja podía
+               terminar más alta que la pantalla real y el handle/X/título (los
+               primeros hijos, arriba de todo) quedaban renderizados por ENCIMA
+               del borde visible: no es que se scrollearan fuera de vista, nunca
+               llegaban a estar en pantalla. 100dvh sí refleja el alto visible
+               real en cada momento (con fallback a vh para navegadores viejos
+               que no soportan dvh, aunque el resultado ahí sea el mismo bug). */
             max-height:calc(100vh - 24px);
+            max-height:calc(100dvh - 24px);
             /* El botón de cerrar vive acá afuera, no dentro de .ajustes-scroll,
                así que nunca se va de la pantalla scrolleando: solo el CONTENIDO
                (.ajustes-scroll más abajo) hace scroll, la caja entera no. Antes

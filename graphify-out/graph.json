@@ -472,8 +472,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "public_app_formatearrango",
-      "community": 27,
-      "community_name": "mostrarToastError",
+      "community": 11,
+      "community_name": "wizardCapacidadSiguiente",
       "norm_label": "formatearrango()"
     },
     {
@@ -494,8 +494,8 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "public_app_cargarcarpetasconfig",
-      "community": 27,
-      "community_name": "mostrarToastError",
+      "community": 11,
+      "community_name": "wizardCapacidadSiguiente",
       "norm_label": "cargarcarpetasconfig()"
     },
     {
@@ -835,8 +835,8 @@
       "source_location": "L423",
       "_origin": "ast",
       "id": "public_app_fetchgensegura",
-      "community": 10,
-      "community_name": "esDesktop",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": "fetchgensegura()"
     },
     {
@@ -1011,8 +1011,8 @@
       "source_location": "L748",
       "_origin": "ast",
       "id": "public_app_obtenertodospokemon",
-      "community": 10,
-      "community_name": "esDesktop",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": "obtenertodospokemon()"
     },
     {
@@ -1528,8 +1528,8 @@
       "source_location": "L1701",
       "_origin": "ast",
       "id": "public_app_togglecategoriavariante",
-      "community": 30,
-      "community_name": "hi",
+      "community": 10,
+      "community_name": "esDesktop",
       "norm_label": "togglecategoriavariante()"
     },
     {
@@ -1649,8 +1649,8 @@
       "source_location": "L1840",
       "_origin": "ast",
       "id": "public_app_cerrarwizardcarpetas",
-      "community": 27,
-      "community_name": "mostrarToastError",
+      "community": 10,
+      "community_name": "esDesktop",
       "norm_label": "cerrarwizardcarpetas()"
     },
     {
@@ -1660,8 +1660,8 @@
       "source_location": "L1846",
       "_origin": "ast",
       "id": "public_app_wizardmostrarpaso",
-      "community": 2,
-      "community_name": "app.js",
+      "community": 11,
+      "community_name": "wizardCapacidadSiguiente",
       "norm_label": "wizardmostrarpaso()"
     },
     {
@@ -1671,8 +1671,8 @@
       "source_location": "L1852",
       "_origin": "ast",
       "id": "public_app_wizardelegirmodo",
-      "community": 2,
-      "community_name": "app.js",
+      "community": 11,
+      "community_name": "wizardCapacidadSiguiente",
       "norm_label": "wizardelegirmodo()"
     },
     {
@@ -1869,8 +1869,8 @@
       "source_location": "L2068",
       "_origin": "ast",
       "id": "public_app_wizardvolverdesdenombres",
-      "community": 2,
-      "community_name": "app.js",
+      "community": 11,
+      "community_name": "wizardCapacidadSiguiente",
       "norm_label": "wizardvolverdesdenombres()"
     },
     {
@@ -1902,8 +1902,8 @@
       "source_location": "L2111",
       "_origin": "ast",
       "id": "public_app_wizardguardar",
-      "community": 27,
-      "community_name": "mostrarToastError",
+      "community": 10,
+      "community_name": "esDesktop",
       "norm_label": "wizardguardar()"
     },
     {
@@ -2331,8 +2331,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ya",
-      "community": 20,
-      "community_name": "ji",
+      "community": 29,
+      "community_name": "p",
       "norm_label": "ya()"
     },
     {
@@ -2815,8 +2815,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh",
-      "community": 78,
-      "community_name": "Sh",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": "sh()"
     },
     {
@@ -2826,8 +2826,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_destroy",
-      "community": 78,
-      "community_name": "Sh",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3123,8 +3123,8 @@
       "source_location": "L206",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_blockpolygon",
-      "community": 48,
-      "community_name": "M",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -3167,7 +3167,7 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_rowattributes",
-      "community": 20,
+      "community": 17,
       "community_name": "ji",
       "norm_label": ".rowattributes()"
     },
@@ -3255,8 +3255,8 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_wordfontattributes",
-      "community": 20,
-      "community_name": "ji",
+      "community": 9,
+      "community_name": "L",
       "norm_label": ".wordfontattributes()"
     },
     {
@@ -3574,7 +3574,7 @@
       "source_location": "L217",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_boundingbox",
-      "community": 20,
+      "community": 17,
       "community_name": "ji",
       "norm_label": ".boundingbox()"
     },
@@ -3618,8 +3618,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_blockpolygon",
-      "community": 48,
-      "community_name": "M",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -3651,7 +3651,7 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_baseline",
-      "community": 20,
+      "community": 17,
       "community_name": "ji",
       "norm_label": ".baseline()"
     },
@@ -3882,8 +3882,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai",
-      "community": 75,
-      "community_name": "ai",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": "ai()"
     },
     {
@@ -3893,8 +3893,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai_destroy",
-      "community": 75,
-      "community_name": "ai",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4036,8 +4036,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei",
-      "community": 47,
-      "community_name": "ei",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": "ei()"
     },
     {
@@ -4047,8 +4047,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei_destroy",
-      "community": 47,
-      "community_name": "ei",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4135,8 +4135,8 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_m",
-      "community": 48,
-      "community_name": "M",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": "m()"
     },
     {
@@ -4146,8 +4146,8 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_m_destroy",
-      "community": 48,
-      "community_name": "M",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4179,7 +4179,7 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi",
-      "community": 20,
+      "community": 17,
       "community_name": "ji",
       "norm_label": "hi()"
     },
@@ -4190,7 +4190,7 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi_destroy",
-      "community": 20,
+      "community": 17,
       "community_name": "ji",
       "norm_label": ".__destroy__()"
     },
@@ -4817,8 +4817,8 @@
       "source_location": "L258",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_v_allwordconfidences",
-      "community": 47,
-      "community_name": "ei",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".allwordconfidences()"
     },
     {
@@ -5015,8 +5015,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_getvalue",
-      "community": 78,
-      "community_name": "Sh",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".getvalue()"
     },
     {
@@ -5026,8 +5026,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei_getvalue",
-      "community": 47,
-      "community_name": "ei",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".getvalue()"
     },
     {
@@ -5037,8 +5037,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai_getvalue",
-      "community": 75,
-      "community_name": "ai",
+      "community": 17,
+      "community_name": "ji",
       "norm_label": ".getvalue()"
     },
     {
@@ -5048,7 +5048,7 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi_getvalue",
-      "community": 20,
+      "community": 17,
       "community_name": "ji",
       "norm_label": ".getvalue()"
     },
@@ -5059,7 +5059,7 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji",
-      "community": 20,
+      "community": 17,
       "community_name": "ji",
       "norm_label": "ji()"
     },
@@ -5070,7 +5070,7 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_wrap",
-      "community": 20,
+      "community": 17,
       "community_name": "ji",
       "norm_label": ".wrap()"
     },
@@ -5081,7 +5081,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_bool",
-      "community": 20,
+      "community": 17,
       "community_name": "ji",
       "norm_label": ".bool()"
     },
@@ -5092,7 +5092,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_i32",
-      "community": 20,
+      "community": 17,
       "community_name": "ji",
       "norm_label": ".i32()"
     },
@@ -5103,7 +5103,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_f32",
-      "community": 20,
+      "community": 17,
       "community_name": "ji",
       "norm_label": ".f32()"
     },
@@ -5114,7 +5114,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_f64",
-      "community": 20,
+      "community": 17,
       "community_name": "ji",
       "norm_label": ".f64()"
     },
@@ -5125,7 +5125,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_peek",
-      "community": 20,
+      "community": 17,
       "community_name": "ji",
       "norm_label": ".peek()"
     },
@@ -5136,7 +5136,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_get",
-      "community": 20,
+      "community": 17,
       "community_name": "ji",
       "norm_label": ".get()"
     },
@@ -5147,7 +5147,7 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getboundingbox",
-      "community": 20,
+      "community": 17,
       "community_name": "ji",
       "norm_label": ".getboundingbox()"
     },
@@ -5158,7 +5158,7 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getbaseline",
-      "community": 20,
+      "community": 17,
       "community_name": "ji",
       "norm_label": ".getbaseline()"
     },
@@ -5169,7 +5169,7 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getrowattributes",
-      "community": 20,
+      "community": 17,
       "community_name": "ji",
       "norm_label": ".getrowattributes()"
     },
@@ -5180,8 +5180,8 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getwordfontattributes",
-      "community": 20,
-      "community_name": "ji",
+      "community": 9,
+      "community_name": "L",
       "norm_label": ".getwordfontattributes()"
     },
     {
@@ -5851,7 +5851,7 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_sh",
-      "community": 50,
+      "community": 72,
       "community_name": "Sh",
       "norm_label": "sh()"
     },
@@ -5862,7 +5862,7 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_sh_destroy",
-      "community": 50,
+      "community": 72,
       "community_name": "Sh",
       "norm_label": ".__destroy__()"
     },
@@ -6159,8 +6159,8 @@
       "source_location": "L206",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_blockpolygon",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 48,
+      "community_name": "M",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -6291,8 +6291,8 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_wordfontattributes",
-      "community": 8,
-      "community_name": "L",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".wordfontattributes()"
     },
     {
@@ -6500,8 +6500,8 @@
       "source_location": "L214",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": "o()"
     },
     {
@@ -6511,8 +6511,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_begin",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".begin()"
     },
     {
@@ -6522,8 +6522,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_restartparagraph",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".restartparagraph()"
     },
     {
@@ -6533,8 +6533,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_iswithinfirsttextlineofparagraph",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".iswithinfirsttextlineofparagraph()"
     },
     {
@@ -6544,8 +6544,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_restartrow",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".restartrow()"
     },
     {
@@ -6555,8 +6555,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_next",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".next()"
     },
     {
@@ -6566,8 +6566,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_isatbeginningof",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".isatbeginningof()"
     },
     {
@@ -6577,8 +6577,8 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_isatfinalelement",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".isatfinalelement()"
     },
     {
@@ -6588,8 +6588,8 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_cmp",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".cmp()"
     },
     {
@@ -6599,8 +6599,8 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_setboundingboxcomponents",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".setboundingboxcomponents()"
     },
     {
@@ -6621,8 +6621,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_boundingboxinternal",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".boundingboxinternal()"
     },
     {
@@ -6632,8 +6632,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_empty",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".empty()"
     },
     {
@@ -6643,8 +6643,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_blocktype",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".blocktype()"
     },
     {
@@ -6654,8 +6654,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_blockpolygon",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 48,
+      "community_name": "M",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -6698,8 +6698,8 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_orientation",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".orientation()"
     },
     {
@@ -6709,8 +6709,8 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_paragraphinfo",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".paragraphinfo()"
     },
     {
@@ -6720,8 +6720,8 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_destroy",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".__destroy__()"
     },
     {
@@ -6918,8 +6918,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ai",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 67,
+      "community_name": "ai",
       "norm_label": "ai()"
     },
     {
@@ -6929,8 +6929,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ai_destroy",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 67,
+      "community_name": "ai",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7072,8 +7072,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ei",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 47,
+      "community_name": "ei",
       "norm_label": "ei()"
     },
     {
@@ -7083,8 +7083,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ei_destroy",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 47,
+      "community_name": "ei",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7171,8 +7171,8 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_m",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 48,
+      "community_name": "M",
       "norm_label": "m()"
     },
     {
@@ -7182,8 +7182,8 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_m_destroy",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 48,
+      "community_name": "M",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7699,8 +7699,8 @@
       "source_location": "L254",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_v_analyselayout",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 20,
+      "community_name": "ji",
       "norm_label": ".analyselayout()"
     },
     {
@@ -7853,8 +7853,8 @@
       "source_location": "L258",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_v_allwordconfidences",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 47,
+      "community_name": "ei",
       "norm_label": ".allwordconfidences()"
     },
     {
@@ -8051,7 +8051,7 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_sh_getvalue",
-      "community": 50,
+      "community": 72,
       "community_name": "Sh",
       "norm_label": ".getvalue()"
     },
@@ -8062,8 +8062,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ei_getvalue",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 47,
+      "community_name": "ei",
       "norm_label": ".getvalue()"
     },
     {
@@ -8073,8 +8073,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ai_getvalue",
-      "community": 50,
-      "community_name": "Sh",
+      "community": 67,
+      "community_name": "ai",
       "norm_label": ".getvalue()"
     },
     {
@@ -8216,8 +8216,8 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_getwordfontattributes",
-      "community": 8,
-      "community_name": "L",
+      "community": 50,
+      "community_name": "Sh",
       "norm_label": ".getwordfontattributes()"
     },
     {
@@ -10481,6 +10481,116 @@
       "id": "docs_superpowers_plans_2026_08_01_selector_tamano_integrado_self_review_hecho_al_escribir_este_plan",
       "community": 76,
       "community_name": "ai",
+      "norm_label": "self-review (hecho al escribir este plan)"
+    },
+    {
+      "label": "2026-08-03-docker-self-hosting.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_03_docker_self_hosting",
+      "community": 27,
+      "community_name": "mostrarToastError",
+      "norm_label": "2026-08-03-docker-self-hosting.md"
+    },
+    {
+      "label": "Empaquetar la app en Docker para self-hosting \u2014 Plan de implementaci\u00f3n",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_03_docker_self_hosting_empaquetar_la_app_en_docker_para_self_hosting_plan_de_implementaci\u00f3n",
+      "community": 27,
+      "community_name": "mostrarToastError",
+      "norm_label": "empaquetar la app en docker para self-hosting \u2014 plan de implementacion"
+    },
+    {
+      "label": "Global Constraints",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_03_docker_self_hosting_global_constraints",
+      "community": 27,
+      "community_name": "mostrarToastError",
+      "norm_label": "global constraints"
+    },
+    {
+      "label": "Task 1: Soporte de `DATA_DIR` en `server.js`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L49",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_03_docker_self_hosting_task_1_soporte_de_data_dir_en_server_js",
+      "community": 27,
+      "community_name": "mostrarToastError",
+      "norm_label": "task 1: soporte de `data_dir` en `server.js`"
+    },
+    {
+      "label": "Task 2: `Dockerfile` y `.dockerignore`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L295",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_03_docker_self_hosting_task_2_dockerfile_y_dockerignore",
+      "community": 27,
+      "community_name": "mostrarToastError",
+      "norm_label": "task 2: `dockerfile` y `.dockerignore`"
+    },
+    {
+      "label": "Task 3: `docker-compose.yml`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L391",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_03_docker_self_hosting_task_3_docker_compose_yml",
+      "community": 27,
+      "community_name": "mostrarToastError",
+      "norm_label": "task 3: `docker-compose.yml`"
+    },
+    {
+      "label": "Task 4: Workflow de GitHub Actions para publicar en `ghcr.io`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L443",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_03_docker_self_hosting_task_4_workflow_de_github_actions_para_publicar_en_ghcr_io",
+      "community": 27,
+      "community_name": "mostrarToastError",
+      "norm_label": "task 4: workflow de github actions para publicar en `ghcr.io`"
+    },
+    {
+      "label": "Task 5: Documentaci\u00f3n en `README.md`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L524",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_03_docker_self_hosting_task_5_documentaci\u00f3n_en_readme_md",
+      "community": 27,
+      "community_name": "mostrarToastError",
+      "norm_label": "task 5: documentacion en `readme.md`"
+    },
+    {
+      "label": "Task 6: Handoff \u2014 verificaci\u00f3n real en Docker y publicaci\u00f3n",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L605",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_03_docker_self_hosting_task_6_handoff_verificaci\u00f3n_real_en_docker_y_publicaci\u00f3n",
+      "community": 27,
+      "community_name": "mostrarToastError",
+      "norm_label": "task 6: handoff \u2014 verificacion real en docker y publicacion"
+    },
+    {
+      "label": "Self-Review (hecho al escribir este plan)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L660",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_03_docker_self_hosting_self_review_hecho_al_escribir_este_plan",
+      "community": 27,
+      "community_name": "mostrarToastError",
       "norm_label": "self-review (hecho al escribir este plan)"
     },
     {
@@ -32878,6 +32988,105 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_03_docker_self_hosting",
+      "target": "docs_superpowers_plans_2026_08_03_docker_self_hosting_empaquetar_la_app_en_docker_para_self_hosting_plan_de_implementaci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_03_docker_self_hosting_empaquetar_la_app_en_docker_para_self_hosting_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_03_docker_self_hosting_global_constraints",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L660",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_03_docker_self_hosting_empaquetar_la_app_en_docker_para_self_hosting_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_03_docker_self_hosting_self_review_hecho_al_escribir_este_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_03_docker_self_hosting_empaquetar_la_app_en_docker_para_self_hosting_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_03_docker_self_hosting_task_1_soporte_de_data_dir_en_server_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L295",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_03_docker_self_hosting_empaquetar_la_app_en_docker_para_self_hosting_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_03_docker_self_hosting_task_2_dockerfile_y_dockerignore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L391",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_03_docker_self_hosting_empaquetar_la_app_en_docker_para_self_hosting_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_03_docker_self_hosting_task_3_docker_compose_yml",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L443",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_03_docker_self_hosting_empaquetar_la_app_en_docker_para_self_hosting_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_03_docker_self_hosting_task_4_workflow_de_github_actions_para_publicar_en_ghcr_io",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L524",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_03_docker_self_hosting_empaquetar_la_app_en_docker_para_self_hosting_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_03_docker_self_hosting_task_5_documentaci\u00f3n_en_readme_md",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-03-docker-self-hosting.md",
+      "source_location": "L605",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_03_docker_self_hosting_empaquetar_la_app_en_docker_para_self_hosting_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_03_docker_self_hosting_task_6_handoff_verificaci\u00f3n_real_en_docker_y_publicaci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/superpowers/specs/2026-07-25-carpetas-todas-seguidas-design.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -33779,5 +33988,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "c9cf7f798789e1db3ae6be296e99a1b191871a4d"
+  "built_at_commit": "069a9179b3810f9d742e40babf80dfcaa0892ed2"
 }

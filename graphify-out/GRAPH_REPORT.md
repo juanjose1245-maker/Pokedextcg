@@ -1,16 +1,16 @@
 # Graph Report - pokedex-tcg  (2026-08-03)
 
 ## Corpus Check
-- 37 files · ~96,886 words
+- 38 files · ~99,827 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1043 nodes · 1941 edges · 76 communities (49 shown, 27 thin omitted)
+- 1053 nodes · 1950 edges · 76 communities (48 shown, 28 thin omitted)
 - Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 222 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c9cf7f79`
+- Built from commit: `069a9179`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -82,15 +82,15 @@
 - Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación
 - fetch_variantes.js
 - Control de tamaño de tarjeta en la galería (Chico/Normal/Grande) — Plan de implementación
+- ai
 - Fase 2 — Selección de categorías de variantes (núcleo de tracking) — Plan de implementación
 - p
 - escribirJSONAtomico
 - carpetasConfigValida
+- Sh
 - sesionValida
 - CATEGORIAS_VARIANTES
 - ai
-- ai
-- Sh
 
 ## God Nodes (most connected - your core abstractions)
 1. `V()` - 66 edges
@@ -119,7 +119,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (76 total, 27 thin omitted)
+## Communities (76 total, 28 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -131,7 +131,7 @@ Nodes (7): Contexto, Control de tamaño de tarjeta en la galería (Chico/Normal/
 
 ### Community 2 - "app.js"
 Cohesion: 0.05
-Nodes (53): abrirAjustes(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelRespaldos(), abrirPanelVariantes(), abrirWizardCarpetas(), actualizarBotonSesion(), aplicarModoVista() (+45 more)
+Nodes (50): abrirAjustes(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelRespaldos(), abrirPanelVariantes(), abrirWizardCarpetas(), actualizarBotonSesion(), aplicarModoVista() (+42 more)
 
 ### Community 3 - "server.js"
 Cohesion: 0.06
@@ -146,12 +146,12 @@ Cohesion: 0.07
 Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
 ### Community 10 - "esDesktop"
-Cohesion: 0.17
-Nodes (25): actualizarBotonesModo(), actualizarTarjetaProgreso(), actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cerrarGaleriaYVolver() (+17 more)
+Cohesion: 0.16
+Nodes (26): actualizarBotonesModo(), actualizarTarjetaProgreso(), actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cerrarGaleriaYVolver() (+18 more)
 
 ### Community 11 - "wizardCapacidadSiguiente"
-Cohesion: 0.16
-Nodes (18): pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste(), wizardArmarPasoCapacidad(), wizardArmarPasoNombres(), wizardCalcularRangos() (+10 more)
+Cohesion: 0.13
+Nodes (23): cargarCarpetasConfig(), formatearRango(), pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste(), wizardArmarPasoCapacidad() (+15 more)
 
 ### Community 14 - "package.json"
 Cohesion: 0.11
@@ -161,13 +161,13 @@ Nodes (18): express, node-fetch, author, dependencies, express, node-fetch, pdfk
 Cohesion: 0.19
 Nodes (20): actualizarBotonEstado(), actualizarGalleryHeader(), agregarAlHistorial(), anclaIdCliente(), carpetaDe(), clearSearchTimer(), detenerCamara(), getFechaRegistro() (+12 more)
 
+### Community 17 - "ji"
+Cohesion: 0.05
+Nodes (7): ai(), ei(), hi(), ji(), M(), O(), Sh()
+
 ### Community 19 - "Modo "Todas seguidas" para configuración de carpetas"
 Cohesion: 0.11
 Nodes (17): Apertura de galería de una carpeta (~app.js:559-571), `/api/buscar` (server.js:287), `/api/carpetas-config` GET/POST (server.js:343, 567), `carpetaDe(p)` (app.js:74), `carpetas.json` (servidor), Cliente (`public/app.js`), Contexto, Fuera de alcance (a propósito) (+9 more)
-
-### Community 20 - "ji"
-Cohesion: 0.15
-Nodes (3): hi(), ji(), Ya()
 
 ### Community 21 - "Global Constraints"
 Cohesion: 0.14
@@ -194,20 +194,20 @@ Cohesion: 0.25
 Nodes (7): Caché e invalidación (`/api/pdf-carpetas`), Cambios, Contexto, Fase 3 — Variantes en el PDF de recortables, Fuera de alcance, `generarPDFRecortables(rutaSalida, opciones)` (`server.js`), Testing
 
 ### Community 27 - "mostrarToastError"
-Cohesion: 0.50
-Nodes (4): cargarCarpetasConfig(), cerrarWizardCarpetas(), formatearRango(), wizardGuardar()
+Cohesion: 0.20
+Nodes (9): Empaquetar la app en Docker para self-hosting — Plan de implementación, Global Constraints, Self-Review (hecho al escribir este plan), Task 1: Soporte de `DATA_DIR` en `server.js`, Task 2: `Dockerfile` y `.dockerignore`, Task 3: `docker-compose.yml`, Task 4: Workflow de GitHub Actions para publicar en `ghcr.io`, Task 5: Documentación en `README.md` (+1 more)
 
 ### Community 28 - "d"
 Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 29 - "p"
-Cohesion: 0.24
-Nodes (9): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+1 more)
+Cohesion: 0.22
+Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
 
 ### Community 30 - "hi"
-Cohesion: 0.18
-Nodes (24): abrirLoginModal(), actualizarBadgePendientes(), calcularIdsPendientesSilencioso(), cargarEstadisticasSinMoverScroll(), cerrarPanelRespaldos(), claveFechaLS(), claveLS(), descargarListaFaltantes() (+16 more)
+Cohesion: 0.16
+Nodes (25): abrirLoginModal(), actualizarBadgePendientes(), calcularIdsPendientesSilencioso(), cargarEstadisticasSinMoverScroll(), cerrarPanelRespaldos(), claveFechaLS(), claveLS(), descargarListaFaltantes() (+17 more)
 
 ### Community 31 - "kb"
 Cohesion: 0.33
@@ -240,10 +240,6 @@ Nodes (6): Contexto, Fuera de alcance, Iconos de tamaño, Integrar el selector d
 ### Community 44 - "qb"
 Cohesion: 0.42
 Nodes (13): ac(), $b(), bc(), cc(), Hh(), Pb(), tb(), ub() (+5 more)
-
-### Community 50 - "Sh"
-Cohesion: 0.05
-Nodes (7): ai(), ei(), hi(), ji(), M(), O(), Sh()
 
 ### Community 52 - "Fase 3 — Variantes en el PDF de recortables — Plan de implementación"
 Cohesion: 0.33
@@ -318,23 +314,23 @@ Cohesion: 0.33
 Nodes (5): Global Constraints, Integrar el selector de tamaño (Chico/Normal/Grande) a la barra de filtros — Plan de implementación, Self-Review (hecho al escribir este plan), Task 1: Reemplazar el texto de los botones por iconos compactos, Task 2: Mover el selector de tamaño mobile a la fila de filtros
 
 ## Knowledge Gaps
-- **209 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+204 more)
+- **217 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+212 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **27 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **28 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `g()` connect `worker.min.js` to `carpetasConfigValida`, `esDesktop`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
-  _High betweenness centrality (0.240) - this node is a cross-community bridge._
+  _High betweenness centrality (0.205) - this node is a cross-community bridge._
 - **Why does `a()` connect `worker.min.js` to `qb`, `A`, `A`, `p`, `qb`, `p`?**
-  _High betweenness centrality (0.186) - this node is a cross-community bridge._
-- **Why does `A()` connect `A` to `worker.min.js`, `K`, `Q`, `tesseract-core-lstm.wasm.js`, `qb`, `J`, `di`, `ji`, `Lh`, `d`, `p`, `kb`?**
-  _High betweenness centrality (0.109) - this node is a cross-community bridge._
+  _High betweenness centrality (0.190) - this node is a cross-community bridge._
+- **Why does `A()` connect `A` to `worker.min.js`, `K`, `Q`, `tesseract-core-lstm.wasm.js`, `L`, `qb`, `J`, `di`, `Lh`, `d`, `p`, `kb`?**
+  _High betweenness centrality (0.094) - this node is a cross-community bridge._
 - **What connects `fs`, `fs`, `crypto` to the rest of the system?**
-  _209 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _217 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.04779189352692075 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.04915824915824916 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
   _Cohesion score 0.058823529411764705 - nodes in this community are weakly interconnected._
 - **Should `V` be split into smaller, more focused modules?**

@@ -14,11 +14,6 @@
     "ast_hash": "9a24b4fb93c7fa52851e70faad9ee851",
     "semantic_hash": ""
   },
-  "inventario.json": {
-    "mtime": 1784861719.1648662,
-    "ast_hash": "9ff12133e6d050fa542a56ad9d4387e6",
-    "semantic_hash": ""
-  },
   "migrar-carpetas-a-bulk.js": {
     "mtime": 1784838743.8501465,
     "ast_hash": "f612f29a8f476438e5cc1c465ff1d9ce",
@@ -35,8 +30,8 @@
     "semantic_hash": ""
   },
   "public/app.js": {
-    "mtime": 1785603814.7551093,
-    "ast_hash": "1667c67b2df937a3c724c509e8b45ee2",
+    "mtime": 1785686419.7804449,
+    "ast_hash": "505254cc9fb134359890d0ad68d4953b",
     "semantic_hash": ""
   },
   "public/manifest.json": {
@@ -45,8 +40,8 @@
     "semantic_hash": ""
   },
   "public/sw.js": {
-    "mtime": 1785606852.6871552,
-    "ast_hash": "00add3b74e6829136de763c5d8cdcafe",
+    "mtime": 1785686921.121737,
+    "ast_hash": "cafe75a2842f381cd8ed78131a74e882",
     "semantic_hash": ""
   },
   "public/vendor/tesseract/tesseract-core-lstm.wasm.js": {
@@ -70,8 +65,8 @@
     "semantic_hash": ""
   },
   "server.js": {
-    "mtime": 1785252535.6538923,
-    "ast_hash": "3de463a301bd100ce26872affb9b0c5f",
+    "mtime": 1785686419.7814448,
+    "ast_hash": "c81b396a14726d08d235c43a7c3f7f11",
     "semantic_hash": ""
   },
   "update_script.sh": {
@@ -80,8 +75,8 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1785176392.7573419,
-    "ast_hash": "d27bd83982d1a738d68a4de7767f8ee1",
+    "mtime": 1785610703.6404707,
+    "ast_hash": "2267abe448268afc8562837a6ca1c188",
     "semantic_hash": ""
   },
   "docs/superpowers/plans/2026-07-25-carpetas-todas-seguidas.md": {
@@ -95,8 +90,8 @@
     "semantic_hash": ""
   },
   "public/index.html": {
-    "mtime": 1785605422.8398309,
-    "ast_hash": "89aad6532c247ed5edf82f6184112363",
+    "mtime": 1785686419.7804449,
+    "ast_hash": "35f05e6a557237f7b222e96ed665ba12",
     "semantic_hash": ""
   },
   "public/icons/pokeball-120.png": {
@@ -200,12 +195,12 @@
     "semantic_hash": ""
   },
   ".claude/settings.local.json": {
-    "mtime": 1785372240.4373074,
-    "ast_hash": "5e81d967f03db0e98749e77fc6c975b3",
+    "mtime": 1785792698.9378474,
+    "ast_hash": "286c86c3fa9d73257f2261d265753776",
     "semantic_hash": ""
   },
   "variantes-config.json": {
-    "mtime": 1785604081.7596788,
+    "mtime": 1785698829.8688676,
     "ast_hash": "ff58d43f3020c4385da69fc3ab281832",
     "semantic_hash": ""
   },
@@ -217,6 +212,11 @@
   "docs/superpowers/plans/2026-08-01-selector-tamano-integrado.md": {
     "mtime": 1785604792.8753393,
     "ast_hash": "e377a469685acfa54ddd9a4aad5c2fd3",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-08-03-docker-self-hosting-design.md": {
+    "mtime": 1785796286.7734182,
+    "ast_hash": "960b7d4f4b5ef5aba2a11f36538404d9",
     "semantic_hash": ""
   }
 }

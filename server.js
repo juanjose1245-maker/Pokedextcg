@@ -10,6 +10,17 @@ const sharp     = require('sharp');
 const app       = express();
 const PORT      = 3000;
 
+// Dónde vive el estado escribible del usuario (inventario, config de
+// carpetas/variantes, respaldos, caché de PDFs). Default = __dirname para
+// que el deploy actual (systemd, WorkingDirectory == directorio del repo)
+// siga leyendo/escribiendo exactamente donde lo hace hoy sin tocar nada;
+// en Docker la imagen fija DATA_DIR=/app/data vía ENV.
+const DATA_DIR = process.env.DATA_DIR || __dirname;
+fs.mkdirSync(DATA_DIR, { recursive: true });
+const RUTA_INVENTARIO       = path.join(DATA_DIR, 'inventario.json');
+const RUTA_CARPETAS_CONFIG  = path.join(DATA_DIR, 'carpetas.json');
+const RUTA_VARIANTES_CONFIG = path.join(DATA_DIR, 'variantes-config.json');
+
 // Commit corriendo ahora mismo, para que el cliente pueda mostrarlo y
 // compararlo contra lo que espera — útil para distinguir "no llegó el
 // deploy todavía" de "el caché del navegador está viejo" cuando algo no
@@ -38,7 +49,7 @@ app.use(express.json({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-const pokemonDB = JSON.parse(fs.readFileSync('pokemon_db.json', 'utf8'));
+const pokemonDB = JSON.parse(fs.readFileSync(path.join(__dirname, 'pokemon_db.json'), 'utf8'));
 const idsValidos = new Set(pokemonDB.map(p => p.id));
 
 // Mismo corte por generación que usa el frontend (public/app.js) para
@@ -62,18 +73,18 @@ function escribirJSONAtomico(ruta, datos) {
 // ── RESPALDO AUTOMÁTICO PERIÓDICO ───────────────────────────────────
 // Guarda una copia del inventario cada 24h (y una al arrancar el servidor),
 // quedándose solo con los últimos 14 respaldos para no llenar el disco.
-const CARPETA_RESPALDOS = path.join(__dirname, 'backups');
-if (!fs.existsSync(CARPETA_RESPALDOS)) fs.mkdirSync(CARPETA_RESPALDOS);
+const CARPETA_RESPALDOS = path.join(DATA_DIR, 'backups');
+if (!fs.existsSync(CARPETA_RESPALDOS)) fs.mkdirSync(CARPETA_RESPALDOS, { recursive: true });
 
 // ── INVENTARIO ──────────────────────────────────────────────────────
 // Dos colecciones completamente independientes: "bulk" (cartas sueltas) y
 // "carpetas" (organizadas en binders). Cada una es un mapa id -> { fecha }.
 // inventario[modo][id] = { fecha: "2026-07-15T12:00:00.000Z" }
 let inventario = { bulk: {}, carpetas: {} };
-if (fs.existsSync('inventario.json')) {
+if (fs.existsSync(RUTA_INVENTARIO)) {
     let raw;
     try {
-        raw = JSON.parse(fs.readFileSync('inventario.json', 'utf8'));
+        raw = JSON.parse(fs.readFileSync(RUTA_INVENTARIO, 'utf8'));
     } catch (err) {
         // inventario.json corrupto (ej. crash a mitad de escritura): en vez de
         // tirar el server abajo, caemos al respaldo automático más reciente.
@@ -102,7 +113,7 @@ if (fs.existsSync('inventario.json')) {
     }
 }
 function guardarInventario() {
-    escribirJSONAtomico('inventario.json', inventario);
+    escribirJSONAtomico(RUTA_INVENTARIO, inventario);
 }
 function modoValido(modo) {
     return modo === 'bulk' || modo === 'carpetas';
@@ -123,9 +134,9 @@ function variantesConfigValida(candidato) {
 }
 
 let variantesConfig = Object.fromEntries(CATEGORIAS_VARIANTES.map(c => [c, false]));
-if (fs.existsSync('variantes-config.json')) {
+if (fs.existsSync(RUTA_VARIANTES_CONFIG)) {
     try {
-        const raw = JSON.parse(fs.readFileSync('variantes-config.json', 'utf8'));
+        const raw = JSON.parse(fs.readFileSync(RUTA_VARIANTES_CONFIG, 'utf8'));
         if (variantesConfigValida(raw)) variantesConfig = raw;
         else console.warn('⚠️  variantes-config.json inválido, usando todas las categorías desactivadas.');
     } catch (err) {
@@ -133,7 +144,7 @@ if (fs.existsSync('variantes-config.json')) {
     }
 }
 function guardarVariantesConfig() {
-    escribirJSONAtomico('variantes-config.json', variantesConfig);
+    escribirJSONAtomico(RUTA_VARIANTES_CONFIG, variantesConfig);
 }
 
 // especieBase (1–1025) -> variantes[], en el mismo orden en que aparecen en
@@ -251,9 +262,9 @@ function carpetasConfigValida(candidato) {
 }
 
 let carpetasConfig = { modo: 'separadas', carpetas: CARPETAS_DEFAULT };
-if (fs.existsSync('carpetas.json')) {
+if (fs.existsSync(RUTA_CARPETAS_CONFIG)) {
     try {
-        let raw = JSON.parse(fs.readFileSync('carpetas.json', 'utf8'));
+        let raw = JSON.parse(fs.readFileSync(RUTA_CARPETAS_CONFIG, 'utf8'));
         if (Array.isArray(raw)) raw = { modo: 'separadas', carpetas: raw }; // formato viejo, antes de este cambio
         if (carpetasConfigValida(raw)) carpetasConfig = raw;
         else console.warn('⚠️  carpetas.json inválido, usando la configuración por defecto.');
@@ -262,7 +273,7 @@ if (fs.existsSync('carpetas.json')) {
     }
 }
 function guardarCarpetasConfig() {
-    escribirJSONAtomico('carpetas.json', carpetasConfig);
+    escribirJSONAtomico(RUTA_CARPETAS_CONFIG, carpetasConfig);
 }
 
 function respaldoAutomatico() {
@@ -532,8 +543,8 @@ app.get('/api/backups', (req, res) => {
 // se tenga la carta o no. El contenido no depende del inventario (no
 // cambia si marcás/desmarcás cartas), así que se cachea en disco y solo
 // se regenera si pokemon_db.json es más nuevo que el PDF cacheado.
-const CARPETA_CACHE = path.join(__dirname, 'cache');
-if (!fs.existsSync(CARPETA_CACHE)) fs.mkdirSync(CARPETA_CACHE);
+const CARPETA_CACHE = path.join(DATA_DIR, 'cache');
+if (!fs.existsSync(CARPETA_CACHE)) fs.mkdirSync(CARPETA_CACHE, { recursive: true });
 const RUTA_PDF_RECORTABLES = path.join(CARPETA_CACHE, 'pokedex-recortables.pdf');
 // Caché gemela para el modo "seguidas" con todas las carpetas seleccionadas:
 // cuando se eligen todas, la unión de los rangos siempre cubre el 1 al 1025
@@ -752,7 +763,7 @@ app.get('/api/pdf-carpetas', async (req, res) => {
             const dbStat = fs.statSync(path.join(__dirname, 'pokemon_db.json'));
             // variantes-config.json puede no existir todavía (nadie tocó Ajustes
             // → Variantes) — en ese caso la referencia sigue siendo solo pokemon_db.json.
-            const variantesStat = fs.existsSync('variantes-config.json') ? fs.statSync('variantes-config.json') : null;
+            const variantesStat = fs.existsSync(RUTA_VARIANTES_CONFIG) ? fs.statSync(RUTA_VARIANTES_CONFIG) : null;
             const referenciaMasNueva = variantesStat ? Math.max(dbStat.mtimeMs, variantesStat.mtimeMs) : dbStat.mtimeMs;
             const cacheOk = fs.existsSync(rutaCache) &&
                 fs.statSync(rutaCache).mtimeMs >= referenciaMasNueva;

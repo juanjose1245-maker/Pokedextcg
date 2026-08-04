@@ -1,0 +1,14 @@
+node_modules
+.git
+backups
+cache
+data
+inventario.json
+carpetas.json
+variantes-config.json
+docs
+graphify-out
+.claude
+.github
+.superpowers
+.worktrees

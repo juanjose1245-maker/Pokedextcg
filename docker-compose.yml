@@ -1,0 +1,10 @@
+services:
+  pokedex-tcg:
+    image: ghcr.io/juanjose1245-maker/pokedextcg:latest
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - ADMIN_PASSWORD=cambiar-esta-password
+    volumes:
+      - ./data:/app/data

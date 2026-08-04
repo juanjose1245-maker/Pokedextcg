@@ -1,16 +1,16 @@
-# Graph Report - pokedex-tcg  (2026-08-03)
+# Graph Report - docker-self-hosting  (2026-08-04)
 
 ## Corpus Check
-- 38 files · ~99,827 words
+- 38 files · ~99,913 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1053 nodes · 1950 edges · 76 communities (48 shown, 28 thin omitted)
+- 1056 nodes · 1953 edges · 76 communities (48 shown, 28 thin omitted)
 - Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 222 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `069a9179`
+- Built from commit: `f9774f56`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -134,8 +134,8 @@ Cohesion: 0.05
 Nodes (50): abrirAjustes(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelRespaldos(), abrirPanelVariantes(), abrirWizardCarpetas(), actualizarBotonSesion(), aplicarModoVista() (+42 more)
 
 ### Community 3 - "server.js"
-Cohesion: 0.06
-Nodes (25): app, CARPETA_CACHE, CARPETA_RESPALDOS, CARPETAS_DEFAULT, carpetasConfig, clientes, CORTES_GEN, crypto (+17 more)
+Cohesion: 0.05
+Nodes (28): app, CARPETA_CACHE, CARPETA_RESPALDOS, CARPETAS_DEFAULT, carpetasConfig, clientes, CORTES_GEN, crypto (+20 more)
 
 ### Community 6 - "tesseract-core-lstm.wasm.js"
 Cohesion: 0.07
@@ -161,13 +161,13 @@ Nodes (18): express, node-fetch, author, dependencies, express, node-fetch, pdfk
 Cohesion: 0.19
 Nodes (20): actualizarBotonEstado(), actualizarGalleryHeader(), agregarAlHistorial(), anclaIdCliente(), carpetaDe(), clearSearchTimer(), detenerCamara(), getFechaRegistro() (+12 more)
 
-### Community 17 - "ji"
-Cohesion: 0.05
-Nodes (7): ai(), ei(), hi(), ji(), M(), O(), Sh()
-
 ### Community 19 - "Modo "Todas seguidas" para configuración de carpetas"
 Cohesion: 0.11
 Nodes (17): Apertura de galería de una carpeta (~app.js:559-571), `/api/buscar` (server.js:287), `/api/carpetas-config` GET/POST (server.js:343, 567), `carpetaDe(p)` (app.js:74), `carpetas.json` (servidor), Cliente (`public/app.js`), Contexto, Fuera de alcance (a propósito) (+9 more)
+
+### Community 20 - "ji"
+Cohesion: 0.05
+Nodes (7): ai(), ei(), hi(), ji(), M(), O(), Sh()
 
 ### Community 21 - "Global Constraints"
 Cohesion: 0.14
@@ -314,7 +314,7 @@ Cohesion: 0.33
 Nodes (5): Global Constraints, Integrar el selector de tamaño (Chico/Normal/Grande) a la barra de filtros — Plan de implementación, Self-Review (hecho al escribir este plan), Task 1: Reemplazar el texto de los botones por iconos compactos, Task 2: Mover el selector de tamaño mobile a la fila de filtros
 
 ## Knowledge Gaps
-- **217 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+212 more)
+- **220 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+215 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **28 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -324,14 +324,14 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `g()` connect `worker.min.js` to `carpetasConfigValida`, `esDesktop`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
   _High betweenness centrality (0.205) - this node is a cross-community bridge._
 - **Why does `a()` connect `worker.min.js` to `qb`, `A`, `A`, `p`, `qb`, `p`?**
-  _High betweenness centrality (0.190) - this node is a cross-community bridge._
-- **Why does `A()` connect `A` to `worker.min.js`, `K`, `Q`, `tesseract-core-lstm.wasm.js`, `L`, `qb`, `J`, `di`, `Lh`, `d`, `p`, `kb`?**
-  _High betweenness centrality (0.094) - this node is a cross-community bridge._
+  _High betweenness centrality (0.193) - this node is a cross-community bridge._
+- **Why does `A()` connect `A` to `worker.min.js`, `K`, `Q`, `tesseract-core-lstm.wasm.js`, `qb`, `J`, `di`, `ji`, `Lh`, `d`, `p`, `kb`?**
+  _High betweenness centrality (0.095) - this node is a cross-community bridge._
 - **What connects `fs`, `fs`, `crypto` to the rest of the system?**
-  _217 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _220 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
   _Cohesion score 0.04915824915824916 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.058823529411764705 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05405405405405406 - nodes in this community are weakly interconnected._
 - **Should `V` be split into smaller, more focused modules?**
   _Cohesion score 0.07007575757575757 - nodes in this community are weakly interconnected._

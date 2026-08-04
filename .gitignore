@@ -1,6 +1,7 @@
 node_modules/
 backups/
 cache/
+data/
 inventario.json
 .superpowers/
 .worktrees/

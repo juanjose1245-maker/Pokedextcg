@@ -49,7 +49,7 @@ app.use(express.json({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-const pokemonDB = JSON.parse(fs.readFileSync('pokemon_db.json', 'utf8'));
+const pokemonDB = JSON.parse(fs.readFileSync(path.join(__dirname, 'pokemon_db.json'), 'utf8'));
 const idsValidos = new Set(pokemonDB.map(p => p.id));
 
 // Mismo corte por generación que usa el frontend (public/app.js) para

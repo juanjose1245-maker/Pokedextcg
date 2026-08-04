@@ -4,6 +4,10 @@ name: Publicar imagen Docker
   push:
     branches: [main]
 
+concurrency:
+  group: docker-publish
+  cancel-in-progress: true
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest

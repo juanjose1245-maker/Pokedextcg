@@ -472,8 +472,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "public_app_formatearrango",
-      "community": 37,
-      "community_name": "Q",
+      "community": 11,
+      "community_name": "wizardCapacidadSiguiente",
       "norm_label": "formatearrango()"
     },
     {
@@ -494,8 +494,8 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "public_app_cargarcarpetasconfig",
-      "community": 37,
-      "community_name": "Q",
+      "community": 11,
+      "community_name": "wizardCapacidadSiguiente",
       "norm_label": "cargarcarpetasconfig()"
     },
     {
@@ -835,8 +835,8 @@
       "source_location": "L423",
       "_origin": "ast",
       "id": "public_app_fetchgensegura",
-      "community": 10,
-      "community_name": "esDesktop",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": "fetchgensegura()"
     },
     {
@@ -1011,8 +1011,8 @@
       "source_location": "L748",
       "_origin": "ast",
       "id": "public_app_obtenertodospokemon",
-      "community": 10,
-      "community_name": "esDesktop",
+      "community": 30,
+      "community_name": "hi",
       "norm_label": "obtenertodospokemon()"
     },
     {
@@ -1528,8 +1528,8 @@
       "source_location": "L1701",
       "_origin": "ast",
       "id": "public_app_togglecategoriavariante",
-      "community": 30,
-      "community_name": "hi",
+      "community": 10,
+      "community_name": "esDesktop",
       "norm_label": "togglecategoriavariante()"
     },
     {
@@ -1649,8 +1649,8 @@
       "source_location": "L1840",
       "_origin": "ast",
       "id": "public_app_cerrarwizardcarpetas",
-      "community": 37,
-      "community_name": "Q",
+      "community": 10,
+      "community_name": "esDesktop",
       "norm_label": "cerrarwizardcarpetas()"
     },
     {
@@ -1660,8 +1660,8 @@
       "source_location": "L1846",
       "_origin": "ast",
       "id": "public_app_wizardmostrarpaso",
-      "community": 11,
-      "community_name": "wizardCapacidadSiguiente",
+      "community": 2,
+      "community_name": "app.js",
       "norm_label": "wizardmostrarpaso()"
     },
     {
@@ -1671,8 +1671,8 @@
       "source_location": "L1852",
       "_origin": "ast",
       "id": "public_app_wizardelegirmodo",
-      "community": 11,
-      "community_name": "wizardCapacidadSiguiente",
+      "community": 2,
+      "community_name": "app.js",
       "norm_label": "wizardelegirmodo()"
     },
     {
@@ -1869,8 +1869,8 @@
       "source_location": "L2068",
       "_origin": "ast",
       "id": "public_app_wizardvolverdesdenombres",
-      "community": 11,
-      "community_name": "wizardCapacidadSiguiente",
+      "community": 2,
+      "community_name": "app.js",
       "norm_label": "wizardvolverdesdenombres()"
     },
     {
@@ -1902,8 +1902,8 @@
       "source_location": "L2111",
       "_origin": "ast",
       "id": "public_app_wizardguardar",
-      "community": 37,
-      "community_name": "Q",
+      "community": 10,
+      "community_name": "esDesktop",
       "norm_label": "wizardguardar()"
     },
     {
@@ -9717,7 +9717,7 @@
       "label": "Variables de entorno",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L23",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "readme_variables_de_entorno",
       "community": 36,
@@ -9728,7 +9728,7 @@
       "label": "Actualizar",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L30",
+      "source_location": "L42",
       "_origin": "ast",
       "id": "readme_actualizar",
       "community": 36,
@@ -9739,7 +9739,7 @@
       "label": "Problemas comunes",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L37",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "readme_problemas_comunes",
       "community": 36,
@@ -32384,7 +32384,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L30",
+      "source_location": "L42",
       "weight": 1.0,
       "_origin": "ast",
       "source": "readme_instalar_con_docker",
@@ -32395,7 +32395,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L37",
+      "source_location": "L49",
       "weight": 1.0,
       "_origin": "ast",
       "source": "readme_instalar_con_docker",
@@ -32406,7 +32406,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L23",
+      "source_location": "L35",
       "weight": 1.0,
       "_origin": "ast",
       "source": "readme_instalar_con_docker",
@@ -34175,5 +34175,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "d2812b0b7bbbdec539dafc7d325424bacb586f24"
+  "built_at_commit": "16757742a26d2a13e4ceab2a4c94d7ba85084572"
 }

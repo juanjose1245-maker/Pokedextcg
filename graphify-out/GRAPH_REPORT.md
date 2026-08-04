@@ -1,16 +1,16 @@
 # Graph Report - docker-self-hosting  (2026-08-04)
 
 ## Corpus Check
-- 39 files · ~100,188 words
+- 39 files · ~100,346 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1062 nodes · 1958 edges · 71 communities (54 shown, 17 thin omitted)
+- 1062 nodes · 1958 edges · 70 communities (53 shown, 17 thin omitted)
 - Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 222 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d2812b0b`
+- Built from commit: `16757742`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -52,7 +52,6 @@
 - migrar-carpetas-a-bulk.js
 - K
 - N
-- Q
 - K
 - N
 - Q
@@ -114,7 +113,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (71 total, 17 thin omitted)
+## Communities (70 total, 17 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -126,7 +125,7 @@ Nodes (7): Contexto, Control de tamaño de tarjeta en la galería (Chico/Normal/
 
 ### Community 2 - "app.js"
 Cohesion: 0.05
-Nodes (50): abrirAjustes(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelRespaldos(), abrirPanelVariantes(), abrirWizardCarpetas(), actualizarBotonSesion(), aplicarModoVista() (+42 more)
+Nodes (53): abrirAjustes(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelRespaldos(), abrirPanelVariantes(), abrirWizardCarpetas(), actualizarBotonSesion(), aplicarModoVista() (+45 more)
 
 ### Community 3 - "server.js"
 Cohesion: 0.05
@@ -145,12 +144,12 @@ Cohesion: 0.07
 Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
 ### Community 10 - "esDesktop"
-Cohesion: 0.17
-Nodes (25): actualizarBotonesModo(), actualizarTarjetaProgreso(), actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cerrarGaleriaYVolver() (+17 more)
+Cohesion: 0.16
+Nodes (26): actualizarBotonesModo(), actualizarTarjetaProgreso(), actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cerrarGaleriaYVolver() (+18 more)
 
 ### Community 11 - "wizardCapacidadSiguiente"
 Cohesion: 0.14
-Nodes (21): pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste(), wizardArmarPasoCapacidad(), wizardArmarPasoNombres(), wizardCalcularRangos() (+13 more)
+Nodes (20): cargarCarpetasConfig(), formatearRango(), pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste(), wizardArmarPasoCapacidad() (+12 more)
 
 ### Community 12 - "J"
 Cohesion: 0.12
@@ -213,8 +212,8 @@ Cohesion: 0.22
 Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
 
 ### Community 30 - "hi"
-Cohesion: 0.18
-Nodes (24): abrirLoginModal(), actualizarBadgePendientes(), calcularIdsPendientesSilencioso(), cargarEstadisticasSinMoverScroll(), cerrarPanelRespaldos(), claveFechaLS(), claveLS(), descargarListaFaltantes() (+16 more)
+Cohesion: 0.16
+Nodes (25): abrirLoginModal(), actualizarBadgePendientes(), calcularIdsPendientesSilencioso(), cargarEstadisticasSinMoverScroll(), cerrarPanelRespaldos(), claveFechaLS(), claveLS(), descargarListaFaltantes() (+17 more)
 
 ### Community 31 - "kb"
 Cohesion: 0.33
@@ -235,10 +234,6 @@ Nodes (7): fs, idsCarpetas, path, raw, RUTA_INVENTARIO, rutaRespaldo, timestamp
 ### Community 36 - "N"
 Cohesion: 0.33
 Nodes (5): Actualizar, Instalar con Docker, Pokédex TCG, Problemas comunes, Variables de entorno
-
-### Community 37 - "Q"
-Cohesion: 0.50
-Nodes (4): cargarCarpetasConfig(), cerrarWizardCarpetas(), formatearRango(), wizardGuardar()
 
 ### Community 41 - "Fase 2 — Selección de categorías de variantes (núcleo de tracking)"
 Cohesion: 0.14
@@ -349,7 +344,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `fs`, `fs`, `crypto` to the rest of the system?**
   _223 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.04915824915824916 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.04779189352692075 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05405405405405406 - nodes in this community are weakly interconnected._
 - **Should `V` be split into smaller, more focused modules?**

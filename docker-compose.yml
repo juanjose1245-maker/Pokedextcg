@@ -5,6 +5,6 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - ADMIN_PASSWORD=cambiar-esta-contraseña
+      - ADMIN_PASSWORD=cambiar-esta-password
     volumes:
       - ./data:/app/data

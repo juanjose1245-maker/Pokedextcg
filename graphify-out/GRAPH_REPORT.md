@@ -1,16 +1,16 @@
 # Graph Report - docker-self-hosting  (2026-08-04)
 
 ## Corpus Check
-- 38 files · ~99,913 words
+- 39 files · ~100,188 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1056 nodes · 1953 edges · 76 communities (48 shown, 28 thin omitted)
+- 1062 nodes · 1958 edges · 71 communities (54 shown, 17 thin omitted)
 - Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 222 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f9774f56`
+- Built from commit: `d2812b0b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -63,10 +63,7 @@
 - di
 - di
 - ei
-- M
 - fetch_pokemon.js
-- Sh
-- ii
 - Fase 3 — Variantes en el PDF de recortables — Plan de implementación
 - d
 - sw.js
@@ -82,12 +79,10 @@
 - Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación
 - fetch_variantes.js
 - Control de tamaño de tarjeta en la galería (Chico/Normal/Grande) — Plan de implementación
-- ai
 - Fase 2 — Selección de categorías de variantes (núcleo de tracking) — Plan de implementación
 - p
 - escribirJSONAtomico
 - carpetasConfigValida
-- Sh
 - sesionValida
 - CATEGORIAS_VARIANTES
 - ai
@@ -119,7 +114,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (76 total, 28 thin omitted)
+## Communities (71 total, 17 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -137,6 +132,10 @@ Nodes (50): abrirAjustes(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelR
 Cohesion: 0.05
 Nodes (28): app, CARPETA_CACHE, CARPETA_RESPALDOS, CARPETAS_DEFAULT, carpetasConfig, clientes, CORTES_GEN, crypto (+20 more)
 
+### Community 4 - "V"
+Cohesion: 0.06
+Nodes (3): ii(), S(), V()
+
 ### Community 6 - "tesseract-core-lstm.wasm.js"
 Cohesion: 0.07
 Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
@@ -146,12 +145,16 @@ Cohesion: 0.07
 Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
 ### Community 10 - "esDesktop"
-Cohesion: 0.16
-Nodes (26): actualizarBotonesModo(), actualizarTarjetaProgreso(), actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cerrarGaleriaYVolver() (+18 more)
+Cohesion: 0.17
+Nodes (25): actualizarBotonesModo(), actualizarTarjetaProgreso(), actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cerrarGaleriaYVolver() (+17 more)
 
 ### Community 11 - "wizardCapacidadSiguiente"
-Cohesion: 0.13
-Nodes (23): cargarCarpetasConfig(), formatearRango(), pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste(), wizardArmarPasoCapacidad() (+15 more)
+Cohesion: 0.14
+Nodes (21): pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste(), wizardArmarPasoCapacidad(), wizardArmarPasoNombres(), wizardCalcularRangos() (+13 more)
+
+### Community 12 - "J"
+Cohesion: 0.12
+Nodes (3): I(), J(), Q()
 
 ### Community 14 - "package.json"
 Cohesion: 0.11
@@ -160,6 +163,10 @@ Nodes (18): express, node-fetch, author, dependencies, express, node-fetch, pdfk
 ### Community 15 - "renderGaleria"
 Cohesion: 0.19
 Nodes (20): actualizarBotonEstado(), actualizarGalleryHeader(), agregarAlHistorial(), anclaIdCliente(), carpetaDe(), clearSearchTimer(), detenerCamara(), getFechaRegistro() (+12 more)
+
+### Community 17 - "ji"
+Cohesion: 0.10
+Nodes (5): ai(), ei(), hi(), ji(), Sh()
 
 ### Community 19 - "Modo "Todas seguidas" para configuración de carpetas"
 Cohesion: 0.11
@@ -206,8 +213,8 @@ Cohesion: 0.22
 Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
 
 ### Community 30 - "hi"
-Cohesion: 0.16
-Nodes (25): abrirLoginModal(), actualizarBadgePendientes(), calcularIdsPendientesSilencioso(), cargarEstadisticasSinMoverScroll(), cerrarPanelRespaldos(), claveFechaLS(), claveLS(), descargarListaFaltantes() (+17 more)
+Cohesion: 0.18
+Nodes (24): abrirLoginModal(), actualizarBadgePendientes(), calcularIdsPendientesSilencioso(), cargarEstadisticasSinMoverScroll(), cerrarPanelRespaldos(), claveFechaLS(), claveLS(), descargarListaFaltantes() (+16 more)
 
 ### Community 31 - "kb"
 Cohesion: 0.33
@@ -225,6 +232,14 @@ Nodes (7): Architecture, Auth, Data files (not code, but load-bearing), Editing 
 Cohesion: 0.25
 Nodes (7): fs, idsCarpetas, path, raw, RUTA_INVENTARIO, rutaRespaldo, timestamp
 
+### Community 36 - "N"
+Cohesion: 0.33
+Nodes (5): Actualizar, Instalar con Docker, Pokédex TCG, Problemas comunes, Variables de entorno
+
+### Community 37 - "Q"
+Cohesion: 0.50
+Nodes (4): cargarCarpetasConfig(), cerrarWizardCarpetas(), formatearRango(), wizardGuardar()
+
 ### Community 41 - "Fase 2 — Selección de categorías de variantes (núcleo de tracking)"
 Cohesion: 0.14
 Nodes (13): Ajustes, Cambios en endpoints existentes, Cliente, Contexto, Fase 2 — Selección de categorías de variantes (núcleo de tracking), Fuera de alcance (a propósito, queda para Fase 3), Galería / ficha, Manejo de errores y edge cases (+5 more)
@@ -240,6 +255,10 @@ Nodes (6): Contexto, Fuera de alcance, Iconos de tamaño, Integrar el selector d
 ### Community 44 - "qb"
 Cohesion: 0.42
 Nodes (13): ac(), $b(), bc(), cc(), Hh(), Pb(), tb(), ub() (+5 more)
+
+### Community 47 - "ei"
+Cohesion: 0.07
+Nodes (3): M(), N(), O()
 
 ### Community 52 - "Fase 3 — Variantes en el PDF de recortables — Plan de implementación"
 Cohesion: 0.33
@@ -314,24 +333,24 @@ Cohesion: 0.33
 Nodes (5): Global Constraints, Integrar el selector de tamaño (Chico/Normal/Grande) a la barra de filtros — Plan de implementación, Self-Review (hecho al escribir este plan), Task 1: Reemplazar el texto de los botones por iconos compactos, Task 2: Mover el selector de tamaño mobile a la fila de filtros
 
 ## Knowledge Gaps
-- **220 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+215 more)
+- **223 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+218 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **28 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **17 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `g()` connect `worker.min.js` to `carpetasConfigValida`, `esDesktop`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
-  _High betweenness centrality (0.205) - this node is a cross-community bridge._
+  _High betweenness centrality (0.204) - this node is a cross-community bridge._
 - **Why does `a()` connect `worker.min.js` to `qb`, `A`, `A`, `p`, `qb`, `p`?**
-  _High betweenness centrality (0.193) - this node is a cross-community bridge._
-- **Why does `A()` connect `A` to `worker.min.js`, `K`, `Q`, `tesseract-core-lstm.wasm.js`, `qb`, `J`, `di`, `ji`, `Lh`, `d`, `p`, `kb`?**
+  _High betweenness centrality (0.192) - this node is a cross-community bridge._
+- **Why does `A()` connect `A` to `worker.min.js`, `K`, `tesseract-core-lstm.wasm.js`, `qb`, `J`, `di`, `ji`, `Lh`, `d`, `p`, `kb`?**
   _High betweenness centrality (0.095) - this node is a cross-community bridge._
 - **What connects `fs`, `fs`, `crypto` to the rest of the system?**
-  _220 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _223 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
   _Cohesion score 0.04915824915824916 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05405405405405406 - nodes in this community are weakly interconnected._
 - **Should `V` be split into smaller, more focused modules?**
-  _Cohesion score 0.07007575757575757 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06349206349206349 - nodes in this community are weakly interconnected._

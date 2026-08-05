@@ -7,15 +7,15 @@ PWA.
 
 1. Descargá el [`docker-compose.yml`](docker-compose.yml) de este repo a una
    carpeta vacía.
-2. Editá la variable `ADMIN_PASSWORD` con tu propia contraseña (no dejes el
-   valor de ejemplo).
-3. Corré:
+2. Corré:
 
    ```bash
    docker compose up -d
    ```
 
-4. Abrí `http://localhost:3000` en el navegador.
+3. Abrí `http://localhost:3000` en el navegador — la primera vez que
+   intentes hacer un cambio (marcar una carta, configurar carpetas, etc.)
+   te va a pedir definir tu contraseña ahí mismo.
 
 ¿Necesitás usar otro puerto porque el 3000 ya está ocupado? No hay una
 variable de entorno para eso a propósito — cambiá el mapeo de puertos en
@@ -28,8 +28,15 @@ junto al `docker-compose.yml` — no se pierden si actualizás la imagen.
 
 | Variable | Obligatoria | Descripción |
 |---|---|---|
-| `ADMIN_PASSWORD` | Sí | Contraseña para las acciones de escritura (marcar cartas, importar, configurar carpetas). Sin esto, el servidor usa una contraseña por defecto insegura — **cambiala siempre** antes de exponer el puerto a internet. |
 | `DATA_DIR` | No | Carpeta donde se guardan los datos. La imagen ya la fija en `/app/data`; no hace falta tocarla salvo que sepas lo que estás haciendo. |
+
+`ADMIN_PASSWORD` ya no es necesaria: la contraseña se define desde la
+propia app la primera vez que hacés un cambio. Si venís de una instalación
+vieja que ya la tenía seteada, seguí funcionando igual — se migra sola, una
+única vez, a un archivo dentro de `DATA_DIR`. También podés seguir
+fijándola por variable de entorno si la preferís así (ver el comentario en
+`docker-compose.yml`); en una instalación nueva, esa migración pasa igual,
+solo que en el primer arranque en vez de venir de "una instalación vieja".
 
 ### Actualizar
 

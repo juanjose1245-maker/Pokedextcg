@@ -4,7 +4,7 @@ services:
     restart: unless-stopped
     ports:
       - "3000:3000"
-    environment:
-      - ADMIN_PASSWORD=cambiar-esta-password
+    environment: []
+      # - ADMIN_PASSWORD=opcional-si-preferís-fijarla-por-variable-de-entorno
     volumes:
       - ./data:/app/data

@@ -1,7 +1,7 @@
 # Graph Report - pokedex-tcg  (2026-08-04)
 
 ## Corpus Check
-- 44 files · ~108,745 words
+- 44 files · ~108,805 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6da6c20a`
+- Built from commit: `f3566040`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 

@@ -1,16 +1,16 @@
 # Graph Report - pokedex-tcg  (2026-08-04)
 
 ## Corpus Check
-- 39 files · ~100,346 words
+- 40 files · ~100,361 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1062 nodes · 1958 edges · 70 communities (53 shown, 17 thin omitted)
+- 1064 nodes · 1959 edges · 73 communities (50 shown, 23 thin omitted)
 - Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 222 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `aa237959`
+- Built from commit: `e5a3e08d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -85,6 +85,9 @@
 - sw.js
 - CATEGORIAS_VARIANTES
 - update_script.sh
+- Q
+- ii
+- docker-entrypoint.sh
 
 ## God Nodes (most connected - your core abstractions)
 1. `V()` - 66 edges
@@ -113,7 +116,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (70 total, 17 thin omitted)
+## Communities (73 total, 23 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -121,7 +124,7 @@ Nodes (53): A(), b(), c(), e(), f(), G(), h(), i() (+45 more)
 
 ### Community 1 - "app.js"
 Cohesion: 0.05
-Nodes (53): abrirAjustes(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelRespaldos(), abrirPanelVariantes(), abrirWizardCarpetas(), actualizarBotonSesion(), aplicarModoVista() (+45 more)
+Nodes (50): abrirAjustes(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelRespaldos(), abrirPanelVariantes(), abrirWizardCarpetas(), actualizarBotonSesion(), aplicarModoVista() (+42 more)
 
 ### Community 2 - "O"
 Cohesion: 0.05
@@ -131,10 +134,6 @@ Nodes (7): ai(), ei(), hi(), ji(), M(), O(), Sh()
 Cohesion: 0.05
 Nodes (28): app, CARPETA_CACHE, CARPETA_RESPALDOS, CARPETAS_DEFAULT, carpetasConfig, clientes, CORTES_GEN, crypto (+20 more)
 
-### Community 4 - "V"
-Cohesion: 0.06
-Nodes (3): ii(), S(), V()
-
 ### Community 6 - "tesseract-core-lstm.wasm.js"
 Cohesion: 0.07
 Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
@@ -143,17 +142,9 @@ Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 Cohesion: 0.07
 Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
-### Community 10 - "O"
-Cohesion: 0.07
-Nodes (3): M(), N(), O()
-
-### Community 11 - "J"
-Cohesion: 0.12
-Nodes (3): I(), J(), Q()
-
 ### Community 12 - "ji"
-Cohesion: 0.10
-Nodes (5): ai(), ei(), hi(), ji(), Sh()
+Cohesion: 0.05
+Nodes (7): ai(), ei(), hi(), ji(), M(), O(), Sh()
 
 ### Community 13 - "esDesktop"
 Cohesion: 0.16
@@ -172,8 +163,8 @@ Cohesion: 0.19
 Nodes (20): actualizarBotonEstado(), actualizarGalleryHeader(), agregarAlHistorial(), anclaIdCliente(), carpetaDe(), clearSearchTimer(), detenerCamara(), getFechaRegistro() (+12 more)
 
 ### Community 17 - "wizardCapacidadSiguiente"
-Cohesion: 0.14
-Nodes (20): cargarCarpetasConfig(), formatearRango(), pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste(), wizardArmarPasoCapacidad() (+12 more)
+Cohesion: 0.13
+Nodes (23): cargarCarpetasConfig(), formatearRango(), pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste(), wizardArmarPasoCapacidad() (+15 more)
 
 ### Community 19 - "package.json"
 Cohesion: 0.11
@@ -328,9 +319,9 @@ Cohesion: 0.67
 Nodes (3): parsearCookies(), requiereLogin(), sesionValida()
 
 ## Knowledge Gaps
-- **223 isolated node(s):** `fs`, `fs`, `crypto`, `fs`, `path` (+218 more)
+- **224 isolated node(s):** `docker-entrypoint.sh script`, `fs`, `fs`, `crypto`, `fs` (+219 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **17 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **23 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -338,13 +329,13 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `g()` connect `worker.min.js` to `carpetasConfigValida`, `esDesktop`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
   _High betweenness centrality (0.204) - this node is a cross-community bridge._
 - **Why does `a()` connect `worker.min.js` to `p`, `A`, `A`, `qb`, `qb`, `p`?**
-  _High betweenness centrality (0.192) - this node is a cross-community bridge._
-- **Why does `A()` connect `A` to `worker.min.js`, `tesseract-core-lstm.wasm.js`, `J`, `ji`, `K`, `kb`, `qb`, `Lh`, `di`, `d`, `p`?**
-  _High betweenness centrality (0.095) - this node is a cross-community bridge._
-- **What connects `fs`, `fs`, `crypto` to the rest of the system?**
-  _223 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.184) - this node is a cross-community bridge._
+- **Why does `A()` connect `A` to `worker.min.js`, `tesseract-core-lstm.wasm.js`, `L`, `Q`, `J`, `K`, `kb`, `qb`, `Lh`, `di`, `d`, `p`?**
+  _High betweenness centrality (0.094) - this node is a cross-community bridge._
+- **What connects `docker-entrypoint.sh script`, `fs`, `fs` to the rest of the system?**
+  _224 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.04779189352692075 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.04915824915824916 - nodes in this community are weakly interconnected._
 - **Should `O` be split into smaller, more focused modules?**
   _Cohesion score 0.04964539007092199 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**

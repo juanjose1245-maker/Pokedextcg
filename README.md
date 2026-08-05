@@ -9,21 +9,13 @@ PWA.
    carpeta vacía.
 2. Editá la variable `ADMIN_PASSWORD` con tu propia contraseña (no dejes el
    valor de ejemplo).
-3. Creá la carpeta `data` antes de arrancar, para que quede con tu usuario
-   como dueño (si no existe, Docker la crea como root y el contenedor,
-   que corre como usuario no-root, no puede escribir ahí):
-
-   ```bash
-   mkdir -p data
-   ```
-
-4. Corré:
+3. Corré:
 
    ```bash
    docker compose up -d
    ```
 
-5. Abrí `http://localhost:3000` en el navegador.
+4. Abrí `http://localhost:3000` en el navegador.
 
 ¿Necesitás usar otro puerto porque el 3000 ya está ocupado? No hay una
 variable de entorno para eso a propósito — cambiá el mapeo de puertos en
@@ -62,12 +54,4 @@ con:
 
 ```bash
 docker compose logs
-```
-
-La causa más común es un error de permisos escribiendo en `./data` (por
-ejemplo si la carpeta ya existía con otro dueño, o quedó creada como root).
-Se arregla corriendo una vez en el host:
-
-```bash
-sudo chown -R 1000:1000 ./data
 ```

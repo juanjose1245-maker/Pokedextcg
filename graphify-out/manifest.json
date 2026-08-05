@@ -110,8 +110,8 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1785878782.8464906,
-    "ast_hash": "ac2eeb8af89ab08711cb478a543506cb",
+    "mtime": 1785890973.6775026,
+    "ast_hash": "96eb113463121689f54edc05943d45f0",
     "semantic_hash": ""
   },
   "docker-compose.yml": {
@@ -237,6 +237,11 @@
   "public/icons/pokeball-96.png": {
     "mtime": 1784838743.8541465,
     "ast_hash": "bf7daab1a0ada710112c2e5f3e997993",
+    "semantic_hash": ""
+  },
+  "docker-entrypoint.sh": {
+    "mtime": 1785890957.2704782,
+    "ast_hash": "608ec6b0b95b33131e43481c2436d95f",
     "semantic_hash": ""
   }
 }

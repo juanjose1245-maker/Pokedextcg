@@ -405,8 +405,18 @@
         <div class="ajustes-title">🗂️ Planear mis carpetas</div>
         <div class="ajustes-scroll">
 
+        <!-- Paso 0: variantes (antes de modo — condiciona la capacidad de las carpetas) -->
+        <div class="wizard-paso" id="wizard-paso-variantes" style="display:none;">
+            <div class="pdf-opciones-label">¿Contás alguna de estas variantes en tu colección?</div>
+            <div id="wizard-variantes-checks"></div>
+            <div class="wizard-nota">💡 Podés dejarlas todas sin marcar y activarlas después desde Ajustes.</div>
+            <div class="wizard-nav">
+                <button type="button" class="wizard-btn-siguiente" onclick="wizardMostrarPaso('modo')">Siguiente →</button>
+            </div>
+        </div>
+
         <!-- Paso 1: modo de acomodo -->
-        <div class="wizard-paso" id="wizard-paso-modo">
+        <div class="wizard-paso" id="wizard-paso-modo" style="display:none;">
             <div class="pdf-opciones-label">¿Cómo querés acomodar tu colección?</div>
             <button type="button" class="wizard-opcion-modo" onclick="wizardElegirModo('seguidas')">
                 <strong>Todas seguidas</strong>

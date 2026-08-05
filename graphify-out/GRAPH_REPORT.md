@@ -1,16 +1,16 @@
 # Graph Report - pokedex-tcg  (2026-08-04)
 
 ## Corpus Check
-- 42 files · ~103,169 words
+- 42 files · ~103,339 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1078 nodes · 1972 edges · 87 communities (51 shown, 36 thin omitted)
+- 1078 nodes · 1974 edges · 87 communities (52 shown, 35 thin omitted)
 - Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 222 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `5f9cc83d`
+- Built from commit: `cb79ee19`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -130,7 +130,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (87 total, 36 thin omitted)
+## Communities (87 total, 35 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -138,7 +138,11 @@ Nodes (53): A(), b(), c(), e(), f(), G(), h(), i() (+45 more)
 
 ### Community 1 - "app.js"
 Cohesion: 0.05
-Nodes (45): abrirAjustes(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelRespaldos(), abrirPanelVariantes(), actualizarBotonSesion(), aplicarTema(), cachePokemon (+37 more)
+Nodes (46): abrirAjustes(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelRespaldos(), abrirPanelVariantes(), abrirWizardCarpetas(), actualizarBotonSesion(), aplicarTema() (+38 more)
+
+### Community 2 - "O"
+Cohesion: 0.15
+Nodes (3): hi(), ji(), Ya()
 
 ### Community 3 - "server.js"
 Cohesion: 0.05
@@ -169,8 +173,8 @@ Cohesion: 0.17
 Nodes (22): actualizarBotonEstado(), actualizarGalleryHeader(), agregarAlHistorial(), anclaIdCliente(), aplicarModoVista(), carpetaDe(), clearSearchTimer(), detenerCamara() (+14 more)
 
 ### Community 17 - "wizardCapacidadSiguiente"
-Cohesion: 0.13
-Nodes (23): cargarCarpetasConfig(), formatearRango(), pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste(), wizardArmarPasoCapacidad() (+15 more)
+Cohesion: 0.14
+Nodes (21): pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste(), wizardArmarPasoCapacidad(), wizardArmarPasoNombres(), wizardCalcularRangos() (+13 more)
 
 ### Community 19 - "package.json"
 Cohesion: 0.11
@@ -221,8 +225,8 @@ Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 33 - "p"
-Cohesion: 0.22
-Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
+Cohesion: 0.24
+Nodes (9): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+1 more)
 
 ### Community 34 - "Fase 2 — Selección de categorías de variantes (núcleo de tracking) — Plan de implementación"
 Cohesion: 0.20
@@ -333,13 +337,13 @@ Cohesion: 0.33
 Nodes (5): Global Constraints, Login y variantes como primeros pasos del wizard de carpetas — Plan de implementación, Self-Review (hecho al escribir este plan), Task 1: Extraer `renderVariantesChecks()` como helper compartido, Task 2: Nuevo paso "variantes" + gate de login al abrir el wizard
 
 ### Community 77 - "wizardGuardar"
-Cohesion: 0.33
-Nodes (6): abrirWizardCarpetas(), cerrarPanelVariantes(), cerrarWizardCarpetas(), mostrarToastAvisoCapacidad(), revisarCapacidadCarpetas(), wizardGuardar()
+Cohesion: 0.29
+Nodes (7): cargarCarpetasConfig(), cerrarPanelVariantes(), cerrarWizardCarpetas(), formatearRango(), mostrarToastAvisoCapacidad(), revisarCapacidadCarpetas(), wizardGuardar()
 
 ## Knowledge Gaps
 - **233 isolated node(s):** `docker-entrypoint.sh script`, `fs`, `fs`, `crypto`, `fs` (+228 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **36 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **35 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -353,8 +357,8 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `docker-entrypoint.sh script`, `fs`, `fs` to the rest of the system?**
   _233 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.052244897959183675 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05254901960784314 - nodes in this community are weakly interconnected._
+- **Should `O` be split into smaller, more focused modules?**
+  _Cohesion score 0.14736842105263157 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05405405405405406 - nodes in this community are weakly interconnected._
-- **Should `V` be split into smaller, more focused modules?**
-  _Cohesion score 0.07007575757575757 - nodes in this community are weakly interconnected._

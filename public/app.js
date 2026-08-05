@@ -1846,8 +1846,20 @@ let wizardRangos        = [];    // array de {desde,hasta}|null por carpeta — 
 
 function abrirWizardCarpetas() {
     cerrarAjustes();
-    wizardMostrarPaso('modo');
-    document.getElementById('wizard-carpetas-modal').classList.add('open');
+    // Se marca "visto" ya acá (no solo al cerrar el wizard, como antes):
+    // si cancela el login que viene a continuación, no debe insistir de
+    // nuevo en cada recarga — mismo espíritu de "si lo cierra sin terminar,
+    // no vuelve a insistir" que ya aplicaba al resto del wizard.
+    localStorage.setItem('carpetasWizardVisto', '1');
+    // Gate de login: si ya hay sesión, esto corre la acción directo (salta
+    // el login). Si no, abre el modal de login existente y la reintenta
+    // sola al loguearse con éxito — así el wizard nunca llega a verse
+    // hasta que hay sesión, sin construir ningún paso de login propio.
+    requiereSesion(async () => {
+        if (!(await renderVariantesChecks('wizard-variantes-checks'))) return;
+        wizardMostrarPaso('variantes');
+        document.getElementById('wizard-carpetas-modal').classList.add('open');
+    });
 }
 function cerrarWizardCarpetas() {
     localStorage.setItem('carpetasWizardVisto', '1');
@@ -1856,7 +1868,7 @@ function cerrarWizardCarpetas() {
 document.getElementById('wizard-carpetas-close').onclick = cerrarWizardCarpetas;
 
 function wizardMostrarPaso(paso) {
-    ['modo','formato','cantidad','capacidad','ajuste','nombres'].forEach(p => {
+    ['variantes','modo','formato','cantidad','capacidad','ajuste','nombres'].forEach(p => {
         document.getElementById(`wizard-paso-${p}`).style.display = (p === paso) ? '' : 'none';
     });
 }

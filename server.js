@@ -296,14 +296,34 @@ respaldoAutomatico();
 setInterval(respaldoAutomatico, 24 * 60 * 60 * 1000);
 
 // ── LOGIN: solo protege escrituras, la lectura queda siempre abierta ──
-// Sistema mínimo sin dependencias nuevas: contraseña única (variable de
-// entorno ADMIN_PASSWORD) + token de sesión aleatorio guardado en memoria,
-// mandado al cliente como cookie httpOnly. No usa cookie-parser: se
-// parsea el header Cookie a mano porque el formato es muy simple.
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'pokedex123';
-if (!process.env.ADMIN_PASSWORD) {
-    console.warn('⚠️  Estás usando la contraseña por defecto ("pokedex123"). Configura la variable de entorno ADMIN_PASSWORD antes de exponer este servidor a internet.');
+// Sistema mínimo sin dependencias nuevas: contraseña única, hasheada con
+// scrypt (built-in de Node) y persistida en DATA_DIR, + token de sesión
+// aleatorio guardado en memoria, mandado al cliente como cookie httpOnly.
+// No usa cookie-parser: se parsea el header Cookie a mano porque el
+// formato es muy simple.
+const RUTA_ADMIN_PASSWORD = path.join(DATA_DIR, 'admin-password.json');
+
+function hashearPassword(password, salt = crypto.randomBytes(16).toString('hex')) {
+    const hash = crypto.scryptSync(password, salt, 64).toString('hex');
+    return { salt, hash };
 }
+
+// null = todavía no se definió ninguna contraseña (instalación nueva) —
+// /api/auth-estado se lo informa al cliente para que muestre el
+// formulario de "definir contraseña" en vez del login normal.
+let passwordHashActual = null;
+if (fs.existsSync(RUTA_ADMIN_PASSWORD)) {
+    passwordHashActual = JSON.parse(fs.readFileSync(RUTA_ADMIN_PASSWORD, 'utf8'));
+} else if (process.env.ADMIN_PASSWORD) {
+    // Migración única: alguien ya tenía ADMIN_PASSWORD configurada (ej. el
+    // deploy systemd de producción) — se hashea una sola vez acá y de ahí
+    // en más el archivo es la única fuente de verdad; la env var no se
+    // vuelve a consultar en arranques futuros.
+    passwordHashActual = hashearPassword(process.env.ADMIN_PASSWORD);
+    escribirJSONAtomico(RUTA_ADMIN_PASSWORD, passwordHashActual);
+    console.log('🔐 Contraseña migrada desde ADMIN_PASSWORD a admin-password.json.');
+}
+
 const SESION_DURACION_MS = 30 * 24 * 60 * 60 * 1000; // 30 días
 const sesionesActivas = new Map(); // token -> expiraEn
 
@@ -311,10 +331,18 @@ const sesionesActivas = new Map(); // token -> expiraEn
 // contraseña coincidió (crypto.timingSafeEqual exige buffers del mismo
 // largo, así que un largo distinto ya alcanza para descartarla).
 function passwordValida(candidata) {
-    const bufA = Buffer.from(String(candidata || ''), 'utf8');
-    const bufB = Buffer.from(ADMIN_PASSWORD, 'utf8');
-    if (bufA.length !== bufB.length) return false;
-    return crypto.timingSafeEqual(bufA, bufB);
+    if (!passwordHashActual) return false;
+    const { hash } = hashearPassword(String(candidata || ''), passwordHashActual.salt);
+    const bufA = Buffer.from(hash, 'hex');
+    const bufB = Buffer.from(passwordHashActual.hash, 'hex');
+    return bufA.length === bufB.length && crypto.timingSafeEqual(bufA, bufB);
+}
+
+function crearSesion(res, req) {
+    const token = crypto.randomBytes(24).toString('hex');
+    sesionesActivas.set(token, Date.now() + SESION_DURACION_MS);
+    const secure = esHttps(req) ? '; Secure' : '';
+    res.setHeader('Set-Cookie', `sesion=${token}; HttpOnly; Path=/; Max-Age=${SESION_DURACION_MS / 1000}; SameSite=Lax${secure}`);
 }
 
 // La app puede correr detrás de un proxy que termina TLS (ej. nginx) y le
@@ -407,10 +435,28 @@ app.post('/api/login', rateLimiter, (req, res) => {
     if (!passwordValida(password)) {
         return res.status(401).json({ success:false, error: 'Contraseña incorrecta.' });
     }
-    const token = crypto.randomBytes(24).toString('hex');
-    sesionesActivas.set(token, Date.now() + SESION_DURACION_MS);
-    const secure = esHttps(req) ? '; Secure' : '';
-    res.setHeader('Set-Cookie', `sesion=${token}; HttpOnly; Path=/; Max-Age=${SESION_DURACION_MS / 1000}; SameSite=Lax${secure}`);
+    crearSesion(res, req);
+    res.json({ success: true });
+});
+
+// Le dice al cliente si ya hay una contraseña definida (para mostrar el
+// login normal) o no (para mostrar el formulario de "definir contraseña").
+// Lectura, sin login — mismo criterio que /api/sesion.
+app.get('/api/auth-estado', (req, res) => {
+    res.json({ configurada: passwordHashActual !== null });
+});
+
+app.post('/api/definir-password', rateLimiter, (req, res) => {
+    if (passwordHashActual !== null) {
+        return res.status(409).json({ success:false, error: 'Ya hay una contraseña configurada.' });
+    }
+    const { password } = req.body;
+    if (typeof password !== 'string' || password.length < 4) {
+        return res.status(400).json({ success:false, error: 'La contraseña debe tener al menos 4 caracteres.' });
+    }
+    passwordHashActual = hashearPassword(password);
+    escribirJSONAtomico(RUTA_ADMIN_PASSWORD, passwordHashActual);
+    crearSesion(res, req);
     res.json({ success: true });
 });
 

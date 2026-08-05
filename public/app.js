@@ -93,23 +93,31 @@ function carpetaDe(p) {
     return carpetas.find(c => c.gens.includes(p.gen)) || null;
 }
 
+// En modo "seguidas" una generación no tiene un array de gens propio para
+// buscar (las carpetas son rangos de nº de Pokédex nacional) — se ubica por
+// el primer id de esa generación, igual criterio que carpetaDe() ya usa por
+// Pokémon individual. Puede no ser exacto si una carpeta corta la
+// generación al medio, pero es una elección determinística razonable para
+// un solo color representativo de la tarjeta.
+function carpetaDeGenSeguidas(g) {
+    const primerId = cortesGen[g] + 1;
+    return carpetas.find(c => primerId >= c.desde && primerId <= c.hasta) || null;
+}
+
 // Color de la grilla de generaciones (pantalla de inicio en modo carpetas):
 // el de la carpeta real que contiene esa generación, o gris si todavía no
-// hay ninguna carpeta configurada (o en modo "seguidas", donde una
-// generación puede no mapear a una sola carpeta).
+// hay ninguna carpeta configurada.
 function colorDeGen(g) {
-    if (modoCarpetasConfig === 'separadas') {
-        const c = carpetas.find(c => c.gens && c.gens.includes(g));
-        if (c) return c.color;
-    }
-    return 'var(--muted)';
+    const c = modoCarpetasConfig === 'separadas'
+        ? carpetas.find(c => c.gens && c.gens.includes(g))
+        : carpetaDeGenSeguidas(g);
+    return c ? c.color : 'var(--muted)';
 }
 function bgDeGen(g) {
-    if (modoCarpetasConfig === 'separadas') {
-        const c = carpetas.find(c => c.gens && c.gens.includes(g));
-        if (c) return hexToRgba(c.color, 0.16);
-    }
-    return 'rgba(140,140,140,0.16)';
+    const c = modoCarpetasConfig === 'separadas'
+        ? carpetas.find(c => c.gens && c.gens.includes(g))
+        : carpetaDeGenSeguidas(g);
+    return c ? hexToRgba(c.color, 0.16) : 'rgba(140,140,140,0.16)';
 }
 
 // ── TEMA: claro / oscuro / auto (según el sistema) ─────────────────

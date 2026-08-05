@@ -1,16 +1,16 @@
 # Graph Report - pokedex-tcg  (2026-08-04)
 
 ## Corpus Check
-- 40 files · ~100,361 words
+- 41 files · ~101,349 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1064 nodes · 1959 edges · 73 communities (50 shown, 23 thin omitted)
+- 1071 nodes · 1965 edges · 78 communities (54 shown, 24 thin omitted)
 - Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 222 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `e5a3e08d`
+- Built from commit: `6f3f24e2`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -88,6 +88,11 @@
 - Q
 - ii
 - docker-entrypoint.sh
+- wizardGuardar
+- ei
+- M
+- ai
+- Sh
 
 ## God Nodes (most connected - your core abstractions)
 1. `V()` - 66 edges
@@ -116,7 +121,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (73 total, 23 thin omitted)
+## Communities (78 total, 24 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -127,12 +132,16 @@ Cohesion: 0.05
 Nodes (50): abrirAjustes(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelRespaldos(), abrirPanelVariantes(), abrirWizardCarpetas(), actualizarBotonSesion(), aplicarModoVista() (+42 more)
 
 ### Community 2 - "O"
-Cohesion: 0.05
-Nodes (7): ai(), ei(), hi(), ji(), M(), O(), Sh()
+Cohesion: 0.10
+Nodes (5): ai(), ei(), hi(), ji(), Sh()
 
 ### Community 3 - "server.js"
 Cohesion: 0.05
 Nodes (28): app, CARPETA_CACHE, CARPETA_RESPALDOS, CARPETAS_DEFAULT, carpetasConfig, clientes, CORTES_GEN, crypto (+20 more)
+
+### Community 5 - "V"
+Cohesion: 0.06
+Nodes (3): ii(), S(), V()
 
 ### Community 6 - "tesseract-core-lstm.wasm.js"
 Cohesion: 0.07
@@ -142,29 +151,29 @@ Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 Cohesion: 0.07
 Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
-### Community 12 - "ji"
-Cohesion: 0.05
-Nodes (7): ai(), ei(), hi(), ji(), M(), O(), Sh()
-
 ### Community 13 - "esDesktop"
-Cohesion: 0.16
-Nodes (26): actualizarBotonesModo(), actualizarTarjetaProgreso(), actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cerrarGaleriaYVolver() (+18 more)
+Cohesion: 0.17
+Nodes (25): actualizarBotonesModo(), actualizarTarjetaProgreso(), actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cerrarGaleriaYVolver() (+17 more)
 
 ### Community 14 - "Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación"
 Cohesion: 0.08
 Nodes (24): Addendum 2 — ampliar el criterio de "formas alternativas" a arte distinto, Addendum — hallazgos de la revisión final + investigación propia del usuario, Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación, Formato de `variantes_lista.json`, Global Constraints, Self-Review del Addendum 2, Self-Review del addendum (Tareas 7-11), Self-Review (hecho al escribir este plan) (+16 more)
 
 ### Community 15 - "mostrarToastError"
-Cohesion: 0.16
-Nodes (25): abrirLoginModal(), actualizarBadgePendientes(), calcularIdsPendientesSilencioso(), cargarEstadisticasSinMoverScroll(), cerrarPanelRespaldos(), claveFechaLS(), claveLS(), descargarListaFaltantes() (+17 more)
+Cohesion: 0.18
+Nodes (24): abrirLoginModal(), actualizarBadgePendientes(), calcularIdsPendientesSilencioso(), cargarEstadisticasSinMoverScroll(), cerrarPanelRespaldos(), claveFechaLS(), claveLS(), descargarListaFaltantes() (+16 more)
 
 ### Community 16 - "renderGaleria"
 Cohesion: 0.19
 Nodes (20): actualizarBotonEstado(), actualizarGalleryHeader(), agregarAlHistorial(), anclaIdCliente(), carpetaDe(), clearSearchTimer(), detenerCamara(), getFechaRegistro() (+12 more)
 
 ### Community 17 - "wizardCapacidadSiguiente"
-Cohesion: 0.13
-Nodes (23): cargarCarpetasConfig(), formatearRango(), pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste(), wizardArmarPasoCapacidad() (+15 more)
+Cohesion: 0.14
+Nodes (21): pokemonEnGen(), wizardActualizarPreviewAjuste(), wizardActualizarTotalCapacidad(), wizardAjusteSiguiente(), wizardArmarPasoAjuste(), wizardArmarPasoCapacidad(), wizardArmarPasoNombres(), wizardCalcularRangos() (+13 more)
+
+### Community 18 - "J"
+Cohesion: 0.12
+Nodes (3): I(), J(), Q()
 
 ### Community 19 - "package.json"
 Cohesion: 0.11
@@ -262,6 +271,10 @@ Nodes (7): Criterio de inclusión, Criterio de investigación: variantes de Pok�
 Cohesion: 0.25
 Nodes (7): fs, idsCarpetas, path, raw, RUTA_INVENTARIO, rutaRespaldo, timestamp
 
+### Community 47 - "N"
+Cohesion: 0.07
+Nodes (3): M(), N(), O()
+
 ### Community 49 - "generarPDFRecortables"
 Cohesion: 0.25
 Nodes (8): x(), anclaId(), descargarImagen(), generarPDFRecortables(), mapConcurrencia(), PDFDocument, pokemonEfectivo(), sharp
@@ -310,6 +323,10 @@ Nodes (4): buscarImagenesDuplicadas(), crypto, fetchVariantes(), fs
 Cohesion: 0.40
 Nodes (5): escribirJSONAtomico(), guardarCarpetasConfig(), guardarInventario(), guardarVariantesConfig(), respaldoAutomatico()
 
+### Community 64 - "ii"
+Cohesion: 0.29
+Nodes (6): Contexto, Fuera de alcance, Login como gate de apertura, no como paso nuevo, Login y variantes como primeros pasos del wizard de carpetas, Nuevo paso "variantes", Testing
+
 ### Community 65 - "carpetasConfigValida"
 Cohesion: 0.67
 Nodes (3): carpetasConfigValida(), nombresUnicos(), pokemonPorGens()
@@ -318,25 +335,29 @@ Nodes (3): carpetasConfigValida(), nombresUnicos(), pokemonPorGens()
 Cohesion: 0.67
 Nodes (3): parsearCookies(), requiereLogin(), sesionValida()
 
+### Community 73 - "wizardGuardar"
+Cohesion: 0.50
+Nodes (4): cargarCarpetasConfig(), cerrarWizardCarpetas(), formatearRango(), wizardGuardar()
+
 ## Knowledge Gaps
-- **224 isolated node(s):** `docker-entrypoint.sh script`, `fs`, `fs`, `crypto`, `fs` (+219 more)
+- **229 isolated node(s):** `docker-entrypoint.sh script`, `fs`, `fs`, `crypto`, `fs` (+224 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **23 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **24 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `g()` connect `worker.min.js` to `carpetasConfigValida`, `esDesktop`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
-  _High betweenness centrality (0.204) - this node is a cross-community bridge._
+  _High betweenness centrality (0.202) - this node is a cross-community bridge._
 - **Why does `a()` connect `worker.min.js` to `p`, `A`, `A`, `qb`, `qb`, `p`?**
-  _High betweenness centrality (0.184) - this node is a cross-community bridge._
-- **Why does `A()` connect `A` to `worker.min.js`, `tesseract-core-lstm.wasm.js`, `L`, `Q`, `J`, `K`, `kb`, `qb`, `Lh`, `di`, `d`, `p`?**
+  _High betweenness centrality (0.182) - this node is a cross-community bridge._
+- **Why does `A()` connect `A` to `worker.min.js`, `tesseract-core-lstm.wasm.js`, `Q`, `J`, `ji`, `K`, `kb`, `qb`, `Lh`, `di`, `d`, `p`?**
   _High betweenness centrality (0.094) - this node is a cross-community bridge._
 - **What connects `docker-entrypoint.sh script`, `fs`, `fs` to the rest of the system?**
-  _224 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _229 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
   _Cohesion score 0.04915824915824916 - nodes in this community are weakly interconnected._
 - **Should `O` be split into smaller, more focused modules?**
-  _Cohesion score 0.04964539007092199 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09686609686609686 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05405405405405406 - nodes in this community are weakly interconnected._

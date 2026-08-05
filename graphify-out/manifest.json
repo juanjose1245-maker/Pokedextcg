@@ -243,5 +243,10 @@
     "mtime": 1785890957.2704782,
     "ast_hash": "608ec6b0b95b33131e43481c2436d95f",
     "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-08-04-wizard-login-variantes-design.md": {
+    "mtime": 1785892618.2468445,
+    "ast_hash": "d110bbb2ab33a2045dbfed1173ab91b4",
+    "semantic_hash": ""
   }
 }

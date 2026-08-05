@@ -502,8 +502,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "public_app_formatearrango",
-      "community": 17,
-      "community_name": "wizardCapacidadSiguiente",
+      "community": 73,
+      "community_name": "wizardGuardar",
       "norm_label": "formatearrango()"
     },
     {
@@ -524,8 +524,8 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "public_app_cargarcarpetasconfig",
-      "community": 17,
-      "community_name": "wizardCapacidadSiguiente",
+      "community": 73,
+      "community_name": "wizardGuardar",
       "norm_label": "cargarcarpetasconfig()"
     },
     {
@@ -865,8 +865,8 @@
       "source_location": "L423",
       "_origin": "ast",
       "id": "public_app_fetchgensegura",
-      "community": 15,
-      "community_name": "mostrarToastError",
+      "community": 13,
+      "community_name": "esDesktop",
       "norm_label": "fetchgensegura()"
     },
     {
@@ -1041,8 +1041,8 @@
       "source_location": "L748",
       "_origin": "ast",
       "id": "public_app_obtenertodospokemon",
-      "community": 15,
-      "community_name": "mostrarToastError",
+      "community": 13,
+      "community_name": "esDesktop",
       "norm_label": "obtenertodospokemon()"
     },
     {
@@ -1558,8 +1558,8 @@
       "source_location": "L1701",
       "_origin": "ast",
       "id": "public_app_togglecategoriavariante",
-      "community": 13,
-      "community_name": "esDesktop",
+      "community": 15,
+      "community_name": "mostrarToastError",
       "norm_label": "togglecategoriavariante()"
     },
     {
@@ -1679,8 +1679,8 @@
       "source_location": "L1840",
       "_origin": "ast",
       "id": "public_app_cerrarwizardcarpetas",
-      "community": 13,
-      "community_name": "esDesktop",
+      "community": 73,
+      "community_name": "wizardGuardar",
       "norm_label": "cerrarwizardcarpetas()"
     },
     {
@@ -1932,8 +1932,8 @@
       "source_location": "L2111",
       "_origin": "ast",
       "id": "public_app_wizardguardar",
-      "community": 13,
-      "community_name": "esDesktop",
+      "community": 73,
+      "community_name": "wizardGuardar",
       "norm_label": "wizardguardar()"
     },
     {
@@ -2845,8 +2845,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh",
-      "community": 12,
-      "community_name": "ji",
+      "community": 77,
+      "community_name": "Sh",
       "norm_label": "sh()"
     },
     {
@@ -2856,8 +2856,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_destroy",
-      "community": 12,
-      "community_name": "ji",
+      "community": 77,
+      "community_name": "Sh",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3153,8 +3153,8 @@
       "source_location": "L206",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_blockpolygon",
-      "community": 12,
-      "community_name": "ji",
+      "community": 75,
+      "community_name": "M",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -3285,8 +3285,8 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_wordfontattributes",
-      "community": 7,
-      "community_name": "L",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": ".wordfontattributes()"
     },
     {
@@ -3494,8 +3494,8 @@
       "source_location": "L214",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o",
-      "community": 12,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": "o()"
     },
     {
@@ -3505,8 +3505,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_begin",
-      "community": 12,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".begin()"
     },
     {
@@ -3516,8 +3516,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_restartparagraph",
-      "community": 12,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".restartparagraph()"
     },
     {
@@ -3527,8 +3527,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_iswithinfirsttextlineofparagraph",
-      "community": 12,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".iswithinfirsttextlineofparagraph()"
     },
     {
@@ -3538,8 +3538,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_restartrow",
-      "community": 12,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".restartrow()"
     },
     {
@@ -3549,8 +3549,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_next",
-      "community": 12,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".next()"
     },
     {
@@ -3560,8 +3560,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_isatbeginningof",
-      "community": 12,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".isatbeginningof()"
     },
     {
@@ -3571,8 +3571,8 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_isatfinalelement",
-      "community": 12,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".isatfinalelement()"
     },
     {
@@ -3582,8 +3582,8 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_cmp",
-      "community": 12,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".cmp()"
     },
     {
@@ -3593,8 +3593,8 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_setboundingboxcomponents",
-      "community": 12,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".setboundingboxcomponents()"
     },
     {
@@ -3615,8 +3615,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_boundingboxinternal",
-      "community": 12,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".boundingboxinternal()"
     },
     {
@@ -3626,8 +3626,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_empty",
-      "community": 12,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".empty()"
     },
     {
@@ -3637,8 +3637,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_blocktype",
-      "community": 12,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".blocktype()"
     },
     {
@@ -3648,8 +3648,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_blockpolygon",
-      "community": 12,
-      "community_name": "ji",
+      "community": 75,
+      "community_name": "M",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -3692,8 +3692,8 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_orientation",
-      "community": 12,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".orientation()"
     },
     {
@@ -3703,8 +3703,8 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_paragraphinfo",
-      "community": 12,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".paragraphinfo()"
     },
     {
@@ -3714,8 +3714,8 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_destroy",
-      "community": 12,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3912,8 +3912,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai",
-      "community": 12,
-      "community_name": "ji",
+      "community": 76,
+      "community_name": "ai",
       "norm_label": "ai()"
     },
     {
@@ -3923,8 +3923,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai_destroy",
-      "community": 12,
-      "community_name": "ji",
+      "community": 76,
+      "community_name": "ai",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4066,8 +4066,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei",
-      "community": 12,
-      "community_name": "ji",
+      "community": 74,
+      "community_name": "ei",
       "norm_label": "ei()"
     },
     {
@@ -4077,8 +4077,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei_destroy",
-      "community": 12,
-      "community_name": "ji",
+      "community": 74,
+      "community_name": "ei",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4165,8 +4165,8 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_m",
-      "community": 12,
-      "community_name": "ji",
+      "community": 75,
+      "community_name": "M",
       "norm_label": "m()"
     },
     {
@@ -4176,8 +4176,8 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_m_destroy",
-      "community": 12,
-      "community_name": "ji",
+      "community": 75,
+      "community_name": "M",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4693,8 +4693,8 @@
       "source_location": "L254",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_v_analyselayout",
-      "community": 12,
-      "community_name": "ji",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".analyselayout()"
     },
     {
@@ -4847,8 +4847,8 @@
       "source_location": "L258",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_v_allwordconfidences",
-      "community": 12,
-      "community_name": "ji",
+      "community": 74,
+      "community_name": "ei",
       "norm_label": ".allwordconfidences()"
     },
     {
@@ -5045,8 +5045,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_getvalue",
-      "community": 12,
-      "community_name": "ji",
+      "community": 77,
+      "community_name": "Sh",
       "norm_label": ".getvalue()"
     },
     {
@@ -5056,8 +5056,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei_getvalue",
-      "community": 12,
-      "community_name": "ji",
+      "community": 74,
+      "community_name": "ei",
       "norm_label": ".getvalue()"
     },
     {
@@ -5067,8 +5067,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai_getvalue",
-      "community": 12,
-      "community_name": "ji",
+      "community": 76,
+      "community_name": "ai",
       "norm_label": ".getvalue()"
     },
     {
@@ -5210,8 +5210,8 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getwordfontattributes",
-      "community": 7,
-      "community_name": "L",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": ".getwordfontattributes()"
     },
     {
@@ -6189,8 +6189,8 @@
       "source_location": "L206",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_blockpolygon",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -6233,8 +6233,8 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_rowattributes",
-      "community": 2,
-      "community_name": "O",
+      "community": 9,
+      "community_name": "L",
       "norm_label": ".rowattributes()"
     },
     {
@@ -6321,8 +6321,8 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_wordfontattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 2,
+      "community_name": "O",
       "norm_label": ".wordfontattributes()"
     },
     {
@@ -6530,8 +6530,8 @@
       "source_location": "L214",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": "o()"
     },
     {
@@ -6541,8 +6541,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_begin",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".begin()"
     },
     {
@@ -6552,8 +6552,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_restartparagraph",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".restartparagraph()"
     },
     {
@@ -6563,8 +6563,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_iswithinfirsttextlineofparagraph",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".iswithinfirsttextlineofparagraph()"
     },
     {
@@ -6574,8 +6574,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_restartrow",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".restartrow()"
     },
     {
@@ -6585,8 +6585,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_next",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".next()"
     },
     {
@@ -6596,8 +6596,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_isatbeginningof",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".isatbeginningof()"
     },
     {
@@ -6607,8 +6607,8 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_isatfinalelement",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".isatfinalelement()"
     },
     {
@@ -6618,8 +6618,8 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_cmp",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".cmp()"
     },
     {
@@ -6629,8 +6629,8 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_setboundingboxcomponents",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".setboundingboxcomponents()"
     },
     {
@@ -6651,8 +6651,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_boundingboxinternal",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".boundingboxinternal()"
     },
     {
@@ -6662,8 +6662,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_empty",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".empty()"
     },
     {
@@ -6673,8 +6673,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_blocktype",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".blocktype()"
     },
     {
@@ -6684,8 +6684,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_blockpolygon",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -6728,8 +6728,8 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_orientation",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".orientation()"
     },
     {
@@ -6739,8 +6739,8 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_paragraphinfo",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".paragraphinfo()"
     },
     {
@@ -6750,8 +6750,8 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_destroy",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".__destroy__()"
     },
     {
@@ -6849,8 +6849,8 @@
       "source_location": "L224",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q",
-      "community": 48,
-      "community_name": "Q",
+      "community": 18,
+      "community_name": "J",
       "norm_label": "q()"
     },
     {
@@ -6860,8 +6860,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_begindocument",
-      "community": 48,
-      "community_name": "Q",
+      "community": 18,
+      "community_name": "J",
       "norm_label": ".begindocument()"
     },
     {
@@ -6871,8 +6871,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_addimage",
-      "community": 48,
-      "community_name": "Q",
+      "community": 18,
+      "community_name": "J",
       "norm_label": ".addimage()"
     },
     {
@@ -6882,8 +6882,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_enddocument",
-      "community": 48,
-      "community_name": "Q",
+      "community": 18,
+      "community_name": "J",
       "norm_label": ".enddocument()"
     },
     {
@@ -6893,8 +6893,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_happy",
-      "community": 48,
-      "community_name": "Q",
+      "community": 18,
+      "community_name": "J",
       "norm_label": ".happy()"
     },
     {
@@ -6904,8 +6904,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_file_extension",
-      "community": 48,
-      "community_name": "Q",
+      "community": 18,
+      "community_name": "J",
       "norm_label": ".file_extension()"
     },
     {
@@ -6915,8 +6915,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_imagenum",
-      "community": 48,
-      "community_name": "Q",
+      "community": 18,
+      "community_name": "J",
       "norm_label": ".imagenum()"
     },
     {
@@ -6926,8 +6926,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_destroy",
-      "community": 48,
-      "community_name": "Q",
+      "community": 18,
+      "community_name": "J",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7201,8 +7201,8 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_m",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": "m()"
     },
     {
@@ -7212,8 +7212,8 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_m_destroy",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7267,8 +7267,8 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ii",
-      "community": 64,
-      "community_name": "ii",
+      "community": 5,
+      "community_name": "V",
       "norm_label": "ii()"
     },
     {
@@ -7278,8 +7278,8 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ii_destroy",
-      "community": 64,
-      "community_name": "ii",
+      "community": 5,
+      "community_name": "V",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7729,8 +7729,8 @@
       "source_location": "L254",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_v_analyselayout",
-      "community": 2,
-      "community_name": "O",
+      "community": 47,
+      "community_name": "N",
       "norm_label": ".analyselayout()"
     },
     {
@@ -7982,8 +7982,8 @@
       "source_location": "L259",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_v_getdawg",
-      "community": 64,
-      "community_name": "ii",
+      "community": 5,
+      "community_name": "V",
       "norm_label": ".getdawg()"
     },
     {
@@ -8235,8 +8235,8 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_getrowattributes",
-      "community": 2,
-      "community_name": "O",
+      "community": 9,
+      "community_name": "L",
       "norm_label": ".getrowattributes()"
     },
     {
@@ -8246,8 +8246,8 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_getwordfontattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 2,
+      "community_name": "O",
       "norm_label": ".getwordfontattributes()"
     },
     {
@@ -11633,6 +11633,83 @@
       "id": "docs_superpowers_specs_2026_08_03_docker_self_hosting_design_testing",
       "community": 29,
       "community_name": "Empaquetar la app en Docker para que otros la auto-hosteen",
+      "norm_label": "testing"
+    },
+    {
+      "label": "2026-08-04-wizard-login-variantes-design.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-04-wizard-login-variantes-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design",
+      "community": 64,
+      "community_name": "ii",
+      "norm_label": "2026-08-04-wizard-login-variantes-design.md"
+    },
+    {
+      "label": "Login y variantes como primeros pasos del wizard de carpetas",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-04-wizard-login-variantes-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design_login_y_variantes_como_primeros_pasos_del_wizard_de_carpetas",
+      "community": 64,
+      "community_name": "ii",
+      "norm_label": "login y variantes como primeros pasos del wizard de carpetas"
+    },
+    {
+      "label": "Contexto",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-04-wizard-login-variantes-design.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design_contexto",
+      "community": 64,
+      "community_name": "ii",
+      "norm_label": "contexto"
+    },
+    {
+      "label": "Login como gate de apertura, no como paso nuevo",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-04-wizard-login-variantes-design.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design_login_como_gate_de_apertura_no_como_paso_nuevo",
+      "community": 64,
+      "community_name": "ii",
+      "norm_label": "login como gate de apertura, no como paso nuevo"
+    },
+    {
+      "label": "Nuevo paso \"variantes\"",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-04-wizard-login-variantes-design.md",
+      "source_location": "L65",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design_nuevo_paso_variantes",
+      "community": 64,
+      "community_name": "ii",
+      "norm_label": "nuevo paso \"variantes\""
+    },
+    {
+      "label": "Fuera de alcance",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-04-wizard-login-variantes-design.md",
+      "source_location": "L116",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design_fuera_de_alcance",
+      "community": 64,
+      "community_name": "ii",
+      "norm_label": "fuera de alcance"
+    },
+    {
+      "label": "Testing",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-04-wizard-login-variantes-design.md",
+      "source_location": "L129",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design_testing",
+      "community": 64,
+      "community_name": "ii",
       "norm_label": "testing"
     },
     {
@@ -34140,6 +34217,72 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-04-wizard-login-variantes-design.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design",
+      "target": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design_login_y_variantes_como_primeros_pasos_del_wizard_de_carpetas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-04-wizard-login-variantes-design.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design_login_y_variantes_como_primeros_pasos_del_wizard_de_carpetas",
+      "target": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design_contexto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-04-wizard-login-variantes-design.md",
+      "source_location": "L116",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design_login_y_variantes_como_primeros_pasos_del_wizard_de_carpetas",
+      "target": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design_fuera_de_alcance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-04-wizard-login-variantes-design.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design_login_y_variantes_como_primeros_pasos_del_wizard_de_carpetas",
+      "target": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design_login_como_gate_de_apertura_no_como_paso_nuevo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-04-wizard-login-variantes-design.md",
+      "source_location": "L65",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design_login_y_variantes_como_primeros_pasos_del_wizard_de_carpetas",
+      "target": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design_nuevo_paso_variantes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-04-wizard-login-variantes-design.md",
+      "source_location": "L129",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design_login_y_variantes_como_primeros_pasos_del_wizard_de_carpetas",
+      "target": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design_testing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/variantes-criterio-investigacion.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -34216,5 +34359,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "e5a3e08d0489ad57c5acd0657f72797394c338e5"
+  "built_at_commit": "6f3f24e2aa44c780b4233417ddf08986c0fe2a73"
 }

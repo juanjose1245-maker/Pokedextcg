@@ -3,6 +3,7 @@ backups/
 cache/
 data/
 inventario.json
+admin-password.json
 .superpowers/
 .worktrees/
 graphify-out/cache/

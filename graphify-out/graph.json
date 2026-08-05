@@ -2207,8 +2207,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_xa",
-      "community": 31,
-      "community_name": "p",
+      "community": 11,
+      "community_name": "J",
       "norm_label": "xa()"
     },
     {
@@ -2251,8 +2251,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_p",
-      "community": 31,
-      "community_name": "p",
+      "community": 11,
+      "community_name": "J",
       "norm_label": "p()"
     },
     {
@@ -2328,8 +2328,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ta",
-      "community": 51,
-      "community_name": "kb",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "ta()"
     },
     {
@@ -2339,8 +2339,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ua",
-      "community": 51,
-      "community_name": "kb",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "ua()"
     },
     {
@@ -2372,8 +2372,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ya",
-      "community": 31,
-      "community_name": "p",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": "ya()"
     },
     {
@@ -2427,8 +2427,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_gb",
-      "community": 31,
-      "community_name": "p",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "gb()"
     },
     {
@@ -2438,8 +2438,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hb",
-      "community": 31,
-      "community_name": "p",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "hb()"
     },
     {
@@ -2471,8 +2471,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_kb",
-      "community": 51,
-      "community_name": "kb",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "kb()"
     },
     {
@@ -2636,8 +2636,8 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ab",
-      "community": 51,
-      "community_name": "kb",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "ab()"
     },
     {
@@ -2647,8 +2647,8 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_db",
-      "community": 51,
-      "community_name": "kb",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "db()"
     },
     {
@@ -2658,8 +2658,8 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_eb",
-      "community": 51,
-      "community_name": "kb",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "eb()"
     },
     {
@@ -2680,8 +2680,8 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_nb",
-      "community": 51,
-      "community_name": "kb",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "nb()"
     },
     {
@@ -2856,8 +2856,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh",
-      "community": 84,
-      "community_name": "Sh",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": "sh()"
     },
     {
@@ -2867,8 +2867,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_destroy",
-      "community": 84,
-      "community_name": "Sh",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": ".__destroy__()"
     },
     {
@@ -2966,8 +2966,8 @@
       "source_location": "L202",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_th",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": "th()"
     },
     {
@@ -2977,8 +2977,8 @@
       "source_location": "L202",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_th_destroy",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3164,8 +3164,8 @@
       "source_location": "L206",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_blockpolygon",
-      "community": 80,
-      "community_name": "M",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -3208,7 +3208,7 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_rowattributes",
-      "community": 76,
+      "community": 12,
       "community_name": "ji",
       "norm_label": ".rowattributes()"
     },
@@ -3461,8 +3461,8 @@
       "source_location": "L213",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_wh",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 51,
+      "community_name": "kb",
       "norm_label": "wh()"
     },
     {
@@ -3472,8 +3472,8 @@
       "source_location": "L214",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_wh_destroy",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 51,
+      "community_name": "kb",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3483,8 +3483,8 @@
       "source_location": "L214",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_xh",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 74,
+      "community_name": "ei",
       "norm_label": "xh()"
     },
     {
@@ -3494,8 +3494,8 @@
       "source_location": "L214",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_xh_destroy",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 74,
+      "community_name": "ei",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3615,7 +3615,7 @@
       "source_location": "L217",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_boundingbox",
-      "community": 76,
+      "community": 12,
       "community_name": "ji",
       "norm_label": ".boundingbox()"
     },
@@ -3659,8 +3659,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_blockpolygon",
-      "community": 80,
-      "community_name": "M",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -3692,7 +3692,7 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_baseline",
-      "community": 76,
+      "community": 12,
       "community_name": "ji",
       "norm_label": ".baseline()"
     },
@@ -3736,8 +3736,8 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_yh",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 76,
+      "community_name": "ji",
       "norm_label": "yh()"
     },
     {
@@ -3747,8 +3747,8 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_yh_destroy",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 76,
+      "community_name": "ji",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3813,8 +3813,8 @@
       "source_location": "L224",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_p_destroy",
-      "community": 31,
-      "community_name": "p",
+      "community": 11,
+      "community_name": "J",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3923,8 +3923,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai",
-      "community": 83,
-      "community_name": "ai",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": "ai()"
     },
     {
@@ -3934,8 +3934,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai_destroy",
-      "community": 83,
-      "community_name": "ai",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4077,8 +4077,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei",
-      "community": 79,
-      "community_name": "ei",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": "ei()"
     },
     {
@@ -4088,8 +4088,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei_destroy",
-      "community": 79,
-      "community_name": "ei",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4176,8 +4176,8 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_m",
-      "community": 80,
-      "community_name": "M",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": "m()"
     },
     {
@@ -4187,8 +4187,8 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_m_destroy",
-      "community": 80,
-      "community_name": "M",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4220,8 +4220,8 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi",
-      "community": 78,
-      "community_name": "hi",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": "hi()"
     },
     {
@@ -4231,8 +4231,8 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi_destroy",
-      "community": 78,
-      "community_name": "hi",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4858,8 +4858,8 @@
       "source_location": "L258",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_v_allwordconfidences",
-      "community": 79,
-      "community_name": "ei",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": ".allwordconfidences()"
     },
     {
@@ -5056,8 +5056,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_getvalue",
-      "community": 84,
-      "community_name": "Sh",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": ".getvalue()"
     },
     {
@@ -5067,8 +5067,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei_getvalue",
-      "community": 79,
-      "community_name": "ei",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": ".getvalue()"
     },
     {
@@ -5078,8 +5078,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai_getvalue",
-      "community": 83,
-      "community_name": "ai",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": ".getvalue()"
     },
     {
@@ -5089,8 +5089,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi_getvalue",
-      "community": 78,
-      "community_name": "hi",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": ".getvalue()"
     },
     {
@@ -5100,7 +5100,7 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji",
-      "community": 76,
+      "community": 12,
       "community_name": "ji",
       "norm_label": "ji()"
     },
@@ -5111,7 +5111,7 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_wrap",
-      "community": 76,
+      "community": 12,
       "community_name": "ji",
       "norm_label": ".wrap()"
     },
@@ -5122,7 +5122,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_bool",
-      "community": 76,
+      "community": 12,
       "community_name": "ji",
       "norm_label": ".bool()"
     },
@@ -5133,7 +5133,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_i32",
-      "community": 76,
+      "community": 12,
       "community_name": "ji",
       "norm_label": ".i32()"
     },
@@ -5144,7 +5144,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_f32",
-      "community": 76,
+      "community": 12,
       "community_name": "ji",
       "norm_label": ".f32()"
     },
@@ -5155,8 +5155,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_f64",
-      "community": 78,
-      "community_name": "hi",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": ".f64()"
     },
     {
@@ -5166,8 +5166,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_peek",
-      "community": 78,
-      "community_name": "hi",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": ".peek()"
     },
     {
@@ -5177,7 +5177,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_get",
-      "community": 76,
+      "community": 12,
       "community_name": "ji",
       "norm_label": ".get()"
     },
@@ -5188,7 +5188,7 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getboundingbox",
-      "community": 76,
+      "community": 12,
       "community_name": "ji",
       "norm_label": ".getboundingbox()"
     },
@@ -5199,7 +5199,7 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getbaseline",
-      "community": 76,
+      "community": 12,
       "community_name": "ji",
       "norm_label": ".getbaseline()"
     },
@@ -5210,7 +5210,7 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getrowattributes",
-      "community": 76,
+      "community": 12,
       "community_name": "ji",
       "norm_label": ".getrowattributes()"
     },
@@ -5408,8 +5408,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ya",
-      "community": 2,
-      "community_name": "O",
+      "community": 33,
+      "community_name": "p",
       "norm_label": "ya()"
     },
     {
@@ -5892,8 +5892,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_sh",
-      "community": 86,
-      "community_name": "Sh",
+      "community": 2,
+      "community_name": "O",
       "norm_label": "sh()"
     },
     {
@@ -5903,8 +5903,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_sh_destroy",
-      "community": 86,
-      "community_name": "Sh",
+      "community": 2,
+      "community_name": "O",
       "norm_label": ".__destroy__()"
     },
     {
@@ -6200,8 +6200,8 @@
       "source_location": "L206",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_blockpolygon",
-      "community": 82,
-      "community_name": "M",
+      "community": 75,
+      "community_name": "O",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -6211,8 +6211,8 @@
       "source_location": "L207",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_getbinaryimage",
-      "community": 47,
-      "community_name": "N",
+      "community": 75,
+      "community_name": "O",
       "norm_label": ".getbinaryimage()"
     },
     {
@@ -6222,8 +6222,8 @@
       "source_location": "L207",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_getimage",
-      "community": 47,
-      "community_name": "N",
+      "community": 75,
+      "community_name": "O",
       "norm_label": ".getimage()"
     },
     {
@@ -6244,8 +6244,8 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_rowattributes",
-      "community": 2,
-      "community_name": "O",
+      "community": 9,
+      "community_name": "L",
       "norm_label": ".rowattributes()"
     },
     {
@@ -6695,8 +6695,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_blockpolygon",
-      "community": 82,
-      "community_name": "M",
+      "community": 75,
+      "community_name": "O",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -6706,8 +6706,8 @@
       "source_location": "L219",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_getbinaryimage",
-      "community": 47,
-      "community_name": "N",
+      "community": 75,
+      "community_name": "O",
       "norm_label": ".getbinaryimage()"
     },
     {
@@ -6717,8 +6717,8 @@
       "source_location": "L219",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_getimage",
-      "community": 47,
-      "community_name": "N",
+      "community": 75,
+      "community_name": "O",
       "norm_label": ".getimage()"
     },
     {
@@ -6860,8 +6860,8 @@
       "source_location": "L224",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q",
-      "community": 48,
-      "community_name": "Q",
+      "community": 18,
+      "community_name": "J",
       "norm_label": "q()"
     },
     {
@@ -6871,8 +6871,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_begindocument",
-      "community": 48,
-      "community_name": "Q",
+      "community": 18,
+      "community_name": "J",
       "norm_label": ".begindocument()"
     },
     {
@@ -6882,8 +6882,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_addimage",
-      "community": 48,
-      "community_name": "Q",
+      "community": 18,
+      "community_name": "J",
       "norm_label": ".addimage()"
     },
     {
@@ -6893,8 +6893,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_enddocument",
-      "community": 48,
-      "community_name": "Q",
+      "community": 18,
+      "community_name": "J",
       "norm_label": ".enddocument()"
     },
     {
@@ -6904,8 +6904,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_happy",
-      "community": 48,
-      "community_name": "Q",
+      "community": 18,
+      "community_name": "J",
       "norm_label": ".happy()"
     },
     {
@@ -6915,8 +6915,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_file_extension",
-      "community": 48,
-      "community_name": "Q",
+      "community": 18,
+      "community_name": "J",
       "norm_label": ".file_extension()"
     },
     {
@@ -6926,8 +6926,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_imagenum",
-      "community": 48,
-      "community_name": "Q",
+      "community": 18,
+      "community_name": "J",
       "norm_label": ".imagenum()"
     },
     {
@@ -6937,8 +6937,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_destroy",
-      "community": 48,
-      "community_name": "Q",
+      "community": 18,
+      "community_name": "J",
       "norm_label": ".__destroy__()"
     },
     {
@@ -6959,8 +6959,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ai",
-      "community": 85,
-      "community_name": "ai",
+      "community": 2,
+      "community_name": "O",
       "norm_label": "ai()"
     },
     {
@@ -6970,8 +6970,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ai_destroy",
-      "community": 85,
-      "community_name": "ai",
+      "community": 2,
+      "community_name": "O",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7113,8 +7113,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ei",
-      "community": 81,
-      "community_name": "ei",
+      "community": 2,
+      "community_name": "O",
       "norm_label": "ei()"
     },
     {
@@ -7124,8 +7124,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ei_destroy",
-      "community": 81,
-      "community_name": "ei",
+      "community": 2,
+      "community_name": "O",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7212,8 +7212,8 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_m",
-      "community": 82,
-      "community_name": "M",
+      "community": 75,
+      "community_name": "O",
       "norm_label": "m()"
     },
     {
@@ -7223,8 +7223,8 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_m_destroy",
-      "community": 82,
-      "community_name": "M",
+      "community": 75,
+      "community_name": "O",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7234,8 +7234,8 @@
       "source_location": "L237",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_n",
-      "community": 47,
-      "community_name": "N",
+      "community": 75,
+      "community_name": "O",
       "norm_label": "n()"
     },
     {
@@ -7245,8 +7245,8 @@
       "source_location": "L240",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_n_destroy",
-      "community": 47,
-      "community_name": "N",
+      "community": 75,
+      "community_name": "O",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7278,8 +7278,8 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ii",
-      "community": 74,
-      "community_name": "ei",
+      "community": 5,
+      "community_name": "V",
       "norm_label": "ii()"
     },
     {
@@ -7289,8 +7289,8 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ii_destroy",
-      "community": 74,
-      "community_name": "ei",
+      "community": 5,
+      "community_name": "V",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7377,8 +7377,8 @@
       "source_location": "L243",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_v_getinputimage",
-      "community": 47,
-      "community_name": "N",
+      "community": 75,
+      "community_name": "O",
       "norm_label": ".getinputimage()"
     },
     {
@@ -7641,8 +7641,8 @@
       "source_location": "L250",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_v_getthresholdedimage",
-      "community": 47,
-      "community_name": "N",
+      "community": 75,
+      "community_name": "O",
       "norm_label": ".getthresholdedimage()"
     },
     {
@@ -7894,8 +7894,8 @@
       "source_location": "L258",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_v_allwordconfidences",
-      "community": 81,
-      "community_name": "ei",
+      "community": 2,
+      "community_name": "O",
       "norm_label": ".allwordconfidences()"
     },
     {
@@ -7993,8 +7993,8 @@
       "source_location": "L259",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_v_getdawg",
-      "community": 74,
-      "community_name": "ei",
+      "community": 5,
+      "community_name": "V",
       "norm_label": ".getdawg()"
     },
     {
@@ -8092,8 +8092,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_sh_getvalue",
-      "community": 86,
-      "community_name": "Sh",
+      "community": 2,
+      "community_name": "O",
       "norm_label": ".getvalue()"
     },
     {
@@ -8103,8 +8103,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ei_getvalue",
-      "community": 81,
-      "community_name": "ei",
+      "community": 2,
+      "community_name": "O",
       "norm_label": ".getvalue()"
     },
     {
@@ -8114,8 +8114,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ai_getvalue",
-      "community": 85,
-      "community_name": "ai",
+      "community": 2,
+      "community_name": "O",
       "norm_label": ".getvalue()"
     },
     {
@@ -8246,8 +8246,8 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_getrowattributes",
-      "community": 2,
-      "community_name": "O",
+      "community": 9,
+      "community_name": "L",
       "norm_label": ".getrowattributes()"
     },
     {
@@ -11710,6 +11710,116 @@
       "id": "docs_superpowers_specs_2026_08_03_docker_self_hosting_design_testing",
       "community": 29,
       "community_name": "Empaquetar la app en Docker para que otros la auto-hosteen",
+      "norm_label": "testing"
+    },
+    {
+      "label": "2026-08-04-definir-password-primer-uso-design.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design",
+      "community": 47,
+      "community_name": "N",
+      "norm_label": "2026-08-04-definir-password-primer-uso-design.md"
+    },
+    {
+      "label": "Definir contrase\u00f1a en el primer uso (reemplaza ADMIN_PASSWORD)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_definir_contrase\u00f1a_en_el_primer_uso_reemplaza_admin_password",
+      "community": 47,
+      "community_name": "N",
+      "norm_label": "definir contrasena en el primer uso (reemplaza admin_password)"
+    },
+    {
+      "label": "Contexto",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_contexto",
+      "community": 47,
+      "community_name": "N",
+      "norm_label": "contexto"
+    },
+    {
+      "label": "Almacenamiento: hash persistido en `DATA_DIR`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_almacenamiento_hash_persistido_en_data_dir",
+      "community": 47,
+      "community_name": "N",
+      "norm_label": "almacenamiento: hash persistido en `data_dir`"
+    },
+    {
+      "label": "Migraci\u00f3n autom\u00e1tica al arrancar",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_migraci\u00f3n_autom\u00e1tica_al_arrancar",
+      "community": 47,
+      "community_name": "N",
+      "norm_label": "migracion automatica al arrancar"
+    },
+    {
+      "label": "Endpoints nuevos",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L78",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_endpoints_nuevos",
+      "community": 47,
+      "community_name": "N",
+      "norm_label": "endpoints nuevos"
+    },
+    {
+      "label": "Cliente: el modal de login con dos modos",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L123",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_cliente_el_modal_de_login_con_dos_modos",
+      "community": 47,
+      "community_name": "N",
+      "norm_label": "cliente: el modal de login con dos modos"
+    },
+    {
+      "label": "Docker",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L142",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_docker",
+      "community": 47,
+      "community_name": "N",
+      "norm_label": "docker"
+    },
+    {
+      "label": "Fuera de alcance",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L163",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_fuera_de_alcance",
+      "community": 47,
+      "community_name": "N",
+      "norm_label": "fuera de alcance"
+    },
+    {
+      "label": "Testing",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L176",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_testing",
+      "community": 47,
+      "community_name": "N",
       "norm_label": "testing"
     },
     {
@@ -34396,6 +34506,105 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design",
+      "target": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_definir_contrase\u00f1a_en_el_primer_uso_reemplaza_admin_password",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L24",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_definir_contrase\u00f1a_en_el_primer_uso_reemplaza_admin_password",
+      "target": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_almacenamiento_hash_persistido_en_data_dir",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L123",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_definir_contrase\u00f1a_en_el_primer_uso_reemplaza_admin_password",
+      "target": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_cliente_el_modal_de_login_con_dos_modos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_definir_contrase\u00f1a_en_el_primer_uso_reemplaza_admin_password",
+      "target": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_contexto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L142",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_definir_contrase\u00f1a_en_el_primer_uso_reemplaza_admin_password",
+      "target": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_docker",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L78",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_definir_contrase\u00f1a_en_el_primer_uso_reemplaza_admin_password",
+      "target": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_endpoints_nuevos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L163",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_definir_contrase\u00f1a_en_el_primer_uso_reemplaza_admin_password",
+      "target": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_fuera_de_alcance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L52",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_definir_contrase\u00f1a_en_el_primer_uso_reemplaza_admin_password",
+      "target": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_migraci\u00f3n_autom\u00e1tica_al_arrancar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md",
+      "source_location": "L176",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_definir_contrase\u00f1a_en_el_primer_uso_reemplaza_admin_password",
+      "target": "docs_superpowers_specs_2026_08_04_definir_password_primer_uso_design_testing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/superpowers/specs/2026-08-04-wizard-login-variantes-design.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -34538,5 +34747,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "cb79ee194285041fb775dd61e9dc0df291781052"
+  "built_at_commit": "bb1e73d7a2e1b02f122b3a2d7e03315db874b4e5"
 }

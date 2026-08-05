@@ -253,5 +253,10 @@
     "mtime": 1785892772.7610276,
     "ast_hash": "c66694f710e1d888a6e61eb1ba6939f6",
     "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md": {
+    "mtime": 1785904242.1903055,
+    "ast_hash": "cd4722e399f0383847b591214ead1423",
+    "semantic_hash": ""
   }
 }

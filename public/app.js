@@ -1924,6 +1924,7 @@ let wizardCapacidadesFijas = []; // espacios (hojas × bolsillos) por carpeta, l
 let wizardAsignacion    = {};    // { gen(1-9): numeroDeCarpeta(1..wizardNumCarpetas) } — solo modo separadas
 let wizardGrupos        = [];    // array de arrays de gens — solo modo separadas
 let wizardRangos        = [];    // array de {desde,hasta}|null por carpeta — solo modo seguidas
+let wizardPesoPorId     = {};    // { id(1-1025): 1 + variantes activas ancladas a esa base } — solo modo seguidas, se recalcula en cada wizardCapacidadSiguiente()
 
 function abrirWizardCarpetas() {
     cerrarAjustes();
@@ -2043,7 +2044,7 @@ function wizardActualizarTotalCapacidad() {
     }
 }
 
-function wizardCapacidadSiguiente() {
+async function wizardCapacidadSiguiente() {
     wizardCapacidadesFijas = [...document.querySelectorAll('.wizard-capacidad-fija-input')]
         .sort((a, b) => parseInt(a.dataset.carpeta) - parseInt(b.dataset.carpeta))
         .map(wizardCapacidadDeInput);
@@ -2058,6 +2059,11 @@ function wizardCapacidadSiguiente() {
             mostrarToastError(`Entre todas suman ${total} espacios, y hacen falta ${necesario} para cubrir toda la colección.`);
             return;
         }
+        // wizardCalcularRangos() necesita saber, id por id, cuántos efectivos
+        // (base + variantes activas ancladas ahí) pesa cada uno — si no, corta
+        // los rangos contando 1 por id sin importar las variantes, y una
+        // carpeta puede terminar con más cartas reales de las que declaró.
+        wizardPesoPorId = await wizardCargarPesoPorId();
         wizardRangos = wizardCalcularRangos();
         wizardArmarPasoNombres();
         wizardMostrarPaso('nombres');
@@ -2069,21 +2075,54 @@ function wizardCapacidadSiguiente() {
     wizardMostrarPaso('ajuste');
 }
 
+// Trae, para cada id base 1-1025, cuántos "efectivos" pesa (1 más una unidad
+// por cada variante activa anclada ahí) — así wizardCalcularRangos() puede
+// cortar los rangos por cantidad real de cartas y no por cantidad de ids.
+// /api/buscar?desde=1&hasta=1025 ya devuelve la lista efectiva completa
+// (base + variantes de categorías activas), filtrada por el servidor.
+async function wizardCargarPesoPorId() {
+    const pesos = {};
+    for (let id = 1; id <= 1025; id++) pesos[id] = 1;
+    const lista = await fetchRangoSegura(1, 1025);
+    if (lista) {
+        for (const p of lista) {
+            if (!p.categoria) continue; // especie base: ya cuenta como 1 arriba
+            pesos[p.especieBase] = (pesos[p.especieBase] || 1) + 1;
+        }
+    }
+    return pesos;
+}
+
 // Reparte 1..1025 en rangos contiguos según la capacidad fija de cada
-// carpeta, en orden. La última carpeta siempre termina en 1025 (si le sobra
-// o falta capacidad declarada, ese desajuste se absorbe ahí). Si una carpeta
-// anterior ya consumió todo el rango (capacidades muy dispares), o si a una
-// carpeta (que no sea la última) le tocó una capacidad propia de 0 o menos
-// (input vaciado/en 0), esa carpeta queda en null en vez de un rango vacío o
-// invertido — se descartan al guardar, igual que las carpetas sin
-// generaciones asignadas en modo separadas.
+// carpeta, en orden, contando el peso real de cada id (wizardPesoPorId: 1 +
+// sus variantes activas, no 1 por id a secas) para que una carpeta no
+// termine con más cartas reales de las que declaró. La última carpeta
+// siempre termina en 1025 (si le sobra o falta capacidad declarada, ese
+// desajuste se absorbe ahí). Si una carpeta anterior ya consumió todo el
+// rango (capacidades muy dispares), o si a una carpeta (que no sea la
+// última) le tocó una capacidad propia de 0 o menos (input vaciado/en 0,
+// o menor al peso del primer id disponible), esa carpeta queda en null en
+// vez de un rango vacío o invertido — se descartan al guardar, igual que
+// las carpetas sin generaciones asignadas en modo separadas.
 function wizardCalcularRangos() {
     const rangos = [];
     let desde = 1;
     for (let i = 0; i < wizardNumCarpetas; i++) {
         if (desde > 1025) { rangos.push(null); continue; }
         const esUltima = i === wizardNumCarpetas - 1;
-        const hasta = esUltima ? 1025 : Math.min(1025, desde + wizardCapacidadesFijas[i] - 1);
+        let hasta;
+        if (esUltima) {
+            hasta = 1025;
+        } else {
+            let usado = 0;
+            hasta = desde - 1;
+            for (let id = desde; id <= 1025; id++) {
+                const peso = wizardPesoPorId[id] || 1;
+                if (usado + peso > wizardCapacidadesFijas[i]) break;
+                usado += peso;
+                hasta = id;
+            }
+        }
         if (hasta < desde) { rangos.push(null); continue; }
         rangos.push({ desde, hasta });
         desde = hasta + 1;

@@ -2471,8 +2471,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ya",
-      "community": 31,
-      "community_name": "p",
+      "community": 2,
+      "community_name": "O",
       "norm_label": "ya()"
     },
     {
@@ -2955,8 +2955,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh",
-      "community": 2,
-      "community_name": "O",
+      "community": 91,
+      "community_name": "Sh",
       "norm_label": "sh()"
     },
     {
@@ -2966,8 +2966,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_destroy",
-      "community": 2,
-      "community_name": "O",
+      "community": 91,
+      "community_name": "Sh",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3263,8 +3263,8 @@
       "source_location": "L206",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_blockpolygon",
-      "community": 2,
-      "community_name": "O",
+      "community": 89,
+      "community_name": "M",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -3395,8 +3395,8 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_wordfontattributes",
-      "community": 7,
-      "community_name": "L",
+      "community": 2,
+      "community_name": "O",
       "norm_label": ".wordfontattributes()"
     },
     {
@@ -3604,7 +3604,7 @@
       "source_location": "L214",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o",
-      "community": 2,
+      "community": 86,
       "community_name": "O",
       "norm_label": "o()"
     },
@@ -3615,7 +3615,7 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_begin",
-      "community": 2,
+      "community": 86,
       "community_name": "O",
       "norm_label": ".begin()"
     },
@@ -3626,7 +3626,7 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_restartparagraph",
-      "community": 2,
+      "community": 86,
       "community_name": "O",
       "norm_label": ".restartparagraph()"
     },
@@ -3637,7 +3637,7 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_iswithinfirsttextlineofparagraph",
-      "community": 2,
+      "community": 86,
       "community_name": "O",
       "norm_label": ".iswithinfirsttextlineofparagraph()"
     },
@@ -3648,7 +3648,7 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_restartrow",
-      "community": 2,
+      "community": 86,
       "community_name": "O",
       "norm_label": ".restartrow()"
     },
@@ -3659,7 +3659,7 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_next",
-      "community": 2,
+      "community": 86,
       "community_name": "O",
       "norm_label": ".next()"
     },
@@ -3670,7 +3670,7 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_isatbeginningof",
-      "community": 2,
+      "community": 86,
       "community_name": "O",
       "norm_label": ".isatbeginningof()"
     },
@@ -3681,7 +3681,7 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_isatfinalelement",
-      "community": 2,
+      "community": 86,
       "community_name": "O",
       "norm_label": ".isatfinalelement()"
     },
@@ -3692,7 +3692,7 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_cmp",
-      "community": 2,
+      "community": 86,
       "community_name": "O",
       "norm_label": ".cmp()"
     },
@@ -3703,7 +3703,7 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_setboundingboxcomponents",
-      "community": 2,
+      "community": 86,
       "community_name": "O",
       "norm_label": ".setboundingboxcomponents()"
     },
@@ -3725,7 +3725,7 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_boundingboxinternal",
-      "community": 2,
+      "community": 86,
       "community_name": "O",
       "norm_label": ".boundingboxinternal()"
     },
@@ -3736,7 +3736,7 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_empty",
-      "community": 2,
+      "community": 86,
       "community_name": "O",
       "norm_label": ".empty()"
     },
@@ -3747,7 +3747,7 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_blocktype",
-      "community": 2,
+      "community": 86,
       "community_name": "O",
       "norm_label": ".blocktype()"
     },
@@ -3758,8 +3758,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_blockpolygon",
-      "community": 2,
-      "community_name": "O",
+      "community": 89,
+      "community_name": "M",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -3802,7 +3802,7 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_orientation",
-      "community": 2,
+      "community": 86,
       "community_name": "O",
       "norm_label": ".orientation()"
     },
@@ -3813,7 +3813,7 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_paragraphinfo",
-      "community": 2,
+      "community": 86,
       "community_name": "O",
       "norm_label": ".paragraphinfo()"
     },
@@ -3824,7 +3824,7 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_destroy",
-      "community": 2,
+      "community": 86,
       "community_name": "O",
       "norm_label": ".__destroy__()"
     },
@@ -4022,8 +4022,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai",
-      "community": 2,
-      "community_name": "O",
+      "community": 90,
+      "community_name": "ai",
       "norm_label": "ai()"
     },
     {
@@ -4033,8 +4033,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai_destroy",
-      "community": 2,
-      "community_name": "O",
+      "community": 90,
+      "community_name": "ai",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4176,8 +4176,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei",
-      "community": 2,
-      "community_name": "O",
+      "community": 88,
+      "community_name": "ei",
       "norm_label": "ei()"
     },
     {
@@ -4187,8 +4187,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei_destroy",
-      "community": 2,
-      "community_name": "O",
+      "community": 88,
+      "community_name": "ei",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4275,8 +4275,8 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_m",
-      "community": 2,
-      "community_name": "O",
+      "community": 89,
+      "community_name": "M",
       "norm_label": "m()"
     },
     {
@@ -4286,8 +4286,8 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_m_destroy",
-      "community": 2,
-      "community_name": "O",
+      "community": 89,
+      "community_name": "M",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4803,7 +4803,7 @@
       "source_location": "L254",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_v_analyselayout",
-      "community": 2,
+      "community": 86,
       "community_name": "O",
       "norm_label": ".analyselayout()"
     },
@@ -4957,8 +4957,8 @@
       "source_location": "L258",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_v_allwordconfidences",
-      "community": 2,
-      "community_name": "O",
+      "community": 88,
+      "community_name": "ei",
       "norm_label": ".allwordconfidences()"
     },
     {
@@ -5155,8 +5155,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_getvalue",
-      "community": 2,
-      "community_name": "O",
+      "community": 91,
+      "community_name": "Sh",
       "norm_label": ".getvalue()"
     },
     {
@@ -5166,8 +5166,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei_getvalue",
-      "community": 2,
-      "community_name": "O",
+      "community": 88,
+      "community_name": "ei",
       "norm_label": ".getvalue()"
     },
     {
@@ -5177,8 +5177,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai_getvalue",
-      "community": 2,
-      "community_name": "O",
+      "community": 90,
+      "community_name": "ai",
       "norm_label": ".getvalue()"
     },
     {
@@ -5320,8 +5320,8 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getwordfontattributes",
-      "community": 7,
-      "community_name": "L",
+      "community": 2,
+      "community_name": "O",
       "norm_label": ".getwordfontattributes()"
     },
     {
@@ -5507,8 +5507,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ya",
-      "community": 78,
-      "community_name": "O",
+      "community": 33,
+      "community_name": "p",
       "norm_label": "ya()"
     },
     {
@@ -6024,8 +6024,8 @@
       "source_location": "L201",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_k_begindocument",
-      "community": 46,
-      "community_name": "K",
+      "community": 18,
+      "community_name": "J",
       "norm_label": ".begindocument()"
     },
     {
@@ -6970,8 +6970,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_begindocument",
-      "community": 48,
-      "community_name": "Q",
+      "community": 18,
+      "community_name": "J",
       "norm_label": ".begindocument()"
     },
     {
@@ -7179,8 +7179,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_di_get_script_id_from_name",
-      "community": 61,
-      "community_name": "di",
+      "community": 18,
+      "community_name": "J",
       "norm_label": ".get_script_id_from_name()"
     },
     {
@@ -12095,6 +12095,116 @@
       "id": "docs_superpowers_specs_2026_08_04_wizard_login_variantes_design_testing",
       "community": 64,
       "community_name": "ii",
+      "norm_label": "testing"
+    },
+    {
+      "label": "2026-08-05-i18n-espanol-ingles-design.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design",
+      "community": 87,
+      "community_name": "Internacionalizaci\u00f3n: espa\u00f1ol (default) + ingl\u00e9s",
+      "norm_label": "2026-08-05-i18n-espanol-ingles-design.md"
+    },
+    {
+      "label": "Internacionalizaci\u00f3n: espa\u00f1ol (default) + ingl\u00e9s",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_internacionalizaci\u00f3n_espa\u00f1ol_default_ingl\u00e9s",
+      "community": 87,
+      "community_name": "Internacionalizaci\u00f3n: espa\u00f1ol (default) + ingl\u00e9s",
+      "norm_label": "internacionalizacion: espanol (default) + ingles"
+    },
+    {
+      "label": "Contexto",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_contexto",
+      "community": 87,
+      "community_name": "Internacionalizaci\u00f3n: espa\u00f1ol (default) + ingl\u00e9s",
+      "norm_label": "contexto"
+    },
+    {
+      "label": "Diccionario y funci\u00f3n `t()`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_diccionario_y_funci\u00f3n_t",
+      "community": 87,
+      "community_name": "Internacionalizaci\u00f3n: espa\u00f1ol (default) + ingl\u00e9s",
+      "norm_label": "diccionario y funcion `t()`"
+    },
+    {
+      "label": "Texto est\u00e1tico de `index.html`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L75",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_texto_est\u00e1tico_de_index_html",
+      "community": 87,
+      "community_name": "Internacionalizaci\u00f3n: espa\u00f1ol (default) + ingl\u00e9s",
+      "norm_label": "texto estatico de `index.html`"
+    },
+    {
+      "label": "Texto generado por JS (`app.js`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L97",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_texto_generado_por_js_app_js",
+      "community": 87,
+      "community_name": "Internacionalizaci\u00f3n: espa\u00f1ol (default) + ingl\u00e9s",
+      "norm_label": "texto generado por js (`app.js`)"
+    },
+    {
+      "label": "Errores del servidor: de texto a c\u00f3digos",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L118",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_errores_del_servidor_de_texto_a_c\u00f3digos",
+      "community": 87,
+      "community_name": "Internacionalizaci\u00f3n: espa\u00f1ol (default) + ingl\u00e9s",
+      "norm_label": "errores del servidor: de texto a codigos"
+    },
+    {
+      "label": "Selector de idioma en Ajustes",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L137",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_selector_de_idioma_en_ajustes",
+      "community": 87,
+      "community_name": "Internacionalizaci\u00f3n: espa\u00f1ol (default) + ingl\u00e9s",
+      "norm_label": "selector de idioma en ajustes"
+    },
+    {
+      "label": "Fuera de alcance",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L151",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_fuera_de_alcance",
+      "community": 87,
+      "community_name": "Internacionalizaci\u00f3n: espa\u00f1ol (default) + ingl\u00e9s",
+      "norm_label": "fuera de alcance"
+    },
+    {
+      "label": "Testing",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L169",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_testing",
+      "community": 87,
+      "community_name": "Internacionalizaci\u00f3n: espa\u00f1ol (default) + ingl\u00e9s",
       "norm_label": "testing"
     },
     {
@@ -35224,6 +35334,105 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design",
+      "target": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_internacionalizaci\u00f3n_espa\u00f1ol_default_ingl\u00e9s",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_internacionalizaci\u00f3n_espa\u00f1ol_default_ingl\u00e9s",
+      "target": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_contexto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_internacionalizaci\u00f3n_espa\u00f1ol_default_ingl\u00e9s",
+      "target": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_diccionario_y_funci\u00f3n_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L118",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_internacionalizaci\u00f3n_espa\u00f1ol_default_ingl\u00e9s",
+      "target": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_errores_del_servidor_de_texto_a_c\u00f3digos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L151",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_internacionalizaci\u00f3n_espa\u00f1ol_default_ingl\u00e9s",
+      "target": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_fuera_de_alcance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L137",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_internacionalizaci\u00f3n_espa\u00f1ol_default_ingl\u00e9s",
+      "target": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_selector_de_idioma_en_ajustes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L169",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_internacionalizaci\u00f3n_espa\u00f1ol_default_ingl\u00e9s",
+      "target": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_testing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L75",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_internacionalizaci\u00f3n_espa\u00f1ol_default_ingl\u00e9s",
+      "target": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_texto_est\u00e1tico_de_index_html",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md",
+      "source_location": "L97",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_internacionalizaci\u00f3n_espa\u00f1ol_default_ingl\u00e9s",
+      "target": "docs_superpowers_specs_2026_08_05_i18n_espanol_ingles_design_texto_generado_por_js_app_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/variantes-criterio-investigacion.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -35300,5 +35509,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "775f1842d0b1f35cb8f1bb07142913d0fe869d22"
+  "built_at_commit": "318ecc6c49b7e1ffbc1730cd92d18ba862477080"
 }

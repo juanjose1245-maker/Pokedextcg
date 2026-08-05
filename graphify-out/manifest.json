@@ -263,5 +263,10 @@
     "mtime": 1785904481.2708423,
     "ast_hash": "b10893f4783bee273b1aa869399de415",
     "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-08-05-i18n-espanol-ingles-design.md": {
+    "mtime": 1785968608.547233,
+    "ast_hash": "16cbcc12d2aa5d19d451a666098734a0",
+    "semantic_hash": ""
   }
 }

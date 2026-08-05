@@ -93,31 +93,64 @@ function carpetaDe(p) {
     return carpetas.find(c => c.gens.includes(p.gen)) || null;
 }
 
-// En modo "seguidas" una generación no tiene un array de gens propio para
-// buscar (las carpetas son rangos de nº de Pokédex nacional) — se ubica por
-// el primer id de esa generación, igual criterio que carpetaDe() ya usa por
-// Pokémon individual. Puede no ser exacto si una carpeta corta la
-// generación al medio, pero es una elección determinística razonable para
-// un solo color representativo de la tarjeta.
-function carpetaDeGenSeguidas(g) {
-    const primerId = cortesGen[g] + 1;
-    return carpetas.find(c => primerId >= c.desde && primerId <= c.hasta) || null;
+// En qué proporción cae una generación en cada carpeta real. En "separadas"
+// siempre es un solo segmento completo (cada carpeta ES un conjunto de
+// generaciones enteras). En "seguidas" una generación puede repartirse
+// entre 2+ carpetas si el corte de alguna cae en el medio — cada segmento
+// lleva el color de su carpeta y la proporción (0–1) que le corresponde;
+// si hay un tramo sin ninguna carpeta asignada todavía, ese tramo queda gris.
+function segmentosDeGen(g) {
+    if (modoCarpetasConfig === 'separadas') {
+        const c = carpetas.find(c => c.gens && c.gens.includes(g));
+        return [{ color: c ? c.color : 'var(--muted)', prop: 1 }];
+    }
+    const desdeGen = cortesGen[g] + 1;
+    const hastaGen = cortesGen[g + 1] || 1025;
+    const totalGen = hastaGen - desdeGen + 1;
+    const segmentos = [];
+    let cubierto = 0;
+    for (const c of [...carpetas].sort((a, b) => a.desde - b.desde)) {
+        const desde = Math.max(desdeGen, c.desde);
+        const hasta = Math.min(hastaGen, c.hasta);
+        if (hasta < desde) continue;
+        const cantidad = hasta - desde + 1;
+        segmentos.push({ color: c.color, prop: cantidad / totalGen });
+        cubierto += cantidad;
+    }
+    if (!segmentos.length) return [{ color: 'var(--muted)', prop: 1 }];
+    if (cubierto < totalGen) segmentos.push({ color: 'var(--muted)', prop: (totalGen - cubierto) / totalGen });
+    return segmentos;
 }
 
-// Color de la grilla de generaciones (pantalla de inicio en modo carpetas):
-// el de la carpeta real que contiene esa generación, o gris si todavía no
-// hay ninguna carpeta configurada.
+// Color representativo único (el de la carpeta con mayor proporción) para
+// el texto/fondo de "Gen N" y el resto de la tarjeta, que no puede mostrar
+// más de un color a la vez.
 function colorDeGen(g) {
-    const c = modoCarpetasConfig === 'separadas'
-        ? carpetas.find(c => c.gens && c.gens.includes(g))
-        : carpetaDeGenSeguidas(g);
-    return c ? c.color : 'var(--muted)';
+    const segs = segmentosDeGen(g);
+    return segs.reduce((mejor, s) => s.prop > mejor.prop ? s : mejor, segs[0]).color;
+}
+function bgDeColor(color) {
+    return color.startsWith('#') ? hexToRgba(color, 0.16) : 'rgba(140,140,140,0.16)';
 }
 function bgDeGen(g) {
-    const c = modoCarpetasConfig === 'separadas'
-        ? carpetas.find(c => c.gens && c.gens.includes(g))
-        : carpetaDeGenSeguidas(g);
-    return c ? hexToRgba(c.color, 0.16) : 'rgba(140,140,140,0.16)';
+    return bgDeColor(colorDeGen(g));
+}
+
+// Barra decorativa de la tarjeta: si la generación cae entera en una sola
+// carpeta, un color sólido; si está repartida, un gradiente sin transición
+// (cortes duros) con cada tramo del ancho proporcional a lo que le toca a
+// cada carpeta.
+function gradienteDeGen(g) {
+    const segs = segmentosDeGen(g);
+    if (segs.length === 1) return segs[0].color;
+    let acc = 0;
+    const paradas = [];
+    for (const s of segs) {
+        const desde = acc;
+        acc += s.prop * 100;
+        paradas.push(`${s.color} ${desde.toFixed(2)}%`, `${s.color} ${acc.toFixed(2)}%`);
+    }
+    return `linear-gradient(to right, ${paradas.join(', ')})`;
 }
 
 // ── TEMA: claro / oscuro / auto (según el sistema) ─────────────────
@@ -676,7 +709,7 @@ function renderGridGeneraciones(data) {
         card.onclick = () => verListadoGeneracion(g, regiones[g-1]);
         const colorG = colorDeGen(g);
         card.innerHTML = `
-            <div class="gen-card-bar" style="background:${colorG};"></div>
+            <div class="gen-card-bar" style="background:${gradienteDeGen(g)};"></div>
             <div class="gen-num" style="color:${colorG};background:${bgDeGen(g)};">Gen ${g}</div>
             <div class="gen-region">${regiones[g-1]}</div>
             <div class="gen-progress-text">${gd.conseguidos}/${gd.total}</div>

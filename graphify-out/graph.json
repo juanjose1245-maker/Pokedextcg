@@ -2207,8 +2207,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_xa",
-      "community": 11,
-      "community_name": "J",
+      "community": 31,
+      "community_name": "p",
       "norm_label": "xa()"
     },
     {
@@ -2251,8 +2251,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_p",
-      "community": 11,
-      "community_name": "J",
+      "community": 31,
+      "community_name": "p",
       "norm_label": "p()"
     },
     {
@@ -2328,8 +2328,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ta",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 74,
+      "community_name": "ei",
       "norm_label": "ta()"
     },
     {
@@ -2339,8 +2339,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ua",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 74,
+      "community_name": "ei",
       "norm_label": "ua()"
     },
     {
@@ -2372,8 +2372,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ya",
-      "community": 12,
-      "community_name": "ji",
+      "community": 31,
+      "community_name": "p",
       "norm_label": "ya()"
     },
     {
@@ -2427,8 +2427,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_gb",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 31,
+      "community_name": "p",
       "norm_label": "gb()"
     },
     {
@@ -2438,8 +2438,8 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hb",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 31,
+      "community_name": "p",
       "norm_label": "hb()"
     },
     {
@@ -2471,8 +2471,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_kb",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 74,
+      "community_name": "ei",
       "norm_label": "kb()"
     },
     {
@@ -2636,8 +2636,8 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ab",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 74,
+      "community_name": "ei",
       "norm_label": "ab()"
     },
     {
@@ -2647,8 +2647,8 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_db",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 74,
+      "community_name": "ei",
       "norm_label": "db()"
     },
     {
@@ -2658,8 +2658,8 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_eb",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 74,
+      "community_name": "ei",
       "norm_label": "eb()"
     },
     {
@@ -2680,8 +2680,8 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_nb",
-      "community": 6,
-      "community_name": "tesseract-core-lstm.wasm.js",
+      "community": 74,
+      "community_name": "ei",
       "norm_label": "nb()"
     },
     {
@@ -2966,8 +2966,8 @@
       "source_location": "L202",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_th",
-      "community": 48,
-      "community_name": "Q",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "th()"
     },
     {
@@ -2977,8 +2977,8 @@
       "source_location": "L202",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_th_destroy",
-      "community": 48,
-      "community_name": "Q",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3461,8 +3461,8 @@
       "source_location": "L213",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_wh",
-      "community": 51,
-      "community_name": "kb",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "wh()"
     },
     {
@@ -3472,8 +3472,8 @@
       "source_location": "L214",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_wh_destroy",
-      "community": 51,
-      "community_name": "kb",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3483,8 +3483,8 @@
       "source_location": "L214",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_xh",
-      "community": 74,
-      "community_name": "ei",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "xh()"
     },
     {
@@ -3494,8 +3494,8 @@
       "source_location": "L214",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_xh_destroy",
-      "community": 74,
-      "community_name": "ei",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3736,8 +3736,8 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_yh",
-      "community": 76,
-      "community_name": "ji",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": "yh()"
     },
     {
@@ -3747,8 +3747,8 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_yh_destroy",
-      "community": 76,
-      "community_name": "ji",
+      "community": 6,
+      "community_name": "tesseract-core-lstm.wasm.js",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3813,8 +3813,8 @@
       "source_location": "L224",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_p_destroy",
-      "community": 11,
-      "community_name": "J",
+      "community": 31,
+      "community_name": "p",
       "norm_label": ".__destroy__()"
     },
     {
@@ -6200,7 +6200,7 @@
       "source_location": "L206",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_blockpolygon",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".blockpolygon()"
     },
@@ -6244,8 +6244,8 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_rowattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 2,
+      "community_name": "O",
       "norm_label": ".rowattributes()"
     },
     {
@@ -6332,8 +6332,8 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_wordfontattributes",
-      "community": 2,
-      "community_name": "O",
+      "community": 9,
+      "community_name": "L",
       "norm_label": ".wordfontattributes()"
     },
     {
@@ -6541,7 +6541,7 @@
       "source_location": "L214",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": "o()"
     },
@@ -6552,7 +6552,7 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_begin",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".begin()"
     },
@@ -6563,7 +6563,7 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_restartparagraph",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".restartparagraph()"
     },
@@ -6574,7 +6574,7 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_iswithinfirsttextlineofparagraph",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".iswithinfirsttextlineofparagraph()"
     },
@@ -6585,7 +6585,7 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_restartrow",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".restartrow()"
     },
@@ -6596,7 +6596,7 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_next",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".next()"
     },
@@ -6607,7 +6607,7 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_isatbeginningof",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".isatbeginningof()"
     },
@@ -6618,7 +6618,7 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_isatfinalelement",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".isatfinalelement()"
     },
@@ -6629,7 +6629,7 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_cmp",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".cmp()"
     },
@@ -6640,7 +6640,7 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_setboundingboxcomponents",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".setboundingboxcomponents()"
     },
@@ -6662,7 +6662,7 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_boundingboxinternal",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".boundingboxinternal()"
     },
@@ -6673,7 +6673,7 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_empty",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".empty()"
     },
@@ -6684,7 +6684,7 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_blocktype",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".blocktype()"
     },
@@ -6695,7 +6695,7 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_blockpolygon",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".blockpolygon()"
     },
@@ -6739,7 +6739,7 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_orientation",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".orientation()"
     },
@@ -6750,7 +6750,7 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_paragraphinfo",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".paragraphinfo()"
     },
@@ -6761,7 +6761,7 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_destroy",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".__destroy__()"
     },
@@ -6860,8 +6860,8 @@
       "source_location": "L224",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q",
-      "community": 18,
-      "community_name": "J",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": "q()"
     },
     {
@@ -6871,8 +6871,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_begindocument",
-      "community": 18,
-      "community_name": "J",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".begindocument()"
     },
     {
@@ -6882,8 +6882,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_addimage",
-      "community": 18,
-      "community_name": "J",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".addimage()"
     },
     {
@@ -6893,8 +6893,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_enddocument",
-      "community": 18,
-      "community_name": "J",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".enddocument()"
     },
     {
@@ -6904,8 +6904,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_happy",
-      "community": 18,
-      "community_name": "J",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".happy()"
     },
     {
@@ -6915,8 +6915,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_file_extension",
-      "community": 18,
-      "community_name": "J",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".file_extension()"
     },
     {
@@ -6926,8 +6926,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_imagenum",
-      "community": 18,
-      "community_name": "J",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".imagenum()"
     },
     {
@@ -6937,8 +6937,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_destroy",
-      "community": 18,
-      "community_name": "J",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7212,7 +7212,7 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_m",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": "m()"
     },
@@ -7223,7 +7223,7 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_m_destroy",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".__destroy__()"
     },
@@ -7278,8 +7278,8 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ii",
-      "community": 5,
-      "community_name": "V",
+      "community": 76,
+      "community_name": "ji",
       "norm_label": "ii()"
     },
     {
@@ -7289,8 +7289,8 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ii_destroy",
-      "community": 5,
-      "community_name": "V",
+      "community": 76,
+      "community_name": "ji",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7740,7 +7740,7 @@
       "source_location": "L254",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_v_analyselayout",
-      "community": 75,
+      "community": 2,
       "community_name": "O",
       "norm_label": ".analyselayout()"
     },
@@ -7993,8 +7993,8 @@
       "source_location": "L259",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_v_getdawg",
-      "community": 5,
-      "community_name": "V",
+      "community": 76,
+      "community_name": "ji",
       "norm_label": ".getdawg()"
     },
     {
@@ -8246,8 +8246,8 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_getrowattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 2,
+      "community_name": "O",
       "norm_label": ".getrowattributes()"
     },
     {
@@ -8257,8 +8257,8 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_getwordfontattributes",
-      "community": 2,
-      "community_name": "O",
+      "community": 9,
+      "community_name": "L",
       "norm_label": ".getwordfontattributes()"
     },
     {
@@ -10731,6 +10731,83 @@
       "id": "docs_superpowers_plans_2026_08_03_docker_self_hosting_self_review_hecho_al_escribir_este_plan",
       "community": 35,
       "community_name": "Empaquetar la app en Docker para self-hosting \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "self-review (hecho al escribir este plan)"
+    },
+    {
+      "label": "2026-08-04-definir-password-primer-uso.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-04-definir-password-primer-uso.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso",
+      "community": 51,
+      "community_name": "kb",
+      "norm_label": "2026-08-04-definir-password-primer-uso.md"
+    },
+    {
+      "label": "Definir contrase\u00f1a en el primer uso \u2014 Plan de implementaci\u00f3n",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-04-definir-password-primer-uso.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso_definir_contrase\u00f1a_en_el_primer_uso_plan_de_implementaci\u00f3n",
+      "community": 51,
+      "community_name": "kb",
+      "norm_label": "definir contrasena en el primer uso \u2014 plan de implementacion"
+    },
+    {
+      "label": "Global Constraints",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-04-definir-password-primer-uso.md",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso_global_constraints",
+      "community": 51,
+      "community_name": "kb",
+      "norm_label": "global constraints"
+    },
+    {
+      "label": "Task 1: Hash persistido, migraci\u00f3n autom\u00e1tica y endpoints nuevos en `server.js`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-04-definir-password-primer-uso.md",
+      "source_location": "L47",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso_task_1_hash_persistido_migraci\u00f3n_autom\u00e1tica_y_endpoints_nuevos_en_server_js",
+      "community": 51,
+      "community_name": "kb",
+      "norm_label": "task 1: hash persistido, migracion automatica y endpoints nuevos en `server.js`"
+    },
+    {
+      "label": "Task 2: Modal de login con dos modos en el cliente",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-04-definir-password-primer-uso.md",
+      "source_location": "L279",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso_task_2_modal_de_login_con_dos_modos_en_el_cliente",
+      "community": 51,
+      "community_name": "kb",
+      "norm_label": "task 2: modal de login con dos modos en el cliente"
+    },
+    {
+      "label": "Task 3: Actualizar `docker-compose.yml` y `README.md`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-04-definir-password-primer-uso.md",
+      "source_location": "L578",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso_task_3_actualizar_docker_compose_yml_y_readme_md",
+      "community": 51,
+      "community_name": "kb",
+      "norm_label": "task 3: actualizar `docker-compose.yml` y `readme.md`"
+    },
+    {
+      "label": "Self-Review (hecho al escribir este plan)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-04-definir-password-primer-uso.md",
+      "source_location": "L698",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso_self_review_hecho_al_escribir_este_plan",
+      "community": 51,
+      "community_name": "kb",
       "norm_label": "self-review (hecho al escribir este plan)"
     },
     {
@@ -33626,6 +33703,72 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-04-definir-password-primer-uso.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso",
+      "target": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso_definir_contrase\u00f1a_en_el_primer_uso_plan_de_implementaci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-04-definir-password-primer-uso.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso_definir_contrase\u00f1a_en_el_primer_uso_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso_global_constraints",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-04-definir-password-primer-uso.md",
+      "source_location": "L698",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso_definir_contrase\u00f1a_en_el_primer_uso_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso_self_review_hecho_al_escribir_este_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-04-definir-password-primer-uso.md",
+      "source_location": "L47",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso_definir_contrase\u00f1a_en_el_primer_uso_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso_task_1_hash_persistido_migraci\u00f3n_autom\u00e1tica_y_endpoints_nuevos_en_server_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-04-definir-password-primer-uso.md",
+      "source_location": "L279",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso_definir_contrase\u00f1a_en_el_primer_uso_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso_task_2_modal_de_login_con_dos_modos_en_el_cliente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-04-definir-password-primer-uso.md",
+      "source_location": "L578",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso_definir_contrase\u00f1a_en_el_primer_uso_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_04_definir_password_primer_uso_task_3_actualizar_docker_compose_yml_y_readme_md",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/superpowers/plans/2026-08-04-wizard-login-variantes.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -34747,5 +34890,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "bb1e73d7a2e1b02f122b3a2d7e03315db874b4e5"
+  "built_at_commit": "aa7d985f2e0145e528613665a6f6f7d0d6c06217"
 }

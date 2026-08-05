@@ -90,8 +90,8 @@
     "semantic_hash": ""
   },
   "variantes-config.json": {
-    "mtime": 1785856241.7433944,
-    "ast_hash": "ff58d43f3020c4385da69fc3ab281832",
+    "mtime": 1785904483.8458233,
+    "ast_hash": "a35e4a32e468939fe960c0cd6a2681bd",
     "semantic_hash": ""
   },
   "variantes_lista.json": {
@@ -257,6 +257,11 @@
   "docs/superpowers/specs/2026-08-04-definir-password-primer-uso-design.md": {
     "mtime": 1785904242.1903055,
     "ast_hash": "cd4722e399f0383847b591214ead1423",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-08-04-definir-password-primer-uso.md": {
+    "mtime": 1785904481.2708423,
+    "ast_hash": "b10893f4783bee273b1aa869399de415",
     "semantic_hash": ""
   }
 }

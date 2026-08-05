@@ -187,17 +187,11 @@ function pokemonEfectivo() {
 // carpetas), para que cualquier dispositivo vea la misma agrupación.
 function pokemonPorGens(gens) {
     // Cuenta SIEMPRE solo la base (1025), sin mirar variantesConfig: se usa como
-    // piso estructural (validación de carpetas.json y seed de CARPETAS_DEFAULT),
-    // no debe cambiar cuando el usuario activa/desactiva una categoría de
-    // variantes (ver Hallazgo 1 de la revisión final de variantes-fase2).
+    // piso estructural (validación de carpetas.json), no debe cambiar cuando
+    // el usuario activa/desactiva una categoría de variantes (ver Hallazgo 1
+    // de la revisión final de variantes-fase2).
     return pokemonDB.filter(p => p.id <= 1025 && gens.includes(p.gen)).length;
 }
-const CARPETAS_DEFAULT = [
-    { nombre: 'Azul',   color: '#3b5bdb', gens: [1, 2],    espacios: pokemonPorGens([1, 2]) },
-    { nombre: 'Morada', color: '#7c3aed', gens: [3, 4],    espacios: pokemonPorGens([3, 4]) },
-    { nombre: 'Rosa',   color: '#db2777', gens: [5, 6, 7], espacios: pokemonPorGens([5, 6, 7]) },
-    { nombre: 'Roja',   color: '#dc2626', gens: [8, 9],    espacios: pokemonPorGens([8, 9]) }
-];
 
 // candidato = { modo: 'separadas'|'seguidas', carpetas: [...] }
 // - separadas: cada carpeta tiene generaciones completas (gens: number[]); entre
@@ -261,7 +255,10 @@ function carpetasConfigValida(candidato) {
     return false;
 }
 
-let carpetasConfig = { modo: 'separadas', carpetas: CARPETAS_DEFAULT };
+// Sin carpetas.json todavía: arranca vacío (sin carpetas), no con un
+// default hardcodeado — el usuario ve un estado en blanco hasta terminar
+// el wizard, en vez de heredar carpetas que después tiene que reconfigurar.
+let carpetasConfig = { modo: 'separadas', carpetas: [] };
 if (fs.existsSync(RUTA_CARPETAS_CONFIG)) {
     try {
         let raw = JSON.parse(fs.readFileSync(RUTA_CARPETAS_CONFIG, 'utf8'));

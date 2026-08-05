@@ -1675,21 +1675,33 @@ const CATEGORIAS_VARIANTES_INFO = [
 ];
 let variantesConfigActual = null;
 
-async function abrirPanelVariantes() {
+// Fetchea /api/variantes-config, actualiza variantesConfigActual y renderiza
+// los checkboxes de categorías dentro de `elementId`. Usado tanto por el
+// panel de Ajustes → Variantes como por el paso "variantes" del wizard de
+// carpetas — un solo lugar que arma este markup, para que ambos lean
+// siempre la misma configuración real del servidor. Devuelve false (y
+// muestra el toast de error) si el fetch falla, para que el caller pueda
+// abortar sin abrir su modal/paso con contenido vacío.
+async function renderVariantesChecks(elementId) {
     try {
         const res = await fetch('/api/variantes-config');
         if (!res.ok) throw new Error('respuesta no válida');
         variantesConfigActual = await res.json();
     } catch (err) {
         mostrarToastError('No se pudo cargar la configuración de variantes.');
-        return;
+        return false;
     }
-    document.getElementById('variantes-checks').innerHTML = CATEGORIAS_VARIANTES_INFO.map(c => `
+    document.getElementById(elementId).innerHTML = CATEGORIAS_VARIANTES_INFO.map(c => `
         <label class="pdf-opciones-check">
             <input type="checkbox" class="variante-cat-check" data-cat="${c.key}" ${variantesConfigActual[c.key] ? 'checked' : ''} onchange="toggleCategoriaVariante('${c.key}', this.checked)">
             <span>${c.label}<br><span style="font-size:11px;color:var(--muted);font-weight:400;">${c.sub}</span></span>
         </label>
     `).join('');
+    return true;
+}
+
+async function abrirPanelVariantes() {
+    if (!(await renderVariantesChecks('variantes-checks'))) return;
     cerrarAjustes();
     document.getElementById('variantes-modal').classList.add('open');
 }

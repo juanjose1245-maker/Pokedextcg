@@ -93,6 +93,25 @@ function carpetaDe(p) {
     return carpetas.find(c => c.gens.includes(p.gen)) || null;
 }
 
+// Color de la grilla de generaciones (pantalla de inicio en modo carpetas):
+// el de la carpeta real que contiene esa generación, o gris si todavía no
+// hay ninguna carpeta configurada (o en modo "seguidas", donde una
+// generación puede no mapear a una sola carpeta).
+function colorDeGen(g) {
+    if (modoCarpetasConfig === 'separadas') {
+        const c = carpetas.find(c => c.gens && c.gens.includes(g));
+        if (c) return c.color;
+    }
+    return 'var(--muted)';
+}
+function bgDeGen(g) {
+    if (modoCarpetasConfig === 'separadas') {
+        const c = carpetas.find(c => c.gens && c.gens.includes(g));
+        if (c) return hexToRgba(c.color, 0.16);
+    }
+    return 'rgba(140,140,140,0.16)';
+}
+
 // ── TEMA: claro / oscuro / auto (según el sistema) ─────────────────
 // 'auto' no guarda atributo (respeta prefers-color-scheme); 'light'/'dark'
 // fuerzan el tema sin importar lo que diga el sistema operativo.
@@ -647,13 +666,14 @@ function renderGridGeneraciones(data) {
         const card   = document.createElement('div');
         card.className = 'gen-card';
         card.onclick = () => verListadoGeneracion(g, regiones[g-1]);
+        const colorG = colorDeGen(g);
         card.innerHTML = `
-            <div class="gen-card-bar" style="background:${coloresGen[g-1]};"></div>
-            <div class="gen-num" style="color:${coloresGen[g-1]};background:${coloresBg[g-1]};">Gen ${g}</div>
+            <div class="gen-card-bar" style="background:${colorG};"></div>
+            <div class="gen-num" style="color:${colorG};background:${bgDeGen(g)};">Gen ${g}</div>
             <div class="gen-region">${regiones[g-1]}</div>
             <div class="gen-progress-text">${gd.conseguidos}/${gd.total}</div>
-            <div class="gen-missing" style="color:${ok ? 'var(--found)' : coloresGen[g-1]};">${ok ? '✓ completo' : `faltan ${faltan}`}</div>
-            <div class="gen-bar-bg"><div class="gen-bar-fill" style="width:${pct}%;background:${coloresGen[g-1]};"></div></div>`;
+            <div class="gen-missing" style="color:${ok ? 'var(--found)' : colorG};">${ok ? '✓ completo' : `faltan ${faltan}`}</div>
+            <div class="gen-bar-bg"><div class="gen-bar-fill" style="width:${pct}%;background:${colorG};"></div></div>`;
         grid.appendChild(card);
     }
 }

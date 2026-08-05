@@ -1,16 +1,16 @@
 # Graph Report - pokedex-tcg  (2026-08-05)
 
 ## Corpus Check
-- 45 files · ~110,591 words
+- 46 files · ~114,146 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1116 nodes · 2023 edges · 92 communities (56 shown, 36 thin omitted)
+- 1125 nodes · 2031 edges · 93 communities (56 shown, 37 thin omitted)
 - Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 222 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `318ecc6c`
+- Built from commit: `9208de02`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -107,6 +107,7 @@
 - M
 - ai
 - Sh
+- Internacionalización español/inglés — Plan de implementación
 
 ## God Nodes (most connected - your core abstractions)
 1. `V()` - 66 edges
@@ -135,7 +136,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (92 total, 36 thin omitted)
+## Communities (93 total, 37 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -144,10 +145,6 @@ Nodes (53): A(), b(), c(), e(), f(), G(), h(), i() (+45 more)
 ### Community 1 - "app.js"
 Cohesion: 0.05
 Nodes (45): abrirAjustes(), abrirLoginOLogout(), actualizarBotonSesion(), aplicarModoVista(), aplicarTema(), cachePokemon, calcularJalon(), calcularProgresoReciente() (+37 more)
-
-### Community 2 - "O"
-Cohesion: 0.15
-Nodes (3): hi(), ji(), Ya()
 
 ### Community 3 - "server.js"
 Cohesion: 0.06
@@ -222,8 +219,8 @@ Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 31 - "p"
-Cohesion: 0.24
-Nodes (9): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+1 more)
+Cohesion: 0.22
+Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
 
 ### Community 32 - "d"
 Cohesion: 0.29
@@ -361,25 +358,29 @@ Nodes (6): bgDeColor(), bgDeGen(), colorDeGen(), gradienteDeGen(), renderGridGen
 Cohesion: 0.20
 Nodes (9): Contexto, Diccionario y función `t()`, Errores del servidor: de texto a códigos, Fuera de alcance, Internacionalización: español (default) + inglés, Selector de idioma en Ajustes, Testing, Texto estático de `index.html` (+1 more)
 
+### Community 92 - "Internacionalización español/inglés — Plan de implementación"
+Cohesion: 0.22
+Nodes (8): Global Constraints, Internacionalización español/inglés — Plan de implementación, Self-Review (hecho al escribir este plan), Task 1: Diccionario `public/i18n.js` — extracción completa + traducción, Task 2: Conectar `index.html` al diccionario, Task 3: Conectar el texto generado por JS en `app.js`, Task 4: Selector de idioma en Ajustes + detección automática, Task 5: Errores del servidor — de texto a códigos traducidos
+
 ## Knowledge Gaps
-- **255 isolated node(s):** `docker-entrypoint.sh script`, `fs`, `fs`, `crypto`, `fs` (+250 more)
+- **262 isolated node(s):** `docker-entrypoint.sh script`, `fs`, `fs`, `crypto`, `fs` (+257 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **36 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **37 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `g()` connect `worker.min.js` to `carpetasConfigValida`, `wizardGuardar`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
-  _High betweenness centrality (0.206) - this node is a cross-community bridge._
+  _High betweenness centrality (0.204) - this node is a cross-community bridge._
 - **Why does `a()` connect `worker.min.js` to `p`, `A`, `A`, `qb`, `qb`, `p`?**
-  _High betweenness centrality (0.182) - this node is a cross-community bridge._
+  _High betweenness centrality (0.180) - this node is a cross-community bridge._
 - **Why does `A()` connect `A` to `d`, `worker.min.js`, `p`, `tesseract-core-simd-lstm.wasm.js`, `K`, `O`, `mostrarToastError`, `Q`, `J`, `qb`, `Lh`, `di`?**
-  _High betweenness centrality (0.098) - this node is a cross-community bridge._
+  _High betweenness centrality (0.097) - this node is a cross-community bridge._
 - **What connects `docker-entrypoint.sh script`, `fs`, `fs` to the rest of the system?**
-  _255 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _262 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05061224489795919 - nodes in this community are weakly interconnected._
-- **Should `O` be split into smaller, more focused modules?**
-  _Cohesion score 0.14736842105263157 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._
+- **Should `V` be split into smaller, more focused modules?**
+  _Cohesion score 0.07007575757575757 - nodes in this community are weakly interconnected._

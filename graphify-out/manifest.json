@@ -268,5 +268,10 @@
     "mtime": 1785968608.547233,
     "ast_hash": "16cbcc12d2aa5d19d451a666098734a0",
     "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md": {
+    "mtime": 1785968870.2421048,
+    "ast_hash": "fbc75ce218af966aa076412a2f9f26aa",
+    "semantic_hash": ""
   }
 }

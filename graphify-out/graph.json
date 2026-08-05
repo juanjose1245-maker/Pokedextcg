@@ -2471,8 +2471,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ya",
-      "community": 2,
-      "community_name": "O",
+      "community": 31,
+      "community_name": "p",
       "norm_label": "ya()"
     },
     {
@@ -6024,8 +6024,8 @@
       "source_location": "L201",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_k_begindocument",
-      "community": 18,
-      "community_name": "J",
+      "community": 46,
+      "community_name": "K",
       "norm_label": ".begindocument()"
     },
     {
@@ -6970,8 +6970,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_q_begindocument",
-      "community": 18,
-      "community_name": "J",
+      "community": 48,
+      "community_name": "Q",
       "norm_label": ".begindocument()"
     },
     {
@@ -7179,8 +7179,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_di_get_script_id_from_name",
-      "community": 18,
-      "community_name": "J",
+      "community": 61,
+      "community_name": "di",
       "norm_label": ".get_script_id_from_name()"
     },
     {
@@ -10995,6 +10995,105 @@
       "id": "docs_superpowers_plans_2026_08_04_wizard_login_variantes_self_review_hecho_al_escribir_este_plan",
       "community": 73,
       "community_name": "wizardGuardar",
+      "norm_label": "self-review (hecho al escribir este plan)"
+    },
+    {
+      "label": "2026-08-05-i18n-espanol-ingles.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles",
+      "community": 92,
+      "community_name": "Internacionalizaci\u00f3n espa\u00f1ol/ingl\u00e9s \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "2026-08-05-i18n-espanol-ingles.md"
+    },
+    {
+      "label": "Internacionalizaci\u00f3n espa\u00f1ol/ingl\u00e9s \u2014 Plan de implementaci\u00f3n",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_internacionalizaci\u00f3n_espa\u00f1ol_ingl\u00e9s_plan_de_implementaci\u00f3n",
+      "community": 92,
+      "community_name": "Internacionalizaci\u00f3n espa\u00f1ol/ingl\u00e9s \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "internacionalizacion espanol/ingles \u2014 plan de implementacion"
+    },
+    {
+      "label": "Global Constraints",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_global_constraints",
+      "community": 92,
+      "community_name": "Internacionalizaci\u00f3n espa\u00f1ol/ingl\u00e9s \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "global constraints"
+    },
+    {
+      "label": "Task 1: Diccionario `public/i18n.js` \u2014 extracci\u00f3n completa + traducci\u00f3n",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md",
+      "source_location": "L45",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_task_1_diccionario_public_i18n_js_extracci\u00f3n_completa_traducci\u00f3n",
+      "community": 92,
+      "community_name": "Internacionalizaci\u00f3n espa\u00f1ol/ingl\u00e9s \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 1: diccionario `public/i18n.js` \u2014 extraccion completa + traduccion"
+    },
+    {
+      "label": "Task 2: Conectar `index.html` al diccionario",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md",
+      "source_location": "L205",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_task_2_conectar_index_html_al_diccionario",
+      "community": 92,
+      "community_name": "Internacionalizaci\u00f3n espa\u00f1ol/ingl\u00e9s \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 2: conectar `index.html` al diccionario"
+    },
+    {
+      "label": "Task 3: Conectar el texto generado por JS en `app.js`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md",
+      "source_location": "L311",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_task_3_conectar_el_texto_generado_por_js_en_app_js",
+      "community": 92,
+      "community_name": "Internacionalizaci\u00f3n espa\u00f1ol/ingl\u00e9s \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 3: conectar el texto generado por js en `app.js`"
+    },
+    {
+      "label": "Task 4: Selector de idioma en Ajustes + detecci\u00f3n autom\u00e1tica",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md",
+      "source_location": "L391",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_task_4_selector_de_idioma_en_ajustes_detecci\u00f3n_autom\u00e1tica",
+      "community": 92,
+      "community_name": "Internacionalizaci\u00f3n espa\u00f1ol/ingl\u00e9s \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 4: selector de idioma en ajustes + deteccion automatica"
+    },
+    {
+      "label": "Task 5: Errores del servidor \u2014 de texto a c\u00f3digos traducidos",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md",
+      "source_location": "L503",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_task_5_errores_del_servidor_de_texto_a_c\u00f3digos_traducidos",
+      "community": 92,
+      "community_name": "Internacionalizaci\u00f3n espa\u00f1ol/ingl\u00e9s \u2014 Plan de implementaci\u00f3n",
+      "norm_label": "task 5: errores del servidor \u2014 de texto a codigos traducidos"
+    },
+    {
+      "label": "Self-Review (hecho al escribir este plan)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md",
+      "source_location": "L620",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_self_review_hecho_al_escribir_este_plan",
+      "community": 92,
+      "community_name": "Internacionalizaci\u00f3n espa\u00f1ol/ingl\u00e9s \u2014 Plan de implementaci\u00f3n",
       "norm_label": "self-review (hecho al escribir este plan)"
     },
     {
@@ -34344,6 +34443,94 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles",
+      "target": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_internacionalizaci\u00f3n_espa\u00f1ol_ingl\u00e9s_plan_de_implementaci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_internacionalizaci\u00f3n_espa\u00f1ol_ingl\u00e9s_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_global_constraints",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md",
+      "source_location": "L620",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_internacionalizaci\u00f3n_espa\u00f1ol_ingl\u00e9s_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_self_review_hecho_al_escribir_este_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md",
+      "source_location": "L45",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_internacionalizaci\u00f3n_espa\u00f1ol_ingl\u00e9s_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_task_1_diccionario_public_i18n_js_extracci\u00f3n_completa_traducci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md",
+      "source_location": "L205",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_internacionalizaci\u00f3n_espa\u00f1ol_ingl\u00e9s_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_task_2_conectar_index_html_al_diccionario",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md",
+      "source_location": "L311",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_internacionalizaci\u00f3n_espa\u00f1ol_ingl\u00e9s_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_task_3_conectar_el_texto_generado_por_js_en_app_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md",
+      "source_location": "L391",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_internacionalizaci\u00f3n_espa\u00f1ol_ingl\u00e9s_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_task_4_selector_de_idioma_en_ajustes_detecci\u00f3n_autom\u00e1tica",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md",
+      "source_location": "L503",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_internacionalizaci\u00f3n_espa\u00f1ol_ingl\u00e9s_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_05_i18n_espanol_ingles_task_5_errores_del_servidor_de_texto_a_c\u00f3digos_traducidos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/superpowers/specs/2026-07-25-carpetas-todas-seguidas-design.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -35509,5 +35696,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "318ecc6c49b7e1ffbc1730cd92d18ba862477080"
+  "built_at_commit": "9208de024fac2d16b1d12d4626c41a83f537595c"
 }

@@ -149,17 +149,53 @@ function abrirLoginOLogout() {
     abrirLoginModal();
 }
 
-function abrirLoginModal(accionPendiente) {
+async function abrirLoginModal(accionPendiente) {
     cerrarAjustes();
     accionPendienteTrasLogin = accionPendiente || null;
     document.getElementById('login-error').classList.remove('visible');
     document.getElementById('login-password').value = '';
+    document.getElementById('login-password-nueva').value = '';
+    document.getElementById('login-password-confirmar').value = '';
+
+    let configurada = true; // ante la duda (ej. falla el fetch), mostrar el login normal, nunca "definir"
+    try {
+        const res = await fetch('/api/auth-estado');
+        const data = await res.json();
+        configurada = data.configurada !== false;
+    } catch (err) { /* se queda en true por el default de arriba */ }
+
+    document.getElementById('login-title').textContent = configurada
+        ? 'Iniciar sesión'
+        : 'Definí tu contraseña';
+    document.getElementById('login-sub').textContent = configurada
+        ? 'Necesitas iniciar sesión para hacer cambios (marcar cartas, importar, etc). Ver tu colección no requiere sesión.'
+        : 'Todavía no configuraste una contraseña de administración. Elegí una para poder hacer cambios (marcar cartas, importar, etc).';
+    document.getElementById('login-bloque-entrar').style.display  = configurada ? '' : 'none';
+    document.getElementById('login-bloque-definir').style.display = configurada ? 'none' : '';
+    document.getElementById('login-btn-entrar').style.display     = configurada ? '' : 'none';
+    document.getElementById('login-btn-definir').style.display    = configurada ? 'none' : '';
+
     document.getElementById('login-modal').classList.add('open');
-    setTimeout(() => document.getElementById('login-password').focus(), 50);
+    setTimeout(() => document.getElementById(configurada ? 'login-password' : 'login-password-nueva').focus(), 50);
 }
 function cerrarLoginModal() {
     document.getElementById('login-modal').classList.remove('open');
     accionPendienteTrasLogin = null;
+}
+
+// Compartido entre login normal y "definir contraseña" — ambos terminan
+// exactamente igual: hay sesión nueva, se cierra el modal y se reintenta
+// la acción que haya quedado pendiente (si había alguna).
+function sesionIniciadaConExito() {
+    sesionActiva = true;
+    actualizarBotonSesion();
+    cerrarLoginModal();
+    mostrarToastInfo('Sesión iniciada.');
+    if (accionPendienteTrasLogin) {
+        const accion = accionPendienteTrasLogin;
+        accionPendienteTrasLogin = null;
+        accion();
+    }
 }
 
 async function intentarLogin() {
@@ -177,15 +213,40 @@ async function intentarLogin() {
             errBox.classList.add('visible');
             return;
         }
-        sesionActiva = true;
-        actualizarBotonSesion();
-        cerrarLoginModal();
-        mostrarToastInfo('Sesión iniciada.');
-        if (accionPendienteTrasLogin) {
-            const accion = accionPendienteTrasLogin;
-            accionPendienteTrasLogin = null;
-            accion();
+        sesionIniciadaConExito();
+    } catch (err) {
+        errBox.textContent = 'No se pudo conectar con el servidor.';
+        errBox.classList.add('visible');
+    }
+}
+
+async function intentarDefinirPassword() {
+    const password = document.getElementById('login-password-nueva').value;
+    const confirmar = document.getElementById('login-password-confirmar').value;
+    const errBox = document.getElementById('login-error');
+    errBox.classList.remove('visible');
+    if (password.length < 4) {
+        errBox.textContent = 'La contraseña debe tener al menos 4 caracteres.';
+        errBox.classList.add('visible');
+        return;
+    }
+    if (password !== confirmar) {
+        errBox.textContent = 'Las contraseñas no coinciden.';
+        errBox.classList.add('visible');
+        return;
+    }
+    try {
+        const res = await fetch('/api/definir-password', {
+            method:'POST', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({ password })
+        });
+        if (!res.ok) {
+            const body = await res.json().catch(() => ({}));
+            errBox.textContent = body.error || 'No se pudo definir la contraseña.';
+            errBox.classList.add('visible');
+            return;
         }
+        sesionIniciadaConExito();
     } catch (err) {
         errBox.textContent = 'No se pudo conectar con el servidor.';
         errBox.classList.add('visible');
@@ -2411,6 +2472,12 @@ window.onload = async () => {
 
 document.getElementById('login-password').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') intentarLogin();
+});
+document.getElementById('login-password-nueva').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') intentarDefinirPassword();
+});
+document.getElementById('login-password-confirmar').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') intentarDefinirPassword();
 });
 document.getElementById('login-toggle-ver').addEventListener('click', () => {
     const input = document.getElementById('login-password');

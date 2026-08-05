@@ -502,16 +502,27 @@
         <div class="login-handle"></div>
         <span class="login-close" id="login-close">×</span>
         <div class="login-icon-circle">🔒</div>
-        <div class="login-title">Iniciar sesión</div>
-        <div class="login-sub">Necesitas iniciar sesión para hacer cambios (marcar cartas, importar, etc). Ver tu colección no requiere sesión.</div>
-        <div class="login-input-wrap">
-            <input type="password" id="login-password" class="login-input" placeholder="Contraseña" autocomplete="current-password">
-            <button type="button" class="login-toggle-ver" id="login-toggle-ver" title="Mostrar/ocultar contraseña">👁️</button>
+        <div class="login-title" id="login-title">Iniciar sesión</div>
+        <div class="login-sub" id="login-sub">Necesitas iniciar sesión para hacer cambios (marcar cartas, importar, etc). Ver tu colección no requiere sesión.</div>
+        <div id="login-bloque-entrar">
+            <div class="login-input-wrap">
+                <input type="password" id="login-password" class="login-input" placeholder="Contraseña" autocomplete="current-password">
+                <button type="button" class="login-toggle-ver" id="login-toggle-ver" title="Mostrar/ocultar contraseña">👁️</button>
+            </div>
+        </div>
+        <div id="login-bloque-definir" style="display:none;">
+            <div class="login-input-wrap">
+                <input type="password" id="login-password-nueva" class="login-input" placeholder="Nueva contraseña" autocomplete="new-password">
+            </div>
+            <div class="login-input-wrap">
+                <input type="password" id="login-password-confirmar" class="login-input" placeholder="Confirmar contraseña" autocomplete="new-password">
+            </div>
         </div>
         <div class="login-error" id="login-error"></div>
         <div class="login-actions">
             <button class="login-btn secondary" onclick="cerrarLoginModal()">Cancelar</button>
-            <button class="login-btn primary" onclick="intentarLogin()">Entrar</button>
+            <button class="login-btn primary" id="login-btn-entrar" onclick="intentarLogin()">Entrar</button>
+            <button class="login-btn primary" id="login-btn-definir" onclick="intentarDefinirPassword()" style="display:none;">Definir contraseña</button>
         </div>
     </div>
 </div>

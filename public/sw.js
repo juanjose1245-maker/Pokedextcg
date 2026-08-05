@@ -8,7 +8,7 @@
 // Colócalo en la misma carpeta donde sirves index.html (normalmente "public/"),
 // para que quede accesible en la raíz como "/sw.js".
 
-const CACHE_VERSION = 'pokedex-tcg-v54';
+const CACHE_VERSION = 'pokedex-tcg-v55';
 const CACHE_SHELL    = `${CACHE_VERSION}-shell`;
 const CACHE_LECTURAS = `${CACHE_VERSION}-lecturas`;
 
@@ -23,6 +23,7 @@ const ARCHIVOS_SHELL = [
     '/',
     '/index.html',
     '/manifest.json',
+    '/i18n.js',
     '/app.js',
     '/styles.css',
     '/fonts/fonts.css',

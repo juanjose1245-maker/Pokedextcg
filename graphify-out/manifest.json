@@ -55,8 +55,8 @@
     "semantic_hash": ""
   },
   "public/sw.js": {
-    "mtime": 1785955105.978738,
-    "ast_hash": "5acdf00ff2b2538a119aa77a1759e158",
+    "mtime": 1785970491.5385385,
+    "ast_hash": "fe5ca6ad4ce02e10c76805fd9fba1c6c",
     "semantic_hash": ""
   },
   "public/vendor/tesseract/tesseract-core-lstm.wasm.js": {
@@ -205,8 +205,8 @@
     "semantic_hash": ""
   },
   "public/index.html": {
-    "mtime": 1785904780.440988,
-    "ast_hash": "b4dd354b3ca4974ff532cf290bb3165b",
+    "mtime": 1785970485.8805377,
+    "ast_hash": "ff497a27210360049f79421a9abdf77e",
     "semantic_hash": ""
   },
   "public/icons/pokeball-120.png": {
@@ -272,6 +272,11 @@
   "docs/superpowers/plans/2026-08-05-i18n-espanol-ingles.md": {
     "mtime": 1785968870.2421048,
     "ast_hash": "fbc75ce218af966aa076412a2f9f26aa",
+    "semantic_hash": ""
+  },
+  "public/i18n.js": {
+    "mtime": 1785970404.6955245,
+    "ast_hash": "836db8db6333f53786ab419d9b58c9ff",
     "semantic_hash": ""
   }
 }

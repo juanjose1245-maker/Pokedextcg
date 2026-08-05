@@ -1525,8 +1525,8 @@
       "source_location": "L1716",
       "_origin": "ast",
       "id": "public_app_calcularprogresoreciente",
-      "community": 1,
-      "community_name": "app.js",
+      "community": 16,
+      "community_name": "renderGaleria",
       "norm_label": "calcularprogresoreciente()"
     },
     {
@@ -2168,6 +2168,50 @@
       "norm_label": "precargartodaslasgens()"
     },
     {
+      "label": "i18n.js",
+      "file_type": "code",
+      "source_file": "public/i18n.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "public_i18n",
+      "community": 16,
+      "community_name": "renderGaleria",
+      "norm_label": "i18n.js"
+    },
+    {
+      "label": "I18N",
+      "file_type": "code",
+      "source_file": "public/i18n.js",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "public_i18n_i18n",
+      "community": 16,
+      "community_name": "renderGaleria",
+      "norm_label": "i18n"
+    },
+    {
+      "label": "detectarIdiomaNavegador()",
+      "file_type": "code",
+      "source_file": "public/i18n.js",
+      "source_location": "L631",
+      "_origin": "ast",
+      "id": "public_i18n_detectaridiomanavegador",
+      "community": 16,
+      "community_name": "renderGaleria",
+      "norm_label": "detectaridiomanavegador()"
+    },
+    {
+      "label": "t()",
+      "file_type": "code",
+      "source_file": "public/i18n.js",
+      "source_location": "L641",
+      "_origin": "ast",
+      "id": "public_i18n_t",
+      "community": 16,
+      "community_name": "renderGaleria",
+      "norm_label": "t()"
+    },
+    {
       "label": "manifest.json",
       "file_type": "code",
       "source_file": "public/manifest.json",
@@ -2471,8 +2515,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ya",
-      "community": 31,
-      "community_name": "p",
+      "community": 90,
+      "community_name": "ai",
       "norm_label": "ya()"
     },
     {
@@ -2955,8 +2999,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh",
-      "community": 91,
-      "community_name": "Sh",
+      "community": 90,
+      "community_name": "ai",
       "norm_label": "sh()"
     },
     {
@@ -2966,8 +3010,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_destroy",
-      "community": 91,
-      "community_name": "Sh",
+      "community": 90,
+      "community_name": "ai",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3307,8 +3351,8 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_rowattributes",
-      "community": 2,
-      "community_name": "O",
+      "community": 90,
+      "community_name": "ai",
       "norm_label": ".rowattributes()"
     },
     {
@@ -5155,8 +5199,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_getvalue",
-      "community": 91,
-      "community_name": "Sh",
+      "community": 90,
+      "community_name": "ai",
       "norm_label": ".getvalue()"
     },
     {
@@ -5210,8 +5254,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_wrap",
-      "community": 2,
-      "community_name": "O",
+      "community": 90,
+      "community_name": "ai",
       "norm_label": ".wrap()"
     },
     {
@@ -5221,8 +5265,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_bool",
-      "community": 2,
-      "community_name": "O",
+      "community": 90,
+      "community_name": "ai",
       "norm_label": ".bool()"
     },
     {
@@ -5243,8 +5287,8 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_f32",
-      "community": 2,
-      "community_name": "O",
+      "community": 90,
+      "community_name": "ai",
       "norm_label": ".f32()"
     },
     {
@@ -5309,8 +5353,8 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getrowattributes",
-      "community": 2,
-      "community_name": "O",
+      "community": 90,
+      "community_name": "ai",
       "norm_label": ".getrowattributes()"
     },
     {
@@ -5507,8 +5551,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ya",
-      "community": 33,
-      "community_name": "p",
+      "community": 78,
+      "community_name": "O",
       "norm_label": "ya()"
     },
     {
@@ -16939,6 +16983,18 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "public/app.js",
+      "source_location": "L1265",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "public_app_rendergaleria",
+      "target": "public_i18n_t"
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -17035,6 +17091,18 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "public/app.js",
+      "source_location": "L1444",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "public_app_mostrarficha",
+      "target": "public_i18n_t"
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -17105,6 +17173,18 @@
       "source": "public_app_mostrarmetricas",
       "target": "public_app_calcularprogresoreciente",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "public/app.js",
+      "source_location": "L1729",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "public_app_calcularprogresoreciente",
+      "target": "public_i18n_t"
     },
     {
       "relation": "calls",
@@ -17705,6 +17785,51 @@
       "_origin": "ast",
       "source": "public_app_precargartodaslasgens",
       "target": "public_vendor_tesseract_tesseract_min_r"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "public/i18n.js",
+      "source_location": "L631",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "public_i18n",
+      "target": "public_i18n_detectaridiomanavegador",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "public/i18n.js",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "public_i18n",
+      "target": "public_i18n_i18n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "public/i18n.js",
+      "source_location": "L641",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "public_i18n",
+      "target": "public_i18n_t",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "public/i18n.js",
+      "source_location": "L643",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "public_i18n_t",
+      "target": "public_vendor_tesseract_worker_min_v"
     },
     {
       "relation": "contains",
@@ -35696,5 +35821,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "9208de024fac2d16b1d12d4626c41a83f537595c"
+  "built_at_commit": "c48b47a3f0b4b9b7afaf706bc8421b2ad3bc375e"
 }

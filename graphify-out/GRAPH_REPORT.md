@@ -1,16 +1,16 @@
 # Graph Report - pokedex-tcg  (2026-08-06)
 
 ## Corpus Check
-- 47 files · ~117,587 words
+- 47 files · ~117,201 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1130 nodes · 2039 edges · 88 communities (57 shown, 31 thin omitted)
-- Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 226 edges (avg confidence: 0.58)
+- 1130 nodes · 2040 edges · 93 communities (56 shown, 37 thin omitted)
+- Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 227 edges (avg confidence: 0.58)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b49ef01a`
+- Built from commit: `98cd814e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -28,6 +28,7 @@
 - O
 - J
 - ji
+- O
 - Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación
 - mostrarToastError
 - renderGaleria
@@ -102,6 +103,10 @@
 - Sh
 - O
 - Internacionalización: español (default) + inglés
+- ei
+- M
+- ai
+- Sh
 - Internacionalización español/inglés — Plan de implementación
 
 ## God Nodes (most connected - your core abstractions)
@@ -131,7 +136,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (88 total, 31 thin omitted)
+## Communities (93 total, 37 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -349,10 +354,6 @@ Nodes (38): actualizarBadgePendientes(), actualizarTarjetaProgreso(), actualizar
 Cohesion: 0.47
 Nodes (6): bgDeColor(), bgDeGen(), colorDeGen(), gradienteDeGen(), renderGridGeneraciones(), segmentosDeGen()
 
-### Community 86 - "O"
-Cohesion: 0.05
-Nodes (7): ai(), ei(), hi(), ji(), M(), O(), Sh()
-
 ### Community 87 - "Internacionalización: español (default) + inglés"
 Cohesion: 0.20
 Nodes (9): Contexto, Diccionario y función `t()`, Errores del servidor: de texto a códigos, Fuera de alcance, Internacionalización: español (default) + inglés, Selector de idioma en Ajustes, Testing, Texto estático de `index.html` (+1 more)
@@ -364,16 +365,16 @@ Nodes (8): Global Constraints, Internacionalización español/inglés — Plan d
 ## Knowledge Gaps
 - **263 isolated node(s):** `docker-entrypoint.sh script`, `fs`, `fs`, `crypto`, `fs` (+258 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **31 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **37 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `g()` connect `worker.min.js` to `carpetasConfigValida`, `wizardGuardar`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
-  _High betweenness centrality (0.205) - this node is a cross-community bridge._
+  _High betweenness centrality (0.201) - this node is a cross-community bridge._
 - **Why does `a()` connect `worker.min.js` to `p`, `A`, `A`, `qb`, `qb`, `p`?**
   _High betweenness centrality (0.177) - this node is a cross-community bridge._
-- **Why does `A()` connect `A` to `worker.min.js`, `tesseract-core-lstm.wasm.js`, `L`, `Q`, `ei`, `J`, `K`, `qb`, `Lh`, `di`, `d`, `p`?**
+- **Why does `A()` connect `A` to `worker.min.js`, `tesseract-core-lstm.wasm.js`, `Q`, `ei`, `J`, `K`, `O`, `qb`, `Lh`, `di`, `d`, `p`?**
   _High betweenness centrality (0.096) - this node is a cross-community bridge._
 - **What connects `docker-entrypoint.sh script`, `fs`, `fs` to the rest of the system?**
   _263 weakly-connected nodes found - possible documentation gaps or missing edges._

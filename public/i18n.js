@@ -281,6 +281,7 @@ const I18N = {
         'toast.sincronizadoQuitado': `🔄 Sincronizado — #{id} ○ quitado en otro dispositivo`,
 
         // ── ERRORES ─────────────────────────────────────────────────────
+        'error.respuestaInvalida': `Respuesta no válida del servidor.`,
         'error.password_incorrecta': `Contraseña incorrecta.`,
         'error.noConexionServidor': `No se pudo conectar con el servidor.`,
         'error.passwordCorta': `La contraseña debe tener al menos 4 caracteres.`,
@@ -589,6 +590,7 @@ const I18N = {
         'toast.sincronizadoQuitado': `🔄 Synced — #{id} ○ removed on another device`,
 
         // ── ERRORES ─────────────────────────────────────────────────────
+        'error.respuestaInvalida': `Invalid response from the server.`,
         'error.password_incorrecta': `Incorrect password.`,
         'error.noConexionServidor': `Couldn't connect to the server.`,
         'error.passwordCorta': `Password must be at least 4 characters.`,

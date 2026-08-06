@@ -5,24 +5,24 @@ const coloresGen = ["#3b5bdb","#3b5bdb","#7c3aed","#7c3aed","#db2777","#db2777",
 // cualquier fan reconoce), usada en la ficha de detalle a modo de "carta
 // física": el tipo primario define el color del marco.
 const tiposInfo = {
-    normal:   { color:'#9CA88C', label:'Normal',   emoji:'⚪' },
-    fire:     { color:'#EE7B2C', label:'Fuego',    emoji:'🔥' },
-    water:    { color:'#4F8EF7', label:'Agua',     emoji:'💧' },
-    grass:    { color:'#5FBB4E', label:'Planta',   emoji:'🌿' },
-    electric: { color:'#F4C623', label:'Eléctrico',emoji:'⚡' },
-    ice:      { color:'#78D6D1', label:'Hielo',    emoji:'❄️' },
-    fighting: { color:'#C0392B', label:'Lucha',    emoji:'🥊' },
-    poison:   { color:'#9B4F96', label:'Veneno',   emoji:'☠️' },
-    ground:   { color:'#D4A85A', label:'Tierra',   emoji:'🌎' },
-    flying:   { color:'#94A6E8', label:'Volador',  emoji:'🪽' },
-    psychic:  { color:'#F0568C', label:'Psíquico', emoji:'🔮' },
-    bug:      { color:'#9DB82C', label:'Bicho',    emoji:'🐛' },
-    rock:     { color:'#B7A03C', label:'Roca',     emoji:'🪨' },
-    ghost:    { color:'#6C5B9E', label:'Fantasma', emoji:'👻' },
-    dragon:   { color:'#6F4CDB', label:'Dragón',   emoji:'🐉' },
-    dark:     { color:'#5E4B3C', label:'Oscuro',   emoji:'🌙' },
-    steel:    { color:'#9AA3B0', label:'Acero',    emoji:'⚙️' },
-    fairy:    { color:'#E893AE', label:'Hada',     emoji:'✨' },
+    normal:   { color:'#9CA88C', label:t('tipo.normal'),   emoji:'⚪' },
+    fire:     { color:'#EE7B2C', label:t('tipo.fuego'),    emoji:'🔥' },
+    water:    { color:'#4F8EF7', label:t('tipo.agua'),     emoji:'💧' },
+    grass:    { color:'#5FBB4E', label:t('tipo.planta'),   emoji:'🌿' },
+    electric: { color:'#F4C623', label:t('tipo.electrico'),emoji:'⚡' },
+    ice:      { color:'#78D6D1', label:t('tipo.hielo'),    emoji:'❄️' },
+    fighting: { color:'#C0392B', label:t('tipo.lucha'),    emoji:'🥊' },
+    poison:   { color:'#9B4F96', label:t('tipo.veneno'),   emoji:'☠️' },
+    ground:   { color:'#D4A85A', label:t('tipo.tierra'),   emoji:'🌎' },
+    flying:   { color:'#94A6E8', label:t('tipo.volador'),  emoji:'🪽' },
+    psychic:  { color:'#F0568C', label:t('tipo.psiquico'), emoji:'🔮' },
+    bug:      { color:'#9DB82C', label:t('tipo.bicho'),    emoji:'🐛' },
+    rock:     { color:'#B7A03C', label:t('tipo.roca'),     emoji:'🪨' },
+    ghost:    { color:'#6C5B9E', label:t('tipo.fantasma'), emoji:'👻' },
+    dragon:   { color:'#6F4CDB', label:t('tipo.dragon'),   emoji:'🐉' },
+    dark:     { color:'#5E4B3C', label:t('tipo.oscuro'),   emoji:'🌙' },
+    steel:    { color:'#9AA3B0', label:t('tipo.acero'),    emoji:'⚙️' },
+    fairy:    { color:'#E893AE', label:t('tipo.hada'),     emoji:'✨' },
 };
 function infoTipo(t) { return tiposInfo[t] || tiposInfo.normal; }
 const coloresBg  = ["rgba(59,91,219,0.16)","rgba(59,91,219,0.16)","rgba(124,58,237,0.16)","rgba(124,58,237,0.16)",
@@ -45,7 +45,7 @@ function formatearRango(gens) {
         bloques.push(inicio === anterior ? `${inicio}` : `${inicio}-${anterior}`);
         inicio = anterior = actual;
     }
-    return `Gens ${bloques.join(', ')}`;
+    return t('carpeta.rangoGens', { rango: bloques.join(', ') });
 }
 
 function hexToRgba(hex, alpha) {
@@ -76,11 +76,11 @@ function anclaIdCliente(p) {
 }
 
 const CATEGORIA_INFO = {
-    regional:    { label: 'Regional',   color: '#0891b2' },
-    mega:        { label: 'Mega',       color: '#7c3aed' },
-    primigenia:  { label: 'Primigenia', color: '#dc2626' },
-    gigamax:     { label: 'Gigamax',    color: '#db2777' },
-    alternativa: { label: 'Alt.',       color: '#d97706' },
+    regional:    { label: t('categoria.regional'),   color: '#0891b2' },
+    mega:        { label: t('categoria.mega'),       color: '#7c3aed' },
+    primigenia:  { label: t('categoria.primigenia'), color: '#dc2626' },
+    gigamax:     { label: t('categoria.gigamax'),    color: '#db2777' },
+    alternativa: { label: t('categoria.alternativa'),color: '#d97706' },
 };
 
 // Devuelve la carpeta a la que pertenece un Pokémon, según generación
@@ -164,7 +164,7 @@ function aplicarTema() {
     } else {
         document.documentElement.setAttribute('data-theme', temaActual);
     }
-    const etiquetas = { auto: 'Auto (según el sistema)', light: '☀️ Claro', dark: '🌙 Oscuro' };
+    const etiquetas = { auto: t('ajustes.temaAuto'), light: t('ajustes.temaClaro'), dark: t('ajustes.temaOscuro') };
     const sub = document.getElementById('btn-tema-ajustes-sub');
     if (sub) sub.textContent = etiquetas[temaActual];
 }
@@ -209,7 +209,7 @@ async function revisarSesion() {
 function actualizarBotonSesion() {
     const texto = sesionActiva ? '🔓 Cerrar sesión' : '🔒 Iniciar sesión';
     const titulo = document.getElementById('btn-sesion-ajustes-titulo');
-    if (titulo) titulo.textContent = sesionActiva ? 'Cerrar sesión' : 'Iniciar sesión';
+    if (titulo) titulo.textContent = sesionActiva ? t('login.cerrarSesion') : t('login.titulo');
     const icono = document.querySelector('#btn-sesion-ajustes .ajustes-item-icon');
     if (icono) icono.textContent = sesionActiva ? '🔓' : '🔒';
     const chev = document.querySelector('#btn-sesion-ajustes .ajustes-item-chev');
@@ -238,11 +238,11 @@ async function abrirLoginModal(accionPendiente) {
     } catch (err) { /* se queda en true por el default de arriba */ }
 
     document.getElementById('login-title').textContent = configurada
-        ? 'Iniciar sesión'
-        : 'Definí tu contraseña';
+        ? t('login.titulo')
+        : t('login.tituloDefinir');
     document.getElementById('login-sub').textContent = configurada
-        ? 'Necesitas iniciar sesión para hacer cambios (marcar cartas, importar, etc). Ver tu colección no requiere sesión.'
-        : 'Todavía no configuraste una contraseña de administración. Elegí una para poder hacer cambios (marcar cartas, importar, etc).';
+        ? t('login.sub')
+        : t('login.subDefinir');
     document.getElementById('login-bloque-entrar').style.display  = configurada ? '' : 'none';
     document.getElementById('login-bloque-definir').style.display = configurada ? 'none' : '';
     document.getElementById('login-btn-entrar').style.display     = configurada ? '' : 'none';
@@ -263,7 +263,7 @@ function sesionIniciadaConExito() {
     sesionActiva = true;
     actualizarBotonSesion();
     cerrarLoginModal();
-    mostrarToastInfo('Sesión iniciada.');
+    mostrarToastInfo(t('toast.sesionIniciada'));
     if (accionPendienteTrasLogin) {
         const accion = accionPendienteTrasLogin;
         accionPendienteTrasLogin = null;
@@ -282,13 +282,13 @@ async function intentarLogin() {
         });
         if (!res.ok) {
             const body = await res.json().catch(() => ({}));
-            errBox.textContent = body.error || 'Contraseña incorrecta.';
+            errBox.textContent = body.error || t('error.password_incorrecta');
             errBox.classList.add('visible');
             return;
         }
         sesionIniciadaConExito();
     } catch (err) {
-        errBox.textContent = 'No se pudo conectar con el servidor.';
+        errBox.textContent = t('error.noConexionServidor');
         errBox.classList.add('visible');
     }
 }
@@ -299,12 +299,12 @@ async function intentarDefinirPassword() {
     const errBox = document.getElementById('login-error');
     errBox.classList.remove('visible');
     if (password.length < 4) {
-        errBox.textContent = 'La contraseña debe tener al menos 4 caracteres.';
+        errBox.textContent = t('error.passwordCorta');
         errBox.classList.add('visible');
         return;
     }
     if (password !== confirmar) {
-        errBox.textContent = 'Las contraseñas no coinciden.';
+        errBox.textContent = t('error.passwordsNoCoinciden');
         errBox.classList.add('visible');
         return;
     }
@@ -315,13 +315,13 @@ async function intentarDefinirPassword() {
         });
         if (!res.ok) {
             const body = await res.json().catch(() => ({}));
-            errBox.textContent = body.error || 'No se pudo definir la contraseña.';
+            errBox.textContent = body.error || t('error.noSePudoDefinirPassword');
             errBox.classList.add('visible');
             return;
         }
         sesionIniciadaConExito();
     } catch (err) {
-        errBox.textContent = 'No se pudo conectar con el servidor.';
+        errBox.textContent = t('error.noConexionServidor');
         errBox.classList.add('visible');
     }
 }
@@ -330,7 +330,7 @@ async function cerrarSesion() {
     try { await fetch('/api/logout', { method:'POST' }); } catch (err) { /* no es grave si falla */ }
     sesionActiva = false;
     actualizarBotonSesion();
-    mostrarToastInfo('Sesión cerrada.');
+    mostrarToastInfo(t('toast.sesionCerrada'));
 }
 
 // Helper: si no hay sesión, abre el login y guarda `accion` para reintentarla
@@ -376,7 +376,7 @@ function actualizarBotonesModo() {
         thumb.style.transform   = desplazado;
     });
 
-    const textoBadge = modoActual === 'carpetas' ? '📁 Carpetas' : '📦 Bulk';
+    const textoBadge = modoActual === 'carpetas' ? t('modo.carpetasBadge') : t('modo.bulkBadge');
     document.querySelectorAll('.modo-badge').forEach(b => { b.textContent = textoBadge; });
 }
 
@@ -456,8 +456,8 @@ function mostrarToastDeshacer(idPk, fechaPreservada, nombrePk) {
         toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 8px 8px 16px;font-size:12px;font-weight:600;color:var(--text);box-shadow:0 4px 16px var(--shadow);z-index:800;white-space:nowrap;opacity:0;transition:opacity .2s ease;display:flex;align-items:center;gap:10px;';
         document.body.appendChild(toast);
     }
-    toast.innerHTML = `<span>Quitaste a ${(nombrePk || '').toLowerCase()}</span>
-        <button id="btn-deshacer-toast" style="background:var(--accent2);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:11px;cursor:pointer;font-family:'Rajdhani',sans-serif;letter-spacing:.04em;">DESHACER</button>`;
+    toast.innerHTML = `<span>${t('toast.quitasteA', { nombre: (nombrePk || '').toLowerCase() })}</span>
+        <button id="btn-deshacer-toast" style="background:var(--accent2);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:11px;cursor:pointer;font-family:'Rajdhani',sans-serif;letter-spacing:.04em;">${t('toast.botonDeshacer')}</button>`;
     toast.style.opacity = '1';
 
     document.getElementById('btn-deshacer-toast').onclick = async () => {
@@ -474,7 +474,7 @@ function mostrarToastDeshacer(idPk, fechaPreservada, nombrePk) {
             await cargarEstadisticasSinMoverScroll();
             actualizarBadgePendientes();
         } catch (err) {
-            mostrarToastError('No se pudo deshacer. Márcalo manualmente de nuevo.');
+            mostrarToastError(t('error.noSePudoDeshacer'));
         }
     };
 
@@ -494,8 +494,8 @@ function mostrarToastActualizacion() {
         toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 8px 8px 16px;font-size:12px;font-weight:600;color:var(--text);box-shadow:0 4px 16px var(--shadow);z-index:800;white-space:nowrap;opacity:0;transition:opacity .2s ease;display:flex;align-items:center;gap:10px;';
         document.body.appendChild(toast);
     }
-    toast.innerHTML = `<span>🔄 Hay una versión nueva</span>
-        <button id="btn-actualizacion-toast" style="background:var(--accent2);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:11px;cursor:pointer;font-family:'Rajdhani',sans-serif;letter-spacing:.04em;">ACTUALIZAR</button>`;
+    toast.innerHTML = `<span>${t('toast.versionNueva')}</span>
+        <button id="btn-actualizacion-toast" style="background:var(--accent2);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:11px;cursor:pointer;font-family:'Rajdhani',sans-serif;letter-spacing:.04em;">${t('toast.botonActualizar')}</button>`;
     toast.style.opacity = '1';
     document.getElementById('btn-actualizacion-toast').onclick = () => location.reload();
 }
@@ -514,7 +514,7 @@ function mostrarToastAvisoCapacidad(msg) {
         document.body.appendChild(toast);
     }
     toast.innerHTML = `<span>${msg}</span>
-        <button id="btn-ajustar-capacidad" style="background:var(--accent2);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:11px;cursor:pointer;font-family:'Rajdhani',sans-serif;letter-spacing:.04em;white-space:nowrap;">AJUSTAR</button>`;
+        <button id="btn-ajustar-capacidad" style="background:var(--accent2);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:11px;cursor:pointer;font-family:'Rajdhani',sans-serif;letter-spacing:.04em;white-space:nowrap;">${t('toast.botonAjustar')}</button>`;
     toast.style.opacity = '1';
     clearTimeout(avisoCapacidadTimer);
     avisoCapacidadTimer = setTimeout(() => { toast.style.opacity = '0'; }, 6000);
@@ -534,7 +534,7 @@ async function revisarCapacidadCarpetas() {
         for (const c of carpetas) {
             const necesario = c.gens.reduce((acc, gen) => acc + (dataGlobalCache.generaciones[gen]?.total || 0), 0);
             if (necesario > c.espacios) {
-                mostrarToastAvisoCapacidad(`"${c.nombre}" necesita ${necesario} espacios y tiene ${c.espacios} — ajustá tus carpetas cuando puedas.`);
+                mostrarToastAvisoCapacidad(t('toast.capacidadInsuficiente', { nombre: c.nombre, necesario, espacios: c.espacios }));
                 return;
             }
         }
@@ -546,7 +546,7 @@ async function revisarCapacidadCarpetas() {
             if (!res.ok) continue;
             const lista = await res.json();
             if (lista.length > c.espacios) {
-                mostrarToastAvisoCapacidad(`"${c.nombre}" necesita ${lista.length} espacios y tiene ${c.espacios} — ajustá tus carpetas cuando puedas.`);
+                mostrarToastAvisoCapacidad(t('toast.capacidadInsuficiente', { nombre: c.nombre, necesario: lista.length, espacios: c.espacios }));
                 return;
             }
         } catch { /* no bloquea el flujo si falla la revisión */ }
@@ -560,7 +560,7 @@ async function fetchGenSegura(g) {
         if (!res.ok) throw new Error('respuesta no válida');
         return await res.json();
     } catch (err) {
-        mostrarToastError(`No se pudo cargar la generación ${g}. Reintenta.`);
+        mostrarToastError(t('error.noCargoGeneracion', { g }));
         return null;
     }
 }
@@ -571,7 +571,7 @@ async function fetchRangoSegura(desde, hasta) {
         if (!res.ok) throw new Error('respuesta no válida');
         return await res.json();
     } catch (err) {
-        mostrarToastError(`No se pudo cargar el rango #${desde}-${hasta}. Reintenta.`);
+        mostrarToastError(t('error.noCargoRango', { desde, hasta }));
         return null;
     }
 }
@@ -593,11 +593,11 @@ function getFechaISO(id) {
 function calcularJalon(conseguidos, total) {
     if (total <= 0) return null;
     const faltan = total - conseguidos;
-    if (faltan === 0) return '🎉 ¡Completado!';
-    if (faltan <= 5)  return `🔥 Solo te faltan ${faltan} para completar esta generación`;
-    if (faltan <= 10) return `⚡ ¡Casi! Faltan ${faltan} Pokémon`;
+    if (faltan === 0) return t('jalon.completado');
+    if (faltan <= 5)  return t('jalon.pocosFaltan', { faltan });
+    if (faltan <= 10) return t('jalon.casi', { faltan });
     const pct = Math.round((conseguidos / total) * 100);
-    if (pct >= 90)    return `💪 Al ${pct}% — ¡casi lo logras!`;
+    if (pct >= 90)    return t('jalon.porcentajeAlto', { pct });
     return null;
 }
 
@@ -693,7 +693,7 @@ function renderBinderBar() {
         seg.className = 'binder-bar-segment';
         seg.style.flex = t || 1;
         seg.style.background = c.color;
-        seg.title = `Carpeta ${c.nombre} — ${c.rango}`;
+        seg.title = t('carpeta.conRango', { nombre: c.nombre, rango: c.rango });
         seg.onclick = (e) => { e.stopPropagation(); verCarpeta(c); };
         bar.appendChild(seg);
         const item = document.createElement('button');
@@ -723,10 +723,10 @@ function renderGridGeneraciones(data) {
         const colorG = colorDeGen(g);
         card.innerHTML = `
             <div class="gen-card-bar" style="background:${gradienteDeGen(g)};"></div>
-            <div class="gen-num" style="color:${colorG};background:${bgDeGen(g)};">Gen ${g}</div>
+            <div class="gen-num" style="color:${colorG};background:${bgDeGen(g)};">${t('comun.genNumero', { n: g })}</div>
             <div class="gen-region">${regiones[g-1]}</div>
             <div class="gen-progress-text">${gd.conseguidos}/${gd.total}</div>
-            <div class="gen-missing" style="color:${ok ? 'var(--found)' : colorG};">${ok ? '✓ completo' : `faltan ${faltan}`}</div>
+            <div class="gen-missing" style="color:${ok ? 'var(--found)' : colorG};">${ok ? t('gen.completoTexto') : t('gen.faltanTexto', { n: faltan })}</div>
             <div class="gen-bar-bg"><div class="gen-bar-fill" style="width:${pct}%;background:${colorG};"></div></div>`;
         grid.appendChild(card);
     }
@@ -739,7 +739,7 @@ async function cargarEstadisticas() {
         if (!res.ok) throw new Error('respuesta no válida');
         data = await res.json();
     } catch (err) {
-        mostrarToastError('No se pudo cargar la colección. Revisa tu conexión.');
+        mostrarToastError(t('error.noSePudoCargarColeccion'));
         return;
     }
     dataGlobalCache = data;
@@ -760,7 +760,7 @@ async function cargarEstadisticasSinMoverScroll() {
         if (!res.ok) throw new Error('respuesta no válida');
         data = await res.json();
     } catch (err) {
-        mostrarToastError('No se pudo sincronizar. Revisa tu conexión.');
+        mostrarToastError(t('error.noSePudoSincronizar'));
         return;
     }
     dataGlobalCache = data;
@@ -811,7 +811,7 @@ function actualizarTarjetaProgreso() {
     document.getElementById('global-count-total').textContent = total;
     document.getElementById('global-percentage').textContent  = pct + '%';
     document.getElementById('global-circle').setAttribute('stroke-dasharray', `${pct},100`);
-    const label = genActualAbierta ? `${genActualAbierta.region} · Progreso` : 'Progreso de la colección';
+    const label = genActualAbierta ? t('progreso.tituloConRegion', { region: genActualAbierta.region }) : t('progreso.titulo');
     document.getElementById('stat-card-title').textContent = label;
     const jEl = document.getElementById('jalon-global');
     const j   = calcularJalon(conseguidos, total);
@@ -821,7 +821,7 @@ function actualizarTarjetaProgreso() {
 
 // ── VER CARPETA ──────────────────────────────────────────────────
 async function verCarpeta(carpeta) {
-    genActualAbierta = { gen: carpeta.gens ? carpeta.gens[0] : null, region: `Carpeta ${carpeta.nombre}`, esCarpeta: true, carpeta };
+    genActualAbierta = { gen: carpeta.gens ? carpeta.gens[0] : null, region: t('carpeta.tituloConNombre', { nombre: carpeta.nombre }), esCarpeta: true, carpeta };
     actualizarTarjetaProgreso();
     renderSidebar();
     if (!esDesktop()) {
@@ -831,7 +831,7 @@ async function verCarpeta(carpeta) {
         mostrarFAB();
         document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
     }
-    mostrarGalleryShell(`Carpeta ${carpeta.nombre}`);
+    mostrarGalleryShell(t('carpeta.tituloConNombre', { nombre: carpeta.nombre }));
     let todos;
     if (carpeta.gens) {
         todos = [];
@@ -852,7 +852,7 @@ async function verCarpeta(carpeta) {
 
 // ── VER POKÉDEX COMPLETA ──────────────────────────────────────────
 async function verPokedexCompleta() {
-    genActualAbierta = { gen: null, region: 'Pokédex Completa', esCarpeta: false, esCompleta: true };
+    genActualAbierta = { gen: null, region: t('comun.pokedexCompleta'), esCarpeta: false, esCompleta: true };
     actualizarTarjetaProgreso();
     renderSidebar();
     if (!esDesktop()) {
@@ -862,7 +862,7 @@ async function verPokedexCompleta() {
         mostrarFAB();
         document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
     }
-    mostrarGalleryShell('Pokédex Completa');
+    mostrarGalleryShell(t('comun.pokedexCompleta'));
 
     const todos = [];
     for (let g = 1; g <= 9; g++) {
@@ -906,7 +906,7 @@ async function calcularIdsPendientes() {
         bulkData = await rBulk.json();
         carpetasData = await rCarp.json();
     } catch (err) {
-        mostrarToastError('No se pudo comparar Bulk y Carpetas. Revisa tu conexión.');
+        mostrarToastError(t('error.noSePudoComparar'));
         return null;
     }
     const idsEnCarpetas = new Set(Object.keys(carpetasData.listaIds || {}).map(Number));
@@ -923,10 +923,10 @@ function actualizarTarjetaProgresoPendientes(cantidad) {
     // casi vacío con un punto perdido (antes quedaba fijo en dasharray "0,100").
     document.getElementById('circle-wrap').style.display = cantidad > 0 ? 'none' : '';
     if (cantidad === 0) document.getElementById('global-circle').setAttribute('stroke-dasharray', '100,100');
-    document.getElementById('stat-card-title').textContent = 'Por acomodar en Carpetas';
+    document.getElementById('stat-card-title').textContent = t('header.tituloPorAcomodar');
     document.getElementById('stat-card-subtitle').textContent = cantidad > 0
-        ? 'Tienes estas cartas en Bulk, todavía no están en tus carpetas'
-        : '¡Todo lo que tienes en Bulk ya está acomodado!';
+        ? t('pendientes.subConCantidad')
+        : t('pendientes.subCompleto');
     document.getElementById('jalon-global').classList.remove('visible');
 }
 
@@ -980,21 +980,23 @@ async function manejarArchivoImportar(event) {
         const texto = await archivo.text();
         data = JSON.parse(texto);
     } catch (err) {
-        mostrarToastError('Ese archivo no es un JSON válido.');
+        mostrarToastError(t('error.archivoNoJSON'));
         return;
     }
     if (!data || (!data.bulk && !data.carpetas)) {
-        mostrarToastError('Ese archivo no tiene el formato de un respaldo de esta app.');
+        mostrarToastError(t('error.archivoFormatoInvalido'));
         return;
     }
     const registros = data[modoActual];
     if (!Array.isArray(registros)) {
-        mostrarToastError(`El archivo no trae datos para "${modoActual}".`);
+        mostrarToastError(t('error.archivoSinDatosModo', { modo: modoActual }));
         return;
     }
     const ok = confirm(
-        `Esto REEMPLAZA todo tu inventario actual de "${modoActual === 'bulk' ? 'Bulk' : 'Carpetas'}" ` +
-        `con los ${registros.length} registros de este archivo. Se guarda un respaldo del estado actual por si acaso. ¿Continuar?`
+        t('confirm.importarReemplazo', {
+            modo: modoActual === 'bulk' ? t('modo.bulk') : t('modo.carpetas'),
+            cantidad: registros.length
+        })
     );
     if (!ok) return;
 
@@ -1009,27 +1011,29 @@ async function manejarArchivoImportar(event) {
         }
         const body = await res.json();
         if (!res.ok) throw new Error(body.error || 'respuesta no válida');
-        mostrarToastInfo(`Importado: ${body.importados} registros${body.ignorados ? ` (${body.ignorados} ignorados)` : ''}.`);
+        mostrarToastInfo(body.ignorados
+            ? t('toast.importadoConIgnorados', { importados: body.importados, ignorados: body.ignorados })
+            : t('toast.importado', { importados: body.importados }));
         Object.keys(cachePokemon).forEach(k => delete cachePokemon[k]);
         cerrarGaleriaYVolver();
         await cargarEstadisticasSinMoverScroll();
         actualizarBadgePendientes();
     } catch (err) {
-        mostrarToastError('No se pudo importar el respaldo. Revisa el archivo o tu conexión.');
+        mostrarToastError(t('error.noSePudoImportar'));
     }
 }
 
 // ── LISTA DE FALTANTES (descarga en texto plano) ──────────────────
 async function descargarListaFaltantes() {
-    if (!dataGlobalCache) { mostrarToastError('Espera a que cargue la colección.'); return; }
+    if (!dataGlobalCache) { mostrarToastError(t('error.esperaCarga')); return; }
     const todos = await obtenerTodosPokemon();
     const tenidos = new Set(Object.keys(dataGlobalCache.listaIds || {}).map(Number));
     const faltan = todos.filter(p => !tenidos.has(p.id)).sort((a,b) => a.id - b.id);
-    if (!faltan.length) { mostrarToastInfo('¡No te falta ningún Pokémon en este modo!'); return; }
+    if (!faltan.length) { mostrarToastInfo(t('toast.sinFaltantes')); return; }
 
-    const encabezado = `Pokémon que faltan — ${modoActual === 'bulk' ? 'Bulk' : 'Carpetas'}\n` +
-        `Generado el ${new Date().toLocaleDateString('es', { day:'numeric', month:'long', year:'numeric' })}\n` +
-        `Total: ${faltan.length}\n\n`;
+    const encabezado = t('listaFaltantes.encabezado', { modo: modoActual === 'bulk' ? t('modo.bulk') : t('modo.carpetas') }) + '\n' +
+        t('listaFaltantes.generadoEl', { fecha: new Date().toLocaleDateString('es', { day:'numeric', month:'long', year:'numeric' }) }) + '\n' +
+        t('listaFaltantes.total', { total: faltan.length }) + '\n\n';
     const lineas = faltan.map(p => `#${p.id.toString().padStart(4,'0')}  ${p.name.toLowerCase()}`).join('\n');
 
     const blob = new Blob([encabezado + lineas], { type: 'text/plain' });
@@ -1063,7 +1067,7 @@ async function verPendientesAcomodar() {
     }
     // Aquí no aplica "Todos/Tenemos/Faltan": todo lo que se muestra ya es "pendiente" por definición.
     document.querySelectorAll('.gallery-filter').forEach(f => f.style.display = 'none');
-    mostrarGalleryShell(`Por acomodar (${pkms.length})`, 'Están en Bulk, todavía no en tus carpetas');
+    mostrarGalleryShell(t('pendientes.tituloConCantidad', { cantidad: pkms.length }), t('pendientes.subtitulo'));
     actualizarTarjetaProgresoPendientes(pkms.length);
     renderGaleria(pkms, false, false, true);
     actualizarBadgePendientes(pkms.length); // ya lo calculamos, aprovechamos para refrescar el badge
@@ -1110,7 +1114,7 @@ async function exportarColeccion() {
         if (!res.ok) throw new Error('respuesta no válida');
         data = await res.json();
     } catch (err) {
-        mostrarToastError('No se pudo generar el respaldo. Revisa tu conexión.');
+        mostrarToastError(t('error.noSePudoGenerarRespaldo'));
         return;
     }
     const fechaArchivo = new Date().toISOString().slice(0, 10);
@@ -1123,7 +1127,7 @@ async function exportarColeccion() {
     a.click();
     a.remove();
     URL.revokeObjectURL(url);
-    mostrarToastInfo('Respaldo descargado.');
+    mostrarToastInfo(t('toast.respaldoDescargado'));
 }
 
 // ── PDF DE RECORTABLES PARA CARPETAS ────────────────────────────────
@@ -1135,7 +1139,7 @@ async function descargarRecortablesPDF() {
 
     const carpetasElegidas = [...document.querySelectorAll('.pdf-carpeta-check:checked')].map(c => c.value);
     if (!carpetasElegidas.length) {
-        mostrarToastError('Elegí al menos una carpeta.');
+        mostrarToastError(t('error.elegiUnaCarpeta'));
         return;
     }
     const incluirPortadas = modoCarpetasConfig === 'seguidas' ? false : document.getElementById('pdf-check-portadas').checked;
@@ -1150,7 +1154,7 @@ async function descargarRecortablesPDF() {
     btn.disabled = true;
     icono.textContent = '⏳';
     icono.classList.add('girando');
-    sub.textContent = 'Generando... puede tardar un minuto';
+    sub.textContent = t('pdf.generandoTexto');
 
     try {
         const res = await fetch(`/api/pdf-carpetas?${params.toString()}`);
@@ -1164,9 +1168,9 @@ async function descargarRecortablesPDF() {
         a.click();
         a.remove();
         URL.revokeObjectURL(url);
-        mostrarToastInfo('PDF listo.');
+        mostrarToastInfo(t('toast.pdfListo'));
     } catch (err) {
-        mostrarToastError('No se pudo generar el PDF. Revisa tu conexión.');
+        mostrarToastError(t('error.noSePudoGenerarPDF'));
     } finally {
         btn.disabled = false;
         icono.textContent = '✂️';
@@ -1211,7 +1215,7 @@ function actualizarGalleryHeader() {
     if (genActualAbierta.esPendientes) return; // el título ya trae el conteo (ver mostrarGalleryShell)
     const tenemos = pkmsActuales.filter(p => tieneEnLS(p.id)).length;
     const faltan  = pkmsActuales.length - tenemos;
-    const sub     = `${tenemos} de ${pkmsActuales.length} · faltan ${faltan}`;
+    const sub     = t('galeria.subtituloConteo', { tenemos, total: pkmsActuales.length, faltan });
     const sEl  = document.getElementById('gallery-subtitle-text');
     const sElD = document.getElementById('gallery-subtitle-text-desktop');
     if (sEl)  sEl.textContent  = sub;
@@ -1300,11 +1304,11 @@ function renderGaleria(pkms, mantenerScroll, forzarEstado, esVistaPendientes) {
         const nameM = document.createElement('div'); nameM.className = 'pk-name';
         nameM.textContent = p.name.toLowerCase();
         const statusM = document.createElement('div'); statusM.className = 'pk-status-tag';
-        statusM.textContent = tiene ? 'tenemos' : 'falta';
+        statusM.textContent = tiene ? t('galeria.estadoTenemos') : t('galeria.estadoFalta');
         const dotM = document.createElement('div'); dotM.className = 'pk-status-dot';
         dotM.textContent = tiene ? '✓' : '○';
         const extraM = document.createElement('div'); extraM.className = 'pk-extra-mobile';
-        extraM.innerHTML = `<div class="pk-extra-tipos">${pillsHTML}</div>${fechaTxt ? `<div class="pk-extra-fecha">Registrado el ${fechaTxt}</div>` : ''}`;
+        extraM.innerHTML = `<div class="pk-extra-tipos">${pillsHTML}</div>${fechaTxt ? `<div class="pk-extra-fecha">${t('ficha.registradoEl', { fecha: fechaTxt })}</div>` : ''}`;
 
         // ── DESKTOP elements ──
         const header = document.createElement('div'); header.className = 'pk-dt-header';
@@ -1322,11 +1326,11 @@ function renderGaleria(pkms, mantenerScroll, forzarEstado, esVistaPendientes) {
         const nameD = document.createElement('div'); nameD.className = 'pk-name';
         nameD.textContent = p.name.toLowerCase();
         const statusD = document.createElement('div'); statusD.className = 'pk-status-tag';
-        statusD.textContent = tiene ? 'tenemos' : 'falta';
+        statusD.textContent = tiene ? t('galeria.estadoTenemos') : t('galeria.estadoFalta');
         if (tiene) statusD.style.color = 'var(--found)';
         footer.appendChild(nameD); footer.appendChild(statusD);
         const extraD = document.createElement('div'); extraD.className = 'pk-extra-desktop';
-        extraD.innerHTML = `<div class="pk-extra-tipos">${pillsHTML}</div>${fechaTxt ? `<div class="pk-extra-fecha">Registrado el ${fechaTxt}</div>` : ''}`;
+        extraD.innerHTML = `<div class="pk-extra-tipos">${pillsHTML}</div>${fechaTxt ? `<div class="pk-extra-fecha">${t('ficha.registradoEl', { fecha: fechaTxt })}</div>` : ''}`;
         footer.appendChild(extraD);
 
         card.appendChild(ridM); card.appendChild(nidM); card.appendChild(imgM);
@@ -1435,13 +1439,14 @@ function mostrarFicha(p, esPendientes) {
     let regionName = regiones[p.gen - 1];
     if (ancla >= 899 && ancla <= 905) { numR = ancla - 809; regionName = 'Hisui'; }
     const regionEl = document.getElementById('pk-region');
-    regionEl.textContent = regionName.toUpperCase() + ' · GEN ' + p.gen;
+    regionEl.textContent = t('ficha.regionGen', { region: regionName.toUpperCase(), gen: p.gen });
     regionEl.style.color = coloresGen[p.gen-1];
     regionEl.style.background = coloresBg[p.gen-1];
     document.getElementById('pk-name').textContent = p.name.toLowerCase();
     const catInfo = p.categoria ? CATEGORIA_INFO[p.categoria] : null;
-    document.getElementById('pk-id').textContent =
-        `Regional #${numR.toString().padStart(3,'0')} · Nacional #${ancla.toString().padStart(4,'0')}${catInfo ? ' · ' + catInfo.label : ''}`;
+    document.getElementById('pk-id').textContent = catInfo
+        ? t('ficha.idRegionalNacionalConCategoria', { numR: numR.toString().padStart(3,'0'), nacional: ancla.toString().padStart(4,'0'), categoria: catInfo.label })
+        : t('ficha.idRegionalNacional', { numR: numR.toString().padStart(3,'0'), nacional: ancla.toString().padStart(4,'0') });
     document.getElementById('pk-img').src = p.image;
     document.getElementById('pk-img').alt = p.name;
 
@@ -1461,7 +1466,7 @@ function mostrarFicha(p, esPendientes) {
 
     const carpetaPk = carpetaDe(p);
     const bd = carpetaPk
-        ? { bg: carpetaPk.bg, color: carpetaPk.color, border: carpetaPk.color, text: `Carpeta ${carpetaPk.nombre} — ${carpetaPk.rango}` }
+        ? { bg: carpetaPk.bg, color: carpetaPk.color, border: carpetaPk.color, text: t('carpeta.conRango', { nombre: carpetaPk.nombre, rango: carpetaPk.rango }) }
         : { bg: coloresBg[p.gen-1] || 'rgba(153,153,153,0.16)', color: coloresGen[p.gen-1] || '#999', border: coloresGen[p.gen-1] || '#999', text: '' };
     const guide = document.getElementById('binder-guide');
     guide.style.background = bd.bg; guide.style.color = bd.color;
@@ -1472,13 +1477,13 @@ function mostrarFicha(p, esPendientes) {
         // la única acción con sentido es marcarlo como acomodado en Carpetas.
         const btn = document.getElementById('btn-toggle-status');
         btn.style.background = 'var(--accent2)';
-        btn.textContent = '📥 Marcar como acomodado en Carpetas';
-        document.getElementById('detail-fecha').textContent = 'Está en tu Bulk — aún no está en Carpetas';
+        btn.textContent = t('ficha.marcarAcomodado');
+        document.getElementById('detail-fecha').textContent = t('ficha.estaEnBulk');
     } else {
         const tiene = tieneEnLS(p.id);
         actualizarBotonEstado(tiene);
         const fecha = getFechaRegistro(p.id);
-        document.getElementById('detail-fecha').textContent = tiene && fecha ? `Registrado el ${fecha}` : '';
+        document.getElementById('detail-fecha').textContent = tiene && fecha ? t('ficha.registradoEl', { fecha }) : '';
     }
     document.getElementById('detail-modal').classList.add('open');
 }
@@ -1486,7 +1491,7 @@ function mostrarFicha(p, esPendientes) {
 function actualizarBotonEstado(tiene) {
     const btn = document.getElementById('btn-toggle-status');
     btn.style.background = tiene ? 'var(--found)' : 'var(--danger)';
-    btn.textContent = tiene ? '✅ Ya lo tenemos' : '❌ No lo tenemos — tocar para guardar';
+    btn.textContent = tiene ? t('ficha.yaLoTenemos') : t('ficha.noLoTenemos');
 }
 
 document.getElementById('btn-toggle-status').onclick = () => requiereSesion(ejecutarToggleStatus);
@@ -1506,7 +1511,7 @@ async function ejecutarToggleStatus() {
             if (res.status === 401) { abrirLoginModal(ejecutarToggleStatus); return; }
             if (!res.ok) throw new Error('respuesta no válida');
         } catch (err) {
-            mostrarToastError('No se pudo guardar el cambio. Intenta de nuevo.');
+            mostrarToastError(t('error.noSePudoGuardarCambio'));
             return;
         }
         if (modoActual === 'carpetas') {
@@ -1519,7 +1524,7 @@ async function ejecutarToggleStatus() {
         // Lo sacamos de la lista de pendientes en pantalla, sin volver a comparar todo el inventario.
         pendientesActuales = pendientesActuales.filter(x => x.id !== idPk);
         pkmsActuales = pendientesActuales;
-        mostrarGalleryShell(`Por acomodar (${pendientesActuales.length})`, 'Están en Bulk, todavía no en tus carpetas');
+        mostrarGalleryShell(t('pendientes.tituloConCantidad', { cantidad: pendientesActuales.length }), t('pendientes.subtitulo'));
         actualizarTarjetaProgresoPendientes(pendientesActuales.length);
         renderGaleria(pendientesActuales, true, false, true);
         if (modoActual === 'carpetas') {
@@ -1559,7 +1564,7 @@ async function ejecutarToggleStatus() {
         actualizarBadgePendientes();
         if (!nuevoEstado) mostrarToastDeshacer(idPk, fechaPreservada, nombrePk);
     } catch (err) {
-        mostrarToastError('No se pudo guardar el cambio. Intenta de nuevo.');
+        mostrarToastError(t('error.noSePudoGuardarCambio'));
     }
 }
 
@@ -1639,7 +1644,7 @@ function handleSearchInput(e, inputEl) {
             const name  = document.createElement('span'); name.className = `sugerencia-name${tiene ? ' found-name' : ''}`; name.textContent = p.name.toLowerCase();
             const meta  = document.createElement('span'); meta.className = 'sugerencia-meta';
             meta.style.background = bgPk; meta.style.color = colorPk;
-            meta.textContent = `${rName} · Gen ${p.gen} #${numR.toString().padStart(3,'0')}`;
+            meta.textContent = t('buscador.sugerenciaMeta', { region: rName, gen: p.gen, numR: numR.toString().padStart(3,'0') });
             item.appendChild(check); item.appendChild(name); item.appendChild(meta);
             item.addEventListener('touchstart', ev => { ev.preventDefault(); }, { passive:false });
             item.addEventListener('touchend', () => {
@@ -1684,16 +1689,16 @@ function ocultarFAB() { document.getElementById('fab-home').classList.remove('vi
 function mostrarMetricas() {
     if (!dataGlobalCache) return;
     const d = dataGlobalCache;
-    document.getElementById('metrics-subtitle').textContent = `${d.global.conseguidos || 0} de ${d.global.total || 1025} Pokémon registrados`;
+    document.getElementById('metrics-subtitle').textContent = t('metricas.subtitulo', { conseguidos: d.global.conseguidos || 0, total: d.global.total || 1025 });
 
     const { ultimos7, ultimos30 } = calcularProgresoReciente();
-    let html = `<div class="metrics-section-title">Progreso reciente (${modoActual === 'bulk' ? 'Bulk' : 'Carpetas'})</div>
+    let html = `<div class="metrics-section-title">${t('metricas.progresoRecienteTitulo', { modo: modoActual === 'bulk' ? t('modo.bulk') : t('modo.carpetas') })}</div>
         <div class="metrics-row">
-            <span class="metrics-row-label">Últimos 7 días</span>
+            <span class="metrics-row-label">${t('metricas.ultimos7')}</span>
             <span class="metrics-row-val">${ultimos7 > 0 ? `+${ultimos7}` : '0'}</span>
         </div>
         <div class="metrics-row">
-            <span class="metrics-row-label">Últimos 30 días</span>
+            <span class="metrics-row-label">${t('metricas.ultimos30')}</span>
             <span class="metrics-row-val">${ultimos30 > 0 ? `+${ultimos30}` : '0'}</span>
         </div>`;
 
@@ -1704,10 +1709,10 @@ function mostrarMetricas() {
         if (j) jalones.push(`<span style="color:${coloresGen[i]};font-weight:700;">${r}:</span> ${j}`);
     });
     if (jalones.length) {
-        html += `<div class="metrics-section-title">Jalones</div>`;
+        html += `<div class="metrics-section-title">${t('metricas.jalonesTitulo')}</div>`;
         jalones.forEach(j => { html += `<div class="metrics-jalon">${j}</div>`; });
     }
-    html += `<div class="metrics-section-title">Por generación</div>`;
+    html += `<div class="metrics-section-title">${t('metricas.porGeneracionTitulo')}</div>`;
     html += regiones.map((r, i) => {
         const g   = d.generaciones[i+1];
         const pct = g.total > 0 ? Math.round((g.conseguidos/g.total)*100) : 0;
@@ -1716,7 +1721,7 @@ function mostrarMetricas() {
             <span class="metrics-row-label" style="color:${coloresGen[i]}">${r}</span>
             <div style="text-align:right;">
                 <div class="metrics-row-val">${g.conseguidos}/${g.total} · ${pct}%</div>
-                <div class="metrics-row-sub">${f > 0 ? `faltan ${f}` : '✓ completa'}</div>
+                <div class="metrics-row-sub">${f > 0 ? t('gen.faltanTexto', { n: f }) : t('metricas.completa')}</div>
             </div>
         </div>`;
     }).join('');
@@ -1767,7 +1772,7 @@ async function mostrarVersionServidor() {
     try {
         const res = await fetch('/api/version');
         const data = await res.json();
-        el.textContent = data.commit ? `Versión ${data.commit}` : '';
+        el.textContent = data.commit ? t('ajustes.version', { commit: data.commit }) : '';
     } catch (err) {
         el.textContent = '';
     }
@@ -1802,11 +1807,11 @@ document.getElementById('pdf-opciones-close').onclick = cerrarOpcionesPDF;
 
 // ── AJUSTES: panel de categorías de variantes ───────────────────────
 const CATEGORIAS_VARIANTES_INFO = [
-    { key: 'regional',    label: 'Formas regionales',      sub: 'Alolan, Galarian, Hisuian, Paldean' },
-    { key: 'mega',        label: 'Megaevolución',          sub: 'Incluye los casos X/Y (Charizard, Mewtwo)' },
-    { key: 'primigenia',  label: 'Regresión Primigenia',   sub: 'Kyogre y Groudon' },
-    { key: 'gigamax',     label: 'Gigamax',                sub: 'Espada/Escudo + expansiones' },
-    { key: 'alternativa', label: 'Formas alternativas',    sub: 'Con carta TCG propia (Deoxys, Rotom, Arceus, etc.)' },
+    { key: 'regional',    label: t('variantes.cat.regional.label'),    sub: t('variantes.cat.regional.sub') },
+    { key: 'mega',        label: t('variantes.cat.mega.label'),        sub: t('variantes.cat.mega.sub') },
+    { key: 'primigenia',  label: t('variantes.cat.primigenia.label'),  sub: t('variantes.cat.primigenia.sub') },
+    { key: 'gigamax',     label: t('variantes.cat.gigamax.label'),     sub: t('variantes.cat.gigamax.sub') },
+    { key: 'alternativa', label: t('variantes.cat.alternativa.label'), sub: t('variantes.cat.alternativa.sub') },
 ];
 let variantesConfigActual = null;
 
@@ -1823,7 +1828,7 @@ async function renderVariantesChecks(elementId) {
         if (!res.ok) throw new Error('respuesta no válida');
         variantesConfigActual = await res.json();
     } catch (err) {
-        mostrarToastError('No se pudo cargar la configuración de variantes.');
+        mostrarToastError(t('error.noSePudoCargarVariantes'));
         return false;
     }
     document.getElementById(elementId).innerHTML = CATEGORIAS_VARIANTES_INFO.map(c => `
@@ -1857,7 +1862,7 @@ async function toggleCategoriaVariante(categoria, activada) {
                 body: JSON.stringify(nueva)
             });
             const data = await res.json();
-            if (!res.ok || !data.success) throw new Error(data.error || 'respuesta no válida');
+            if (!res.ok || !data.success) throw new Error(data.error || t('error.respuestaInvalida'));
             variantesConfigActual = nueva;
             // cachePokemon (por generación) y pkmsActuales pueden tener datos
             // cargados antes de este cambio, sin las variantes recién
@@ -1880,11 +1885,11 @@ async function toggleCategoriaVariante(categoria, activada) {
             }
             await cargarEstadisticasSinMoverScroll();
             if (activada) await revisarCapacidadCarpetas();
-            mostrarToastInfo(activada ? 'Categoría activada.' : 'Categoría desactivada.');
+            mostrarToastInfo(activada ? t('toast.categoriaActivada') : t('toast.categoriaDesactivada'));
         } catch (err) {
             sseIgnorarProximoConfig = false; // no se llegó a guardar: no habrá eco que ignorar
             if (checkbox) checkbox.checked = !activada; // revertir el toggle visual si falló
-            mostrarToastError(err.message || 'No se pudo guardar la configuración de variantes.');
+            mostrarToastError(err.message || t('error.noSePudoGuardarVariantes'));
         }
     };
     const revertirSiCancela = () => { if (checkbox) checkbox.checked = !activada; };
@@ -1893,14 +1898,14 @@ async function toggleCategoriaVariante(categoria, activada) {
 
 // ── AJUSTES: ver y restaurar respaldos automáticos ──────────────────
 const RESPALDO_TIPO_LABEL = {
-    'automatico': 'Automático',
-    'pre-importacion': 'Antes de importar',
-    'pre-restauracion': 'Antes de restaurar'
+    'automatico': t('respaldos.tipoAutomatico'),
+    'pre-importacion': t('respaldos.tipoPreImportacion'),
+    'pre-restauracion': t('respaldos.tipoPreRestauracion')
 };
 
 async function abrirPanelRespaldos() {
     const lista = document.getElementById('respaldos-lista');
-    lista.innerHTML = '<div class="pdf-opciones-label">Cargando…</div>';
+    lista.innerHTML = `<div class="pdf-opciones-label">${t('respaldos.cargando')}</div>`;
     cerrarAjustes();
     document.getElementById('respaldos-modal').classList.add('open');
 
@@ -1910,12 +1915,12 @@ async function abrirPanelRespaldos() {
         if (!res.ok) throw new Error('respuesta no válida');
         respaldos = await res.json();
     } catch (err) {
-        lista.innerHTML = '<div class="pdf-opciones-label">No se pudieron cargar los respaldos.</div>';
+        lista.innerHTML = `<div class="pdf-opciones-label">${t('respaldos.errorCarga')}</div>`;
         return;
     }
 
     if (!respaldos.length) {
-        lista.innerHTML = '<div class="pdf-opciones-label">Todavía no hay respaldos guardados.</div>';
+        lista.innerHTML = `<div class="pdf-opciones-label">${t('respaldos.vacio')}</div>`;
         return;
     }
 
@@ -1925,7 +1930,7 @@ async function abrirPanelRespaldos() {
                 <span class="respaldo-fecha">${new Date(r.fecha).toLocaleString('es', { dateStyle: 'medium', timeStyle: 'short' })}</span>
                 <span class="respaldo-tipo">${RESPALDO_TIPO_LABEL[r.tipo] || r.tipo}</span>
             </div>
-            <button class="respaldo-btn-restaurar" onclick="restaurarRespaldo('${r.archivo}')">Restaurar</button>
+            <button class="respaldo-btn-restaurar" onclick="restaurarRespaldo('${r.archivo}')">${t('respaldos.restaurarBoton')}</button>
         </div>
     `).join('');
 }
@@ -1936,10 +1941,7 @@ document.getElementById('respaldos-close').onclick = cerrarPanelRespaldos;
 
 function restaurarRespaldo(archivo) {
     requiereSesion(async () => {
-        const ok = confirm(
-            'Esto REEMPLAZA todo tu inventario actual (Bulk Y Carpetas) con el contenido de este respaldo. ' +
-            'Se guarda una copia del estado actual antes de pisarlo, por si acaso. ¿Continuar?'
-        );
+        const ok = confirm(t('confirm.restaurarRespaldo'));
         if (!ok) return;
         try {
             const res = await fetch('/api/backups/restaurar', {
@@ -1948,15 +1950,15 @@ function restaurarRespaldo(archivo) {
                 body: JSON.stringify({ archivo })
             });
             const data = await res.json();
-            if (!res.ok || !data.success) throw new Error(data.error || 'respuesta no válida');
-            mostrarToastInfo('Inventario restaurado.');
+            if (!res.ok || !data.success) throw new Error(data.error || t('error.respuestaInvalida'));
+            mostrarToastInfo(t('toast.inventarioRestaurado'));
             cerrarPanelRespaldos();
             Object.keys(cachePokemon).forEach(k => delete cachePokemon[k]);
             cerrarGaleriaYVolver();
             await cargarEstadisticasSinMoverScroll();
             actualizarBadgePendientes();
         } catch (err) {
-            mostrarToastError(err.message || 'No se pudo restaurar el respaldo.');
+            mostrarToastError(err.message || t('error.noSePudoRestaurar'));
         }
     });
 }
@@ -2063,7 +2065,7 @@ function wizardArmarPasoCapacidad() {
         const hojasSugeridas = Math.ceil(Math.ceil(necesarioTotal / wizardNumCarpetas) / espaciosPorHoja);
         document.getElementById('wizard-capacidad-lista').innerHTML = Array.from({ length: wizardNumCarpetas }, (_, i) => `
             <div class="wizard-espacios-fila">
-                <label>Carpeta ${i + 1} — hojas (${espaciosPorHoja} espacios c/u)</label>
+                <label>${t('wizard.pasoCapacidad.labelHojas', { n: i + 1, espacios: espaciosPorHoja })}</label>
                 <input type="number" min="1" value="${hojasSugeridas}" class="wizard-capacidad-fija-input" data-carpeta="${i}" oninput="wizardActualizarTotalCapacidad()">
             </div>
         `).join('');
@@ -2071,7 +2073,7 @@ function wizardArmarPasoCapacidad() {
         const espaciosSugeridos = Math.ceil(necesarioTotal / wizardNumCarpetas);
         document.getElementById('wizard-capacidad-lista').innerHTML = Array.from({ length: wizardNumCarpetas }, (_, i) => `
             <div class="wizard-espacios-fila">
-                <label>Carpeta ${i + 1} — espacios totales</label>
+                <label>${t('wizard.pasoCapacidad.labelEspacios', { n: i + 1 })}</label>
                 <input type="number" min="1" value="${espaciosSugeridos}" class="wizard-capacidad-fija-input" data-carpeta="${i}" oninput="wizardActualizarTotalCapacidad()">
             </div>
         `).join('');
@@ -2092,9 +2094,9 @@ function wizardActualizarTotalCapacidad() {
     });
     const div = document.getElementById('wizard-capacidad-total');
     if (capacidadTotal < necesarioTotal) {
-        div.innerHTML = `<div class="wizard-preview-fila error">⚠️ Entre todas suman ${capacidadTotal} espacios, y hacen falta ${necesarioTotal} para cubrir toda la colección.</div>`;
+        div.innerHTML = `<div class="wizard-preview-fila error">${t('wizard.pasoCapacidad.previewInsuficiente', { capacidadTotal, necesarioTotal })}</div>`;
     } else {
-        div.innerHTML = `<div class="wizard-preview-fila ok">✓ Entre todas suman ${capacidadTotal} espacios (necesitás al menos ${necesarioTotal}).</div>`;
+        div.innerHTML = `<div class="wizard-preview-fila ok">${t('wizard.pasoCapacidad.previewSuficiente', { capacidadTotal, necesarioTotal })}</div>`;
     }
 }
 
@@ -2110,7 +2112,7 @@ async function wizardCapacidadSiguiente() {
         const total = wizardCapacidadesFijas.reduce((a, b) => a + b, 0);
         const necesario = wizardNecesarioTotal();
         if (total < necesario) {
-            mostrarToastError(`Entre todas suman ${total} espacios, y hacen falta ${necesario} para cubrir toda la colección.`);
+            mostrarToastError(t('wizard.error.capacidadInsuficiente', { total, necesario }));
             return;
         }
         // wizardCalcularRangos() necesita saber, id por id, cuántos efectivos
@@ -2223,7 +2225,7 @@ function wizardArmarPasoAjuste() {
         const grupo = wizardAsignacion[gen];
         return `<button type="button" class="wizard-chip" style="background:${wizardColorDeGrupo(grupo)}" onclick="wizardCiclarChip(${gen})">
             <span class="wizard-chip-region">${regiones[i]}</span>
-            <span class="wizard-chip-grupo">Carpeta ${grupo}</span>
+            <span class="wizard-chip-grupo">${t('wizard.carpetaN', { n: grupo })}</span>
         </button>`;
     }).join('');
     wizardActualizarPreviewAjuste();
@@ -2242,18 +2244,18 @@ function wizardActualizarPreviewAjuste() {
         const capacidad = wizardCapacidadesFijas[i];
         const usado = totales[i];
         const vacios = capacidad - usado;
-        const gensTxt = gens.length ? gens.map(x => regiones[x-1]).join(', ') : '(vacía)';
+        const gensTxt = gens.length ? gens.map(x => regiones[x-1]).join(', ') : t('wizard.pasoAjuste.vacia');
         const estado = vacios < 0
-            ? `<span class="wizard-espacios-feedback error">⚠️ Se pasa por ${-vacios} espacios</span>`
-            : `<span class="wizard-espacios-feedback ok">${vacios} espacios vacíos</span>`;
+            ? `<span class="wizard-espacios-feedback error">${t('wizard.pasoAjuste.sePasaPor', { n: -vacios })}</span>`
+            : `<span class="wizard-espacios-feedback ok">${t('wizard.pasoAjuste.espaciosVacios', { n: vacios })}</span>`;
         return `<div class="wizard-preview-fila" style="border-left:4px solid ${wizardColorDeGrupo(i+1)}">
-            <strong>Carpeta ${i+1}:</strong> ${gensTxt}<br>${estado}
+            <strong>${t('wizard.pasoAjuste.carpetaConDosPuntos', { n: i+1 })}</strong> ${gensTxt}<br>${estado}
         </div>`;
     }).join('');
     const btn = document.getElementById('wizard-btn-a-nombres');
-    const hayProblema = totales.some((t, i) => t > wizardCapacidadesFijas[i]);
+    const hayProblema = totales.some((tot, i) => tot > wizardCapacidadesFijas[i]);
     btn.disabled = hayProblema;
-    btn.textContent = hayProblema ? 'Resolvé lo que no entra primero' : 'Siguiente →';
+    btn.textContent = hayProblema ? t('wizard.resolverProblema') : t('wizard.siguiente');
 }
 
 function wizardAjusteSiguiente() {
@@ -2274,9 +2276,11 @@ function wizardArmarPasoNombres() {
             const swatches = PALETA_CARPETAS.map(col =>
                 `<button type="button" class="wizard-swatch${col === colorDefault ? ' selected' : ''}" style="background:${col}" data-color="${col}" onclick="wizardElegirColor(this)"></button>`
             ).join('');
-            const sub = r ? `#${r.desde}–${r.hasta} · ${wizardCapacidadesFijas[i]} espacios` : `Sin Pokémon asignados · ${wizardCapacidadesFijas[i]} espacios`;
+            const sub = r
+                ? t('wizard.pasoNombres.rangoConEspacios', { desde: r.desde, hasta: r.hasta, espacios: wizardCapacidadesFijas[i] })
+                : t('wizard.pasoNombres.sinPokemon', { espacios: wizardCapacidadesFijas[i] });
             return `<div class="wizard-nombre-fila" data-desde="${r ? r.desde : ''}" data-hasta="${r ? r.hasta : ''}">
-                <input type="text" class="wizard-nombre-input" value="Carpeta ${i + 1}" maxlength="24" placeholder="Nombre de la carpeta">
+                <input type="text" class="wizard-nombre-input" value="${t('wizard.carpetaN', { n: i + 1 })}" maxlength="24" placeholder="${t('wizard.pasoNombres.placeholderNombre')}">
                 <div class="wizard-swatches" data-color-actual="${colorDefault}">${swatches}</div>
                 <div class="wizard-nombre-sub">${sub}</div>
             </div>`;
@@ -2286,14 +2290,16 @@ function wizardArmarPasoNombres() {
     document.getElementById('wizard-nombres-lista').innerHTML = wizardGrupos.map((gens, i) => {
         // Si el grupo coincide exactamente con una carpeta existente, reusamos su nombre/color.
         const existente = carpetas.find(c => c.gens && c.gens.length === gens.length && c.gens.every(g => gens.includes(g)));
-        const nombreDefault = existente ? existente.nombre : `Carpeta ${i + 1}`;
+        const nombreDefault = existente ? existente.nombre : t('wizard.carpetaN', { n: i + 1 });
         const colorDefault  = existente ? existente.color : wizardColorDeGrupo(i + 1);
         const swatches = PALETA_CARPETAS.map(col =>
             `<button type="button" class="wizard-swatch${col === colorDefault ? ' selected' : ''}" style="background:${col}" data-color="${col}" onclick="wizardElegirColor(this)"></button>`
         ).join('');
-        const sub = gens.length ? `${formatearRango(gens)} · ${wizardCapacidadesFijas[i]} espacios` : `Sin generaciones asignadas · ${wizardCapacidadesFijas[i]} espacios`;
+        const sub = gens.length
+            ? t('wizard.pasoNombres.rangoGensConEspacios', { rango: formatearRango(gens), espacios: wizardCapacidadesFijas[i] })
+            : t('wizard.pasoNombres.sinGeneraciones', { espacios: wizardCapacidadesFijas[i] });
         return `<div class="wizard-nombre-fila" data-gens="${gens.join(',')}">
-            <input type="text" class="wizard-nombre-input" value="${nombreDefault}" maxlength="24" placeholder="Nombre de la carpeta">
+            <input type="text" class="wizard-nombre-input" value="${nombreDefault}" maxlength="24" placeholder="${t('wizard.pasoNombres.placeholderNombre')}">
             <div class="wizard-swatches" data-color-actual="${colorDefault}">${swatches}</div>
             <div class="wizard-nombre-sub">${sub}</div>
         </div>`;
@@ -2329,11 +2335,11 @@ async function wizardGuardar() {
             .filter(c => c.gens.length);
 
     if (!nueva.length) {
-        mostrarToastError(wizardModo === 'seguidas' ? 'Asigná al menos un rango a alguna carpeta.' : 'Asigná al menos una generación a alguna carpeta.');
+        mostrarToastError(wizardModo === 'seguidas' ? t('error.asignaRango') : t('error.asignaGeneracion'));
         return;
     }
     if (nueva.some(c => !c.nombre)) {
-        mostrarToastError('Todas las carpetas necesitan un nombre.');
+        mostrarToastError(t('error.carpetasNecesitanNombre'));
         return;
     }
     const nombresVistos = new Set();
@@ -2343,13 +2349,13 @@ async function wizardGuardar() {
         nombresVistos.add(clave);
         return false;
     })) {
-        mostrarToastError('Cada carpeta necesita un nombre distinto.');
+        mostrarToastError(t('error.carpetasNombreDistinto'));
         return;
     }
 
     const btn = document.getElementById('wizard-btn-guardar');
     btn.disabled = true;
-    btn.textContent = 'Guardando...';
+    btn.textContent = t('wizard.guardando');
     try {
         const res = await fetch('/api/carpetas-config', {
             method: 'POST',
@@ -2357,21 +2363,21 @@ async function wizardGuardar() {
             body: JSON.stringify({ modo: wizardModo, carpetas: nueva })
         });
         const data = await res.json();
-        if (!res.ok || !data.success) throw new Error(data.error || 'respuesta no válida');
+        if (!res.ok || !data.success) throw new Error(data.error || t('error.respuestaInvalida'));
         await cargarCarpetasConfig();
         renderSidebar();
         renderBinderBar();
         localStorage.setItem('carpetasWizardVisto', '1');
         cerrarWizardCarpetas();
-        mostrarToastInfo('Carpetas actualizadas.');
+        mostrarToastInfo(t('toast.carpetasActualizadas'));
         // La config recién guardada puede no alcanzar para las variantes activas
         // (wizardCalcularRangos no las conoce en modo "seguidas"); avisar sin bloquear.
         await revisarCapacidadCarpetas();
     } catch (err) {
-        mostrarToastError(err.message || 'No se pudo guardar la configuración.');
+        mostrarToastError(err.message || t('error.noSePudoGuardarConfig'));
     } finally {
         btn.disabled = false;
-        btn.textContent = 'Guardar';
+        btn.textContent = t('wizard.guardar');
     }
 }
 
@@ -2414,7 +2420,7 @@ async function toggleCamaraOCR() {
         btnCam  && btnCam.classList.add('cam-active');
         if (!esDesktop()) {
             ocrStatus.style.display = 'block';
-            ocrStatus.textContent   = 'Abriendo cámara... ⏳';
+            ocrStatus.textContent   = t('camara.abriendo');
             cameraBoxView.style.display = 'block';
             cameraBoxView.scrollIntoView({ behavior:'smooth', block:'center' });
         }
@@ -2422,7 +2428,7 @@ async function toggleCamaraOCR() {
         video.srcObject = streamCamara;
         scanActivo = true;
         iniciarBucleOCR();
-    } catch(err) { alert('Error al abrir la cámara.'); detenerCamara(); }
+    } catch(err) { alert(t('camara.errorAbrir')); detenerCamara(); }
 }
 function detenerCamara() {
     scanActivo = false;
@@ -2444,7 +2450,7 @@ async function iniciarBucleOCR() {
         // Tesseract además cachea el paquete en IndexedDB tras la primera vez.
     });
     ocrStatus.style.display = 'block';
-    ocrStatus.textContent   = '🔍 Escaneando nombre...';
+    ocrStatus.textContent   = t('camara.escaneando');
     while (streamCamara && scanActivo) {
         if (video.readyState === video.HAVE_ENOUGH_DATA) {
             canvas.width = 600; canvas.height = 150;
@@ -2462,7 +2468,7 @@ async function iniciarBucleOCR() {
                 }
                 if (data.length > 0) {
                     if (navigator.vibrate) navigator.vibrate([80,40,80]);
-                    ocrStatus.textContent = `✅ Encontrado: ${data[0].name.toLowerCase()}`;
+                    ocrStatus.textContent = t('camara.encontrado', { nombre: data[0].name.toLowerCase() });
                     agregarAlHistorial(data[0]);
                     mostrarFicha(data[0]);
                     detenerCamara();
@@ -2499,7 +2505,7 @@ function iniciarSSE() {
             cargarCarpetasConfig().then(() => { renderSidebar(); renderBinderBar(); });
             cargarEstadisticasSinMoverScroll();
             actualizarBadgePendientes();
-            mostrarToastInfo('La colección se actualizó desde otro dispositivo — recargando.');
+            mostrarToastInfo(t('toast.coleccionActualizadaOtroDispositivo'));
             return;
         }
 
@@ -2526,7 +2532,7 @@ function mostrarToastSync(id, estado) {
         toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 16px;font-size:12px;font-weight:600;color:var(--text);box-shadow:0 4px 16px var(--shadow);z-index:800;white-space:nowrap;opacity:0;transition:opacity .2s ease;';
         document.body.appendChild(toast);
     }
-    toast.textContent = `🔄 Sincronizado — #${id} ${estado ? '✓ añadido' : '○ quitado'} en otro dispositivo`;
+    toast.textContent = estado ? t('toast.sincronizadoAnadido', { id }) : t('toast.sincronizadoQuitado', { id });
     toast.style.opacity = '1';
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => { toast.style.opacity = '0'; }, 2500);

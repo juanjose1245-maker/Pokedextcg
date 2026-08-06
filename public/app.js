@@ -688,10 +688,10 @@ function renderBinderBar() {
     if (!bar || !legend || !dataGlobalCache) return;
     bar.innerHTML = ''; legend.innerHTML = '';
     carpetas.forEach(c => {
-        const { total: t } = progresoCarpeta(c);
+        const { total: totalCarpeta } = progresoCarpeta(c);
         const seg = document.createElement('button');
         seg.className = 'binder-bar-segment';
-        seg.style.flex = t || 1;
+        seg.style.flex = totalCarpeta || 1;
         seg.style.background = c.color;
         seg.title = t('carpeta.conRango', { nombre: c.nombre, rango: c.rango });
         seg.onclick = (e) => { e.stopPropagation(); verCarpeta(c); };

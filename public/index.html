@@ -29,34 +29,34 @@
     <div class="sb-mode-switch">
         <div class="mode-switch">
             <div class="mode-switch-thumb" id="mode-switch-thumb-desktop"></div>
-            <button class="mode-switch-btn" data-modo-btn="bulk" onclick="cambiarModo('bulk')"><span class="mode-switch-icon">📦</span> Bulk</button>
-            <button class="mode-switch-btn" data-modo-btn="carpetas" onclick="cambiarModo('carpetas')"><span class="mode-switch-icon">📁</span> Carpetas</button>
+            <button class="mode-switch-btn" data-modo-btn="bulk" onclick="cambiarModo('bulk')"><span class="mode-switch-icon">📦</span> <span data-i18n="modo.bulk">Bulk</span></button>
+            <button class="mode-switch-btn" data-modo-btn="carpetas" onclick="cambiarModo('carpetas')"><span class="mode-switch-icon">📁</span> <span data-i18n="modo.carpetas">Carpetas</span></button>
         </div>
     </div>
     <div class="sb-search">
-        <input type="text" id="search-input-desktop" class="sb-search-bar" placeholder="🔍 Buscar Pokémon..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        <input type="text" id="search-input-desktop" class="sb-search-bar" placeholder="🔍 Buscar Pokémon..." data-i18n-placeholder="buscador.placeholder" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     </div>
     <div class="sb-progress">
         <div class="sb-progress-box" onclick="verPokedexCompleta()">
             <div class="sb-progress-row">
-                <span class="sb-progress-label">Colección</span>
+                <span class="sb-progress-label" data-i18n="sidebar.coleccion">Colección</span>
                 <span class="sb-progress-pct" id="sb-pct">0%</span>
             </div>
             <div class="sb-progress-bar-bg">
                 <div class="sb-progress-bar-fill" id="sb-bar" style="width:0%"></div>
             </div>
-            <div class="sb-progress-count"><span id="sb-count">0</span> <span style="color:var(--muted)">de</span> 1025</div>
+            <div class="sb-progress-count"><span id="sb-count">0</span> <span style="color:var(--muted)" data-i18n="comun.de">de</span> 1025</div>
         </div>
     </div>
     <div class="sb-scroll">
-        <div class="sb-section-label">Carpetas</div>
+        <div class="sb-section-label" data-i18n="sidebar.carpetasLabel">Carpetas</div>
         <div id="sb-carpetas"></div>
     </div>
     <div class="sb-bottom">
-        <button class="sb-btn" onclick="mostrarMetricas()">📊 Métricas</button>
-        <button class="sb-btn" id="sb-btn-cam" onclick="toggleCamaraOCR()">📷 Cámara</button>
-        <button class="sb-btn" onclick="verPendientesAcomodar()">🔄 Por acomodar<span class="btn-badge" id="badge-pendientes-desktop"></span></button>
-        <button class="sb-btn" onclick="abrirAjustes()">⚙️ Ajustes</button>
+        <button class="sb-btn" onclick="mostrarMetricas()" data-i18n="sidebar.metricas">📊 Métricas</button>
+        <button class="sb-btn" id="sb-btn-cam" onclick="toggleCamaraOCR()" data-i18n="sidebar.camara">📷 Cámara</button>
+        <button class="sb-btn" onclick="verPendientesAcomodar()"><span data-i18n="sidebar.porAcomodar">🔄 Por acomodar</span><span class="btn-badge" id="badge-pendientes-desktop"></span></button>
+        <button class="sb-btn" onclick="abrirAjustes()" data-i18n="sidebar.ajustes">⚙️ Ajustes</button>
     </div>
 </div>
 <input type="file" id="input-importar" accept="application/json" style="display:none;" onchange="manejarArchivoImportar(event)">
@@ -73,19 +73,19 @@
             <span class="modo-badge" id="modo-badge-mobile"></span>
             <div class="header-actions">
                 <span class="brand-count" id="brand-count">— / 1025</span>
-                <button class="header-icon-btn" onclick="mostrarMetricas()" title="Métricas">📊</button>
-                <button class="header-icon-btn" id="btn-camara-header" onclick="toggleCamaraOCR()" title="Cámara">📷</button>
-                <button class="header-icon-btn" onclick="verPendientesAcomodar()" title="Por acomodar en Carpetas">🔄<span class="btn-badge" id="badge-pendientes-mobile"></span></button>
-                <button class="header-icon-btn" onclick="abrirAjustes()" title="Ajustes">⚙️</button>
+                <button class="header-icon-btn" onclick="mostrarMetricas()" title="Métricas" data-i18n-title="header.tituloMetricas">📊</button>
+                <button class="header-icon-btn" id="btn-camara-header" onclick="toggleCamaraOCR()" title="Cámara" data-i18n-title="header.tituloCamara">📷</button>
+                <button class="header-icon-btn" onclick="verPendientesAcomodar()" title="Por acomodar en Carpetas" data-i18n-title="header.tituloPorAcomodar">🔄<span class="btn-badge" id="badge-pendientes-mobile"></span></button>
+                <button class="header-icon-btn" onclick="abrirAjustes()" title="Ajustes" data-i18n-title="header.tituloAjustes">⚙️</button>
             </div>
         </div>
         <div class="mode-switch" style="margin:0 0 10px;">
             <div class="mode-switch-thumb" id="mode-switch-thumb-mobile"></div>
-            <button class="mode-switch-btn" data-modo-btn="bulk" onclick="cambiarModo('bulk')"><span class="mode-switch-icon">📦</span> Bulk</button>
-            <button class="mode-switch-btn" data-modo-btn="carpetas" onclick="cambiarModo('carpetas')"><span class="mode-switch-icon">📁</span> Carpetas</button>
+            <button class="mode-switch-btn" data-modo-btn="bulk" onclick="cambiarModo('bulk')"><span class="mode-switch-icon">📦</span> <span data-i18n="modo.bulk">Bulk</span></button>
+            <button class="mode-switch-btn" data-modo-btn="carpetas" onclick="cambiarModo('carpetas')"><span class="mode-switch-icon">📁</span> <span data-i18n="modo.carpetas">Carpetas</span></button>
         </div>
         <div class="search-wrap">
-            <input type="text" id="search-input" class="search-bar" placeholder="🔍 Buscar Pokémon..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            <input type="text" id="search-input" class="search-bar" placeholder="🔍 Buscar Pokémon..." data-i18n-placeholder="buscador.placeholder" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
         </div>
     </div>
 
@@ -96,9 +96,9 @@
         <div class="progress-card" style="margin-top:12px;" onclick="verPokedexCompleta()">
             <div class="progress-top-row">
                 <div class="progress-left">
-                    <div class="progress-label" id="stat-card-title">Progreso de la colección</div>
-                    <div class="progress-count"><span id="global-count-num">0</span> <span id="global-count-de" style="color:var(--muted);font-size:16px;">de</span> <span id="global-count-total">1025</span></div>
-                    <div class="progress-sub" id="stat-card-subtitle">Total registrado</div>
+                    <div class="progress-label" id="stat-card-title" data-i18n="progreso.titulo">Progreso de la colección</div>
+                    <div class="progress-count"><span id="global-count-num">0</span> <span id="global-count-de" style="color:var(--muted);font-size:16px;" data-i18n="comun.de">de</span> <span id="global-count-total">1025</span></div>
+                    <div class="progress-sub" id="stat-card-subtitle" data-i18n="progreso.subtitulo">Total registrado</div>
                 </div>
                 <div class="circle-wrap" id="circle-wrap">
                     <svg width="100%" height="100%" viewBox="0 0 36 36">
@@ -117,20 +117,20 @@
 
         <!-- CAMERA VIEW -->
         <div id="camera-fullscreen-view">
-            <div class="section-title" style="margin-bottom:8px;">Escáner de cartas</div>
+            <div class="section-title" style="margin-bottom:8px;" data-i18n="camara.tituloSeccion">Escáner de cartas</div>
             <div class="camera-wrapper">
                 <video id="video" autoplay playsinline></video>
                 <div class="scanner-target-box"><div class="scanner-line"></div></div>
             </div>
-            <div id="ocr-status" class="ocr-status-bar">Iniciando escáner... ⏳</div>
+            <div id="ocr-status" class="ocr-status-bar" data-i18n="camara.iniciando">Iniciando escáner... ⏳</div>
             <div id="ocr-historial-wrap" class="ocr-historial" style="display:none;">
-                <div class="ocr-historial-title">Escaneadas esta sesión</div>
+                <div class="ocr-historial-title" data-i18n="camara.escaneadasSesion">Escaneadas esta sesión</div>
                 <div class="ocr-historial-list" id="ocr-historial-list"></div>
             </div>
         </div>
 
         <!-- GEN GRID -->
-        <div id="generaciones-section-title" class="section-title">Progreso por generación</div>
+        <div id="generaciones-section-title" class="section-title" data-i18n="generaciones.tituloSeccion">Progreso por generación</div>
         <div class="gen-grid" id="grid-generaciones"></div>
 
         <!-- GALLERY -->
@@ -143,18 +143,18 @@
                 </div>
                 <div class="desktop-topbar-right">
                     <div class="gallery-filter" id="gallery-filter-desktop">
-                        <button class="filter-btn active" id="filter-todos-d" onclick="setFiltro('todos')">Todos</button>
-                        <button class="filter-btn" id="filter-tenemos-d" onclick="setFiltro('tenemos')">✓ Tenemos</button>
-                        <button class="filter-btn" id="filter-faltan-d" onclick="setFiltro('faltan')">○ Faltan</button>
+                        <button class="filter-btn active" id="filter-todos-d" onclick="setFiltro('todos')" data-i18n="filtro.todos">Todos</button>
+                        <button class="filter-btn" id="filter-tenemos-d" onclick="setFiltro('tenemos')" data-i18n="filtro.tenemos">✓ Tenemos</button>
+                        <button class="filter-btn" id="filter-faltan-d" onclick="setFiltro('faltan')" data-i18n="filtro.faltan">○ Faltan</button>
                     </div>
                     <div class="vista-selector" id="vista-selector-d">
-                        <button class="vista-btn" data-vista="chico" title="Chico" onclick="elegirModoVista('chico')">
+                        <button class="vista-btn" data-vista="chico" title="Chico" data-i18n-title="vista.chico" onclick="elegirModoVista('chico')">
                             <span class="vista-icon vista-icon-chico"></span>
                         </button>
-                        <button class="vista-btn active" data-vista="normal" title="Normal" onclick="elegirModoVista('normal')">
+                        <button class="vista-btn active" data-vista="normal" title="Normal" data-i18n-title="vista.normal" onclick="elegirModoVista('normal')">
                             <span class="vista-icon vista-icon-normal"></span>
                         </button>
-                        <button class="vista-btn" data-vista="grande" title="Grande" onclick="elegirModoVista('grande')">
+                        <button class="vista-btn" data-vista="grande" title="Grande" data-i18n-title="vista.grande" onclick="elegirModoVista('grande')">
                             <span class="vista-icon vista-icon-grande"></span>
                         </button>
                     </div>
@@ -169,18 +169,18 @@
             </div>
             <div class="gallery-controls-mobile">
                 <div class="gallery-filter" id="gallery-filter-mobile">
-                    <button class="filter-btn active" id="filter-todos" onclick="setFiltro('todos')">Todos</button>
-                    <button class="filter-btn" id="filter-tenemos" onclick="setFiltro('tenemos')">✓ Tenemos</button>
-                    <button class="filter-btn" id="filter-faltan" onclick="setFiltro('faltan')">○ Faltan</button>
+                    <button class="filter-btn active" id="filter-todos" onclick="setFiltro('todos')" data-i18n="filtro.todos">Todos</button>
+                    <button class="filter-btn" id="filter-tenemos" onclick="setFiltro('tenemos')" data-i18n="filtro.tenemos">✓ Tenemos</button>
+                    <button class="filter-btn" id="filter-faltan" onclick="setFiltro('faltan')" data-i18n="filtro.faltan">○ Faltan</button>
                 </div>
                 <div class="vista-selector" id="vista-selector">
-                    <button class="vista-btn" data-vista="chico" title="Chico" onclick="elegirModoVista('chico')">
+                    <button class="vista-btn" data-vista="chico" title="Chico" data-i18n-title="vista.chico" onclick="elegirModoVista('chico')">
                         <span class="vista-icon vista-icon-chico"></span>
                     </button>
-                    <button class="vista-btn active" data-vista="normal" title="Normal" onclick="elegirModoVista('normal')">
+                    <button class="vista-btn active" data-vista="normal" title="Normal" data-i18n-title="vista.normal" onclick="elegirModoVista('normal')">
                         <span class="vista-icon vista-icon-normal"></span>
                     </button>
-                    <button class="vista-btn" data-vista="grande" title="Grande" onclick="elegirModoVista('grande')">
+                    <button class="vista-btn" data-vista="grande" title="Grande" data-i18n-title="vista.grande" onclick="elegirModoVista('grande')">
                         <span class="vista-icon vista-icon-grande"></span>
                     </button>
                 </div>
@@ -203,7 +203,7 @@
 <div id="sugerencias" class="sugerencias"></div>
 
 <!-- FAB VOLVER -->
-<div class="fab-home" id="fab-home" onclick="cambiarTab('home')">← Volver</div>
+<div class="fab-home" id="fab-home" onclick="cambiarTab('home')" data-i18n="fab.volver">← Volver</div>
 
 <!-- DETAIL MODAL — backdrop propio, mismo patrón que login/ajustes/métricas,
      para que no queden clickeables las cartas de la galería de atrás. -->
@@ -216,7 +216,7 @@
             <div id="pk-tipos" class="detail-tipos"></div>
         </div>
         <div id="pk-region" class="detail-region"></div>
-        <div id="pk-name" class="detail-name">Pokémon</div>
+        <div id="pk-name" class="detail-name" data-i18n="ficha.nombreDefault">Pokémon</div>
         <div class="art-box" id="art-box">
             <img id="pk-img" src="" alt="">
         </div>
@@ -230,7 +230,7 @@
 <div class="metrics-modal" id="metrics-modal">
     <div class="metrics-box">
         <span class="metrics-close" id="metrics-close">×</span>
-        <div class="metrics-title">📊 Resumen</div>
+        <div class="metrics-title" data-i18n="metricas.titulo">📊 Resumen</div>
         <div class="metrics-subtitle" id="metrics-subtitle"></div>
         <div id="metrics-content"></div>
     </div>
@@ -241,84 +241,84 @@
     <div class="ajustes-box">
         <div class="ajustes-handle"></div>
         <span class="ajustes-close" id="ajustes-close">×</span>
-        <div class="ajustes-title">⚙️ Ajustes</div>
+        <div class="ajustes-title" data-i18n="ajustes.tituloModal">⚙️ Ajustes</div>
         <div class="ajustes-scroll">
         <div class="ajustes-secciones">
-            <div class="ajustes-section-label">Colección</div>
+            <div class="ajustes-section-label" data-i18n="ajustes.seccionColeccion">Colección</div>
             <div class="ajustes-grupo">
                 <button class="ajustes-item" onclick="exportarColeccion()">
                     <span class="ajustes-item-icon">⬇️</span>
                     <span class="ajustes-item-texto">
-                        <span class="ajustes-item-titulo">Exportar mi colección</span>
-                        <span class="ajustes-item-sub">Descarga un respaldo en JSON</span>
+                        <span class="ajustes-item-titulo" data-i18n="ajustes.exportarTitulo">Exportar mi colección</span>
+                        <span class="ajustes-item-sub" data-i18n="ajustes.exportarSub">Descarga un respaldo en JSON</span>
                     </span>
                 </button>
                 <button class="ajustes-item" onclick="dispararInputImportar()">
                     <span class="ajustes-item-icon">⬆️</span>
                     <span class="ajustes-item-texto">
-                        <span class="ajustes-item-titulo">Importar respaldo</span>
-                        <span class="ajustes-item-sub">Reemplaza el inventario actual</span>
+                        <span class="ajustes-item-titulo" data-i18n="ajustes.importarTitulo">Importar respaldo</span>
+                        <span class="ajustes-item-sub" data-i18n="ajustes.importarSub">Reemplaza el inventario actual</span>
                     </span>
                 </button>
                 <button class="ajustes-item" onclick="descargarListaFaltantes()">
                     <span class="ajustes-item-icon">📋</span>
                     <span class="ajustes-item-texto">
-                        <span class="ajustes-item-titulo">Lista de faltantes</span>
-                        <span class="ajustes-item-sub">Descarga un .txt con lo que te falta</span>
+                        <span class="ajustes-item-titulo" data-i18n="ajustes.listaFaltantesTitulo">Lista de faltantes</span>
+                        <span class="ajustes-item-sub" data-i18n="ajustes.listaFaltantesSub">Descarga un .txt con lo que te falta</span>
                     </span>
                 </button>
                 <button class="ajustes-item" onclick="abrirPanelVariantes()">
                     <span class="ajustes-item-icon">🧬</span>
                     <span class="ajustes-item-texto">
-                        <span class="ajustes-item-titulo">Variantes</span>
-                        <span class="ajustes-item-sub">Formas regionales, Mega, Gigamax y más como cartas propias</span>
+                        <span class="ajustes-item-titulo" data-i18n="ajustes.variantesTitulo">Variantes</span>
+                        <span class="ajustes-item-sub" data-i18n="ajustes.variantesSub">Formas regionales, Mega, Gigamax y más como cartas propias</span>
                     </span>
                     <span class="ajustes-item-chev">›</span>
                 </button>
                 <button class="ajustes-item" onclick="abrirPanelRespaldos()">
                     <span class="ajustes-item-icon">🗄️</span>
                     <span class="ajustes-item-texto">
-                        <span class="ajustes-item-titulo">Respaldos</span>
-                        <span class="ajustes-item-sub">Ver y restaurar copias automáticas del inventario</span>
+                        <span class="ajustes-item-titulo" data-i18n="ajustes.respaldosTitulo">Respaldos</span>
+                        <span class="ajustes-item-sub" data-i18n="ajustes.respaldosSub">Ver y restaurar copias automáticas del inventario</span>
                     </span>
                     <span class="ajustes-item-chev">›</span>
                 </button>
             </div>
 
-            <div class="ajustes-section-label">Carpetas</div>
+            <div class="ajustes-section-label" data-i18n="ajustes.seccionCarpetas">Carpetas</div>
             <div class="ajustes-grupo">
                 <button class="ajustes-item" onclick="abrirOpcionesPDF()">
                     <span class="ajustes-item-icon">✂️</span>
                     <span class="ajustes-item-texto">
-                        <span class="ajustes-item-titulo">Recortables para carpetas (PDF)</span>
-                        <span class="ajustes-item-sub">9 por hoja carta, en orden de Pokédex — con opciones</span>
+                        <span class="ajustes-item-titulo" data-i18n="ajustes.pdfTitulo">Recortables para carpetas (PDF)</span>
+                        <span class="ajustes-item-sub" data-i18n="ajustes.pdfSub">9 por hoja carta, en orden de Pokédex — con opciones</span>
                     </span>
                     <span class="ajustes-item-chev">›</span>
                 </button>
                 <button class="ajustes-item" onclick="abrirWizardCarpetas()">
                     <span class="ajustes-item-icon">🗂️</span>
                     <span class="ajustes-item-texto">
-                        <span class="ajustes-item-titulo">Configurar carpetas</span>
-                        <span class="ajustes-item-sub">Elegí cuántas carpetas tenés y qué generaciones va en cada una</span>
+                        <span class="ajustes-item-titulo" data-i18n="ajustes.configurarCarpetasTitulo">Configurar carpetas</span>
+                        <span class="ajustes-item-sub" data-i18n="ajustes.configurarCarpetasSub">Elegí cuántas carpetas tenés y qué generaciones va en cada una</span>
                     </span>
                     <span class="ajustes-item-chev">›</span>
                 </button>
             </div>
 
-            <div class="ajustes-section-label">Preferencias</div>
+            <div class="ajustes-section-label" data-i18n="ajustes.seccionPreferencias">Preferencias</div>
             <div class="ajustes-grupo">
                 <button class="ajustes-item" onclick="toggleTema()" id="btn-tema-ajustes">
                     <span class="ajustes-item-icon">🌓</span>
                     <span class="ajustes-item-texto">
-                        <span class="ajustes-item-titulo">Tema</span>
-                        <span class="ajustes-item-sub" id="btn-tema-ajustes-sub">Auto (según el sistema)</span>
+                        <span class="ajustes-item-titulo" data-i18n="ajustes.tema">Tema</span>
+                        <span class="ajustes-item-sub" id="btn-tema-ajustes-sub" data-i18n="ajustes.temaAuto">Auto (según el sistema)</span>
                     </span>
                 </button>
                 <button class="ajustes-item" onclick="abrirLoginOLogout()" id="btn-sesion-ajustes">
                     <span class="ajustes-item-icon">🔒</span>
                     <span class="ajustes-item-texto">
-                        <span class="ajustes-item-titulo" id="btn-sesion-ajustes-titulo">Iniciar sesión</span>
-                        <span class="ajustes-item-sub">Necesaria para marcar/editar cartas</span>
+                        <span class="ajustes-item-titulo" id="btn-sesion-ajustes-titulo" data-i18n="login.titulo">Iniciar sesión</span>
+                        <span class="ajustes-item-sub" data-i18n="ajustes.sesionSub">Necesaria para marcar/editar cartas</span>
                     </span>
                     <span class="ajustes-item-chev">›</span>
                 </button>
@@ -334,33 +334,33 @@
     <div class="ajustes-box">
         <div class="ajustes-handle"></div>
         <span class="ajustes-close" id="pdf-opciones-close">×</span>
-        <div class="ajustes-title">✂️ Recortables para carpetas</div>
+        <div class="ajustes-title" data-i18n="pdf.tituloModal">✂️ Recortables para carpetas</div>
 
         <div class="ajustes-scroll">
         <div class="pdf-opciones-seccion">
-            <div class="pdf-opciones-label">Carpetas a incluir</div>
+            <div class="pdf-opciones-label" data-i18n="pdf.carpetasAIncluir">Carpetas a incluir</div>
             <div id="pdf-opciones-carpetas"></div>
         </div>
 
         <div class="pdf-opciones-seccion" id="pdf-opciones-portadas-seccion">
             <label class="pdf-opciones-check">
                 <input type="checkbox" id="pdf-check-portadas" checked>
-                Portada por región con los 3 iniciales
+                <span data-i18n="pdf.portadaCheckbox">Portada por región con los 3 iniciales</span>
             </label>
         </div>
 
         <div class="pdf-opciones-seccion">
-            <div class="pdf-opciones-label">Números a mostrar</div>
-            <label class="pdf-opciones-radio"><input type="radio" name="pdf-numeros" value="ambos" checked> Regional y Nacional</label>
-            <label class="pdf-opciones-radio"><input type="radio" name="pdf-numeros" value="regional"> Solo Regional</label>
-            <label class="pdf-opciones-radio"><input type="radio" name="pdf-numeros" value="nacional"> Solo Nacional</label>
+            <div class="pdf-opciones-label" data-i18n="pdf.numerosAMostrar">Números a mostrar</div>
+            <label class="pdf-opciones-radio"><input type="radio" name="pdf-numeros" value="ambos" checked> <span data-i18n="pdf.numerosAmbos">Regional y Nacional</span></label>
+            <label class="pdf-opciones-radio"><input type="radio" name="pdf-numeros" value="regional"> <span data-i18n="pdf.numerosSoloRegional">Solo Regional</span></label>
+            <label class="pdf-opciones-radio"><input type="radio" name="pdf-numeros" value="nacional"> <span data-i18n="pdf.numerosSoloNacional">Solo Nacional</span></label>
         </div>
 
         <button class="ajustes-item" id="btn-pdf-recortables" onclick="descargarRecortablesPDF()">
             <span class="ajustes-item-icon" id="btn-pdf-recortables-icon">✂️</span>
             <span class="ajustes-item-texto">
-                <span class="ajustes-item-titulo">Generar PDF</span>
-                <span class="ajustes-item-sub" id="btn-pdf-recortables-sub">Puede tardar un minuto la primera vez</span>
+                <span class="ajustes-item-titulo" data-i18n="pdf.generarBoton">Generar PDF</span>
+                <span class="ajustes-item-sub" id="btn-pdf-recortables-sub" data-i18n="pdf.generarSub">Puede tardar un minuto la primera vez</span>
             </span>
         </button>
         </div>
@@ -372,10 +372,10 @@
     <div class="ajustes-box">
         <div class="ajustes-handle"></div>
         <span class="ajustes-close" id="variantes-close">×</span>
-        <div class="ajustes-title">🧬 Variantes</div>
+        <div class="ajustes-title" data-i18n="variantes.tituloModal">🧬 Variantes</div>
         <div class="ajustes-scroll">
         <div class="pdf-opciones-seccion">
-            <div class="pdf-opciones-label">Categorías a trackear como cartas propias</div>
+            <div class="pdf-opciones-label" data-i18n="variantes.categoriasLabel">Categorías a trackear como cartas propias</div>
             <div id="variantes-checks"></div>
         </div>
         </div>
@@ -387,10 +387,10 @@
     <div class="ajustes-box">
         <div class="ajustes-handle"></div>
         <span class="ajustes-close" id="respaldos-close">×</span>
-        <div class="ajustes-title">🗄️ Respaldos</div>
+        <div class="ajustes-title" data-i18n="respaldos.tituloModal">🗄️ Respaldos</div>
         <div class="ajustes-scroll">
         <div class="pdf-opciones-seccion">
-            <div class="pdf-opciones-label">Restaurar reemplaza TODO tu inventario (Bulk y Carpetas) por el de ese momento</div>
+            <div class="pdf-opciones-label" data-i18n="respaldos.avisoRestaurar">Restaurar reemplaza TODO tu inventario (Bulk y Carpetas) por el de ese momento</div>
             <div id="respaldos-lista"></div>
         </div>
         </div>
@@ -402,94 +402,94 @@
     <div class="ajustes-box wizard-box">
         <div class="ajustes-handle"></div>
         <span class="ajustes-close" id="wizard-carpetas-close">×</span>
-        <div class="ajustes-title">🗂️ Planear mis carpetas</div>
+        <div class="ajustes-title" data-i18n="wizard.tituloModal">🗂️ Planear mis carpetas</div>
         <div class="ajustes-scroll">
 
         <!-- Paso 0: variantes (antes de modo — condiciona la capacidad de las carpetas) -->
         <div class="wizard-paso" id="wizard-paso-variantes" style="display:none;">
-            <div class="pdf-opciones-label">¿Contás alguna de estas variantes en tu colección?</div>
+            <div class="pdf-opciones-label" data-i18n="wizard.pasoVariantes.pregunta">¿Contás alguna de estas variantes en tu colección?</div>
             <div id="wizard-variantes-checks"></div>
-            <div class="wizard-nota">💡 Podés dejarlas todas sin marcar y activarlas después desde Ajustes.</div>
+            <div class="wizard-nota" data-i18n="wizard.pasoVariantes.nota">💡 Podés dejarlas todas sin marcar y activarlas después desde Ajustes.</div>
             <div class="wizard-nav">
-                <button type="button" class="wizard-btn-siguiente" onclick="wizardMostrarPaso('modo')">Siguiente →</button>
+                <button type="button" class="wizard-btn-siguiente" onclick="wizardMostrarPaso('modo')" data-i18n="wizard.siguiente">Siguiente →</button>
             </div>
         </div>
 
         <!-- Paso 1: modo de acomodo -->
         <div class="wizard-paso" id="wizard-paso-modo" style="display:none;">
-            <div class="pdf-opciones-label">¿Cómo querés acomodar tu colección?</div>
+            <div class="pdf-opciones-label" data-i18n="wizard.pasoModo.pregunta">¿Cómo querés acomodar tu colección?</div>
             <button type="button" class="wizard-opcion-modo" onclick="wizardElegirModo('seguidas')">
-                <strong>Todas seguidas</strong>
-                <span>Reparte la colección en orden de Pokédex nacional, sin respetar cortes de generación</span>
+                <strong data-i18n="wizard.pasoModo.seguidasTitulo">Todas seguidas</strong>
+                <span data-i18n="wizard.pasoModo.seguidasDesc">Reparte la colección en orden de Pokédex nacional, sin respetar cortes de generación</span>
             </button>
             <button type="button" class="wizard-opcion-modo" onclick="wizardElegirModo('separadas')">
-                <strong>Separadas por generación</strong>
-                <span>Cada carpeta tiene generaciones completas, nunca partidas</span>
+                <strong data-i18n="wizard.pasoModo.separadasTitulo">Separadas por generación</strong>
+                <span data-i18n="wizard.pasoModo.separadasDesc">Cada carpeta tiene generaciones completas, nunca partidas</span>
             </button>
         </div>
 
         <!-- Paso 2: formato de hoja -->
         <div class="wizard-paso" id="wizard-paso-formato" style="display:none;">
-            <div class="pdf-opciones-label">¿Bolsillos por página (una cara)?</div>
+            <div class="pdf-opciones-label" data-i18n="wizard.pasoFormato.pregunta">¿Bolsillos por página (una cara)?</div>
             <select id="wizard-bolsillos-hoja" class="wizard-input-numero">
-                <option value="4">4 por página</option>
-                <option value="9" selected>9 por página (lo más común)</option>
-                <option value="12">12 por página</option>
+                <option value="4" data-i18n="wizard.pasoFormato.opcion4">4 por página</option>
+                <option value="9" selected data-i18n="wizard.pasoFormato.opcion9">9 por página (lo más común)</option>
+                <option value="12" data-i18n="wizard.pasoFormato.opcion12">12 por página</option>
             </select>
-            <div class="wizard-nota">💡 Una hoja tiene 2 páginas (frente y dorso) — cuando más adelante pidamos "hojas", ya vamos a contar las dos caras solas.</div>
+            <div class="wizard-nota" data-i18n="wizard.pasoFormato.nota">💡 Una hoja tiene 2 páginas (frente y dorso) — cuando más adelante pidamos "hojas", ya vamos a contar las dos caras solas.</div>
             <div id="wizard-espacios-blanco-fila">
                 <label class="pdf-opciones-check">
                     <input type="checkbox" id="wizard-espacios-blanco">
-                    Dejar espacios en blanco para que cada generación empiece en una página nueva
+                    <span data-i18n="wizard.pasoFormato.espaciosBlancoLabel">Dejar espacios en blanco para que cada generación empiece en una página nueva</span>
                 </label>
             </div>
             <div class="wizard-nav">
-                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('modo')">← Atrás</button>
-                <button type="button" class="wizard-btn-siguiente" onclick="wizardMostrarPaso('cantidad')">Siguiente →</button>
+                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('modo')" data-i18n="wizard.atras">← Atrás</button>
+                <button type="button" class="wizard-btn-siguiente" onclick="wizardMostrarPaso('cantidad')" data-i18n="wizard.siguiente">Siguiente →</button>
             </div>
         </div>
 
         <!-- Paso 3: cuántas carpetas -->
         <div class="wizard-paso" id="wizard-paso-cantidad" style="display:none;">
-            <div class="pdf-opciones-label">¿Cuántas carpetas querés usar?</div>
+            <div class="pdf-opciones-label" data-i18n="wizard.pasoCantidad.pregunta">¿Cuántas carpetas querés usar?</div>
             <input type="number" id="wizard-cantidad-carpetas" min="1" max="9" value="4" class="wizard-input-numero">
             <div class="wizard-nav">
-                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('formato')">← Atrás</button>
-                <button type="button" class="wizard-btn-siguiente" onclick="wizardConfirmarCantidad()">Siguiente →</button>
+                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('formato')" data-i18n="wizard.atras">← Atrás</button>
+                <button type="button" class="wizard-btn-siguiente" onclick="wizardConfirmarCantidad()" data-i18n="wizard.siguiente">Siguiente →</button>
             </div>
         </div>
 
         <!-- Paso 4: capacidad de cada carpeta -->
         <div class="wizard-paso" id="wizard-paso-capacidad" style="display:none;">
-            <div class="pdf-opciones-label">¿Cómo preferís poner la capacidad?</div>
-            <label class="pdf-opciones-radio"><input type="radio" name="wizard-modo-capacidad" value="hojas" checked onchange="wizardArmarPasoCapacidad()"> En hojas (contando las 2 caras)</label>
-            <label class="pdf-opciones-radio"><input type="radio" name="wizard-modo-capacidad" value="espacios" onchange="wizardArmarPasoCapacidad()"> En espacios totales</label>
+            <div class="pdf-opciones-label" data-i18n="wizard.pasoCapacidad.pregunta">¿Cómo preferís poner la capacidad?</div>
+            <label class="pdf-opciones-radio"><input type="radio" name="wizard-modo-capacidad" value="hojas" checked onchange="wizardArmarPasoCapacidad()"> <span data-i18n="wizard.pasoCapacidad.opcionHojas">En hojas (contando las 2 caras)</span></label>
+            <label class="pdf-opciones-radio"><input type="radio" name="wizard-modo-capacidad" value="espacios" onchange="wizardArmarPasoCapacidad()"> <span data-i18n="wizard.pasoCapacidad.opcionEspacios">En espacios totales</span></label>
             <div id="wizard-capacidad-lista"></div>
             <div class="wizard-preview" id="wizard-capacidad-total"></div>
             <div class="wizard-nav">
-                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('cantidad')">← Atrás</button>
-                <button type="button" class="wizard-btn-siguiente" onclick="wizardCapacidadSiguiente()">Siguiente →</button>
+                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('cantidad')" data-i18n="wizard.atras">← Atrás</button>
+                <button type="button" class="wizard-btn-siguiente" onclick="wizardCapacidadSiguiente()" data-i18n="wizard.siguiente">Siguiente →</button>
             </div>
         </div>
 
         <!-- Paso 5: recomendación + ajuste -->
         <div class="wizard-paso" id="wizard-paso-ajuste" style="display:none;">
-            <div class="pdf-opciones-label">Así te recomendamos acomodarlas — tocá una generación para cambiarla de carpeta</div>
+            <div class="pdf-opciones-label" data-i18n="wizard.pasoAjuste.pregunta">Así te recomendamos acomodarlas — tocá una generación para cambiarla de carpeta</div>
             <div class="wizard-chips" id="wizard-chips"></div>
             <div class="wizard-preview" id="wizard-ajuste-preview"></div>
             <div class="wizard-nav">
-                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('capacidad')">← Atrás</button>
-                <button type="button" class="wizard-btn-siguiente" id="wizard-btn-a-nombres" onclick="wizardAjusteSiguiente()">Siguiente →</button>
+                <button type="button" class="wizard-btn-volver" onclick="wizardMostrarPaso('capacidad')" data-i18n="wizard.atras">← Atrás</button>
+                <button type="button" class="wizard-btn-siguiente" id="wizard-btn-a-nombres" onclick="wizardAjusteSiguiente()" data-i18n="wizard.siguiente">Siguiente →</button>
             </div>
         </div>
 
         <!-- Paso 6: nombres y colores -->
         <div class="wizard-paso" id="wizard-paso-nombres" style="display:none;">
-            <div class="pdf-opciones-label">Nombre y color de cada carpeta</div>
+            <div class="pdf-opciones-label" data-i18n="wizard.pasoNombres.pregunta">Nombre y color de cada carpeta</div>
             <div id="wizard-nombres-lista"></div>
             <div class="wizard-nav">
-                <button type="button" class="wizard-btn-volver" onclick="wizardVolverDesdeNombres()">← Atrás</button>
-                <button type="button" class="wizard-btn-siguiente" id="wizard-btn-guardar" onclick="wizardGuardar()">Guardar</button>
+                <button type="button" class="wizard-btn-volver" onclick="wizardVolverDesdeNombres()" data-i18n="wizard.atras">← Atrás</button>
+                <button type="button" class="wizard-btn-siguiente" id="wizard-btn-guardar" onclick="wizardGuardar()" data-i18n="wizard.guardar">Guardar</button>
             </div>
         </div>
         </div>
@@ -502,27 +502,27 @@
         <div class="login-handle"></div>
         <span class="login-close" id="login-close">×</span>
         <div class="login-icon-circle">🔒</div>
-        <div class="login-title" id="login-title">Iniciar sesión</div>
-        <div class="login-sub" id="login-sub">Necesitas iniciar sesión para hacer cambios (marcar cartas, importar, etc). Ver tu colección no requiere sesión.</div>
+        <div class="login-title" id="login-title" data-i18n="login.titulo">Iniciar sesión</div>
+        <div class="login-sub" id="login-sub" data-i18n="login.sub">Necesitas iniciar sesión para hacer cambios (marcar cartas, importar, etc). Ver tu colección no requiere sesión.</div>
         <div id="login-bloque-entrar">
             <div class="login-input-wrap">
-                <input type="password" id="login-password" class="login-input" placeholder="Contraseña" autocomplete="current-password">
-                <button type="button" class="login-toggle-ver" id="login-toggle-ver" title="Mostrar/ocultar contraseña">👁️</button>
+                <input type="password" id="login-password" class="login-input" placeholder="Contraseña" data-i18n-placeholder="login.placeholderPassword" autocomplete="current-password">
+                <button type="button" class="login-toggle-ver" id="login-toggle-ver" title="Mostrar/ocultar contraseña" data-i18n-title="login.togglePasswordTitle">👁️</button>
             </div>
         </div>
         <div id="login-bloque-definir" style="display:none;">
             <div class="login-input-wrap">
-                <input type="password" id="login-password-nueva" class="login-input" placeholder="Nueva contraseña" autocomplete="new-password">
+                <input type="password" id="login-password-nueva" class="login-input" placeholder="Nueva contraseña" data-i18n-placeholder="login.placeholderNueva" autocomplete="new-password">
             </div>
             <div class="login-input-wrap">
-                <input type="password" id="login-password-confirmar" class="login-input" placeholder="Confirmar contraseña" autocomplete="new-password">
+                <input type="password" id="login-password-confirmar" class="login-input" placeholder="Confirmar contraseña" data-i18n-placeholder="login.placeholderConfirmar" autocomplete="new-password">
             </div>
         </div>
         <div class="login-error" id="login-error"></div>
         <div class="login-actions">
-            <button class="login-btn secondary" onclick="cerrarLoginModal()">Cancelar</button>
-            <button class="login-btn primary" id="login-btn-entrar" onclick="intentarLogin()">Entrar</button>
-            <button class="login-btn primary" id="login-btn-definir" onclick="intentarDefinirPassword()" style="display:none;">Definir contraseña</button>
+            <button class="login-btn secondary" onclick="cerrarLoginModal()" data-i18n="login.cancelar">Cancelar</button>
+            <button class="login-btn primary" id="login-btn-entrar" onclick="intentarLogin()" data-i18n="login.entrar">Entrar</button>
+            <button class="login-btn primary" id="login-btn-definir" onclick="intentarDefinirPassword()" style="display:none;" data-i18n="login.definirBoton">Definir contraseña</button>
         </div>
     </div>
 </div>

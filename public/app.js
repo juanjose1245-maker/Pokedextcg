@@ -175,6 +175,19 @@ function toggleTema() {
     aplicarTema();
 }
 
+// ── IDIOMA: aplica el diccionario de i18n.js a todo el texto estático ──
+function aplicarIdioma() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        el.textContent = t(el.dataset.i18n);
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        el.placeholder = t(el.dataset.i18nPlaceholder);
+    });
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        el.title = t(el.dataset.i18nTitle);
+    });
+}
+
 // ── SESIÓN: solo hace falta para MODIFICAR, ver la colección es libre ──
 // El servidor maneja la sesión real vía cookie httpOnly (el JS nunca la lee
 // directamente). `sesionActiva` es solo para pintar la UI correctamente;
@@ -2523,6 +2536,7 @@ function mostrarToastSync(id, estado) {
 window.onload = async () => {
     sincronizarGrids();
     aplicarTema();
+    aplicarIdioma();
     aplicarModoVista();
     actualizarBotonesModo();
     revisarSesion();

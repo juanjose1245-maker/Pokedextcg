@@ -1,16 +1,16 @@
-# Graph Report - pokedex-tcg  (2026-08-05)
+# Graph Report - pokedex-tcg  (2026-08-06)
 
 ## Corpus Check
-- 47 files · ~117,405 words
+- 47 files · ~117,587 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1129 nodes · 2038 edges · 92 communities (58 shown, 34 thin omitted)
+- 1130 nodes · 2039 edges · 88 communities (57 shown, 31 thin omitted)
 - Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 226 edges (avg confidence: 0.58)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c48b47a3`
+- Built from commit: `b49ef01a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -28,7 +28,6 @@
 - O
 - J
 - ji
-- esDesktop
 - Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación
 - mostrarToastError
 - renderGaleria
@@ -103,9 +102,6 @@
 - Sh
 - O
 - Internacionalización: español (default) + inglés
-- ei
-- M
-- ai
 - Internacionalización español/inglés — Plan de implementación
 
 ## God Nodes (most connected - your core abstractions)
@@ -135,15 +131,19 @@
 ## Import Cycles
 - None detected.
 
-## Communities (92 total, 34 thin omitted)
+## Communities (88 total, 31 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
 Nodes (53): A(), b(), c(), e(), f(), G(), h(), i() (+45 more)
 
 ### Community 1 - "app.js"
-Cohesion: 0.05
-Nodes (44): abrirAjustes(), abrirLoginOLogout(), actualizarBotonSesion(), aplicarModoVista(), aplicarTema(), cachePokemon, calcularJalon(), cameraBoxView (+36 more)
+Cohesion: 0.04
+Nodes (51): abrirAjustes(), actualizarBotonesModo(), actualizarBotonSesion(), aplicarModoVista(), aplicarTema(), cachePokemon, calcularIdsPendientesSilencioso(), calcularJalon() (+43 more)
+
+### Community 2 - "O"
+Cohesion: 0.67
+Nodes (4): agregarAlHistorial(), detenerCamara(), iniciarBucleOCR(), toggleCamaraOCR()
 
 ### Community 3 - "server.js"
 Cohesion: 0.06
@@ -157,10 +157,6 @@ Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 Cohesion: 0.07
 Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
-### Community 13 - "esDesktop"
-Cohesion: 0.18
-Nodes (24): abrirLoginModal(), actualizarBadgePendientes(), calcularIdsPendientesSilencioso(), cargarEstadisticasSinMoverScroll(), cerrarPanelRespaldos(), claveFechaLS(), claveLS(), descargarListaFaltantes() (+16 more)
-
 ### Community 14 - "Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación"
 Cohesion: 0.08
 Nodes (24): Addendum 2 — ampliar el criterio de "formas alternativas" a arte distinto, Addendum — hallazgos de la revisión final + investigación propia del usuario, Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación, Formato de `variantes_lista.json`, Global Constraints, Self-Review del Addendum 2, Self-Review del addendum (Tareas 7-11), Self-Review (hecho al escribir este plan) (+16 more)
@@ -170,8 +166,8 @@ Cohesion: 0.33
 Nodes (7): Ab(), Db(), Eb(), kb(), Nb(), Ta(), Ua()
 
 ### Community 16 - "renderGaleria"
-Cohesion: 0.15
-Nodes (23): actualizarBotonEstado(), actualizarGalleryHeader(), agregarAlHistorial(), anclaIdCliente(), calcularProgresoReciente(), carpetaDe(), clearSearchTimer(), detenerCamara() (+15 more)
+Cohesion: 0.17
+Nodes (20): actualizarBotonEstado(), actualizarGalleryHeader(), anclaIdCliente(), calcularProgresoReciente(), carpetaDe(), clearSearchTimer(), getFechaRegistro(), gridActivo() (+12 more)
 
 ### Community 17 - "wizardCapacidadSiguiente"
 Cohesion: 0.11
@@ -218,16 +214,16 @@ Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 31 - "p"
-Cohesion: 0.24
-Nodes (9): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+1 more)
+Cohesion: 0.22
+Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
 
 ### Community 32 - "d"
 Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 33 - "p"
-Cohesion: 0.24
-Nodes (9): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+1 more)
+Cohesion: 0.22
+Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
 
 ### Community 34 - "Fase 2 — Selección de categorías de variantes (núcleo de tracking) — Plan de implementación"
 Cohesion: 0.20
@@ -290,8 +286,8 @@ Cohesion: 0.29
 Nodes (6): Definir contraseña en el primer uso — Plan de implementación, Global Constraints, Self-Review (hecho al escribir este plan), Task 1: Hash persistido, migración automática y endpoints nuevos en `server.js`, Task 2: Modal de login con dos modos en el cliente, Task 3: Actualizar `docker-compose.yml` y `README.md`
 
 ### Community 52 - "kb"
-Cohesion: 0.20
-Nodes (11): abrirOpcionesPDF(), abrirPanelRespaldos(), abrirPanelVariantes(), abrirWizardCarpetas(), cerrarAjustes(), cerrarPanelVariantes(), cerrarWizardCarpetas(), mostrarToastAvisoCapacidad() (+3 more)
+Cohesion: 0.21
+Nodes (12): abrirLoginModal(), abrirLoginOLogout(), abrirOpcionesPDF(), abrirPanelRespaldos(), abrirPanelVariantes(), abrirWizardCarpetas(), cerrarAjustes(), cerrarPanelVariantes() (+4 more)
 
 ### Community 53 - "Fase 3 — Variantes en el PDF de recortables — Plan de implementación"
 Cohesion: 0.33
@@ -346,24 +342,20 @@ Cohesion: 0.33
 Nodes (7): Ab(), Db(), Eb(), kb(), Nb(), Ta(), Ua()
 
 ### Community 77 - "wizardGuardar"
-Cohesion: 0.19
-Nodes (23): actualizarBotonesModo(), actualizarTarjetaProgreso(), actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cerrarGaleriaYVolver() (+15 more)
-
-### Community 78 - "O"
 Cohesion: 0.15
-Nodes (3): hi(), ji(), Ya()
+Nodes (38): actualizarBadgePendientes(), actualizarTarjetaProgreso(), actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cargarEstadisticasSinMoverScroll() (+30 more)
 
 ### Community 82 - "wizardGuardar"
 Cohesion: 0.47
 Nodes (6): bgDeColor(), bgDeGen(), colorDeGen(), gradienteDeGen(), renderGridGeneraciones(), segmentosDeGen()
 
+### Community 86 - "O"
+Cohesion: 0.05
+Nodes (7): ai(), ei(), hi(), ji(), M(), O(), Sh()
+
 ### Community 87 - "Internacionalización: español (default) + inglés"
 Cohesion: 0.20
 Nodes (9): Contexto, Diccionario y función `t()`, Errores del servidor: de texto a códigos, Fuera de alcance, Internacionalización: español (default) + inglés, Selector de idioma en Ajustes, Testing, Texto estático de `index.html` (+1 more)
-
-### Community 90 - "ai"
-Cohesion: 0.17
-Nodes (3): ai(), Sh(), Ya()
 
 ### Community 92 - "Internacionalización español/inglés — Plan de implementación"
 Cohesion: 0.22
@@ -372,21 +364,21 @@ Nodes (8): Global Constraints, Internacionalización español/inglés — Plan d
 ## Knowledge Gaps
 - **263 isolated node(s):** `docker-entrypoint.sh script`, `fs`, `fs`, `crypto`, `fs` (+258 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **34 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **31 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `g()` connect `worker.min.js` to `carpetasConfigValida`, `wizardGuardar`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
-  _High betweenness centrality (0.207) - this node is a cross-community bridge._
+  _High betweenness centrality (0.205) - this node is a cross-community bridge._
 - **Why does `a()` connect `worker.min.js` to `p`, `A`, `A`, `qb`, `qb`, `p`?**
-  _High betweenness centrality (0.179) - this node is a cross-community bridge._
-- **Why does `A()` connect `A` to `worker.min.js`, `O`, `tesseract-core-lstm.wasm.js`, `Q`, `ei`, `J`, `K`, `qb`, `Lh`, `di`, `d`, `p`?**
-  _High betweenness centrality (0.091) - this node is a cross-community bridge._
+  _High betweenness centrality (0.177) - this node is a cross-community bridge._
+- **Why does `A()` connect `A` to `worker.min.js`, `tesseract-core-lstm.wasm.js`, `L`, `Q`, `ei`, `J`, `K`, `qb`, `Lh`, `di`, `d`, `p`?**
+  _High betweenness centrality (0.096) - this node is a cross-community bridge._
 - **What connects `docker-entrypoint.sh script`, `fs`, `fs` to the rest of the system?**
   _263 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.05102040816326531 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.042606516290726815 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._
 - **Should `V` be split into smaller, more focused modules?**

@@ -17,6 +17,9 @@ const I18N = {
         'comun.genNumero': `Gen {n}`,
         'comun.pokedexCompleta': `Pokédex Completa`,
 
+        // ── FAB (botón flotante "volver" en vistas de detalle) ─────────
+        'fab.volver': `← Volver`,
+
         // ── MODO: Bulk / Carpetas ──────────────────────────────────────
         'modo.bulk': `Bulk`,
         'modo.carpetas': `Carpetas`,
@@ -321,6 +324,9 @@ const I18N = {
         'comun.de': `of`,
         'comun.genNumero': `Gen {n}`,
         'comun.pokedexCompleta': `Complete Pokédex`,
+
+        // ── FAB (botón flotante "volver" en vistas de detalle) ─────────
+        'fab.volver': `← Back`,
 
         // ── MODO: Bulk / Carpetas ──────────────────────────────────────
         'modo.bulk': `Bulk`,

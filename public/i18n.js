@@ -141,6 +141,7 @@ const I18N = {
 
         // ── AJUSTES ─────────────────────────────────────────────────────
         'ajustes.tema': `Tema`,
+        'ajustes.idioma': `Idioma`,
         'ajustes.temaAuto': `Auto (según el sistema)`,
         'ajustes.temaClaro': `☀️ Claro`,
         'ajustes.temaOscuro': `🌙 Oscuro`,
@@ -450,6 +451,7 @@ const I18N = {
 
         // ── AJUSTES ─────────────────────────────────────────────────────
         'ajustes.tema': `Theme`,
+        'ajustes.idioma': `Language`,
         'ajustes.temaAuto': `Auto (based on system)`,
         'ajustes.temaClaro': `☀️ Light`,
         'ajustes.temaOscuro': `🌙 Dark`,

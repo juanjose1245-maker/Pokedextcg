@@ -186,6 +186,22 @@ function aplicarIdioma() {
     document.querySelectorAll('[data-i18n-title]').forEach(el => {
         el.title = t(el.dataset.i18nTitle);
     });
+    // Objetos de config estáticos (tiposInfo, CATEGORIA_INFO,
+    // CATEGORIAS_VARIANTES_INFO, RESPALDO_TIPO_LABEL) arman sus labels
+    // llamando a t() una sola vez, al definirse — sin este refresh se
+    // quedarían congelados en el idioma que estaba activo cuando cargó la
+    // página, aun cuando el resto de la UI ya cambió de idioma.
+    actualizarTraduccionesEstaticas();
+    const subIdioma = document.getElementById('btn-idioma-ajustes-sub');
+    if (subIdioma) subIdioma.textContent = idiomaActual === 'es' ? 'Español' : 'English';
+}
+
+function toggleIdioma() {
+    idiomaActual = idiomaActual === 'es' ? 'en' : 'es';
+    localStorage.setItem('idiomaPreferido', idiomaActual);
+    aplicarIdioma();
+    const sub = document.getElementById('btn-idioma-ajustes-sub');
+    if (sub) sub.textContent = idiomaActual === 'es' ? 'Español' : 'English';
 }
 
 // ── SESIÓN: solo hace falta para MODIFICAR, ver la colección es libre ──
@@ -1902,6 +1918,52 @@ const RESPALDO_TIPO_LABEL = {
     'pre-importacion': t('respaldos.tipoPreImportacion'),
     'pre-restauracion': t('respaldos.tipoPreRestauracion')
 };
+
+// Los 4 objetos de arriba (tiposInfo, CATEGORIA_INFO, CATEGORIAS_VARIANTES_INFO,
+// RESPALDO_TIPO_LABEL) arman sus campos label/sub llamando a t() una sola vez,
+// al momento de definirse el literal — quedan "congelados" en el idioma que
+// estaba activo en ese instante. Esta función re-escribe esos campos in-place
+// (son const, pero sus propiedades sí se pueden mutar) con el idioma actual;
+// se llama una vez acá al cargar el módulo (no-op la primera vez, ya que
+// coincide con lo que el literal ya puso) y de nuevo desde aplicarIdioma()
+// cada vez que el usuario cambia el idioma, para que type badges, categorías
+// de variantes (Ajustes y wizard) y tipos de respaldo queden al día sin
+// recargar la página.
+function actualizarTraduccionesEstaticas() {
+    tiposInfo.normal.label   = t('tipo.normal');
+    tiposInfo.fire.label     = t('tipo.fuego');
+    tiposInfo.water.label    = t('tipo.agua');
+    tiposInfo.grass.label    = t('tipo.planta');
+    tiposInfo.electric.label = t('tipo.electrico');
+    tiposInfo.ice.label      = t('tipo.hielo');
+    tiposInfo.fighting.label = t('tipo.lucha');
+    tiposInfo.poison.label   = t('tipo.veneno');
+    tiposInfo.ground.label   = t('tipo.tierra');
+    tiposInfo.flying.label   = t('tipo.volador');
+    tiposInfo.psychic.label  = t('tipo.psiquico');
+    tiposInfo.bug.label      = t('tipo.bicho');
+    tiposInfo.rock.label     = t('tipo.roca');
+    tiposInfo.ghost.label    = t('tipo.fantasma');
+    tiposInfo.dragon.label   = t('tipo.dragon');
+    tiposInfo.dark.label     = t('tipo.oscuro');
+    tiposInfo.steel.label    = t('tipo.acero');
+    tiposInfo.fairy.label    = t('tipo.hada');
+
+    CATEGORIA_INFO.regional.label    = t('categoria.regional');
+    CATEGORIA_INFO.mega.label        = t('categoria.mega');
+    CATEGORIA_INFO.primigenia.label  = t('categoria.primigenia');
+    CATEGORIA_INFO.gigamax.label     = t('categoria.gigamax');
+    CATEGORIA_INFO.alternativa.label = t('categoria.alternativa');
+
+    CATEGORIAS_VARIANTES_INFO.forEach(c => {
+        c.label = t(`variantes.cat.${c.key}.label`);
+        c.sub   = t(`variantes.cat.${c.key}.sub`);
+    });
+
+    RESPALDO_TIPO_LABEL['automatico']       = t('respaldos.tipoAutomatico');
+    RESPALDO_TIPO_LABEL['pre-importacion']  = t('respaldos.tipoPreImportacion');
+    RESPALDO_TIPO_LABEL['pre-restauracion'] = t('respaldos.tipoPreRestauracion');
+}
 
 async function abrirPanelRespaldos() {
     const lista = document.getElementById('respaldos-lista');

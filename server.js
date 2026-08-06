@@ -378,7 +378,7 @@ function sesionValida(req) {
 
 function requiereLogin(req, res, next) {
     if (sesionValida(req)) return next();
-    return res.status(401).json({ success:false, error: 'Necesitas iniciar sesión para hacer cambios.' });
+    return res.status(401).json({ success:false, error: 'requiere_sesion' });
 }
 
 // Limpieza periódica de sesiones vencidas.
@@ -405,7 +405,7 @@ function rateLimiter(req, res, next) {
     entrada.count++;
     rateLimitMapa.set(ip, entrada);
     if (entrada.count > RATE_LIMIT_MAX) {
-        return res.status(429).json({ success:false, error: 'Demasiadas solicitudes seguidas, espera un momento.' });
+        return res.status(429).json({ success:false, error: 'rate_limit' });
     }
     next();
 }
@@ -430,7 +430,7 @@ function broadcast(datos) {
 app.post('/api/login', rateLimiter, (req, res) => {
     const { password } = req.body;
     if (!passwordValida(password)) {
-        return res.status(401).json({ success:false, error: 'Contraseña incorrecta.' });
+        return res.status(401).json({ success:false, error: 'password_incorrecta' });
     }
     crearSesion(res, req);
     res.json({ success: true });
@@ -445,11 +445,11 @@ app.get('/api/auth-estado', (req, res) => {
 
 app.post('/api/definir-password', rateLimiter, (req, res) => {
     if (passwordHashActual !== null) {
-        return res.status(409).json({ success:false, error: 'Ya hay una contraseña configurada.' });
+        return res.status(409).json({ success:false, error: 'password_ya_configurada' });
     }
     const { password } = req.body;
     if (typeof password !== 'string' || password.length < 4) {
-        return res.status(400).json({ success:false, error: 'La contraseña debe tener al menos 4 caracteres.' });
+        return res.status(400).json({ success:false, error: 'password_muy_corta' });
     }
     passwordHashActual = hashearPassword(password);
     escribirJSONAtomico(RUTA_ADMIN_PASSWORD, passwordHashActual);
@@ -775,7 +775,7 @@ app.get('/api/pdf-carpetas', async (req, res) => {
             ? carpetasParam.split(',').map(s => s.trim().toLowerCase()).filter(n => nombresValidos.has(n))
             : [...nombresValidos];
         if (!nombresPedidos.length) {
-            return res.status(400).json({ success:false, error: 'No se seleccionó ninguna carpeta válida' });
+            return res.status(400).json({ success:false, error: 'carpeta_no_seleccionada' });
         }
         const seleccionadas = carpetasConfig.carpetas.filter(c => nombresPedidos.includes(c.nombre.toLowerCase()));
         const numeros = ['ambos', 'regional', 'nacional'].includes(req.query.numeros) ? req.query.numeros : 'ambos';
@@ -824,7 +824,7 @@ app.get('/api/pdf-carpetas', async (req, res) => {
         });
     } catch (err) {
         console.error('⚠️  Error generando el PDF de recortables:', err.message);
-        res.status(500).json({ success:false, error: 'No se pudo generar el PDF.' });
+        res.status(500).json({ success:false, error: 'pdf_generacion_fallo' });
     }
 });
 
@@ -832,10 +832,10 @@ app.get('/api/pdf-carpetas', async (req, res) => {
 app.post('/api/inventario', requiereLogin, rateLimiter, (req, res) => {
     const { id, estado, fecha, modo } = req.body;
     if (!modoValido(modo)) {
-        return res.status(400).json({ success:false, error: 'modo debe ser "bulk" o "carpetas"' });
+        return res.status(400).json({ success:false, error: 'modo_invalido' });
     }
     if (!idsValidos.has(Number(id))) {
-        return res.status(400).json({ success:false, error: 'id de Pokémon inválido' });
+        return res.status(400).json({ success:false, error: 'id_invalido' });
     }
     const inv = inventario[modo];
     if (estado) {
@@ -859,8 +859,8 @@ app.post('/api/carpetas-config', requiereLogin, rateLimiter, (req, res) => {
         return res.status(400).json({
             success: false,
             error: nueva && nueva.modo === 'seguidas'
-                ? 'Configuración inválida: cada carpeta necesita nombre único, color (#rrggbb) y un rango de nº de Pokédex — y los rangos deben cubrir del 1 al 1025 sin huecos ni superposición.'
-                : 'Configuración inválida: cada carpeta necesita nombre único, color (#rrggbb), al menos una generación, y espacios suficientes para todos sus Pokémon — y las 9 generaciones deben repartirse sin faltar ni repetirse.'
+                ? 'carpetas_config_invalida_seguidas'
+                : 'carpetas_config_invalida_separadas'
         });
     }
     carpetasConfig = nueva.modo === 'seguidas'
@@ -884,7 +884,7 @@ app.post('/api/carpetas-config', requiereLogin, rateLimiter, (req, res) => {
 // ── CONFIGURAR VARIANTES (Ajustes) ──────────────────────────────────
 app.post('/api/variantes-config', requiereLogin, rateLimiter, (req, res) => {
     if (!variantesConfigValida(req.body)) {
-        return res.status(400).json({ success: false, error: 'Configuración de variantes inválida.' });
+        return res.status(400).json({ success: false, error: 'variantes_config_invalida' });
     }
     variantesConfig = req.body;
     guardarVariantesConfig();
@@ -898,10 +898,10 @@ app.post('/api/variantes-config', requiereLogin, rateLimiter, (req, res) => {
 app.post('/api/importar', requiereLogin, rateLimiter, (req, res) => {
     const { modo, registros } = req.body;
     if (!modoValido(modo)) {
-        return res.status(400).json({ success:false, error: 'modo debe ser "bulk" o "carpetas"' });
+        return res.status(400).json({ success:false, error: 'modo_invalido' });
     }
     if (!Array.isArray(registros)) {
-        return res.status(400).json({ success:false, error: 'Formato de archivo inválido: falta la lista de registros.' });
+        return res.status(400).json({ success:false, error: 'formato_archivo_invalido' });
     }
 
     // Respaldo del estado justo antes de importar, por si algo sale mal.
@@ -934,14 +934,14 @@ app.post('/api/backups/restaurar', requiereLogin, rateLimiter, (req, res) => {
     const { archivo } = req.body;
     const disponibles = new Set(listarRespaldos().map(r => r.archivo));
     if (typeof archivo !== 'string' || !disponibles.has(archivo)) {
-        return res.status(400).json({ success:false, error: 'Ese respaldo no existe.' });
+        return res.status(400).json({ success:false, error: 'respaldo_no_existe' });
     }
 
     let raw;
     try {
         raw = JSON.parse(fs.readFileSync(path.join(CARPETA_RESPALDOS, archivo), 'utf8'));
     } catch (err) {
-        return res.status(500).json({ success:false, error: 'El archivo de respaldo está corrupto.' });
+        return res.status(500).json({ success:false, error: 'respaldo_corrupto' });
     }
 
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
@@ -1001,8 +1001,8 @@ function firmaValida(req) {
 }
 
 app.post('/api/webhook-deploy', (req, res) => {
-    if (!DEPLOY_WEBHOOK_SECRET) return res.status(503).json({ success:false, error: 'Auto-deploy no configurado' });
-    if (!firmaValida(req)) return res.status(401).json({ success:false, error: 'Firma inválida' });
+    if (!DEPLOY_WEBHOOK_SECRET) return res.status(503).json({ success:false, error: 'deploy_no_configurado' });
+    if (!firmaValida(req)) return res.status(401).json({ success:false, error: 'firma_invalida' });
     if (req.body.ref !== 'refs/heads/main') {
         return res.json({ success:true, ignorado: true, motivo: 'no es push a main' });
     }

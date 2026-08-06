@@ -298,7 +298,8 @@ async function intentarLogin() {
         });
         if (!res.ok) {
             const body = await res.json().catch(() => ({}));
-            errBox.textContent = body.error || t('error.password_incorrecta');
+            const clave = 'error.' + body.error;
+            errBox.textContent = (clave in I18N.es) ? t(clave) : t('error.generico');
             errBox.classList.add('visible');
             return;
         }
@@ -331,7 +332,8 @@ async function intentarDefinirPassword() {
         });
         if (!res.ok) {
             const body = await res.json().catch(() => ({}));
-            errBox.textContent = body.error || t('error.noSePudoDefinirPassword');
+            const clave = 'error.' + body.error;
+            errBox.textContent = (clave in I18N.es) ? t(clave) : t('error.generico');
             errBox.classList.add('visible');
             return;
         }
@@ -1878,7 +1880,10 @@ async function toggleCategoriaVariante(categoria, activada) {
                 body: JSON.stringify(nueva)
             });
             const data = await res.json();
-            if (!res.ok || !data.success) throw new Error(data.error || t('error.respuestaInvalida'));
+            if (!res.ok || !data.success) {
+                const clave = 'error.' + data.error;
+                throw new Error((clave in I18N.es) ? t(clave) : t('error.generico'));
+            }
             variantesConfigActual = nueva;
             // cachePokemon (por generación) y pkmsActuales pueden tener datos
             // cargados antes de este cambio, sin las variantes recién
@@ -2012,7 +2017,10 @@ function restaurarRespaldo(archivo) {
                 body: JSON.stringify({ archivo })
             });
             const data = await res.json();
-            if (!res.ok || !data.success) throw new Error(data.error || t('error.respuestaInvalida'));
+            if (!res.ok || !data.success) {
+                const clave = 'error.' + data.error;
+                throw new Error((clave in I18N.es) ? t(clave) : t('error.generico'));
+            }
             mostrarToastInfo(t('toast.inventarioRestaurado'));
             cerrarPanelRespaldos();
             Object.keys(cachePokemon).forEach(k => delete cachePokemon[k]);
@@ -2425,7 +2433,10 @@ async function wizardGuardar() {
             body: JSON.stringify({ modo: wizardModo, carpetas: nueva })
         });
         const data = await res.json();
-        if (!res.ok || !data.success) throw new Error(data.error || t('error.respuestaInvalida'));
+        if (!res.ok || !data.success) {
+            const clave = 'error.' + data.error;
+            throw new Error((clave in I18N.es) ? t(clave) : t('error.generico'));
+        }
         await cargarCarpetasConfig();
         renderSidebar();
         renderBinderBar();

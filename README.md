@@ -1,7 +1,29 @@
 # Pokédex TCG
 
-Pokédex/TCG personal collection tracker (bulk + carpetas). Instalable como
-PWA.
+Pokédex/TCG personal collection tracker — una PWA autohospedada para llevar
+el control de tu colección de cartas, sola o en carpetas.
+
+<!-- TODO: agregar captura de pantalla -->
+
+## Qué hace
+
+- **Dos modos de colección independientes**: `bulk` (cartas sueltas, sin
+  organizar) y `carpetas` (organizadas en hasta 4 binders configurables —
+  por generación completa o por un rango contiguo de números de Pokédex).
+- **Wizard de configuración de carpetas**: elegís cuántas carpetas tenés,
+  cuántos bolsillos por hoja tienen tus binders físicos, y la app calcula
+  sola cómo repartir los Pokémon entre ellas.
+- **Escaneo de cartas con la cámara (OCR)**: apuntá la cámara a una carta y
+  la app la reconoce automáticamente (Tesseract.js corriendo en el
+  navegador, sin mandar imágenes a ningún servidor).
+- **Export/import** de tu colección completa, y generación de **PDFs
+  recortables** con las cartas que te faltan.
+- **Sincronización en vivo entre dispositivos**: marcás una carta desde el
+  celular y se refleja al instante en la compu (Server-Sent Events, sin
+  polling).
+- **Instalable como PWA**, con vista offline de la colección ya cargada.
+- **Español / inglés**, con detección automática por navegador y selector
+  manual en Ajustes.
 
 ## Instalar con Docker
 
@@ -62,3 +84,14 @@ con:
 ```bash
 docker compose logs
 ```
+
+## Cómo está armado
+
+Backend en Node + Express, un solo archivo (`server.js`) sin base de
+datos — la colección y la configuración se guardan en archivos JSON. El
+frontend es HTML/CSS/JS planos servidos como estáticos (`public/`), sin
+build step ni framework.
+
+## Licencia
+
+MIT — ver [`LICENSE`](LICENSE).

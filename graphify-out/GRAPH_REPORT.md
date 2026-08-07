@@ -1,16 +1,16 @@
 # Graph Report - pokedex-tcg  (2026-08-07)
 
 ## Corpus Check
-- 47 files · ~117,832 words
+- 48 files · ~119,026 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1132 nodes · 2045 edges · 87 communities (56 shown, 31 thin omitted)
+- 1143 nodes · 2055 edges · 87 communities (57 shown, 30 thin omitted)
 - Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 227 edges (avg confidence: 0.58)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `5580af5b`
+- Built from commit: `864b9a3b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -93,14 +93,14 @@
 - O
 - ji
 - wizardGuardar
-- crearSesion
-- hashearPassword
-- O
-- Internacionalización: español (default) + inglés
+- Preparar el repo para lanzamiento público
 - ei
 - M
 - ai
 - Sh
+- crearSesion
+- hashearPassword
+- Internacionalización: español (default) + inglés
 - Internacionalización español/inglés — Plan de implementación
 
 ## God Nodes (most connected - your core abstractions)
@@ -130,7 +130,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (87 total, 31 thin omitted)
+## Communities (87 total, 30 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -156,9 +156,9 @@ Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 Cohesion: 0.07
 Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
-### Community 12 - "ji"
+### Community 13 - "O"
 Cohesion: 0.05
-Nodes (8): ai(), ei(), hi(), ji(), M(), O(), Sh(), Ya()
+Nodes (7): ai(), ei(), hi(), ji(), M(), O(), Sh()
 
 ### Community 14 - "Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación"
 Cohesion: 0.08
@@ -193,8 +193,8 @@ Cohesion: 0.14
 Nodes (13): Ajustes, Cambios en endpoints existentes, Cliente, Contexto, Fase 2 — Selección de categorías de variantes (núcleo de tracking), Fuera de alcance (a propósito, queda para Fase 3), Galería / ficha, Manejo de errores y edge cases (+5 more)
 
 ### Community 25 - "Lh"
-Cohesion: 0.14
-Nodes (4): bi(), Lh(), Y(), Zh()
+Cohesion: 0.09
+Nodes (5): bi(), Lh(), Q(), Y(), Zh()
 
 ### Community 26 - "Lh"
 Cohesion: 0.14
@@ -225,8 +225,8 @@ Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 33 - "p"
-Cohesion: 0.24
-Nodes (9): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+1 more)
+Cohesion: 0.22
+Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
 
 ### Community 34 - "Fase 2 — Selección de categorías de variantes (núcleo de tracking) — Plan de implementación"
 Cohesion: 0.20
@@ -348,6 +348,10 @@ Nodes (7): Ab(), Db(), Eb(), kb(), Nb(), Ta(), Ua()
 Cohesion: 0.19
 Nodes (23): actualizarBotonesModo(), actualizarTarjetaProgreso(), actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cerrarGaleriaYVolver() (+15 more)
 
+### Community 78 - "Preparar el repo para lanzamiento público"
+Cohesion: 0.18
+Nodes (10): 1) Purga del historial con `git filter-repo`, 2) LICENSE, 3) README.md — reescritura completa, 4) About de GitHub (texto para pegar a mano), Alcance, Contexto, Fuera de alcance, Hallazgos de la auditoría de seguridad/privacidad (+2 more)
+
 ### Community 87 - "Internacionalización: español (default) + inglés"
 Cohesion: 0.20
 Nodes (9): Contexto, Diccionario y función `t()`, Errores del servidor: de texto a códigos, Fuera de alcance, Internacionalización: español (default) + inglés, Selector de idioma en Ajustes, Testing, Texto estático de `index.html` (+1 more)
@@ -357,21 +361,21 @@ Cohesion: 0.22
 Nodes (8): Global Constraints, Internacionalización español/inglés — Plan de implementación, Self-Review (hecho al escribir este plan), Task 1: Diccionario `public/i18n.js` — extracción completa + traducción, Task 2: Conectar `index.html` al diccionario, Task 3: Conectar el texto generado por JS en `app.js`, Task 4: Selector de idioma en Ajustes + detección automática, Task 5: Errores del servidor — de texto a códigos traducidos
 
 ## Knowledge Gaps
-- **262 isolated node(s):** `docker-entrypoint.sh script`, `fs`, `fs`, `crypto`, `fs` (+257 more)
+- **271 isolated node(s):** `docker-entrypoint.sh script`, `fs`, `fs`, `crypto`, `fs` (+266 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **31 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **30 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `g()` connect `worker.min.js` to `carpetasConfigValida`, `wizardGuardar`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
-  _High betweenness centrality (0.194) - this node is a cross-community bridge._
+  _High betweenness centrality (0.192) - this node is a cross-community bridge._
 - **Why does `a()` connect `worker.min.js` to `p`, `A`, `A`, `qb`, `qb`, `p`?**
-  _High betweenness centrality (0.178) - this node is a cross-community bridge._
-- **Why does `A()` connect `A` to `worker.min.js`, `tesseract-core-lstm.wasm.js`, `Q`, `ei`, `J`, `K`, `O`, `qb`, `Lh`, `di`, `d`, `p`?**
-  _High betweenness centrality (0.090) - this node is a cross-community bridge._
+  _High betweenness centrality (0.177) - this node is a cross-community bridge._
+- **Why does `A()` connect `A` to `worker.min.js`, `tesseract-core-lstm.wasm.js`, `L`, `ei`, `J`, `K`, `qb`, `Lh`, `di`, `d`, `p`?**
+  _High betweenness centrality (0.089) - this node is a cross-community bridge._
 - **What connects `docker-entrypoint.sh script`, `fs`, `fs` to the rest of the system?**
-  _262 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _271 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
   _Cohesion score 0.048701298701298704 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**

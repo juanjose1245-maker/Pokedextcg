@@ -278,5 +278,10 @@
     "mtime": 1786025206.7251344,
     "ast_hash": "b5da612da0c8de26bbb78206c894e751",
     "semantic_hash": ""
+  },
+  "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md": {
+    "mtime": 1786113631.1629317,
+    "ast_hash": "47af834bba063c7f071c60e73196407d",
+    "semantic_hash": ""
   }
 }

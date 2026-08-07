@@ -3032,8 +3032,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh",
-      "community": 91,
-      "community_name": "Sh",
+      "community": 13,
+      "community_name": "O",
       "norm_label": "sh()"
     },
     {
@@ -3043,8 +3043,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_destroy",
-      "community": 91,
-      "community_name": "Sh",
+      "community": 13,
+      "community_name": "O",
       "norm_label": ".__destroy__()"
     },
     {
@@ -3340,8 +3340,8 @@
       "source_location": "L206",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_blockpolygon",
-      "community": 89,
-      "community_name": "M",
+      "community": 13,
+      "community_name": "O",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -3384,7 +3384,7 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_rowattributes",
-      "community": 86,
+      "community": 13,
       "community_name": "O",
       "norm_label": ".rowattributes()"
     },
@@ -3472,8 +3472,8 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_wordfontattributes",
-      "community": 86,
-      "community_name": "O",
+      "community": 7,
+      "community_name": "L",
       "norm_label": ".wordfontattributes()"
     },
     {
@@ -3791,7 +3791,7 @@
       "source_location": "L217",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_boundingbox",
-      "community": 86,
+      "community": 13,
       "community_name": "O",
       "norm_label": ".boundingbox()"
     },
@@ -3835,8 +3835,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_blockpolygon",
-      "community": 89,
-      "community_name": "M",
+      "community": 13,
+      "community_name": "O",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -3868,7 +3868,7 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_o_baseline",
-      "community": 86,
+      "community": 13,
       "community_name": "O",
       "norm_label": ".baseline()"
     },
@@ -4000,8 +4000,8 @@
       "source_location": "L224",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_q",
-      "community": 70,
-      "community_name": "Q",
+      "community": 25,
+      "community_name": "Lh",
       "norm_label": "q()"
     },
     {
@@ -4011,8 +4011,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_q_begindocument",
-      "community": 70,
-      "community_name": "Q",
+      "community": 25,
+      "community_name": "Lh",
       "norm_label": ".begindocument()"
     },
     {
@@ -4022,8 +4022,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_q_addimage",
-      "community": 70,
-      "community_name": "Q",
+      "community": 25,
+      "community_name": "Lh",
       "norm_label": ".addimage()"
     },
     {
@@ -4033,8 +4033,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_q_enddocument",
-      "community": 70,
-      "community_name": "Q",
+      "community": 25,
+      "community_name": "Lh",
       "norm_label": ".enddocument()"
     },
     {
@@ -4044,8 +4044,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_q_happy",
-      "community": 70,
-      "community_name": "Q",
+      "community": 25,
+      "community_name": "Lh",
       "norm_label": ".happy()"
     },
     {
@@ -4055,8 +4055,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_q_file_extension",
-      "community": 70,
-      "community_name": "Q",
+      "community": 25,
+      "community_name": "Lh",
       "norm_label": ".file_extension()"
     },
     {
@@ -4066,8 +4066,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_q_imagenum",
-      "community": 70,
-      "community_name": "Q",
+      "community": 25,
+      "community_name": "Lh",
       "norm_label": ".imagenum()"
     },
     {
@@ -4077,8 +4077,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_q_destroy",
-      "community": 70,
-      "community_name": "Q",
+      "community": 25,
+      "community_name": "Lh",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4099,8 +4099,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai",
-      "community": 90,
-      "community_name": "ai",
+      "community": 13,
+      "community_name": "O",
       "norm_label": "ai()"
     },
     {
@@ -4110,8 +4110,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai_destroy",
-      "community": 90,
-      "community_name": "ai",
+      "community": 13,
+      "community_name": "O",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4253,8 +4253,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei",
-      "community": 88,
-      "community_name": "ei",
+      "community": 13,
+      "community_name": "O",
       "norm_label": "ei()"
     },
     {
@@ -4264,8 +4264,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei_destroy",
-      "community": 88,
-      "community_name": "ei",
+      "community": 13,
+      "community_name": "O",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4352,8 +4352,8 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_m",
-      "community": 89,
-      "community_name": "M",
+      "community": 13,
+      "community_name": "O",
       "norm_label": "m()"
     },
     {
@@ -4363,8 +4363,8 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_m_destroy",
-      "community": 89,
-      "community_name": "M",
+      "community": 13,
+      "community_name": "O",
       "norm_label": ".__destroy__()"
     },
     {
@@ -4396,7 +4396,7 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi",
-      "community": 86,
+      "community": 13,
       "community_name": "O",
       "norm_label": "hi()"
     },
@@ -4407,7 +4407,7 @@
       "source_location": "L241",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi_destroy",
-      "community": 86,
+      "community": 13,
       "community_name": "O",
       "norm_label": ".__destroy__()"
     },
@@ -5034,8 +5034,8 @@
       "source_location": "L258",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_v_allwordconfidences",
-      "community": 88,
-      "community_name": "ei",
+      "community": 13,
+      "community_name": "O",
       "norm_label": ".allwordconfidences()"
     },
     {
@@ -5232,8 +5232,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_sh_getvalue",
-      "community": 91,
-      "community_name": "Sh",
+      "community": 13,
+      "community_name": "O",
       "norm_label": ".getvalue()"
     },
     {
@@ -5243,8 +5243,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ei_getvalue",
-      "community": 88,
-      "community_name": "ei",
+      "community": 13,
+      "community_name": "O",
       "norm_label": ".getvalue()"
     },
     {
@@ -5254,8 +5254,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ai_getvalue",
-      "community": 90,
-      "community_name": "ai",
+      "community": 13,
+      "community_name": "O",
       "norm_label": ".getvalue()"
     },
     {
@@ -5265,7 +5265,7 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_hi_getvalue",
-      "community": 86,
+      "community": 13,
       "community_name": "O",
       "norm_label": ".getvalue()"
     },
@@ -5276,7 +5276,7 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji",
-      "community": 86,
+      "community": 13,
       "community_name": "O",
       "norm_label": "ji()"
     },
@@ -5287,7 +5287,7 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_wrap",
-      "community": 86,
+      "community": 13,
       "community_name": "O",
       "norm_label": ".wrap()"
     },
@@ -5298,7 +5298,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_bool",
-      "community": 86,
+      "community": 13,
       "community_name": "O",
       "norm_label": ".bool()"
     },
@@ -5309,7 +5309,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_i32",
-      "community": 86,
+      "community": 13,
       "community_name": "O",
       "norm_label": ".i32()"
     },
@@ -5320,7 +5320,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_f32",
-      "community": 86,
+      "community": 13,
       "community_name": "O",
       "norm_label": ".f32()"
     },
@@ -5331,7 +5331,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_f64",
-      "community": 86,
+      "community": 13,
       "community_name": "O",
       "norm_label": ".f64()"
     },
@@ -5342,7 +5342,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_peek",
-      "community": 86,
+      "community": 13,
       "community_name": "O",
       "norm_label": ".peek()"
     },
@@ -5353,7 +5353,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ji_get",
-      "community": 86,
+      "community": 13,
       "community_name": "O",
       "norm_label": ".get()"
     },
@@ -5364,7 +5364,7 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getboundingbox",
-      "community": 86,
+      "community": 13,
       "community_name": "O",
       "norm_label": ".getboundingbox()"
     },
@@ -5375,7 +5375,7 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getbaseline",
-      "community": 86,
+      "community": 13,
       "community_name": "O",
       "norm_label": ".getbaseline()"
     },
@@ -5386,7 +5386,7 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getrowattributes",
-      "community": 86,
+      "community": 13,
       "community_name": "O",
       "norm_label": ".getrowattributes()"
     },
@@ -5397,8 +5397,8 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_l_getwordfontattributes",
-      "community": 86,
-      "community_name": "O",
+      "community": 7,
+      "community_name": "L",
       "norm_label": ".getwordfontattributes()"
     },
     {
@@ -5584,8 +5584,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ya",
-      "community": 12,
-      "community_name": "ji",
+      "community": 33,
+      "community_name": "p",
       "norm_label": "ya()"
     },
     {
@@ -6068,8 +6068,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_sh",
-      "community": 12,
-      "community_name": "ji",
+      "community": 82,
+      "community_name": "Sh",
       "norm_label": "sh()"
     },
     {
@@ -6079,8 +6079,8 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_sh_destroy",
-      "community": 12,
-      "community_name": "ji",
+      "community": 82,
+      "community_name": "Sh",
       "norm_label": ".__destroy__()"
     },
     {
@@ -6376,8 +6376,8 @@
       "source_location": "L206",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_blockpolygon",
-      "community": 12,
-      "community_name": "ji",
+      "community": 80,
+      "community_name": "M",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -6508,8 +6508,8 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_wordfontattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": ".wordfontattributes()"
     },
     {
@@ -6717,8 +6717,8 @@
       "source_location": "L214",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o",
-      "community": 12,
-      "community_name": "ji",
+      "community": 70,
+      "community_name": "Q",
       "norm_label": "o()"
     },
     {
@@ -6728,8 +6728,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_begin",
-      "community": 12,
-      "community_name": "ji",
+      "community": 70,
+      "community_name": "Q",
       "norm_label": ".begin()"
     },
     {
@@ -6739,8 +6739,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_restartparagraph",
-      "community": 12,
-      "community_name": "ji",
+      "community": 70,
+      "community_name": "Q",
       "norm_label": ".restartparagraph()"
     },
     {
@@ -6750,8 +6750,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_iswithinfirsttextlineofparagraph",
-      "community": 12,
-      "community_name": "ji",
+      "community": 70,
+      "community_name": "Q",
       "norm_label": ".iswithinfirsttextlineofparagraph()"
     },
     {
@@ -6761,8 +6761,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_restartrow",
-      "community": 12,
-      "community_name": "ji",
+      "community": 70,
+      "community_name": "Q",
       "norm_label": ".restartrow()"
     },
     {
@@ -6772,8 +6772,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_next",
-      "community": 12,
-      "community_name": "ji",
+      "community": 70,
+      "community_name": "Q",
       "norm_label": ".next()"
     },
     {
@@ -6783,8 +6783,8 @@
       "source_location": "L215",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_isatbeginningof",
-      "community": 12,
-      "community_name": "ji",
+      "community": 70,
+      "community_name": "Q",
       "norm_label": ".isatbeginningof()"
     },
     {
@@ -6794,8 +6794,8 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_isatfinalelement",
-      "community": 12,
-      "community_name": "ji",
+      "community": 70,
+      "community_name": "Q",
       "norm_label": ".isatfinalelement()"
     },
     {
@@ -6805,8 +6805,8 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_cmp",
-      "community": 12,
-      "community_name": "ji",
+      "community": 70,
+      "community_name": "Q",
       "norm_label": ".cmp()"
     },
     {
@@ -6816,8 +6816,8 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_setboundingboxcomponents",
-      "community": 12,
-      "community_name": "ji",
+      "community": 70,
+      "community_name": "Q",
       "norm_label": ".setboundingboxcomponents()"
     },
     {
@@ -6838,8 +6838,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_boundingboxinternal",
-      "community": 12,
-      "community_name": "ji",
+      "community": 70,
+      "community_name": "Q",
       "norm_label": ".boundingboxinternal()"
     },
     {
@@ -6849,8 +6849,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_empty",
-      "community": 12,
-      "community_name": "ji",
+      "community": 70,
+      "community_name": "Q",
       "norm_label": ".empty()"
     },
     {
@@ -6860,8 +6860,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_blocktype",
-      "community": 12,
-      "community_name": "ji",
+      "community": 70,
+      "community_name": "Q",
       "norm_label": ".blocktype()"
     },
     {
@@ -6871,8 +6871,8 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_blockpolygon",
-      "community": 12,
-      "community_name": "ji",
+      "community": 80,
+      "community_name": "M",
       "norm_label": ".blockpolygon()"
     },
     {
@@ -6915,8 +6915,8 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_orientation",
-      "community": 12,
-      "community_name": "ji",
+      "community": 70,
+      "community_name": "Q",
       "norm_label": ".orientation()"
     },
     {
@@ -6926,8 +6926,8 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_paragraphinfo",
-      "community": 12,
-      "community_name": "ji",
+      "community": 70,
+      "community_name": "Q",
       "norm_label": ".paragraphinfo()"
     },
     {
@@ -6937,8 +6937,8 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_o_destroy",
-      "community": 12,
-      "community_name": "ji",
+      "community": 70,
+      "community_name": "Q",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7135,8 +7135,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ai",
-      "community": 12,
-      "community_name": "ji",
+      "community": 81,
+      "community_name": "ai",
       "norm_label": "ai()"
     },
     {
@@ -7146,8 +7146,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ai_destroy",
-      "community": 12,
-      "community_name": "ji",
+      "community": 81,
+      "community_name": "ai",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7289,8 +7289,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ei",
-      "community": 12,
-      "community_name": "ji",
+      "community": 79,
+      "community_name": "ei",
       "norm_label": "ei()"
     },
     {
@@ -7300,8 +7300,8 @@
       "source_location": "L229",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ei_destroy",
-      "community": 12,
-      "community_name": "ji",
+      "community": 79,
+      "community_name": "ei",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7388,8 +7388,8 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_m",
-      "community": 12,
-      "community_name": "ji",
+      "community": 80,
+      "community_name": "M",
       "norm_label": "m()"
     },
     {
@@ -7399,8 +7399,8 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_m_destroy",
-      "community": 12,
-      "community_name": "ji",
+      "community": 80,
+      "community_name": "M",
       "norm_label": ".__destroy__()"
     },
     {
@@ -7916,8 +7916,8 @@
       "source_location": "L254",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_v_analyselayout",
-      "community": 12,
-      "community_name": "ji",
+      "community": 70,
+      "community_name": "Q",
       "norm_label": ".analyselayout()"
     },
     {
@@ -8070,8 +8070,8 @@
       "source_location": "L258",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_v_allwordconfidences",
-      "community": 12,
-      "community_name": "ji",
+      "community": 79,
+      "community_name": "ei",
       "norm_label": ".allwordconfidences()"
     },
     {
@@ -8268,8 +8268,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_sh_getvalue",
-      "community": 12,
-      "community_name": "ji",
+      "community": 82,
+      "community_name": "Sh",
       "norm_label": ".getvalue()"
     },
     {
@@ -8279,8 +8279,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ei_getvalue",
-      "community": 12,
-      "community_name": "ji",
+      "community": 79,
+      "community_name": "ei",
       "norm_label": ".getvalue()"
     },
     {
@@ -8290,8 +8290,8 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_ai_getvalue",
-      "community": 12,
-      "community_name": "ji",
+      "community": 81,
+      "community_name": "ai",
       "norm_label": ".getvalue()"
     },
     {
@@ -8433,8 +8433,8 @@
       "source_location": "L269",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_simd_lstm_wasm_l_getwordfontattributes",
-      "community": 9,
-      "community_name": "L",
+      "community": 12,
+      "community_name": "ji",
       "norm_label": ".getwordfontattributes()"
     },
     {
@@ -12382,6 +12382,127 @@
       "community": 87,
       "community_name": "Internacionalizaci\u00f3n: espa\u00f1ol (default) + ingl\u00e9s",
       "norm_label": "testing"
+    },
+    {
+      "label": "2026-08-07-preparar-lanzamiento-publico-design.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design",
+      "community": 78,
+      "community_name": "Preparar el repo para lanzamiento p\u00fablico",
+      "norm_label": "2026-08-07-preparar-lanzamiento-publico-design.md"
+    },
+    {
+      "label": "Preparar el repo para lanzamiento p\u00fablico",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_preparar_el_repo_para_lanzamiento_p\u00fablico",
+      "community": 78,
+      "community_name": "Preparar el repo para lanzamiento p\u00fablico",
+      "norm_label": "preparar el repo para lanzamiento publico"
+    },
+    {
+      "label": "Contexto",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_contexto",
+      "community": 78,
+      "community_name": "Preparar el repo para lanzamiento p\u00fablico",
+      "norm_label": "contexto"
+    },
+    {
+      "label": "Hallazgos de la auditor\u00eda de seguridad/privacidad",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_hallazgos_de_la_auditor\u00eda_de_seguridad_privacidad",
+      "community": 78,
+      "community_name": "Preparar el repo para lanzamiento p\u00fablico",
+      "norm_label": "hallazgos de la auditoria de seguridad/privacidad"
+    },
+    {
+      "label": "Alcance",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L49",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_alcance",
+      "community": 78,
+      "community_name": "Preparar el repo para lanzamiento p\u00fablico",
+      "norm_label": "alcance"
+    },
+    {
+      "label": "1) Purga del historial con `git filter-repo`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L58",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_1_purga_del_historial_con_git_filter_repo",
+      "community": 78,
+      "community_name": "Preparar el repo para lanzamiento p\u00fablico",
+      "norm_label": "1) purga del historial con `git filter-repo`"
+    },
+    {
+      "label": "2) LICENSE",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L94",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_2_license",
+      "community": 78,
+      "community_name": "Preparar el repo para lanzamiento p\u00fablico",
+      "norm_label": "2) license"
+    },
+    {
+      "label": "3) README.md \u2014 reescritura completa",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L102",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_3_readme_md_reescritura_completa",
+      "community": 78,
+      "community_name": "Preparar el repo para lanzamiento p\u00fablico",
+      "norm_label": "3) readme.md \u2014 reescritura completa"
+    },
+    {
+      "label": "4) About de GitHub (texto para pegar a mano)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L137",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_4_about_de_github_texto_para_pegar_a_mano",
+      "community": 78,
+      "community_name": "Preparar el repo para lanzamiento p\u00fablico",
+      "norm_label": "4) about de github (texto para pegar a mano)"
+    },
+    {
+      "label": "Fuera de alcance",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L148",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_fuera_de_alcance",
+      "community": 78,
+      "community_name": "Preparar el repo para lanzamiento p\u00fablico",
+      "norm_label": "fuera de alcance"
+    },
+    {
+      "label": "Testing / verificaci\u00f3n",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L159",
+      "_origin": "ast",
+      "id": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_testing_verificaci\u00f3n",
+      "community": 78,
+      "community_name": "Preparar el repo para lanzamiento p\u00fablico",
+      "norm_label": "testing / verificacion"
     },
     {
       "label": "variantes-criterio-investigacion.md",
@@ -35859,6 +35980,116 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design",
+      "target": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_preparar_el_repo_para_lanzamiento_p\u00fablico",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L58",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_preparar_el_repo_para_lanzamiento_p\u00fablico",
+      "target": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_1_purga_del_historial_con_git_filter_repo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L94",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_preparar_el_repo_para_lanzamiento_p\u00fablico",
+      "target": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_2_license",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L102",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_preparar_el_repo_para_lanzamiento_p\u00fablico",
+      "target": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_3_readme_md_reescritura_completa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L137",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_preparar_el_repo_para_lanzamiento_p\u00fablico",
+      "target": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_4_about_de_github_texto_para_pegar_a_mano",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_preparar_el_repo_para_lanzamiento_p\u00fablico",
+      "target": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_alcance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_preparar_el_repo_para_lanzamiento_p\u00fablico",
+      "target": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_contexto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L148",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_preparar_el_repo_para_lanzamiento_p\u00fablico",
+      "target": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_fuera_de_alcance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_preparar_el_repo_para_lanzamiento_p\u00fablico",
+      "target": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_hallazgos_de_la_auditor\u00eda_de_seguridad_privacidad",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-07-preparar-lanzamiento-publico-design.md",
+      "source_location": "L159",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_preparar_el_repo_para_lanzamiento_p\u00fablico",
+      "target": "docs_superpowers_specs_2026_08_07_preparar_lanzamiento_publico_design_testing_verificaci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/variantes-criterio-investigacion.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -35935,5 +36166,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "5580af5b00894089c445f0c8ea6b14772ef0907a"
+  "built_at_commit": "864b9a3b90e1efdf471926173c1c696556817aad"
 }

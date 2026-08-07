@@ -1,16 +1,16 @@
-# Graph Report - pokedex-tcg  (2026-08-06)
+# Graph Report - pokedex-tcg  (2026-08-07)
 
 ## Corpus Check
-- 47 files · ~117,780 words
+- 47 files · ~117,832 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1132 nodes · 2045 edges · 88 communities (57 shown, 31 thin omitted)
+- 1132 nodes · 2045 edges · 87 communities (56 shown, 31 thin omitted)
 - Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 227 edges (avg confidence: 0.58)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f84175ce`
+- Built from commit: `5580af5b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -93,7 +93,6 @@
 - O
 - ji
 - wizardGuardar
-- wizardGuardar
 - crearSesion
 - hashearPassword
 - O
@@ -131,7 +130,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (88 total, 31 thin omitted)
+## Communities (87 total, 31 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -139,7 +138,7 @@ Nodes (53): A(), b(), c(), e(), f(), G(), h(), i() (+45 more)
 
 ### Community 1 - "app.js"
 Cohesion: 0.05
-Nodes (45): abrirAjustes(), actualizarBotonSesion(), actualizarTraduccionesEstaticas(), aplicarIdioma(), aplicarModoVista(), aplicarTema(), cachePokemon, calcularJalon() (+37 more)
+Nodes (51): abrirAjustes(), actualizarBotonSesion(), actualizarTraduccionesEstaticas(), aplicarIdioma(), aplicarModoVista(), aplicarTema(), bgDeColor(), bgDeGen() (+43 more)
 
 ### Community 2 - "O"
 Cohesion: 0.28
@@ -349,10 +348,6 @@ Nodes (7): Ab(), Db(), Eb(), kb(), Nb(), Ta(), Ua()
 Cohesion: 0.19
 Nodes (23): actualizarBotonesModo(), actualizarTarjetaProgreso(), actualizarTarjetaProgresoPendientes(), calcularIdsPendientes(), cambiarModo(), cambiarTab(), cargarEstadisticas(), cerrarGaleriaYVolver() (+15 more)
 
-### Community 82 - "wizardGuardar"
-Cohesion: 0.47
-Nodes (6): bgDeColor(), bgDeGen(), colorDeGen(), gradienteDeGen(), renderGridGeneraciones(), segmentosDeGen()
-
 ### Community 87 - "Internacionalización: español (default) + inglés"
 Cohesion: 0.20
 Nodes (9): Contexto, Diccionario y función `t()`, Errores del servidor: de texto a códigos, Fuera de alcance, Internacionalización: español (default) + inglés, Selector de idioma en Ajustes, Testing, Texto estático de `index.html` (+1 more)
@@ -378,7 +373,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `docker-entrypoint.sh script`, `fs`, `fs` to the rest of the system?**
   _262 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.05061224489795919 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.048701298701298704 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._
 - **Should `V` be split into smaller, more focused modules?**

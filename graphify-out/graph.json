@@ -568,8 +568,8 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "public_app_segmentosdegen",
-      "community": 82,
-      "community_name": "wizardGuardar",
+      "community": 1,
+      "community_name": "app.js",
       "norm_label": "segmentosdegen()"
     },
     {
@@ -579,8 +579,8 @@
       "source_location": "L128",
       "_origin": "ast",
       "id": "public_app_colordegen",
-      "community": 82,
-      "community_name": "wizardGuardar",
+      "community": 1,
+      "community_name": "app.js",
       "norm_label": "colordegen()"
     },
     {
@@ -590,8 +590,8 @@
       "source_location": "L132",
       "_origin": "ast",
       "id": "public_app_bgdecolor",
-      "community": 82,
-      "community_name": "wizardGuardar",
+      "community": 1,
+      "community_name": "app.js",
       "norm_label": "bgdecolor()"
     },
     {
@@ -601,8 +601,8 @@
       "source_location": "L135",
       "_origin": "ast",
       "id": "public_app_bgdegen",
-      "community": 82,
-      "community_name": "wizardGuardar",
+      "community": 1,
+      "community_name": "app.js",
       "norm_label": "bgdegen()"
     },
     {
@@ -612,8 +612,8 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "public_app_gradientedegen",
-      "community": 82,
-      "community_name": "wizardGuardar",
+      "community": 1,
+      "community_name": "app.js",
       "norm_label": "gradientedegen()"
     },
     {
@@ -1063,8 +1063,8 @@
       "source_location": "L730",
       "_origin": "ast",
       "id": "public_app_rendergridgeneraciones",
-      "community": 82,
-      "community_name": "wizardGuardar",
+      "community": 1,
+      "community_name": "app.js",
       "norm_label": "rendergridgeneraciones()"
     },
     {
@@ -15085,7 +15085,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "public/app.js",
-      "source_location": "L281",
+      "source_location": "L285",
       "weight": 1.0,
       "_origin": "ast",
       "source": "public_app_sesioniniciadaconexito",
@@ -15121,7 +15121,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "public/app.js",
-      "source_location": "L282",
+      "source_location": "L286",
       "weight": 1.0,
       "_origin": "ast",
       "source": "public_app_sesioniniciadaconexito",
@@ -35935,5 +35935,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "f84175ce510c8fe50f928b9ab9f9903ca16bf34d"
+  "built_at_commit": "5580af5b00894089c445f0c8ea6b14772ef0907a"
 }

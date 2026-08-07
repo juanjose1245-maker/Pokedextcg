@@ -278,13 +278,13 @@ function cerrarLoginModal() {
 function sesionIniciadaConExito() {
     sesionActiva = true;
     actualizarBotonSesion();
+    // Capturar antes de cerrarLoginModal(): esa función también limpia
+    // accionPendienteTrasLogin (para el caso de "cerró el modal sin
+    // loguearse"), así que si la leyéramos después siempre daría null.
+    const accion = accionPendienteTrasLogin;
     cerrarLoginModal();
     mostrarToastInfo(t('toast.sesionIniciada'));
-    if (accionPendienteTrasLogin) {
-        const accion = accionPendienteTrasLogin;
-        accionPendienteTrasLogin = null;
-        accion();
-    }
+    if (accion) accion();
 }
 
 async function intentarLogin() {

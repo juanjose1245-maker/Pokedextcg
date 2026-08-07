@@ -1,16 +1,16 @@
 # Graph Report - pokedex-tcg  (2026-08-07)
 
 ## Corpus Check
-- 48 files · ~119,026 words
+- 49 files · ~121,004 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1143 nodes · 2055 edges · 87 communities (57 shown, 30 thin omitted)
+- 1150 nodes · 2061 edges · 90 communities (59 shown, 31 thin omitted)
 - Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 227 edges (avg confidence: 0.58)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `864b9a3b`
+- Built from commit: `394fcced`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -100,7 +100,10 @@
 - Sh
 - crearSesion
 - hashearPassword
+- Q
+- Global Constraints
 - Internacionalización: español (default) + inglés
+- renderGridGeneraciones
 - Internacionalización español/inglés — Plan de implementación
 
 ## God Nodes (most connected - your core abstractions)
@@ -130,7 +133,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (87 total, 30 thin omitted)
+## Communities (90 total, 31 thin omitted)
 
 ### Community 0 - "worker.min.js"
 Cohesion: 0.15
@@ -138,7 +141,7 @@ Nodes (53): A(), b(), c(), e(), f(), G(), h(), i() (+45 more)
 
 ### Community 1 - "app.js"
 Cohesion: 0.05
-Nodes (51): abrirAjustes(), actualizarBotonSesion(), actualizarTraduccionesEstaticas(), aplicarIdioma(), aplicarModoVista(), aplicarTema(), bgDeColor(), bgDeGen() (+43 more)
+Nodes (45): abrirAjustes(), actualizarBotonSesion(), actualizarTraduccionesEstaticas(), aplicarIdioma(), aplicarModoVista(), aplicarTema(), cachePokemon, calcularJalon() (+37 more)
 
 ### Community 2 - "O"
 Cohesion: 0.28
@@ -158,7 +161,7 @@ Nodes (14): ci(), Da(), fi(), gi(), Kh(), R(), Rh(), Sa() (+6 more)
 
 ### Community 13 - "O"
 Cohesion: 0.05
-Nodes (7): ai(), ei(), hi(), ji(), M(), O(), Sh()
+Nodes (8): ai(), ei(), hi(), ji(), M(), O(), Sh(), Ya()
 
 ### Community 14 - "Fase 1 — Base de datos de variantes de Pokémon — Plan de implementación"
 Cohesion: 0.08
@@ -193,8 +196,8 @@ Cohesion: 0.14
 Nodes (13): Ajustes, Cambios en endpoints existentes, Cliente, Contexto, Fase 2 — Selección de categorías de variantes (núcleo de tracking), Fuera de alcance (a propósito, queda para Fase 3), Galería / ficha, Manejo de errores y edge cases (+5 more)
 
 ### Community 25 - "Lh"
-Cohesion: 0.09
-Nodes (5): bi(), Lh(), Q(), Y(), Zh()
+Cohesion: 0.14
+Nodes (4): bi(), Lh(), Y(), Zh()
 
 ### Community 26 - "Lh"
 Cohesion: 0.14
@@ -217,8 +220,8 @@ Cohesion: 0.29
 Nodes (3): d(), h(), Za()
 
 ### Community 31 - "p"
-Cohesion: 0.22
-Nodes (10): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+2 more)
+Cohesion: 0.24
+Nodes (9): e(), gb(), hb(), Ma(), Na(), Oa(), p(), Pa() (+1 more)
 
 ### Community 32 - "d"
 Cohesion: 0.29
@@ -352,32 +355,40 @@ Nodes (23): actualizarBotonesModo(), actualizarTarjetaProgreso(), actualizarTarj
 Cohesion: 0.18
 Nodes (10): 1) Purga del historial con `git filter-repo`, 2) LICENSE, 3) README.md — reescritura completa, 4) About de GitHub (texto para pegar a mano), Alcance, Contexto, Fuera de alcance, Hallazgos de la auditoría de seguridad/privacidad (+2 more)
 
+### Community 86 - "Global Constraints"
+Cohesion: 0.29
+Nodes (6): Entregable final al usuario (no es un task de código), Global Constraints, Preparar el repo para lanzamiento público — Plan de implementación, Task 1: Purgar datos de colección personal del historial de git, Task 2: Agregar LICENSE (MIT) y alinear `package.json`, Task 3: Reescribir `README.md`
+
 ### Community 87 - "Internacionalización: español (default) + inglés"
 Cohesion: 0.20
 Nodes (9): Contexto, Diccionario y función `t()`, Errores del servidor: de texto a códigos, Fuera de alcance, Internacionalización: español (default) + inglés, Selector de idioma en Ajustes, Testing, Texto estático de `index.html` (+1 more)
+
+### Community 88 - "renderGridGeneraciones"
+Cohesion: 0.47
+Nodes (6): bgDeColor(), bgDeGen(), colorDeGen(), gradienteDeGen(), renderGridGeneraciones(), segmentosDeGen()
 
 ### Community 92 - "Internacionalización español/inglés — Plan de implementación"
 Cohesion: 0.22
 Nodes (8): Global Constraints, Internacionalización español/inglés — Plan de implementación, Self-Review (hecho al escribir este plan), Task 1: Diccionario `public/i18n.js` — extracción completa + traducción, Task 2: Conectar `index.html` al diccionario, Task 3: Conectar el texto generado por JS en `app.js`, Task 4: Selector de idioma en Ajustes + detección automática, Task 5: Errores del servidor — de texto a códigos traducidos
 
 ## Knowledge Gaps
-- **271 isolated node(s):** `docker-entrypoint.sh script`, `fs`, `fs`, `crypto`, `fs` (+266 more)
+- **275 isolated node(s):** `docker-entrypoint.sh script`, `fs`, `fs`, `crypto`, `fs` (+270 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **30 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **31 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `g()` connect `worker.min.js` to `carpetasConfigValida`, `wizardGuardar`, `wizardCapacidadSiguiente`, `qb`, `qb`?**
-  _High betweenness centrality (0.192) - this node is a cross-community bridge._
+  _High betweenness centrality (0.191) - this node is a cross-community bridge._
 - **Why does `a()` connect `worker.min.js` to `p`, `A`, `A`, `qb`, `qb`, `p`?**
-  _High betweenness centrality (0.177) - this node is a cross-community bridge._
-- **Why does `A()` connect `A` to `worker.min.js`, `tesseract-core-lstm.wasm.js`, `L`, `ei`, `J`, `K`, `qb`, `Lh`, `di`, `d`, `p`?**
+  _High betweenness centrality (0.176) - this node is a cross-community bridge._
+- **Why does `A()` connect `A` to `worker.min.js`, `tesseract-core-lstm.wasm.js`, `L`, `ei`, `J`, `K`, `Q`, `qb`, `Lh`, `di`, `d`, `p`?**
   _High betweenness centrality (0.089) - this node is a cross-community bridge._
 - **What connects `docker-entrypoint.sh script`, `fs`, `fs` to the rest of the system?**
-  _271 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _275 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `app.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.048701298701298704 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05061224489795919 - nodes in this community are weakly interconnected._
 - **Should `server.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._
 - **Should `V` be split into smaller, more focused modules?**

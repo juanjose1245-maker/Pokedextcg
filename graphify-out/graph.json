@@ -568,8 +568,8 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "public_app_segmentosdegen",
-      "community": 1,
-      "community_name": "app.js",
+      "community": 88,
+      "community_name": "renderGridGeneraciones",
       "norm_label": "segmentosdegen()"
     },
     {
@@ -579,8 +579,8 @@
       "source_location": "L128",
       "_origin": "ast",
       "id": "public_app_colordegen",
-      "community": 1,
-      "community_name": "app.js",
+      "community": 88,
+      "community_name": "renderGridGeneraciones",
       "norm_label": "colordegen()"
     },
     {
@@ -590,8 +590,8 @@
       "source_location": "L132",
       "_origin": "ast",
       "id": "public_app_bgdecolor",
-      "community": 1,
-      "community_name": "app.js",
+      "community": 88,
+      "community_name": "renderGridGeneraciones",
       "norm_label": "bgdecolor()"
     },
     {
@@ -601,8 +601,8 @@
       "source_location": "L135",
       "_origin": "ast",
       "id": "public_app_bgdegen",
-      "community": 1,
-      "community_name": "app.js",
+      "community": 88,
+      "community_name": "renderGridGeneraciones",
       "norm_label": "bgdegen()"
     },
     {
@@ -612,8 +612,8 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "public_app_gradientedegen",
-      "community": 1,
-      "community_name": "app.js",
+      "community": 88,
+      "community_name": "renderGridGeneraciones",
       "norm_label": "gradientedegen()"
     },
     {
@@ -1063,8 +1063,8 @@
       "source_location": "L730",
       "_origin": "ast",
       "id": "public_app_rendergridgeneraciones",
-      "community": 1,
-      "community_name": "app.js",
+      "community": 88,
+      "community_name": "renderGridGeneraciones",
       "norm_label": "rendergridgeneraciones()"
     },
     {
@@ -2548,8 +2548,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_ya",
-      "community": 31,
-      "community_name": "p",
+      "community": 13,
+      "community_name": "O",
       "norm_label": "ya()"
     },
     {
@@ -4000,8 +4000,8 @@
       "source_location": "L224",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_q",
-      "community": 25,
-      "community_name": "Lh",
+      "community": 85,
+      "community_name": "Q",
       "norm_label": "q()"
     },
     {
@@ -4011,8 +4011,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_q_begindocument",
-      "community": 25,
-      "community_name": "Lh",
+      "community": 85,
+      "community_name": "Q",
       "norm_label": ".begindocument()"
     },
     {
@@ -4022,8 +4022,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_q_addimage",
-      "community": 25,
-      "community_name": "Lh",
+      "community": 85,
+      "community_name": "Q",
       "norm_label": ".addimage()"
     },
     {
@@ -4033,8 +4033,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_q_enddocument",
-      "community": 25,
-      "community_name": "Lh",
+      "community": 85,
+      "community_name": "Q",
       "norm_label": ".enddocument()"
     },
     {
@@ -4044,8 +4044,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_q_happy",
-      "community": 25,
-      "community_name": "Lh",
+      "community": 85,
+      "community_name": "Q",
       "norm_label": ".happy()"
     },
     {
@@ -4055,8 +4055,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_q_file_extension",
-      "community": 25,
-      "community_name": "Lh",
+      "community": 85,
+      "community_name": "Q",
       "norm_label": ".file_extension()"
     },
     {
@@ -4066,8 +4066,8 @@
       "source_location": "L225",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_q_imagenum",
-      "community": 25,
-      "community_name": "Lh",
+      "community": 85,
+      "community_name": "Q",
       "norm_label": ".imagenum()"
     },
     {
@@ -4077,8 +4077,8 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "public_vendor_tesseract_tesseract_core_lstm_wasm_q_destroy",
-      "community": 25,
-      "community_name": "Lh",
+      "community": 85,
+      "community_name": "Q",
       "norm_label": ".__destroy__()"
     },
     {
@@ -11172,6 +11172,83 @@
       "community": 92,
       "community_name": "Internacionalizaci\u00f3n espa\u00f1ol/ingl\u00e9s \u2014 Plan de implementaci\u00f3n",
       "norm_label": "self-review (hecho al escribir este plan)"
+    },
+    {
+      "label": "2026-08-07-preparar-lanzamiento-publico.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-07-preparar-lanzamiento-publico.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico",
+      "community": 86,
+      "community_name": "Global Constraints",
+      "norm_label": "2026-08-07-preparar-lanzamiento-publico.md"
+    },
+    {
+      "label": "Preparar el repo para lanzamiento p\u00fablico \u2014 Plan de implementaci\u00f3n",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-07-preparar-lanzamiento-publico.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico_preparar_el_repo_para_lanzamiento_p\u00fablico_plan_de_implementaci\u00f3n",
+      "community": 86,
+      "community_name": "Global Constraints",
+      "norm_label": "preparar el repo para lanzamiento publico \u2014 plan de implementacion"
+    },
+    {
+      "label": "Global Constraints",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-07-preparar-lanzamiento-publico.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico_global_constraints",
+      "community": 86,
+      "community_name": "Global Constraints",
+      "norm_label": "global constraints"
+    },
+    {
+      "label": "Task 1: Purgar datos de colecci\u00f3n personal del historial de git",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-07-preparar-lanzamiento-publico.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico_task_1_purgar_datos_de_colecci\u00f3n_personal_del_historial_de_git",
+      "community": 86,
+      "community_name": "Global Constraints",
+      "norm_label": "task 1: purgar datos de coleccion personal del historial de git"
+    },
+    {
+      "label": "Task 2: Agregar LICENSE (MIT) y alinear `package.json`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-07-preparar-lanzamiento-publico.md",
+      "source_location": "L105",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico_task_2_agregar_license_mit_y_alinear_package_json",
+      "community": 86,
+      "community_name": "Global Constraints",
+      "norm_label": "task 2: agregar license (mit) y alinear `package.json`"
+    },
+    {
+      "label": "Task 3: Reescribir `README.md`",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-07-preparar-lanzamiento-publico.md",
+      "source_location": "L181",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico_task_3_reescribir_readme_md",
+      "community": 86,
+      "community_name": "Global Constraints",
+      "norm_label": "task 3: reescribir `readme.md`"
+    },
+    {
+      "label": "Entregable final al usuario (no es un task de c\u00f3digo)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/plans/2026-08-07-preparar-lanzamiento-publico.md",
+      "source_location": "L338",
+      "_origin": "ast",
+      "id": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico_entregable_final_al_usuario_no_es_un_task_de_c\u00f3digo",
+      "community": 86,
+      "community_name": "Global Constraints",
+      "norm_label": "entregable final al usuario (no es un task de codigo)"
     },
     {
       "label": "2026-07-25-carpetas-todas-seguidas-design.md",
@@ -34891,6 +34968,72 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-07-preparar-lanzamiento-publico.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico",
+      "target": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico_preparar_el_repo_para_lanzamiento_p\u00fablico_plan_de_implementaci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-07-preparar-lanzamiento-publico.md",
+      "source_location": "L338",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico_preparar_el_repo_para_lanzamiento_p\u00fablico_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico_entregable_final_al_usuario_no_es_un_task_de_c\u00f3digo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-07-preparar-lanzamiento-publico.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico_preparar_el_repo_para_lanzamiento_p\u00fablico_plan_de_implementaci\u00f3n",
+      "target": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico_global_constraints",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-07-preparar-lanzamiento-publico.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico_global_constraints",
+      "target": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico_task_1_purgar_datos_de_colecci\u00f3n_personal_del_historial_de_git",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-07-preparar-lanzamiento-publico.md",
+      "source_location": "L105",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico_global_constraints",
+      "target": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico_task_2_agregar_license_mit_y_alinear_package_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/plans/2026-08-07-preparar-lanzamiento-publico.md",
+      "source_location": "L181",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico_global_constraints",
+      "target": "docs_superpowers_plans_2026_08_07_preparar_lanzamiento_publico_task_3_reescribir_readme_md",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/superpowers/specs/2026-07-25-carpetas-todas-seguidas-design.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -36166,5 +36309,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "864b9a3b90e1efdf471926173c1c696556817aad"
+  "built_at_commit": "394fcced6e09aaaa721f2eb25be9727e9d8649ae"
 }

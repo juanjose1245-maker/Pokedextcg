@@ -13,9 +13,6 @@ el control de tu colección de cartas, sola o en carpetas.
 - **Wizard de configuración de carpetas**: elegís cuántas carpetas tenés,
   cuántos bolsillos por hoja tienen tus binders físicos, y la app calcula
   sola cómo repartir los Pokémon entre ellas.
-- **Escaneo de cartas con la cámara (OCR)**: apuntá la cámara a una carta y
-  la app la reconoce automáticamente (Tesseract.js corriendo en el
-  navegador, sin mandar imágenes a ningún servidor).
 - **Export/import** de tu colección completa, y generación de **PDFs
   recortables** con las cartas que te faltan.
 - **Sincronización en vivo entre dispositivos**: marcás una carta desde el

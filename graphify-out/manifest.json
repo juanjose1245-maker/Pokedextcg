@@ -24,19 +24,14 @@
     "ast_hash": "748f78753112b428e1328ee1afdbdeb4",
     "semantic_hash": ""
   },
-  "inventario.backup-2026-07-19T16-49-14-701Z.json": {
-    "mtime": 1784838743.8491464,
-    "ast_hash": "9a24b4fb93c7fa52851e70faad9ee851",
-    "semantic_hash": ""
-  },
   "migrar-carpetas-a-bulk.js": {
     "mtime": 1784838743.8501465,
     "ast_hash": "f612f29a8f476438e5cc1c465ff1d9ce",
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1785013088.4359846,
-    "ast_hash": "aa52a343c2a6ba70b373460027ac38f6",
+    "mtime": 1786123165.09118,
+    "ast_hash": "8bc35f7723aba0a6f986ecce1780b7d3",
     "semantic_hash": ""
   },
   "pokemon_db.json": {

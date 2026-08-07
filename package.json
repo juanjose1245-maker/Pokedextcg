@@ -7,7 +7,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "description": "Pokédex/TCG personal collection tracker (bulk + carpetas)",
   "dependencies": {
     "express": "^5.2.1",

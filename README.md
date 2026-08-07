@@ -52,13 +52,10 @@ junto al `docker-compose.yml` — no se pierden si actualizás la imagen.
 |---|---|---|
 | `DATA_DIR` | No | Carpeta donde se guardan los datos. La imagen ya la fija en `/app/data`; no hace falta tocarla salvo que sepas lo que estás haciendo. |
 
-`ADMIN_PASSWORD` ya no es necesaria: la contraseña se define desde la
-propia app la primera vez que hacés un cambio. Si venís de una instalación
-vieja que ya la tenía seteada, seguí funcionando igual — se migra sola, una
-única vez, a un archivo dentro de `DATA_DIR`. También podés seguir
-fijándola por variable de entorno si la preferís así (ver el comentario en
-`docker-compose.yml`); en una instalación nueva, esa migración pasa igual,
-solo que en el primer arranque en vez de venir de "una instalación vieja".
+No hace falta configurar ninguna contraseña de antemano: la definís desde
+la propia app la primera vez que hacés un cambio. Si preferís fijarla vos
+por variable de entorno en cambio, podés seguir usando `ADMIN_PASSWORD`
+(ver el comentario en `docker-compose.yml`).
 
 ### Actualizar
 

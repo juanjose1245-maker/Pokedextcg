@@ -8,7 +8,7 @@ el control de tu colección de cartas, sola o en carpetas.
 ## Qué hace
 
 - **Dos modos de colección independientes**: `bulk` (cartas sueltas, sin
-  organizar) y `carpetas` (organizadas en hasta 4 binders configurables —
+  organizar) y `carpetas` (organizadas en binders configurables —
   por generación completa o por un rango contiguo de números de Pokédex).
 - **Wizard de configuración de carpetas**: elegís cuántas carpetas tenés,
   cuántos bolsillos por hoja tienen tus binders físicos, y la app calcula

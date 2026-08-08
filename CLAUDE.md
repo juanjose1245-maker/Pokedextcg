@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A personal Pokédex/TCG collection tracker: a single-page web app (installable as a PWA) backed by a small Express server that persists which Pokémon the user owns. There are two independent collection "modes" — `bulk` (loose cards) and `carpetas` (cards organized into 4 user-configurable binders, either by generation or by a contiguous Pokédex-number range) — tracked as separate id→date maps.
+A self-hostable Pokédex/TCG collection tracker: a single-page web app (installable as a PWA) backed by a small Express server that persists which Pokémon the user owns. There are two independent collection "modes" — `bulk` (loose cards) and `carpetas` (cards organized into 1-9 user-configurable binders, either by generation or by a contiguous Pokédex-number range) — tracked as separate id→date maps.
 
 Comments and UI text in this codebase are in Spanish; keep new comments/strings consistent with that unless told otherwise.
 
@@ -14,7 +14,7 @@ Comments and UI text in this codebase are in Spanish; keep new comments/strings 
 node server.js
 ```
 
-Serves on port `3000`. In production it runs as the systemd unit `pokedex.service` (`WorkingDirectory=/var/www/html/pokedex-tcg`, `User=www-data`, auto-restarts on failure). Files the process needs to write (`inventario.json`, `carpetas.json`, `backups/`, `cache/`, `node_modules/`, `package.json`/`package-lock.json` for `/api/webhook-deploy`'s `npm install`) must be owned by `www-data`, and `/var/www/.npm` (npm's cache dir, under `www-data`'s home) must exist and be owned by `www-data` too — otherwise auto-deploy/writes fail with `EACCES`:
+Serves on port `3000`. The general-purpose way to self-host this (what `README.md` walks anyone else through) is the Docker image — see "Self-hosting / Docker" below. What follows in this section is specific to the original author's own instance, which instead runs as the systemd unit `pokedex.service` (`WorkingDirectory=/var/www/html/pokedex-tcg`, `User=www-data`, auto-restarts on failure) with a GitHub webhook triggering `git pull` + restart on push to `main` — not something a Docker deploy needs or has. Files the process needs to write (`inventario.json`, `carpetas.json`, `backups/`, `cache/`, `node_modules/`, `package.json`/`package-lock.json` for `/api/webhook-deploy`'s `npm install`) must be owned by `www-data`, and `/var/www/.npm` (npm's cache dir, under `www-data`'s home) must exist and be owned by `www-data` too — otherwise auto-deploy/writes fail with `EACCES`:
 
 ```bash
 systemctl restart pokedex.service
@@ -28,7 +28,7 @@ No test suite exists (`npm test` is a placeholder that exits with an error).
 
 ### Auth
 
-Write endpoints require a session, gated by `ADMIN_PASSWORD` env var (defaults to `pokedex123` with a startup warning if unset — always set this in production). Sessions are opaque tokens held in an in-memory `Map`, sent as an `httpOnly` cookie; there is no cookie-parser dependency, cookies are parsed by hand in `server.js`.
+Write endpoints require a session. There is no preset password: `admin-password.json` (in `DATA_DIR`, scrypt hash + salt, gitignored) starts out absent, `GET /api/auth-estado` tells the client so, and the first write attempt shows a "set your password" form instead of a login form (`POST /api/definir-password`, one-time — 409 if already configured). An `ADMIN_PASSWORD` env var is still honored as a one-time migration on boot if `admin-password.json` doesn't exist yet (hashed once and written to disk; the env var itself is never consulted again after that). Sessions are opaque tokens held in an in-memory `Map`, sent as an `httpOnly` cookie; there is no cookie-parser dependency, cookies are parsed by hand in `server.js`.
 
 ## Architecture
 
@@ -62,21 +62,17 @@ Write endpoints require a session, gated by `ADMIN_PASSWORD` env var (defaults t
 - `fetch_variantes.js` — extends `pokemon_db.json`'s 1025 base entries with variants from `variantes_lista.json`; safe to re-run any number of times (it always regenerates the variant tail from scratch based on whatever's currently in `variantes_lista.json`), fails loudly instead of writing a partial result if PokeAPI errors on any entry, and refuses to write if two variants resolve to identical artwork (the same physical card counted twice). **Regeneration order: if you run `fetch_pokemon.js`, always run `fetch_variantes.js` after it** — `fetch_pokemon.js` overwrites the entire file with only the 1025 base entries and silently deletes any existing variants.
 - `inventario.json` — live user collection state, `{ bulk, carpetas }`. Treat as data, not config; it's rewritten by the server on every change plus auto-backed-up. Gitignored on purpose — unlike `carpetas.json`/`variantes-config.json`, it must never be tracked, since `/api/webhook-deploy`'s `git reset --hard origin/main` would otherwise overwrite the live collection with whatever stale copy is committed.
 - `carpetas.json` — the folder/binder layout (`{ modo: 'separadas'|'seguidas', carpetas: [...] }`), written by the client-side wizard through `/api/carpetas-config`. Falls back to `CARPETAS_DEFAULT` (in `server.js`) if missing or invalid.
-- `migrar-carpetas-a-bulk.js` — a one-off, manually-run migration script that copies everything marked in `carpetas` into `bulk` (without overwriting existing `bulk` dates). Stop the server before running it; it writes its own timestamped backup first.
+
+## Self-hosting / Docker
+
+`DATA_DIR` (env var, defaults to `__dirname`) is where all writable state lives — `inventario.json`, `carpetas.json`, `variantes-config.json`, `admin-password.json`, `backups/`. The Docker image (`Dockerfile`, `docker-entrypoint.sh`) fixes it to `/app/data` and mounts that as a volume; running `node server.js` directly (no `DATA_DIR` set) keeps everything next to the repo, same as before this existed. `docker-entrypoint.sh` starts as root only to `chown` `DATA_DIR` (handles a bind-mount owned by anyone) then drops to the non-root `node` user via `setpriv` before exec'ing the app. `.github/workflows/docker-publish.yml` builds and pushes `ghcr.io/juanjose1245-maker/pokedextcg:latest` (amd64+arm64) on every push to `main`, passing the short SHA in as `GIT_COMMIT` (`.git` itself isn't in the image — see `.dockerignore` — so `server.js` can't `git rev-parse` in that environment; it reads `GIT_COMMIT` first and only falls back to `git rev-parse` when that's unset).
+
+## i18n
+
+`public/i18n.js` holds the ES/EN dictionary; static text in `index.html` is wired via `data-i18n`/`data-i18n-placeholder`/`data-i18n-title` attributes, dynamic strings from `app.js` call `t('key')`. Language auto-detects from the browser on first load and is overridable in Ajustes, persisted to `localStorage`. Server error responses are codes (e.g. `password_incorrecta`, `rate_limit`), translated client-side — never hardcode a Spanish or English string in a server response body.
 
 ## Editing conventions
 
 - `server.js` and the `public/` app shell (`index.html` + `app.js` + `styles.css`) are intentionally monolithic within each concern (no per-feature files, no framework/bundler) — this is a small personal project, not scaffolded for multi-file modularization. Don't split them apart further as a "cleanup" unless asked.
-- When touching `inventario.json` handling, preserve the backup-before-write pattern used in `/api/importar` and `migrar-carpetas-a-bulk.js`.
-- `bulk` and `carpetas` are always independent collections; a change to one must never implicitly affect the other unless explicitly requested (that's exactly what the migration script is for).
-
-## graphify
-
-This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
-
-Rules:
-- For codebase questions, first run `graphify query "<question>"` when graphify-out/graph.json exists. Use `graphify path "<A>" "<B>"` for relationships and `graphify explain "<concept>"` for focused concepts. These return a scoped subgraph, usually much smaller than GRAPH_REPORT.md or raw grep output.
-- If graphify-out/wiki/index.md exists, use it for broad navigation instead of raw source browsing.
-- Read graphify-out/GRAPH_REPORT.md only for broad architecture review or when query/path/explain do not surface enough context.
-- After modifying code, run `graphify update .` to keep the graph current (AST-only, no API cost) — useful mid-session, before committing, to query against fresh state.
-- `graphify-out/` (graph.json, graph.html, GRAPH_REPORT.md, manifest.json) is tracked in git. A `pre-commit` hook (`.git/hooks/pre-commit`, not itself versioned) runs `graphify update .` and re-stages `graphify-out/` before every commit, so the graph never drifts from what's actually committed — this doesn't replace the manual run above, which is still useful for querying mid-session against uncommitted changes. `graphify-out/cache/` and the dated `graphify-out/YYYY-MM-DD/` backup snapshots are gitignored (build cache and transient backups, not meant to be versioned).
+- When touching `inventario.json` handling, preserve the backup-before-write pattern used in `/api/importar`.
+- `bulk` and `carpetas` are always independent collections; a change to one must never implicitly affect the other unless explicitly requested.

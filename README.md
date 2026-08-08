@@ -1,24 +1,39 @@
 # Pokédex TCG
 
+**Español** | [English](README.en.md)
+
 Pokédex/TCG personal collection tracker — una PWA autohospedada para llevar
 el control de tu colección de cartas, sola o en carpetas.
 
-<!-- TODO: agregar captura de pantalla -->
+<img src="screenshot.png" alt="Vista de la Pokédex con progreso de colección y detalle de cartas" width="360">
+
+<table>
+<tr>
+<td><img src="screenshot-dark.png" alt="Tema oscuro" width="220"><br><sub>Tema oscuro</sub></td>
+<td><img src="screenshot-wizard.png" alt="Wizard de configuración de carpetas" width="220"><br><sub>Wizard de carpetas</sub></td>
+<td><img src="screenshot-variantes.png" alt="Panel de variantes (Mega, Gigamax, formas regionales)" width="220"><br><sub>Variantes (Mega, Gigamax, etc.)</sub></td>
+<td><img src="screenshot-pdf.jpeg" alt="PDF de recortables para armar carpetas físicas" width="220"><br><sub>PDF de recortables</sub></td>
+</tr>
+</table>
 
 ## Qué hace
 
 - **Dos modos de colección independientes**: `bulk` (cartas sueltas, sin
-  organizar) y `carpetas` (organizadas en hasta 4 binders configurables —
+  organizar) y `carpetas` (organizadas en binders configurables —
   por generación completa o por un rango contiguo de números de Pokédex).
 - **Wizard de configuración de carpetas**: elegís cuántas carpetas tenés,
   cuántos bolsillos por hoja tienen tus binders físicos, y la app calcula
   sola cómo repartir los Pokémon entre ellas.
 - **Export/import** de tu colección completa, y generación de **PDFs
   recortables** con las cartas que te faltan.
+- **Variantes opcionales**: Mega Evolución, Gigamax, formas regionales,
+  Regresión Primigenia y formas alternativas, cada categoría activable por
+  separado si las contás como cartas propias.
 - **Sincronización en vivo entre dispositivos**: marcás una carta desde el
   celular y se refleja al instante en la compu (Server-Sent Events, sin
   polling).
-- **Instalable como PWA**, con vista offline de la colección ya cargada.
+- **Instalable como PWA**, con vista offline de la colección ya cargada, y
+  tema claro/oscuro/automático.
 - **Español / inglés**, con detección automática por navegador y selector
   manual en Ajustes.
 

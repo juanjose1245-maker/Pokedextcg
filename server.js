@@ -25,13 +25,18 @@ const RUTA_VARIANTES_CONFIG = path.join(DATA_DIR, 'variantes-config.json');
 // compararlo contra lo que espera — útil para distinguir "no llegó el
 // deploy todavía" de "el caché del navegador está viejo" cuando algo no
 // se ve como debería. Se lee una sola vez al arrancar (no cambia en
-// caliente); si no hay git disponible (ej. un despliegue sin carpeta
-// .git) queda en null y el cliente simplemente no muestra nada.
-let VERSION_COMMIT = null;
-try {
-    VERSION_COMMIT = execSync('git rev-parse --short HEAD', { cwd: __dirname }).toString().trim();
-} catch (err) {
-    console.warn('⚠️  No se pudo leer el commit actual (git rev-parse):', err.message);
+// caliente). La imagen Docker no tiene .git (está en .dockerignore, no
+// tiene sentido pesar la imagen con todo el historial), así que ahí el
+// workflow de GitHub Actions lo graba en GIT_COMMIT al buildear la imagen;
+// fuera de Docker (systemd, dev local) se lee con git rev-parse. Si ninguna
+// de las dos está disponible queda en null y el cliente no muestra nada.
+let VERSION_COMMIT = process.env.GIT_COMMIT || null;
+if (!VERSION_COMMIT) {
+    try {
+        VERSION_COMMIT = execSync('git rev-parse --short HEAD', { cwd: __dirname }).toString().trim();
+    } catch (err) {
+        console.warn('⚠️  No se pudo leer el commit actual (git rev-parse):', err.message);
+    }
 }
 
 // Corre detrás de un único proxy inverso (nginx) que termina TLS — sin esto,

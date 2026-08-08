@@ -3,7 +3,7 @@
 Pokédex/TCG personal collection tracker — una PWA autohospedada para llevar
 el control de tu colección de cartas, sola o en carpetas.
 
-<!-- TODO: agregar captura de pantalla -->
+<img src="screenshot.png" alt="Vista de la Pokédex con progreso de colección y detalle de cartas" width="360">
 
 ## Qué hace
 

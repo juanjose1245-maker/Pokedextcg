@@ -1,5 +1,7 @@
 # Pokédex TCG
 
+**Español** | [English](README.en.md)
+
 Pokédex/TCG personal collection tracker — una PWA autohospedada para llevar
 el control de tu colección de cartas, sola o en carpetas.
 

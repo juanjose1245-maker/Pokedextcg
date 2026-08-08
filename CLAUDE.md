@@ -62,7 +62,6 @@ Write endpoints require a session. There is no preset password: `admin-password.
 - `fetch_variantes.js` — extends `pokemon_db.json`'s 1025 base entries with variants from `variantes_lista.json`; safe to re-run any number of times (it always regenerates the variant tail from scratch based on whatever's currently in `variantes_lista.json`), fails loudly instead of writing a partial result if PokeAPI errors on any entry, and refuses to write if two variants resolve to identical artwork (the same physical card counted twice). **Regeneration order: if you run `fetch_pokemon.js`, always run `fetch_variantes.js` after it** — `fetch_pokemon.js` overwrites the entire file with only the 1025 base entries and silently deletes any existing variants.
 - `inventario.json` — live user collection state, `{ bulk, carpetas }`. Treat as data, not config; it's rewritten by the server on every change plus auto-backed-up. Gitignored on purpose — unlike `carpetas.json`/`variantes-config.json`, it must never be tracked, since `/api/webhook-deploy`'s `git reset --hard origin/main` would otherwise overwrite the live collection with whatever stale copy is committed.
 - `carpetas.json` — the folder/binder layout (`{ modo: 'separadas'|'seguidas', carpetas: [...] }`), written by the client-side wizard through `/api/carpetas-config`. Falls back to `CARPETAS_DEFAULT` (in `server.js`) if missing or invalid.
-- `migrar-carpetas-a-bulk.js` — a one-off, manually-run migration script that copies everything marked in `carpetas` into `bulk` (without overwriting existing `bulk` dates). Stop the server before running it; it writes its own timestamped backup first.
 
 ## Self-hosting / Docker
 
@@ -75,5 +74,5 @@ Write endpoints require a session. There is no preset password: `admin-password.
 ## Editing conventions
 
 - `server.js` and the `public/` app shell (`index.html` + `app.js` + `styles.css`) are intentionally monolithic within each concern (no per-feature files, no framework/bundler) — this is a small personal project, not scaffolded for multi-file modularization. Don't split them apart further as a "cleanup" unless asked.
-- When touching `inventario.json` handling, preserve the backup-before-write pattern used in `/api/importar` and `migrar-carpetas-a-bulk.js`.
-- `bulk` and `carpetas` are always independent collections; a change to one must never implicitly affect the other unless explicitly requested (that's exactly what the migration script is for).
+- When touching `inventario.json` handling, preserve the backup-before-write pattern used in `/api/importar`.
+- `bulk` and `carpetas` are always independent collections; a change to one must never implicitly affect the other unless explicitly requested.

@@ -2587,6 +2587,197 @@ function binarizarOtsu(ctx, ancho, alto) {
     ctx.putImageData(imageData, 0, 0);
 }
 
+// Ordena 4 puntos de un contorno como [superior-izq, superior-der,
+// inferior-der, inferior-izq]. Necesario porque approxPolyDP() de OpenCV
+// devuelve los 4 puntos del contorno en el orden en que los encontró
+// recorriendo el borde, no en un orden fijo — sin ordenarlos, el mapeo a
+// "esquinas del rectángulo de salida" en enderezarCarta() saldría con la
+// imagen rotada/espejada al azar según por dónde haya arrancado a trazar
+// el contorno cada vez.
+function ordenarEsquinas(pts) {
+    const porSuma  = [...pts].sort((a, b) => (a.x + a.y) - (b.x + b.y));
+    const supIzq   = porSuma[0];
+    const infDer   = porSuma[3];
+    const porDiff  = [...pts].sort((a, b) => (a.x - a.y) - (b.x - b.y));
+    const infIzq   = porDiff[0];
+    const supDer   = porDiff[3];
+    return [supIzq, supDer, infDer, infIzq];
+}
+
+function distanciaPuntos(p1, p2) {
+    return Math.hypot(p2.x - p1.x, p2.y - p1.y);
+}
+
+// Proporción real ancho:alto de una carta TCG física (2.5in x 3.5in).
+const PROPORCION_CARTA = 2.5 / 3.5;
+// Tamaño de salida de la carta ya enderezada — mantiene la proporción de
+// arriba con resolución suficiente para que el recorte del nombre (8%
+// superior, ver FRACCION_BANDA_NOMBRE) siga teniendo buen detalle para
+// Tesseract.
+const CARTA_ANCHO_ENDEREZADA = 500;
+const CARTA_ALTO_ENDEREZADA  = 700;
+// Mismo porcentaje que ya se midió/ajustó contra una carta física real
+// para calcularRecorteNombre() (la banda del nombre mide ~6-7% de la
+// altura total de la carta) — se comparte para no repetir el número dos
+// veces y que se desincronicen con el tiempo.
+const FRACCION_BANDA_NOMBRE = 0.08;
+
+// Busca el contorno de una carta TCG en el frame actual del video y
+// devuelve un canvas con la carta "de frente" (perspectiva corregida). Si
+// no encuentra un candidato confiable esa vuelta (fondo desordenado, carta
+// fuera de cuadro, poca luz), devuelve null — quien la llama debe usar el
+// recorte de respaldo (calcularRecorteNombre) en ese caso, nunca fallar.
+function detectarYEnderezarCarta(video) {
+    if (typeof cv === 'undefined' || !cv.Mat) return null; // OpenCV.js todavía cargando
+
+    // Se trabaja sobre una copia achicada: la detección de contorno no
+    // necesita resolución completa, y hacerlo chico mantiene el costo de
+    // OpenCV.js bajo en celulares de gama media (esto corre en el loop de
+    // escaneo, cada ~1.5s).
+    const ladoTrabajo   = 500;
+    const escalaTrabajo = ladoTrabajo / Math.max(video.videoWidth, video.videoHeight);
+    const anchoTrabajo  = Math.round(video.videoWidth  * escalaTrabajo);
+    const altoTrabajo   = Math.round(video.videoHeight * escalaTrabajo);
+
+    const canvasTrabajo = document.createElement('canvas');
+    canvasTrabajo.width  = anchoTrabajo;
+    canvasTrabajo.height = altoTrabajo;
+    canvasTrabajo.getContext('2d').drawImage(video, 0, 0, anchoTrabajo, altoTrabajo);
+
+    const src        = cv.imread(canvasTrabajo);
+    const gris       = new cv.Mat();
+    const blur       = new cv.Mat();
+    const bordes     = new cv.Mat();
+    const contornos  = new cv.MatVector();
+    const jerarquia  = new cv.Mat();
+
+    let mejorCuad    = null;
+    let mejorPuntaje = 0;
+
+    try {
+        cv.cvtColor(src, gris, cv.COLOR_RGBA2GRAY);
+        cv.GaussianBlur(gris, blur, new cv.Size(5, 5), 0);
+        cv.Canny(blur, bordes, 50, 150);
+        cv.findContours(bordes, contornos, jerarquia, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE);
+
+        for (let i = 0; i < contornos.size(); i++) {
+            const contorno = contornos.get(i);
+            const area = cv.contourArea(contorno);
+            // Descarta contornos chicos (ruido, no algo del tamaño de una
+            // carta ocupando buena parte del frame de trabajo).
+            if (area < (anchoTrabajo * altoTrabajo) * 0.15) {
+                contorno.delete();
+                continue;
+            }
+
+            const approx    = new cv.Mat();
+            const perimetro = cv.arcLength(contorno, true);
+            cv.approxPolyDP(contorno, approx, 0.02 * perimetro, true);
+
+            if (approx.rows === 4 && cv.isContourConvex(approx)) {
+                const pts = [];
+                for (let j = 0; j < 4; j++) {
+                    pts.push({ x: approx.data32S[j * 2], y: approx.data32S[j * 2 + 1] });
+                }
+                const ordenados = ordenarEsquinas(pts);
+                const anchoA = distanciaPuntos(ordenados[0], ordenados[1]);
+                const anchoB = distanciaPuntos(ordenados[3], ordenados[2]);
+                const altoA  = distanciaPuntos(ordenados[0], ordenados[3]);
+                const altoB  = distanciaPuntos(ordenados[1], ordenados[2]);
+                const ancho  = (anchoA + anchoB) / 2;
+                const alto   = (altoA + altoB) / 2;
+
+                if (ancho >= 1 && alto >= 1) {
+                    const proporcionDetectada = ancho / alto;
+                    // La carta puede aparecer apaisada si está rotada ~90°
+                    // respecto al cuadro verde: se compara contra la
+                    // proporción normal Y su inversa, y se usa la que
+                    // mejor matchee.
+                    const diffVertical   = Math.abs(proporcionDetectada - PROPORCION_CARTA);
+                    const diffHorizontal = Math.abs(proporcionDetectada - 1 / PROPORCION_CARTA);
+                    const diffProporcion = Math.min(diffVertical, diffHorizontal);
+
+                    // Puntaje: más área y proporción más parecida a una
+                    // carta real ganan. Un diffProporcion alto (un cuadrado,
+                    // un rectángulo muy alargado) descarta el candidato del
+                    // todo vía el corte de 0.35 de abajo.
+                    if (diffProporcion < 0.35) {
+                        const puntaje = area * (1 - diffProporcion);
+                        if (puntaje > mejorPuntaje) {
+                            mejorPuntaje = puntaje;
+                            mejorCuad = ordenados;
+                        }
+                    }
+                }
+            }
+            approx.delete();
+            contorno.delete();
+        }
+
+        if (!mejorCuad) return null;
+
+        // Traduce las esquinas del canvas de trabajo (achicado) a
+        // coordenadas del video en resolución completa.
+        const esquinasVideo = mejorCuad.map(p => ({
+            x: p.x / escalaTrabajo,
+            y: p.y / escalaTrabajo,
+        }));
+
+        return enderezarCarta(video, esquinasVideo);
+    } finally {
+        // OpenCV.js usa memoria WASM manual: sin este cleanup, cada vuelta
+        // del loop de escaneo (~1.5s) filtra memoria hasta tirar abajo la
+        // pestaña del navegador tras unos minutos de uso.
+        src.delete(); gris.delete(); blur.delete(); bordes.delete();
+        contornos.delete(); jerarquia.delete();
+    }
+}
+
+// Aplica la corrección de perspectiva: toma las 4 esquinas detectadas (en
+// coordenadas del video a resolución completa) y devuelve un canvas nuevo
+// de tamaño fijo (CARTA_ANCHO_ENDEREZADA x CARTA_ALTO_ENDEREZADA) con la
+// carta "de frente", sin importar el ángulo/inclinación con que estaba.
+function enderezarCarta(video, esquinas) {
+    const canvasOrigen = document.createElement('canvas');
+    canvasOrigen.width  = video.videoWidth;
+    canvasOrigen.height = video.videoHeight;
+    canvasOrigen.getContext('2d').drawImage(video, 0, 0);
+
+    const src    = cv.imread(canvasOrigen);
+    const dst    = new cv.Mat();
+    const srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, [
+        esquinas[0].x, esquinas[0].y,
+        esquinas[1].x, esquinas[1].y,
+        esquinas[2].x, esquinas[2].y,
+        esquinas[3].x, esquinas[3].y,
+    ]);
+    const dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, [
+        0, 0,
+        CARTA_ANCHO_ENDEREZADA, 0,
+        CARTA_ANCHO_ENDEREZADA, CARTA_ALTO_ENDEREZADA,
+        0, CARTA_ALTO_ENDEREZADA,
+    ]);
+
+    let canvasSalida = null;
+    try {
+        const M = cv.getPerspectiveTransform(srcTri, dstTri);
+        try {
+            const dsize = new cv.Size(CARTA_ANCHO_ENDEREZADA, CARTA_ALTO_ENDEREZADA);
+            cv.warpPerspective(src, dst, M, dsize);
+        } finally {
+            M.delete();
+        }
+
+        canvasSalida = document.createElement('canvas');
+        canvasSalida.width  = CARTA_ANCHO_ENDEREZADA;
+        canvasSalida.height = CARTA_ALTO_ENDEREZADA;
+        cv.imshow(canvasSalida, dst);
+    } finally {
+        src.delete(); dst.delete(); srcTri.delete(); dstTri.delete();
+    }
+    return canvasSalida;
+}
+
 // Traduce el rectángulo del cuadro verde de encuadre (.scanner-target-box,
 // lo que el usuario ve en pantalla) a coordenadas del stream de video crudo,
 // deshaciendo el escalado/recorte que aplica `object-fit:cover` al mostrarlo

@@ -2627,8 +2627,16 @@ async function iniciarBucleOCR() {
         }
         ocrStatus.style.display = 'block';
         ocrStatus.textContent   = t('camara.escaneando');
+        let intento = 0;
         while (streamCamara && scanActivo) {
             if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                intento++;
+                // Se actualiza ANTES de recognize(): si el status se queda
+                // pegado en "intento N" para siempre, sabemos que el bucle sí
+                // arrancó y el que se cuelga es recognize() — si nunca aparece
+                // ningún "intento", el que nunca se cumple es el `if` de arriba
+                // (video.readyState nunca llega a HAVE_ENOUGH_DATA).
+                ocrStatus.textContent = `${t('camara.escaneando')} (intento ${intento})`;
                 const recorte = calcularRecorteNombre(video, boxEl);
                 canvas.width = 800; canvas.height = 200;
                 ctx.drawImage(video, recorte.x, recorte.y, recorte.ancho, recorte.alto, 0, 0, canvas.width, canvas.height);
@@ -2638,7 +2646,7 @@ async function iniciarBucleOCR() {
                 // Texto crudo leído, aunque no matchee nada — ver qué está
                 // leyendo Tesseract es la forma más rápida de saber si el
                 // problema es el recorte o la lectura en sí.
-                ocrStatus.textContent = `${t('camara.escaneando')} · OCR: "${nombre || '—'}"`;
+                ocrStatus.textContent = `${t('camara.escaneando')} (intento ${intento}) · OCR: "${nombre || '—'}"`;
                 if (nombre.length > 2) {
                     let data = [];
                     try {

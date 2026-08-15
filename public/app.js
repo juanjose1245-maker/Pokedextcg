@@ -2467,9 +2467,11 @@ function agregarAlHistorial(p) {
 }
 function renderHistorial() {
     if (!historialOCR.length) return;
-    const wrap = document.getElementById('ocr-historial-wrap');
-    const list = document.getElementById('ocr-historial-list');
+    const wrap  = document.getElementById('ocr-historial-wrap');
+    const list  = document.getElementById('ocr-historial-list');
+    const resumenTexto = document.getElementById('ocr-historial-resumen-texto');
     wrap.style.display = 'block';
+    resumenTexto.textContent = t('camara.resumenHistorial', { n: historialOCR.length });
     list.innerHTML = '';
     historialOCR.forEach(p => {
         const tiene = tieneEnLS(p.id);
@@ -2485,6 +2487,13 @@ function renderHistorial() {
         item.innerHTML = `<img class="ocr-hist-img" src="${p.image}" alt="${p.name}"><span class="ocr-hist-name">${p.name.toLowerCase()}</span><span class="ocr-hist-badge" style="background:${bgPk};color:${colorPk}">R#${numR.toString().padStart(3,'0')}</span><span class="ocr-hist-estado">${tiene ? '✓' : '○'}</span>`;
         list.appendChild(item);
     });
+}
+// Despliega/colapsa la lista completa de cartas escaneadas esta sesión
+// (flota por encima del panel inferior, ver .ocr-historial-list en CSS —
+// no empuja el layout, así el video de arriba no cambia de tamaño según
+// cuántas cartas lleve escaneadas la sesión).
+function toggleHistorialOCR() {
+    document.getElementById('ocr-historial-wrap').classList.toggle('expandido');
 }
 // OpenCV.js pesa ~10.5MB (a diferencia de Tesseract, viene todo en un solo
 // archivo, sin split entre wrapper liviano y wasm pesado) — se inyecta el
@@ -2516,16 +2525,12 @@ async function toggleCamaraOCR() {
         cargarOpenCV(); // dispara la carga en paralelo, sin bloquear la apertura de cámara
         btnCam  && btnCam.classList.add('cam-active');
         if (!esDesktop()) {
-            // Oculta progreso/grilla de generaciones mientras se escanea: si
-            // no, en un celular el estado y la vista previa del recorte
-            // quedan empujados fuera de pantalla, y hay que scrollear para
-            // verlos a la vez que se apunta con la cámara — incómodo con una
-            // sola mano. Se saca en detenerCamara().
+            // La visibilidad de #camera-fullscreen-view la maneja el CSS
+            // (body.escaneando-activo => display:flex, pantalla completa) —
+            // nada de estilos inline acá, pisarían ese display:flex.
             document.body.classList.add('escaneando-activo');
             ocrStatus.style.display = 'block';
             ocrStatus.textContent   = t('camara.abriendo');
-            cameraBoxView.style.display = 'block';
-            cameraBoxView.scrollIntoView({ behavior:'smooth', block:'center' });
         }
         streamCamara = await navigator.mediaDevices.getUserMedia({ video:{ facingMode:'environment' }, audio:false });
         video.srcObject = streamCamara;
@@ -2537,7 +2542,6 @@ function detenerCamara() {
     scanActivo = false;
     if (streamCamara) { streamCamara.getTracks().forEach(t => t.stop()); streamCamara = null; }
     document.body.classList.remove('escaneando-activo');
-    cameraBoxView.style.display = 'none';
     ocrStatus.style.display = 'none';
     document.getElementById('ocr-debug-canvas')?.remove();
     const b = document.getElementById('btn-camara-header');
@@ -2825,7 +2829,11 @@ async function iniciarBucleOCR() {
     document.getElementById('ocr-debug-canvas')?.remove();
     const canvas = document.createElement('canvas');
     canvas.id = 'ocr-debug-canvas';
-    cameraBoxView.appendChild(canvas); // vista previa: exactamente lo que le llega a Tesseract
+    // Va dentro del panel inferior (no directo en cameraBoxView): así queda
+    // agrupado junto con el estado y el historial dentro del mismo bloque
+    // de layout fijo (ver CSS de #camera-panel-inferior), en vez de ser un
+    // tercer hijo suelto del contenedor flex de pantalla completa.
+    document.getElementById('camera-panel-inferior').appendChild(canvas); // vista previa: exactamente lo que le llega a Tesseract
     const ctx   = canvas.getContext('2d');
     const boxEl = document.querySelector('.scanner-target-box');
     // Todo el cuerpo va envuelto en try/catch: esta función se llama sin

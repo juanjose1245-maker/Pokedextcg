@@ -2508,6 +2508,7 @@ function detenerCamara() {
     if (streamCamara) { streamCamara.getTracks().forEach(t => t.stop()); streamCamara = null; }
     cameraBoxView.style.display = 'none';
     ocrStatus.style.display = 'none';
+    document.getElementById('ocr-debug-canvas')?.remove();
     const b = document.getElementById('btn-camara-header');
     b && b.classList.remove('cam-active');
 }
@@ -2562,9 +2563,38 @@ function binarizarOtsu(ctx, ancho, alto) {
     ctx.putImageData(imageData, 0, 0);
 }
 
+// Traduce el rectángulo del cuadro verde de encuadre (.scanner-target-box,
+// lo que el usuario ve en pantalla) a coordenadas del stream de video crudo,
+// deshaciendo el escalado/recorte que aplica `object-fit:cover` al mostrarlo
+// — un porcentaje fijo sobre video.videoWidth/Height NO tiene por qué
+// coincidir con lo que se ve encuadrado, porque la cámara puede entregar una
+// resolución/orientación distinta a como se termina mostrando. Devuelve solo
+// la franja superior de ese rectángulo (donde va el nombre en una carta
+// física), no la carta entera.
+function calcularRecorteNombre(video, boxEl) {
+    const videoRect = video.getBoundingClientRect();
+    const boxRect   = boxEl.getBoundingClientRect();
+    const escala  = Math.max(videoRect.width / video.videoWidth, videoRect.height / video.videoHeight);
+    const offsetX = (video.videoWidth  * escala - videoRect.width)  / 2;
+    const offsetY = (video.videoHeight * escala - videoRect.height) / 2;
+    const aVideo = (xPantalla, yPantalla) => ({
+        x: (xPantalla + offsetX) / escala,
+        y: (yPantalla + offsetY) / escala,
+    });
+    const sup = aVideo(boxRect.left  - videoRect.left, boxRect.top    - videoRect.top);
+    const inf = aVideo(boxRect.right - videoRect.left, boxRect.bottom - videoRect.top);
+    return { x: sup.x, y: sup.y, ancho: inf.x - sup.x, alto: (inf.y - sup.y) * 0.18 };
+}
+
 async function iniciarBucleOCR() {
+    // Se recrea en cada apertura de cámara — sacamos cualquier canvas de una
+    // sesión anterior antes de meter el nuevo, si no se van acumulando.
+    document.getElementById('ocr-debug-canvas')?.remove();
     const canvas = document.createElement('canvas');
-    const ctx    = canvas.getContext('2d');
+    canvas.id = 'ocr-debug-canvas';
+    cameraBoxView.appendChild(canvas); // vista previa: exactamente lo que le llega a Tesseract
+    const ctx   = canvas.getContext('2d');
+    const boxEl = document.querySelector('.scanner-target-box');
     if (!workerOCR) {
         workerOCR = await Tesseract.createWorker('eng', undefined, {
             workerPath: '/vendor/tesseract/worker.min.js',
@@ -2588,11 +2618,16 @@ async function iniciarBucleOCR() {
     ocrStatus.textContent   = t('camara.escaneando');
     while (streamCamara && scanActivo) {
         if (video.readyState === video.HAVE_ENOUGH_DATA) {
-            canvas.width = 800; canvas.height = 220;
-            ctx.drawImage(video, video.videoWidth*0.1, video.videoHeight*0.28, video.videoWidth*0.8, video.videoHeight*0.24, 0, 0, 800, 220);
+            const recorte = calcularRecorteNombre(video, boxEl);
+            canvas.width = 800; canvas.height = 200;
+            ctx.drawImage(video, recorte.x, recorte.y, recorte.ancho, recorte.alto, 0, 0, canvas.width, canvas.height);
             binarizarOtsu(ctx, canvas.width, canvas.height);
             const { data: { text } } = await workerOCR.recognize(canvas);
             const nombre = text.trim().toUpperCase();
+            // Texto crudo leído, aunque no matchee nada — ver qué está
+            // leyendo Tesseract es la forma más rápida de saber si el
+            // problema es el recorte o la lectura en sí.
+            ocrStatus.textContent = `${t('camara.escaneando')} · OCR: "${nombre || '—'}"`;
             if (nombre.length > 2) {
                 let data = [];
                 try {

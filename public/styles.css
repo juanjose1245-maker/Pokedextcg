@@ -261,6 +261,9 @@
         .scanner-line{position:absolute;top:10%;left:0;right:0;height:2px;background:var(--found);box-shadow:0 0 8px var(--found);animation:scanPulse 2s ease-in-out infinite;}
         @keyframes scanPulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
         .ocr-status-bar{display:none;background:var(--surface);border:1px solid var(--accent2);border-radius:10px;padding:10px 14px;margin-top:10px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.05em;color:var(--accent2);text-align:center;}
+        /* Vista previa del recorte que le llega a Tesseract (crudo, tras binarizar
+           con Otsu) — ayuda a encuadrar el nombre y a diagnosticar el escáner. */
+        #ocr-debug-canvas{display:block;width:100%;max-width:320px;height:auto;margin:10px auto 0;border:1px solid var(--border);border-radius:8px;background:#000;}
         .ocr-historial{margin-top:10px;}
         .ocr-historial-title{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
         .ocr-historial-list{display:flex;flex-direction:column;gap:6px;}

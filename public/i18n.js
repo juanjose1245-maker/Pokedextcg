@@ -50,9 +50,9 @@ const I18N = {
         'progreso.tituloConRegion': `{region} · Progreso`,
 
         // ── CÁMARA / OCR ────────────────────────────────────────────────
-        'camara.tituloSeccion': `Escáner de cartas`,
+        'camara.cerrar': `Cerrar`,
+        'camara.resumenHistorial': `{n} escaneadas`,
         'camara.iniciando': `Iniciando escáner... ⏳`,
-        'camara.escaneadasSesion': `Escaneadas esta sesión`,
         'camara.abriendo': `Abriendo cámara... ⏳`,
         'camara.errorAbrir': `Error al abrir la cámara.`,
         'camara.escaneando': `🔍 Escaneando nombre...`,
@@ -377,9 +377,9 @@ const I18N = {
         'progreso.tituloConRegion': `{region} · Progress`,
 
         // ── CÁMARA / OCR ────────────────────────────────────────────────
-        'camara.tituloSeccion': `Card scanner`,
+        'camara.cerrar': `Close`,
+        'camara.resumenHistorial': `{n} scanned`,
         'camara.iniciando': `Starting scanner... ⏳`,
-        'camara.escaneadasSesion': `Scanned this session`,
         'camara.abriendo': `Opening camera... ⏳`,
         'camara.errorAbrir': `Error opening the camera.`,
         'camara.escaneando': `🔍 Scanning name...`,

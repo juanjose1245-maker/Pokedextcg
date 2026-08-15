@@ -117,15 +117,20 @@
 
         <!-- CAMERA VIEW -->
         <div id="camera-fullscreen-view">
-            <div class="section-title" style="margin-bottom:8px;" data-i18n="camara.tituloSeccion">Escáner de cartas</div>
+            <button type="button" id="btn-cerrar-camara" class="camera-close-btn" onclick="detenerCamara()" aria-label="Cerrar" data-i18n-title="camara.cerrar" title="Cerrar">✕</button>
             <div class="camera-wrapper">
                 <video id="video" autoplay playsinline></video>
                 <div class="scanner-target-box"><div class="scanner-line"></div></div>
             </div>
-            <div id="ocr-status" class="ocr-status-bar" data-i18n="camara.iniciando">Iniciando escáner... ⏳</div>
-            <div id="ocr-historial-wrap" class="ocr-historial" style="display:none;">
-                <div class="ocr-historial-title" data-i18n="camara.escaneadasSesion">Escaneadas esta sesión</div>
-                <div class="ocr-historial-list" id="ocr-historial-list"></div>
+            <div class="camera-panel-inferior" id="camera-panel-inferior">
+                <div id="ocr-status" class="ocr-status-bar" data-i18n="camara.iniciando">Iniciando escáner... ⏳</div>
+                <div id="ocr-historial-wrap" class="ocr-historial" style="display:none;">
+                    <div class="ocr-historial-resumen" id="ocr-historial-resumen" onclick="toggleHistorialOCR()">
+                        <span id="ocr-historial-resumen-texto"></span>
+                        <span class="ocr-historial-flecha">▾</span>
+                    </div>
+                    <div class="ocr-historial-list" id="ocr-historial-list"></div>
+                </div>
             </div>
         </div>
 

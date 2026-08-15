@@ -2502,6 +2502,9 @@ function cargarOpenCV() {
         };
         const script = document.createElement('script');
         script.src = '/vendor/opencv/opencv.js';
+        script.onerror = () => {
+            console.warn('No se pudo cargar OpenCV.js:', new Error('Script load failed'));
+        };
         document.head.appendChild(script);
     });
     return cargaOpenCV;

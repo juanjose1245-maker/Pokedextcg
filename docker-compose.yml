@@ -8,3 +8,18 @@ services:
       # - ADMIN_PASSWORD=opcional-si-preferís-fijarla-por-variable-de-entorno
     volumes:
       - ./data:/app/data
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  # Actualiza pokedex-tcg solo (por la etiqueta de arriba, no toca otros
+  # contenedores que tengas en el mismo host) cada vez que hay una imagen
+  # nueva en ghcr.io — revisa cada 5 minutos y borra la imagen vieja después
+  # de actualizar. Si preferís actualizar a mano, borrá este servicio (y la
+  # etiqueta "com.centurylinklabs.watchtower.enable" de arriba) y seguí el
+  # proceso manual de la sección "Actualizar" del README.
+  watchtower:
+    image: containrrr/watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 300 --cleanup --label-enable

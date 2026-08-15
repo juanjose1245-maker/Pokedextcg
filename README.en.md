@@ -70,6 +70,15 @@ comment in `docker-compose.yml`).
 
 ### Updating
 
+`docker-compose.yml` includes [Watchtower](https://containrrr.dev/watchtower/),
+which checks every 5 minutes for a new image and updates `pokedex-tcg` on
+its own (it won't touch any other container on the same host) — you don't
+have to do anything.
+
+If you'd rather update manually instead, remove the `watchtower` service
+and the `com.centurylinklabs.watchtower.enable` label from
+`docker-compose.yml`, then run this whenever you want to pull the latest:
+
 ```bash
 docker compose pull
 docker compose up -d

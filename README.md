@@ -71,6 +71,15 @@ por variable de entorno en cambio, podés seguir usando `ADMIN_PASSWORD`
 
 ### Actualizar
 
+El `docker-compose.yml` incluye [Watchtower](https://containrrr.dev/watchtower/),
+que revisa cada 5 minutos si hay una imagen nueva y actualiza `pokedex-tcg`
+solo (no toca ningún otro contenedor que tengas en el mismo host) — no
+tenés que hacer nada.
+
+Si preferís actualizar vos a mano en vez de automático, borrá el servicio
+`watchtower` y la etiqueta `com.centurylinklabs.watchtower.enable` del
+`docker-compose.yml`, y corré esto cuando quieras traer lo último:
+
 ```bash
 docker compose pull
 docker compose up -d

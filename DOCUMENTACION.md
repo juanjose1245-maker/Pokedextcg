@@ -518,6 +518,14 @@ antes de ejecutar la app — así funciona sin importar quién creó la carpeta
 `./data` en el host. `DATA_DIR` queda fijo en `/app/data` dentro de la
 imagen.
 
+`docker-compose.yml` también incluye un servicio `watchtower` (con
+`--label-enable`, y el label `com.centurylinklabs.watchtower.enable=true`
+solo en `pokedex-tcg`) que revisa `ghcr.io` cada 5 minutos y actualiza el
+contenedor solo cuando hay una imagen nueva — sin esto, `restart:
+unless-stopped` únicamente reinicia el contenedor si se cae, nunca busca
+una imagen más nueva por su cuenta. Quien prefiera actualizar a mano puede
+borrar ese servicio y el label (instrucciones en el README).
+
 ### 8.2 systemd (el deploy específico del autor)
 
 `pokedex.service` (`WorkingDirectory` = el repo, usuario `www-data`,

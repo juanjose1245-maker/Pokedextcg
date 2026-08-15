@@ -2511,24 +2511,86 @@ function detenerCamara() {
     const b = document.getElementById('btn-camara-header');
     b && b.classList.remove('cam-active');
 }
+// Umbral de Otsu: separa automáticamente texto/fondo en dos clases (blanco y
+// negro) maximizando la varianza entre clases, a partir del histograma de
+// grises de la imagen — se adapta a la iluminación real de cada escaneo, a
+// diferencia de un filtro de contraste/brillo fijo.
+function umbralOtsu(histograma, totalPixeles) {
+    let sumaTotal = 0;
+    for (let i = 0; i < 256; i++) sumaTotal += i * histograma[i];
+
+    let sumaFondo = 0, pesoFondo = 0, mejorVarianza = 0, mejorUmbral = 0;
+    for (let t = 0; t < 256; t++) {
+        pesoFondo += histograma[t];
+        if (pesoFondo === 0) continue;
+        const pesoFrente = totalPixeles - pesoFondo;
+        if (pesoFrente === 0) break;
+
+        sumaFondo += t * histograma[t];
+        const mediaFondo  = sumaFondo / pesoFondo;
+        const mediaFrente = (sumaTotal - sumaFondo) / pesoFrente;
+        const varianzaEntreClases = pesoFondo * pesoFrente * (mediaFondo - mediaFrente) ** 2;
+
+        if (varianzaEntreClases > mejorVarianza) {
+            mejorVarianza = varianzaEntreClases;
+            mejorUmbral = t;
+        }
+    }
+    return mejorUmbral;
+}
+
+// Convierte el recorte ya dibujado en `ctx` a blanco y negro puro, con el
+// umbral de Otsu calculado sobre su propio histograma de grises.
+function binarizarOtsu(ctx, ancho, alto) {
+    const imageData    = ctx.getImageData(0, 0, ancho, alto);
+    const pixeles      = imageData.data;
+    const totalPixeles = ancho * alto;
+    const grises       = new Uint8ClampedArray(totalPixeles);
+    const histograma   = new Array(256).fill(0);
+
+    for (let i = 0, p = 0; i < pixeles.length; i += 4, p++) {
+        const gris = (pixeles[i] * 0.299 + pixeles[i + 1] * 0.587 + pixeles[i + 2] * 0.114) | 0;
+        grises[p] = gris;
+        histograma[gris]++;
+    }
+
+    const umbral = umbralOtsu(histograma, totalPixeles);
+    for (let i = 0, p = 0; i < pixeles.length; i += 4, p++) {
+        const valor = grises[p] >= umbral ? 255 : 0;
+        pixeles[i] = pixeles[i + 1] = pixeles[i + 2] = valor;
+    }
+    ctx.putImageData(imageData, 0, 0);
+}
+
 async function iniciarBucleOCR() {
     const canvas = document.createElement('canvas');
     const ctx    = canvas.getContext('2d');
-    if (!workerOCR) workerOCR = await Tesseract.createWorker('eng+spa', undefined, {
-        workerPath: '/vendor/tesseract/worker.min.js',
-        corePath: '/vendor/tesseract',
-        // El paquete de idioma (eng/spa .traineddata) sigue viniendo de la
-        // CDN por defecto de Tesseract: autohospedarlo sumaría ~20-30MB al
-        // repo para una función que de por sí necesita cámara y uso activo.
-        // Tesseract además cachea el paquete en IndexedDB tras la primera vez.
-    });
+    if (!workerOCR) {
+        workerOCR = await Tesseract.createWorker('eng', undefined, {
+            workerPath: '/vendor/tesseract/worker.min.js',
+            corePath: '/vendor/tesseract',
+            // El paquete de idioma (eng .traineddata) sigue viniendo de la
+            // CDN por defecto de Tesseract: autohospedarlo sumaría varios MB al
+            // repo para una función que de por sí necesita cámara y uso activo.
+            // Tesseract además cachea el paquete en IndexedDB tras la primera vez.
+        });
+        // Los nombres de Pokémon en pokemon_db.json son siempre A-Z sin acentos
+        // ni espacios: acotar el reconocimiento a esas letras (en vez de dejar
+        // que Tesseract considere números/símbolos/español) reduce falsos
+        // positivos. PSM 7 = "línea de texto única", que es lo que es el
+        // nombre en una carta física.
+        await workerOCR.setParameters({
+            tessedit_char_whitelist: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            tessedit_pageseg_mode: '7',
+        });
+    }
     ocrStatus.style.display = 'block';
     ocrStatus.textContent   = t('camara.escaneando');
     while (streamCamara && scanActivo) {
         if (video.readyState === video.HAVE_ENOUGH_DATA) {
-            canvas.width = 600; canvas.height = 150;
-            ctx.filter = 'grayscale(100%) contrast(250%) brightness(120%)';
-            ctx.drawImage(video, video.videoWidth*0.2, video.videoHeight*0.35, video.videoWidth*0.6, video.videoHeight*0.15, 0, 0, 600, 150);
+            canvas.width = 800; canvas.height = 220;
+            ctx.drawImage(video, video.videoWidth*0.1, video.videoHeight*0.28, video.videoWidth*0.8, video.videoHeight*0.24, 0, 0, 800, 220);
+            binarizarOtsu(ctx, canvas.width, canvas.height);
             const { data: { text } } = await workerOCR.recognize(canvas);
             const nombre = text.trim().toUpperCase();
             if (nombre.length > 2) {

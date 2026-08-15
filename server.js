@@ -474,6 +474,28 @@ app.get('/api/sesion', (req, res) => {
     res.json({ activa: sesionValida(req) });
 });
 
+// Distancia de Levenshtein (mínimo de ediciones — inserción/eliminación/
+// sustitución — para pasar de una cadena a otra), con una sola fila de
+// trabajo en vez de una matriz completa. Fallback de /api/buscar cuando el
+// filtro por prefijo no encuentra nada, para tolerar errores de tipeo (o de
+// lectura del escáner OCR) sin sumar una dependencia nueva.
+function distanciaLevenshtein(a, b) {
+    const fila = new Array(b.length + 1);
+    for (let j = 0; j <= b.length; j++) fila[j] = j;
+    for (let i = 1; i <= a.length; i++) {
+        let anterior = fila[0];
+        fila[0] = i;
+        for (let j = 1; j <= b.length; j++) {
+            const temp = fila[j];
+            fila[j] = a[i - 1] === b[j - 1]
+                ? anterior
+                : 1 + Math.min(anterior, fila[j], fila[j - 1]);
+            anterior = temp;
+        }
+    }
+    return fila[b.length];
+}
+
 // ── ENDPOINTS DE LECTURA (siempre abiertos, sin login) ─────────────
 app.get('/api/buscar', (req, res) => {
     const q     = req.query.q ? req.query.q.toUpperCase().trim() : '';
@@ -488,7 +510,19 @@ app.get('/api/buscar', (req, res) => {
     if (desde && hasta) return res.json(efectivo.filter(p => { const a = anclaId(p); return a >= desde && a <= hasta; }));
     if (!q)  return res.json([]);
     const resultados = efectivo.filter(p => p.name.startsWith(q) || p.name === q);
-    res.json(resultados.slice(0, 5));
+    if (resultados.length) return res.json(resultados.slice(0, 5));
+
+    // Nada por prefijo: fallback por distancia de edición, con un tope
+    // proporcional a lo escrito para no devolver nombres sin relación real
+    // (ej. una sola tecla no debería traer resultados a 3 ediciones de distancia).
+    const distanciaMaxima = Math.min(3, Math.ceil(q.length / 2));
+    const porDistancia = efectivo
+        .map(p => ({ p, d: distanciaLevenshtein(q, p.name) }))
+        .filter(({ d }) => d <= distanciaMaxima)
+        .sort((a, b) => a.d - b.d)
+        .slice(0, 5)
+        .map(({ p }) => p);
+    res.json(porDistancia);
 });
 
 app.get('/api/estadisticas', (req, res) => {

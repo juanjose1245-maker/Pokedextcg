@@ -2595,58 +2595,74 @@ async function iniciarBucleOCR() {
     cameraBoxView.appendChild(canvas); // vista previa: exactamente lo que le llega a Tesseract
     const ctx   = canvas.getContext('2d');
     const boxEl = document.querySelector('.scanner-target-box');
-    if (!workerOCR) {
-        workerOCR = await Tesseract.createWorker('eng', undefined, {
-            workerPath: '/vendor/tesseract/worker.min.js',
-            corePath: '/vendor/tesseract',
-            // El paquete de idioma (eng .traineddata) sigue viniendo de la
-            // CDN por defecto de Tesseract: autohospedarlo sumaría varios MB al
-            // repo para una función que de por sí necesita cámara y uso activo.
-            // Tesseract además cachea el paquete en IndexedDB tras la primera vez.
-        });
-        // Los nombres de Pokémon en pokemon_db.json son siempre A-Z sin acentos
-        // ni espacios: acotar el reconocimiento a esas letras (en vez de dejar
-        // que Tesseract considere números/símbolos/español) reduce falsos
-        // positivos. PSM 7 = "línea de texto única", que es lo que es el
-        // nombre en una carta física.
-        await workerOCR.setParameters({
-            tessedit_char_whitelist: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-            tessedit_pageseg_mode: '7',
-        });
-    }
-    ocrStatus.style.display = 'block';
-    ocrStatus.textContent   = t('camara.escaneando');
-    while (streamCamara && scanActivo) {
-        if (video.readyState === video.HAVE_ENOUGH_DATA) {
-            const recorte = calcularRecorteNombre(video, boxEl);
-            canvas.width = 800; canvas.height = 200;
-            ctx.drawImage(video, recorte.x, recorte.y, recorte.ancho, recorte.alto, 0, 0, canvas.width, canvas.height);
-            binarizarOtsu(ctx, canvas.width, canvas.height);
-            const { data: { text } } = await workerOCR.recognize(canvas);
-            const nombre = text.trim().toUpperCase();
-            // Texto crudo leído, aunque no matchee nada — ver qué está
-            // leyendo Tesseract es la forma más rápida de saber si el
-            // problema es el recorte o la lectura en sí.
-            ocrStatus.textContent = `${t('camara.escaneando')} · OCR: "${nombre || '—'}"`;
-            if (nombre.length > 2) {
-                let data = [];
-                try {
-                    const res = await fetch(`/api/buscar?q=${encodeURIComponent(nombre)}`);
-                    if (res.ok) data = await res.json();
-                } catch (err) {
-                    // fallo de red puntual: seguimos escaneando en el siguiente ciclo
-                }
-                if (data.length > 0) {
-                    if (navigator.vibrate) navigator.vibrate([80,40,80]);
-                    ocrStatus.textContent = t('camara.encontrado', { nombre: data[0].name.toLowerCase() });
-                    agregarAlHistorial(data[0]);
-                    mostrarFicha(data[0]);
-                    detenerCamara();
-                    break;
-                }
+    // Todo el cuerpo va envuelto en try/catch: esta función se llama sin
+    // `await` desde toggleCamaraOCR(), así que cualquier excepción acá adentro
+    // se perdía como una promesa rechazada sin manejar, en silencio, dejando
+    // el status congelado en "Abriendo cámara..." para siempre sin ninguna
+    // pista de qué pasó. Ahora el error queda visible en el propio status.
+    try {
+        if (!workerOCR) {
+            workerOCR = await Tesseract.createWorker('eng', undefined, {
+                workerPath: '/vendor/tesseract/worker.min.js',
+                corePath: '/vendor/tesseract',
+                // El paquete de idioma (eng .traineddata) sigue viniendo de la
+                // CDN por defecto de Tesseract: autohospedarlo sumaría varios MB al
+                // repo para una función que de por sí necesita cámara y uso activo.
+                // Tesseract además cachea el paquete en IndexedDB tras la primera vez.
+            });
+            try {
+                // Los nombres de Pokémon en pokemon_db.json son siempre A-Z sin
+                // acentos ni espacios: acotar el reconocimiento a esas letras
+                // reduce falsos positivos. PSM 7 = "línea de texto única".
+                // Aparte, en su propio try: si esta versión de Tesseract.js no
+                // soporta alguno de estos parámetros, mejor seguir sin el
+                // whitelist/PSM que dejar el escáner completamente roto.
+                await workerOCR.setParameters({
+                    tessedit_char_whitelist: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                    tessedit_pageseg_mode: '7',
+                });
+            } catch (err) {
+                console.warn('No se pudieron aplicar los parámetros de OCR:', err);
             }
         }
-        await new Promise(r => setTimeout(r, 1500));
+        ocrStatus.style.display = 'block';
+        ocrStatus.textContent   = t('camara.escaneando');
+        while (streamCamara && scanActivo) {
+            if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                const recorte = calcularRecorteNombre(video, boxEl);
+                canvas.width = 800; canvas.height = 200;
+                ctx.drawImage(video, recorte.x, recorte.y, recorte.ancho, recorte.alto, 0, 0, canvas.width, canvas.height);
+                binarizarOtsu(ctx, canvas.width, canvas.height);
+                const { data: { text } } = await workerOCR.recognize(canvas);
+                const nombre = text.trim().toUpperCase();
+                // Texto crudo leído, aunque no matchee nada — ver qué está
+                // leyendo Tesseract es la forma más rápida de saber si el
+                // problema es el recorte o la lectura en sí.
+                ocrStatus.textContent = `${t('camara.escaneando')} · OCR: "${nombre || '—'}"`;
+                if (nombre.length > 2) {
+                    let data = [];
+                    try {
+                        const res = await fetch(`/api/buscar?q=${encodeURIComponent(nombre)}`);
+                        if (res.ok) data = await res.json();
+                    } catch (err) {
+                        // fallo de red puntual: seguimos escaneando en el siguiente ciclo
+                    }
+                    if (data.length > 0) {
+                        if (navigator.vibrate) navigator.vibrate([80,40,80]);
+                        ocrStatus.textContent = t('camara.encontrado', { nombre: data[0].name.toLowerCase() });
+                        agregarAlHistorial(data[0]);
+                        mostrarFicha(data[0]);
+                        detenerCamara();
+                        break;
+                    }
+                }
+            }
+            await new Promise(r => setTimeout(r, 1500));
+        }
+    } catch (err) {
+        console.error('Error en el escáner OCR:', err);
+        ocrStatus.style.display = 'block';
+        ocrStatus.textContent   = `⚠️ OCR: ${err && err.message ? err.message : err}`;
     }
 }
 

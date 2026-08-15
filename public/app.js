@@ -2778,14 +2778,19 @@ function enderezarCarta(video, esquinas) {
     return canvasSalida;
 }
 
-// Traduce el rectángulo del cuadro verde de encuadre (.scanner-target-box,
-// lo que el usuario ve en pantalla) a coordenadas del stream de video crudo,
-// deshaciendo el escalado/recorte que aplica `object-fit:cover` al mostrarlo
-// — un porcentaje fijo sobre video.videoWidth/Height NO tiene por qué
-// coincidir con lo que se ve encuadrado, porque la cámara puede entregar una
-// resolución/orientación distinta a como se termina mostrando. Devuelve solo
-// la franja superior de ese rectángulo (donde va el nombre en una carta
-// física), no la carta entera.
+// Recorte de RESPALDO: se usa solo cuando detectarYEnderezarCarta() no
+// encuentra un contorno de carta confiable esa vuelta del loop (OpenCV.js
+// todavía cargando, fondo difícil, carta fuera de cuadro). Traduce el
+// rectángulo del cuadro verde de encuadre (.scanner-target-box, lo que el
+// usuario ve en pantalla) a coordenadas del stream de video crudo,
+// deshaciendo el escalado/recorte que aplica `object-fit:cover` al
+// mostrarlo — un porcentaje fijo sobre video.videoWidth/Height NO tiene
+// por qué coincidir con lo que se ve encuadrado, porque la cámara puede
+// entregar una resolución/orientación distinta a como se termina
+// mostrando. Devuelve solo la franja superior de ese rectángulo (donde va
+// el nombre en una carta física), no la carta entera. El cuadro verde en
+// sí ya no exige alineación perfecta — es una guía, no un requisito duro —
+// porque el camino primario (detectarYEnderezarCarta) tolera inclinación.
 function calcularRecorteNombre(video, boxEl) {
     const videoRect = video.getBoundingClientRect();
     const boxRect   = boxEl.getBoundingClientRect();
@@ -2804,7 +2809,7 @@ function calcularRecorteNombre(video, boxEl) {
     // del dibujo de abajo y arruinaba la lectura de Tesseract con basura de
     // fondo — con 0.08 queda un margen chico sobre esa medida sin llegar a
     // invadir el arte.
-    return { x: sup.x, y: sup.y, ancho: inf.x - sup.x, alto: (inf.y - sup.y) * 0.08 };
+    return { x: sup.x, y: sup.y, ancho: inf.x - sup.x, alto: (inf.y - sup.y) * FRACCION_BANDA_NOMBRE };
 }
 
 async function iniciarBucleOCR() {
@@ -2858,9 +2863,28 @@ async function iniciarBucleOCR() {
                 // ningún "intento", el que nunca se cumple es el `if` de arriba
                 // (video.readyState nunca llega a HAVE_ENOUGH_DATA).
                 ocrStatus.textContent = `${t('camara.escaneando')} (intento ${intento})`;
-                const recorte = calcularRecorteNombre(video, boxEl);
+                // Se intenta primero detectar el contorno real de la carta
+                // y enderezarlo — tolera inclinación/rotación y fondos
+                // moderadamente desordenados. Si no hay un candidato
+                // confiable esta vuelta (OpenCV.js todavía cargando, fondo
+                // difícil, carta fuera de cuadro), se cae al recorte fijo
+                // de siempre contra el cuadro verde: el escáner nunca debe
+                // quedar peor que antes de este cambio.
+                const cartaEnderezada = detectarYEnderezarCarta(video);
+                let fuenteRecorte, origenRecorte;
+                if (cartaEnderezada) {
+                    fuenteRecorte = cartaEnderezada;
+                    origenRecorte = {
+                        x: 0, y: 0,
+                        ancho: cartaEnderezada.width,
+                        alto:  cartaEnderezada.height * FRACCION_BANDA_NOMBRE,
+                    };
+                } else {
+                    fuenteRecorte = video;
+                    origenRecorte = calcularRecorteNombre(video, boxEl);
+                }
                 canvas.width = 800; canvas.height = 200;
-                ctx.drawImage(video, recorte.x, recorte.y, recorte.ancho, recorte.alto, 0, 0, canvas.width, canvas.height);
+                ctx.drawImage(fuenteRecorte, origenRecorte.x, origenRecorte.y, origenRecorte.ancho, origenRecorte.alto, 0, 0, canvas.width, canvas.height);
                 binarizarOtsu(ctx, canvas.width, canvas.height);
                 const { data: { text } } = await workerOCR.recognize(canvas);
                 const nombre = text.trim().toUpperCase();

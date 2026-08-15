@@ -2583,7 +2583,13 @@ function calcularRecorteNombre(video, boxEl) {
     });
     const sup = aVideo(boxRect.left  - videoRect.left, boxRect.top    - videoRect.top);
     const inf = aVideo(boxRect.right - videoRect.left, boxRect.bottom - videoRect.top);
-    return { x: sup.x, y: sup.y, ancho: inf.x - sup.x, alto: (inf.y - sup.y) * 0.18 };
+    // La banda del nombre en una carta física mide ~6-7% de la altura total
+    // de la carta (medido sobre una carta real: la fila "Nombre/HP" ocupa
+    // ~65px de los ~1045px de alto de la carta). 0.18 se metía muy adentro
+    // del dibujo de abajo y arruinaba la lectura de Tesseract con basura de
+    // fondo — con 0.08 queda un margen chico sobre esa medida sin llegar a
+    // invadir el arte.
+    return { x: sup.x, y: sup.y, ancho: inf.x - sup.x, alto: (inf.y - sup.y) * 0.08 };
 }
 
 async function iniciarBucleOCR() {

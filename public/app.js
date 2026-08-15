@@ -2486,10 +2486,31 @@ function renderHistorial() {
         list.appendChild(item);
     });
 }
+// OpenCV.js pesa ~10.5MB (a diferencia de Tesseract, viene todo en un solo
+// archivo, sin split entre wrapper liviano y wasm pesado) — se inyecta el
+// <script> recién cuando se abre la cámara, no en la carga inicial de la
+// app. cv.onRuntimeInitialized (vía el objeto Module, que hay que definir
+// ANTES de que cargue el script) es el hook oficial de OpenCV.js para saber
+// cuándo terminó de inicializar el runtime WASM — cv.Mat etc. no existen
+// todavía en el evento 'load' del <script>.
+let cargaOpenCV = null;
+function cargarOpenCV() {
+    if (cargaOpenCV) return cargaOpenCV;
+    cargaOpenCV = new Promise((resolve) => {
+        window.Module = {
+            onRuntimeInitialized() { resolve(); }
+        };
+        const script = document.createElement('script');
+        script.src = '/vendor/opencv/opencv.js';
+        document.head.appendChild(script);
+    });
+    return cargaOpenCV;
+}
 async function toggleCamaraOCR() {
     const btnCam  = document.getElementById('btn-camara-header');
     if (streamCamara) { detenerCamara(); return; }
     try {
+        cargarOpenCV(); // dispara la carga en paralelo, sin bloquear la apertura de cámara
         btnCam  && btnCam.classList.add('cam-active');
         if (!esDesktop()) {
             ocrStatus.style.display = 'block';

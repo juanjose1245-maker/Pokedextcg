@@ -255,6 +255,16 @@
 
         /* ── CAMERA ── */
         #camera-fullscreen-view{display:none;margin-bottom:16px;animation:fadeIn .2s ease;}
+        /* Mientras el escáner está abierto (body.escaneando-activo, togglear
+           desde toggleCamaraOCR()/detenerCamara()), se ocultan las secciones
+           de arriba (progreso, grilla de generaciones) — si no, en un celular
+           el estado y la vista previa del recorte quedan empujados fuera de
+           pantalla, y hace falta scrollear para verlos mientras se apunta con
+           la cámara a la vez, que es incómodo con una sola mano. */
+        body.escaneando-activo .progress-card,
+        body.escaneando-activo #generaciones-section-title,
+        body.escaneando-activo .gen-grid{display:none;}
+        body.escaneando-activo .camera-wrapper{height:320px;}
         .camera-wrapper{width:100%;height:420px;background:#000;border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:0 8px 24px var(--shadow);}
         #video{width:100%;height:100%;object-fit:cover;}
         .scanner-target-box{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:82%;aspect-ratio:2.5/3.5;border:2px solid var(--found);border-radius:12px;background:rgba(34,197,94,0.06);box-shadow:0 0 0 999px rgba(0,0,0,0.65);pointer-events:none;}

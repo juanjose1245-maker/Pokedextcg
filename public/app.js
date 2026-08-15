@@ -2516,6 +2516,12 @@ async function toggleCamaraOCR() {
         cargarOpenCV(); // dispara la carga en paralelo, sin bloquear la apertura de cámara
         btnCam  && btnCam.classList.add('cam-active');
         if (!esDesktop()) {
+            // Oculta progreso/grilla de generaciones mientras se escanea: si
+            // no, en un celular el estado y la vista previa del recorte
+            // quedan empujados fuera de pantalla, y hay que scrollear para
+            // verlos a la vez que se apunta con la cámara — incómodo con una
+            // sola mano. Se saca en detenerCamara().
+            document.body.classList.add('escaneando-activo');
             ocrStatus.style.display = 'block';
             ocrStatus.textContent   = t('camara.abriendo');
             cameraBoxView.style.display = 'block';
@@ -2530,6 +2536,7 @@ async function toggleCamaraOCR() {
 function detenerCamara() {
     scanActivo = false;
     if (streamCamara) { streamCamara.getTracks().forEach(t => t.stop()); streamCamara = null; }
+    document.body.classList.remove('escaneando-activo');
     cameraBoxView.style.display = 'none';
     ocrStatus.style.display = 'none';
     document.getElementById('ocr-debug-canvas')?.remove();

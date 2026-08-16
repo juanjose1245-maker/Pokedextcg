@@ -186,6 +186,9 @@ function aplicarIdioma() {
     document.querySelectorAll('[data-i18n-title]').forEach(el => {
         el.title = t(el.dataset.i18nTitle);
     });
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+        el.setAttribute('aria-label', t(el.dataset.i18nAriaLabel));
+    });
     // Objetos de config estáticos (tiposInfo, CATEGORIA_INFO,
     // CATEGORIAS_VARIANTES_INFO, RESPALDO_TIPO_LABEL) arman sus labels
     // llamando a t() una sola vez, al definirse — sin este refresh se
@@ -2456,7 +2459,6 @@ async function wizardGuardar() {
 
 
 // ── CÁMARA OCR ───────────────────────────────────────────────────
-const cameraBoxView = document.getElementById('camera-fullscreen-view');
 const video         = document.getElementById('video');
 const ocrStatus     = document.getElementById('ocr-status');
 
@@ -2483,7 +2485,7 @@ function renderHistorial() {
         const bgPk    = carpetaPk ? carpetaPk.bg    : coloresBg[p.gen-1];
         const item = document.createElement('div');
         item.className = 'ocr-hist-item';
-        item.onclick = () => mostrarFicha(p);
+        item.onclick = () => { detenerCamara(); mostrarFicha(p); };
         item.innerHTML = `<img class="ocr-hist-img" src="${p.image}" alt="${p.name}"><span class="ocr-hist-name">${p.name.toLowerCase()}</span><span class="ocr-hist-badge" style="background:${bgPk};color:${colorPk}">R#${numR.toString().padStart(3,'0')}</span><span class="ocr-hist-estado">${tiene ? '✓' : '○'}</span>`;
         list.appendChild(item);
     });
@@ -2829,10 +2831,10 @@ async function iniciarBucleOCR() {
     document.getElementById('ocr-debug-canvas')?.remove();
     const canvas = document.createElement('canvas');
     canvas.id = 'ocr-debug-canvas';
-    // Va dentro del panel inferior (no directo en cameraBoxView): así queda
-    // agrupado junto con el estado y el historial dentro del mismo bloque
-    // de layout fijo (ver CSS de #camera-panel-inferior), en vez de ser un
-    // tercer hijo suelto del contenedor flex de pantalla completa.
+    // Va dentro del panel inferior (no directo en el contenedor de pantalla
+    // completa): así queda agrupado junto con el estado y el historial dentro
+    // del mismo bloque de layout fijo (ver CSS de #camera-panel-inferior), en
+    // vez de ser un tercer hijo suelto del contenedor flex de pantalla completa.
     document.getElementById('camera-panel-inferior').appendChild(canvas); // vista previa: exactamente lo que le llega a Tesseract
     const ctx   = canvas.getContext('2d');
     const boxEl = document.querySelector('.scanner-target-box');

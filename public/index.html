@@ -35,11 +35,21 @@
 <body>
 
 <!-- ══ SPLASH DE ENTRADA — tapa la app hasta que carguen los datos
-     reales (ver ocultarSplash() en app.js); nunca queda colgado gracias
-     al tope de seguridad ahí mismo. ══════════════════════════════ -->
+     reales (ver ocultarSplash() en app.js); ese tiene su propio tope de
+     seguridad, pero depende de que app.js sea la versión nueva. El script
+     de acá abajo es un segundo seguro, totalmente independiente: si el
+     service worker llega a servir una copia vieja de app.js (sin
+     ocultarSplash) junto al HTML nuevo, este de acá igual lo destapa a los
+     pocos segundos en vez de dejarlo pegado para siempre. ═══════════════ -->
 <div id="app-splash" class="app-splash" aria-hidden="true">
     <img src="icons/pokeball-512.png" alt="" class="app-splash-logo">
 </div>
+<script>
+    setTimeout(function () {
+        var splash = document.getElementById('app-splash');
+        if (splash) splash.classList.add('oculto');
+    }, 5000);
+</script>
 
 <!-- ══ SIDEBAR DESKTOP ══════════════════════════════════════════ -->
 <div id="desktop-sidebar">

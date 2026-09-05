@@ -176,6 +176,38 @@ function inicializarGestoModo() {
     });
 }
 
+// Cierre por arrastre desde el "handle" (la barrita superior) de un modal:
+// arrastrar hacia abajo lo suficiente (distancia o velocidad) lo cierra,
+// llamando a la función de cierre que ya usa ese modal; un arrastre corto
+// vuelve a su lugar sin cerrar nada. Igual que el resto de los gestos, no
+// aplica en desktop ni si el usuario pidió menos movimiento.
+function inicializarCierreArrastrable(idModal, selectorHandle, selectorCaja, funcionCerrar) {
+    if (esDesktop() || prefiereMenosMovimiento()) return;
+    const modal = document.getElementById(idModal);
+    const handle = modal.querySelector(selectorHandle);
+    const caja = modal.querySelector(selectorCaja);
+    if (!handle || !caja) return;
+    const UMBRAL_DISTANCIA = 90, UMBRAL_VELOCIDAD = 500;
+    crearGestoDeslizable(caja, {
+        eje: 'y',
+        trigger: handle,
+        limiteMin: 0, limiteMax: window.innerHeight,
+        umbralDistancia: UMBRAL_DISTANCIA, umbralVelocidad: UMBRAL_VELOCIDAD,
+        valorCompletarPositivo: window.innerHeight,
+        valorCompletarNegativo: 0,
+        decidir: (valor) => valor > 0 ? 'positivo' : 'cancelar',
+        onProgreso: (valor) => {
+            modal.style.opacity = String(Math.max(0, 1 - valor / caja.offsetHeight));
+        },
+        onCompletar: () => {
+            gsap.set(caja, { y: 0 });
+            modal.style.opacity = '';
+            funcionCerrar();
+        },
+        onCancelar: () => { modal.style.opacity = ''; },
+    });
+}
+
 // Devuelve la carpeta a la que pertenece un Pokémon, según generación
 // (modo separadas) o según su nº de Pokédex nacional (modo seguidas).
 function carpetaDe(p) {
@@ -2623,6 +2655,14 @@ window.onload = async () => {
     aplicarModoVista();
     actualizarBotonesModo();
     inicializarGestoModo();
+    inicializarCierreArrastrable('detail-modal', '.detail-handle', '.detail-overlay',
+        () => document.getElementById('detail-modal').classList.remove('open'));
+    inicializarCierreArrastrable('login-modal', '.login-handle', '.login-box', cerrarLoginModal);
+    inicializarCierreArrastrable('ajustes-modal', '.ajustes-handle', '.ajustes-box', cerrarAjustes);
+    inicializarCierreArrastrable('pdf-opciones-modal', '.ajustes-handle', '.ajustes-box', cerrarOpcionesPDF);
+    inicializarCierreArrastrable('variantes-modal', '.ajustes-handle', '.ajustes-box', cerrarPanelVariantes);
+    inicializarCierreArrastrable('respaldos-modal', '.ajustes-handle', '.ajustes-box', cerrarPanelRespaldos);
+    inicializarCierreArrastrable('wizard-carpetas-modal', '.ajustes-handle', '.ajustes-box', cerrarWizardCarpetas);
     revisarSesion();
     await cargarCarpetasConfig();
     await cargarEstadisticas();

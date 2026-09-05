@@ -98,6 +98,14 @@ const CATEGORIA_INFO = {
     alternativa: { label: t('categoria.alternativa'),color: '#d97706' },
 };
 
+// ── GESTOS ───────────────────────────────────────────────────────
+// GSAP Draggable + InertiaPlugin, vendorizados en public/vendor/gsap/
+// (no por CDN: esta es una PWA offline-first). Si por lo que sea no
+// cargaron, la app sigue funcionando normal, simplemente sin gestos.
+if (typeof gsap !== 'undefined' && typeof Draggable !== 'undefined') {
+    gsap.registerPlugin(Draggable, InertiaPlugin);
+}
+
 // Devuelve la carpeta a la que pertenece un Pokémon, según generación
 // (modo separadas) o según su nº de Pokédex nacional (modo seguidas).
 function carpetaDe(p) {

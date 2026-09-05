@@ -106,6 +106,46 @@ if (typeof gsap !== 'undefined' && typeof Draggable !== 'undefined' && typeof In
     gsap.registerPlugin(Draggable, InertiaPlugin);
 }
 
+// Wrapper sobre GSAP Draggable: trackea un arrastre en un eje, decide si
+// se "completó" (pasó el umbral de distancia o de velocidad de suelta) y
+// anima el settle final (hasta el destino o de vuelta al origen) antes de
+// avisar por callback. No sabe nada de modos/modales/galería — cada uso
+// decide qué significa "completado" en su propio decidir()/onCompletar().
+function crearGestoDeslizable(elemento, opciones) {
+    const {
+        eje, limiteMin = 0, limiteMax = 0,
+        umbralDistancia, umbralVelocidad,
+        valorCompletarPositivo, valorCompletarNegativo,
+        duracionSettle = 0.3, trigger,
+        onProgreso = () => {}, decidir,
+        onCompletar = () => {}, onCancelar = () => {},
+    } = opciones;
+    const bounds = eje === 'x' ? { minX: limiteMin, maxX: limiteMax } : { minY: limiteMin, maxY: limiteMax };
+    const config = {
+        type: eje,
+        bounds,
+        onDrag: function () { onProgreso(this[eje]); },
+        onDragEnd: function () {
+            const valor = this[eje];
+            const velocidad = InertiaPlugin.getVelocity(this.target, eje);
+            let resultado = 'cancelar';
+            if (Math.abs(valor) > umbralDistancia || Math.abs(velocidad) > umbralVelocidad) {
+                resultado = decidir(valor, velocidad);
+            }
+            const destino = resultado === 'positivo' ? valorCompletarPositivo
+                : resultado === 'negativo' ? valorCompletarNegativo : 0;
+            gsap.to(elemento, {
+                [eje]: destino,
+                duration: duracionSettle,
+                ease: 'power2.out',
+                onComplete: () => resultado === 'cancelar' ? onCancelar() : onCompletar(resultado),
+            });
+        },
+    };
+    if (trigger) config.trigger = trigger;
+    return Draggable.create(elemento, config)[0];
+}
+
 // Devuelve la carpeta a la que pertenece un Pokémon, según generación
 // (modo separadas) o según su nº de Pokédex nacional (modo seguidas).
 function carpetaDe(p) {

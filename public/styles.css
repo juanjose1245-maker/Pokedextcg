@@ -64,6 +64,25 @@
 
         *{box-sizing:border-box;margin:0;padding:0;}
         html,body{height:100%;overflow:hidden;}
+        /* ── SPLASH DE ENTRADA ── */
+        .app-splash{
+            position:fixed;inset:0;z-index:2000;
+            display:flex;align-items:center;justify-content:center;
+            background:var(--bg);
+            opacity:1;visibility:visible;
+            transition:opacity .35s ease, visibility 0s linear;
+        }
+        .app-splash.oculto{opacity:0;visibility:hidden;transition:opacity .35s ease, visibility 0s linear .35s;}
+        .app-splash-logo{width:88px;height:88px;opacity:1;}
+        @media(prefers-reduced-motion:no-preference){
+            .app-splash-logo{animation:splashPop .6s cubic-bezier(.34,1.56,.64,1) both;}
+        }
+        @keyframes splashPop{
+            0%{transform:scale(.6) rotate(-25deg);opacity:0;}
+            60%{transform:scale(1.08) rotate(8deg);opacity:1;}
+            100%{transform:scale(1) rotate(0deg);opacity:1;}
+        }
+
         body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);position:fixed;width:100%;top:0;left:0;
             background-image:radial-gradient(ellipse at 80% 0%,var(--grad1) 0%,transparent 60%),radial-gradient(ellipse at 20% 100%,var(--grad2) 0%,transparent 50%);}
 
@@ -193,7 +212,9 @@
         .sugerencia-meta{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;font-family:'Rajdhani',sans-serif;letter-spacing:.05em;flex-shrink:0;}
 
         /* ── MAIN CONTENT ── */
-        .main-content{padding:12px 14px 0;}
+        .main-content{padding:12px 14px 0;transition:opacity .18s ease;}
+        .main-content.cambiando-modo{opacity:.35;}
+        @media(prefers-reduced-motion:reduce){.main-content{transition:none;}}
 
         /* ── PROGRESS CARD ── */
         .progress-card{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--modo-color);border-radius:var(--radius);padding:16px;margin-bottom:16px;position:relative;overflow:hidden;cursor:pointer;transition:transform .15s,border-color .3s ease;}
@@ -254,7 +275,11 @@
         .gen-bar-fill{height:100%;border-radius:2px;transition:width .4s ease;}
 
         /* ── GALLERY (mobile) ── */
-        .gallery-section{display:none;animation:fadeIn .25s ease;}
+        .gallery-section{display:none;transition:opacity .2s ease;}
+        #generaciones-section-title, .gen-grid{transition:opacity .2s ease;}
+        @media(prefers-reduced-motion:reduce){
+            .gallery-section, #generaciones-section-title, .gen-grid{transition:none;}
+        }
         .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
         /* Chico en mobile: lista real (nombre + estado, sin imagen ni R#/N#),
            mismo criterio que en escritorio — ver la vista-chico de arriba. */
@@ -356,21 +381,23 @@
            por tipo de Pokémon (--type-color, seteado inline por JS en
            mostrarFicha), plaqueta superior con nº de dex + tipo(s), y un
            brillo tipo "foil" que recorre el arte una sola vez al abrir. ── */
-        .detail-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:600;}
-        .detail-modal.open{display:block;}
+        .detail-modal{display:block;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:600;
+            opacity:0;visibility:hidden;transition:opacity .22s ease, visibility 0s linear .22s;}
+        .detail-modal.open{opacity:1;visibility:visible;transition:opacity .22s ease, visibility 0s linear;}
         .detail-overlay{
             --type-color: var(--border);
             position:fixed;bottom:0;left:0;right:0;background:var(--overlay-bg);
             border-radius:28px 28px 0 0;padding:24px 20px 44px;
             box-shadow:0 -12px 40px var(--shadow);text-align:center;
             border-top:6px solid var(--type-color);
-            animation:slideUp .3s ease;
-            transition:border-color .2s ease;
+            transform:translateY(30px);
+            transition:border-color .2s ease, transform .3s cubic-bezier(.4,0,.2,1);
         }
+        .detail-modal.open .detail-overlay{transform:translateY(0);}
+        @media(prefers-reduced-motion:reduce){.detail-overlay{transition:border-color .2s ease;}}
         /* Falta: el marco queda en contorno punteado — como un bolsillo vacío
            de la carpeta — en vez del color de tipo a pleno. */
         .detail-overlay.missing{border-top-style:dashed;}
-        @keyframes slideUp{from{transform:translateY(30px);opacity:0;}to{transform:translateY(0);opacity:1;}}
         .detail-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px;}
         .detail-close{position:absolute;top:20px;right:18px;font-size:20px;color:var(--muted);cursor:pointer;padding:4px;}
 
@@ -429,9 +456,12 @@
         .detail-fecha{font-size:11px;color:var(--muted);margin-top:8px;}
 
         /* ── METRICS ── */
-        .metrics-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:700;align-items:center;justify-content:center;}
-        .metrics-modal.open{display:flex;}
-        .metrics-box{position:relative;background:var(--overlay-bg);border:1px solid var(--border);border-radius:24px;padding:24px 20px;width:calc(100% - 40px);max-width:380px;animation:fadeIn .2s ease;max-height:80vh;overflow-y:auto;}
+        .metrics-modal{display:flex;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:700;align-items:center;justify-content:center;
+            opacity:0;visibility:hidden;transition:opacity .22s ease, visibility 0s linear .22s;}
+        .metrics-modal.open{opacity:1;visibility:visible;transition:opacity .22s ease, visibility 0s linear;}
+        .metrics-box{position:relative;background:var(--overlay-bg);border:1px solid var(--border);border-radius:24px;padding:24px 20px;width:calc(100% - 40px);max-width:380px;transform:translateY(8px);transition:transform .25s cubic-bezier(.4,0,.2,1);max-height:80vh;overflow-y:auto;}
+        .metrics-modal.open .metrics-box{transform:translateY(0);}
+        @media(prefers-reduced-motion:reduce){.metrics-box{transition:none;}}
         .metrics-title{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:var(--accent);margin-bottom:4px;letter-spacing:.06em;text-transform:uppercase;}
         .metrics-subtitle{font-size:12px;color:var(--muted);margin-bottom:16px;}
         .metrics-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;}
@@ -444,17 +474,21 @@
         .metrics-close{position:absolute;top:16px;right:18px;font-size:20px;color:var(--muted);cursor:pointer;padding:4px;}
 
         /* ── LOGIN MODAL — hoja deslizante en mobile, modal centrado en desktop ── */
-        .login-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:900;}
-        .login-modal.open{display:block;}
+        .login-modal{display:block;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:900;
+            opacity:0;visibility:hidden;transition:opacity .22s ease, visibility 0s linear .22s;}
+        .login-modal.open{opacity:1;visibility:visible;transition:opacity .22s ease, visibility 0s linear;}
         .login-box{
             position:fixed;bottom:0;left:0;right:0;
             background:var(--overlay-bg);border-radius:28px 28px 0 0;
             padding:14px 24px 36px;
             box-shadow:0 -12px 40px var(--shadow);
             border-top:1px solid var(--border);
-            animation:slideUp .3s ease;
+            transform:translateY(30px);
+            transition:transform .3s cubic-bezier(.4,0,.2,1);
             text-align:center;
         }
+        .login-modal.open .login-box{transform:translateY(0);}
+        @media(prefers-reduced-motion:reduce){.login-box{transition:none;}}
         .login-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 18px;}
         .login-close{position:absolute;top:16px;right:18px;font-size:20px;color:var(--muted);cursor:pointer;padding:4px;}
         .login-icon-circle{
@@ -477,26 +511,29 @@
         .login-btn.secondary{background:var(--surface2);color:var(--text);border:1px solid var(--border);}
 
         @media(min-width:768px){
-            .login-modal{display:none;align-items:center;justify-content:center;padding:16px;}
-            .login-modal.open{display:flex;}
+            .login-modal{display:flex;align-items:center;justify-content:center;padding:16px;}
             .login-box{
                 position:relative;border-radius:24px;padding:28px 28px 24px;
                 max-width:340px;width:100%;border:1px solid var(--border);border-top:1px solid var(--border);
                 box-shadow:0 20px 60px rgba(0,0,0,0.2);
+                transform:scale(.96);
             }
+            .login-modal.open .login-box{transform:scale(1);}
             .login-handle{display:none;}
         }
 
         /* ── AJUSTES MODAL — mismo patrón que el login (hoja / modal centrado) ── */
-        .ajustes-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:850;}
-        .ajustes-modal.open{display:block;}
+        .ajustes-modal{display:block;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:850;
+            opacity:0;visibility:hidden;transition:opacity .22s ease, visibility 0s linear .22s;}
+        .ajustes-modal.open{opacity:1;visibility:visible;transition:opacity .22s ease, visibility 0s linear;}
         .ajustes-box{
             position:fixed;bottom:0;left:0;right:0;
             background:var(--overlay-bg);border-radius:28px 28px 0 0;
             padding:14px 20px 30px;
             box-shadow:0 -12px 40px var(--shadow);
             border-top:1px solid var(--border);
-            animation:slideUp .3s ease;
+            transform:translateY(30px);
+            transition:transform .3s cubic-bezier(.4,0,.2,1);
             /* 100vh en Safari iOS es el viewport SIN la barra de direcciones
                (el más grande posible), no el alto realmente visible — con la
                barra de direcciones desplegada (el estado normal), la caja podía
@@ -517,6 +554,8 @@
                que la lista de Ajustes creció más que la pantalla. */
             display:flex;flex-direction:column;overflow:hidden;
         }
+        .ajustes-modal.open .ajustes-box{transform:translateY(0);}
+        @media(prefers-reduced-motion:reduce){.ajustes-box{transition:none;}}
         .ajustes-scroll{overflow-y:auto;min-height:0;}
         .ajustes-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 14px;flex-shrink:0;}
         .ajustes-close{position:absolute;top:16px;right:18px;font-size:20px;color:var(--muted);cursor:pointer;padding:4px;}
@@ -589,9 +628,9 @@
         .wizard-btn-siguiente:disabled{opacity:.6;cursor:default;}
 
         @media(min-width:768px){
-            .ajustes-modal{align-items:center;justify-content:center;padding:16px;}
-            .ajustes-modal.open{display:flex;}
-            .ajustes-box{position:relative;bottom:auto;left:auto;right:auto;animation:none;border-radius:22px;padding:20px;max-width:360px;width:100%;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.2);}
+            .ajustes-modal{display:flex;align-items:center;justify-content:center;padding:16px;}
+            .ajustes-box{position:relative;bottom:auto;left:auto;right:auto;border-radius:22px;padding:20px;max-width:360px;width:100%;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.2);transform:scale(.96);}
+            .ajustes-modal.open .ajustes-box{transform:scale(1);}
             .ajustes-handle{display:none;}
             .wizard-box{max-width:440px;}
         }
@@ -604,13 +643,6 @@
 
 
         @keyframes skeleton{from{opacity:0.4;}to{opacity:0.9;}}
-        @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-
-        /* Animación corregida para el modal centrado en Escritorio */
-        @keyframes slideUpDesktop {
-            from { transform: translate(-50%, calc(-50% + 30px)); opacity: 0; }
-            to { transform: translate(-50%, -50%); opacity: 1; }
-        }
 
         /* ═══════════════════════════════════════════════════════
            TABLET 768px
@@ -801,7 +833,7 @@
                 position:fixed;
                 bottom:auto;
                 top:50%;left:50%;
-                transform:translate(-50%,-50%);
+                transform:translate(-50%,-50%) scale(.96);
                 width:380px;
                 height:auto;
                 max-height:85vh;
@@ -810,8 +842,8 @@
                 padding:24px 24px 32px;
                 overflow-y:auto;
                 box-shadow:0 20px 60px rgba(0,0,0,0.2);
-                animation: slideUpDesktop .3s ease forwards;
             }
+            .detail-modal.open .detail-overlay{transform:translate(-50%,-50%) scale(1);}
             .detail-overlay.missing{border-style:dashed;}
             .detail-handle{display:none;}
         }

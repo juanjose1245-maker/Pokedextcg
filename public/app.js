@@ -423,7 +423,10 @@ async function cambiarModo(nuevo) {
     actualizarBotonesModo();
     cerrarGaleriaYVolver();
     Object.keys(cachePokemon).forEach(k => delete cachePokemon[k]); // el estado tenemos/falta cambia con el modo
+    const contenido = document.getElementById('main-view-content');
+    contenido.classList.add('cambiando-modo');
     await cargarEstadisticas();
+    contenido.classList.remove('cambiando-modo');
     if (esDesktop()) verPokedexCompleta();
 }
 
@@ -818,9 +821,7 @@ async function verCarpeta(carpeta) {
     actualizarTarjetaProgreso();
     renderSidebar();
     if (!esDesktop()) {
-        document.getElementById('generaciones-section-title').style.display = 'none';
-        document.getElementById('grid-generaciones').style.display = 'none';
-        document.getElementById('gallery-section').style.display = 'block';
+        mostrarSeccionGaleria();
         mostrarFAB();
         document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
     }
@@ -849,9 +850,7 @@ async function verPokedexCompleta() {
     actualizarTarjetaProgreso();
     renderSidebar();
     if (!esDesktop()) {
-        document.getElementById('generaciones-section-title').style.display = 'none';
-        document.getElementById('grid-generaciones').style.display = 'none';
-        document.getElementById('gallery-section').style.display = 'block';
+        mostrarSeccionGaleria();
         mostrarFAB();
         document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
     }
@@ -1060,9 +1059,7 @@ async function verPendientesAcomodar() {
     pkmsActuales = pkms;
 
     if (!esDesktop()) {
-        document.getElementById('generaciones-section-title').style.display = 'none';
-        document.getElementById('grid-generaciones').style.display = 'none';
-        document.getElementById('gallery-section').style.display = 'block';
+        mostrarSeccionGaleria();
         mostrarFAB();
         document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
     }
@@ -1181,14 +1178,41 @@ async function descargarRecortablesPDF() {
 }
 
 // ── GALLERY ──
+// Reducir movimiento: quienes lo piden en el SO no ven el fade de las
+// secciones (mismo criterio que ya se respeta en CSS con @media
+// prefers-reduced-motion) — acá hace falta también en JS porque el
+// intercambio de display se termina de resolver con un setTimeout.
+const prefiereMenosMovimiento = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Cruza del grid de generaciones a la galería (y viceversa, ver
+// ocultarSeccionGaleria) con un fade en vez del corte seco de antes.
+function mostrarSeccionGaleria() {
+    document.getElementById('generaciones-section-title').style.display = 'none';
+    document.getElementById('grid-generaciones').style.display = 'none';
+    const galeria = document.getElementById('gallery-section');
+    galeria.style.display = 'block';
+    galeria.style.opacity = '0';
+    requestAnimationFrame(() => { galeria.style.opacity = ''; });
+}
+function ocultarSeccionGaleria() {
+    const galeria = document.getElementById('gallery-section');
+    const titulo  = document.getElementById('generaciones-section-title');
+    const grid    = document.getElementById('grid-generaciones');
+    galeria.style.opacity = '0';
+    setTimeout(() => {
+        galeria.style.display = 'none';
+        galeria.style.opacity = '';
+        titulo.style.display = 'block';
+        grid.style.display = 'grid';
+    }, prefiereMenosMovimiento() ? 0 : 200);
+}
+
 async function verListadoGeneracion(gen, region) {
     genActualAbierta = { gen, region, esCarpeta: false };
     actualizarTarjetaProgreso();
     renderSidebar();
     if (!esDesktop()) {
-        document.getElementById('generaciones-section-title').style.display = 'none';
-        document.getElementById('grid-generaciones').style.display = 'none';
-        document.getElementById('gallery-section').style.display = 'block';
+        mostrarSeccionGaleria();
         document.getElementById('sugerencias').style.display = 'none';
         mostrarFAB();
         document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
@@ -1402,9 +1426,7 @@ function cerrarGaleriaYVolver() {
         if (b) b.classList.toggle('active', x === 'todos');
     });
     if (!esDesktop()) {
-        document.getElementById('gallery-section').style.display = 'none';
-        document.getElementById('generaciones-section-title').style.display = 'block';
-        document.getElementById('grid-generaciones').style.display = 'grid';
+        ocultarSeccionGaleria();
         ocultarFAB();
         document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
     }
@@ -2486,7 +2508,20 @@ function mostrarToastSync(id, estado) {
 }
 
 // ── INIT ─────────────────────────────────────────────────────────
+// Splash de entrada: se oculta cuando terminan de cargar los datos reales
+// (no a los X ms fijos), con un mínimo de tiempo visible para que no
+// "parpadee" en conexiones rápidas y un tope de seguridad por si la red
+// tarda de más — nunca deja al usuario mirando el splash indefinidamente.
+function ocultarSplash() {
+    const splash = document.getElementById('app-splash');
+    if (splash) splash.classList.add('oculto');
+}
+
 window.onload = async () => {
+    const inicioSplash = Date.now();
+    const MIN_SPLASH_MS = 500;
+    const topeSplash = setTimeout(ocultarSplash, 4000);
+
     sincronizarGrids();
     aplicarTema();
     aplicarIdioma();
@@ -2495,6 +2530,9 @@ window.onload = async () => {
     revisarSesion();
     await cargarCarpetasConfig();
     await cargarEstadisticas();
+
+    clearTimeout(topeSplash);
+    setTimeout(ocultarSplash, Math.max(0, MIN_SPLASH_MS - (Date.now() - inicioSplash)));
 
     if (esDesktop()) verPokedexCompleta();
 

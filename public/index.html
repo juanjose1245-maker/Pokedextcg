@@ -18,6 +18,13 @@
 </head>
 <body>
 
+<!-- ══ SPLASH DE ENTRADA — tapa la app hasta que carguen los datos
+     reales (ver ocultarSplash() en app.js); nunca queda colgado gracias
+     al tope de seguridad ahí mismo. ══════════════════════════════ -->
+<div id="app-splash" class="app-splash" aria-hidden="true">
+    <img src="icons/pokeball-512.png" alt="" class="app-splash-logo">
+</div>
+
 <!-- ══ SIDEBAR DESKTOP ══════════════════════════════════════════ -->
 <div id="desktop-sidebar">
     <div class="sb-brand" onclick="cambiarTab('home')">

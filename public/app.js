@@ -124,6 +124,13 @@ function crearGestoDeslizable(elemento, opciones) {
     const config = {
         type: eje,
         bounds,
+        // GSAP sube el z-index del elemento arrastrado a 1000+ por defecto
+        // (zIndexBoost) pensado para reordenar tarjetas con drag-and-drop.
+        // Acá no reordenamos nada, y como #main-view-content/#gallery-section
+        // son toda el área de arrastre, cualquier toque lo disparaba y los
+        // dejaba para siempre por encima de modales con z-index menor (ej.
+        // la ficha, z-index:600) sin forma de tocarlos.
+        zIndexBoost: false,
         onDrag: function () { onProgreso(this[eje]); },
         onDragEnd: function () {
             const valor = this[eje];

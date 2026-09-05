@@ -220,6 +220,12 @@
         .main-content.cambiando-modo{opacity:.35;}
         @media(prefers-reduced-motion:reduce){.main-content{transition:none;}}
 
+        /* ── SWIPE DE MODO (Bulk ↔ Carpetas) ── */
+        #modo-swipe-wrap{position:relative;}
+        #modo-swipe-peek{position:absolute;inset:0;z-index:0;opacity:0;transition:opacity .1s linear;}
+        #main-view-content{position:relative;z-index:1;background:var(--bg);}
+        @media(min-width:768px){#modo-swipe-peek{display:none;}} /* el gesto no existe en desktop */
+
         /* ── PROGRESS CARD ── */
         .progress-card{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--modo-color);border-radius:var(--radius);padding:16px;margin-bottom:16px;position:relative;overflow:hidden;cursor:pointer;transition:transform .15s,border-color .3s ease;}
         .progress-card:active{transform:scale(0.98);}

@@ -146,6 +146,36 @@ function crearGestoDeslizable(elemento, opciones) {
     return Draggable.create(elemento, config)[0];
 }
 
+// Swipe horizontal sobre el contenido principal para alternar entre los
+// modos Bulk y Carpetas. Solo en mobile/tablet angosto (en desktop hay
+// botones dedicados) y solo si el usuario no pidió menos movimiento.
+let gestoModoInstancia = null;
+
+function inicializarGestoModo() {
+    if (esDesktop() || prefiereMenosMovimiento()) return;
+    const contenido = document.getElementById('main-view-content');
+    const peek = document.getElementById('modo-swipe-peek');
+    const LIMITE = 140, UMBRAL_DISTANCIA = 70, UMBRAL_VELOCIDAD = 500;
+    gestoModoInstancia = crearGestoDeslizable(contenido, {
+        eje: 'x',
+        limiteMin: -LIMITE, limiteMax: LIMITE,
+        umbralDistancia: UMBRAL_DISTANCIA, umbralVelocidad: UMBRAL_VELOCIDAD,
+        valorCompletarPositivo: LIMITE, valorCompletarNegativo: -LIMITE,
+        onProgreso: (valor) => {
+            const otro = modoActual === 'bulk' ? 'carpetas' : 'bulk';
+            peek.style.background = otro === 'bulk' ? 'var(--accent)' : 'var(--accent2)';
+            peek.style.opacity = String(Math.min(1, Math.abs(valor) / LIMITE));
+        },
+        decidir: (valor) => valor > 0 ? 'positivo' : 'negativo',
+        onCompletar: async () => {
+            gsap.set(contenido, { x: 0 });
+            peek.style.opacity = '0';
+            await cambiarModo(modoActual === 'bulk' ? 'carpetas' : 'bulk');
+        },
+        onCancelar: () => { peek.style.opacity = '0'; },
+    });
+}
+
 // Devuelve la carpeta a la que pertenece un Pokémon, según generación
 // (modo separadas) o según su nº de Pokédex nacional (modo seguidas).
 function carpetaDe(p) {
@@ -1235,6 +1265,7 @@ const prefiereMenosMovimiento = () => window.matchMedia('(prefers-reduced-motion
 // Cruza del grid de generaciones a la galería (y viceversa, ver
 // ocultarSeccionGaleria) con un fade en vez del corte seco de antes.
 function mostrarSeccionGaleria() {
+    if (gestoModoInstancia) gestoModoInstancia.disable();
     document.getElementById('generaciones-section-title').style.display = 'none';
     document.getElementById('grid-generaciones').style.display = 'none';
     const galeria = document.getElementById('gallery-section');
@@ -1243,6 +1274,7 @@ function mostrarSeccionGaleria() {
     requestAnimationFrame(() => { galeria.style.opacity = ''; });
 }
 function ocultarSeccionGaleria() {
+    if (gestoModoInstancia) gestoModoInstancia.enable();
     const galeria = document.getElementById('gallery-section');
     const titulo  = document.getElementById('generaciones-section-title');
     const grid    = document.getElementById('grid-generaciones');
@@ -2590,6 +2622,7 @@ window.onload = async () => {
     aplicarIdioma();
     aplicarModoVista();
     actualizarBotonesModo();
+    inicializarGestoModo();
     revisarSesion();
     await cargarCarpetasConfig();
     await cargarEstadisticas();

@@ -2519,7 +2519,7 @@ function ocultarSplash() {
 
 window.onload = async () => {
     const inicioSplash = Date.now();
-    const MIN_SPLASH_MS = 500;
+    const MIN_SPLASH_MS = 1100;
     const topeSplash = setTimeout(ocultarSplash, 4000);
 
     sincronizarGrids();

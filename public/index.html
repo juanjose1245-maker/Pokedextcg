@@ -13,6 +13,22 @@
     <link rel="apple-touch-icon" sizes="120x120" href="icons/pokeball-120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="icons/pokeball-152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="icons/pokeball-180.png">
+    <!-- CSS crítico del splash, inline y ANTES de styles.css a propósito:
+         si el service worker llega a servir una copia vieja de styles.css
+         justo el día que se actualiza el shell (puede pasar: un hard-refresh
+         trae el HTML nuevo sin pasar por el SW, pero las hojas de estilo sí
+         pasan por el SW viejo hasta que termina de activarse), el splash no
+         puede quedar sin posicionar (se ve como una columna gigante más del
+         layout de escritorio) ni, peor, quedar trabado sin ocultarse nunca.
+         Usa las mismas clases/selectores que styles.css (misma especificidad)
+         así que, apenas esa hoja carga fresca, la sobreescribe sin conflicto
+         y suma la animación de entrada — esto de acá es solo el piso mínimo
+         funcional, no reemplaza el pulido. -->
+    <style>
+        .app-splash{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;background:#f1f1ee;opacity:1;visibility:visible;transition:opacity .4s ease;}
+        .app-splash.oculto{opacity:0;visibility:hidden;}
+        .app-splash-logo{width:88px;height:88px;max-width:88px;max-height:88px;}
+    </style>
     <link href="fonts/fonts.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>

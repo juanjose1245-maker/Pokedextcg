@@ -75,6 +75,21 @@ function anclaIdCliente(p) {
     return p.categoria ? p.especieBase : p.id;
 }
 
+// Número regional (posición dentro de su Pokédex regional, distinta del id
+// nacional) de un Pokémon, con el mismo caso especial que numeroRegional()
+// en server.js: las formas de Hisui (899-905) no tienen región propia en
+// cortesGen, así que se calculan aparte.
+function numeroRegionalCliente(p) {
+    const ancla   = anclaIdCliente(p);
+    const esHisui = ancla >= 899 && ancla <= 905;
+    return {
+        ancla,
+        numR:    esHisui ? ancla - 809 : ancla - cortesGen[p.gen],
+        region:  esHisui ? 'Hisui' : regiones[p.gen - 1],
+        prefijo: esHisui ? 'H' : 'R',
+    };
+}
+
 const CATEGORIA_INFO = {
     regional:    { label: t('categoria.regional'),   color: '#0891b2' },
     mega:        { label: t('categoria.mega'),       color: '#7c3aed' },
@@ -430,54 +445,49 @@ const cachePokemon = {};
 // galería queda en blanco.
 const esDesktop = () => window.innerWidth >= 768;
 
-// ── TOASTS (error / info) ──────────────────────────────────────────
-let errorToastTimer = null;
-function mostrarToastError(msg) {
-    let toast = document.getElementById('error-toast');
+// ── TOASTS ───────────────────────────────────────────────────────
+// Todos los toasts comparten el mismo esqueleto (crear el div flotante si no
+// existe todavía, reutilizarlo si ya está) y el mismo mecanismo de
+// mostrar+auto-ocultar — antes cada uno repetía ambas cosas con su propia
+// variable de timer suelta; ahora un solo Map (por id de toast) las reemplaza
+// a todas.
+function obtenerOCrearToast(id, estiloExtra) {
+    let toast = document.getElementById(id);
     if (!toast) {
         toast = document.createElement('div');
-        toast.id = 'error-toast';
-        toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--danger);border-radius:12px;padding:8px 16px;font-size:12px;font-weight:600;color:#fff;box-shadow:0 4px 16px var(--shadow);z-index:800;max-width:calc(100vw - 32px);text-align:center;opacity:0;transition:opacity .2s ease;';
+        toast.id = id;
+        toast.style.cssText = `position:fixed;top:80px;left:50%;transform:translateX(-50%);border-radius:12px;padding:8px 16px;font-size:12px;font-weight:600;box-shadow:0 4px 16px var(--shadow);z-index:800;opacity:0;transition:opacity .2s ease;${estiloExtra}`;
         document.body.appendChild(toast);
     }
-    toast.textContent = `⚠️ ${msg}`;
-    toast.style.opacity = '1';
-    clearTimeout(errorToastTimer);
-    errorToastTimer = setTimeout(() => { toast.style.opacity = '0'; }, 3000);
+    return toast;
 }
-let infoToastTimer = null;
-function mostrarToastInfo(msg) {
-    let toast = document.getElementById('info-toast');
-    if (!toast) {
-        toast = document.createElement('div');
-        toast.id = 'info-toast';
-        toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--accent2);border-radius:12px;padding:8px 16px;font-size:12px;font-weight:600;color:#fff;box-shadow:0 4px 16px var(--shadow);z-index:800;max-width:calc(100vw - 32px);text-align:center;opacity:0;transition:opacity .2s ease;';
-        document.body.appendChild(toast);
-    }
-    toast.textContent = `ℹ️ ${msg}`;
+const toastTimers = new Map();
+function mostrarToastConAutoOcultar(toast, ms) {
     toast.style.opacity = '1';
-    clearTimeout(infoToastTimer);
-    infoToastTimer = setTimeout(() => { toast.style.opacity = '0'; }, 3000);
+    clearTimeout(toastTimers.get(toast.id));
+    toastTimers.set(toast.id, setTimeout(() => { toast.style.opacity = '0'; }, ms));
+}
+function mostrarToastError(msg) {
+    const toast = obtenerOCrearToast('error-toast', 'background:var(--danger);color:#fff;max-width:calc(100vw - 32px);text-align:center;');
+    toast.textContent = `⚠️ ${msg}`;
+    mostrarToastConAutoOcultar(toast, 3000);
+}
+function mostrarToastInfo(msg) {
+    const toast = obtenerOCrearToast('info-toast', 'background:var(--accent2);color:#fff;max-width:calc(100vw - 32px);text-align:center;');
+    toast.textContent = `ℹ️ ${msg}`;
+    mostrarToastConAutoOcultar(toast, 3000);
 }
 
 // Toast con botón de acción: aparece al desmarcar una carta, para revertir
 // el cambio sin tener que buscarla de nuevo. Conserva la fecha original
 // (la que ya tenía guardada) en vez de ponerle la fecha de "ahora".
-let deshacerToastTimer = null;
 function mostrarToastDeshacer(idPk, fechaPreservada, nombrePk) {
-    let toast = document.getElementById('deshacer-toast');
-    if (!toast) {
-        toast = document.createElement('div');
-        toast.id = 'deshacer-toast';
-        toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 8px 8px 16px;font-size:12px;font-weight:600;color:var(--text);box-shadow:0 4px 16px var(--shadow);z-index:800;white-space:nowrap;opacity:0;transition:opacity .2s ease;display:flex;align-items:center;gap:10px;';
-        document.body.appendChild(toast);
-    }
+    const toast = obtenerOCrearToast('deshacer-toast', 'background:var(--surface);border:1px solid var(--border);padding:8px 8px 8px 16px;color:var(--text);white-space:nowrap;display:flex;align-items:center;gap:10px;');
     toast.innerHTML = `<span>${t('toast.quitasteA', { nombre: (nombrePk || '').toLowerCase() })}</span>
         <button id="btn-deshacer-toast" style="background:var(--accent2);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:11px;cursor:pointer;font-family:'Rajdhani',sans-serif;letter-spacing:.04em;">${t('toast.botonDeshacer')}</button>`;
-    toast.style.opacity = '1';
 
     document.getElementById('btn-deshacer-toast').onclick = async () => {
-        clearTimeout(deshacerToastTimer);
+        clearTimeout(toastTimers.get(toast.id));
         toast.style.opacity = '0';
         try {
             const res = await fetch('/api/inventario', {
@@ -487,15 +497,14 @@ function mostrarToastDeshacer(idPk, fechaPreservada, nombrePk) {
             if (!res.ok) throw new Error('respuesta no válida');
             localStorage.setItem(claveLS(idPk), 'true');
             if (fechaPreservada) guardarFechaRegistro(idPk, fechaPreservada);
-            await cargarEstadisticasSinMoverScroll();
+            await cargarEstadisticas(true);
             actualizarBadgePendientes();
         } catch (err) {
             mostrarToastError(t('error.noSePudoDeshacer'));
         }
     };
 
-    clearTimeout(deshacerToastTimer);
-    deshacerToastTimer = setTimeout(() => { toast.style.opacity = '0'; }, 6000);
+    mostrarToastConAutoOcultar(toast, 6000);
 }
 
 // Toast con acción: avisa que ya hay una versión nueva de la app instalada
@@ -503,16 +512,10 @@ function mostrarToastDeshacer(idPk, fechaPreservada, nombrePk) {
 // NO se auto-oculta — perderla de vista no debería dejar a alguien
 // preguntándose por qué no ve un cambio que ya sabemos que está instalado.
 function mostrarToastActualizacion() {
-    let toast = document.getElementById('actualizacion-toast');
-    if (!toast) {
-        toast = document.createElement('div');
-        toast.id = 'actualizacion-toast';
-        toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 8px 8px 16px;font-size:12px;font-weight:600;color:var(--text);box-shadow:0 4px 16px var(--shadow);z-index:800;white-space:nowrap;opacity:0;transition:opacity .2s ease;display:flex;align-items:center;gap:10px;';
-        document.body.appendChild(toast);
-    }
+    const toast = obtenerOCrearToast('actualizacion-toast', 'background:var(--surface);border:1px solid var(--border);padding:8px 8px 8px 16px;color:var(--text);white-space:nowrap;display:flex;align-items:center;gap:10px;');
     toast.innerHTML = `<span>${t('toast.versionNueva')}</span>
         <button id="btn-actualizacion-toast" style="background:var(--accent2);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:11px;cursor:pointer;font-family:'Rajdhani',sans-serif;letter-spacing:.04em;">${t('toast.botonActualizar')}</button>`;
-    toast.style.opacity = '1';
+    toast.style.opacity = '1'; // sin auto-ocultar a propósito, ver comentario arriba
     document.getElementById('btn-actualizacion-toast').onclick = () => location.reload();
 }
 
@@ -520,20 +523,11 @@ function mostrarToastActualizacion() {
 // capacidad de las carpetas ya configuradas por debajo de lo necesario. No
 // bloquea nada — la config vieja sigue funcionando, esto es solo un aviso
 // con un atajo directo a re-abrir el wizard y ajustar.
-let avisoCapacidadTimer = null;
 function mostrarToastAvisoCapacidad(msg) {
-    let toast = document.getElementById('aviso-capacidad-toast');
-    if (!toast) {
-        toast = document.createElement('div');
-        toast.id = 'aviso-capacidad-toast';
-        toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 8px 8px 16px;font-size:12px;font-weight:600;color:var(--text);box-shadow:0 4px 16px var(--shadow);z-index:800;max-width:calc(100vw - 32px);opacity:0;transition:opacity .2s ease;display:flex;align-items:center;gap:10px;';
-        document.body.appendChild(toast);
-    }
+    const toast = obtenerOCrearToast('aviso-capacidad-toast', 'background:var(--surface);border:1px solid var(--border);padding:8px 8px 8px 16px;color:var(--text);max-width:calc(100vw - 32px);display:flex;align-items:center;gap:10px;');
     toast.innerHTML = `<span>${msg}</span>
         <button id="btn-ajustar-capacidad" style="background:var(--accent2);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;font-size:11px;cursor:pointer;font-family:'Rajdhani',sans-serif;letter-spacing:.04em;white-space:nowrap;">${t('toast.botonAjustar')}</button>`;
-    toast.style.opacity = '1';
-    clearTimeout(avisoCapacidadTimer);
-    avisoCapacidadTimer = setTimeout(() => { toast.style.opacity = '0'; }, 6000);
+    mostrarToastConAutoOcultar(toast, 6000);
     document.getElementById('btn-ajustar-capacidad').onclick = () => {
         toast.style.opacity = '0';
         cerrarPanelVariantes();
@@ -748,14 +742,18 @@ function renderGridGeneraciones(data) {
     }
 }
 
-async function cargarEstadisticas() {
+// mantenerScroll = false: carga "de entrada" (inicio, cambio de modo) — usa
+// el mensaje de error genérico y no preserva el scroll de la galería.
+// mantenerScroll = true: refresco de fondo (tras un toggle, deshacer, o eco
+// de SSE) — mensaje de error de sincronización, y preserva el scroll.
+async function cargarEstadisticas(mantenerScroll = false) {
     let data;
     try {
         const res = await fetch(`/api/estadisticas?modo=${modoActual}&nocache=${Date.now()}`);
         if (!res.ok) throw new Error('respuesta no válida');
         data = await res.json();
     } catch (err) {
-        mostrarToastError(t('error.noSePudoCargarColeccion'));
+        mostrarToastError(t(mantenerScroll ? 'error.noSePudoSincronizar' : 'error.noSePudoCargarColeccion'));
         return;
     }
     dataGlobalCache = data;
@@ -766,28 +764,7 @@ async function cargarEstadisticas() {
     const total = Object.keys(data.listaIds || {}).length;
     document.getElementById('brand-count').textContent = `${total} / ${data.global.total || 1025}`;
     renderGridGeneraciones(data);
-    if (genActualAbierta) RefrescarGaleria(false);
-}
-
-async function cargarEstadisticasSinMoverScroll() {
-    let data;
-    try {
-        const res = await fetch(`/api/estadisticas?modo=${modoActual}&nocache=${Date.now()}`);
-        if (!res.ok) throw new Error('respuesta no válida');
-        data = await res.json();
-    } catch (err) {
-        mostrarToastError(t('error.noSePudoSincronizar'));
-        return;
-    }
-    dataGlobalCache = data;
-    sincronizarLocalStorageDesde(data);
-    actualizarTarjetaProgreso();
-    renderBinderBar();
-    renderSidebar();
-    const total = Object.keys(data.listaIds || {}).length;
-    document.getElementById('brand-count').textContent = `${total} / ${data.global.total || 1025}`;
-    renderGridGeneraciones(data);
-    if (genActualAbierta) RefrescarGaleria(true);
+    if (genActualAbierta) RefrescarGaleria(mantenerScroll);
 }
 
 // Reconstruye el espejo local (localStorage) del inventario del modo activo,
@@ -967,7 +944,7 @@ function lanzarConfeti() {
 
 // Compara el snapshot de estadísticas ANTES de un cambio contra el de DESPUÉS,
 // y lanza confeti si alguna generación (o la colección completa) pasó de
-// incompleta a completa. Se usa alrededor de cargarEstadisticasSinMoverScroll().
+// incompleta a completa. Se usa alrededor de cargarEstadisticas(true).
 function detectarYCelebrarCompletado(statsAntes, statsDespues) {
     if (!statsAntes || !statsDespues) return;
     const globalAntesCompleto = statsAntes.global.conseguidos >= statsAntes.global.total && statsAntes.global.total > 0;
@@ -1017,11 +994,17 @@ async function manejarArchivoImportar(event) {
     if (!ok) return;
 
     try {
+        // Se activa antes del fetch, no después: el eco de este mismo cambio
+        // vía SSE (ver iniciarSSE()) puede llegar mientras esta promesa sigue
+        // en vuelo, y si no está seteada esta pestaña se muestra a sí misma
+        // el aviso de "actualizado desde otro dispositivo" por su propio cambio.
+        sseIgnorarProximoConfig = true;
         const res = await fetch('/api/importar', {
             method:'POST', headers:{'Content-Type':'application/json'},
             body: JSON.stringify({ modo: modoActual, registros })
         });
         if (res.status === 401) {
+            sseIgnorarProximoConfig = false; // no se llegó a guardar: no habrá eco que ignorar
             abrirLoginModal(() => document.getElementById('input-importar').click());
             return;
         }
@@ -1032,9 +1015,11 @@ async function manejarArchivoImportar(event) {
             : t('toast.importado', { importados: body.importados }));
         Object.keys(cachePokemon).forEach(k => delete cachePokemon[k]);
         cerrarGaleriaYVolver();
-        await cargarEstadisticasSinMoverScroll();
+        if (esDesktop()) verPokedexCompleta(); // sin esto la grilla de escritorio queda obsoleta hasta la próxima recarga
+        await cargarEstadisticas(true);
         actualizarBadgePendientes();
     } catch (err) {
+        sseIgnorarProximoConfig = false;
         mostrarToastError(t('error.noSePudoImportar'));
     }
 }
@@ -1285,10 +1270,7 @@ function renderGaleria(pkms, mantenerScroll, forzarEstado, esVistaPendientes) {
         // En la vista "Por acomodar" el estado no depende del modo que estés viendo:
         // ahí siempre se muestran como pendientes (forzarEstado=false), sin consultar localStorage.
         const tiene   = (forzarEstado !== undefined) ? forzarEstado : tieneEnLS(p.id);
-        const ancla   = anclaIdCliente(p);
-        let numR      = ancla - cortesGen[p.gen];
-        if (ancla >= 899 && ancla <= 905) numR = ancla - 809;
-        const prefijo = (ancla >= 899 && ancla <= 905) ? 'H' : 'R';
+        const { ancla, numR, prefijo } = numeroRegionalCliente(p);
         const ridTxt  = `${prefijo}#${numR.toString().padStart(3,'0')}`;
         const nidTxt  = `N#${ancla.toString().padStart(4,'0')}`;
         const catInfo = p.categoria ? CATEGORIA_INFO[p.categoria] : null;
@@ -1450,10 +1432,7 @@ function sincronizarGrids() {
 function mostrarFicha(p, esPendientes) {
     fichaOrigenPendientes = !!esPendientes;
     pkSeleccionado = p;
-    const ancla = anclaIdCliente(p);
-    let numR = ancla - cortesGen[p.gen];
-    let regionName = regiones[p.gen - 1];
-    if (ancla >= 899 && ancla <= 905) { numR = ancla - 809; regionName = 'Hisui'; }
+    const { ancla, numR, region: regionName } = numeroRegionalCliente(p);
     const regionEl = document.getElementById('pk-region');
     regionEl.textContent = t('ficha.regionGen', { region: regionName.toUpperCase(), gen: p.gen });
     regionEl.style.color = coloresGen[p.gen-1];
@@ -1545,7 +1524,7 @@ async function ejecutarToggleStatus() {
         renderGaleria(pendientesActuales, true, false, true);
         if (modoActual === 'carpetas') {
             const statsAntes = dataGlobalCache;
-            await cargarEstadisticasSinMoverScroll();
+            await cargarEstadisticas(true);
             detectarYCelebrarCompletado(statsAntes, dataGlobalCache);
         }
         actualizarBadgePendientes();
@@ -1575,7 +1554,7 @@ async function ejecutarToggleStatus() {
         document.getElementById('detail-modal').classList.remove('open');
         pkSeleccionado = null;
         const statsAntes = dataGlobalCache;
-        await cargarEstadisticasSinMoverScroll();
+        await cargarEstadisticas(true);
         if (nuevoEstado) detectarYCelebrarCompletado(statsAntes, dataGlobalCache);
         actualizarBadgePendientes();
         if (!nuevoEstado) mostrarToastDeshacer(idPk, fechaPreservada, nombrePk);
@@ -1646,10 +1625,7 @@ function handleSearchInput(e, inputEl) {
         if (!data.length) { sugBox.style.display = 'none'; return; }
         const frag = document.createDocumentFragment();
         data.forEach(p => {
-            const ancla = anclaIdCliente(p);
-            let numR = ancla - cortesGen[p.gen];
-            let rName = regiones[p.gen - 1];
-            if (ancla >= 899 && ancla <= 905) { numR = ancla - 809; rName = 'Hisui'; }
+            const { ancla, numR, region: rName } = numeroRegionalCliente(p);
             const tiene = tieneEnLS(p.id);
             const carpetaPk = carpetaDe(p);
             const colorPk = carpetaPk ? carpetaPk.color : coloresGen[p.gen-1];
@@ -1901,7 +1877,7 @@ async function toggleCategoriaVariante(categoria, activada) {
                 cerrarGaleriaYVolver();
                 if (esDesktop()) await verPokedexCompleta();
             }
-            await cargarEstadisticasSinMoverScroll();
+            await cargarEstadisticas(true);
             if (activada) await revisarCapacidadCarpetas();
             mostrarToastInfo(activada ? t('toast.categoriaActivada') : t('toast.categoriaDesactivada'));
         } catch (err) {
@@ -2008,6 +1984,9 @@ function restaurarRespaldo(archivo) {
         const ok = confirm(t('confirm.restaurarRespaldo'));
         if (!ok) return;
         try {
+            // Ver el mismo comentario en manejarArchivoImportar(): evita que el
+            // eco SSE de este propio cambio dispare el aviso de "otro dispositivo".
+            sseIgnorarProximoConfig = true;
             const res = await fetch('/api/backups/restaurar', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -2022,9 +2001,11 @@ function restaurarRespaldo(archivo) {
             cerrarPanelRespaldos();
             Object.keys(cachePokemon).forEach(k => delete cachePokemon[k]);
             cerrarGaleriaYVolver();
-            await cargarEstadisticasSinMoverScroll();
+            if (esDesktop()) verPokedexCompleta(); // sin esto la grilla de escritorio queda obsoleta hasta la próxima recarga
+            await cargarEstadisticas(true);
             actualizarBadgePendientes();
         } catch (err) {
+            sseIgnorarProximoConfig = false;
             mostrarToastError(err.message || t('error.noSePudoRestaurar'));
         }
     });
@@ -2424,6 +2405,9 @@ async function wizardGuardar() {
     btn.disabled = true;
     btn.textContent = t('wizard.guardando');
     try {
+        // Ver el mismo comentario en manejarArchivoImportar(): evita que el
+        // eco SSE de este propio cambio dispare el aviso de "otro dispositivo".
+        sseIgnorarProximoConfig = true;
         const res = await fetch('/api/carpetas-config', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -2444,6 +2428,7 @@ async function wizardGuardar() {
         // (wizardCalcularRangos no las conoce en modo "seguidas"); avisar sin bloquear.
         await revisarCapacidadCarpetas();
     } catch (err) {
+        sseIgnorarProximoConfig = false;
         mostrarToastError(err.message || t('error.noSePudoGuardarConfig'));
     } finally {
         btn.disabled = false;
@@ -2474,7 +2459,7 @@ function iniciarSSE() {
             // se queda mostrando la vista vieja.
             if (esDesktop()) verPokedexCompleta();
             cargarCarpetasConfig().then(() => { renderSidebar(); renderBinderBar(); });
-            cargarEstadisticasSinMoverScroll();
+            cargarEstadisticas(true);
             actualizarBadgePendientes();
             mostrarToastInfo(t('toast.coleccionActualizadaOtroDispositivo'));
             return;
@@ -2489,24 +2474,15 @@ function iniciarSSE() {
         } else {
             localStorage.removeItem(claveLS(msg.id));
         }
-        cargarEstadisticasSinMoverScroll();
+        cargarEstadisticas(true);
         mostrarToastSync(msg.id, msg.estado);
     };
     es.onerror = () => { es.close(); setTimeout(iniciarSSE, 3000); };
 }
-let toastTimer = null;
 function mostrarToastSync(id, estado) {
-    let toast = document.getElementById('sync-toast');
-    if (!toast) {
-        toast = document.createElement('div');
-        toast.id = 'sync-toast';
-        toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 16px;font-size:12px;font-weight:600;color:var(--text);box-shadow:0 4px 16px var(--shadow);z-index:800;white-space:nowrap;opacity:0;transition:opacity .2s ease;';
-        document.body.appendChild(toast);
-    }
+    const toast = obtenerOCrearToast('sync-toast', 'background:var(--surface);border:1px solid var(--border);color:var(--text);white-space:nowrap;');
     toast.textContent = estado ? t('toast.sincronizadoAnadido', { id }) : t('toast.sincronizadoQuitado', { id });
-    toast.style.opacity = '1';
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => { toast.style.opacity = '0'; }, 2500);
+    mostrarToastConAutoOcultar(toast, 2500);
 }
 
 // ── INIT ─────────────────────────────────────────────────────────

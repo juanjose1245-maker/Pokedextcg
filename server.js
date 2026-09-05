@@ -150,6 +150,7 @@ if (fs.existsSync(RUTA_VARIANTES_CONFIG)) {
 }
 function guardarVariantesConfig() {
     escribirJSONAtomico(RUTA_VARIANTES_CONFIG, variantesConfig);
+    cachePokemonEfectivo = null; // las categorías activas cambiaron
 }
 
 // especieBase (1–1025) -> variantes[], en el mismo orden en que aparecen en
@@ -173,7 +174,13 @@ function anclaId(p) {
 // intercalada justo después de su especie base — así el orden de
 // galería/carpeta/búsqueda las agrupa junto a su base sin que el cliente
 // tenga que reordenar nada.
+// Cacheado: pokemonDB tiene 1000+ entradas y este cálculo se repetía en cada
+// /api/buscar y /api/estadisticas (varias veces por minuto vía polling y SSE)
+// aunque el resultado solo cambia cuando se guarda variantesConfig — ver
+// invalidación en guardarVariantesConfig().
+let cachePokemonEfectivo = null;
 function pokemonEfectivo() {
+    if (cachePokemonEfectivo) return cachePokemonEfectivo;
     const activas = new Set(CATEGORIAS_VARIANTES.filter(cat => variantesConfig[cat]));
     const resultado = [];
     for (const p of pokemonDB) {
@@ -183,7 +190,8 @@ function pokemonEfectivo() {
             if (activas.has(v.categoria)) resultado.push(v);
         }
     }
-    return resultado;
+    cachePokemonEfectivo = resultado;
+    return cachePokemonEfectivo;
 }
 
 // ── CONFIGURACIÓN DE CARPETAS (wizard) ──────────────────────────────
@@ -544,12 +552,11 @@ app.get('/api/estadisticas', (req, res) => {
     }
 
     const stats = {};
-    for (let g = 1; g <= 9; g++) {
-        const pkmsGen = efectivo.filter(p => p.gen == g);
-        stats[g] = {
-            total: pkmsGen.length,
-            conseguidos: pkmsGen.filter(p => listaIds[p.id] !== undefined).length
-        };
+    for (let g = 1; g <= 9; g++) stats[g] = { total: 0, conseguidos: 0 };
+    for (const p of efectivo) {
+        const bucket = stats[p.gen];
+        bucket.total++;
+        if (listaIds[p.id] !== undefined) bucket.conseguidos++;
     }
 
     res.json({

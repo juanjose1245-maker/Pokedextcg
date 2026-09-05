@@ -316,23 +316,7 @@ cartas sueltas todavía sin ubicar en un binder. Desde la ficha abierta
 en esta vista, marcar como "acomodado" siempre escribe en el modo
 `carpetas` (por definición, sin importar cuál sea `modoActual`).
 
-### 4.7 Escáner de cartas (cámara + OCR)
-
-`toggleCamaraOCR()` / `iniciarBucleOCR()`: usa la cámara trasera del
-dispositivo y **Tesseract.js**, vendorizado localmente en
-`public/vendor/tesseract/` (no CDN, no npm), para reconocer el nombre en
-un recorte de cada frame de video y matchearlo contra la Pokédex vía
-`/api/buscar?q=`. Los paquetes de idioma (`eng`+`spa`) de Tesseract sí
-siguen viniendo de su CDN por defecto — deliberado, para no sumar
-~20–30MB al repo por una feature que ya requiere cámara activa; el
-navegador los cachea en IndexedDB tras el primer uso.
-
-**Nota:** el botón que dispara esta feature está oculto en la UI (mobile y
-desktop) — decisión tomada antes del lanzamiento público para pausar la
-feature sin borrar el código, que sigue intacto y funcional si se decide
-retomarla.
-
-### 4.8 Export / import / respaldos
+### 4.7 Export / import / respaldos
 
 Exportar descarga un JSON con `bulk` y `carpetas` completos
 (`GET /api/exportar`). Importar reemplaza el inventario del modo actual
@@ -342,7 +326,7 @@ Exportar descarga un JSON con `bulk` y `carpetas` completos
 servidor. El panel de Respaldos lista y permite restaurar cualquier
 snapshot automático o pre-operación destructiva desde `backups/`.
 
-### 4.9 PDF de recortables (UI)
+### 4.8 PDF de recortables (UI)
 
 `abrirOpcionesPDF()` reconstruye la lista de carpetas seleccionables cada
 vez que se abre (para reflejar cambios recientes del wizard sin recargar
@@ -351,7 +335,7 @@ la página) y oculta la opción de "portada por región" en modo `seguidas`
 la región" no está bien definida). `descargarRecortablesPDF()` arma la
 query string y descarga el PDF que sirve `/api/pdf-carpetas`.
 
-### 4.10 Sincronización en tiempo real (SSE)
+### 4.9 Sincronización en tiempo real (SSE)
 
 `iniciarSSE()` abre `EventSource('/api/eventos')` con reconexión automática
 a los 3s si se corta. Dos tipos de mensaje:
@@ -366,18 +350,18 @@ a los 3s si se corta. Dos tipos de mensaje:
   la propia pestaña que originó el cambio reaccione al eco de su propio
   broadcast.
 
-### 4.11 Buscador
+### 4.10 Buscador
 
 Autocompletado con debounce de 300ms sobre `/api/buscar?q=`, cancelando
 requests en vuelo con `AbortController` si llega una tecla nueva antes de
 que responda la anterior. No hay atajos de teclado globales — la única
 interacción por teclado es Enter para enviar los formularios de login.
 
-### 4.12 Service worker: registro y aviso de actualización
+### 4.11 Service worker: registro y aviso de actualización
 
 Ver §7.
 
-### 4.13 Tema, idioma, sesión
+### 4.12 Tema, idioma, sesión
 
 - **Tema** (`claro`/`oscuro`/`auto`): `auto` no fija ningún atributo (deja
   que `prefers-color-scheme` decida); `claro`/`oscuro` fuerzan
@@ -492,7 +476,7 @@ disciplina manual — y de hecho generó un bug real en el historial de
 commits ("Encontrado el bug: faltaba subir CACHE_VERSION en los últimos 2
 commits").
 
-El lado cliente de esto es `app.js` (§4.12): en cada `visibilitychange`
+El lado cliente de esto es `app.js` (§4.11): en cada `visibilitychange`
 fuerza `registration.update()` (una PWA puede quedar abierta en un
 teléfono indefinidamente, así que no alcanza con el chequeo automático del
 navegador), y al detectar `controllerchange` (un service worker nuevo tomó

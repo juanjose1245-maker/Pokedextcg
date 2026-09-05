@@ -30,13 +30,11 @@ const I18N = {
         'sidebar.coleccion': `Colección`,
         'sidebar.carpetasLabel': `Carpetas`,
         'sidebar.metricas': `📊 Métricas`,
-        'sidebar.camara': `📷 Cámara`,
         'sidebar.porAcomodar': `🔄 Por acomodar`,
         'sidebar.ajustes': `⚙️ Ajustes`,
 
         // ── HEADER (mobile, sticky) ────────────────────────────────────
         'header.tituloMetricas': `Métricas`,
-        'header.tituloCamara': `Cámara`,
         'header.tituloPorAcomodar': `Por acomodar en Carpetas`,
         'header.tituloAjustes': `Ajustes`,
 
@@ -48,15 +46,6 @@ const I18N = {
         'progreso.titulo': `Progreso de la colección`,
         'progreso.subtitulo': `Total registrado`,
         'progreso.tituloConRegion': `{region} · Progreso`,
-
-        // ── CÁMARA / OCR ────────────────────────────────────────────────
-        'camara.cerrar': `Cerrar`,
-        'camara.resumenHistorial': `{n} escaneadas`,
-        'camara.iniciando': `Iniciando escáner... ⏳`,
-        'camara.abriendo': `Abriendo cámara... ⏳`,
-        'camara.errorAbrir': `Error al abrir la cámara.`,
-        'camara.escaneando': `🔍 Escaneando nombre...`,
-        'camara.encontrado': `✅ Encontrado: {nombre}`,
 
         // ── GENERACIONES (grilla de inicio) ────────────────────────────
         'generaciones.tituloSeccion': `Progreso por generación`,
@@ -357,13 +346,11 @@ const I18N = {
         'sidebar.coleccion': `Collection`,
         'sidebar.carpetasLabel': `Folders`,
         'sidebar.metricas': `📊 Metrics`,
-        'sidebar.camara': `📷 Camera`,
         'sidebar.porAcomodar': `🔄 To organize`,
         'sidebar.ajustes': `⚙️ Settings`,
 
         // ── HEADER (mobile, sticky) ────────────────────────────────────
         'header.tituloMetricas': `Metrics`,
-        'header.tituloCamara': `Camera`,
         'header.tituloPorAcomodar': `To organize into Folders`,
         'header.tituloAjustes': `Settings`,
 
@@ -375,15 +362,6 @@ const I18N = {
         'progreso.titulo': `Collection progress`,
         'progreso.subtitulo': `Total registered`,
         'progreso.tituloConRegion': `{region} · Progress`,
-
-        // ── CÁMARA / OCR ────────────────────────────────────────────────
-        'camara.cerrar': `Close`,
-        'camara.resumenHistorial': `{n} scanned`,
-        'camara.iniciando': `Starting scanner... ⏳`,
-        'camara.abriendo': `Opening camera... ⏳`,
-        'camara.errorAbrir': `Error opening the camera.`,
-        'camara.escaneando': `🔍 Scanning name...`,
-        'camara.encontrado': `✅ Found: {nombre}`,
 
         // ── GENERACIONES (grilla de inicio) ────────────────────────────
         'generaciones.tituloSeccion': `Progress by generation`,

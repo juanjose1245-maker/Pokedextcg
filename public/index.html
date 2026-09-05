@@ -14,7 +14,6 @@
     <link rel="apple-touch-icon" sizes="152x152" href="icons/pokeball-152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="icons/pokeball-180.png">
     <link href="fonts/fonts.css" rel="stylesheet">
-    <script src="vendor/tesseract/tesseract.min.js" defer></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -54,7 +53,6 @@
     </div>
     <div class="sb-bottom">
         <button class="sb-btn" onclick="mostrarMetricas()" data-i18n="sidebar.metricas">📊 Métricas</button>
-        <button class="sb-btn" id="sb-btn-cam" onclick="toggleCamaraOCR()" data-i18n="sidebar.camara">📷 Cámara</button>
         <button class="sb-btn" onclick="verPendientesAcomodar()"><span data-i18n="sidebar.porAcomodar">🔄 Por acomodar</span><span class="btn-badge" id="badge-pendientes-desktop"></span></button>
         <button class="sb-btn" onclick="abrirAjustes()" data-i18n="sidebar.ajustes">⚙️ Ajustes</button>
     </div>
@@ -74,7 +72,6 @@
             <div class="header-actions">
                 <span class="brand-count" id="brand-count">— / 1025</span>
                 <button class="header-icon-btn" onclick="mostrarMetricas()" title="Métricas" data-i18n-title="header.tituloMetricas">📊</button>
-                <button class="header-icon-btn" id="btn-camara-header" onclick="toggleCamaraOCR()" title="Cámara" data-i18n-title="header.tituloCamara">📷</button>
                 <button class="header-icon-btn" onclick="verPendientesAcomodar()" title="Por acomodar en Carpetas" data-i18n-title="header.tituloPorAcomodar">🔄<span class="btn-badge" id="badge-pendientes-mobile"></span></button>
                 <button class="header-icon-btn" onclick="abrirAjustes()" title="Ajustes" data-i18n-title="header.tituloAjustes">⚙️</button>
             </div>
@@ -112,25 +109,6 @@
             <div class="binder-bar-wrap">
                 <div class="binder-bar" id="binder-bar"></div>
                 <div class="binder-legend" id="binder-legend"></div>
-            </div>
-        </div>
-
-        <!-- CAMERA VIEW -->
-        <div id="camera-fullscreen-view">
-            <button type="button" id="btn-cerrar-camara" class="camera-close-btn" onclick="detenerCamara()" data-i18n-aria-label="camara.cerrar" data-i18n-title="camara.cerrar" title="Cerrar">✕</button>
-            <div class="camera-wrapper">
-                <video id="video" autoplay playsinline></video>
-                <div class="scanner-target-box"><div class="scanner-line"></div></div>
-            </div>
-            <div class="camera-panel-inferior" id="camera-panel-inferior">
-                <div id="ocr-status" class="ocr-status-bar" data-i18n="camara.iniciando">Iniciando escáner... ⏳</div>
-                <div id="ocr-historial-wrap" class="ocr-historial" style="display:none;">
-                    <div class="ocr-historial-resumen" id="ocr-historial-resumen" onclick="toggleHistorialOCR()">
-                        <span id="ocr-historial-resumen-texto"></span>
-                        <span class="ocr-historial-flecha">▾</span>
-                    </div>
-                    <div class="ocr-historial-list" id="ocr-historial-list"></div>
-                </div>
             </div>
         </div>
 

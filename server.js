@@ -477,8 +477,8 @@ app.get('/api/sesion', (req, res) => {
 // Distancia de Levenshtein (mínimo de ediciones — inserción/eliminación/
 // sustitución — para pasar de una cadena a otra), con una sola fila de
 // trabajo en vez de una matriz completa. Fallback de /api/buscar cuando el
-// filtro por prefijo no encuentra nada, para tolerar errores de tipeo (o de
-// lectura del escáner OCR) sin sumar una dependencia nueva.
+// filtro por prefijo no encuentra nada, para tolerar errores de tipeo sin
+// sumar una dependencia nueva.
 function distanciaLevenshtein(a, b) {
     const fila = new Array(b.length + 1);
     for (let j = 0; j <= b.length; j++) fila[j] = j;

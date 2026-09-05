@@ -253,55 +253,6 @@
         .gen-bar-bg{background:var(--border);height:3px;border-radius:2px;width:80%;margin:0 auto;overflow:hidden;}
         .gen-bar-fill{height:100%;border-radius:2px;transition:width .4s ease;}
 
-        /* ── CAMERA ── */
-        #camera-fullscreen-view{display:none;}
-        /* Pantalla completa dedicada mientras se escanea (body.escaneando-activo,
-           togglear desde toggleCamaraOCR()/detenerCamara() en app.js) — antes
-           era un bloque de altura fija dentro del scroll normal, y en muchos
-           celulares el estado + la vista previa del recorte quedaban
-           empujados fuera de pantalla. Ahora el video ocupa todo el alto
-           disponible (flex:1) y el panel de abajo es fijo por contenido, dos
-           partes de un layout de columna a pantalla completa. dvh (no vh)
-           sigue el alto VISIBLE real del viewport en Safari/Chrome mobile,
-           que cambia cuando aparece/desaparece la barra de direcciones —
-           con vh a secas el panel de abajo queda tapado por la barra en
-           algunos momentos. */
-        body.escaneando-activo #camera-fullscreen-view{
-            position:fixed;inset:0;z-index:1000;background:#000;
-            display:flex;flex-direction:column;
-            height:100dvh;
-        }
-        body.escaneando-activo .camera-wrapper{flex:1;min-height:0;border-radius:0;box-shadow:none;}
-        .camera-wrapper{width:100%;height:420px;background:#000;border-radius:var(--radius);overflow:hidden;position:relative;box-shadow:0 8px 24px var(--shadow);}
-        #video{width:100%;height:100%;object-fit:cover;}
-        .scanner-target-box{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:82%;aspect-ratio:2.5/3.5;border:2px solid var(--found);border-radius:12px;background:rgba(34,197,94,0.06);box-shadow:0 0 0 999px rgba(0,0,0,0.65);pointer-events:none;}
-        .scanner-line{position:absolute;top:10%;left:0;right:0;height:2px;background:var(--found);box-shadow:0 0 8px var(--found);animation:scanPulse 2s ease-in-out infinite;}
-        @keyframes scanPulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
-        /* env(safe-area-inset-top/bottom): evita que el botón de cerrar quede
-           debajo del notch/Dynamic Island, y que el panel de abajo quede
-           tapado por el home indicator de iPhone. */
-        .camera-close-btn{position:absolute;top:calc(env(safe-area-inset-top) + 12px);right:16px;z-index:1010;width:40px;height:40px;border-radius:50%;border:none;background:rgba(0,0,0,0.55);color:#fff;font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;}
-        .camera-panel-inferior{flex-shrink:0;background:var(--surface);padding:12px 14px calc(12px + env(safe-area-inset-bottom));}
-        .ocr-status-bar{display:none;background:var(--surface);border:1px solid var(--accent2);border-radius:10px;padding:10px 14px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.05em;color:var(--accent2);text-align:center;}
-        /* Vista previa del recorte que le llega a Tesseract (crudo, tras binarizar
-           con Otsu) — ayuda a encuadrar el nombre y a diagnosticar el escáner. */
-        #ocr-debug-canvas{display:block;width:100%;max-width:320px;height:auto;margin:10px auto 0;border:1px solid var(--border);border-radius:8px;background:#000;}
-        .ocr-historial{margin-top:10px;position:relative;}
-        .ocr-historial-resumen{display:flex;align-items:center;justify-content:center;gap:6px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);cursor:pointer;padding:6px 0;}
-        .ocr-historial-flecha{display:inline-block;transition:transform .15s ease;}
-        .ocr-historial.expandido .ocr-historial-flecha{transform:rotate(180deg);}
-        /* Colapsado por defecto: la lista completa flota SOBRE el panel (no
-           empuja el layout — el panel inferior tiene que mantener una altura
-           predecible para que el video de arriba no salte de tamaño cuando
-           hay 1 carta escaneada vs. 8). */
-        .ocr-historial-list{display:none;flex-direction:column;gap:6px;position:absolute;bottom:100%;left:0;right:0;margin-bottom:6px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px;max-height:40dvh;overflow-y:auto;box-shadow:0 -8px 24px var(--shadow);}
-        .ocr-historial.expandido .ocr-historial-list{display:flex;}
-        .ocr-hist-item{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 12px;cursor:pointer;}
-        .ocr-hist-img{width:32px;height:32px;object-fit:contain;}
-        .ocr-hist-name{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;text-transform:capitalize;color:var(--text);flex:1;}
-        .ocr-hist-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;font-family:'Rajdhani',sans-serif;}
-        .ocr-hist-estado{font-size:11px;color:var(--muted);}
-
         /* ── GALLERY (mobile) ── */
         .gallery-section{display:none;animation:fadeIn .25s ease;}
         .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}

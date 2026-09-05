@@ -8,7 +8,7 @@
 // Colócalo en la misma carpeta donde sirves index.html (normalmente "public/"),
 // para que quede accesible en la raíz como "/sw.js".
 
-const CACHE_VERSION = 'pokedex-tcg-v82';
+const CACHE_VERSION = 'pokedex-tcg-v83';
 const CACHE_SHELL    = `${CACHE_VERSION}-shell`;
 const CACHE_LECTURAS = `${CACHE_VERSION}-lecturas`;
 
@@ -31,7 +31,10 @@ const ARCHIVOS_SHELL = [
     '/icons/pokeball-152.png',
     '/icons/pokeball-180.png',
     '/icons/pokeball-192.png',
-    '/icons/pokeball-512.png'
+    '/icons/pokeball-512.png',
+    '/vendor/gsap/gsap.min.js',
+    '/vendor/gsap/Draggable.min.js',
+    '/vendor/gsap/InertiaPlugin.min.js'
 ];
 
 self.addEventListener('install', (event) => {

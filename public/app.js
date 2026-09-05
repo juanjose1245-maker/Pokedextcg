@@ -152,7 +152,7 @@ function crearGestoDeslizable(elemento, opciones) {
 let gestoModoInstancia = null;
 
 function inicializarGestoModo() {
-    if (esDesktop() || prefiereMenosMovimiento()) return;
+    if (esDesktop() || prefiereMenosMovimiento() || typeof Draggable === 'undefined' || typeof InertiaPlugin === 'undefined') return;
     const contenido = document.getElementById('main-view-content');
     const peek = document.getElementById('modo-swipe-peek');
     const LIMITE = 140, UMBRAL_DISTANCIA = 70, UMBRAL_VELOCIDAD = 500;
@@ -182,7 +182,7 @@ function inicializarGestoModo() {
 // vuelve a su lugar sin cerrar nada. Igual que el resto de los gestos, no
 // aplica en desktop ni si el usuario pidió menos movimiento.
 function inicializarCierreArrastrable(idModal, selectorHandle, selectorCaja, funcionCerrar) {
-    if (esDesktop() || prefiereMenosMovimiento()) return;
+    if (esDesktop() || prefiereMenosMovimiento() || typeof Draggable === 'undefined' || typeof InertiaPlugin === 'undefined') return;
     const modal = document.getElementById(idModal);
     const handle = modal.querySelector(selectorHandle);
     const caja = modal.querySelector(selectorCaja);
@@ -200,11 +200,19 @@ function inicializarCierreArrastrable(idModal, selectorHandle, selectorCaja, fun
             modal.style.opacity = String(Math.max(0, 1 - valor / caja.offsetHeight));
         },
         onCompletar: () => {
-            gsap.set(caja, { y: 0 });
-            modal.style.opacity = '';
+            // Primero disparamos el cierre "canónico" del modal (que ya sabe
+            // cómo animarse/ocultarse): si reseteáramos caja/opacity antes,
+            // se vería un frame de la hoja llena/opaca antes de cerrarse.
             funcionCerrar();
+            gsap.set(caja, { clearProps: 'transform' });
+            modal.style.opacity = '';
         },
-        onCancelar: () => { modal.style.opacity = ''; },
+        onCancelar: () => {
+            modal.style.opacity = '';
+            // clearProps en vez de {y: 0}: así no queda un transform inline
+            // pisando para siempre la animación CSS de abrir/cerrar del modal.
+            gsap.set(caja, { clearProps: 'transform' });
+        },
     });
 }
 
@@ -1316,7 +1324,7 @@ function calcularDestinoGaleria(direccion) {
 let gestoGaleriaInstancia = null;
 
 function inicializarGestoGaleria() {
-    if (esDesktop() || prefiereMenosMovimiento()) return;
+    if (esDesktop() || prefiereMenosMovimiento() || typeof Draggable === 'undefined' || typeof InertiaPlugin === 'undefined') return;
     const grid = document.getElementById('gallery-section');
     const peek = document.getElementById('galeria-swipe-peek');
     const LIMITE = 140, UMBRAL_DISTANCIA = 70, UMBRAL_VELOCIDAD = 500;
@@ -1353,6 +1361,8 @@ function mostrarSeccionGaleria() {
     if (gestoModoInstancia) gestoModoInstancia.disable();
     if (gestoGaleriaInstancia && genActualAbierta && !genActualAbierta.esCompleta && !genActualAbierta.esPendientes) {
         gestoGaleriaInstancia.enable();
+    } else if (gestoGaleriaInstancia) {
+        gestoGaleriaInstancia.disable();
     }
     document.getElementById('generaciones-section-title').style.display = 'none';
     document.getElementById('grid-generaciones').style.display = 'none';
@@ -1754,10 +1764,12 @@ async function ejecutarToggleStatus() {
     }
 }
 
-document.getElementById('detail-close').onclick = () => {
+function cerrarFicha() {
     document.getElementById('detail-modal').classList.remove('open');
     pkSeleccionado = null;
-};
+}
+
+document.getElementById('detail-close').onclick = cerrarFicha;
 
 // Cerrar sugerencias al tocar fuera
 document.addEventListener('pointerdown', (e) => {
@@ -2713,8 +2725,7 @@ window.onload = async () => {
     actualizarBotonesModo();
     inicializarGestoModo();
     inicializarGestoGaleria();
-    inicializarCierreArrastrable('detail-modal', '.detail-handle', '.detail-overlay',
-        () => document.getElementById('detail-modal').classList.remove('open'));
+    inicializarCierreArrastrable('detail-modal', '.detail-handle', '.detail-overlay', cerrarFicha);
     inicializarCierreArrastrable('login-modal', '.login-handle', '.login-box', cerrarLoginModal);
     inicializarCierreArrastrable('ajustes-modal', '.ajustes-handle', '.ajustes-box', cerrarAjustes);
     inicializarCierreArrastrable('pdf-opciones-modal', '.ajustes-handle', '.ajustes-box', cerrarOpcionesPDF);

@@ -1,0 +1,30 @@
+name: CI
+
+"on":
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  chequeo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Chequeo de sintaxis (servidor y cliente)
+        run: |
+          node --check server.js
+          node --check public/app.js
+          node --check public/sw.js
+          node --check public/i18n.js
+          node --check fetch_pokemon.js
+          node --check fetch_variantes.js
+
+      - name: Instalar dependencias
+        run: npm install

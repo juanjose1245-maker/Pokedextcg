@@ -285,7 +285,10 @@
         .gen-bar-fill{height:100%;border-radius:2px;transition:width .4s ease;}
 
         /* ── GALLERY (mobile) ── */
-        .gallery-section{display:none;transition:opacity .2s ease;}
+        .gallery-section{display:none;position:relative;transition:opacity .2s ease;}
+        #galeria-swipe-peek{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+            font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;color:var(--muted);
+            opacity:0;pointer-events:none;z-index:2;white-space:nowrap;}
         #generaciones-section-title, .gen-grid{transition:opacity .2s ease;}
         @media(prefers-reduced-motion:reduce){
             .gallery-section, #generaciones-section-title, .gen-grid{transition:none;}

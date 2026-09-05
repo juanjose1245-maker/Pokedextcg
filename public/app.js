@@ -1294,10 +1294,66 @@ async function descargarRecortablesPDF() {
 // intercambio de display se termina de resolver con un setTimeout.
 const prefiereMenosMovimiento = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Swipe horizontal dentro de una galería abierta (una generación o una
+// carpeta) para pasar a la anterior/siguiente. No aplica en "Pokédex
+// completa" ni en "Por acomodar" (no tienen un "anterior/siguiente" con
+// sentido), ni en desktop, ni si el usuario pidió menos movimiento.
+
+// direccion: -1 = anterior, 1 = siguiente. Devuelve null si no hay destino
+// (extremo de la lista, o la vista actual no es navegable por swipe).
+function calcularDestinoGaleria(direccion) {
+    if (!genActualAbierta || genActualAbierta.esCompleta || genActualAbierta.esPendientes) return null;
+    if (genActualAbierta.esCarpeta) {
+        const idx = carpetas.indexOf(genActualAbierta.carpeta);
+        const destino = carpetas[idx + direccion];
+        return destino ? { tipo: 'carpeta', carpeta: destino } : null;
+    }
+    const gen = genActualAbierta.gen + direccion;
+    if (gen < 1 || gen > 9) return null;
+    return { tipo: 'gen', gen, region: regiones[gen - 1] };
+}
+
+let gestoGaleriaInstancia = null;
+
+function inicializarGestoGaleria() {
+    if (esDesktop() || prefiereMenosMovimiento()) return;
+    const grid = document.getElementById('gallery-section');
+    const peek = document.getElementById('galeria-swipe-peek');
+    const LIMITE = 140, UMBRAL_DISTANCIA = 70, UMBRAL_VELOCIDAD = 500;
+    gestoGaleriaInstancia = crearGestoDeslizable(grid, {
+        eje: 'x',
+        limiteMin: -LIMITE, limiteMax: LIMITE,
+        umbralDistancia: UMBRAL_DISTANCIA, umbralVelocidad: UMBRAL_VELOCIDAD,
+        valorCompletarPositivo: LIMITE, valorCompletarNegativo: -LIMITE,
+        onProgreso: (valor) => {
+            const destino = calcularDestinoGaleria(valor > 0 ? -1 : 1);
+            peek.textContent = destino ? (destino.tipo === 'gen' ? destino.region : destino.carpeta.nombre) : '';
+            peek.style.opacity = destino ? String(Math.min(1, Math.abs(valor) / LIMITE)) : '0';
+        },
+        decidir: (valor) => {
+            const destino = calcularDestinoGaleria(valor > 0 ? -1 : 1);
+            if (!destino) return 'cancelar';
+            return valor > 0 ? 'positivo' : 'negativo';
+        },
+        onCompletar: (direccion) => {
+            gsap.set(grid, { x: 0 });
+            peek.style.opacity = '0';
+            const destino = calcularDestinoGaleria(direccion === 'positivo' ? -1 : 1);
+            if (destino.tipo === 'gen') verListadoGeneracion(destino.gen, destino.region);
+            else verCarpeta(destino.carpeta);
+        },
+        onCancelar: () => { peek.style.opacity = '0'; },
+    });
+    gestoGaleriaInstancia.disable(); // se habilita en mostrarSeccionGaleria() solo si aplica
+}
+
 // Cruza del grid de generaciones a la galería (y viceversa, ver
 // ocultarSeccionGaleria) con un fade en vez del corte seco de antes.
 function mostrarSeccionGaleria() {
     if (gestoModoInstancia) gestoModoInstancia.disable();
+    if (gestoGaleriaInstancia && genActualAbierta && !genActualAbierta.esCompleta && !genActualAbierta.esPendientes) {
+        gestoGaleriaInstancia.enable();
+    }
     document.getElementById('generaciones-section-title').style.display = 'none';
     document.getElementById('grid-generaciones').style.display = 'none';
     const galeria = document.getElementById('gallery-section');
@@ -1307,6 +1363,7 @@ function mostrarSeccionGaleria() {
 }
 function ocultarSeccionGaleria() {
     if (gestoModoInstancia) gestoModoInstancia.enable();
+    if (gestoGaleriaInstancia) gestoGaleriaInstancia.disable();
     const galeria = document.getElementById('gallery-section');
     const titulo  = document.getElementById('generaciones-section-title');
     const grid    = document.getElementById('grid-generaciones');
@@ -2655,6 +2712,7 @@ window.onload = async () => {
     aplicarModoVista();
     actualizarBotonesModo();
     inicializarGestoModo();
+    inicializarGestoGaleria();
     inicializarCierreArrastrable('detail-modal', '.detail-handle', '.detail-overlay',
         () => document.getElementById('detail-modal').classList.remove('open'));
     inicializarCierreArrastrable('login-modal', '.login-handle', '.login-box', cerrarLoginModal);

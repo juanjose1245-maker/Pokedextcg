@@ -106,6 +106,15 @@ if (typeof gsap !== 'undefined' && typeof Draggable !== 'undefined' && typeof In
     gsap.registerPlugin(Draggable, InertiaPlugin);
 }
 
+// Vibración corta al cruzar el umbral de "esto ya se va a completar" — el
+// mismo truco que usan la mayoría de apps nativas en Android para reforzar
+// el momento exacto en que el gesto "prende" (en iOS Safari no existe la
+// API, navigator.vibrate es undefined ahí: no pasa nada, sigue andando sin
+// vibrar).
+function vibrarSiHaySoporte(ms) {
+    if (navigator.vibrate) navigator.vibrate(ms);
+}
+
 // Wrapper sobre GSAP Draggable: trackea un arrastre en un eje, decide si
 // se "completó" (pasó el umbral de distancia o de velocidad de suelta) y
 // anima el settle final (hasta el destino o de vuelta al origen) antes de
@@ -119,11 +128,18 @@ function crearGestoDeslizable(elemento, opciones) {
         duracionSettle = 0.3, trigger,
         onProgreso = () => {}, decidir,
         onCompletar = () => {}, onCancelar = () => {},
+        onPresionar = () => {},
     } = opciones;
     const bounds = eje === 'x' ? { minX: limiteMin, maxX: limiteMax } : { minY: limiteMin, maxY: limiteMax };
+    let vibroEnEstaVuelta = false;
     const config = {
         type: eje,
         bounds,
+        // Un poco de resistencia al llegar al límite físico del arrastre:
+        // sin esto, tocar el borde se siente como chocar contra una pared
+        // dura. No confundir con el "no hay destino de este lado" de la
+        // galería (eso se maneja aparte, recalculando bounds en onPress).
+        edgeResistance: 0.65,
         // GSAP sube el z-index del elemento arrastrado a 1000+ por defecto
         // (zIndexBoost) pensado para reordenar tarjetas con drag-and-drop.
         // Acá no reordenamos nada, y como #main-view-content/#gallery-section
@@ -131,7 +147,15 @@ function crearGestoDeslizable(elemento, opciones) {
         // dejaba para siempre por encima de modales con z-index menor (ej.
         // la ficha, z-index:600) sin forma de tocarlos.
         zIndexBoost: false,
-        onDrag: function () { onProgreso(this[eje]); },
+        onPress: function () { vibroEnEstaVuelta = false; onPresionar(this); },
+        onDrag: function () {
+            const valor = this[eje];
+            if (!vibroEnEstaVuelta && Math.abs(valor) > umbralDistancia) {
+                vibroEnEstaVuelta = true;
+                vibrarSiHaySoporte(15);
+            }
+            onProgreso(valor);
+        },
         onDragEnd: function () {
             const valor = this[eje];
             const velocidad = InertiaPlugin.getVelocity(this.target, eje);
@@ -141,10 +165,14 @@ function crearGestoDeslizable(elemento, opciones) {
             }
             const destino = resultado === 'positivo' ? valorCompletarPositivo
                 : resultado === 'negativo' ? valorCompletarNegativo : 0;
+            // Al cancelar, un poco de rebote elástico (como si el material
+            // volviera solo a su lugar); al completar, un ease liso — ahí
+            // el elemento se va de la vista o dispara otra animación propia,
+            // rebotar justo antes se vería como un tirón.
             gsap.to(elemento, {
                 [eje]: destino,
-                duration: duracionSettle,
-                ease: 'power2.out',
+                duration: resultado === 'cancelar' ? duracionSettle * 1.6 : duracionSettle,
+                ease: resultado === 'cancelar' ? 'elastic.out(1, 0.75)' : 'power2.out',
                 onComplete: () => resultado === 'cancelar' ? onCancelar() : onCompletar(resultado),
             });
         },
@@ -162,6 +190,8 @@ function inicializarGestoModo() {
     if (esDesktop() || prefiereMenosMovimiento() || typeof Draggable === 'undefined' || typeof InertiaPlugin === 'undefined') return;
     const contenido = document.getElementById('main-view-content');
     const peek = document.getElementById('modo-swipe-peek');
+    const peekIcon = document.getElementById('modo-swipe-icon');
+    const peekLabel = document.getElementById('modo-swipe-label');
     const LIMITE = 140, UMBRAL_DISTANCIA = 70, UMBRAL_VELOCIDAD = 500;
     gestoModoInstancia = crearGestoDeslizable(contenido, {
         eje: 'x',
@@ -171,6 +201,8 @@ function inicializarGestoModo() {
         onProgreso: (valor) => {
             const otro = modoActual === 'bulk' ? 'carpetas' : 'bulk';
             peek.style.background = otro === 'bulk' ? 'var(--accent)' : 'var(--accent2)';
+            peekIcon.textContent = otro === 'bulk' ? '📦' : '📁';
+            peekLabel.textContent = otro === 'bulk' ? t('modo.bulk') : t('modo.carpetas');
             peek.style.opacity = String(Math.min(1, Math.abs(valor) / LIMITE));
         },
         decidir: (valor) => valor > 0 ? 'positivo' : 'negativo',
@@ -188,16 +220,22 @@ function inicializarGestoModo() {
 // llamando a la función de cierre que ya usa ese modal; un arrastre corto
 // vuelve a su lugar sin cerrar nada. Igual que el resto de los gestos, no
 // aplica en desktop ni si el usuario pidió menos movimiento.
+//
+// selectorHandle puede ser null: eso significa "arrastrar desde cualquier
+// parte de la tarjeta", para modales sin contenido scrolleable adentro (la
+// ficha del Pokémon). Draggable ya excluye por defecto los elementos
+// clickeables (botones, links) de iniciar un arrastre, así que los botones
+// de esa tarjeta (cerrar, marcar estado) siguen funcionando con un tap normal.
 function inicializarCierreArrastrable(idModal, selectorHandle, selectorCaja, funcionCerrar) {
     if (esDesktop() || prefiereMenosMovimiento() || typeof Draggable === 'undefined' || typeof InertiaPlugin === 'undefined') return;
     const modal = document.getElementById(idModal);
-    const handle = modal.querySelector(selectorHandle);
+    const handle = selectorHandle ? modal.querySelector(selectorHandle) : null;
     const caja = modal.querySelector(selectorCaja);
-    if (!handle || !caja) return;
+    if ((selectorHandle && !handle) || !caja) return;
     const UMBRAL_DISTANCIA = 90, UMBRAL_VELOCIDAD = 500;
     crearGestoDeslizable(caja, {
         eje: 'y',
-        trigger: handle,
+        trigger: handle || undefined,
         limiteMin: 0, limiteMax: window.innerHeight,
         umbralDistancia: UMBRAL_DISTANCIA, umbralVelocidad: UMBRAL_VELOCIDAD,
         valorCompletarPositivo: window.innerHeight,
@@ -220,6 +258,20 @@ function inicializarCierreArrastrable(idModal, selectorHandle, selectorCaja, fun
             // pisando para siempre la animación CSS de abrir/cerrar del modal.
             gsap.set(caja, { clearProps: 'transform' });
         },
+    });
+}
+
+// Cerrar tocando el fondo oscuro de un modal — patrón casi universal en
+// overlays modernos. A diferencia de los gestos de arrastre, esto no
+// depende de GSAP ni se desactiva en desktop/reduced-motion: es un simple
+// click en el fondo (nunca en la tarjeta de adentro, gracias al chequeo
+// e.target === modal, que solo es cierto si el click cayó justo en el
+// backdrop y no burbujeó desde un hijo).
+function inicializarCierreTocandoFondo(idModal, funcionCerrar) {
+    const modal = document.getElementById(idModal);
+    if (!modal) return;
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) funcionCerrar();
     });
 }
 
@@ -1330,20 +1382,65 @@ function calcularDestinoGaleria(direccion) {
 
 let gestoGaleriaInstancia = null;
 
+// Trae una generación en segundo plano para tenerla lista en cachePokemon
+// si el usuario termina deslizando hasta ahí (ver onPresionar más abajo).
+// A diferencia de fetchGenSegura(), no muestra un toast de error si falla
+// (es una precarga oportunista, no una carga que el usuario pidió).
+function precargarGenSiHaceFalta(gen) {
+    if (cachePokemon[gen]) return;
+    fetch(`/api/buscar?gen=${gen}`)
+        .then(res => res.ok ? res.json() : null)
+        .then(datos => { if (datos) cachePokemon[gen] = datos; })
+        .catch(() => {});
+}
+
+// Pinta hasta 4 sprites reales de la generación destino en el peek, si ya
+// están precargados (ver precargarGenSiHaceFalta). Si todavía no llegaron
+// (conexión lenta, o el usuario deslizó más rápido de lo que tardó el
+// fetch), no hay nada que mostrar ahí y el peek se apoya solo en el texto.
+function pintarSpritesPeekGaleria(contenedor, destino) {
+    if (!destino || destino.tipo !== 'gen' || !cachePokemon[destino.gen]) {
+        contenedor.innerHTML = '';
+        return;
+    }
+    contenedor.innerHTML = cachePokemon[destino.gen].slice(0, 4)
+        .map(p => `<img src="${p.image}" alt="">`).join('');
+}
+
 function inicializarGestoGaleria() {
     if (esDesktop() || prefiereMenosMovimiento() || typeof Draggable === 'undefined' || typeof InertiaPlugin === 'undefined') return;
     const grid = document.getElementById('gallery-section');
     const peek = document.getElementById('galeria-swipe-peek');
-    const LIMITE = 140, UMBRAL_DISTANCIA = 70, UMBRAL_VELOCIDAD = 500;
+    const peekSprites = document.getElementById('galeria-swipe-sprites');
+    const peekLabel = document.getElementById('galeria-swipe-label');
+    const LIMITE = 140, LIMITE_SIN_DESTINO = 40, UMBRAL_DISTANCIA = 70, UMBRAL_VELOCIDAD = 500;
     gestoGaleriaInstancia = crearGestoDeslizable(grid, {
         eje: 'x',
         limiteMin: -LIMITE, limiteMax: LIMITE,
         umbralDistancia: UMBRAL_DISTANCIA, umbralVelocidad: UMBRAL_VELOCIDAD,
         valorCompletarPositivo: LIMITE, valorCompletarNegativo: -LIMITE,
+        // Al apretar (antes de mover nada): si de un lado no hay a dónde ir,
+        // le achicamos el límite de arrastre a ese lado nomás — combinado
+        // con el edgeResistance del helper compartido, se siente como una
+        // "pared blanda" en vez de deslizar toda la distancia para terminar
+        // rebotando igual. De paso, si hay destino de tipo generación,
+        // la precargamos por si el usuario efectivamente completa el swipe.
+        onPresionar: (instancia) => {
+            const anterior = calcularDestinoGaleria(-1);
+            const siguiente = calcularDestinoGaleria(1);
+            instancia.applyBounds({
+                minX: siguiente ? -LIMITE : -LIMITE_SIN_DESTINO,
+                maxX: anterior ? LIMITE : LIMITE_SIN_DESTINO,
+            });
+            if (anterior && anterior.tipo === 'gen') precargarGenSiHaceFalta(anterior.gen);
+            if (siguiente && siguiente.tipo === 'gen') precargarGenSiHaceFalta(siguiente.gen);
+        },
         onProgreso: (valor) => {
             const destino = calcularDestinoGaleria(valor > 0 ? -1 : 1);
-            peek.textContent = destino ? (destino.tipo === 'gen' ? destino.region : destino.carpeta.nombre) : '';
-            peek.style.opacity = destino ? String(Math.min(1, Math.abs(valor) / LIMITE)) : '0';
+            peekLabel.textContent = destino ? (destino.tipo === 'gen' ? destino.region : destino.carpeta.nombre) : '';
+            pintarSpritesPeekGaleria(peekSprites, destino);
+            const limiteEfectivo = destino ? LIMITE : LIMITE_SIN_DESTINO;
+            peek.style.opacity = destino ? String(Math.min(1, Math.abs(valor) / limiteEfectivo)) : '0';
         },
         decidir: (valor) => {
             const destino = calcularDestinoGaleria(valor > 0 ? -1 : 1);
@@ -2732,13 +2829,23 @@ window.onload = async () => {
     actualizarBotonesModo();
     inicializarGestoModo();
     inicializarGestoGaleria();
-    inicializarCierreArrastrable('detail-modal', '.detail-handle', '.detail-overlay', cerrarFicha);
+    // detail-modal: null = arrastrar desde cualquier parte de la tarjeta
+    // (no tiene contenido scrolleable con el que competir, a diferencia de
+    // ajustes y sus paneles). El resto sigue restringido al handle.
+    inicializarCierreArrastrable('detail-modal', null, '.detail-overlay', cerrarFicha);
     inicializarCierreArrastrable('login-modal', '.login-handle', '.login-box', cerrarLoginModal);
     inicializarCierreArrastrable('ajustes-modal', '.ajustes-handle', '.ajustes-box', cerrarAjustes);
     inicializarCierreArrastrable('pdf-opciones-modal', '.ajustes-handle', '.ajustes-box', cerrarOpcionesPDF);
     inicializarCierreArrastrable('variantes-modal', '.ajustes-handle', '.ajustes-box', cerrarPanelVariantes);
     inicializarCierreArrastrable('respaldos-modal', '.ajustes-handle', '.ajustes-box', cerrarPanelRespaldos);
     inicializarCierreArrastrable('wizard-carpetas-modal', '.ajustes-handle', '.ajustes-box', cerrarWizardCarpetas);
+    inicializarCierreTocandoFondo('detail-modal', cerrarFicha);
+    inicializarCierreTocandoFondo('login-modal', cerrarLoginModal);
+    inicializarCierreTocandoFondo('ajustes-modal', cerrarAjustes);
+    inicializarCierreTocandoFondo('pdf-opciones-modal', cerrarOpcionesPDF);
+    inicializarCierreTocandoFondo('variantes-modal', cerrarPanelVariantes);
+    inicializarCierreTocandoFondo('respaldos-modal', cerrarPanelRespaldos);
+    inicializarCierreTocandoFondo('wizard-carpetas-modal', cerrarWizardCarpetas);
     revisarSesion();
     await cargarCarpetasConfig();
     await cargarEstadisticas();

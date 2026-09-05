@@ -222,7 +222,10 @@
 
         /* ── SWIPE DE MODO (Bulk ↔ Carpetas) ── */
         #modo-swipe-wrap{position:relative;}
-        #modo-swipe-peek{position:absolute;inset:0;z-index:0;opacity:0;transition:opacity .1s linear;}
+        #modo-swipe-peek{position:absolute;inset:0;z-index:0;opacity:0;transition:opacity .1s linear;
+            display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
+        #modo-swipe-icon{font-size:40px;line-height:1;}
+        #modo-swipe-label{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#fff;}
         #main-view-content{position:relative;z-index:1;background:var(--bg);}
         @media(min-width:768px){#modo-swipe-peek{display:none;}} /* el gesto no existe en desktop */
 
@@ -287,8 +290,11 @@
         /* ── GALLERY (mobile) ── */
         .gallery-section{display:none;position:relative;transition:opacity .2s ease;}
         #galeria-swipe-peek{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+            display:flex;flex-direction:column;align-items:center;gap:8px;
             font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;color:var(--muted);
             opacity:0;pointer-events:none;z-index:2;white-space:nowrap;}
+        #galeria-swipe-sprites{display:flex;gap:4px;}
+        #galeria-swipe-sprites img{width:36px;height:36px;object-fit:contain;filter:drop-shadow(0 2px 4px var(--shadow));}
         #generaciones-section-title, .gen-grid{transition:opacity .2s ease;}
         @media(prefers-reduced-motion:reduce){
             .gallery-section, #generaciones-section-title, .gen-grid{transition:none;}
@@ -411,7 +417,11 @@
         /* Falta: el marco queda en contorno punteado — como un bolsillo vacío
            de la carpeta — en vez del color de tipo a pleno. */
         .detail-overlay.missing{border-top-style:dashed;}
-        .detail-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px;}
+        /* La barra visible sigue siendo 36x4 (background-clip:content-box la
+           deja pintada solo ahí), pero el padding agranda el área táctil
+           real a ~84x30 — bien por debajo del recuadro de 44x44 recomendado
+           por Apple/Material, pero mucho más agarrable que 36x4. */
+        .detail-handle{width:36px;height:4px;background:var(--border);background-clip:content-box;border-radius:2px;margin:0 auto 4px;padding:12px 24px 14px;box-sizing:content-box;touch-action:none;}
         .detail-close{position:absolute;top:20px;right:18px;font-size:20px;color:var(--muted);cursor:pointer;padding:4px;}
 
         .detail-header-plate{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;row-gap:4px;gap:8px;margin-bottom:10px;}
@@ -502,7 +512,7 @@
         }
         .login-modal.open .login-box{transform:translateY(0);}
         @media(prefers-reduced-motion:reduce){.login-box{transition:none;}}
-        .login-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 18px;}
+        .login-handle{width:36px;height:4px;background:var(--border);background-clip:content-box;border-radius:2px;margin:0 auto 6px;padding:12px 24px 14px;box-sizing:content-box;touch-action:none;}
         .login-close{position:absolute;top:16px;right:18px;font-size:20px;color:var(--muted);cursor:pointer;padding:4px;}
         .login-icon-circle{
             width:56px;height:56px;margin:0 auto 14px;border-radius:50%;
@@ -570,7 +580,7 @@
         .ajustes-modal.open .ajustes-box{transform:translateY(0);}
         @media(prefers-reduced-motion:reduce){.ajustes-box{transition:none;}}
         .ajustes-scroll{overflow-y:auto;min-height:0;}
-        .ajustes-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 14px;flex-shrink:0;}
+        .ajustes-handle{width:36px;height:4px;background:var(--border);background-clip:content-box;border-radius:2px;margin:0 auto 2px;padding:12px 24px 14px;box-sizing:content-box;flex-shrink:0;touch-action:none;}
         .ajustes-close{position:absolute;top:16px;right:18px;font-size:20px;color:var(--muted);cursor:pointer;padding:4px;}
         .ajustes-title{font-family:'Rajdhani',sans-serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:14px;text-align:center;flex-shrink:0;}
         .ajustes-secciones{display:flex;flex-direction:column;gap:8px;}

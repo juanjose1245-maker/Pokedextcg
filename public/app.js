@@ -1213,7 +1213,7 @@ async function verListadoGeneracion(gen, region) {
     renderSidebar();
     if (!esDesktop()) {
         mostrarSeccionGaleria();
-        document.getElementById('sugerencias').style.display = 'none';
+        document.getElementById('sugerencias').classList.remove('visible');
         mostrarFAB();
         document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
     }
@@ -1596,7 +1596,7 @@ document.addEventListener('pointerdown', (e) => {
     const inp = document.getElementById('search-input');
     const inpD = document.getElementById('search-input-desktop');
     if (!sug.contains(e.target) && e.target !== inp && e.target !== inpD)
-        sug.style.display = 'none';
+        sug.classList.remove('visible');
 });
 
 // ── BUSCADOR ─────────────────────────────────────────────────────
@@ -1628,7 +1628,7 @@ function handleSearchInput(e, inputEl) {
     const val = e.target.value;
     cursorEsperado  = inputEl.selectionStart;
     guardandoCursor = false;
-    if (val.length < 2) { sugBox.style.display = 'none'; clearTimeout(searchTimer); return; }
+    if (val.length < 2) { sugBox.classList.remove('visible'); clearTimeout(searchTimer); return; }
     clearSearchTimer();
     searchTimer = setTimeout(async () => {
         if (searchAbortController) searchAbortController.abort();
@@ -1640,11 +1640,11 @@ function handleSearchInput(e, inputEl) {
             data = await res.json();
         } catch(err) {
             if (err.name === 'AbortError') return;
-            sugBox.style.display = 'none';
+            sugBox.classList.remove('visible');
             return;
         }
         if (miController !== searchAbortController) return;
-        if (!data.length) { sugBox.style.display = 'none'; return; }
+        if (!data.length) { sugBox.classList.remove('visible'); return; }
         const frag = document.createDocumentFragment();
         data.forEach(p => {
             const { ancla, numR, region: rName } = numeroRegionalCliente(p);
@@ -1664,11 +1664,11 @@ function handleSearchInput(e, inputEl) {
             item.addEventListener('touchend', () => {
                 inputEl.readOnly = true; inputEl.blur();
                 setTimeout(() => { inputEl.readOnly = false; }, 100);
-                inputEl.value = ''; sugBox.style.display = 'none';
+                inputEl.value = ''; sugBox.classList.remove('visible');
                 mostrarFicha(p);
             });
             item.addEventListener('click', () => {
-                inputEl.value = ''; sugBox.style.display = 'none';
+                inputEl.value = ''; sugBox.classList.remove('visible');
                 document.activeElement.blur();
                 setTimeout(() => mostrarFicha(p), 150);
             });
@@ -1676,7 +1676,7 @@ function handleSearchInput(e, inputEl) {
         });
         posicionarSugerencias(inputEl);
         sugBox.replaceChildren(frag);
-        sugBox.style.display = 'block';
+        sugBox.classList.add('visible');
         guardandoCursor = true;
         setTimeout(() => { guardandoCursor = false; }, 500);
     }, 300);
@@ -2075,10 +2075,25 @@ function cerrarWizardCarpetas() {
 }
 document.getElementById('wizard-carpetas-close').onclick = cerrarWizardCarpetas;
 
+const PASOS_WIZARD = ['variantes','modo','formato','cantidad','capacidad','ajuste','nombres'];
 function wizardMostrarPaso(paso) {
-    ['variantes','modo','formato','cantidad','capacidad','ajuste','nombres'].forEach(p => {
-        document.getElementById(`wizard-paso-${p}`).style.display = (p === paso) ? '' : 'none';
-    });
+    const cambiar = () => {
+        PASOS_WIZARD.forEach(p => {
+            document.getElementById(`wizard-paso-${p}`).style.display = (p === paso) ? '' : 'none';
+        });
+    };
+    const actual = PASOS_WIZARD.find(p => document.getElementById(`wizard-paso-${p}`).style.display !== 'none');
+    // Sin paso previo visible (primera apertura del wizard) o sin movimiento
+    // reducido: cambiar directo, no hay nada de qué hacer fade.
+    if (!actual || actual === paso || prefiereMenosMovimiento()) { cambiar(); return; }
+    const cajaActual = document.getElementById(`wizard-paso-${actual}`);
+    cajaActual.style.opacity = '0';
+    setTimeout(() => {
+        cambiar();
+        const cajaNueva = document.getElementById(`wizard-paso-${paso}`);
+        cajaNueva.style.opacity = '0';
+        requestAnimationFrame(() => { cajaNueva.style.opacity = ''; });
+    }, 150);
 }
 
 function wizardElegirModo(modo) {

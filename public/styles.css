@@ -173,9 +173,15 @@
         .brand-title{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);}
         .header-actions{display:flex;align-items:center;gap:6px;margin-left:auto;}
         .brand-count{font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:var(--muted);letter-spacing:0.05em;}
-        .header-icon-btn{width:34px;height:34px;border-radius:10px;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:background .15s,transform .15s;flex-shrink:0;position:relative;}
+        .header-icon-btn{width:34px;height:34px;border-radius:10px;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--text);cursor:pointer;transition:background .15s,transform .15s,opacity .15s;flex-shrink:0;position:relative;}
         .header-icon-btn:active{transform:scale(0.9);}
         .header-icon-btn.cam-active{background:var(--danger);border-color:var(--danger);}
+        .header-icon-btn .icon{width:17px;height:17px;flex-shrink:0;}
+        /* Ajustes es la acción menos frecuente de las 3 (métricas y "por
+           acomodar" son flujo de uso normal) — un poco más discreta en vez
+           de las 3 iguales, ver recomendación de revisión de diseño. */
+        .header-icon-btn-quiet{background:transparent;border-color:transparent;opacity:.6;}
+        .header-icon-btn-quiet:active{opacity:1;}
 
         /* Pantallas angostas (iPhone SE, Android chicos, y anchos "de en medio"
            como 393px de iPhone 14/15/16 y Pixel 5/7a): la fila de marca
@@ -187,14 +193,16 @@
             .brand-row{gap:6px;}
             .brand-title{font-size:14px;}
             .header-actions{gap:4px;}
-            .header-icon-btn{width:30px;height:30px;font-size:14px;}
+            .header-icon-btn{width:30px;height:30px;}
+            .header-icon-btn .icon{width:15px;height:15px;}
         }
 
         /* Anchos muy angostos (~343px o menos): incluso compacto, el badge
            de modo (CARPETAS/BULK) ya no entra junto a los 4 botones. */
         @media(max-width:343px){
             #modo-badge-mobile{display:none;}
-            .header-icon-btn{width:28px;height:28px;font-size:13px;}
+            .header-icon-btn{width:28px;height:28px;}
+            .header-icon-btn .icon{width:14px;height:14px;}
         }
 
         /* ── SEARCH ── */
@@ -230,7 +238,16 @@
         @media(min-width:768px){#modo-swipe-peek{display:none;}} /* el gesto no existe en desktop */
 
         /* ── PROGRESS CARD ── */
-        .progress-card{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--modo-color);border-radius:var(--radius);padding:16px;margin-bottom:16px;position:relative;overflow:hidden;cursor:pointer;transition:transform .15s,border-color .3s ease;}
+        /* Fija (sticky) debajo del header mientras se scrollea la grilla de
+           cartas, junto con #gallery-sticky-controls (ver más abajo). El
+           offset (--h-sticky-header) lo calcula inicializarOffsetsSticky()
+           en app.js con un ResizeObserver, porque la altura real del header
+           varía según idioma/ancho de pantalla. El padding (en vez del
+           margin que tenía antes .progress-card) evita que, al estar ambos
+           elementos "pegados", se vea un hilo de la grilla scrolleando por
+           el hueco transparente que dejaría un margin entre ellos. */
+        .progress-card-sticky-wrap{position:sticky;top:var(--h-sticky-header,0px);z-index:150;background:var(--bg);padding-top:12px;padding-bottom:16px;}
+        .progress-card{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--modo-color);border-radius:var(--radius);padding:16px;position:relative;overflow:hidden;cursor:pointer;transition:transform .15s,border-color .3s ease;}
         .progress-card:active{transform:scale(0.98);}
         .progress-top-row{display:flex;align-items:center;justify-content:space-between;}
         .progress-label{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
@@ -265,6 +282,9 @@
         .vista-icon-chico{width:6px;height:6px;}
         .vista-icon-normal{width:10px;height:10px;}
         .vista-icon-grande{width:15px;height:15px;}
+        /* Fija junto con .progress-card-sticky-wrap, ver comentario ahí.
+           El offset apila debajo de la progress card (header + progress). */
+        .gallery-sticky-controls{position:sticky;top:var(--h-sticky-progress,0px);z-index:140;background:var(--bg);}
         .gallery-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
         .gallery-controls-mobile{display:flex;gap:8px;align-items:center;margin-bottom:12px;}
         .gallery-controls-mobile .gallery-filter{flex:1;min-width:0;margin-bottom:0;}
@@ -797,6 +817,8 @@
             #gallery-filter-mobile{display:none !important;}
             #gallery-grid-mobile-wrap{display:none !important;}
             .gallery-controls-mobile{display:none !important;}
+            .gallery-sticky-controls{position:static;background:none;}
+            .progress-card-sticky-wrap{position:static;background:none;}
 
             /* ── PK CARD DESKTOP ── */
             .pk-card{

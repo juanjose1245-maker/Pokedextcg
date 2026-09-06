@@ -5,24 +5,24 @@ const coloresGen = ["#3b5bdb","#3b5bdb","#7c3aed","#7c3aed","#db2777","#db2777",
 // cualquier fan reconoce), usada en la ficha de detalle a modo de "carta
 // física": el tipo primario define el color del marco.
 const tiposInfo = {
-    normal:   { color:'#9CA88C', label:t('tipo.normal'),   emoji:'⚪' },
-    fire:     { color:'#EE7B2C', label:t('tipo.fuego'),    emoji:'🔥' },
-    water:    { color:'#4F8EF7', label:t('tipo.agua'),     emoji:'💧' },
-    grass:    { color:'#5FBB4E', label:t('tipo.planta'),   emoji:'🌿' },
-    electric: { color:'#F4C623', label:t('tipo.electrico'),emoji:'⚡' },
-    ice:      { color:'#78D6D1', label:t('tipo.hielo'),    emoji:'❄️' },
-    fighting: { color:'#C0392B', label:t('tipo.lucha'),    emoji:'🥊' },
-    poison:   { color:'#9B4F96', label:t('tipo.veneno'),   emoji:'☠️' },
-    ground:   { color:'#D4A85A', label:t('tipo.tierra'),   emoji:'🌎' },
-    flying:   { color:'#94A6E8', label:t('tipo.volador'),  emoji:'🪽' },
-    psychic:  { color:'#F0568C', label:t('tipo.psiquico'), emoji:'🔮' },
-    bug:      { color:'#9DB82C', label:t('tipo.bicho'),    emoji:'🐛' },
-    rock:     { color:'#B7A03C', label:t('tipo.roca'),     emoji:'🪨' },
-    ghost:    { color:'#6C5B9E', label:t('tipo.fantasma'), emoji:'👻' },
-    dragon:   { color:'#6F4CDB', label:t('tipo.dragon'),   emoji:'🐉' },
-    dark:     { color:'#5E4B3C', label:t('tipo.oscuro'),   emoji:'🌙' },
-    steel:    { color:'#9AA3B0', label:t('tipo.acero'),    emoji:'⚙️' },
-    fairy:    { color:'#E893AE', label:t('tipo.hada'),     emoji:'✨' },
+    normal:   { color:'#9CA88C', label:t('tipo.normal') },
+    fire:     { color:'#EE7B2C', label:t('tipo.fuego') },
+    water:    { color:'#4F8EF7', label:t('tipo.agua') },
+    grass:    { color:'#5FBB4E', label:t('tipo.planta') },
+    electric: { color:'#F4C623', label:t('tipo.electrico') },
+    ice:      { color:'#78D6D1', label:t('tipo.hielo') },
+    fighting: { color:'#C0392B', label:t('tipo.lucha') },
+    poison:   { color:'#9B4F96', label:t('tipo.veneno') },
+    ground:   { color:'#D4A85A', label:t('tipo.tierra') },
+    flying:   { color:'#94A6E8', label:t('tipo.volador') },
+    psychic:  { color:'#F0568C', label:t('tipo.psiquico') },
+    bug:      { color:'#9DB82C', label:t('tipo.bicho') },
+    rock:     { color:'#B7A03C', label:t('tipo.roca') },
+    ghost:    { color:'#6C5B9E', label:t('tipo.fantasma') },
+    dragon:   { color:'#6F4CDB', label:t('tipo.dragon') },
+    dark:     { color:'#5E4B3C', label:t('tipo.oscuro') },
+    steel:    { color:'#9AA3B0', label:t('tipo.acero') },
+    fairy:    { color:'#E893AE', label:t('tipo.hada') },
 };
 function infoTipo(t) { return tiposInfo[t] || tiposInfo.normal; }
 const coloresBg  = ["rgba(59,91,219,0.16)","rgba(59,91,219,0.16)","rgba(124,58,237,0.16)","rgba(124,58,237,0.16)",
@@ -97,6 +97,28 @@ const CATEGORIA_INFO = {
     gigamax:     { label: t('categoria.gigamax'),    color: '#db2777' },
     alternativa: { label: t('categoria.alternativa'),color: '#d97706' },
 };
+
+// ── LAYOUT: HEADER/PROGRESO/FILTROS FIJOS AL SCROLLEAR ─────────────
+// .progress-card-sticky-wrap y .gallery-sticky-controls (mobile, ver
+// index.html/styles.css) se apilan con position:sticky debajo del
+// .sticky-header. El offset de cada uno depende de la altura real de lo
+// que tiene arriba (varía por idioma, ancho de pantalla, o contenido
+// dinámico como el jalón de logro en la progress card), así que se mide
+// con ResizeObserver en vez de hardcodear valores en CSS.
+function inicializarOffsetsSticky() {
+    const header = document.querySelector('.sticky-header');
+    const progressWrap = document.getElementById('progress-card-sticky-wrap');
+    if (!header || !progressWrap) return;
+    const raiz = document.documentElement;
+    const actualizar = () => {
+        const hHeader = header.offsetHeight;
+        raiz.style.setProperty('--h-sticky-header', hHeader + 'px');
+        raiz.style.setProperty('--h-sticky-progress', (hHeader + progressWrap.offsetHeight) + 'px');
+    };
+    actualizar();
+    new ResizeObserver(actualizar).observe(header);
+    new ResizeObserver(actualizar).observe(progressWrap);
+}
 
 // ── GESTOS ───────────────────────────────────────────────────────
 // GSAP Draggable + InertiaPlugin, vendorizados en public/vendor/gsap/
@@ -359,6 +381,13 @@ function aplicarTema() {
     const etiquetas = { auto: t('ajustes.temaAuto'), light: t('ajustes.temaClaro'), dark: t('ajustes.temaOscuro') };
     const sub = document.getElementById('btn-tema-ajustes-sub');
     if (sub) sub.textContent = etiquetas[temaActual];
+    // Barra de estado del navegador (Safari/Chrome mobile sin instalar como
+    // PWA): sin esto queda gris fijo en vez de seguir el tema, ver CLAUDE.md.
+    const metaTheme = document.getElementById('meta-theme-color');
+    if (metaTheme) {
+        const oscuro = temaActual === 'dark' || (temaActual === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        metaTheme.setAttribute('content', oscuro ? '#16181b' : '#f1f1ee');
+    }
 }
 
 function toggleTema() {
@@ -366,6 +395,12 @@ function toggleTema() {
     localStorage.setItem('temaPreferido', temaActual);
     aplicarTema();
 }
+
+// Con tema 'auto', si cambia el tema del sistema mientras la app está
+// abierta, la barra de estado tiene que seguirlo sin esperar a un reload.
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (temaActual === 'auto') aplicarTema();
+});
 
 // ── IDIOMA: aplica el diccionario de i18n.js a todo el texto estático ──
 function aplicarIdioma() {
@@ -1585,7 +1620,7 @@ function renderGaleria(pkms, mantenerScroll, forzarEstado, esVistaPendientes) {
         const tiposPk   = p.types && p.types.length ? p.types : ['normal'];
         const pillsHTML = tiposPk.map(t => {
             const info = infoTipo(t);
-            return `<span class="tipo-pill-mini" style="background:${hexToRgba(info.color,0.16)};color:${info.color};">${info.emoji} ${info.label}</span>`;
+            return `<span class="tipo-pill-mini" style="background:${hexToRgba(info.color,0.16)};color:${info.color};">${info.label}</span>`;
         }).join('');
         const fechaTxt = tiene ? getFechaRegistro(p.id) : null;
 
@@ -1760,7 +1795,7 @@ function mostrarFicha(p, esPendientes) {
     overlay.classList.toggle('missing', !tieneVisual);
     document.getElementById('pk-tipos').innerHTML = tipos.map(t => {
         const info = infoTipo(t);
-        return `<span class="tipo-pill" style="background:${hexToRgba(info.color,0.16)};color:${info.color};">${info.emoji} ${info.label}</span>`;
+        return `<span class="tipo-pill" style="background:${hexToRgba(info.color,0.16)};color:${info.color};">${info.label}</span>`;
     }).join('');
     document.getElementById('art-box').classList.toggle('tiene', tieneVisual);
 
@@ -2827,6 +2862,7 @@ window.onload = async () => {
     aplicarIdioma();
     aplicarModoVista();
     actualizarBotonesModo();
+    inicializarOffsetsSticky();
     inicializarGestoModo();
     inicializarGestoGaleria();
     // detail-modal: null = arrastrar desde cualquier parte de la tarjeta

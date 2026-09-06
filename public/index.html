@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="manifest" href="manifest.json">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#f1f1ee" id="meta-theme-color">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Pokédex">
@@ -104,9 +105,9 @@
             <span class="modo-badge" id="modo-badge-mobile"></span>
             <div class="header-actions">
                 <span class="brand-count" id="brand-count">— / 1025</span>
-                <button class="header-icon-btn" onclick="mostrarMetricas()" title="Métricas" data-i18n-title="header.tituloMetricas">📊</button>
-                <button class="header-icon-btn" onclick="verPendientesAcomodar()" title="Por acomodar en Carpetas" data-i18n-title="header.tituloPorAcomodar">🔄<span class="btn-badge" id="badge-pendientes-mobile"></span></button>
-                <button class="header-icon-btn" onclick="abrirAjustes()" title="Ajustes" data-i18n-title="header.tituloAjustes">⚙️</button>
+                <button class="header-icon-btn" onclick="mostrarMetricas()" title="Métricas" data-i18n-title="header.tituloMetricas" aria-label="Métricas" data-i18n-aria-label="header.tituloMetricas"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></button>
+                <button class="header-icon-btn" onclick="verPendientesAcomodar()" title="Por acomodar en Carpetas" data-i18n-title="header.tituloPorAcomodar" aria-label="Por acomodar en Carpetas" data-i18n-aria-label="header.tituloPorAcomodar"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg><span class="btn-badge" id="badge-pendientes-mobile"></span></button>
+                <button class="header-icon-btn header-icon-btn-quiet" onclick="abrirAjustes()" title="Ajustes" data-i18n-title="header.tituloAjustes" aria-label="Ajustes" data-i18n-aria-label="header.tituloAjustes"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg></button>
             </div>
         </div>
         <div class="mode-switch" style="margin:0 0 10px;">
@@ -124,8 +125,10 @@
     <div id="modo-swipe-peek"><span id="modo-swipe-icon"></span><span id="modo-swipe-label"></span></div>
     <div class="main-content" id="main-view-content">
 
-        <!-- PROGRESS CARD -->
-        <div class="progress-card" style="margin-top:12px;" onclick="verPokedexCompleta()">
+        <!-- PROGRESS CARD: fija (sticky) mientras se scrollea la grilla de
+             cartas debajo, ver #progress-card-sticky-wrap en CSS -->
+        <div class="progress-card-sticky-wrap" id="progress-card-sticky-wrap">
+        <div class="progress-card" onclick="verPokedexCompleta()">
             <div class="progress-top-row">
                 <div class="progress-left">
                     <div class="progress-label" id="stat-card-title" data-i18n="progreso.titulo">Progreso de la colección</div>
@@ -145,6 +148,7 @@
                 <div class="binder-bar" id="binder-bar"></div>
                 <div class="binder-legend" id="binder-legend"></div>
             </div>
+        </div>
         </div>
 
         <!-- GEN GRID -->
@@ -167,19 +171,21 @@
                         <button class="filter-btn" id="filter-faltan-d" onclick="setFiltro('faltan')" data-i18n="filtro.faltan">○ Faltan</button>
                     </div>
                     <div class="vista-selector" id="vista-selector-d">
-                        <button class="vista-btn" data-vista="chico" title="Chico" data-i18n-title="vista.chico" onclick="elegirModoVista('chico')">
+                        <button class="vista-btn" data-vista="chico" title="Chico" data-i18n-title="vista.chico" aria-label="Chico" data-i18n-aria-label="vista.chico" onclick="elegirModoVista('chico')">
                             <span class="vista-icon vista-icon-chico"></span>
                         </button>
-                        <button class="vista-btn active" data-vista="normal" title="Normal" data-i18n-title="vista.normal" onclick="elegirModoVista('normal')">
+                        <button class="vista-btn active" data-vista="normal" title="Normal" data-i18n-title="vista.normal" aria-label="Normal" data-i18n-aria-label="vista.normal" onclick="elegirModoVista('normal')">
                             <span class="vista-icon vista-icon-normal"></span>
                         </button>
-                        <button class="vista-btn" data-vista="grande" title="Grande" data-i18n-title="vista.grande" onclick="elegirModoVista('grande')">
+                        <button class="vista-btn" data-vista="grande" title="Grande" data-i18n-title="vista.grande" aria-label="Grande" data-i18n-aria-label="vista.grande" onclick="elegirModoVista('grande')">
                             <span class="vista-icon vista-icon-grande"></span>
                         </button>
                     </div>
                 </div>
             </div>
-            <!-- Header mobile -->
+            <!-- Header + filtros mobile: fijos mientras se scrollea la
+                 grilla de cartas (ver #gallery-sticky-controls en CSS) -->
+            <div class="gallery-sticky-controls" id="gallery-sticky-controls">
             <div id="gallery-header-mobile" class="gallery-header">
                 <div>
                     <div class="gallery-title" id="gallery-title-text"></div>
@@ -193,16 +199,17 @@
                     <button class="filter-btn" id="filter-faltan" onclick="setFiltro('faltan')" data-i18n="filtro.faltan">○ Faltan</button>
                 </div>
                 <div class="vista-selector" id="vista-selector">
-                    <button class="vista-btn" data-vista="chico" title="Chico" data-i18n-title="vista.chico" onclick="elegirModoVista('chico')">
+                    <button class="vista-btn" data-vista="chico" title="Chico" data-i18n-title="vista.chico" aria-label="Chico" data-i18n-aria-label="vista.chico" onclick="elegirModoVista('chico')">
                         <span class="vista-icon vista-icon-chico"></span>
                     </button>
-                    <button class="vista-btn active" data-vista="normal" title="Normal" data-i18n-title="vista.normal" onclick="elegirModoVista('normal')">
+                    <button class="vista-btn active" data-vista="normal" title="Normal" data-i18n-title="vista.normal" aria-label="Normal" data-i18n-aria-label="vista.normal" onclick="elegirModoVista('normal')">
                         <span class="vista-icon vista-icon-normal"></span>
                     </button>
-                    <button class="vista-btn" data-vista="grande" title="Grande" data-i18n-title="vista.grande" onclick="elegirModoVista('grande')">
+                    <button class="vista-btn" data-vista="grande" title="Grande" data-i18n-title="vista.grande" aria-label="Grande" data-i18n-aria-label="vista.grande" onclick="elegirModoVista('grande')">
                         <span class="vista-icon vista-icon-grande"></span>
                     </button>
                 </div>
+            </div>
             </div>
             <!-- Scroll area desktop -->
             <div class="desktop-grid-scroll">

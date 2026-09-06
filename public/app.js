@@ -446,14 +446,13 @@ async function revisarSesion() {
         const res = await fetch('/api/sesion');
         const data = await res.json();
         sesionActiva = !!data.activa;
-    } catch (err) {
+    } catch {
         sesionActiva = false;
     }
     actualizarBotonSesion();
 }
 
 function actualizarBotonSesion() {
-    const texto = sesionActiva ? '🔓 Cerrar sesión' : '🔒 Iniciar sesión';
     const titulo = document.getElementById('btn-sesion-ajustes-titulo');
     if (titulo) titulo.textContent = sesionActiva ? t('login.cerrarSesion') : t('login.titulo');
     const icono = document.querySelector('#btn-sesion-ajustes .ajustes-item-icon');
@@ -481,7 +480,7 @@ async function abrirLoginModal(accionPendiente) {
         const res = await fetch('/api/auth-estado');
         const data = await res.json();
         configurada = data.configurada !== false;
-    } catch (err) { /* se queda en true por el default de arriba */ }
+    } catch { /* se queda en true por el default de arriba */ }
 
     document.getElementById('login-title').textContent = configurada
         ? t('login.titulo')
@@ -534,7 +533,7 @@ async function intentarLogin() {
             return;
         }
         sesionIniciadaConExito();
-    } catch (err) {
+    } catch {
         errBox.textContent = t('error.noConexionServidor');
         errBox.classList.add('visible');
     }
@@ -568,14 +567,14 @@ async function intentarDefinirPassword() {
             return;
         }
         sesionIniciadaConExito();
-    } catch (err) {
+    } catch {
         errBox.textContent = t('error.noConexionServidor');
         errBox.classList.add('visible');
     }
 }
 
 async function cerrarSesion() {
-    try { await fetch('/api/logout', { method:'POST' }); } catch (err) { /* no es grave si falla */ }
+    try { await fetch('/api/logout', { method:'POST' }); } catch { /* no es grave si falla */ }
     sesionActiva = false;
     actualizarBotonSesion();
     mostrarToastInfo(t('toast.sesionCerrada'));
@@ -714,7 +713,7 @@ function mostrarToastDeshacer(idPk, fechaPreservada, nombrePk) {
             if (fechaPreservada) guardarFechaRegistro(idPk, fechaPreservada);
             await cargarEstadisticas(true);
             actualizarBadgePendientes();
-        } catch (err) {
+        } catch {
             mostrarToastError(t('error.noSePudoDeshacer'));
         }
     };
@@ -784,7 +783,7 @@ async function fetchGenSegura(g) {
         const res = await fetch(`/api/buscar?gen=${g}`);
         if (!res.ok) throw new Error('respuesta no válida');
         return await res.json();
-    } catch (err) {
+    } catch {
         mostrarToastError(t('error.noCargoGeneracion', { g }));
         return null;
     }
@@ -795,7 +794,7 @@ async function fetchRangoSegura(desde, hasta) {
         const res = await fetch(`/api/buscar?desde=${desde}&hasta=${hasta}`);
         if (!res.ok) throw new Error('respuesta no válida');
         return await res.json();
-    } catch (err) {
+    } catch {
         mostrarToastError(t('error.noCargoRango', { desde, hasta }));
         return null;
     }
@@ -967,7 +966,7 @@ async function cargarEstadisticas(mantenerScroll = false) {
         const res = await fetch(`/api/estadisticas?modo=${modoActual}&nocache=${Date.now()}`);
         if (!res.ok) throw new Error('respuesta no válida');
         data = await res.json();
-    } catch (err) {
+    } catch {
         mostrarToastError(t(mantenerScroll ? 'error.noSePudoSincronizar' : 'error.noSePudoCargarColeccion'));
         return;
     }
@@ -1109,7 +1108,7 @@ async function calcularIdsPendientes() {
         if (!rBulk.ok || !rCarp.ok) throw new Error('respuesta no válida');
         bulkData = await rBulk.json();
         carpetasData = await rCarp.json();
-    } catch (err) {
+    } catch {
         mostrarToastError(t('error.noSePudoComparar'));
         return null;
     }
@@ -1183,7 +1182,7 @@ async function manejarArchivoImportar(event) {
     try {
         const texto = await archivo.text();
         data = JSON.parse(texto);
-    } catch (err) {
+    } catch {
         mostrarToastError(t('error.archivoNoJSON'));
         return;
     }
@@ -1229,7 +1228,7 @@ async function manejarArchivoImportar(event) {
         if (esDesktop()) verPokedexCompleta(); // sin esto la grilla de escritorio queda obsoleta hasta la próxima recarga
         await cargarEstadisticas(true);
         actualizarBadgePendientes();
-    } catch (err) {
+    } catch {
         sseIgnorarProximoConfig = false;
         mostrarToastError(t('error.noSePudoImportar'));
     }
@@ -1311,7 +1310,7 @@ async function calcularIdsPendientesSilencioso() {
         const carpetasData = await rCarp.json();
         const idsEnCarpetas = new Set(Object.keys(carpetasData.listaIds || {}).map(Number));
         return Object.keys(bulkData.listaIds || {}).map(Number).filter(id => !idsEnCarpetas.has(id));
-    } catch (err) {
+    } catch {
         return null;
     }
 }
@@ -1323,7 +1322,7 @@ async function exportarColeccion() {
         const res = await fetch('/api/exportar');
         if (!res.ok) throw new Error('respuesta no válida');
         data = await res.json();
-    } catch (err) {
+    } catch {
         mostrarToastError(t('error.noSePudoGenerarRespaldo'));
         return;
     }
@@ -1379,7 +1378,7 @@ async function descargarRecortablesPDF() {
         a.remove();
         URL.revokeObjectURL(url);
         mostrarToastInfo(t('toast.pdfListo'));
-    } catch (err) {
+    } catch {
         mostrarToastError(t('error.noSePudoGenerarPDF'));
     } finally {
         btn.disabled = false;
@@ -1845,7 +1844,7 @@ async function ejecutarToggleStatus() {
             });
             if (res.status === 401) { abrirLoginModal(ejecutarToggleStatus); return; }
             if (!res.ok) throw new Error('respuesta no válida');
-        } catch (err) {
+        } catch {
             mostrarToastError(t('error.noSePudoGuardarCambio'));
             return;
         }
@@ -1886,7 +1885,7 @@ async function ejecutarToggleStatus() {
         try {
             const body = await res.json();
             fechaServidor = body && body.fecha ? body.fecha : null;
-        } catch (e) { /* el backend puede no devolver JSON; no es grave */ }
+        } catch { /* el backend puede no devolver JSON; no es grave */ }
         const fechaPreservada = getFechaISO(idPk); // por si la desmarcas: para poder deshacer con la misma fecha
         localStorage.setItem(claveLS(idPk), nuevoEstado ? 'true' : 'false');
         if (nuevoEstado) guardarFechaRegistro(idPk, fechaServidor || fechaIso);
@@ -1898,7 +1897,7 @@ async function ejecutarToggleStatus() {
         if (nuevoEstado) detectarYCelebrarCompletado(statsAntes, dataGlobalCache);
         actualizarBadgePendientes();
         if (!nuevoEstado) mostrarToastDeshacer(idPk, fechaPreservada, nombrePk);
-    } catch (err) {
+    } catch {
         mostrarToastError(t('error.noSePudoGuardarCambio'));
     }
 }
@@ -1967,7 +1966,7 @@ function handleSearchInput(e, inputEl) {
         if (!data.length) { sugBox.classList.remove('visible'); return; }
         const frag = document.createDocumentFragment();
         data.forEach(p => {
-            const { ancla, numR, region: rName } = numeroRegionalCliente(p);
+            const { numR, region: rName } = numeroRegionalCliente(p);
             const tiene = tieneEnLS(p.id);
             const carpetaPk = carpetaDe(p);
             const colorPk = carpetaPk ? carpetaPk.color : coloresGen[p.gen-1];
@@ -2106,7 +2105,7 @@ async function mostrarVersionServidor() {
         const res = await fetch('/api/version');
         const data = await res.json();
         el.textContent = data.commit ? t('ajustes.version', { commit: data.commit }) : '';
-    } catch (err) {
+    } catch {
         el.textContent = '';
     }
 }
@@ -2160,7 +2159,7 @@ async function renderVariantesChecks(elementId) {
         const res = await fetch('/api/variantes-config');
         if (!res.ok) throw new Error('respuesta no válida');
         variantesConfigActual = await res.json();
-    } catch (err) {
+    } catch {
         mostrarToastError(t('error.noSePudoCargarVariantes'));
         return false;
     }
@@ -2296,7 +2295,7 @@ async function abrirPanelRespaldos() {
         const res = await fetch('/api/backups');
         if (!res.ok) throw new Error('respuesta no válida');
         respaldos = await res.json();
-    } catch (err) {
+    } catch {
         lista.innerHTML = `<div class="pdf-opciones-label">${t('respaldos.errorCarga')}</div>`;
         return;
     }

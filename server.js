@@ -435,7 +435,7 @@ const clientes = new Set();
 function broadcast(datos) {
     const payload = `data: ${JSON.stringify(datos)}\n\n`;
     for (const res of clientes) {
-        try { res.write(payload); } catch(e) { clientes.delete(res); }
+        try { res.write(payload); } catch { clientes.delete(res); }
     }
 }
 
@@ -986,7 +986,7 @@ app.post('/api/backups/restaurar', requiereLogin, rateLimiter, (req, res) => {
     let raw;
     try {
         raw = JSON.parse(fs.readFileSync(path.join(CARPETA_RESPALDOS, archivo), 'utf8'));
-    } catch (err) {
+    } catch {
         return res.status(500).json({ success:false, error: 'respaldo_corrupto' });
     }
 

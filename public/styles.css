@@ -258,6 +258,13 @@
            del grid ya esté en 0fr. */
         .progress-card-sticky-wrap.progreso-oculto{grid-template-rows:0fr;padding-top:0;padding-bottom:0;}
         .progress-card-sticky-wrap.progreso-oculto .progress-card{padding:0;border-width:0;}
+        /* Usada por expandirProgresoAlInstante() en app.js para re-expandir
+           sin la transición de .28s justo antes de un scrollTo({top:0}) de
+           "saltar de vista" (cambiar de generación/carpeta/etc.): si no, la
+           card creciendo compite visualmente con el scroll y se ve como un
+           brinco. */
+        .progress-card-sticky-wrap.sin-transicion-progreso,
+        .progress-card-sticky-wrap.sin-transicion-progreso .progress-card{transition:none!important;}
         .progress-card{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--modo-color);border-radius:var(--radius);padding:16px;position:relative;overflow:hidden;min-height:0;cursor:pointer;transition:transform .15s,border-color .3s,padding .28s ease,border-width .28s ease;}
         @media(prefers-reduced-motion:reduce){.progress-card-sticky-wrap{transition:none;}}
         .progress-card:active{transform:scale(0.98);}

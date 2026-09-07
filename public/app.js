@@ -138,19 +138,7 @@ function inicializarColapsoProgresoAlScrollear() {
     const evaluar = () => {
         ticking = false;
         if (esDesktop()) { progressWrap.classList.remove('progreso-oculto'); return; }
-        // Si hay poco contenido (pocos Pokémon filtrados) casi no hay scroll
-        // real que hacer: lo poco que se mueve scrollTop es rebote elástico
-        // táctil, no una intención de scrollear. Sin esta guarda, colapsar
-        // encoge el alto del contenido, eso empuja el scroll de vuelta cerca
-        // del tope, se vuelve a expandir, y así en loop (rebote raro).
-        const maxScroll = scrollRoot.scrollHeight - scrollRoot.clientHeight;
-        if (maxScroll <= UMBRAL) {
-            progressWrap.classList.remove('progreso-oculto');
-            progressWrap.setAttribute('aria-hidden', 'false');
-            referencia = scrollRoot.scrollTop;
-            return;
-        }
-        const actual = Math.min(Math.max(scrollRoot.scrollTop, 0), maxScroll);
+        const actual = scrollRoot.scrollTop;
         if (actual <= CERCA_DEL_TOPE) {
             progressWrap.classList.remove('progreso-oculto');
             progressWrap.setAttribute('aria-hidden', 'false');
@@ -172,21 +160,6 @@ function inicializarColapsoProgresoAlScrollear() {
     scrollRoot.addEventListener('scroll', () => {
         if (!ticking) { ticking = true; requestAnimationFrame(evaluar); }
     }, { passive: true });
-}
-
-// Vuelve la progress card a expandida al instante (sin la transición de
-// .28s de .progreso-oculto). Se llama justo antes de los scrollTo({top:0})
-// de "saltar al tope" al cambiar de generación/carpeta/vista: si se dejara
-// la transición normal, la card creciendo compite visualmente con el
-// scroll animándose al mismo tiempo y se siente como un brinco raro.
-function expandirProgresoAlInstante() {
-    const progressWrap = document.getElementById('progress-card-sticky-wrap');
-    if (!progressWrap || !progressWrap.classList.contains('progreso-oculto')) return;
-    progressWrap.classList.add('sin-transicion-progreso');
-    progressWrap.classList.remove('progreso-oculto');
-    progressWrap.setAttribute('aria-hidden', 'false');
-    void progressWrap.offsetHeight; // fuerza reflow para "committear" el estado sin transición
-    progressWrap.classList.remove('sin-transicion-progreso');
 }
 
 // ── GESTOS ───────────────────────────────────────────────────────
@@ -1103,7 +1076,6 @@ async function verCarpeta(carpeta) {
     if (!esDesktop()) {
         mostrarSeccionGaleria();
         mostrarFAB();
-        expandirProgresoAlInstante();
         document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
     }
     mostrarGalleryShell(t('carpeta.tituloConNombre', { nombre: carpeta.nombre }));
@@ -1133,7 +1105,6 @@ async function verPokedexCompleta() {
     if (!esDesktop()) {
         mostrarSeccionGaleria();
         mostrarFAB();
-        expandirProgresoAlInstante();
         document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
     }
     mostrarGalleryShell(t('comun.pokedexCompleta'));
@@ -1343,7 +1314,6 @@ async function verPendientesAcomodar() {
     if (!esDesktop()) {
         mostrarSeccionGaleria();
         mostrarFAB();
-        expandirProgresoAlInstante();
         document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
     }
     // Aquí no aplica "Todos/Tenemos/Faltan": todo lo que se muestra ya es "pendiente" por definición.
@@ -1604,7 +1574,6 @@ async function verListadoGeneracion(gen, region) {
         mostrarSeccionGaleria();
         document.getElementById('sugerencias').classList.remove('visible');
         mostrarFAB();
-        expandirProgresoAlInstante();
         document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
     }
     mostrarGalleryShell(region);
@@ -1818,7 +1787,6 @@ function cerrarGaleriaYVolver() {
     if (!esDesktop()) {
         ocultarSeccionGaleria();
         ocultarFAB();
-        expandirProgresoAlInstante();
         document.getElementById('scroll-root').scrollTo({ top:0, behavior:'smooth' });
     }
     actualizarTarjetaProgreso();

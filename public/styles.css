@@ -246,20 +246,8 @@
            margin que tenía antes .progress-card) evita que, al estar ambos
            elementos "pegados", se vea un hilo de la grilla scrolleando por
            el hueco transparente que dejaría un margin entre ellos. */
-        .progress-card-sticky-wrap{position:sticky;top:var(--h-sticky-header,0px);z-index:150;background:var(--bg);padding-top:12px;padding-bottom:16px;display:grid;grid-template-rows:1fr;transition:grid-template-rows .28s ease,padding-top .28s ease,padding-bottom .28s ease;}
-        /* Colapsada al bajar en la grilla (ver inicializarColapsoProgresoAlScrollear
-           en app.js): 0fr + min-height:0 en el hijo la lleva a altura 0 sin
-           importar su contenido real. Al achicarse, el ResizeObserver de
-           inicializarOffsetsSticky() reacomoda solo --h-sticky-progress, así
-           que .gallery-sticky-controls sube y queda pegado al header. El
-           padding/border de .progress-card también tienen que ir a 0: con
-           box-sizing:border-box la caja nunca baja de padding+border, así
-           que sin esto quedaría un resto visible de ~34px aunque la fila
-           del grid ya esté en 0fr. */
-        .progress-card-sticky-wrap.progreso-oculto{grid-template-rows:0fr;padding-top:0;padding-bottom:0;}
-        .progress-card-sticky-wrap.progreso-oculto .progress-card{padding:0;border-width:0;}
-        .progress-card{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--modo-color);border-radius:var(--radius);padding:16px;position:relative;overflow:hidden;min-height:0;cursor:pointer;transition:transform .15s,border-color .3s,padding .28s ease,border-width .28s ease;}
-        @media(prefers-reduced-motion:reduce){.progress-card-sticky-wrap{transition:none;}}
+        .progress-card-sticky-wrap{position:sticky;top:var(--h-sticky-header,0px);z-index:150;background:var(--bg);padding-top:12px;padding-bottom:16px;}
+        .progress-card{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--modo-color);border-radius:var(--radius);padding:16px;position:relative;overflow:hidden;cursor:pointer;transition:transform .15s,border-color .3s ease;}
         .progress-card:active{transform:scale(0.98);}
         .progress-top-row{display:flex;align-items:center;justify-content:space-between;}
         .progress-label{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}

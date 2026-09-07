@@ -120,48 +120,6 @@ function inicializarOffsetsSticky() {
     new ResizeObserver(actualizar).observe(progressWrap);
 }
 
-// Al bajar en la grilla, la progress card (con su leyenda de carpetas) se
-// colapsa para dejar más Pokémon a la vista; los filtros/vista de
-// .gallery-sticky-controls quedan siempre visibles. Sube de nuevo al
-// scrollear hacia arriba o al llegar cerca del tope. Solo aplica en mobile
-// (en desktop la progress card no es sticky, ver media query en CSS).
-function inicializarColapsoProgresoAlScrollear() {
-    const scrollRoot = document.getElementById('scroll-root');
-    const progressWrap = document.getElementById('progress-card-sticky-wrap');
-    if (!scrollRoot || !progressWrap) return;
-
-    const UMBRAL = 24;       // px de scroll acumulado antes de reaccionar (evita jitter)
-    const CERCA_DEL_TOPE = 8;
-    let referencia = scrollRoot.scrollTop;
-    let ticking = false;
-
-    const evaluar = () => {
-        ticking = false;
-        if (esDesktop()) { progressWrap.classList.remove('progreso-oculto'); return; }
-        const actual = scrollRoot.scrollTop;
-        if (actual <= CERCA_DEL_TOPE) {
-            progressWrap.classList.remove('progreso-oculto');
-            progressWrap.setAttribute('aria-hidden', 'false');
-            referencia = actual;
-            return;
-        }
-        const delta = actual - referencia;
-        if (delta > UMBRAL) {
-            progressWrap.classList.add('progreso-oculto');
-            progressWrap.setAttribute('aria-hidden', 'true');
-            referencia = actual;
-        } else if (delta < -UMBRAL) {
-            progressWrap.classList.remove('progreso-oculto');
-            progressWrap.setAttribute('aria-hidden', 'false');
-            referencia = actual;
-        }
-    };
-
-    scrollRoot.addEventListener('scroll', () => {
-        if (!ticking) { ticking = true; requestAnimationFrame(evaluar); }
-    }, { passive: true });
-}
-
 // ── GESTOS ───────────────────────────────────────────────────────
 // GSAP Draggable + InertiaPlugin, vendorizados en public/vendor/gsap/
 // (no por CDN: esta es una PWA offline-first). Si por lo que sea no
@@ -2904,7 +2862,6 @@ window.onload = async () => {
     aplicarModoVista();
     actualizarBotonesModo();
     inicializarOffsetsSticky();
-    inicializarColapsoProgresoAlScrollear();
     inicializarGestoModo();
     inicializarGestoGaleria();
     // detail-modal: null = arrastrar desde cualquier parte de la tarjeta
